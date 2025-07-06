@@ -1,4 +1,3 @@
-# LaTeXTrans
 
 # 🚀 LaTeXTrans
 
