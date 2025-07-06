@@ -47,7 +47,7 @@ api_key = " " #your_api_key_here
 base_url = " " #base url of the API
 ```
 
-You can connect to services such as OpenAI, DeepSeek, Claude, or your own hosted LLMs that follow the OpenAI-compatible API format.
+You can connect to services such as OpenAI, DeepSeek, Claude, or your own hosted LLMs.
 
 ## 🚀 Usage
 
