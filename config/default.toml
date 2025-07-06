@@ -4,7 +4,7 @@ sys_name = "LaTeXTrans"
 version = "0.1.0"
 target_language = "ch" # only support Chinese (ch) now
 paper_list = ["2501.12948"] # List of paper IDs to process, e.g., ["2505.19590", "2505.19591"]
-tex_sources_dir = "" # Directory to store LaTeX source files
+tex_sources_dir = "tex source" # Directory to store LaTeX source files
 output_dir = "outputs" # Directory to store output files
 
 [llm_config]
