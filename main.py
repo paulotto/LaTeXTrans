@@ -32,7 +32,7 @@ def main():
         if not projects:
             raise ValueError("❌ No projects found in the specified directory. Please check the 'tex_sources_dir' and 'paper list' in the config file.")
 
-    for project_dir in tqdm(projects[0:50], desc="Processing projects", unit="project"):
+    for project_dir in tqdm(projects, desc="Processing projects", unit="project"):
 
         try:
             LaTexTrans = CoordinatorAgent(config=config, 

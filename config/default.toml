@@ -3,16 +3,11 @@
 sys_name = "LaTeXTrans"
 version = "0.1.0"
 target_language = "ch" # only support Chinese (ch) now
-paper_list = [] # List of paper IDs to process, e.g., ["2505.19590", "2505.19591"]
-tex_sources_dir = "data/cs" # Directory to store LaTeX source files
-output_dir = "outputs_qwen_14b_latextrans_ja_50" # Directory to store output files
-
-term_bases_dir = ""
-
-refinement = false 
-terminology = false 
+paper_list = ["2501.12948"] # List of paper IDs to process, e.g., ["2505.19590", "2505.19591"]
+tex_sources_dir = "" # Directory to store LaTeX source files
+output_dir = "outputs" # Directory to store output files
 
 [llm_config]
 model = "gpt-4o"
-api_key = "sk-KWo5sSuyR5wa5Uac87217f24Ed7d420099375a02F76e2dDb"
-base_url = "https://api.bltcy.ai/v1/chat/completions"
+api_key = ""
+base_url = ""
