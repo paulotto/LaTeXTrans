@@ -72,3 +72,49 @@ Save the translated .tex file and the compiled PDF in the outputs folder
 ## 💬 Demonstration video
 
 The demonstration video of our system: https://www.youtube.com/watch?v=tSVm_EOL7i8
+
+## 🖼️ Translation Cases
+
+Here are two real translation cases produced by **LaTeXTrans**. Each case shows the LaTeX source on the left and the translated output on the right.
+
+### 📄 Case 1: 
+
+<table>
+  <tr>
+    <td align="center"><b>Original</b></td>
+    <td align="center"><b>Translated</b></td>
+  </tr>
+  <tr>
+    <td><img src="examples/case1src.png" width="100%"></td>
+    <td><img src="examples/case1ch.png" width="100%"></td>
+  </tr>
+</table>
+
+### 📄 Case 2: 
+
+<table>
+  <tr>
+    <td align="center"><b>Original</b></td>
+    <td align="center"><b>Translated</b></td>
+  </tr>
+  <tr>
+    <td><img src="examples/case2src.png" width="100%"></td>
+    <td><img src="examples/case2ch.png" width="100%"></td>
+  </tr>
+</table>
+
+### 📄 Case 3: 
+
+<table>
+  <tr>
+    <td align="center"><b>Original</b></td>
+    <td align="center"><b>Translated</b></td>
+  </tr>
+  <tr>
+    <td><img src="examples/case3src.png" width="100%"></td>
+    <td><img src="examples/case3ch.png" width="100%"></td>
+  </tr>
+</table>
+
+
+📂 **More examples can be found in the [`examples/`](examples/) folder**, including the full translated PDFs for each case.
