@@ -75,7 +75,7 @@ The demonstration video of our system: https://www.youtube.com/watch?v=tSVm_EOL7
 
 ## 🖼️ Translation Cases
 
-Here are two real translation cases produced by **LaTeXTrans**. Each case shows the LaTeX source on the left and the translated output on the right.
+Here are three real translation cases produced by **LaTeXTrans**. Each case shows the LaTeX source on the left and the translated output on the right.
 
 ### 📄 Case 1: 
 
