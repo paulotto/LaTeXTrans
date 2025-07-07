@@ -13,6 +13,7 @@
 - 🌐 **Flexible backend support**: Works with GPT-4, DeepSeek, or your own LLM API  
 - 📚 **ArXiv ID support**: Automatically downloads and translates papers from arXiv with a single command  
 - 🧰 **Customizable pipeline**: Easily adjust summarization, terminology injection, and translation agents  
+- 🌏 **Multilingual translation**: Currently supports 🇨🇳 Chinese and 🇯🇵 Japanese; 🇰🇷 Korean coming soon!
 
 ---
 
