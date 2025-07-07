@@ -29,8 +29,8 @@ class LatexConstructor:
         tex = self._revert_newcommands(tex)
 
         # process japanese specific packages ----------
-        tex = self._comment_out_latex_packages_for_ja(tex)
-        tex = self._add_lualatex_option_to_documentclass_for_ja(tex)
+        # tex = self._comment_out_latex_packages_for_ja(tex)
+        # tex = self._add_lualatex_option_to_documentclass_for_ja(tex)
         # ---------------------------------------------
 
 
@@ -134,8 +134,8 @@ class LatexConstructor:
             print(f"⚠️ Warning: Residual placeholders found and removed: {residual_matches}")
             tex = re.sub(r"<PLACEHOLDER_[^>]*>", "", tex)
 
-        # tex = add_ctex_package(tex) # zh
-        tex = add_ja_package(tex)  # ja
+        tex = add_ctex_package(tex) # zh
+        # tex = add_ja_package(tex)  # ja
 
         main_file_path = find_main_tex_file(self.output_latex_dir)
         if os.path.exists(main_file_path):

@@ -45,7 +45,7 @@ class GeneratorAgent(BaseToolAgent):
         latex_constructor.construct()
 
         latex_compiler = LaTexCompiler(output_latex_dir=transed_latex_dir)
-        pdf_file = latex_compiler.compile_ja()
+        pdf_file = latex_compiler.compile()
         if pdf_file:
             self.log(f"✅ Successfully generated for {os.path.basename(self.project_dir)}.")
             return pdf_file
