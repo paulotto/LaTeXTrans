@@ -68,10 +68,10 @@ class TranslatorAgent(BaseToolAgent):
                     self.save_file(Path(self.output_dir, "captions_map.json"), "json", captions)
                     self.save_file(Path(self.output_dir, "envs_map.json"), "json", envs)
 
-            # self._val_fail_parts(Maxtry=Maxtry,
-            #                      sections=sections,
-            #                      captions=captions,
-            #                      envs=envs)
+            self._val_fail_parts(Maxtry=Maxtry,
+                                 sections=sections,
+                                 captions=captions,
+                                 envs=envs)
             
             self.log(f"✅ Successfully translated sections!")
 

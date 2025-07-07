@@ -11,12 +11,7 @@ from .tool_agents.base_tool_agent import BaseToolAgent
 from .tool_agents.parser_agent import ParserAgent
 from .tool_agents.translator_agent import TranslatorAgent 
 from .tool_agents.generator_agent import GeneratorAgent
-# from .tool_agents.refinement_agent import RefinementAgent 
-# from .tool_agents.reconstructor_agent import ReconstructorAgent 
 from .tool_agents.validator_agent import ValidatorAgent 
-from .tool_agents.translator_NMT_agent import TranslatorAgent_NMT
-from .tool_agents.translator_llama_qwen_agent import TranslatorAgent_llama_qwen
-# from .tool_agents.terminology_agent import TerminologyAgent 
 
 
 class CoordinatorAgent:
@@ -35,7 +30,7 @@ class CoordinatorAgent:
         Initializes the CoordinatorAgent.
         """
         self.config = config
-        self.name = config.get("sys_name", "AutoTexTrans")
+        self.name = config.get("sys_name", "LaTeXTrans")
         self.target_language = config.get("target_language", "ch")
         self.project_dir = project_dir  # Project path for parsing
         self.output_dir = output_dir  # Output directory for parsed files
@@ -58,6 +53,8 @@ class CoordinatorAgent:
                                             output_dir=transed_project_dir,
                                             trans_mode=0)
         translator_agent.execute()
+        
+        # Uncomment the following lines if you want to include validation in the workflow
         # validator_agent = ValidatorAgent(config=self.config,
         #                                     project_dir=self.project_dir,
         #                                     output_dir=transed_project_dir)
