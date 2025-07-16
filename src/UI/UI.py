@@ -12,10 +12,10 @@ import sys
 
 import toml
 from datetime import datetime
-import random
 from streamlit_pdf_viewer import pdf_viewer
 import tempfile
 import atexit
+
 
 # ---------- 路径配置 ----------
 # 获取当前工作目录
@@ -196,10 +196,6 @@ def choose(mode):
         return 0
     elif mode == "model with your term pairs":
         return 2
-    elif mode == "model with paper's summary":
-        return 3
-    elif mode == "models with your term pair and summary":
-        return 4
     
 
 def encode_pdf_base64(pdf_path):
@@ -304,10 +300,19 @@ st.markdown("""
 
 st.markdown("---")
 
+# ---------- 主页设置 ----------
+
+
+
 # ---------- 侧边栏设置 ----------
 with st.sidebar:
     st.header("LaTeXTrans 🚀")
-    
+
+    with st.expander("some help"):
+        st.subheader("Attention!!!")
+        st.text("Our paper address is associated with Arxiv-id. If you want to read other translated papers, please modify the Arxiv-id area to change the viewing folder (our input path naming format=user input path+Arxiv-id, output path naming format=user input output path+ch_ Arxiv-id)")
+        st.text("Please pay attention to the question mark prompts for each module")
+
     # 使用 st.session_state 来初始化 widget 值
     arxiv_id = st.text_input("Please enter ArXiv ID:",
                             placeholder="e.g., 2305.12345",
@@ -329,11 +334,11 @@ with st.sidebar:
                                   help="Select the target language for translation.")
         
     update_term = st.checkbox("Update Term Pairs",
-                             help="Update term pairs in the paper",
+                             help="Update term pairs in the paper(Better performance comes with more tokens)",
                              value=False)
     
     mode_1 = st.selectbox("Translation Mode",
-                        ["base_model", "model with your term pairs", "model with paper's summary", "models with your term pair and summary"],
+                        ["base_model", "model with your term pairs"],
                         index=0,
                         help="Select the translation mode.")
     mode = choose(mode_1)
@@ -499,7 +504,6 @@ if st.session_state.get("translating", False):
             else:
                 projects = batch_download_arxiv_tex([arxiv_id], projects_dir)
 
-
             config["category"] = get_arxiv_category([arxiv_id])
             extract_compressed_files(projects_dir)
         else:
@@ -519,7 +523,6 @@ if st.session_state.get("translating", False):
                     output_dir=output_dir
                 )
                 LaTexTrans.workflow_latextrans()
-                view_enable = True
             except Exception as e:
                 st.error(f"❌ Error processing project {os.path.basename(project_dir)}: {e}")
                 continue
@@ -528,6 +531,7 @@ if st.session_state.get("translating", False):
 # ---------- 预览 ----------
 if view_enable:
     # ---------- PDF预览选项卡 ----------
+
     tab1, tab2 = st.tabs(["📄 Single column preview", "📖 Double column comparison"])
 
     with tab1:
