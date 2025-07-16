@@ -25,7 +25,9 @@ class GeneratorAgent(BaseToolAgent):
 
     def execute(self) -> Any:
         sys.stderr = open(os.devnull, 'w')
-        self.progress_bar = st.progress(0)
+        self.process_b = st.empty()
+        with self.process_b:
+            self.progress_bar = st.progress(0)
         self.status_text = st.empty()
         sys.stderr = sys.__stderr__
         
@@ -105,7 +107,7 @@ class GeneratorAgent(BaseToolAgent):
             self.progress_bar.progress(100)
             st.success(f"✅ Successfully generated for {os.path.basename(self.project_dir)}.")
             time.sleep(2)
-            self.progress_bar.empty()
+            self.process_b.empty()
             self.status_text.empty()
             sys.stderr = sys.__stderr__
 
@@ -114,7 +116,7 @@ class GeneratorAgent(BaseToolAgent):
         else:
             sys.stderr = open(os.devnull, 'w')
             self.status_text.error("❌ Failed to compile PDF document.")
-            self.progress_bar.empty()
+            self.process_b.empty()
             sys.stderr = sys.__stderr__
             return None
         

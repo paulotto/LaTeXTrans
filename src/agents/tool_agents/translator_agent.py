@@ -70,7 +70,9 @@ class TranslatorAgent(BaseToolAgent):
         self.build_term_dict()
 
         sys.stderr = open(os.devnull, 'w')
-        process_bar = st.progress(0)
+        process_b = st.empty()
+        with process_b:
+            process_bar = st.progress(0)
         status_text = st.empty()
         sys.stderr = sys.__stderr__
 
@@ -132,7 +134,7 @@ class TranslatorAgent(BaseToolAgent):
                 status_text.text("✅ Successfully translated sections!")
                 process_bar.progress(100)
                 st.success("✅ Successfully translated sections!")
-                process_bar.empty()
+                process_b.empty()
                 status_text.empty()
                 sys.stderr = sys.__stderr__
 
@@ -142,11 +144,16 @@ class TranslatorAgent(BaseToolAgent):
             暂时没有进入该mode1分支,故加注释
 
             """
+            sys.stderr = open(os.devnull, "w")
+            status_text = st.empty()
+            sys.stderr = sys.__stderr__
             async with aiohttp.ClientSession() as session:
                 error_parts = [error_part["num_or_ph"] for error_part in self.errors_report]
                 self.log(
                     f"🤖💬 Starting retranslating for error parts:{error_parts}, the {error_retry_count + 1} chance for {Maxtry} total.")
-
+                sys.stderr = open(os.devnull, "w")
+                status_text.text(f"🤖💬 Starting retranslating for error parts:{error_parts}, the {error_retry_count + 1} chance for {Maxtry} total.")
+                sys.stderr = sys.__stderr__
                 await self._retranslate_error_parts(secs=sections,
                                                     caps=captions,
                                                     envs=envs,
@@ -168,7 +175,11 @@ class TranslatorAgent(BaseToolAgent):
                                            session=session)
 
             self.log(f"✅ Successfully retranslated error parts!")
-
+            sys.stderr = open(os.devnull, "w")
+            status_text.text(f"✅ Successfully retranslated error parts!")
+            time.sleep(3)
+            status_text.empty()
+            sys.stderr = sys.__stderr__
             
 
     async def translate(self,
@@ -210,13 +221,23 @@ class TranslatorAgent(BaseToolAgent):
         return section
     
     async def _val_fail_parts(self, sections, captions, envs, Maxtry, session: aiohttp.ClientSession, fail_retry_count=0) -> str:
+            sys.stderr = open(os.devnull, 'w')
+            status_text = st.empty()
+            sys.stderr = sys.__stderr__
             while fail_retry_count < Maxtry and self.have_fail_parts:
                 fail_parts = self.fail_section_nums + self.fail_caption_phs + self.fail_env_phs
                 if fail_retry_count == Maxtry:  #  retry 3 times
                     print(f"❌ Failed to translate {fail_parts}")
+                    sys.stderr = open(os.devnull, "w")
+                    status_text.error(f"❌ Failed to translate {fail_parts}")
+                    st.error(f"❌ Failed to translate {fail_parts}")
+                    time.sleep(3)
+                    sys.stderr = sys.__stderr__
                     break
                 self.log(f"🤖💬 Starting retranslating for fail parts:{fail_parts}, the {fail_retry_count+1} chance for {Maxtry} total.")
-
+                sys.stderr = open(os.devnull, "w")
+                status_text.text(f"🤖💬 Starting retranslating for fail parts:{fail_parts}, the {fail_retry_count+1} chance for {Maxtry} total.")
+                sys.stderr = sys.__stderr__
                 await self._retranslate_fail_parts(secs=sections,
                                             caps=captions,
                                             envs=envs,
@@ -226,6 +247,10 @@ class TranslatorAgent(BaseToolAgent):
                 self.save_file(Path(self.output_dir, "envs_map.json"), "json", envs)
                 
                 fail_retry_count += 1
+                sys.stderr = open(os.devnull, 'w')
+                time.sleep(3)
+                status_text = st.empty()
+                sys.stderr = sys.__stderr__
 
     async def _retranslate_fail_parts(self,
                                 secs: List[Dict[str, Any]], 
@@ -276,6 +301,13 @@ class TranslatorAgent(BaseToolAgent):
         async with aiohttp.ClientSession() as session:
             sem = asyncio.Semaphore(20)  # 考虑到api响应速度,大概10s左右处理一个section,每半秒启动一次调用,10左右应该不会浪费api token
 
+            sys.stderr = open(os.devnull, 'w')
+            process_b = st.empty()
+            with process_b:
+                process_bar = process_b.progress(0)
+            status_text = st.empty()
+            sys.stderr = sys.__stderr__
+            completed = 0
             async def process_ErrorPart(i, error_report):
                 async with sem:
                     error_message = []
@@ -347,10 +379,21 @@ class TranslatorAgent(BaseToolAgent):
             for future in tqdm(asyncio.as_completed(tasks_ErrorPart), total=len(tasks_ErrorPart), desc="Translating...",
                                unit="section"):
                 result = await future
+                completed += 1
+                sys.stderr = open(os.devnull, 'w')
+                process_bar.progress(completed / len(tasks_ErrorPart))
+                status_text.text(f"Completed {completed}/{len(tasks_ErrorPart)} part（{completed / len(tasks_ErrorPart):.1%}）")
+                sys.stderr = sys.__stderr__
                 # 只有处理目标caption时才会返回有意义的结果
                 if result is not None:  # 确保i不是None
                     i = result
-
+            sys.stderr = open(os.devnull, 'w')
+            process_bar.progress(100)
+            status_text.text("Complete a retranslation once")
+            time.sleep(3)
+            process_b.empty()
+            status_text.empty()
+            sys.stderr = sys.__stderr__
     async def _translate_section(self, section: Dict[str, Any], session: aiohttp.ClientSession, error_message=None) -> \
     Dict[str, Any]:
         """只修改了mode0的异步操作,后续mode的修改需要把对应request方法也修改"""
@@ -652,7 +695,7 @@ class TranslatorAgent(BaseToolAgent):
             "messages": [
                 {
                     "role": "system",
-                    "content": f"{system_prompt}"
+                    "content": f"{system_prompt}\nWhen translating, you must strictly use the following glossary for substitution. This is the highest priority rule to ensure the consistency of terms throughout the text.\n<Glossary>:\n{self.term_dict}\nNow, please translate the following new paragraph. Maintain the terminology from the glossary provided."
                 },
                 {
                     "role": "user",

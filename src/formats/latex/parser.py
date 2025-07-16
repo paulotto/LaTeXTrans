@@ -23,7 +23,9 @@ class LatexParser:
         Parse the LaTeX document and return the parsed content.
         """
         sys.stderr = open(os.devnull, 'w')
-        process_bar = st.progress(0, text="Parsing LaTeX document...")
+        process_b = st.empty()
+        with process_b:
+            process_bar = st.progress(0, text="Parsing LaTeX document...")
         sys.stderr = sys.__stderr__
 
         main_tex_file = find_main_tex_file(self.dir) 
@@ -75,7 +77,7 @@ class LatexParser:
         sys.stderr = open(os.devnull, 'w')
         process_bar.progress(100, text="Finish Parse Sections")
         st.success("Finish Parse Sections")
-        process_bar.empty()
+        process_b.empty()
         sys.stderr = sys.__stderr__
 
     def parse_no_env_cap_ph(self):

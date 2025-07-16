@@ -360,7 +360,7 @@ with st.sidebar:
             tmp.close()
 
             st.session_state.default_config["user_term"] = temp_file_path
-            st.write(f"Uploaded Term file:{temp_file_path}.")
+            # st.write(f"Uploaded Term file:{temp_file_path}.")
             atexit.register(clearup)
 
         else:

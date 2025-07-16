@@ -78,24 +78,24 @@ class CoordinatorAgent:
             errors_report = validator_agent.execute(errors_report)
             retry_count += 1
 
-        # generator_agent = GeneratorAgent(config=self.config,
-        #                                  project_dir=self.project_dir,
-        #                                  output_dir=transed_project_dir)
-        # try:
-        #
-        #     PDF_file_path = generator_agent.execute()
-        # except Exception as e:
-        #     print(f"🤖🚧 {self.name}: Failed to translated {os.path.basename(self.project_dir)}.{e}")
-        #     return
-        #
-        #
-        #
-        # if PDF_file_path:
-        #     new_PDF_path = os.path.join(transed_project_dir, f"{self.target_language}_{base_name}.pdf")
-        #     shutil.move(PDF_file_path, new_PDF_path)
-        #     print(f"🤖🎉 {self.name}: Successfully translated {os.path.basename(self.project_dir)} to {new_PDF_path}.")
-        # else:
-        #     print(f"🤖🚧 {self.name}: Failed to translated {os.path.basename(self.project_dir)}.")
+        generator_agent = GeneratorAgent(config=self.config,
+                                         project_dir=self.project_dir,
+                                         output_dir=transed_project_dir)
+        try:
+        
+            PDF_file_path = generator_agent.execute()
+        except Exception as e:
+            print(f"🤖🚧 {self.name}: Failed to translated {os.path.basename(self.project_dir)}.{e}")
+            return
+        
+        
+        
+        if PDF_file_path:
+            new_PDF_path = os.path.join(transed_project_dir, f"{self.target_language}_{base_name}.pdf")
+            shutil.move(PDF_file_path, new_PDF_path)
+            print(f"🤖🎉 {self.name}: Successfully translated {os.path.basename(self.project_dir)} to {new_PDF_path}.")
+        else:
+            print(f"🤖🚧 {self.name}: Failed to translated {os.path.basename(self.project_dir)}.")
 
     # def workflow_latextrans(self) -> None:
     #     """
