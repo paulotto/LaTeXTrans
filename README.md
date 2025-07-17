@@ -115,6 +115,18 @@ docker run \
 .\build-docker.ps1 -Version all
 ```
 
+### 方式三：Install via pip (Recommended)
+
+We provide a pre-packaged pip installation for easy setup, eliminating the need for complex code management.
+
+```pip
+pip intsall latextrans
+
+# 通过GUI访问
+latextrans -g
+```
+
+For detailed usage parameters, please refer to the CLI execution options described later.
 ---
 
 ## ⚙️ Configuration Guide
@@ -207,6 +219,31 @@ docker run \
   ymdxe/latextrans:v1.0.0 2501.12948
 ```
 
+
+### 🔹 Running with CLI
+
+| Option                | Function                                                                                                      | Example                                        |
+| --------------------- | ------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| `--config`            | Path to the config TOML file                        | `python main.py --config Path/config.toml`                                    |
+| `--model`             | LLM for translating.                                | `python main.py --model deepseek-v3`                      |
+| `--url`               | Model url                                           | `python main.py --url your url`                    |
+| `--key`               | Model API key                                       | `python main.py --key your APIkey`                    |
+| `--Arxiv`             | Arxiv paper ID                                      | `python main.py --Arxiv 2307.07924`                  |
+| `--GUI`or`-g`         | Interact with GUI                                   | `python main.py -g`                      |
+| `--mode`              | Translate mode                                      | `python main.py --mode 2`                      |
+| `--update_term`       | Update term or not                                  | `python main.py --update_term Ture`                      |
+| `--tl`                | Target language                                     | `python main.py --tl ch`                      |
+| `--sl`                | Source language                                     | `python main.py --sl en`                      |
+| `--ut`                | User's term dict                                    | `python main.py --ut Path/Yourterm.csv`                      |
+| `--output`            | output directory                                    | `python main.py --output Path`                      |
+| `--source`            | tex source directory                                | `python main.py --sourse Path`                      |
+| `--save_config`       | Path to save config                                 | `python main.py --save_config savePath`                      |
+
+*The system accepts arXiv paper IDs in either canonical ID format or as clickable arXiv paper URLs.
+
+*For initial setup, users may launch the system by directly modifying the config/default.toml file.
+
+*We recommend novice users utilize the graphical interface for a more streamlined experience.
 ---
 
 ## 💬 Demo Video

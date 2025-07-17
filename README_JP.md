@@ -115,6 +115,18 @@ docker run \
 .\build-docker.ps1 -Version all
 ```
 
+### pipによるインストール（推奨）
+
+当パッケージはpipで簡単にインストールできるようになっており、面倒なコード管理が不要です。
+
+```pip
+pip intsall latextrans
+
+# 通过GUI访问
+latextrans -g
+```
+
+詳細な使用パラメータについては、後述の「CLIでの実行方法」で説明しているパラメータを参照してください。
 ---
 
 ## ⚙️ 設定説明
@@ -207,6 +219,30 @@ docker run \
   ymdxe/latextrans:v1.0.0 2501.12948
 ```
 
+### 🔹 CLIでの実行方法
+
+| オプション               | 機能                                                                                                      | 例                                        |
+| --------------------- | ------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| `--config`            | Path to the config TOML file                        | `python main.py --config Path/config.toml`                                    |
+| `--model`             | LLM for translating.                                | `python main.py --model deepseek-v3`                      |
+| `--url`               | Model url                                           | `python main.py --url your url`                    |
+| `--key`               | Model API key                                       | `python main.py --key your APIkey`                    |
+| `--Arxiv`             | Arxiv paper ID                                      | `python main.py --Arxiv 2307.07924`                  |
+| `--GUI`or`-g`         | Interact with GUI                                   | `python main.py -g`                      |
+| `--mode`              | Translate mode                                      | `python main.py --mode 2`                      |
+| `--update_term`       | Update term or not                                  | `python main.py --update_term Ture`                      |
+| `--tl`                | Target language                                     | `python main.py --tl ch`                      |
+| `--sl`                | Source language                                     | `python main.py --sl en`                      |
+| `--ut`                | User's term dict                                    | `python main.py --ut Path/Yourterm.csv`                      |
+| `--output`            | output directory                                    | `python main.py --output Path`                      |
+| `--source`            | tex source directory                                | `python main.py --sourse Path`                      |
+| `--save_config`       | Path to save config                                 | `python main.py --save_config savePath`                      |
+
+*arXiv論文IDは、純粋なID形式（例：2103.12345）でも、有効なarXiv論文URL形式でも入力可能です。
+
+*初回起動時には、config/default.tomlファイルを直接編集することでシステムを起動できます。
+
+*操作性を重視するユーザーには、グラフィカルユーザーインターフェース（GUI）の利用を推奨します。
 ---
 
 ## 💬 デモ動画
