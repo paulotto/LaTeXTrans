@@ -43,7 +43,6 @@ pip install -r requirements.txt
 config/default.toml
 ```
 
-
 设置语言模型的API密钥和基础URL：
 
 ```toml
@@ -74,6 +73,26 @@ python main.py <paper_id> (i.e. 2501.12948)
 
 4.在outputs文件夹保存翻译后的.tex文件和编译的PDF
 
+| Option                | Function                                                                                                      | Example                                        |
+| --------------------- | ------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| `--config`            | Path to the config TOML file                        | `python main.py --config Path/config.toml`                                    |
+| `--model`             | LLM for translating.                                | `python main.py --model deepseek-v3`                      |
+| `--url`               | Model url                                           | `python main.py --url your url`                    |
+| `--key`               | Model API key                                       | `python main.py --key your APIkey`                    |
+| `--Arxiv`             | Arxiv paper ID                                      | `python main.py --Arxiv 2307.07924`                  |
+| `--GUI`or`-g`         | Interact with GUI                                   | `python main.py -g`                      |
+| `--mode`              | Translate mode                                      | `python main.py --mode 2`                      |
+| `--update_term`       | Update term or not                                  | `python main.py --update_term Ture`                      |
+| `--tl`                | Target language                                     | `python main.py --tl ch`                      |
+| `--sl`                | Source language                                     | `python main.py --sl en`                      |
+| `--ut`                | User's term dict                                    | `python main.py --ut Path/Yourterm.csv`                      |
+| `--output`            | output directory                                    | `python main.py --output Path`                      |
+| `--source`            | tex source directory                                | `python main.py --sourse Path`                      |
+| `--save_config`       | Path to save config                                 | `python main.py --save_config savePath`                      |
+
+*对于输入的arxiv论文ID，可以是ID形式，也可以是任何可以打开的arxiv论文链接形式。
+
+*首次启动时，你可以通过直接修改config/default.toml来启动。
 ## 💬 演示视频
 
 系统演示视频： https://www.youtube.com/watch?v=tSVm_EOL7i8
