@@ -122,7 +122,7 @@ We provide a pre-packaged pip installation for easy setup, eliminating the need 
 ```pip
 pip intsall latextrans
 
-# 通过GUI访问
+# Launch with GUI 
 latextrans -g
 ```
 
