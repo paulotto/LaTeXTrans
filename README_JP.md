@@ -122,7 +122,7 @@ docker run \
 ```pip
 pip intsall latextrans
 
-# 通过GUI访问
+# GUI起動
 latextrans -g
 ```
 
