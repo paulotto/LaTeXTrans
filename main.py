@@ -19,7 +19,7 @@ def main():
     Allows overriding paper_list from command-line arguments.
     """
     parser = argparse.ArgumentParser()
-    parser.add_argument("--config", type=str, default="Myconfig.toml", help="Path to the config TOML file.")
+    parser.add_argument("--config", type=str, default="config/default.toml", help="Path to the config TOML file.")
     #parser.add_argument("paper_ids", nargs="*", help="Optional list of arXiv paper IDs to override config.")
     parser.add_argument("--model", type=str, default="", help="Model for translating.")
     parser.add_argument("--url", type=str, default="", help="Model url.")
