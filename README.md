@@ -115,7 +115,7 @@ docker run \
 .\build-docker.ps1 -Version all
 ```
 
-### 方式三：Install via pip (Recommended)
+### Method 3：Install via pip (Recommended)
 
 We provide a pre-packaged pip installation for easy setup, eliminating the need for complex code management.
 

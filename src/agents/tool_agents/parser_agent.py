@@ -54,10 +54,6 @@ class ParserAgent(BaseToolAgent):
                                                                     pm.set_need_trans_for_envs_system_prompt,
                                                                     env["content"]
                                                                     )
-                    # print(self._request_llm_for_judge(set_need_trans_for_envs_system_prompt,env["content"]))
-                    # print(latex_parser.envs_json[i]["need_trans"])
-
-                    
 
         self.save_file(Path(self.output_dir, "inputs_map.json"), "json", latex_parser.inputs_json)
         self.save_file(Path(self.output_dir, "envs_map.json"), "json", latex_parser.envs_json)
