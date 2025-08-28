@@ -120,7 +120,7 @@ docker run \
 We provide a pre-packaged pip installation for easy setup, eliminating the need for complex code management.
 
 ```pip
-pip intsall latextrans
+pip install latextrans
 
 # Launch with GUI 
 latextrans -g

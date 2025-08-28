@@ -120,7 +120,7 @@ docker run \
 我们提供封装好的pip包供你安装使用，免去繁琐的代码管理
 
 ```pip
-pip intsall latextrans
+pip install latextrans
 
 # 通过GUI访问
 latextrans -g

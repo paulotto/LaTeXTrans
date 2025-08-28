@@ -120,7 +120,7 @@ docker run \
 当パッケージはpipで簡単にインストールできるようになっており、面倒なコード管理が不要です。
 
 ```pip
-pip intsall latextrans
+pip install latextrans
 
 # GUI起動
 latextrans -g
