@@ -37,11 +37,13 @@ class CoordinatorAgent:
         self.source_language = config.get("source_language", "en")
         self.project_dir = project_dir  # Project path for parsing
         self.output_dir = output_dir  # Output directory for parsed files
-        self.loop = asyncio.new_event_loop()  # 添加事件循环
+        self.loop = asyncio.new_event_loop()
         self.mode = config.get("mode", 0)
 
     def run_async(self, coro):
-        """在已有事件循环中运行异步协程"""
+        """
+        Run asynchronous coroutines in the existing event loop
+        """
         return self.loop.run_until_complete(coro)
 
     async def workflow_latextrans_async(self) -> None:
@@ -56,13 +58,13 @@ class CoordinatorAgent:
         parser_agent = ParserAgent(config=self.config,
                                    project_dir=self.project_dir,
                                    output_dir=transed_project_dir)
-        parser_agent.execute()  # 假设ParserAgent仍然是同步的
+        parser_agent.execute()  
 
         translator_agent = TranslatorAgent(config=self.config,
                                            project_dir=self.project_dir,
                                            output_dir=transed_project_dir,
                                            trans_mode=self.mode)
-        await translator_agent.execute()  # 异步调用
+        await translator_agent.execute()  # await
         validator_agent = ValidatorAgent(config=self.config,
                                             project_dir=self.project_dir,
                                             output_dir=transed_project_dir)
@@ -88,8 +90,6 @@ class CoordinatorAgent:
             print(f"🤖🚧 {self.name}: Failed to translated {os.path.basename(self.project_dir)}.{e}")
             return
         
-        
-        
         if PDF_file_path:
             new_PDF_path = os.path.join(transed_project_dir, f"{self.target_language}_{base_name}.pdf")
             shutil.move(PDF_file_path, new_PDF_path)
@@ -97,58 +97,33 @@ class CoordinatorAgent:
         else:
             print(f"🤖🚧 {self.name}: Failed to translated {os.path.basename(self.project_dir)}.")
 
-    # def workflow_latextrans(self) -> None:
-    #     """
-    #     initializes the tool agent based on the provided agent name key.
-    #     """
-    #     # 创建新的事件循环（如果还没有）
-    #     if not hasattr(self, 'loop'):
-    #         self.loop = asyncio.new_event_loop()
-    #         asyncio.set_event_loop(self.loop)
-    #
-    #     # 运行异步工作流
-    #     self.loop.run_until_complete(self.workflow_latextrans_async())
 
     def workflow_latextrans(self) -> None:
         """
-        初始化工具代理并执行LaTeX转换工作流（带事件循环安全管理）
+        Initialize the tool agent and execute the LaTeX conversion workflow 
+        (with event loop security management)
         """
-        # ---- 安全启动机制 ----
-        if hasattr(self, 'loop') and not self.loop.is_closed():
-            self.loop.close()  # 关闭残留循环
 
-        # 创建隔离的事件循环
+        if hasattr(self, 'loop') and not self.loop.is_closed():
+            self.loop.close()  
+
         self.loop = asyncio.new_event_loop()
         asyncio.set_event_loop(self.loop)
 
         try:
-            # ---- 核心工作流执行 ----
             self.loop.run_until_complete(self.workflow_latextrans_async())
 
         finally:
-            # ---- 安全关闭序列 ----
-            # 1. 完成所有异步资源回收
+            # Complete all asynchronous resource recycling
             if tasks := asyncio.all_tasks(self.loop):
                 self.loop.run_until_complete(
                     asyncio.gather(*tasks, return_exceptions=True)
                 )
 
-            # 2. 特别处理Windows的异步I/O回收
+            # Special handling of asynchronous I/O recycling in Windows
             if sys.platform == "win32":
                 self.loop.run_until_complete(
                     self.loop.shutdown_asyncgens()
                 )
 
-            # 3. 安全关闭循环（防止__del__触发访问）
             self.loop.run_until_complete(self.loop.shutdown_default_executor())
-            # self.loop.close()
-            # del self.loop  # 解除引用
-
-
-
-
-
-
-
-
-

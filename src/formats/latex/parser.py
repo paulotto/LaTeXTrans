@@ -49,7 +49,9 @@ class LatexParser:
         main_tex = remove_comments(main_tex)
         full_tex = self._merge_inputs(main_tex)
         full_tex = self._extract_newcommands(full_tex)
-        # full_tex = compress_newlines(full_tex)
+
+        full_tex = compress_newlines(full_tex) # Delete the redundant blank lines to prevent the large model from missing placeholders during translation
+
         self._split_to_sections(full_tex)
 
         self._merge_short_sections(min_tokens=50)  # Merge short sections to avoid too many sections
@@ -80,25 +82,25 @@ class LatexParser:
         process_b.empty()
         sys.stderr = sys.__stderr__
 
-    def parse_no_env_cap_ph(self):
-        """
-        Parse the LaTeX document and return the parsed content.
-        """
-        main_tex_file = find_main_tex_file(self.dir) 
-        if not main_tex_file:
-            print("⚠️ Warning: There is no main tex file to compile in this directory.")
-            return None
-        main_tex = read_tex_file(main_tex_file)
-        if not main_tex:
-            print("⚠️ Warning: The main tex file is empty.")
-            return None
+    # def parse_no_env_cap_ph(self):
+    #     """
+    #     Parse the LaTeX document and return the parsed content.
+    #     """
+    #     main_tex_file = find_main_tex_file(self.dir) 
+    #     if not main_tex_file:
+    #         print("⚠️ Warning: There is no main tex file to compile in this directory.")
+    #         return None
+    #     main_tex = read_tex_file(main_tex_file)
+    #     if not main_tex:
+    #         print("⚠️ Warning: The main tex file is empty.")
+    #         return None
         
-        main_tex = remove_comments(main_tex)
-        full_tex = self._merge_inputs(main_tex)
-        full_tex = self._extract_newcommands(full_tex)
-        full_tex = compress_newlines(full_tex)
-        self._split_to_sections(full_tex)
-        self._merge_short_sections(min_tokens=20)  # Merge short sections to avoid too many sections
+    #     main_tex = remove_comments(main_tex)
+    #     full_tex = self._merge_inputs(main_tex)
+    #     full_tex = self._extract_newcommands(full_tex)
+    #     full_tex = compress_newlines(full_tex)
+    #     self._split_to_sections(full_tex)
+    #     self._merge_short_sections(min_tokens=20)  # Merge short sections to avoid too many sections
 
     def _merge_inputs(self, tex: str) -> str:
         """
@@ -194,7 +196,7 @@ class LatexParser:
         The captions are replaced with placeholders in the full tex.
         """
         full_tex = remove_comments(tex)
-        command_name = r'caption|caption\*|subcaption|subcaption\*|title|keywords|abstract|icmltitle|icmltitlerunning'
+        command_name = r'caption|caption\*|subcaption|subcaption\*|title|keywords|abstract|icmltitle|icmltitlerunning' # Unable to handle \captionof{}{}
         pattern_caption = get_command_pattern(command_name) # \caption{...} or \caption*{...} or \caption[...]{...}
         # pattern_captionof = get_captionof_pattern() # \captionof{type}{content} or \captionof*{type}{content}
 
@@ -224,7 +226,8 @@ class LatexParser:
             return result[0]
         
         full_tex = remove_comments(tex)
-        pattern = get_newcommand_pattern() # \newcommand{name}[n_arguments]{content} or \renewcommand{name}[n_arguments]{content} or \newenvironment{name}[n_arguments]{content} or \renewenvironment{name}[n_arguments]{content}
+        pattern = get_newcommand_pattern() # \newcommand{name}[n_arguments]{content} or \renewcommand{name}[n_arguments]{content} or 
+                                           # \newenvironment{name}[n_arguments]{content} or \renewenvironment{name}[n_arguments]{content}
         count = 0
         
         while True:
@@ -255,7 +258,7 @@ class LatexParser:
         Split the full tex to sections and genarate a json file for the sections.
         """
         full_tex = remove_comments(tex)
-        command_name_section = r'section|subsection|subsubsection|section\*|subsection\*|subsubsection\*|chapter|chapter\*'
+        command_name_section = r'section|subsection|subsubsection|section\*|subsection\*|subsubsection\*' # \chapter is not supported yet
         pattern_section = get_command_pattern(command_name_section) # \section{...} or \subsection{...} or \subsubsection{...}
         begin_document_pattern = get_begin_document_pattern() # \begin{document}
         begin_document_match = begin_document_pattern.search(full_tex)
@@ -350,34 +353,32 @@ class LatexParser:
             })
 
     def _merge_short_sections(self, min_tokens=20):
+        """
+        Merge sections that are too short to save the number of api requests
+        """
         enc = tiktoken.encoding_for_model("gpt-4")
         merged_sections = []
         i = 0
         sections = self.sections_json
 
         while i < len(sections):
-            # 初始化当前 section
             combined_content = sections[i]["content"]
             combined_section_ids = [sections[i]["section"]]
             total_tokens = len(enc.encode(combined_content))
             start_section = sections[i]
             j = i + 1
 
-            # 向后合并，直到达到 min_tokens 或结束
             while total_tokens < min_tokens and j < len(sections):
                 combined_content += "\n" + sections[j]["content"]
                 combined_section_ids.append(sections[j]["section"])
                 total_tokens = len(enc.encode(combined_content))
                 j += 1
 
-            # 合并成一个新的 section 数据
             if total_tokens < min_tokens and len(merged_sections) > 0:
-                # 太短，合并进前一段
                 merged_sections[-1]["content"] += "\n" + combined_content
                 merged_sections[-1]["section"] += "+" + "+".join(combined_section_ids)
                 print(merged_sections[-1]["section"])
             else:
-                # 新段落，保留结构并更新字段
                 merged_section = start_section.copy()
                 merged_section["content"] = combined_content
                 merged_section["section"] = "+".join(combined_section_ids)

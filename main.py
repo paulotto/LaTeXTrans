@@ -37,9 +37,6 @@ def main():
     parser.add_argument("--valid", "-v", action="store_true", help="use valid agent.")
     parser.add_argument("--filter", "-f", action="store_true", help="use filter agent.")
 
-
-
-
     args = parser.parse_args()
 
     if args.GUI:
@@ -76,9 +73,7 @@ def main():
 
     #init_prompts(config["source_language"], config["target_language"])
 
-
     # override paper_list if user passed in IDs via CLI
-    # 之后设置参数时，config和args的传递参考这个
     # if args.paper_ids:
     #     config["paper_list"] = args.paper_ids
 
@@ -102,8 +97,6 @@ def main():
         projects = get_profect_dirs(projects_dir)
         if not projects:
             raise ValueError("❌ No projects found. Check 'tex_sources_dir' and 'paper_list' in config.")
-
-
 
     for project_dir in tqdm(projects, desc="Processing projects", unit="project"):
 
@@ -131,8 +124,6 @@ def main():
         with open(config_path, "w") as f:
             f.write(toml_str)
         print(f"save config to {config_path}!")
-
-
 
 if __name__ == "__main__":
     main()

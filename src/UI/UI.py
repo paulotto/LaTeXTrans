@@ -16,9 +16,6 @@ from streamlit_pdf_viewer import pdf_viewer
 import tempfile
 import atexit
 
-
-# ---------- 路径配置 ----------
-# 获取当前工作目录
 base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.append(base_dir)
 

@@ -159,14 +159,11 @@ class ValidatorAgent(BaseToolAgent):
     def _extract_latex_elements_with_counts(self, content: str) -> Counter:
         elements = []
 
-        # \begin{...} 和 \end{...}
         elements += re.findall(r"\\begin\{.*?\}", content)
         elements += re.findall(r"\\end\{.*?\}", content)
 
-        # 常规命令（不带参数）
         elements += re.findall(r"\\[a-zA-Z]+\*?", content)
 
-        # 数学表达式内容：$...$ 和 \[...\]
         math_inline = re.findall(r"\$(.+?)\$", content, re.DOTALL)
         # math_display = re.findall(r"\\\[(.+?)\\\]", content, re.DOTALL)
         elements += [expr.strip() for expr in math_inline  if expr.strip()]
@@ -178,7 +175,6 @@ class ValidatorAgent(BaseToolAgent):
         nodes, _, _ = walker.get_latex_nodes()
         counter = Counter()
         
-        # 定义要忽略的命令集合
         ignored_commands = {'eg', 'ie'}
 
         def recurse(nodes):

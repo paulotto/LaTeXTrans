@@ -15,10 +15,7 @@ import time
 import pandas as pd
 from tqdm import tqdm
 from concurrent.futures import ThreadPoolExecutor, as_completed
-
-
 import streamlit as st
-
 
 base_dir = os.getcwd()
 sys.path.append(base_dir)
@@ -35,8 +32,7 @@ class TranslatorAgent(BaseToolAgent):
         super().__init__(agent_name="TranslatorAgent", config=config)
         self.config = config
         if(config.get("update_term") == "True"):
-            self.update_term = True
-        else:
+            self.update_term = True 
             self.update_term = False
         # self.update_term = config.get("update_term", False)
         self.model = config["llm_config"].get("model", "gpt-4o")
@@ -61,10 +57,7 @@ class TranslatorAgent(BaseToolAgent):
         self.currant_content = ''
 
     async def execute(self, error_retry_count=0, Maxtry=3):
-        """
-        只修改了mode0部分,其他mode无需再修改execute及其上游方法,其已经改入异步循环
-        但其他mode需要修改execute内部内容及其下游方法
-        """
+
         pm.init_prompts(self.config["source_language"], self.config["target_language"])
         self.add_placeholder()
         self.build_term_dict()
@@ -89,7 +82,8 @@ class TranslatorAgent(BaseToolAgent):
             sys.stderr = sys.__stderr__
 
             async with aiohttp.ClientSession() as session:
-                sem = asyncio.Semaphore(10)  # 考虑到api响应速度,大概10s左右处理一个section,每半秒启动一次调用,10左右应该不会浪费api token
+                sem = asyncio.Semaphore(10)  # Considering the api response speed, processing one section approximately takes about 10 seconds, and initiating a call every half second, 
+                                             # around 10 should not waste api tokens
 
                 async def process_section(i, sec):
                     async with sem:
@@ -112,7 +106,8 @@ class TranslatorAgent(BaseToolAgent):
                     process_bar.progress(process) 
                     sys.stderr = sys.__stderr__
 
-                    # 保存考虑修改为内存整合一次硬存读写
+                    # It can be considered to save and modify to integrate memory once for hard memory read and write, 
+                    # and save each section once for the convenience of observing the translation situation.
                     self.save_file(Path(self.output_dir, "sections_map.json"), "json", sections)
                     self.save_file(Path(self.output_dir, "captions_map.json"), "json", captions)
                     self.save_file(Path(self.output_dir, "envs_map.json"), "json", envs)
@@ -138,12 +133,8 @@ class TranslatorAgent(BaseToolAgent):
                 status_text.empty()
                 sys.stderr = sys.__stderr__
 
-
         elif self.trans_mode == 1:
-            """
-            暂时没有进入该mode1分支,故加注释
 
-            """
             sys.stderr = open(os.devnull, "w")
             status_text = st.empty()
             sys.stderr = sys.__stderr__
@@ -180,7 +171,6 @@ class TranslatorAgent(BaseToolAgent):
             time.sleep(3)
             status_text.empty()
             sys.stderr = sys.__stderr__
-            
 
     async def translate(self,
                         section: Dict[str, Any],
@@ -188,7 +178,7 @@ class TranslatorAgent(BaseToolAgent):
                         captions: List[Dict[str, Any]],
                         session: aiohttp.ClientSession) -> Dict[str, Any]:
         """
-        Translates the input data (异步)
+        Translates the input data
         """
         placeholder_pattern_cap = r"<PLACEHOLDER_CAP_\d+>"
         placeholder_pattern_env = r"<PLACEHOLDER_ENV_\d+>"
@@ -199,14 +189,14 @@ class TranslatorAgent(BaseToolAgent):
         if(section["section"] == "-1" or section["section"] == "0"):
             section = section
         else:
-            section = await self._translate_section(section, session)  # 注意异步调用
+            section = await self._translate_section(section, session)  
 
         for placeholder in placeholders_env:
             for i, env in enumerate(envs):
                 if placeholder == env["placeholder"]:
                     placeholders_cap_in_env = re.findall(placeholder_pattern_cap, env["content"])
                     placeholders_cap.extend(placeholders_cap_in_env)
-                    envs[i] = await self._translate_env(env, session)  #目前象征性修改,env方法好像没有使用,其下游方法没有异步修改
+                    envs[i] = await self._translate_env(env, session)  
                     break
 
         # remove duplicates
@@ -215,7 +205,7 @@ class TranslatorAgent(BaseToolAgent):
         for placeholder in placeholders_cap:
             for i, caption in enumerate(captions):
                 if placeholder == caption["placeholder"]:
-                    captions[i] = await self._translate_caption(caption, session)  # 异步翻译标题
+                    captions[i] = await self._translate_caption(caption, session)  
                     break
 
         return section
@@ -284,7 +274,7 @@ class TranslatorAgent(BaseToolAgent):
             for cap_ph in cap_phs:
                 if cap_ph in cap_dict:
                     i = cap_dict[cap_ph]
-                    caps[i] = await self._translate_caption(caps[i], session) # env和caption也需要改
+                    caps[i] = await self._translate_caption(caps[i], session) 
             # else:
             #     print(f"[Warning] Caption placeholder {cap_ph} not found.")
         if env_phs:
@@ -292,14 +282,14 @@ class TranslatorAgent(BaseToolAgent):
             for env_ph in env_phs:
                 if env_ph in env_dict:
                     i = env_dict[env_ph]
-                    envs[i] = await self._translate_env(envs[i], session) # env和caption也需要改
+                    envs[i] = await self._translate_env(envs[i], session) 
             # else:
             #     print(f"[Warning] Environment placeholder {env_ph} not found.")
 
     async def _retranslate_error_parts(self, secs, caps, envs, session) -> Any:
 
         async with aiohttp.ClientSession() as session:
-            sem = asyncio.Semaphore(20)  # 考虑到api响应速度,大概10s左右处理一个section,每半秒启动一次调用,10左右应该不会浪费api token
+            sem = asyncio.Semaphore(20)  
 
             sys.stderr = open(os.devnull, 'w')
             process_b = st.empty()
@@ -332,8 +322,8 @@ class TranslatorAgent(BaseToolAgent):
                         tasks_sec = [process_section(i, sec) for i, sec in enumerate(secs)]
                         for future in asyncio.as_completed(tasks_sec):
                             result = await future
-                            # 只有处理目标caption时才会返回有意义的结果
-                            if result["is_valid"]:  # 确保i不是None
+                            
+                            if result["is_valid"]:  
                                 i = result["index"]
                                 _sec = result["result"]
                                 secs[i] = _sec
@@ -350,8 +340,8 @@ class TranslatorAgent(BaseToolAgent):
                         tasks_env = [process_env(i, env) for i, env in enumerate(envs)]
                         for future in asyncio.as_completed(tasks_env):
                             result = await future
-                            # 只有处理目标caption时才会返回有意义的结果
-                            if result["is_valid"]:  # 确保i不是None
+                            
+                            if result["is_valid"]:  
                                 i = result["index"]
                                 _env = result["result"]
                                 envs[i] = _env
@@ -368,8 +358,8 @@ class TranslatorAgent(BaseToolAgent):
                         tasks_cap = [process_cap(i, cap) for i, cap in enumerate(caps)]
                         for future in asyncio.as_completed(tasks_cap):
                             result = await future
-                            # 只有处理目标caption时才会返回有意义的结果
-                            if result["is_valid"]:  # 确保i不是None
+                            
+                            if result["is_valid"]:  
                                 i = result["index"]
                                 _cap = result["result"]
                                 caps[i] = _cap
@@ -384,8 +374,8 @@ class TranslatorAgent(BaseToolAgent):
                 process_bar.progress(completed / len(tasks_ErrorPart))
                 status_text.text(f"Completed {completed}/{len(tasks_ErrorPart)} part（{completed / len(tasks_ErrorPart):.1%}）")
                 sys.stderr = sys.__stderr__
-                # 只有处理目标caption时才会返回有意义的结果
-                if result is not None:  # 确保i不是None
+                
+                if result is not None:  
                     i = result
             sys.stderr = open(os.devnull, 'w')
             process_bar.progress(100)
@@ -394,13 +384,13 @@ class TranslatorAgent(BaseToolAgent):
             process_b.empty()
             status_text.empty()
             sys.stderr = sys.__stderr__
-    async def _translate_section(self, section: Dict[str, Any], session: aiohttp.ClientSession, error_message=None) -> \
-    Dict[str, Any]:
-        """只修改了mode0的异步操作,后续mode的修改需要把对应request方法也修改"""
+
+    async def _translate_section(self, section: Dict[str, Any], session: aiohttp.ClientSession, error_message=None) -> Dict[str, Any]:
+        
         transed_section = section.copy()
         section_num = section["section"]
         if self.trans_mode == 0:
-            # 异步请求api部分
+            
             transed_section["trans_content"] = await self._request_llm_for_trans(
                 pm.section_system_prompt,
                 section["content"],
@@ -419,10 +409,7 @@ class TranslatorAgent(BaseToolAgent):
 
         elif self.trans_mode == 2:
             """
-            修改mode0和2为异步并发,包括
-            _request_llm_for_trans_with_terms方法 _done
-            _extract_text_from_tex方法 _wait
-            _request_llm_for_extract_terms方法 _wait
+            Combined with terminology translation
             """
             if not self.term_dict:
                 transed_section["trans_content"] = await self._request_llm_for_trans(
@@ -433,8 +420,6 @@ class TranslatorAgent(BaseToolAgent):
                     session=session
                 )
             else:
-                # print("1111")
-                # print("before", section_num)
                 transed_section["trans_content"] = await self._request_llm_for_trans_with_terms(
                                                             pm.section_system_prompt_with_dict,
                                                             section["content"], 
@@ -583,7 +568,7 @@ class TranslatorAgent(BaseToolAgent):
                                      fail_part: str,
                                      type: str,
                                      session: aiohttp.ClientSession) -> str:
-        """修改后的异步版本,注意其上游函数都需要异步运行,整个流程需要进入异步循环"""
+        
         payload = {
             "model": f"{self.model}",
             "messages": [
@@ -627,13 +612,6 @@ class TranslatorAgent(BaseToolAgent):
                                           fail_part: str,
                                           type: str,
                                           session: aiohttp.ClientSession) -> str:
-
-        # print("current", fail_part)
-        # if fail_part == "-1" or "0":
-        #     print("ffffff")
-        #     return text
-
-
 
         payload = {
             "model": f"{self.model}",
@@ -735,8 +713,6 @@ class TranslatorAgent(BaseToolAgent):
                     print(f"❌ Failed to translate text, return the original text:{fail_part}. {e}")
                     return part["trans_content"]
 
-
-             
     async def _request_llm_for_extract_terms(self, system_prompt, src, tgt,
                                        session: aiohttp.ClientSession) -> str:
 
@@ -868,7 +844,7 @@ class TranslatorAgent(BaseToolAgent):
         for en, zh in matches:
             en_lower = en.lower()
             if en_lower not in seen_lower:
-                self.term_dict[en] = zh  # 保留原始拼写
+                self.term_dict[en] = zh  
                 seen_lower.add(en_lower)
 
         self.save_file(Path(self.output_dir, "term_dict.json"), "json", self.term_dict)
@@ -880,9 +856,8 @@ class TranslatorAgent(BaseToolAgent):
         for line in lines:
             line = line.strip()
             if not line:
-                continue  # 跳过空行
+                continue  
 
-            # 使用正则匹配 "英文" - "中文" 格式
             match = re.match(r'^"(.+?)"\s*-\s*"(.+?)"$', line)
             if match:
                 english = match.group(1)
@@ -892,7 +867,6 @@ class TranslatorAgent(BaseToolAgent):
         for en, zh in new_term_dict.items():
             if en not in self.term_dict:
                 self.term_dict[en] = zh
-
 
     def _process_latex_to_eva(self, latex_code):
         latex_code = replace_href(latex_code)
@@ -996,13 +970,12 @@ class TranslatorAgent(BaseToolAgent):
 
     def add_placeholder(self):
 
-        # 将caption、env、input以及newcommand中的占位符加入词表
+        # Add placeholders from caption, env, input, and newcommand to the vocabulary
         caption_path = os.path.join(self.output_dir, "captions_map.json")
         input_path = os.path.join(self.output_dir, "inputs_map.json")
         env_path = os.path.join(self.output_dir, "envs_map.json")
         command_path = os.path.join(self.output_dir, "newcommands_map.json")
 
-        # 初始化结果列表
         placeholder_list = []
 
         with open(input_path, 'r', encoding='utf-8') as f:

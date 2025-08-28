@@ -32,7 +32,6 @@ class ParserAgent(BaseToolAgent):
         from src.formats.latex.parser import LatexParser
         latex_parser = LatexParser(self.project_dir, self.output_dir)
         latex_parser.parse() 
-        # latex_parser.parse_no_env_cap_ph()
 
         env_need_trans = []
         if latex_parser.envs_json:
@@ -79,7 +78,7 @@ class ParserAgent(BaseToolAgent):
 
     def _request_llm_for_judge(self, system_prompt: str, text: str) -> bool:
         """
-        
+        Request the api to set need trans for env
         """
         payload = {
             "model": f"{self.model}",
@@ -110,7 +109,6 @@ class ParserAgent(BaseToolAgent):
                 response.raise_for_status()  
                 result = response.json()
                 output = result["choices"][0]["message"]["content"].strip()
-                # print(text,'\n', output)
 
                 if output.lower() == "true":
                     return True

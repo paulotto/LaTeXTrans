@@ -87,35 +87,12 @@ def get_profect_dirs(folder_path):
     return projects
 
 def has_appendix(latex_code):
-    """
-    检测 LaTeX 源码中是否包含 \appendix。
-
-    Args:
-        latex_code (str): LaTeX 源码内容。
-
-    Returns:
-        bool: 如果包含 \appendix，则返回 True；否则返回 False。
-    """
-    # 使用正则表达式匹配 \appendix
     appendix_pattern = re.compile(r"\\appendix\b")
-    # appendix_pattern = re.compile(r"\\begin\{appendix\}")
-    # 搜索匹配
     return bool(appendix_pattern.search(latex_code))
 
 def remove_appendix_content(latex_code):
-    """
-    删除 LaTeX 源码中 \appendix 之后的所有内容。
-
-    Args:
-        latex_code (str): LaTeX 源码内容。
-
-    Returns:
-        str: 删除 \appendix 之后内容的 LaTeX 源码。
-    """
-    # 使用正则表达式匹配 \appendix 及其之后的所有内容
     appendix_pattern = re.compile(r"\\appendix\b.*?(?=\\end\{document\})", re.DOTALL)
     
-    # 替换匹配到的内容为空字符串
     modified_code = appendix_pattern.sub("", latex_code)
     
     return modified_code
@@ -166,16 +143,6 @@ def extract_structure(nodes, depth=0):
     return structure
 
 def extract_title(latex_code):
-    """
-    提取 LaTeX 文本中的标题内容（\title{...}）。
-    
-    Args:
-        latex_content (str): LaTeX 文本内容。
-    
-    Returns:
-        str: 提取的标题内容，如果未找到则返回 None。
-    """
-    # 正则表达式匹配 \title{...}，忽略所有修饰命令
     title_start = latex_code.find(r"\title{")
     if title_start == -1:
         title_start = latex_code.find(r"\title[")
@@ -198,22 +165,10 @@ def extract_title(latex_code):
     return "No title"  
 
 def extract_abstract(latex_code):
-    """
-    提取 LaTeX 文本中的 abstract 环境内容。
-    
-    Args:
-        latex_content (str): LaTeX 文本内容。
-    
-    Returns:
-        str: 提取的 abstract 内容，如果未找到则返回 None。
-    """
-    # 正则表达式匹配 \begin{abstract} ... \end{abstract}
     abstract_pattern = regex.compile(r"\\begin\{abstract\}(.*?)\\end\{abstract\}", regex.DOTALL)
     
-    # 搜索匹配
     match = abstract_pattern.search(latex_code)
     
-    # 提取 abstract 内容
     if match:
         abstract = match.group(1).strip() 
         return abstract
@@ -222,58 +177,33 @@ def extract_abstract(latex_code):
     if abstract_start == -1:
         return "No abstract"
 
-    # 找到第一个花括号的起始位置
     brace_start = latex_code.find("{", abstract_start)
     if brace_start == -1:
         return "No abstract"
 
-    # 使用堆栈提取花括号中的内容
     stack = []
     for i in range(brace_start, len(latex_code)):
         if latex_code[i] == "{":
-            stack.append(i)  # 将左花括号的位置压入堆栈
+            stack.append(i)  #
         elif latex_code[i] == "}":
-            stack.pop()  # 遇到右花括号，弹出堆栈
-            if not stack:  # 堆栈为空，表示匹配完成
+            stack.pop()  # 
+            if not stack:  # 
                 return latex_code[brace_start + 1:i].strip()
 
     return "No abstract" 
 
 def extract_keywords(latex_code):
-    """
-    提取 LaTeX 文本中的关键词内容（\keywords{{...}}）或（\keywords{...}）。
-    
-    Args:
-        latex_content (str): LaTeX 文本内容。
-    
-    Returns:
-        str: 提取的关键词内容，如果未找到则返回 None。
-    """
-    # 正则表达式匹配 \keywords{{...}}
     keywords_pattern = regex.compile(r"\\keywords\{(?:\{([^{}]*)\}|([^{}]*))\}", regex.DOTALL)
     
-    # 搜索匹配
     match = keywords_pattern.search(latex_code)
     
     keywords = match.group(1) or match.group(2) if match else None
-    # 提取关键词内容
     return keywords.strip() if keywords else None
 
 def extract_sections(latex_code):
-    """
-    将 LaTeX 文本从第一个 \section 或类似命令处分成前后两部分。
-    
-    Args:
-        latex_code (str): LaTeX 文本内容。
-    
-    Returns:
-        tuple: (before_section, after_section)，分别表示节标题前后的内容。
-               如果没有找到节标题，则返回 (latex_code, "")。
-    """
     section_pattern = regex.compile(r"\\(section|chapter)\b")
     match = section_pattern.search(latex_code)
     if not match:
-        # 如果没有找到节标题，返回原文本和空字符串
         return latex_code, ""
     
     section_index = match.start()
@@ -282,15 +212,6 @@ def extract_sections(latex_code):
     return before_section, after_section
 
 def extract_captions(latex_code):
-    """
-    从图环境中提取 \caption 命令中最外层花括号的内容（不使用正则表达式）。
-    
-    Args:
-        figure_code (str): 单个图环境的 LaTeX 文本。
-    
-    Returns:
-        str: caption 的内容，如果未找到则返回 "No caption"。
-    """
     caption_start = latex_code.find(r"\caption{")
     if caption_start == -1:
         caption_start = latex_code.find(r"\caption[")
@@ -313,15 +234,6 @@ def extract_captions(latex_code):
     return "No caption"  
 
 def replace_figures(latex_code):
-    """
-    将 LaTeX 文本中的图环境替换为占位符 <FIGURE: {caption内容}>。
-    
-    Args:
-        latex_code (str): LaTeX 文本内容。
-    
-    Returns:
-        str: 替换后的 LaTeX 文本。
-    """
     figure_pattern = regex.compile(
         r"\\begin\{(figure\*?|wrapfigure|SCfigure|tikzpicture)\}.*?\\end\{\1\}",
         regex.DOTALL
@@ -336,15 +248,6 @@ def replace_figures(latex_code):
     return latex_code
 
 def replace_tables(latex_code):
-    """
-    将 LaTeX 文本中的表环境替换为占位符 <TABLE: {caption内容}>。
-    
-    Args:
-        latex_code (str): LaTeX 文本内容。
-    
-    Returns:
-        str: 替换后的 LaTeX 文本。
-    """
     table_pattern = regex.compile(
         r"\\begin\{(table\*?|tabular|tabularx|longtable)\}.*?\\end\{\1\}",
         regex.DOTALL
@@ -407,19 +310,8 @@ def process_newcommands(latex_code):
     return latex_code
 
 def replace_href(latex_code):
-    """
-    将 LaTeX 文本中的 \href 命令替换为显示文本部分。
-    因为pylatexenc.latex2text处理不了\href命令，所以需要手动处理。
-    Args:
-        latex_code (str): LaTeX 文本内容。
-    
-    Returns:
-        str: 替换后的 LaTeX 文本。
-    """
-    # 正则表达式匹配 \href{...}{...}
     href_pattern = regex.compile(r"\\href\{[^{}]*\}\{(.*?)\}")
     
-    # 替换 \href 命令为显示文本部分
     latex_code = href_pattern.sub(r"\1", latex_code)
     return latex_code
 
@@ -463,14 +355,6 @@ def extract_pure_text(dir):
     return pure_text
 
 def get_texts_from_data(folder_path, output_folder):
-    """
-    Extract pure text from all LaTeX files in the given folder and save them as .txt files.
-    Display a progress bar while processing projects.
-    
-    Args:
-        folder_path (str): Path to the folder containing projects.
-        output_folder (str): Path to the folder where .txt files will be saved.
-    """
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)
     extract_compressed_files(folder_path)
@@ -486,27 +370,6 @@ def get_texts_from_data(folder_path, output_folder):
         except Exception as e:
             print(f"Error processing project {project}: {e}")
             continue  # 跳过出错的项目
-
-# def if_has_appendix(folder_path):
-#     """
-#     检测 LaTeX 源码中是否包含 \\appendix。
-#
-#     Args:
-#         folder_path (str): LaTeX 源码所在文件夹的路径。
-#
-#     Returns:
-#         bool: 如果包含 \\appendix，则返回 True；否则返回 False。
-#     """
-#     projects = get_profect_dirs(folder_path)
-#     project_app = []
-#     for project in projects:
-#         main_file_path = find_main_tex_file(project)
-#         if main_file_path is None:
-#             raise FileNotFoundError(f"File not found: {main_file_path}")
-#         full_latex_code = merge_tex_files(main_file_path)
-#         if has_appendix(full_latex_code):
-#             project_app.append(project)
-#     return project_app
 
 def extract_pure_tags(dir):
     main_file_path = find_main_tex_file(dir)
@@ -536,7 +399,6 @@ def read_json_file(path):
     return data
     
 def find_tex_files(dir):
-    #找到所有tex文件
     all_files = loop_files(dir)
 
     tex_files = [f for f in all_files if f.endswith('.tex')]
@@ -758,11 +620,11 @@ def compile_with_latexmk(tex_file: str, out_dir: str = "out", engine: str = "pdf
     
     cmd = [
         "latexmk",
-        f"-{engine}",                # 指定编译引擎，比如 -xelatex
-        "-interaction=nonstopmode",   # 不停下来
-        f"-outdir={out_dir}",          # 输出目录
+        f"-{engine}",                # 
+        "-interaction=nonstopmode",   # 
+        f"-outdir={out_dir}",          # 
         f"-synctex=1",
-        f"-f",                 # 强制编译
+        f"-f",                 # 
         tex_file
     ]
     
@@ -943,7 +805,6 @@ def batch_download_arxiv_tex(arxiv_ids: List[str], save_dir: str = "./tex_source
 
     return source_dirs
 
-
 def get_arxiv_category(arxiv_ids: List[str]) -> dict:
     results = {}
     headers = {"User-Agent": "Mozilla/5.0"}
@@ -974,12 +835,11 @@ def get_arxiv_category(arxiv_ids: List[str]) -> dict:
             categories = []
 
         results[arxiv_id] = (categories)
-        time.sleep(1)  # 防止请求过快
+        time.sleep(1)  
 
     return results
 
 def is_valid_arxiv_id(id_str):
-    """检查字符串是否是合法的arXiv ID"""
     # 现代格式：YYYY.NNNNN 或 YYYY.NNNNNNN
     if re.match(r'^\d{4}\.\d{5,7}$', id_str):
         return True
@@ -989,15 +849,12 @@ def is_valid_arxiv_id(id_str):
     return False
 
 def extract_arxiv_ids(arxiv_list):
-    # 正则表达式匹配arxiv ID
     ids = []
     for item in arxiv_list:
-        # 如果是纯ID，直接加入
         if is_valid_arxiv_id(item):
             ids.append(item)
             continue
 
-        # 否则尝试从URL中提取
         url_pattern = r'(?:arxiv\.org/)(?:abs|pdf|e-print)/([\w\-]+/\d{7}|\d{4}\.\d{5,7})(?:\.pdf)?'
         match = re.search(url_pattern, item)
         if match:
@@ -1007,20 +864,12 @@ def extract_arxiv_ids(arxiv_list):
 def extract_arxiv_ids_V2(item):
 
     ids = ""
-    # 如果是纯ID，直接加入
     if is_valid_arxiv_id(item):
         ids = item
 
     else:
-        # 否则尝试从URL中提取
         url_pattern = r'(?:arxiv\.org/)(?:abs|pdf|e-print)/([\w\-]+/\d{7}|\d{4}\.\d{5,7})(?:\.pdf)?'
         match = re.search(url_pattern, item)
         if match:
             ids = match.group(1)
     return ids
-
-
-# get_texts_from_data(
-#     folder_path="D:\code\AutoLaTexTrans\data\cs",
-#     output_folder="D:\code\AutoLaTexTrans\cs_puretext"
-# )

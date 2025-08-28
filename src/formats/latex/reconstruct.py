@@ -81,7 +81,7 @@ class LatexConstructor:
         pattern = re.compile(r"<PLACEHOLDER_[^>]+?_begin>|<PLACEHOLDER_[^>]+?_end>")
 
         stack = []
-        pos = 0  # 当前查找起点
+        pos = 0  
 
         while True:
             match = pattern.search(tex, pos)
@@ -92,7 +92,7 @@ class LatexConstructor:
 
             if tag in begin_map:
                 stack.append((tag, match.start()))
-                pos = match.end()  # 继续向后匹配
+                pos = match.end()  
             elif tag in end_map:
                 if not stack:
                     raise ValueError(f"Unmatched end tag: {tag}")
@@ -103,7 +103,6 @@ class LatexConstructor:
                 input_info = begin_map[begin_tag]
                 end_pos = match.end()
 
-                # 提取中间内容
                 inner_start = begin_pos + len(begin_tag)
                 inner_end = match.start()
                 inner_content = tex[inner_start:inner_end].strip()
@@ -115,14 +114,11 @@ class LatexConstructor:
                 with open(output_path, "w", encoding="utf-8") as f:
                     f.write(inner_content + "\n")
 
-                # 替换整个片段为 \input 命令
                 tex = tex[:begin_pos] + input_info["command"] + tex[end_pos:]
 
-                # 下一轮匹配从替换后位置继续
                 pos = begin_pos + len(input_info["command"])
 
             else:
-                # 万一匹配到不在 begin_map/end_map 中的标签
                 pos = match.end()
 
         if stack:
@@ -164,23 +160,14 @@ class LatexConstructor:
             for package in packages_to_comment:
                 if stripped_line.startswith(package) and not stripped_line.startswith('%'):
                     lines[i] = line.replace(package, f'% {package}')
-                    break  # 一旦匹配并修改，就跳出内层循环
+                    break 
         
         return '\n'.join(lines)        
 
     def _add_lualatex_option_to_documentclass_for_ja(self, tex):
-        """
-        在 \documentclass 命令中添加 lualatex 选项
-        
-        参数:
-            source_code (str): LaTeX 源码字符串
-            
-        返回:
-            str: 处理后的 LaTeX 源码
-        """
+
         import re
         
-        # 定义正则表达式匹配 \documentclass 命令
         pattern = re.compile(r'\\documentclass(?:\[([^\]]*)\])?(\{.*?\})')
         
         def replacer(match):
@@ -188,17 +175,14 @@ class LatexConstructor:
             class_name = match.group(2)
             
             if options:
-                # 如果已有选项，检查是否已包含 lualatex
                 if 'lualatex' not in options:
                     new_options = options + ', lualatex'
                 else:
                     new_options = options
                 return f'\\documentclass[{new_options}]{class_name}'
             else:
-                # 如果没有选项，直接添加 lualatex 选项
                 return f'\\documentclass[lualatex]{class_name}'
         
-        # 替换所有匹配的 \documentclass 命令
         modified_source = pattern.sub(replacer, tex)
         
         return modified_source

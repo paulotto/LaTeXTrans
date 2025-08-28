@@ -289,7 +289,7 @@ def init_prompts(source_lang: str, target_lang: str):
     
     If there are no such terms, output: `N/A`.
     
-    Here are some examples:
+    Here are some examples of English translation into Chinese:
     
     Example 1:
     <en source> Model Architecture Our evaluation model architecture follows COMET <cit.>, which employs the LM as an encoder and the feed-forward network as a regressor.
@@ -314,8 +314,8 @@ def init_prompts(source_lang: str, target_lang: str):
     "long-term reward" - "长期奖励"
     
     Now annotate all domain-specific term pairs in the following sentence:
-    <en source> {{src}}
-    <zh translation> {{tgt}}
+    <source> {{src}}
+    <translation> {{tgt}}
     <Proper nouns>
     """
 
