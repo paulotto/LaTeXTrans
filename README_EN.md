@@ -4,14 +4,30 @@
 
 #  LaTeXTrans：Structured LaTeX Translation with Multi-Agent Coordination
 
+<p align="center">
+  <a href="https://arxiv.org/abs/2503.06594" alt="paper"><img src="https://img.shields.io/badge/Paper-LaTeXTrans-blue?logo=arxiv&logoColor=white"/></a>
+</p>
+
 </div>
 
- **LaTeXTrans is a structured LaTeX document translation system based on multi-agent collaboration. The system leverages large language models to directly translate preprocessed LaTeX source code. Through a workflow composed of six agents—Parser, Translator, Validator, Summarizer, Terminology Extractor, and Generator—it ensures format preservation, layout consistency, and terminology uniformity, achieving end-to-end translation from the original LaTeX source to the translated PDF. Please refer to our published paper [LaTeXTrans: Structured LaTeX Translation with Multi-Agent Coordination](https://arxiv.org/abs/2508.18791) for a more detailed system introduction.**
+<div align="center">
+<p dir="auto">
+
+• 🛠️ [Installation Guide](#-InstallationGuide) 
+• ⚙️ [Configuration Guide](#-ConfigurationGuide)
+• 📚 [Usage](#-Usage)
+• 🖼️ [Translation Examples](#-TranslationExamples) 
+
+</p>
+</div>
+
+
+ **LaTeXTrans is a structured LaTeX document translation system based on multi-agent collaboration. The system leverages large language models to directly translate preprocessed LaTeX source code. Through a workflow composed of six agents—Parser, Translator, Validator, Summarizer, Terminology Extractor, and Generator—it ensures format preservation, layout consistency, reference redirect and terminology uniformity, achieving end-to-end translation from the original LaTeX source to the translated PDF. Please refer to our published paper [LaTeXTrans: Structured LaTeX Translation with Multi-Agent Coordination](https://arxiv.org/abs/2508.18791) for a more detailed system introduction.**
 
 
 <img src="./main-figure.jpg" width="1000px"></img>
 
-## 🛠️ Installation Guide
+# 🛠️ Installation Guide
 
 #### 1. Clone Repository
 
@@ -27,7 +43,7 @@ If you need to compile LaTeX files (e.g., generate PDF output), install [MikTex]
 
 *For MikTex, installation please be sure to select install on the fly, in addition, you need to install additional [Strawberry Perl](http://strawberryperl.com/) support compilation.
 
-## ⚙️ Configuration Guide
+# ⚙️ Configuration Guide
 
 ### Local Configuration
 

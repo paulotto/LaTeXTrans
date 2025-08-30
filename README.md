@@ -6,13 +6,27 @@
 
 #  LaTeXTrans：Structured LaTeX Translation with Multi-Agent Coordination
 
+<p align="center">
+  <a href="https://arxiv.org/abs/2503.06594" alt="paper"><img src="https://img.shields.io/badge/Paper-LaTeXTrans-blue?logo=arxiv&logoColor=white"/></a>
+</p>
+
 </div>
 
- **LaTeXTrans 是一个基于多智能体协作的结构化 LaTeX 文档翻译系统, 该系统使用大模型直接翻译预处理过的 LaTeX 源码，通过由 Parser, Translator, Validator, Summarizer, Terminology Extractor, Generator 这六个智能体组成的工作流确保格式保持、排版一致性和术语一致性，并且实现从原文 LaTeX源码到译文PDF的端到端翻译。请阅读我们已经发布的论文 [LaTeXTrans: Structured LaTeX Translation with Multi-Agent Coordination](https://arxiv.org/abs/2508.18791) 以获得更详细的系统介绍。**
+<div align="center">
+<p dir="auto">
+
+• 🛠️ [安装指南](#-安装指南) 
+• ⚙️ [配置说明](#-配置说明)
+• 📚 [使用方式](#-使用方式)
+• 🖼️ [翻译案例](#-翻译案例) 
+</p>
+</div>
+
+ **LaTeXTrans 是一个基于多智能体协作的结构化 LaTeX 文档翻译系统, 该系统使用大模型直接翻译预处理过的 LaTeX 源码，通过由 Parser, Translator, Validator, Summarizer, Terminology Extractor, Generator 这六个智能体组成的工作流确保格式保持、排版一致性、引用跳转和术语一致性，并且实现从原文 LaTeX源码到译文PDF的端到端翻译。请阅读我们已经发布的论文 [LaTeXTrans: Structured LaTeX Translation with Multi-Agent Coordination](https://arxiv.org/abs/2508.18791) 以获得更详细的系统介绍。**
 
 <img src="./main-figure.jpg" width="1000px"></img>
 
-## 🛠️ 安装指南
+# 🛠️ 安装指南
 
 #### 1. 克隆仓库
 
@@ -29,7 +43,7 @@ pip install -r requirements.txt
 *对于 MikTex，安装时请务必选择 install on the fly，此外，您需要额外安装 [Strawberry Perl](http://strawberryperl.com/) 支持编译。
 
 
-## ⚙️ 配置说明
+# ⚙️ 配置说明
 
 
 使用前请编辑配置文件：
@@ -49,7 +63,7 @@ base_url = " " #base url of the API
 
 
 
-## 📚 使用方式
+# 📚 使用方式
 
 ### 🔹 通过ArXiv ID翻译（推荐）
 
@@ -81,11 +95,11 @@ python main.py --arxiv (i.e. 2508.18791)
 *首次启动时，你可以通过直接修改 config/default.toml 来启动。
 
 
-## 💬 演示视频
+# 💬 演示视频
 
 系统演示视频： https://www.youtube.com/watch?v=tSVm_EOL7i8
 
-## 🖼️ 翻译案例
+# 🖼️ 翻译案例
 
 以下是**LaTeXTrans**生成的三个真实翻译案例，左侧为原文，右侧为翻译结果。
 
