@@ -102,7 +102,7 @@ python main.py --arxiv (i.e. 2508.18791)
 
 系统演示视频： https://www.youtube.com/watch?v=tSVm_EOL7i8
 
-## 🧰 实验结果
+# 🧰 实验结果
 
 | System | Cometkiwi | LLM-score | FC-score | Cost |
 |:-|:-:|:-:|:-:|:-:|
