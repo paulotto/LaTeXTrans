@@ -26,6 +26,7 @@ pip install -r requirements.txt
 
 If you need to compile LaTeX files (e.g., generate PDF output), install [MikTex](https://miktex.org/download) or [TeXLive](https://www.tug.org/texlive/) !
 
+*For MikTex, installation please be sure to select install on the fly, in addition, you need to install additional [Strawberry Perl](http://strawberryperl.com/) support compilation.
 
 ## ⚙️ Configuration Guide
 

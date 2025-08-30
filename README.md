@@ -24,9 +24,11 @@ cd LaTeXTrans
 pip install -r requirements.txt
 ```
 
-#### 2. 安装MikTex（推荐）或TeXLive
+#### 2. 安装MikTex（推荐, 更轻量）或TeXLive
 
 如需编译LaTeX文件（例如生成PDF输出），需要安装 [MikTex](https://miktex.org/download) 或 [TeXLive](https://www.tug.org/texlive/) !
+
+*对于 MikTex，安装时请务必选择 install on the fly，此外，您需要额外安装 [Strawberry Perl](http://strawberryperl.com/) 支持编译。
 
 
 ## ⚙️ 配置说明
