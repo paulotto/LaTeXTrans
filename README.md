@@ -95,6 +95,8 @@ python main.py --arxiv (i.e. 2508.18791)
 
 *首次启动时，你可以通过直接修改 config/default.toml 来启动。
 
+*此版本暂时只支持英文到中文的翻译
+
 
 # 💬 演示视频
 

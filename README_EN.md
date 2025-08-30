@@ -21,7 +21,6 @@
 </p>
 </div>
 
-
  **LaTeXTrans is a structured LaTeX document translation system based on multi-agent collaboration. The system leverages large language models to directly translate preprocessed LaTeX source code. Through a workflow composed of six agents—Parser, Translator, Validator, Summarizer, Terminology Extractor, and Generator—it ensures format preservation, layout consistency, reference redirect and terminology uniformity, achieving end-to-end translation from the original LaTeX source to the translated PDF. Please refer to our published paper [LaTeXTrans: Structured LaTeX Translation with Multi-Agent Coordination](https://arxiv.org/abs/2508.18791) for a more detailed system introduction.**
 
 
@@ -94,6 +93,7 @@ This command will:
 
 *For initial setup, users may launch the system by directly modifying the config/default.toml file.
 
+*This version currently only supports translation from English to Chinese
 
 ## 💬 Demo Video
 
