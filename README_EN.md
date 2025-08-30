@@ -13,10 +13,10 @@
 <div align="center">
 <p dir="auto">
 
-• 🛠️ [Installation Guide](#-InstallationGuide) 
-• ⚙️ [Configuration Guide](#-ConfigurationGuide)
+• 🛠️ [Installation Guide](#️-installation-guide) 
+• ⚙️ [Configuration Guide](#️-configuration-guide)
 • 📚 [Usage](#-Usage)
-• 🖼️ [Translation Examples](#-TranslationExamples) 
+• 🖼️ [Translation Examples](#️-translation-examples) 
 
 </p>
 </div>

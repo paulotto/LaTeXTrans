@@ -15,16 +15,17 @@
 <div align="center">
 <p dir="auto">
 
-• 🛠️ [安装指南](#-安装指南) 
-• ⚙️ [配置说明](#-配置说明)
+• 🛠️ [安装指南](#️-安装指南) 
+• ⚙️ [配置说明](#️-配置说明)
 • 📚 [使用方式](#-使用方式)
-• 🖼️ [翻译案例](#-翻译案例) 
+• 🖼️ [翻译案例](#️-翻译案例) 
 </p>
 </div>
 
  **LaTeXTrans 是一个基于多智能体协作的结构化 LaTeX 文档翻译系统, 该系统使用大模型直接翻译预处理过的 LaTeX 源码，通过由 Parser, Translator, Validator, Summarizer, Terminology Extractor, Generator 这六个智能体组成的工作流确保格式保持、排版一致性、引用跳转和术语一致性，并且实现从原文 LaTeX源码到译文PDF的端到端翻译。请阅读我们已经发布的论文 [LaTeXTrans: Structured LaTeX Translation with Multi-Agent Coordination](https://arxiv.org/abs/2508.18791) 以获得更详细的系统介绍。**
 
 <img src="./main-figure.jpg" width="1000px"></img>
+
 
 # 🛠️ 安装指南
 
