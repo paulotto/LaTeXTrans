@@ -2,17 +2,15 @@
 
 中文 | [English](README_EN.md)
 
+
+
+#  LaTeXTrans：Structured LaTeX Translation with Multi-Agent Coordination
+
 </div>
 
-# 🚀 LaTeXTrans
+ **LaTeXTrans 是一个基于多智能体协作的结构化 LaTeX 文档翻译系统, 该系统使用大模型直接翻译预处理过的 LaTeX 源码，通过由 Parser, Translator, Validator, Summarizer, Terminology Extractor, Generator 这六个智能体组成的工作流确保格式保持、排版一致性和术语一致性，并且实现从原文 LaTeX源码到译文PDF的端到端翻译。请阅读我们已经发布的论文 [LaTeXTrans: Structured LaTeX Translation with Multi-Agent Coordination](https://arxiv.org/abs/2508.18791) 以获得更详细的系统介绍。**
 
-> **基于多智能体协作的结构化LaTeX文档翻译系统, 将英文LaTeX文档翻译成中文PDF**
-
-
-
-## ✨ 功能特点
-
-> **使用大模型API直接翻译LaTeX源码，让翻译结果呈现与原文高度一致的排版**
+<img src="./main-figure.jpg" width="1000px"></img>
 
 ## 🛠️ 安装指南
 
@@ -134,3 +132,15 @@ python main.py --arxiv (i.e. 2508.18791)
 
 ---
 
+## Citation
+```bash
+@misc{zhu2025latextransstructuredlatextranslation,
+      title={LaTeXTrans: Structured LaTeX Translation with Multi-Agent Coordination}, 
+      author={Ziming Zhu and Chenglong Wang and Shunjie Xing and Yifu Huo and Fengning Tian and Quan Du and Di Yang and Chunliang Zhang and Tong Xiao and Jingbo Zhu},
+      year={2025},
+      eprint={2508.18791},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2508.18791}, 
+}
+```
