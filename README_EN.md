@@ -8,8 +8,9 @@
 
 > **Structured LaTeX Document Translation System Based on Multi-Agent Collaboration**
 
----
+## ✨ Functional features
 
+> **Use the LLM API to directly translate the TeX source code, making the translation result present a layout highly consistent with the original text**
 
 ## 🛠️ Installation Guide
 
@@ -69,10 +70,10 @@ This command will:
 | Option                | Function                                                                                                      | Example                                        |
 | --------------------- | ------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
 | `--config`            | Path to the config TOML file                        | `python main.py --config Path/config.toml`                                    |
-| `--model`             | LLM for translating.                                | `python main.py --model deepseek-v3`                      |
+| `--model`             | LLM for translating.                                | `python main.py --model deepseek-v3(e.g.)`                      |
 | `--url`               | Model url                                           | `python main.py --url your url`                    |
 | `--key`               | Model API key                                       | `python main.py --key your APIkey`                    |
-| `--Arxiv`             | Arxiv paper ID                                      | `python main.py --Arxiv 2307.07924`                  |
+| `--arxiv`             | Arxiv paper ID                                      | `python main.py --arxiv ****.*****`                  |
 
 
 *For initial setup, users may launch the system by directly modifying the config/default.toml file.

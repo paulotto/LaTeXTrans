@@ -9,7 +9,10 @@
 > **基于多智能体协作的结构化LaTeX文档翻译系统, 将英文LaTeX文档翻译成中文PDF**
 
 
----
+
+## ✨ 功能特点
+
+> **使用大模型API直接翻译LaTeX源码，让翻译结果呈现与原文高度一致的排版**
 
 ## 🛠️ 安装指南
 
@@ -69,13 +72,13 @@ python main.py --arxiv (i.e. 2508.18791)
 选项                | 功能                                                                                                      | 使用示例                                        |
 | --------------------- | ------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
 | `--config`            | Path to the config TOML file                        | `python main.py --config Path/config.toml`                                    |
-| `--model`             | LLM for translating.                                | `python main.py --model deepseek-v3`                      |
+| `--model`             | LLM for translating.                                | `python main.py --model deepseek-v3(e.g.)`                      |
 | `--url`               | Model url                                           | `python main.py --url your url`                    |
 | `--key`               | Model API key                                       | `python main.py --key your APIkey`                    |
-| `--Arxiv`             | Arxiv paper ID                                      | `python main.py --Arxiv 2307.07924`                  |
+| `--arxiv`             | Arxiv paper ID                                      | `python main.py --arxiv ****.*****`                  |
 
 
-*首次启动时，你可以通过直接修改config/default.toml来启动。
+*首次启动时，你可以通过直接修改 config/default.toml 来启动。
 
 
 ## 💬 演示视频
