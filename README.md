@@ -21,8 +21,15 @@ English | [中文](README_ZH.md)
 </p>
 </div>
 
- **LaTeXTrans is a structured LaTeX document translation system based on multi-agent collaboration. The system leverages large language models to directly translate preprocessed LaTeX source code. Through a workflow composed of six agents—Parser, Translator, Validator, Summarizer, Terminology Extractor, and Generator—it ensures format preservation, layout consistency, reference redirect and terminology uniformity, achieving end-to-end translation from the original LaTeX source to the translated PDF. Please refer to our published paper [LaTeXTrans: Structured LaTeX Translation with Multi-Agent Coordination](https://arxiv.org/abs/2508.18791) for a more detailed system introduction.**
+**LaTeXTrans is a structured LaTeX document translation system based on multi-agent collaboration. It directly translates LaTeX code and generates translated PDFs with high fidelity to the original layout. The primary application of LaTeXTrans is *arXiv paper translation*. Unlike traditional document translation methods (e.g., PDF translation), which often break formulas and formatting, LaTeXTrans leverages LLM to translate preprocessed LaTeX sources and employs a workflow composed of six agents—Parser, Translator, Validator, Summarizer, Terminology Extractor, and Generator—to achieve the following goals:**
 
+ - <u>**Preserve the integrity of formulas, layout, and cross-references**</u>
+ - <u>**Ensure consistency in terminology translation**</u>
+ - <u>**Support end-to-end conversion from original LaTeX source to translated PDF**</u>
+
+**With LaTeXTrans, researchers and students can obtain higher-quality paper translations without worrying about formatting confusion or missing content, thus reading and understanding arXiv papers more efficiently.**
+
+**The figure below illustrates the system architecture of LaTeXTrans. For a more detailed introduction, please refer to our published paper [LaTeXTrans: Structured LaTeX Translation with Multi-Agent Coordination](https://arxiv.org/abs/2508.18791).**
 
 <img src="./main-figure.jpg" width="1000px"></img>
 
@@ -40,7 +47,7 @@ pip install -r requirements.txt
 
 If you need to compile LaTeX files (e.g., generate PDF output), install [MikTex](https://miktex.org/download) or [TeXLive](https://www.tug.org/texlive/) !
 
-*For MikTex, installation please be sure to select install on the fly, in addition, you need to install additional [Strawberry Perl](http://strawberryperl.com/) support compilation.
+*For MikTex, installation please be sure to select "install on the fly", in addition, you need to install additional [Strawberry Perl](http://strawberryperl.com/) support compilation.
 
 # ⚙️ Configuration Guide
 
@@ -79,7 +86,7 @@ This command will:
 1. Download LaTeX source code from arXiv
 2. Extract to tex source file directory
 3. Run multi-agent translation workflow
-4. Save translated .tex files and compiled PDF in outputs folder
+4. Save the translated LaTeX project file of the paper and the PDF of the compiled translation in the outputs folder
 
 
 ### 🔹 Running with CLI
@@ -112,7 +119,13 @@ This command will:
 |**LaTeXTrans(DeepSeek-V3)**|73.48|9.01|70.52|$0.10|
 |**LaTeXTrans(GPT-4o)**|73.59|8.92|71.52|$0.35|
 
-COMETkiwi, FC-score, and LLM-score comparisons across different systems. We also report the cost incurred when using the official API to translate each paper on average in the test set, as shown in the “Cost” column.
+Note:
+- **COMETkiwi** : a quality estimation model that reflects the quality of the translation, the higher the score, the better the translation quality.
+- **LLM-score** : a method for evaluating the quality of translation using LLM (GPT-4o), the higher the score, the better the translation quality.
+- **FC-score** : a method proposed in our paper to evaluate the formatting ability of LaTeX translation by detecting the number of errors in the compiled logs, the higher the score, the better the ability to maintain format.
+- **Cost** : the cost incurred when using the official API to translate each paper on average in the test set.
+  
+
 
 # 🖼️ Translation Examples
 

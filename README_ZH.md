@@ -22,7 +22,16 @@
 </p>
 </div>
 
- **LaTeXTrans 是一个基于多智能体协作的结构化 LaTeX 文档翻译系统, 该系统使用大模型直接翻译预处理过的 LaTeX 源码，通过由 Parser, Translator, Validator, Summarizer, Terminology Extractor, Generator 这六个智能体组成的工作流确保格式保持、排版一致性、引用跳转和术语一致性，并且实现从原文 LaTeX源码到译文PDF的端到端翻译。请阅读我们已经发布的论文 [LaTeXTrans: Structured LaTeX Translation with Multi-Agent Coordination](https://arxiv.org/abs/2508.18791) 以获得更详细的系统介绍。**
+ **LaTeXTrans 是一个基于多智能体协作的结构化 LaTeX 文档翻译系统, 该系统能够直接翻译 LaTeX 代码，并生成与原文排版高度一致的译文 PDF。LaTeXTrans 的主要应用场景为 arXiv 论文翻译，不同于传统文档翻译方法（例如 PDF 翻译）容易破坏公式和格式，该系统使用大模型直接翻译预处理过的论文 LaTeX 源码，并通过由 Parser, Translator, Validator, Summarizer, Terminology Extractor, Generator 这六个智能体组成的工作流实现了以下目标：**
+
+ - <u>**保持公式、排版和交叉引用的完整性**</u>
+ - <u>**保证术语翻译的一致性**</u>
+ - <u>**支持从原文 LaTeX 源码到译文 PDF 的端到端转换**</u>
+
+**借助 LaTeXTrans，研究人员和学生可以得到更高质量的论文翻译而无需担心格式混乱或内容缺失，从而更高效地阅读和理解 arXiv 论文。**
+
+**下图展示了 LaTeXTrans 的系统架构，请阅读我们已经发布的论文 [LaTeXTrans: Structured LaTeX Translation with Multi-Agent Coordination](https://arxiv.org/abs/2508.18791) 以获得更详细的系统介绍。**
+
 
 <img src="./main-figure.jpg" width="1000px"></img>
 
@@ -41,7 +50,7 @@ pip install -r requirements.txt
 
 如需编译LaTeX文件（例如生成PDF输出），需要安装 [MikTex](https://miktex.org/download) 或 [TeXLive](https://www.tug.org/texlive/) !
 
-*对于 MikTex，安装时请务必选择 install on the fly，此外，您需要额外安装 [Strawberry Perl](http://strawberryperl.com/) 支持编译。
+*对于 MikTex，安装时请务必选择 “install on the fly”，此外，您需要额外安装 [Strawberry Perl](http://strawberryperl.com/) 支持编译。
 
 
 # ⚙️ 配置说明
@@ -66,9 +75,9 @@ base_url = " " # base url of the API
 
 # 📚 使用方式
 
-### 🔹 通过ArXiv ID翻译（推荐）
+### 🔹 通过 ArXiv ID 翻译（推荐）
 
-只需提供arXiv论文ID即可完成翻译：
+只需提供 arXiv 论文 ID 即可完成翻译：
 
 ```bash
 python main.py --arxiv {arxiv_paper_id}
@@ -78,10 +87,10 @@ python main.py --arxiv {arxiv_paper_id}
 
 该命令将：
 
-1. 从arXiv下载LaTeX源码
-2. 解压到tex源文件目录
+1. 从 arXiv 下载 LaTeX 源码
+2. 解压到 tex 源文件目录
 3. 运行多智能体翻译流程
-4. 在outputs文件夹保存翻译后的.tex文件和编译的PDF
+4. 在 outputs 文件夹保存翻译后的论文 LaTeX 项目文件和编译生成的译文PDF
 
 
 ### 🔹 使用命令行运行
@@ -101,7 +110,7 @@ python main.py --arxiv {arxiv_paper_id}
 
 # 🖼️ 翻译案例
 
-以下是**LaTeXTrans**生成的三个真实翻译案例，左侧为原文，右侧为翻译结果。
+以下是 **LaTeXTrans** 生成的三个真实翻译案例，左侧为原文，右侧为翻译结果。
 
 ### 📄 案例1：
 
@@ -142,7 +151,7 @@ python main.py --arxiv {arxiv_paper_id}
   </tr>
 </table>
 
-📂 **更多案例请查看[`examples/`](examples/) 文件夹**, 包含每个案例的完整翻译PDF。
+📂 **更多案例请查看[`examples/`](examples/) 文件夹**, 包含每个案例的完整翻译 PDF。
 
 ---
 
