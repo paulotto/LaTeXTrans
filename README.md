@@ -96,14 +96,10 @@ This command will:
 
 *This version currently only supports translation from English to Chinese
 
-# 💬 Demo Video
-
-System demonstration video: https://www.youtube.com/watch?v=tSVm_EOL7i8
-
 
 # 🧰 Experimental Results
 
-| System | Cometkiwi | LLM-score | FC-score | Cost |
+| System | COMETkiwi | LLM-score | FC-score | Cost |
 |:-|:-:|:-:|:-:|:-:|
 |NiuTrans |64.69|7.93|60.72|-|
 |Google Translate |46.23|5.93|51.00|-|
@@ -115,6 +111,8 @@ System demonstration video: https://www.youtube.com/watch?v=tSVm_EOL7i8
 |**LaTeXTrans(Qwen-3-14b)**|71.37|8.97|71.20|-|
 |**LaTeXTrans(DeepSeek-V3)**|73.48|9.01|70.52|$0.10|
 |**LaTeXTrans(GPT-4o)**|73.59|8.92|71.52|$0.35|
+
+COMETkiwi, FC-score, and LLM-score comparisons across different systems. We also report the cost incurred when using the official API to translate each paper on average in the test set, as shown in the “Cost” column.
 
 # 🖼️ Translation Examples
 
