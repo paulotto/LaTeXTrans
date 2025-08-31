@@ -21,7 +21,7 @@ English | [中文](README_ZH.md)
 </p>
 </div>
 
-**LaTeXTrans is a structured LaTeX document translation system based on multi-agent collaboration. It directly translates LaTeX code and generates translated PDFs with high fidelity to the original layout. The primary application of LaTeXTrans is <big>arXiv paper translation</big>. Unlike traditional document translation methods (e.g., PDF translation), which often break formulas and formatting, LaTeXTrans leverages LLM to translate preprocessed LaTeX sources and employs a workflow composed of six agents—Parser, Translator, Validator, Summarizer, Terminology Extractor, and Generator—to achieve the following goals:**
+**LaTeXTrans is a structured LaTeX document translation system based on multi-agent collaboration. It directly translates LaTeX code and generates translated PDFs with high fidelity to the original layout. The primary application of LaTeXTrans is *<big>*arXiv paper translation*</big>*. Unlike traditional document translation methods (e.g., PDF translation), which often break formulas and formatting, LaTeXTrans leverages LLM to translate preprocessed LaTeX sources and employs a workflow composed of six agents—Parser, Translator, Validator, Summarizer, Terminology Extractor, and Generator—to achieve the following goals:**
 
  - <big>**Preserve the integrity of formulas, layout, and cross-references**</big>
  - <big>**Ensure consistency in terminology translation**</big>
