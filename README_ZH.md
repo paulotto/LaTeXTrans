@@ -24,9 +24,9 @@
 
  **LaTeXTrans 是一个基于多智能体协作的结构化 LaTeX 文档翻译系统, 该系统能够直接翻译 LaTeX 代码，并生成与原文排版高度一致的译文 PDF。LaTeXTrans 的主要应用场景为 arXiv 论文翻译，不同于传统文档翻译方法（例如 PDF 翻译）容易破坏公式和格式，该系统使用大模型直接翻译预处理过的论文 LaTeX 源码，并通过由 Parser, Translator, Validator, Summarizer, Terminology Extractor, Generator 这六个智能体组成的工作流实现了以下目标：**
 
- - <u>**保持公式、排版和交叉引用的完整性**</u>
- - <u>**保证术语翻译的一致性**</u>
- - <u>**支持从原文 LaTeX 源码到译文 PDF 的端到端转换**</u>
+ - <big>**保持公式、排版和交叉引用的完整性**</big>
+ - <big>**保证术语翻译的一致性**</big>
+ - <big>**支持从原文 LaTeX 源码到译文 PDF 的端到端转换**</big>
 
 **借助 LaTeXTrans，研究人员和学生可以得到更高质量的论文翻译而无需担心格式混乱或内容缺失，从而更高效地阅读和理解 arXiv 论文。**
 
@@ -100,7 +100,7 @@ python main.py --arxiv {arxiv_paper_id}
 | `--model`             | LLM for translating                                | `python main.py --model deepseek-v3`                      |
 | `--url`               | Model url                                           | `python main.py --url your url`                    |
 | `--key`               | Model API key                                       | `python main.py --key your APIkey`                    |
-| `--arxiv`             | Arxiv paper ID                                      | `python main.py --arxiv 2508.18791`                  |
+| `--arxiv`             | arXiv paper ID                                      | `python main.py --arxiv 2508.18791`                  |
 
 
 *首次启动时，你可以通过直接修改 config/default.toml 来启动。

@@ -21,11 +21,11 @@ English | [中文](README_ZH.md)
 </p>
 </div>
 
-**LaTeXTrans is a structured LaTeX document translation system based on multi-agent collaboration. It directly translates LaTeX code and generates translated PDFs with high fidelity to the original layout. The primary application of LaTeXTrans is *arXiv paper translation*. Unlike traditional document translation methods (e.g., PDF translation), which often break formulas and formatting, LaTeXTrans leverages LLM to translate preprocessed LaTeX sources and employs a workflow composed of six agents—Parser, Translator, Validator, Summarizer, Terminology Extractor, and Generator—to achieve the following goals:**
+**LaTeXTrans is a structured LaTeX document translation system based on multi-agent collaboration. It directly translates LaTeX code and generates translated PDFs with high fidelity to the original layout. The primary application of LaTeXTrans is <big>arXiv paper translation</big>. Unlike traditional document translation methods (e.g., PDF translation), which often break formulas and formatting, LaTeXTrans leverages LLM to translate preprocessed LaTeX sources and employs a workflow composed of six agents—Parser, Translator, Validator, Summarizer, Terminology Extractor, and Generator—to achieve the following goals:**
 
- - <u>**Preserve the integrity of formulas, layout, and cross-references**</u>
- - <u>**Ensure consistency in terminology translation**</u>
- - <u>**Support end-to-end conversion from original LaTeX source to translated PDF**</u>
+ - <big>**Preserve the integrity of formulas, layout, and cross-references**</big>
+ - <big>**Ensure consistency in terminology translation**</big>
+ - <big>**Support end-to-end conversion from original LaTeX source to translated PDF**</big>
 
 **With LaTeXTrans, researchers and students can obtain higher-quality paper translations without worrying about formatting confusion or missing content, thus reading and understanding arXiv papers more efficiently.**
 
@@ -96,7 +96,7 @@ This command will:
 | `--model`             | LLM for translating                                | `python main.py --model deepseek-v3`                      |
 | `--url`               | Model url                                           | `python main.py --url your url`                    |
 | `--key`               | Model API key                                       | `python main.py --key your APIkey`                    |
-| `--arxiv`             | Arxiv paper ID                                      | `python main.py --arxiv 2508.18791`                  |
+| `--arxiv`             | arXiv paper ID                                      | `python main.py --arxiv 2508.18791`                  |
 
 
 *For initial setup, users may launch the system by directly modifying the config/default.toml file.
