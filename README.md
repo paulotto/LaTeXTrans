@@ -21,15 +21,15 @@ English | [中文](README_ZH.md)
 </p>
 </div>
 
-**LaTeXTrans is a structured LaTeX document translation system based on multi-agent collaboration. It directly translates LaTeX code and generates translated PDFs with high fidelity to the original layout. The primary application of LaTeXTrans is *<big>*arXiv paper translation*</big>*. Unlike traditional document translation methods (e.g., PDF translation), which often break formulas and formatting, LaTeXTrans leverages LLM to translate preprocessed LaTeX sources and employs a workflow composed of six agents—Parser, Translator, Validator, Summarizer, Terminology Extractor, and Generator—to achieve the following goals:**
+LaTeXTrans is a structured LaTeX document translation system based on multi-agent collaboration. It directly translates LaTeX code and generates translated PDFs with high fidelity to the original layout. **The primary application of LaTeXTrans is arXiv paper translation**. Unlike traditional document translation methods (e.g., PDF translation), which often break formulas and formatting, LaTeXTrans leverages LLM to translate preprocessed LaTeX sources and employs a workflow composed of six agents—Parser, Translator, Validator, Summarizer, Terminology Extractor, and Generator—to achieve the following features:
 
- - *<big>***Preserve the integrity of formulas, layout, and cross-references***</big>*
- - *<big>***Ensure consistency in terminology translation***</big>*
- - *<big>***Support end-to-end conversion from original LaTeX source to translated PDF***</big>*
+ - **Preserve the integrity of formulas, layout, and cross-references**
+ - **Ensure consistency in terminology translation**
+ - **Support end-to-end conversion from original LaTeX source to translated PDF**
 
 **With LaTeXTrans, researchers and students can obtain higher-quality paper translations without worrying about formatting confusion or missing content, thus reading and understanding arXiv papers more efficiently.**
 
-**The figure below illustrates the system architecture of LaTeXTrans. For a more detailed introduction, please refer to our published paper [LaTeXTrans: Structured LaTeX Translation with Multi-Agent Coordination](https://arxiv.org/abs/2508.18791).**
+The figure below illustrates the system architecture of LaTeXTrans. For a more detailed introduction, please refer to our published paper [LaTeXTrans: Structured LaTeX Translation with Multi-Agent Coordination](https://arxiv.org/abs/2508.18791).
 
 <img src="./main-figure.jpg" width="1000px"></img>
 
@@ -59,10 +59,9 @@ Please edit the configuration file before use:
 config/default.toml
 ```
 
-Set the language model's API key and base URL:
+Set the language model's API key and base URL in default.toml :
 
 ```toml
-[llm]
 model = "deepseek-v3" # model name (optional)
 api_key = " " # your_api_key_here
 base_url = " " # base url of the API
@@ -76,7 +75,7 @@ base_url = " " # base url of the API
 Simply provide an arXiv paper ID to complete translation:
 
 ```bash
-python main.py --arxiv {arxiv_paper_id}
+python main.py --arxiv ${xxxx}
 # For example, 
 # python main.py --arxiv 2508.18791
 ```
@@ -88,21 +87,7 @@ This command will:
 3. Run multi-agent translation workflow
 4. Save the translated LaTeX project file of the paper and the PDF of the compiled translation in the outputs folder
 
-
-### 🔹 Running with CLI
-
-| Option                | Function                                                                                                      | Example                                        |
-| --------------------- | ------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
-| `--model`             | LLM for translating                                | `python main.py --model deepseek-v3`                      |
-| `--url`               | Model url                                           | `python main.py --url your url`                    |
-| `--key`               | Model API key                                       | `python main.py --key your APIkey`                    |
-| `--arxiv`             | arXiv paper ID                                      | `python main.py --arxiv 2508.18791`                  |
-
-
-*For initial setup, users may launch the system by directly modifying the config/default.toml file.
-
 *This version currently only supports translation from English to Chinese
-
 
 # 🧰 Experimental Results
 
@@ -113,17 +98,17 @@ This command will:
 |LLaMA-3.1-8b|42.89|2.92|49.40|-|
 |Qwen-3-8b|45.55|7.87|48.68|-|
 |Qwen-3-14b|68.18|8.76|65.63|-|
-|DeepSeek-V3|67.26|9.02|63.68|$0.02|
+|DeepSeek-V3|67.26|**9.02**|63.68|$0.02|
 |GPT-4o|67.22|8.58|58.32|$0.13|
 |**LaTeXTrans(Qwen-3-14b)**|71.37|8.97|71.20|-|
 |**LaTeXTrans(DeepSeek-V3)**|73.48|9.01|70.52|$0.10|
-|**LaTeXTrans(GPT-4o)**|73.59|8.92|71.52|$0.35|
+|**LaTeXTrans(GPT-4o)**|**73.59**|8.92|**71.52**|$0.35|
 
 Note:
-- **COMETkiwi** : a quality estimation model that reflects the quality of the translation, the higher the score, the better the translation quality.
+- **COMETkiwi** : a quality estimation model ([wmt22-cometkiwi-da](https://huggingface.co/Unbabel/wmt22-cometkiwi-da)) that reflects the quality of the translation, the higher the score, the better the translation quality.
 - **LLM-score** : a method for evaluating the quality of translation using LLM (GPT-4o), the higher the score, the better the translation quality.
 - **FC-score** : a method proposed in our paper to evaluate the formatting ability of LaTeX translation by detecting the number of errors in the compiled logs, the higher the score, the better the ability to maintain format.
-- **Cost** : the cost incurred when using the official API to translate each paper on average in the test set.
+- **Cost** : the average cost of translating each paper using the official API.
   
 
 
