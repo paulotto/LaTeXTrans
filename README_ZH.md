@@ -98,7 +98,7 @@ python main.py --arxiv ${xxxx}
 
 以下是 **LaTeXTrans** 生成的三个真实翻译案例，左侧为原文，右侧为翻译结果。
 
-### 📄 案例1：
+### 📄 案例 1 ( 英文->中文 ) :
 
 <table>
   <tr>
@@ -111,20 +111,7 @@ python main.py --arxiv ${xxxx}
   </tr>
 </table>
 
-### 📄  案例2：
-
-<table>
-  <tr>
-    <td align="center"><b>原文</b></td>
-    <td align="center"><b>译文</b></td>
-  </tr>
-  <tr>
-    <td><img src="examples/case2src.png" width="100%"></td>
-    <td><img src="examples/case2ch.png" width="100%"></td>
-  </tr>
-</table>
-
-### 📄 案例3：
+### 📄 案例 2 ( 英文->中文 ):
 
 <table>
   <tr>
@@ -134,6 +121,32 @@ python main.py --arxiv ${xxxx}
   <tr>
     <td><img src="examples/case3src.png" width="100%"></td>
     <td><img src="examples/case3ch.png" width="100%"></td>
+  </tr>
+</table>
+
+### 📄 案例 3 ( 英文->日文 ):
+
+<table>
+  <tr>
+    <td align="center"><b>原文</b></td>
+    <td align="center"><b>译文</b></td>
+  </tr>
+  <tr>
+    <td><img src="examples\case-en.png" width="100%"></td>
+    <td><img src="examples\case-jp.png" width="100%"></td>
+  </tr>
+</table>
+
+### 📄 案例 4 ( 英文->日文 ):
+
+<table>
+  <tr>
+    <td align="center"><b>原文</b></td>
+    <td align="center"><b>译文</b></td>
+  </tr>
+  <tr>
+    <td><img src="examples\case5a-1-en.png" width="100%"></td>
+    <td><img src="examples\case5b-1-jp.png" width="100%"></td>
   </tr>
 </table>
 
