@@ -1,8 +1,0 @@
-\section{How to Adopt Personalization} \label{sec:how}
-We define the process of introducing personalization within the RAG pipeline as follows:
-% \vspace{-1mm}
-\begin{equation}\label{equ:definition}
-g = \mathcal{G} \left( \mathcal{R}\left(\mathcal{Q}\left(q,p\right),\mathcal{C},p\right),\text{prompt},p,\theta \right)
-\end{equation}
-% \vspace{-1mm}
-where $p$ denotes personalized information, and the process unfolds in three steps. In the \textbf{pre-retrieval phase}, query processing ($\mathcal{Q}$) refines the query $q$ using personalized information, such as through query rewriting or expansion. During the \textbf{retrieval phase}, the retriever ($\mathcal{R}$) leverages $p$ to fetch relevant documents from the corpus ($\mathcal{C}$). Finally, in the \textbf{generation phase}, the retrieved information, combined with $p$ and structured using the given prompt, id fed into the generator ($\mathcal{G}$) with parameter $\theta$ to produce the final response $g$. It is evident that personalized information directly influences multiple stages of the RAG pipeline. In this survey, we consider the agent system as a specialized application of the RAG framework, where personalization is incorporated in a manner similar to the RAG framework.

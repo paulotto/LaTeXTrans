@@ -1,8 +1,0 @@
-\section{Threat Model}
-\label{threat}
-
-\subsection{Attacker Capabilities and Goals}
-In the context of attacker capabilities, adversaries can poison training data \cite{badnets, blended} or manipulate the training process \cite{wanet, inputaware} to embed backdoors within models. They deploy triggers that vary from stealthy, undetectable modifications to overt ones, with triggers influencing either specific parts of a sample \cite{badnets, inputaware} or the entire sample \cite{sig, bpp}. Additionally, attackers can target individual samples \cite{ssba} to evade detection or use label-consistent mechanisms, where poisoned inputs align with their visible content, leading to inference misclassification \cite{turner2019label, sig}. Attacks typically follow either an All-to-One pattern, where any input with a trigger is classified into a single target class, or an All-to-All pattern, where a target class is chosen for each source class to ensure any input with a trigger is misclassified accordingly. These models may be trained either adversarially or non-adversarially, with attackers aiming to embed undetectable backdoors that evade detection efforts. 
-
-\subsection{Defender Capabilities and Goals}
-In contrast, defenders operate under varying capabilities: The defender receives the model with white-box access to it and may (TRODO) or may not (TRODO-Zero) have access to a small set of clean samples from the same distribution as the training data, and they require no prior knowledge of the specific attack type or trigger involved. Defender goals are to identify any embedded backdoors, and adapt effectively to scenarios with or without clean training samples.
