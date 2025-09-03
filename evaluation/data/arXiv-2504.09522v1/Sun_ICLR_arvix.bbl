@@ -1,0 +1,510 @@
+\begin{thebibliography}{53}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[{Ahn} et~al.(2023){Ahn}, {Cheng}, {Daneshmand}, and {Sra}]{trans_ICL}
+K.~{Ahn}, X.~{Cheng}, H.~{Daneshmand}, and S.~{Sra}.
+\newblock {Transformers learn to implement preconditioned gradient descent for
+  in-context learning}.
+\newblock \emph{arXiv e-prints}, art. arXiv:2306.00297, May 2023.
+\newblock \doi{10.48550/arXiv.2306.00297}.
+
+\bibitem[{Allen-Zhu} and {Li}(2023)]{physics_LLMs}
+Z.~{Allen-Zhu} and Y.~{Li}.
+\newblock {Physics of Language Models: Part 3.1, Knowledge Storage and
+  Extraction}.
+\newblock \emph{arXiv e-prints}, art. arXiv:2309.14316, Sept. 2023.
+\newblock \doi{10.48550/arXiv.2309.14316}.
+
+\bibitem[{Andrew} et~al.(2019){Andrew}, {Thakkar}, {McMahan}, and
+  {Ramaswamy}]{diff_privacy}
+G.~{Andrew}, O.~{Thakkar}, H.~B. {McMahan}, and S.~{Ramaswamy}.
+\newblock {Differentially Private Learning with Adaptive Clipping}.
+\newblock \emph{arXiv e-prints}, art. arXiv:1905.03871, May 2019.
+\newblock \doi{10.48550/arXiv.1905.03871}.
+
+\bibitem[{Anil} et~al.(2023){Anil}, {Dai}, {Firat}, {Johnson}, {Lepikhin},
+  {Passos}, {Shakeri}, {Taropa}, {Bailey}, {Chen}, {Chu}, {Clark}, {El Shafey},
+  {Huang}, {Meier-Hellstern}, {Mishra}, {Moreira}, {Omernick}, {Robinson},
+  {Ruder}, {Tay}, {Xiao}, {Xu}, {Zhang}, {Hernandez Abrego}, {Ahn}, {Austin},
+  {Barham}, {Botha}, {Bradbury}, {Brahma}, {Brooks}, {Catasta}, {Cheng},
+  {Cherry}, {Choquette-Choo}, {Chowdhery}, {Crepy}, {Dave}, {Dehghani}, {Dev},
+  {Devlin}, {D{\'\i}az}, {Du}, {Dyer}, {Feinberg}, {Feng}, {Fienber},
+  {Freitag}, {Garcia}, {Gehrmann}, {Gonzalez}, {Gur-Ari}, {Hand}, {Hashemi},
+  {Hou}, {Howland}, {Hu}, {Hui}, {Hurwitz}, {Isard}, {Ittycheriah},
+  {Jagielski}, {Jia}, {Kenealy}, {Krikun}, {Kudugunta}, {Lan}, {Lee}, {Lee},
+  {Li}, {Li}, {Li}, {Li}, {Li}, {Lim}, {Lin}, {Liu}, {Liu}, {Maggioni},
+  {Mahendru}, {Maynez}, {Misra}, {Moussalem}, {Nado}, {Nham}, {Ni}, {Nystrom},
+  {Parrish}, {Pellat}, {Polacek}, {Polozov}, {Pope}, {Qiao}, {Reif}, {Richter},
+  {Riley}, {Castro Ros}, {Roy}, {Saeta}, {Samuel}, {Shelby}, {Slone},
+  {Smilkov}, {So}, {Sohn}, {Tokumine}, {Valter}, {Vasudevan}, {Vodrahalli},
+  {Wang}, {Wang}, {Wang}, {Wang}, {Wieting}, {Wu}, {Xu}, {Xu}, {Xue}, {Yin},
+  {Yu}, {Zhang}, {Zheng}, {Zheng}, {Zhou}, {Zhou}, {Petrov}, and {Wu}]{palm2}
+R.~{Anil}, A.~M. {Dai}, O.~{Firat}, M.~{Johnson}, D.~{Lepikhin}, A.~{Passos},
+  S.~{Shakeri}, E.~{Taropa}, P.~{Bailey}, Z.~{Chen}, E.~{Chu}, J.~H. {Clark},
+  L.~{El Shafey}, Y.~{Huang}, K.~{Meier-Hellstern}, G.~{Mishra}, E.~{Moreira},
+  M.~{Omernick}, K.~{Robinson}, S.~{Ruder}, Y.~{Tay}, K.~{Xiao}, Y.~{Xu},
+  Y.~{Zhang}, G.~{Hernandez Abrego}, J.~{Ahn}, J.~{Austin}, P.~{Barham},
+  J.~{Botha}, J.~{Bradbury}, S.~{Brahma}, K.~{Brooks}, M.~{Catasta},
+  Y.~{Cheng}, C.~{Cherry}, C.~A. {Choquette-Choo}, A.~{Chowdhery}, C.~{Crepy},
+  S.~{Dave}, M.~{Dehghani}, S.~{Dev}, J.~{Devlin}, M.~{D{\'\i}az}, N.~{Du},
+  E.~{Dyer}, V.~{Feinberg}, F.~{Feng}, V.~{Fienber}, M.~{Freitag}, X.~{Garcia},
+  S.~{Gehrmann}, L.~{Gonzalez}, G.~{Gur-Ari}, S.~{Hand}, H.~{Hashemi},
+  L.~{Hou}, J.~{Howland}, A.~{Hu}, J.~{Hui}, J.~{Hurwitz}, M.~{Isard},
+  A.~{Ittycheriah}, M.~{Jagielski}, W.~{Jia}, K.~{Kenealy}, M.~{Krikun},
+  S.~{Kudugunta}, C.~{Lan}, K.~{Lee}, B.~{Lee}, E.~{Li}, M.~{Li}, W.~{Li},
+  Y.~{Li}, J.~{Li}, H.~{Lim}, H.~{Lin}, Z.~{Liu}, F.~{Liu}, M.~{Maggioni},
+  A.~{Mahendru}, J.~{Maynez}, V.~{Misra}, M.~{Moussalem}, Z.~{Nado}, J.~{Nham},
+  E.~{Ni}, A.~{Nystrom}, A.~{Parrish}, M.~{Pellat}, M.~{Polacek}, A.~{Polozov},
+  R.~{Pope}, S.~{Qiao}, E.~{Reif}, B.~{Richter}, P.~{Riley}, A.~{Castro Ros},
+  A.~{Roy}, B.~{Saeta}, R.~{Samuel}, R.~{Shelby}, A.~{Slone}, D.~{Smilkov},
+  D.~R. {So}, D.~{Sohn}, S.~{Tokumine}, D.~{Valter}, V.~{Vasudevan},
+  K.~{Vodrahalli}, X.~{Wang}, P.~{Wang}, Z.~{Wang}, T.~{Wang}, J.~{Wieting},
+  Y.~{Wu}, K.~{Xu}, Y.~{Xu}, L.~{Xue}, P.~{Yin}, J.~{Yu}, Q.~{Zhang},
+  S.~{Zheng}, C.~{Zheng}, W.~{Zhou}, D.~{Zhou}, S.~{Petrov}, and Y.~{Wu}.
+\newblock {PaLM 2 Technical Report}.
+\newblock \emph{arXiv e-prints}, art. arXiv:2305.10403, May 2023.
+\newblock \doi{10.48550/arXiv.2305.10403}.
+
+\bibitem[{Carlini} et~al.(2023){Carlini}, {Jagielski}, {Choquette-Choo},
+  {Paleka}, {Pearce}, {Anderson}, {Terzis}, {Thomas}, and
+  {Tram{\`e}r}]{poison3}
+N.~{Carlini}, M.~{Jagielski}, C.~A. {Choquette-Choo}, D.~{Paleka}, W.~{Pearce},
+  H.~{Anderson}, A.~{Terzis}, K.~{Thomas}, and F.~{Tram{\`e}r}.
+\newblock {Poisoning Web-Scale Training Datasets is Practical}.
+\newblock \emph{arXiv e-prints}, art. arXiv:2302.10149, Feb. 2023.
+\newblock \doi{10.48550/arXiv.2302.10149}.
+
+\bibitem[{Cohen} et~al.(2023{\natexlab{a}}){Cohen}, {Biran}, {Yoran},
+  {Globerson}, and {Geva}]{geva_KE_dataset}
+R.~{Cohen}, E.~{Biran}, O.~{Yoran}, A.~{Globerson}, and M.~{Geva}.
+\newblock {Evaluating the Ripple Effects of Knowledge Editing in Language
+  Models}.
+\newblock \emph{arXiv e-prints}, art. arXiv:2307.12976, July
+  2023{\natexlab{a}}.
+\newblock \doi{10.48550/arXiv.2307.12976}.
+
+\bibitem[{Cohen} et~al.(2023{\natexlab{b}}){Cohen}, {Geva}, {Berant}, and
+  {Globerson}]{data3}
+R.~{Cohen}, M.~{Geva}, J.~{Berant}, and A.~{Globerson}.
+\newblock {Crawling the Internal Knowledge-Base of Language Models}.
+\newblock \emph{arXiv e-prints}, art. arXiv:2301.12810, Jan.
+  2023{\natexlab{b}}.
+\newblock \doi{10.48550/arXiv.2301.12810}.
+
+\bibitem[Doyen(2012)]{priming}
+S.~Doyen.
+\newblock Behavioral priming: It’s all in the mind, but whose mind?
+\newblock \emph{Plos One}, 7, 01 2012.
+
+\bibitem[{Elazar} et~al.(2021){Elazar}, {Kassner}, {Ravfogel}, {Ravichander},
+  {Hovy}, {Sch{\"u}tze}, and {Goldberg}]{Uli_dataset}
+Y.~{Elazar}, N.~{Kassner}, S.~{Ravfogel}, A.~{Ravichander}, E.~{Hovy},
+  H.~{Sch{\"u}tze}, and Y.~{Goldberg}.
+\newblock {Measuring and Improving Consistency in Pretrained Language Models}.
+\newblock \emph{arXiv e-prints}, art. arXiv:2102.01017, Feb. 2021.
+\newblock \doi{10.48550/arXiv.2102.01017}.
+
+\bibitem[Farquhar et~al.(2024)Farquhar, Kossen, Kuhn, and
+  Gal]{nature_hallucinations}
+S.~Farquhar, J.~Kossen, L.~Kuhn, and Y.~Gal.
+\newblock Detecting hallucinations in large language models using semantic
+  entropy.
+\newblock \emph{Nature}, 630\penalty0 (8017):\penalty0 625--630, 2024.
+
+\bibitem[Foundation()]{wikidump}
+W.~Foundation.
+\newblock Wikimedia downloads.
+\newblock URL \url{https://dumps.wikimedia.org}.
+
+\bibitem[{Gekhman} et~al.(2024){Gekhman}, {Yona}, {Aharoni}, {Eyal}, {Feder},
+  {Reichart}, and {Herzig}]{hallu_FT}
+Z.~{Gekhman}, G.~{Yona}, R.~{Aharoni}, M.~{Eyal}, A.~{Feder}, R.~{Reichart},
+  and J.~{Herzig}.
+\newblock {Does Fine-Tuning LLMs on New Knowledge Encourage Hallucinations?}
+\newblock \emph{arXiv e-prints}, art. arXiv:2405.05904, May 2024.
+\newblock \doi{10.48550/arXiv.2405.05904}.
+
+\bibitem[{Gemini Team Google}(2023)]{team2023gemini}
+{Gemini Team Google}.
+\newblock Gemini: A family of highly capable multimodal models.
+\newblock \emph{arXiv preprint arXiv:2312.11805}, 2023.
+
+\bibitem[{Gemma Team} et~al.(2024){Gemma Team}, {Mesnard}, {Hardin}, {Dadashi},
+  {Bhupatiraju}, {Pathak}, {Sifre}, {Rivi{\`e}re}, {Kale}, {Love}, {Tafti},
+  {Hussenot}, {Sessa}, {Chowdhery}, {Roberts}, {Barua}, {Botev}, {Castro-Ros},
+  {Slone}, {H{\'e}liou}, {Tacchetti}, {Bulanova}, {Paterson}, {Tsai},
+  {Shahriari}, {Le Lan}, {Choquette-Choo}, {Crepy}, {Cer}, {Ippolito}, {Reid},
+  {Buchatskaya}, {Ni}, {Noland}, {Yan}, {Tucker}, {Muraru}, {Rozhdestvenskiy},
+  {Michalewski}, {Tenney}, {Grishchenko}, {Austin}, {Keeling}, {Labanowski},
+  {Lespiau}, {Stanway}, {Brennan}, {Chen}, {Ferret}, {Chiu}, {Mao-Jones},
+  {Lee}, {Yu}, {Millican}, {Lowe Sjoesund}, {Lee}, {Dixon}, {Reid},
+  {Miku{\l}a}, {Wirth}, {Sharman}, {Chinaev}, {Thain}, {Bachem}, {Chang},
+  {Wahltinez}, {Bailey}, {Michel}, {Yotov}, {Chaabouni}, {Comanescu}, {Jana},
+  {Anil}, {McIlroy}, {Liu}, {Mullins}, {Smith}, {Borgeaud}, {Girgin},
+  {Douglas}, {Pandya}, {Shakeri}, {De}, {Klimenko}, {Hennigan}, {Feinberg},
+  {Stokowiec}, {Chen}, {Ahmed}, {Gong}, {Warkentin}, {Peran}, {Giang},
+  {Farabet}, {Vinyals}, {Dean}, {Kavukcuoglu}, {Hassabis}, {Ghahramani}, {Eck},
+  {Barral}, {Pereira}, {Collins}, {Joulin}, {Fiedel}, {Senter}, {Andreev}, and
+  {Kenealy}]{gemma}
+{Gemma Team}, T.~{Mesnard}, C.~{Hardin}, R.~{Dadashi}, S.~{Bhupatiraju},
+  S.~{Pathak}, L.~{Sifre}, M.~{Rivi{\`e}re}, M.~S. {Kale}, J.~{Love},
+  P.~{Tafti}, L.~{Hussenot}, P.~G. {Sessa}, A.~{Chowdhery}, A.~{Roberts},
+  A.~{Barua}, A.~{Botev}, A.~{Castro-Ros}, A.~{Slone}, A.~{H{\'e}liou},
+  A.~{Tacchetti}, A.~{Bulanova}, A.~{Paterson}, B.~{Tsai}, B.~{Shahriari},
+  C.~{Le Lan}, C.~A. {Choquette-Choo}, C.~{Crepy}, D.~{Cer}, D.~{Ippolito},
+  D.~{Reid}, E.~{Buchatskaya}, E.~{Ni}, E.~{Noland}, G.~{Yan}, G.~{Tucker},
+  G.-C. {Muraru}, G.~{Rozhdestvenskiy}, H.~{Michalewski}, I.~{Tenney},
+  I.~{Grishchenko}, J.~{Austin}, J.~{Keeling}, J.~{Labanowski}, J.-B.
+  {Lespiau}, J.~{Stanway}, J.~{Brennan}, J.~{Chen}, J.~{Ferret}, J.~{Chiu},
+  J.~{Mao-Jones}, K.~{Lee}, K.~{Yu}, K.~{Millican}, L.~{Lowe Sjoesund},
+  L.~{Lee}, L.~{Dixon}, M.~{Reid}, M.~{Miku{\l}a}, M.~{Wirth}, M.~{Sharman},
+  N.~{Chinaev}, N.~{Thain}, O.~{Bachem}, O.~{Chang}, O.~{Wahltinez},
+  P.~{Bailey}, P.~{Michel}, P.~{Yotov}, R.~{Chaabouni}, R.~{Comanescu},
+  R.~{Jana}, R.~{Anil}, R.~{McIlroy}, R.~{Liu}, R.~{Mullins}, S.~L. {Smith},
+  S.~{Borgeaud}, S.~{Girgin}, S.~{Douglas}, S.~{Pandya}, S.~{Shakeri}, S.~{De},
+  T.~{Klimenko}, T.~{Hennigan}, V.~{Feinberg}, W.~{Stokowiec}, Y.-h. {Chen},
+  Z.~{Ahmed}, Z.~{Gong}, T.~{Warkentin}, L.~{Peran}, M.~{Giang}, C.~{Farabet},
+  O.~{Vinyals}, J.~{Dean}, K.~{Kavukcuoglu}, D.~{Hassabis}, Z.~{Ghahramani},
+  D.~{Eck}, J.~{Barral}, F.~{Pereira}, E.~{Collins}, A.~{Joulin}, N.~{Fiedel},
+  E.~{Senter}, A.~{Andreev}, and K.~{Kenealy}.
+\newblock {Gemma: Open Models Based on Gemini Research and Technology}.
+\newblock \emph{arXiv e-prints}, art. arXiv:2403.08295, Mar. 2024.
+\newblock \doi{10.48550/arXiv.2403.08295}.
+
+\bibitem[{Geva} et~al.(2020){Geva}, {Schuster}, {Berant}, and {Levy}]{memory1}
+M.~{Geva}, R.~{Schuster}, J.~{Berant}, and O.~{Levy}.
+\newblock {Transformer Feed-Forward Layers Are Key-Value Memories}.
+\newblock \emph{arXiv e-prints}, art. arXiv:2012.14913, Dec. 2020.
+\newblock \doi{10.48550/arXiv.2012.14913}.
+
+\bibitem[{Geva} et~al.(2022){Geva}, {Caciularu}, {Wang}, and
+  {Goldberg}]{memory2}
+M.~{Geva}, A.~{Caciularu}, K.~R. {Wang}, and Y.~{Goldberg}.
+\newblock {Transformer Feed-Forward Layers Build Predictions by Promoting
+  Concepts in the Vocabulary Space}.
+\newblock \emph{arXiv e-prints}, art. arXiv:2203.14680, Mar. 2022.
+\newblock \doi{10.48550/arXiv.2203.14680}.
+
+\bibitem[{Geva} et~al.(2023){Geva}, {Bastings}, {Filippova}, and
+  {Globerson}]{memory4}
+M.~{Geva}, J.~{Bastings}, K.~{Filippova}, and A.~{Globerson}.
+\newblock {Dissecting Recall of Factual Associations in Auto-Regressive
+  Language Models}.
+\newblock \emph{arXiv e-prints}, art. arXiv:2304.14767, Apr. 2023.
+\newblock \doi{10.48550/arXiv.2304.14767}.
+
+\bibitem[{Ghandeharioun} et~al.(2024){Ghandeharioun}, {Caciularu}, {Pearce},
+  {Dixon}, and {Geva}]{patchscope}
+A.~{Ghandeharioun}, A.~{Caciularu}, A.~{Pearce}, L.~{Dixon}, and M.~{Geva}.
+\newblock {Patchscopes: A Unifying Framework for Inspecting Hidden
+  Representations of Language Models}.
+\newblock \emph{arXiv e-prints}, art. arXiv:2401.06102, Jan. 2024.
+\newblock \doi{10.48550/arXiv.2401.06102}.
+
+\bibitem[{Golovneva} et~al.(2024){Golovneva}, {Allen-Zhu}, {Weston}, and
+  {Sukhbaatar}]{reversal}
+O.~{Golovneva}, Z.~{Allen-Zhu}, J.~{Weston}, and S.~{Sukhbaatar}.
+\newblock {Reverse Training to Nurse the Reversal Curse}.
+\newblock \emph{arXiv e-prints}, art. arXiv:2403.13799, Mar. 2024.
+\newblock \doi{10.48550/arXiv.2403.13799}.
+
+\bibitem[{Hase} et~al.(2023){Hase}, {Bansal}, {Kim}, and
+  {Ghandeharioun}]{locality}
+P.~{Hase}, M.~{Bansal}, B.~{Kim}, and A.~{Ghandeharioun}.
+\newblock {Does Localization Inform Editing? Surprising Differences in
+  Causality-Based Localization vs. Knowledge Editing in Language Models}.
+\newblock \emph{arXiv e-prints}, art. arXiv:2301.04213, Jan. 2023.
+\newblock \doi{10.48550/arXiv.2301.04213}.
+
+\bibitem[{Hooker} et~al.(2019){Hooker}, {Courville}, {Clark}, {Dauphin}, and
+  {Frome}]{hooker_syscon}
+S.~{Hooker}, A.~{Courville}, G.~{Clark}, Y.~{Dauphin}, and A.~{Frome}.
+\newblock {What Do Compressed Deep Neural Networks Forget?}
+\newblock \emph{arXiv e-prints}, art. arXiv:1911.05248, Nov. 2019.
+\newblock \doi{10.48550/arXiv.1911.05248}.
+
+\bibitem[{Huang} et~al.(2023){Huang}, {Yu}, {Ma}, {Zhong}, {Feng}, {Wang},
+  {Chen}, {Peng}, {Feng}, {Qin}, and {Liu}]{hallu_review}
+L.~{Huang}, W.~{Yu}, W.~{Ma}, W.~{Zhong}, Z.~{Feng}, H.~{Wang}, Q.~{Chen},
+  W.~{Peng}, X.~{Feng}, B.~{Qin}, and T.~{Liu}.
+\newblock {A Survey on Hallucination in Large Language Models: Principles,
+  Taxonomy, Challenges, and Open Questions}.
+\newblock \emph{arXiv e-prints}, art. arXiv:2311.05232, Nov. 2023.
+\newblock \doi{10.48550/arXiv.2311.05232}.
+
+\bibitem[Kudithipudi et~al.(2022)Kudithipudi, Aguilar-Simon, Babb, Bazhenov,
+  Blackiston, Bongard, Brna, Chakravarthi~Raja, Cheney, Clune, Daram, Fusi,
+  Helfer, Kay, Ketz, Kira, Kolouri, Krichmar, Kriegman, and
+  Siegelmann]{review_sys_con}
+D.~Kudithipudi, M.~Aguilar-Simon, J.~Babb, M.~Bazhenov, D.~Blackiston,
+  J.~Bongard, A.~Brna, S.~Chakravarthi~Raja, N.~Cheney, J.~Clune, A.~Daram,
+  S.~Fusi, P.~Helfer, L.~Kay, N.~Ketz, Z.~Kira, S.~Kolouri, J.~Krichmar,
+  S.~Kriegman, and H.~Siegelmann.
+\newblock Biological underpinnings for lifelong learning machines.
+\newblock \emph{Nature Machine Intelligence}, 4:\penalty0 196--210, 03 2022.
+\newblock \doi{10.1038/s42256-022-00452-0}.
+
+\bibitem[{Kurita} et~al.(2020){Kurita}, {Michel}, and {Neubig}]{poison2}
+K.~{Kurita}, P.~{Michel}, and G.~{Neubig}.
+\newblock {Weight Poisoning Attacks on Pre-trained Models}.
+\newblock \emph{arXiv e-prints}, art. arXiv:2004.06660, Apr. 2020.
+\newblock \doi{10.48550/arXiv.2004.06660}.
+
+\bibitem[Levy et~al.(2017)Levy, Seo, Choi, and Zettlemoyer]{levy_dataset}
+O.~Levy, M.~Seo, E.~Choi, and L.~Zettlemoyer.
+\newblock Zero-shot relation extraction via reading comprehension.
+\newblock In R.~Levy and L.~Specia, editors, \emph{Proceedings of the 21st
+  Conference on Computational Natural Language Learning ({C}o{NLL} 2017)},
+  pages 333--342, Vancouver, Canada, Aug. 2017. Association for Computational
+  Linguistics.
+\newblock \doi{10.18653/v1/K17-1034}.
+\newblock URL \url{https://aclanthology.org/K17-1034}.
+
+\bibitem[{McClelland} et~al.(1995){McClelland}, {McNaughton}, and
+  {O'Reilly}]{mcclelland_sys_con}
+J.~K. {McClelland}, B.~K. {McNaughton}, and R.~{O'Reilly}.
+\newblock {Why there are complementary learning systems in the hippocampus and
+  neocortex: Insights from the successes and failures of connectionist models
+  of learning and memory}.
+\newblock \emph{Psychological Review}, 1995.
+\newblock \doi{10.1037/0033-295X.102.3.419}.
+
+\bibitem[McClelland et~al.(2020)McClelland, McNaughton, and Lampinen]{syscon}
+J.~L. McClelland, B.~L. McNaughton, and A.~K. Lampinen.
+\newblock Integration of new information in memory: new insights from a
+  complementary learning systems perspective.
+\newblock \emph{Philosophical Transactions of the Royal Society B: Biological
+  Sciences}, 375\penalty0 (1799):\penalty0 20190637, 2020.
+\newblock \doi{10.1098/rstb.2019.0637}.
+\newblock URL
+  \url{https://royalsocietypublishing.org/doi/abs/10.1098/rstb.2019.0637}.
+
+\bibitem[{Mecklenburg} et~al.(2024){Mecklenburg}, {Lin}, {Li}, {Holstein},
+  {Nunes}, {Malvar}, {Silva}, {Chandra}, {Aski}, {Yannam}, {Aktas}, and
+  {Hendry}]{data1}
+N.~{Mecklenburg}, Y.~{Lin}, X.~{Li}, D.~{Holstein}, L.~{Nunes}, S.~{Malvar},
+  B.~{Silva}, R.~{Chandra}, V.~{Aski}, P.~K.~R. {Yannam}, T.~{Aktas}, and
+  T.~{Hendry}.
+\newblock {Injecting New Knowledge into Large Language Models via Supervised
+  Fine-Tuning}.
+\newblock \emph{arXiv e-prints}, art. arXiv:2404.00213, Mar. 2024.
+\newblock \doi{10.48550/arXiv.2404.00213}.
+
+\bibitem[{Meng} et~al.(2022{\natexlab{a}}){Meng}, {Bau}, {Andonian}, and
+  {Belinkov}]{bau1}
+K.~{Meng}, D.~{Bau}, A.~{Andonian}, and Y.~{Belinkov}.
+\newblock {Locating and Editing Factual Associations in GPT}.
+\newblock \emph{arXiv e-prints}, art. arXiv:2202.05262, Feb.
+  2022{\natexlab{a}}.
+\newblock \doi{10.48550/arXiv.2202.05262}.
+
+\bibitem[{Meng} et~al.(2022{\natexlab{b}}){Meng}, {Sharma}, {Andonian},
+  {Belinkov}, and {Bau}]{bau2}
+K.~{Meng}, A.~S. {Sharma}, A.~{Andonian}, Y.~{Belinkov}, and D.~{Bau}.
+\newblock {Mass-Editing Memory in a Transformer}.
+\newblock \emph{arXiv e-prints}, art. arXiv:2210.07229, Oct.
+  2022{\natexlab{b}}.
+\newblock \doi{10.48550/arXiv.2210.07229}.
+
+\bibitem[Meyer and Schvaneveldt(1971)]{priming_meyer}
+D.~Meyer and R.~Schvaneveldt.
+\newblock Facilitation in recognizing pairs of words: Evidence of a dependence
+  between retrieval operations.
+\newblock \emph{Journal of experimental psychology}, 90:\penalty0 227--34, 10
+  1971.
+\newblock \doi{10.1037/h0031564}.
+
+\bibitem[{Mitchell} et~al.(2022){Mitchell}, {Lin}, {Bosselut}, {Manning}, and
+  {Finn}]{finn_knowledge_injection}
+E.~{Mitchell}, C.~{Lin}, A.~{Bosselut}, C.~D. {Manning}, and C.~{Finn}.
+\newblock {Memory-Based Model Editing at Scale}.
+\newblock \emph{arXiv e-prints}, art. arXiv:2206.06520, June 2022.
+\newblock \doi{10.48550/arXiv.2206.06520}.
+
+\bibitem[{Nanda} et~al.(2023){Nanda}, {Rajamanoharan}, {Kramár}, and
+  {Rohin}]{memory_neel}
+N.~{Nanda}, S.~{Rajamanoharan}, J.~{Kramár}, and S.~{Rohin}.
+\newblock {Fact Finding: Attempting to Reverse-Engineer Factual Recall on the
+  Neuron Level}.
+\newblock Dec. 2023.
+
+\bibitem[{Ovadia} et~al.(2023{\natexlab{a}}){Ovadia}, {Brief}, {Mishaeli}, and
+  {Elisha}]{data2}
+O.~{Ovadia}, M.~{Brief}, M.~{Mishaeli}, and O.~{Elisha}.
+\newblock {Fine-Tuning or Retrieval? Comparing Knowledge Injection in LLMs}.
+\newblock \emph{arXiv e-prints}, art. arXiv:2312.05934, Dec.
+  2023{\natexlab{a}}.
+\newblock \doi{10.48550/arXiv.2312.05934}.
+
+\bibitem[{Ovadia} et~al.(2023{\natexlab{b}}){Ovadia}, {Brief}, {Mishaeli}, and
+  {Elisha}]{knowledge_injection}
+O.~{Ovadia}, M.~{Brief}, M.~{Mishaeli}, and O.~{Elisha}.
+\newblock {Fine-Tuning or Retrieval? Comparing Knowledge Injection in LLMs}.
+\newblock \emph{arXiv e-prints}, art. arXiv:2312.05934, Dec.
+  2023{\natexlab{b}}.
+\newblock \doi{10.48550/arXiv.2312.05934}.
+
+\bibitem[Reimers et~al.(2016)Reimers, Beyer, and Gurevych]{spearman}
+N.~Reimers, P.~Beyer, and I.~Gurevych.
+\newblock Task-oriented intrinsic evaluation of semantic textual similarity.
+\newblock In Y.~Matsumoto and R.~Prasad, editors, \emph{Proceedings of {COLING}
+  2016, the 26th International Conference on Computational Linguistics:
+  Technical Papers}, pages 87--96, Osaka, Japan, Dec. 2016. The COLING 2016
+  Organizing Committee.
+\newblock URL \url{https://aclanthology.org/C16-1009}.
+
+\bibitem[{Roberts} et~al.(2020){Roberts}, {Raffel}, and {Shazeer}]{memory3}
+A.~{Roberts}, C.~{Raffel}, and N.~{Shazeer}.
+\newblock {How Much Knowledge Can You Pack Into the Parameters of a Language
+  Model?}
+\newblock \emph{arXiv e-prints}, art. arXiv:2002.08910, Feb. 2020.
+\newblock \doi{10.48550/arXiv.2002.08910}.
+
+\bibitem[Saxena et~al.(2022)Saxena, Shobe, and Mcnaughton]{mcnaughton_sys_con}
+R.~Saxena, J.~Shobe, and B.~Mcnaughton.
+\newblock Learning in deep neural networks and brains with similarity-weighted
+  interleaved learning.
+\newblock \emph{Proceedings of the National Academy of Sciences}, 119, 07 2022.
+\newblock \doi{10.1073/pnas.2115229119}.
+
+\bibitem[{Shi} et~al.(2024){Shi}, {Xu}, {Wang}, {Qin}, {Wang}, {Wang}, {Wang},
+  {Ebrahimi}, and {Wang}]{continualLLM2}
+H.~{Shi}, Z.~{Xu}, H.~{Wang}, W.~{Qin}, W.~{Wang}, Y.~{Wang}, Z.~{Wang},
+  S.~{Ebrahimi}, and H.~{Wang}.
+\newblock {Continual Learning of Large Language Models: A Comprehensive
+  Survey}.
+\newblock \emph{arXiv e-prints}, art. arXiv:2404.16789, Apr. 2024.
+\newblock \doi{10.48550/arXiv.2404.16789}.
+
+\bibitem[{Swaminathan} et~al.(2023){Swaminathan}, {Dedieu}, {Vasudeva Raju},
+  {Shanahan}, {Lazaro-Gredilla}, and {George}]{dileep}
+S.~{Swaminathan}, A.~{Dedieu}, R.~{Vasudeva Raju}, M.~{Shanahan},
+  M.~{Lazaro-Gredilla}, and D.~{George}.
+\newblock {Schema-learning and rebinding as mechanisms of in-context learning
+  and emergence}.
+\newblock \emph{arXiv e-prints}, art. arXiv:2307.01201, June 2023.
+\newblock \doi{10.48550/arXiv.2307.01201}.
+
+\bibitem[Taori et~al.(2023)Taori, Gulrajani, Zhang, Dubois, Li, Guestrin,
+  Liang, and Hashimoto]{alpaca}
+R.~Taori, I.~Gulrajani, T.~Zhang, Y.~Dubois, X.~Li, C.~Guestrin, P.~Liang, and
+  T.~B. Hashimoto.
+\newblock Stanford alpaca: An instruction-following llama model.
+\newblock \url{https://github.com/tatsu-lab/stanford_alpaca}, 2023.
+
+\bibitem[{Touvron} et~al.(2023){Touvron}, {Martin}, {Stone}, {Albert},
+  {Almahairi}, {Babaei}, {Bashlykov}, {Batra}, {Bhargava}, {Bhosale}, {Bikel},
+  {Blecher}, {Canton Ferrer}, {Chen}, {Cucurull}, {Esiobu}, {Fernandes}, {Fu},
+  {Fu}, {Fuller}, {Gao}, {Goswami}, {Goyal}, {Hartshorn}, {Hosseini}, {Hou},
+  {Inan}, {Kardas}, {Kerkez}, {Khabsa}, {Kloumann}, {Korenev}, {Singh Koura},
+  {Lachaux}, {Lavril}, {Lee}, {Liskovich}, {Lu}, {Mao}, {Martinet}, {Mihaylov},
+  {Mishra}, {Molybog}, {Nie}, {Poulton}, {Reizenstein}, {Rungta}, {Saladi},
+  {Schelten}, {Silva}, {Smith}, {Subramanian}, {Tan}, {Tang}, {Taylor},
+  {Williams}, {Kuan}, {Xu}, {Yan}, {Zarov}, {Zhang}, {Fan}, {Kambadur},
+  {Narang}, {Rodriguez}, {Stojnic}, {Edunov}, and {Scialom}]{llama}
+H.~{Touvron}, L.~{Martin}, K.~{Stone}, P.~{Albert}, A.~{Almahairi},
+  Y.~{Babaei}, N.~{Bashlykov}, S.~{Batra}, P.~{Bhargava}, S.~{Bhosale},
+  D.~{Bikel}, L.~{Blecher}, C.~{Canton Ferrer}, M.~{Chen}, G.~{Cucurull},
+  D.~{Esiobu}, J.~{Fernandes}, J.~{Fu}, W.~{Fu}, B.~{Fuller}, C.~{Gao},
+  V.~{Goswami}, N.~{Goyal}, A.~{Hartshorn}, S.~{Hosseini}, R.~{Hou}, H.~{Inan},
+  M.~{Kardas}, V.~{Kerkez}, M.~{Khabsa}, I.~{Kloumann}, A.~{Korenev}, P.~{Singh
+  Koura}, M.-A. {Lachaux}, T.~{Lavril}, J.~{Lee}, D.~{Liskovich}, Y.~{Lu},
+  Y.~{Mao}, X.~{Martinet}, T.~{Mihaylov}, P.~{Mishra}, I.~{Molybog}, Y.~{Nie},
+  A.~{Poulton}, J.~{Reizenstein}, R.~{Rungta}, K.~{Saladi}, A.~{Schelten},
+  R.~{Silva}, E.~M. {Smith}, R.~{Subramanian}, X.~E. {Tan}, B.~{Tang},
+  R.~{Taylor}, A.~{Williams}, J.~X. {Kuan}, P.~{Xu}, Z.~{Yan}, I.~{Zarov},
+  Y.~{Zhang}, A.~{Fan}, M.~{Kambadur}, S.~{Narang}, A.~{Rodriguez},
+  R.~{Stojnic}, S.~{Edunov}, and T.~{Scialom}.
+\newblock {Llama 2: Open Foundation and Fine-Tuned Chat Models}.
+\newblock \emph{arXiv e-prints}, art. arXiv:2307.09288, July 2023.
+\newblock \doi{10.48550/arXiv.2307.09288}.
+
+\bibitem[Tulving et~al.(1982)Tulving, Schacter, and Stark]{priming_schacter}
+E.~Tulving, D.~Schacter, and H.~Stark.
+\newblock Priming effects in word-fragment completion are independent of
+  recognition memory.
+\newblock \emph{Journal of Experimental Psychology: Learning, Memory, and
+  Cognition}, 8:\penalty0 336--342, 07 1982.
+\newblock \doi{10.1037/0278-7393.8.4.336}.
+
+\bibitem[{von Oswald} et~al.(2022){von Oswald}, {Niklasson}, {Randazzo},
+  {Sacramento}, {Mordvintsev}, {Zhmoginov}, and {Vladymyrov}]{max_ICL}
+J.~{von Oswald}, E.~{Niklasson}, E.~{Randazzo}, J.~{Sacramento},
+  A.~{Mordvintsev}, A.~{Zhmoginov}, and M.~{Vladymyrov}.
+\newblock {Transformers learn in-context by gradient descent}.
+\newblock \emph{arXiv e-prints}, art. arXiv:2212.07677, Dec. 2022.
+\newblock \doi{10.48550/arXiv.2212.07677}.
+
+\bibitem[Wagatsuma et~al.(2018)Wagatsuma, Okuyama, Sun, Smith, Abe, and
+  Tonegawa]{akiko}
+A.~Wagatsuma, T.~Okuyama, C.~Sun, L.~M. Smith, K.~Abe, and S.~Tonegawa.
+\newblock Locus coeruleus input to hippocampal ca3 drives single-trial learning
+  of a novel context.
+\newblock \emph{Proceedings of the National Academy of Sciences}, 115\penalty0
+  (2):\penalty0 E310--E316, 2018.
+\newblock \doi{10.1073/pnas.1714082115}.
+\newblock URL \url{https://www.pnas.org/doi/abs/10.1073/pnas.1714082115}.
+
+\bibitem[{Wallace} et~al.(2020){Wallace}, {Zhao}, {Feng}, and
+  {Singh}]{mitigatepoison}
+E.~{Wallace}, T.~Z. {Zhao}, S.~{Feng}, and S.~{Singh}.
+\newblock {Concealed Data Poisoning Attacks on NLP Models}.
+\newblock \emph{arXiv e-prints}, art. arXiv:2010.12563, Oct. 2020.
+\newblock \doi{10.48550/arXiv.2010.12563}.
+
+\bibitem[{Wan} et~al.(2023){Wan}, {Wallace}, {Shen}, and {Klein}]{hallu1}
+A.~{Wan}, E.~{Wallace}, S.~{Shen}, and D.~{Klein}.
+\newblock {Poisoning Language Models During Instruction Tuning}.
+\newblock \emph{arXiv e-prints}, art. arXiv:2305.00944, May 2023.
+\newblock \doi{10.48550/arXiv.2305.00944}.
+
+\bibitem[Winocur and Moscovitch(2011)]{morris}
+G.~Winocur and M.~Moscovitch.
+\newblock Memory transformation and systems consolidation.
+\newblock \emph{Journal of the International Neuropsychological Society},
+  17\penalty0 (5):\penalty0 766–780, 2011.
+\newblock \doi{10.1017/S1355617711000683}.
+
+\bibitem[{Wu} et~al.(2024){Wu}, {Luo}, {Li}, {Pan}, {Vu}, and
+  {Haffari}]{continualLLM1}
+T.~{Wu}, L.~{Luo}, Y.-F. {Li}, S.~{Pan}, T.-T. {Vu}, and G.~{Haffari}.
+\newblock {Continual Learning for Large Language Models: A Survey}.
+\newblock \emph{arXiv e-prints}, art. arXiv:2402.01364, Feb. 2024.
+\newblock \doi{10.48550/arXiv.2402.01364}.
+
+\bibitem[{Yadav} et~al.(2023){Yadav}, {Tam}, {Choshen}, {Raffel}, and
+  {Bansal}]{ties_merge}
+P.~{Yadav}, D.~{Tam}, L.~{Choshen}, C.~{Raffel}, and M.~{Bansal}.
+\newblock {TIES-Merging: Resolving Interference When Merging Models}.
+\newblock \emph{arXiv e-prints}, art. arXiv:2306.01708, June 2023.
+\newblock \doi{10.48550/arXiv.2306.01708}.
+
+\bibitem[{Yao} et~al.(2023){Yao}, {Wang}, {Tian}, {Cheng}, {Li}, {Deng},
+  {Chen}, and {Zhang}]{portability}
+Y.~{Yao}, P.~{Wang}, B.~{Tian}, S.~{Cheng}, Z.~{Li}, S.~{Deng}, H.~{Chen}, and
+  N.~{Zhang}.
+\newblock {Editing Large Language Models: Problems, Methods, and
+  Opportunities}.
+\newblock \emph{arXiv e-prints}, art. arXiv:2305.13172, May 2023.
+\newblock \doi{10.48550/arXiv.2305.13172}.
+
+\bibitem[{Yin} et~al.(2023){Yin}, {Huang}, and {Wan}]{hallu2}
+X.~{Yin}, B.~{Huang}, and X.~{Wan}.
+\newblock {ALCUNA: Large Language Models Meet New Knowledge}.
+\newblock \emph{arXiv e-prints}, art. arXiv:2310.14820, Oct. 2023.
+\newblock \doi{10.48550/arXiv.2310.14820}.
+
+\bibitem[{Zhang} et~al.(2024){Zhang}, {Li}, {Liu}, {Yu}, {Fung}, {Li}, {Li},
+  and {Ji}]{overshadow_hallucination}
+Y.~{Zhang}, S.~{Li}, J.~{Liu}, P.~{Yu}, Y.~R. {Fung}, J.~{Li}, M.~{Li}, and
+  H.~{Ji}.
+\newblock {Knowledge Overshadowing Causes Amalgamated Hallucination in Large
+  Language Models}.
+\newblock \emph{arXiv e-prints}, art. arXiv:2407.08039, July 2024.
+\newblock \doi{10.48550/arXiv.2407.08039}.
+
+\end{thebibliography}

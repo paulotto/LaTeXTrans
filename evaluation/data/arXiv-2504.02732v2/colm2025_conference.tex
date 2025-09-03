@@ -1,0 +1,733 @@
+
+\documentclass{article} % For LaTeX2e
+\usepackage[preprint]{colm2025_conference}
+
+\usepackage{float}
+\usepackage{microtype}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{lineno}
+\usepackage{subfig}
+\usepackage{hwemoji}
+\definecolor{darkblue}{rgb}{0, 0, 0.5}
+\hypersetup{colorlinks=true, citecolor=darkblue, linkcolor=darkblue, urlcolor=darkblue}
+\usepackage{amsmath,amsfonts,bm}
+
+\usepackage{amsthm}
+
+\usepackage{graphicx}
+\usepackage{subcaption}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+
+\usepackage{xspace}
+\usepackage{tcolorbox}
+\usepackage{xcolor}
+
+\newcommand{\xb}{\mathbf{x}}
+\newcommand{\vb}{\mathbf{v}}
+\newcommand{\qb}{\mathbf{q}}
+\newcommand{\yb}{\mathbf{y}}
+\newcommand{\kb}{\mathbf{k}}
+\newcommand{\pb}{\mathbf{p}}
+\newcommand{\zb}{\mathbf{z}}
+\newcommand{\ab}{\mathbf{a}}
+
+\newcommand{\psib}{\boldsymbol{\psi}}
+\newcommand{\Lambdab}{\boldsymbol{\Lambda}}
+
+\newcommand{\Xb}{\mathbf{X}}
+\newcommand{\Vb}{\mathbf{V}}
+\newcommand{\Qb}{\mathbf{Q}}
+\newcommand{\Kb}{\mathbf{K}}
+\newcommand{\Pb}{\mathbf{P}}
+\newcommand{\Db}{\mathbf{D}}
+\newcommand{\Rb}{\mathbf{R}}
+\newcommand{\Ab}{\mathbf{A}}
+\newcommand{\Bb}{\mathbf{B}}
+\newcommand{\Wb}{\mathbf{W}}
+\newcommand{\Ib}{\mathbf{I}}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\J}{\mathcal{J}}
+
+\DeclareMathOperator{\norm}{norm}
+\DeclareMathOperator{\softmax}{softmax}
+\newcommand{\vecm}[1]{\mathrm{vec}\left(#1\right)}
+
+\definecolor{bluegray}{rgb}{0.4, 0.6, 0.8}
+\definecolor{electriclime}{rgb}{0.8, 1.0, 0.0}
+\definecolor{malachite}{rgb}{0.04, 0.85, 0.32}
+\definecolor{darkred}{rgb}{0.55, 0.0, 0.0}
+\definecolor{darkblue}{rgb}{0.0, 0.0, 0.55}
+\definecolor{darkgreen}{rgb}{0.0, 0.2, 0.13}
+\definecolor{darkorchid}{rgb}{0.6, 0.2, 0.8}
+\usepackage[noabbrev,capitalise,nameinlink]{cleveref}
+\hypersetup{colorlinks={true},linkcolor={darkred},citecolor=darkblue}
+\usepackage{wrapfig}
+
+\linepenalty=1000
+\usepackage{enumitem}
+\setlength{\parskip}{0.5em}
+
+
+\newcommand{\todo}[1]{\textcolor{red}{#1}}
+\newcommand{\bos}{\ensuremath{\langle\text{bos}\rangle}\xspace}
+
+\newcommand{\eos}{\ensuremath{\langle\text{eos}\rangle}\xspace}
+
+
+\definecolor{mymauve}{HTML}{E60B42}
+
+
+\title{Why do LLMs attend to the first token? \includegraphics[width=1em]{figures/emoji.pdf}}
+
+% Authors must not appear in the submitted version. They should be hidden
+% as long as the \colmfinalcopy macro remains commented out below.
+% Non-anonymous submissions will be rejected without review.
+
+\author{Federico Barbero\textsuperscript{1,*}, \'{A}lvaro Arroyo\textsuperscript{1,*}, Xiangming Gu\textsuperscript{2}, \\
+\textbf{Christos Perivolaropoulos\textsuperscript{3}, Michael Bronstein\textsuperscript{1}, Petar Veli\v{c}kovi\'{c}\textsuperscript{3}, Razvan Pascanu\textsuperscript{3}} \\
+\textsuperscript{1}University of Oxford \ \textsuperscript{2}National University of Singapore \ \textsuperscript{3}Google DeepMind \\
+\textsuperscript{*}Equal contribution. Correspondence to \texttt{federico.barbero@cs.ox.ac.uk}.
+}
+
+
+
+% The \author macro works with any number of authors. There are two commands
+% used to separate the names and addresses of multiple authors: \And and \AND.
+%
+% Using \And between authors leaves it to \LaTeX{} to determine where to break
+% the lines. Using \AND forces a linebreak at that point. So, if \LaTeX{}
+% puts 3 of 4 authors names on the first line, and the last on the second
+% line, try using \AND instead of \And before the third author name.
+
+\newcommand{\fix}{\marginpar{FIX}}
+\newcommand{\new}{\marginpar{NEW}}
+
+\begin{document}
+
+\ifcolmsubmission
+\linenumbers
+\fi
+
+\maketitle
+
+\begin{abstract}
+Large Language Models (LLMs) tend to attend heavily to the first token in the sequence -- creating a so-called \emph{attention sink}. Many works have studied this phenomenon in detail, proposing various ways to either leverage or alleviate it. Attention sinks have been connected to quantisation difficulties, security issues, and streaming attention. Yet, while many works have provided conditions in which they occur or not, a critical question remains shallowly answered: \emph{Why do LLMs learn such patterns and how are they being used?} In this work, we argue theoretically and empirically that this mechanism provides a method for LLMs to avoid over-mixing, connecting this to existing lines of work that study mathematically how information propagates in Transformers. We conduct experiments to validate our theoretical intuitions and show how choices such as context length, depth, and data packing influence the sink behaviour. We hope that this study provides a new practical perspective on why attention sinks are useful in LLMs, leading to a better understanding of the attention patterns that form during training. 
+\end{abstract}
+
+\section{Introduction}
+Large Language Models (LLMs) are powered by hundreds or even thousands of attention heads that are orchestrated to update the values of tokens within a sequence. As their attention patterns are the only mechanism that allows for the \emph{mixing} of information between tokens within a Transformer architecture, it is natural to study them to understand how information is being processed. A peculiar and interesting phenomenon that has been spotted across frontier language models is that attention heads often exhibit `attention sinks', where seemingly meaningless tokens -- often the first one in the sequence -- tend to capture most of the attention. Attention sinks have been linked to a number of important topics such as quantisation \citep{liu-etal-2024-intactkv}, improved KV-caching \citep{ge2024model}, streaming attention \citep{xiao2024efficient}, and even security vulnerabilities \citep{yona2025interpreting}, making them an important artifact that is not yet well-understood in frontier LLMs.
+
+While many works have studied attention sinks in order to mitigate them, in this work we take a different angle and aim to understand \emph{why they are useful.} We do this for a simple reason: as sinks are widespread and appear as a byproduct of gradient descent rather than any explicit priors, they must provide an important mechanism for processing the context. We are therefore interested in understanding and explaining when and why the attention sink mechanism is useful. We tackle the issue from various angles: theoretically studying why such an effect is useful from a `mixing' perspective, and performing measurements in both frontier LLMs and models we train from scratch to support our theory.     
+
+We focus specifically on understanding why attention sinks occur mostly at the first position of the context. In this position, there commonly lives a special token often denoted as \bos (beginning of sequence). We find, for example, that in a typical prompt in Llama 405B, \emph{almost $80\%$ of the attention is concentrated on the \bos token} (see Section \ref{sec:llama-depth} for details). This type of attention allocation is in many ways `wasted', and we find it intriguing to understand exactly why this type of learned behavior is useful. 
+
+Our main contribution is showing that this type of pattern is a way for deep Transformers to avoid \emph{`over-mixing'}, a phenomenon related to a number of theoretical and empirical works that study rank collapse \citep{dong2021attention}, representational collapse \citep{barbero2024transformers}, signal propagation \citep{noci2022signal,arroyo2025vanishing}, and over-smoothing \citep{di2022understanding}. In particular, the depth and large context of modern LLMs seems to be sufficient to cause representational collapse, which can be slowed down by making certain heads \emph{inactive}: a behaviour which attention sinks directly promote (see Figure \ref{fig:summary}). The deeper the architecture, the more inactive heads have to become to ensure that representations stay sufficiently separated throughout the entire architecture to avoid collapse. 
+
+\begin{figure}
+    \includegraphics[width=0.48\linewidth]{figures/tikz_osq_tx_nosink.pdf} \hfill 
+    \includegraphics[width=0.48\linewidth]{figures/tikz_osq_tx_sink.pdf}
+    \caption{Our key result is to illustrate how attention sinks are usefully leveraged by decoder-only Transformers. The presence of attention sinks \emph{slows down the mixing of information between tokens} and hence makes Transformers more robust to perturbations of prompts. To illustrate this, we demonstrate how sharply a perturbation in the second token's input representation (in \textcolor{mymauve}{\bf red}) affects the embeddings of other tokens throughout the model, both without ({\bf left}) and with ({\bf right}) a sink token (e.g. \bos). The presence of a sink draws attention away from the rest of the tokens, limiting the spread of perturbed information and resulting in more stable embeddings. See Figure \ref{fig:perturbation} for a direct measurement in Gemma 7B.}\label{fig:summary}
+    \vspace{-15pt}
+\end{figure}
+
+\paragraph{Contributions.}
+
+We summarise our main contributions.
+
+\begin{itemize}
+    \setlength{\itemsep}{0.4pt} 
+    \setlength{\parskip}{0pt}
+    \item In Section \ref{sec:theory}, we argue that attention sinks are useful to control over-mixing. We connect this to existing theoretical phenomena such as rank collapse, representational collapse, and over-squashing. We show how our mathematical intuitions manifest in Gemma 7B.
+
+    \item In Section \ref{sec:frontier-llms}, we further support our over-mixing hypothesis. Our refined over-squashing analysis suggests that bigger models and models trained over longer contexts should have stronger sinks. We verify both hypotheses using the LLaMa 3.1 family of models and through our own pre-training runs. We find that a staggering 80\% of attention heads form strong sinks in LLaMa 3.1 405B. 
+
+    \item In Section \ref{sec:packing}, we show that, as expected from our hypothesis, attention sinks form regardless of how \bos is included during pre-training. Fixing \bos in pre-training as the first token, however, does impact how the model  constructs the sinks.
+\end{itemize}
+
+\section{Background}
+
+In this work, we focus on decoder-only Transformer models~\citep{radford2018improving}, that apply a causal mask to the attention mechanism. These are by far the most common types of Transformer models that are used in modern LLMs to date~\citep{team2024gemma, dubey2024llama}. We follow the notation of \cite{barbero2024transformers}, but we importantly also consider a model with $H \geq 1$ attention heads:
+\begin{align*}
+\label{eq:transformer}
+\zb^{(\ell, h)}_i &= \sum_{j \leq i} \alpha_{ij}^{(\ell, h)} \Wb^{(\ell, h)} \vb^{(\ell)}_j, \text{with } \alpha_{ij}^{(\ell, h)} = \frac{\exp\left(k\left(\qb_i^{(\ell, h)}, \kb_j^{(\ell, h)}, \pb_{ij}\right)\right)}{\sum_{w \leq i}\exp\left(k\left(\qb_i^{(\ell, h)}, \kb_w^{(\ell, h)}, \pb_{iw}\right)\right)} \\
+\zb^{(\ell)}_i &= \Wb^{(\ell)}\bigoplus_{h \in H} \zb_i^{(\ell , h)} + \vb^{(\ell)}_i,\\
+\vb_i^{(\ell+1)} &= \psib^{(\ell)}\left(\zb_i^{(\ell)}\right) + \zb_i^{(\ell)},
+    \vspace{-15pt}
+\end{align*}
+where $\psib^{(\ell)}$ is a non-linearity, $k$ takes queries $\qb$, keys $\kb$, and positional encodings $\pb_{ij}$ to produce an activation, $\Wb^{(\ell, h)} \in \R^{d \times d}$ and $\Wb^{(\ell)} \in \R^{Hd \times d}$ are learnable matrices, and $\bigoplus$ represents a direct sum (concatenation). To simplify notation, we ignore the layer normalisations without loss of generality. The sum ranging over $j$ such that $j \leq i$ is due to the causal mask. If we represent the attention coefficients via a matrix $\mathbf{A}^{(\ell,h)}$ such that $\mathbf{A}^{(\ell,h)}_{ij} = \alpha^{(\ell, h)}_{ij}$ , this condition is equivalent to enforcing that $\mathbf{A}^{(\ell,h)}$ is lower triangular. An LLM consists of $L$ such blocks, with $L$ often called the \emph{depth}. New tokens are generated autoregressively by considering the final layer representation $\vb^{(L)}_n$ of the last token and mapping it to a distribution over the token vocabulary. A new token is sampled from this distribution, and the process repeats.
+
+\paragraph{Attention Sinks.} The term \emph{attention sink} was first used by \citet{xiao2024efficient} to indicate tokens that, although likely to have limited semantic meaning, attract a large portion of the attention within an attention head. They showed that it is important to keep such tokens when computing sliding-window attention to retain performance. Recent work by \cite{gu2025when} empirically ablated a number of components in the pre-training setup to study under which conditions attention sinks occur. While attention sinks are a broader term, in our work we focus on attention sinks forming exactly at the first token, as this is the most common pattern by far. To measure the presence of the sink we follow the metric proposed by \cite{gu2025when} $\textbf{sink rate} = \frac{1}{L H} \sum_{h, \ell} \mathbf{1}\left(\frac{1}{T}\sum_j \alpha_{1, j}^{(\ell, h)} > \epsilon \right)$. The quantity measures the proportion of heads in the entire model that attend to the sink on average with a coefficient of at least $\epsilon$, where we also set $\epsilon = 0.3$, unless explicitly stated.
+
+Several key works have investigated how attention sinks are constructed. \cite{cancedda2024spectral} show, from a spectral perspective, that specific subspaces are responsible for the creation of attention sinks. \cite{sun2024massive} show that massive activations seem to be responsible for the creation of attention sinks. \cite{barbero2025round} reverse engineer a specific attention head to show that \emph{high-norm bands} in the queries and keys help with the formation of attention sinks. Such works all imply that \emph{large activations} are helpful in creating attention sinks.
+
+\textbf{In this work}, we are interested instead in showing not only how attention sinks appear but \emph{why they are useful}, particularly when it comes to long context modelling. In fact, we critically argue that this learned behaviour is \emph{necessary for effective long-context learning}. We believe that that this constitutes a new perspective that nicely complements existing works.
+ 
+\paragraph{Propagation of information in Transformers.}
+
+Many works have studied how information propagates in (deep) Transformers. In the linear case, a phenomenon known as \emph{rank collapse} has been heavily studied \citep{dong2021attention,geshkovski2023mathematical,wu2024role,naderi2024mind}. Such works show that repeated application of attention layers projects the values into a vector space that has rank $1$. The same phenomenon has been observed and heavily studied in Graph Neural Networks and is often called \emph{over-smoothing} \citep{di2022understanding,keriven2022not}. The key intuition is that attention matrices `mix' information, and \emph{repeated mixing} converges to a space that is \emph{uninformative}. Recently, work by \citet{wu2024role} has extended such analysis to causal mechanisms and thus decoder-only Transformers, describing how causal masking affects the convergence.
+
+Importantly, \citet{velivckovic2024softmax} proved that, when generalising to sufficiently longer contexts at inference time, global attention matrices cannot remain sharp, and will therefore always converge to ``pure mixing''. The culprit for this is \emph{tokenisation}, which imposes a bound on the \emph{logit spread} feeding into the softmax. While sparsifying attention can improve sharpness, the tradeoffs involved are not yet well understood \citep{vitvitskyi2025makes}.
+
+A related behaviour that occurs in decoder-only Transformers is \emph{over-squashing}. \cite{barbero2024transformers} showed that the decoder-only Transformers are more sensitive to tokens coming sooner in the sequence due to the causal mask. They also describe a phenomenon called \emph{representational collapse}, in which over long sequences the Transformer tends to destroy information of tokens coming towards the end of the sequence. 
+
+Together, these effects point towards two difficulties: Transformers tend to `over-mix' their information, both as they become deeper \citep{barbero2024transformers} and as they ingest longer context \citep{velivckovic2024softmax}.  \textbf{In this work}, we connect these ideas to the attention sink phenomenon. We show that the specific attention sink pattern is used by the Transformer in an attempt to counter the collapse of representations and keeping them meaningfully distant from each other. As a further contribution, we provide interesting connections between rank collapse, representational collapse, and over-squashing, which might be of independent interest.
+
+\section{Transformers blocks need to avoid over-mixing} 
+\label{sec:theory}
+We present mathematical insights that aim to understand why the formation of attention sinks can be useful or even \emph{necessary}. We start by connecting rank and representational collapse, showing that rank collapse is a stronger condition than representational collapse. We then derive stronger over-squashing bounds and use these results to make predictions on what factors might influence the formation of attention sinks. We perform some experiments on Gemma 7B to verify our intuitions.
+
+
+\paragraph{Rank collapse is a stronger condition than representational collapse.}
+We let $\vb_i^{(\ell)}$ be the value vector of the $\ell$-th Transformer block of the $i$-th token and $\Vb^{(\ell)}$ the $n \times d$ matrix that collects the $n$ value vectors together. We use the same definition of rank collapse\footnote{We believe that rank collapse might not be the best name for this phenomenon as the rank can remain full for any $\Delta > 0$, but use this terminology as a matter of consistency with previous works.} from \cite{wu2024role}, which in our notation can be written as:
+
+\begin{equation}
+    \left \lVert \Vb^{(L)} - \frac{1}{n} \mathbf{1} \mathbf{1}^\top \Vb^{(L)} \right \rVert_F = \left \lVert \Vb^{(L)} - \hat{\Vb}^{(L)} \right \rVert_F  < \Delta.
+    \label{eq:dist}
+\end{equation}
+
+Rank collapse can therefore be seen as how far the representations $\Vb^{(L)}$ are from the `average' representation $\hat{\Vb}^{(L)} = \frac{1}{n} \mathbf{1} \mathbf{1}^\top \Vb^{(L)}$. In Transformers with no residual connections and non-linearities it is well-known that this quantity decays exponentially with depth. \cite{barbero2024transformers} define representational collapse as\footnote{Note that in this work we use the $\ell^2$ norm instead of $\ell^1$ for convenience. This detail is not important as the two norms are `equivalent' as one has the bound $\left\lVert \xb \right\rVert_2 \leq \left\lVert \xb \right\rVert_1 \leq \sqrt{d} \left\lVert \xb \right\rVert_2$ for $\xb \in \mathbb{R}^d$.}:
+
+\begin{equation}
+    \left \lVert \mathbf{v}_{n}^{(L)} - \mathbf{v}_{n-1}^{(L)} \right \rVert_2 < \Delta
+\end{equation}
+
+for some token sequence in which the tokens $n-1$ and $n$ are repeated and the underlying sequence or `prefix' grows. The two measures are seemingly very related; in fact, we start by showing that rank collapse \emph{implies} representational collapse (we provide proofs for all statements in this section in the Appendix Section \ref{app:proofs}). The converse, instead, is not true, meaning that the two quantities are measuring distinct effects.
+
+\begin{proposition}[Rank collapse implies representational collapse.]
+If $\|\Vb^{(L)} - \frac{1}{n}\mathbf{1}\mathbf{1}^\top\Vb^{(L)}\|_F < \Delta / 2,$ then $\|\mathbf{v}_n^{(L)} - \mathbf{v}_{n-1}^{(L)}\|_2 < \Delta.$
+
+\end{proposition}
+
+We highlight that this \emph{does not} mean that representational collapse is not a useful quantity to consider. The condition of rank collapse is much stronger and only really occurs in linear systems \cite{wu2024role, dong2021attention}; instead, representational collapse can be studied in non-linear systems, as done by \cite{barbero2024transformers}. Interestingly, rank collapse is a statement regarding \emph{depth} of the model, while representational collapse is a statement related to \emph{context length} \footnote{We highlight related work by \cite{naderi2024mind} that studies rank collapse in `width' through random matrix theory methods.}. We report collapse studies in the Appendix (Section \ref{app:collapse}) for the interested reader.
+
+These phenomena are a consequence of a catastrophic \emph{over-mixing} effect that is caused by either the depth or context length growing too much and point towards the need for a Transformer to learn \emph{defense mechanisms} to counter such effects. The remainder of this work will then focus on exploring how the attention sink phenomenon is one such mechanism.
+
+
+\subsection{Sinks as a way to avoid over-mixing}
+A natural way to measure the amount of mixing is via the norm of the following Jacobian:
+\begin{equation}
+    \left \lVert \J_{ij}^{(L)} \right \rVert = \left \lVert \frac{\partial \vb^{(L)}_j}{\partial \vb^{(0)}_i}  \right \rVert = \left \lVert \sum_{k_1 ... k_{L-1}} \frac{\partial \vb^{(L)}_j}{\partial \vb^{(L-1)}_{k_{L-1}}} \dots \frac{\partial \vb^{(1)}_{k_1}}{\partial \vb^{(0)}_{i}} \right \rVert.
+\end{equation}
+The quantity $\left \lVert\J_{ij}^{(L)}\right \rVert$ measures how sensitive the token $j$'s representation at layer $L$ is to a small perturbation of token $i$. This is similar to the analysis and justification of \emph{vanishing gradients} in recurrent models. Intuitively, Transformers should be able to \emph{control} this quantity, or they risk running into issues such as rank collapse or representational collapse. To motivate and set the foundation for the remainder of our work, we extend the over-squashing results from \cite{barbero2024transformers} to now include multi-head attention. 
+
+\begin{theorem}[More detailed over-squashing bounds.] Let $C_{max} > 0$ be the greatest Lipschitz constant of any layer of the Transformer, $H$ be the number of heads, and $\delta_i^j$ be $1$ iff $i=j$ and $0$ otherwise. Let $k \in \mathcal{P}_{i \to j}$ be a path from $i$ to $j$ of length $L$. Set $\bar{\alpha}_{ij}^{(\ell)} = \sum_{h} \bar{\alpha}_{ij}^{(\ell, h)} + \frac{\delta_i^j}{H}$. Then: 
+\begin{equation}
+    \left \lVert \partial \vb^{(L)}_j / \partial \vb^{(0)}_i \right \rVert \leq C^L_{max} \sum_{k \in \mathcal{P}_{i \to j}}  \bar{\alpha}^{(1)}_{i, k_1} \bar{\alpha}^{(2)}_{k_1, k_2} \dots \bar{\alpha}^{(L)}_{k_{L-1}, j}.
+\end{equation}    
+\end{theorem}
+
+The bound tells us that the weighted paths \emph{across attention heads} impact the sensitivity between tokens $i$ and $j$. From this perspective, the effect of attention sinks is clear: attention sinks help to control the impact a perturbation can have on the output, as depicted in Figure \ref{fig:summary}. Interestingly, the bound shows how the sensitivity is controlled by the depth, number of heads, and context length. We therefore expect stronger sinks to appear when the model becomes larger or is trained on longer context, to better control the sensitivity. We will provide in later sections supporting evidence on both frontier LLMs and on LMs trained from scratch.
+
+\subsection{How sinks help prevent mixing in Gemma 7B} To validate the intuition, we perform a perturbation analysis in Gemma 7B. To simulate a small perturbation in token space, we perturb a single token in a sequence—for example, changing ‘greatest’ to ‘best’ (see Appendix Section \ref{app:prompts} for details). We then measure how the representations change across the model when the attention sink is present versus when it is not. In Figure \ref{fig:perturbation} (a), we show how the perturbation behaves when \bos is kept and in (b) when it is removed. It is clear that the perturbation in (b) affects the representations much more, which occurs as a consequence of the higher mixing rate. We note that this experiment is a way to estimate the behaviour of $\left \lVert \J_{ij}^{(\ell)} \right \rVert$. We believe the above method also acts as an interesting way of measuring over-squashing in a meaningful way, \emph{something that was left as an open question} by \cite{barbero2024transformers}.
+
+%We take a sequence and then perturb a single token, to simulate a small perturbation in token space we can for instance perturb the token `greatest' to `best' which should be a small perturbation in token space as they have high cosine similarity. We then measure how the representations change across the model when the attention sink is present or not.
+
+\begin{figure}[H]
+    \centering
+    \subfloat{{\includegraphics[width=0.45\textwidth]{figures/perturbation_bos.pdf} }}%
+    \qquad
+    \subfloat{{\includegraphics[width=0.45\textwidth]{figures/perturbation_nobos.pdf} }}%
+    \caption{Effect of token perturbations on Gemma 7B. \textbf{Left/Right:} With/without \bos.}%
+    \label{fig:perturbation}%
+    \vspace{-10pt}
+\end{figure}
+
+In Figure \ref{fig:head-smoothening}, we illustrate how the removal of the \bos token in Gemma 7B causes the attention maps to become much smoother. This has the effect of increasing the values of $\left \lVert \J_{ij} \right \rVert$, this further supports the claim that the existence of \bos provides a mechanism to attenuate the mixing, as previously shown in Figure \ref{fig:perturbation}.
+ 
+
+\begin{figure}[H]
+    \centering
+    \subfloat{{\includegraphics[width=0.25\textwidth]{figures/head_3_bos.pdf} }}%
+    \subfloat{{\includegraphics[width=0.25\textwidth]{figures/head_5_bos.pdf} }}%
+    \subfloat{{\includegraphics[width=0.25\textwidth]{figures/head_9_bos.pdf} }}%
+    \subfloat{{\includegraphics[width=0.25\textwidth]{figures/head_11_bos.pdf} }} \\
+    
+    \subfloat{{\includegraphics[width=0.25\textwidth]{figures/head_3_no_bos.pdf} }}%
+    \subfloat{{\includegraphics[width=0.25\textwidth]{figures/head_5_no_bos.pdf} }}%
+    \subfloat{{\includegraphics[width=0.25\textwidth]{figures/head_9_no_bos.pdf} }}%
+    \subfloat{{\includegraphics[width=0.25\textwidth]{figures/head_11_no_bos.pdf} }}
+    \caption{Attention patterns of four heads in Gemma 7B. \textbf{Top/Bottom:} With/without \bos.}%
+    \label{fig:head-smoothening}%
+    \vspace{-10pt}
+\end{figure}
+
+
+\paragraph{Attention sinks help construct approximate no-ops.}To investigate more deeply the sink phenomenon, we also examine a specific head in Gemma 7B, which was already studied in \citet{barbero2025round}. This attention head pattern occurs in the first layer of the model and appears to activate specifically when there is an apostrophe token as the previous token, as shown in Figure \ref{fig:bos-norm} (a). The head has essentially two operating modes\footnote{At least for in-distribution examples; given \citet{velivckovic2024softmax}, all of these mechanisms will eventually disperse with increasing context length.}: firing very sharply when an activation condition is met, and attending to \bos otherwise. This head can therefore be seen as an implementation of an `if-else' statement. 
+
+If we plot the corresponding value vector norms, as shown in Figure \ref{fig:bos-norm} (b), we see that the norm of the value corresponding to the \bos token is the smallest, whereas it is \emph{largest} for the apostrophe value -- which seems to be what the head prefers to focus on. This intuitively elucidates what we believe is an interesting operating mode of attention heads: updating the token embeddings as little as possible by default\footnote{Placing a high attention coefficient on a value vector with low norm implies that the output of the attention mechanism will be low norm---and hence it will have less significance when summed with the residual stream from the previous block.}, and instead updating them significantly when the head wishes to be operating. The attention sink in the \bos token seems to provide a direct mechanism to construct this `approximate no-op', which also been pointed out by other works \citep{gu2025when}. We also find it interesting that this head is a real-world example of the theoretically studied Bigram-Backcopy task from \citep{guo2024active}. 
+
+\begin{figure}
+    \centering
+    \subfloat[\centering Apostrophe head attention pattern]{{\includegraphics[width=0.45\linewidth]{figures/bos_apostrophe.pdf} }}%
+    \qquad
+    \subfloat[\centering Apostrophe head value norms]{{\includegraphics[width=0.45\linewidth]{figures/l2_norms.pdf} }}%
+    \caption{Apostrophe head attention pattern (a) and value norms (b). This attention head is a real-world example of the theoretically studied Bigram-Backcopy task from \cite{guo2024active}.}%
+    \label{fig:bos-norm}%
+    \vspace{-10pt}
+\end{figure}
+
+\begin{tcolorbox}[boxsep=0mm,left=2.5mm,right=2.5mm] \textbf{Summary of the Section:} {\em Attention blocks tend to mix information, but the model needs a mechanism to control the rate of mixing to avoid pathological issues. We showed how the use of \bos seems to help mitigate how perturbations spread in the computational graph.}  
+\end{tcolorbox}
+
+\section{How does over-squashing predict attention sinks?}
+\label{sec:frontier-llms}
+
+We now investigate how our over-squashing and mixing insights predict the formation of sinks in trained models of different sizes. Our over-squashing bounds tell us that perturbative effects will be larger in models that are trained on longer context and that are larger. Consequently, we expect this to affect sink formation if our insights are well-aligned with the underlying phenomenon.
+
+\subsection{How does context length affect sink formation?}
+
+While our empirical observations in pre-trained LLMs are certainly indicative of the \bos-powered mechanism, we are not able to meaningfully account for the way in which they were trained, or the data they observed, when reasoning about various artifacts such as the attention sink. Therefore, we follow the pre-training setup of \cite{gu2025when} and evaluate the effect of context length on the sink formation in LMs of roughly 120M parameters (see the Appendix Section \ref{app:pretraining-details} for details). The over-squashing intuitions suggest that the model should learn a stronger sink as longer context naturally leads to stronger mixing \citep{velivckovic2024softmax}.  
+
+
+Importantly, we vary the pre-training context length, making sure that each training step processes the same amount of tokens such that the total tokens processed by each model is 5B. In Figure \ref{fig:context-curves-main} (a) we see that, after pre-training, the attention sinks indeed seem to be much more prevalent for models trained on longer contexts, and nearly non-existent for very short-context-trained models. In Figure \ref{fig:context-curves-main} (b), we show that this trend appears to be cumulative throughout training---initially, there are no attention sinks; the rate at which sinks develop is generally increasing with the context length (until saturating). For completeness, we also report the validation loss curves of these models in the Appendix (Figure \ref{fig:context-loss-curves}), showing that they all achieve comparable validation losses during training. This is another indication that the emergence of sinks might be a \emph{necessary} side effect of training capable models at ever-increasing context lengths in order to avoid over-mixing issues.
+
+\begin{figure}[H]
+    \vspace{-20pt}
+    \centering
+    \subfloat[\centering Context sink histogram]{{\includegraphics[width=0.45\textwidth, height=5.1cm]{figures/context-sink-histogram.pdf} }}%
+    \qquad
+    \subfloat[\centering Context sink curves]{{\includegraphics[width=0.45\textwidth, height=5.4cm]{figures/context-sink-curves.pdf} }}%
+    \caption{Pre-trained model Sink Metric (\%) after training (a) and during training (b) trained at different context lengths.}%
+    \label{fig:context-curves-main}%
+    \vspace{-10pt}
+\end{figure}
+
+
+\subsection{Attention sinks in the LLaMa 3.1 family}
+\label{sec:llama-depth}
+Next, we examine the LLaMa 3.1 family of models as it offers an interesting test bed for models of vastly different sizes. For instance, the smallest 8B model has 32 layers and 1{\textnormal{,}}024 attention heads, while the largest 405B model has 126 layers and 16{\textnormal{,}}128 heads (see Table \ref{tab:llama3_1_specs}). The underlying assumption is that as they are part of the same family of models, the training pipelines these models have undergone will be as similar as possible and allow us to study pre-trained models as their size grows. This provides an interesting way to check how attention sink patterns differ between models of different sizes. 
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{lcccc}
+        \toprule
+        \textbf{Model} & \textbf{Total Layers} & \textbf{Heads per Layer} & \textbf{Total Heads} & \textbf{Sink Metric ($\epsilon=0.8$}) \\
+        \midrule
+        LLaMA 3.1 8B   & $32$   & $32$  & 1{\textnormal{,}}024 & 45.97 \\
+        LLaMA 3.1 70B  & $80$   & $64$  & 5{\textnormal{,}}120 & 73.49 \\
+        LLaMA 3.1 405B & $126$  & $128$ & 16{\textnormal{,}}128 & 78.29 \\
+        \bottomrule
+    \end{tabular}
+    \caption{Relevant architectural details of LLaMA 3.1 models.}
+    \label{tab:llama3_1_specs}
+\end{table}
+
+In Figure \ref{fig:llama_heatmaps}, we show the results of our study, where we plot the sink metric for each head. We compute the metric using the same procedure and prompts as the context length experiments and sort them such that the lowest sink heads are from the left. It is evident how the smallest 8B model seems to be significantly more active than the larger models. Interestingly, the middle layers appear to be much more active, which has also been observed in other work \citep{skean2025layer}. This suggests that the sink metric could also be used as a proxy of layer activity. In Table \ref{tab:llama3_1_specs} we report the summary metric for each model. As the models get larger it seems like the sinks become stronger, in accordance with our intuitions from Section \ref{sec:theory}. 
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\textwidth]{figures/llama-heatmaps.pdf}
+  \caption{Sink metric percentage ($\epsilon = 0.8$) for \bos for all  heads over $170$ different prompts for the LLaMa 3.1 family of models. \textcolor{mymauve}{\bf Red} indicates a strong sink presence.}
+  \label{fig:llama_heatmaps}
+\end{figure}
+
+
+
+\begin{tcolorbox}[boxsep=0mm,left=2.5mm,right=2.5mm] \textbf{Summary of the Section:} {\em We supported our theoretical insights that larger models and models trained on longer context should have more attention sinks to better control information-mixing.}  
+\end{tcolorbox}
+
+\section{Is \bos in any way special?}
+\label{sec:packing}
+
+In this section we aim to answer a final important question: is there something special about the \bos token and its relationship to the sink formation. Intuitively, we would expect that the answer is \textbf{no} because if sinks exist simply to prevent mixing, then the only important property the sink should have is that it exists at the first position in the sequence to help prevent mixing of the subsequent tokens. 
+
+To study this behaviour, we pre-train using a number of different strategies (see Figure \ref{fig:data_packing} in the Appendix for illustrations of the different strategies). To summarise our findings from Table \ref{tab:data_packing}, if the model is trained with \bos always appearing at the first token, removing \bos during inference removes the attention sink, i.e. the model relies on the \bos token to form the sink. Instead, if there is no \bos during training, the sink forms at the first token regardless, but is slightly weaker. Removing \bos in a model that was trained with \bos present greatly reduces performance. This seems to be consistent over both causal masking and intra-doc masking. This suggests that choices in pre-training have a direct impact on how the attention sinks are constructed by the model, but that their formation during training seems inevitable. This also validates our intuition that attention sinks seem to form always at the first token, regardless of the pre-training packing strategy used. For more details, we point the reader to the Appendix (Section \ref{app:packing-details}).
+
+ 
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{lccccc}
+        \toprule
+        \textbf{Attention Masking} & \bos & \eos & \textbf{Inference} & \textbf{Sink Metric} (\%) & \textbf{Valid loss} \\
+        \midrule
+        Causal   & No   & Yes  & \bos* + text & 65.10  & 2.69 \\
+        Causal   & No   & Yes  & text &  65.15 & 2.70 \\
+        \midrule
+        Causal+fixed \bos & Yes & Yes & \bos + text &  90.84 & 2.69 \\
+        Causal+fixed \bos & Yes & Yes &  text &  \,\,\,\underline{0.05} & \underline{7.56} \\
+        \midrule
+        Intra-doc & No & Yes & text &  28.23 & 2.67 \\
+        Intra-doc & Yes & Yes & \bos + text & 83.33 & 2.67 \\
+        Intra-doc & Yes & Yes & text & 50.24 & 2.68 \\
+        \midrule
+        Intra-doc + fixed \bos & Yes & Yes & \bos + text & 90.56 & 2.67 \\
+        Intra-doc + fixed \bos & Yes & Yes & text & \,\,\,\underline{0.00} & \underline{7.78} \\
+        \bottomrule
+    \end{tabular}
+    \caption{Impact of data packing and attention masking on the formation of attention sink. Here * denotes that \bos and \eos are the same during the inference.}
+    \label{tab:data_packing}
+\end{table}
+
+
+
+% \paragraph{Experimental setups.} The language models have 140M parameters, the training corpus contains 30B tokens, and the context window length is set as 2048. It is observed that with a register during the pre-training, the attention sink is much more obvious. 
+
+
+% \begin{figure}[H]
+%     \centering
+%     \subfloat[\centering Regular packing]{{\includegraphics[width=0.45\textwidth]{figures/packing/regular_packing.pdf} }}%
+%     \qquad
+%     \subfloat[\centering Intra-doc masking]{{\includegraphics[width=0.45\textwidth]{figures/packing/intradoc_masking.pdf} }}%
+%     \caption{Regular packing (a) intra-doc masking (b). }%
+%     \label{fig:global-bos-curves-main}%
+%     \vspace{-10pt}
+% \end{figure}
+ 
+% During the inference, if a language model is pre-trained with above global \bos token, removing it will result in significant performance degradation. Meanwhile, attention sink on the first token also disappears. This is different from the scenario without such a global \bos token, where attention sink happens in the first position no matter which token. 
+
+
+
+\begin{tcolorbox}[boxsep=0mm,left=2.5mm,right=2.5mm]
+\textbf{Summary of the Section:} {\em During the LM pre-training, when \bos is fixed in the first position within the context, LMs employ \bos to avoid over-mixing. Otherwise, LMs employ the first token (which need not be \bos) to avoid over-mixing. }   
+\end{tcolorbox}
+
+
+\section{Conclusion}
+In this work, we proposed a new perspective on attention sinks, arguing that they emerge as a natural response to over-squashing and over-mixing in transformer architectures. Our analysis shows that directing a significant portion of the attention to the \bos token helps the model become less sensitive to token perturbations. As models scale up in size or are trained on longer contexts, they inherently become more vulnerable to such perturbations and the sinks become stronger. We believe not only that this work helps to understand why such patterns are in fact useful, but also serves as an interesting further application of theoretical results on over-squashing and rank collapse that could be of independent interest. Our data packing exploration also helps to elucidate how the way pre-training is performed can heavily impact how attention patterns behave.
+
+We hope that this new perspective will inspire future work aimed at deepening our understanding of the underlying mechanisms learned by transformers, ultimately guiding the development of more robust and efficient architectures.
+
+
+% \section{Background and Related Work}
+
+% \subsection{Transformer Models}
+
+% - Maybe we can briefly describe attention, causal marking etc. here?
+
+
+% \subsection{Related Work}
+
+% -security implications --> https://arxiv.org/abs/2503.08908
+
+% - Tanner, Oxford mind the gap https://arxiv.org/pdf/2410.07799
+
+% - Jegelka, on the emergence of position bias https://arxiv.org/pdf/2502.01951 Talks about attention sinks forming in toy models.
+
+% - https://arxiv.org/pdf/2410.10781 very large empirical study of what components contribute to attention sinks. (Code) https://github.com/sail-sg/Attention-Sink
+
+% - https://arxiv.org/pdf/2312.03002 interesting in-context learning synthetic training tasks
+
+% -https://huggingface.co/blog/tomaarsen/attention-sinks blog post on attention sinks — this contains a potential solution and is related to our softmax paper 
+
+% - https://arxiv.org/html/2309.17453v3 They look at how attention sinks can be used to make infinite-context models as some form of sliding window. 
+
+% - Curse of depth https://www.arxiv.org/abs/2502.05795 and all of the other papers that say that cutting off layers is fine 
+
+% - Rank collapse and over squashing etc 
+
+
+% Figures: BOS distribution in depth over Llama growing in size 
+
+% Figures: What are the norm of the values of BOS tokens? 
+
+% I think a catchy headline would be that 405B Llama Transformer spends 80\% of attention flops as no-ops
+
+% \section{Motivating Empirical Evidence}
+% %We begin by showing that this effect is pronounced over \emph{depth}.
+
+% @AA: Things to discuss IMO
+
+% - Natural emergence of dead heads / very sharp heads in small 8B models.
+
+% - The low-norm nature of BoS compared to other tokens
+
+% - Smoothening of representation with and without BoS
+
+
+
+% \section{The Effect of BoS on Signal Propagation in Depth}
+
+% - @AA: Things to add here IMO 
+
+% - Increased number of attention heads dead as the model size increases
+
+% - Empirical interpretation using ideas from linear GCNs (similar to Tanner, but just a sketch) $\implies$ The attention matrices destroy the information. Even though batchnorm and residual connections try to save this, the LLM still tries to protect itself by shutting heads off.
+
+% - Synthetic training experiment for increasing depth (training from scratch) -> Emergence of more representational collapse if there is no BoS.
+
+% %\subsection{Empirical Evidence of the Appearance of Dead Heads in Pretrained LLMs}
+
+% %\begin{itemize}
+% %    \item @Fed: Diagnosis plots of how BoS attention appears to be widespread in LLMs?
+% %\end{itemize}
+
+% %\subsection{The Effect of BoS Token on Representations}
+
+
+
+% \section{The Effect of BoS for Prompts for Large Context}
+
+% \begin{proposition}
+%     Let $\mathbf{x}$ be a signal, $\delta$ be the maximal logit difference entering a softmax function and $H$ be the Shannon entropy. Let $p_1 = 1 / \left(1 + (n-1)\exp(-\delta)\right)$ and $p_1 + (n-1)p_2 = 1$.
+
+%     \begin{equation*}
+%         H(softmax(\mathbf{x})) \geq -p_1 \log p_1 - (n-1) p_2 \log p_2
+%     \end{equation*}
+% \end{proposition}
+% \begin{proof}
+%     Use the fact that Shannon entropy is a Schur-concave function etc.
+% \end{proof}
+
+
+
+
+
+
+
+
+% TODO
+% ----
+% - Diagnosis plots (BOS attention)
+
+% - Experiments on smoothing w.r.t. pre-trained LLMs (LLama)
+
+% - Measure the key/query/value norms ourselves (for many models) 
+
+% - Connect this to oversmoothing/ rank collapse/ oversquashing
+
+% - Theory to support that 
+
+% - synthetic experiment with transformer trained from scratch - TBD
+
+
+% \section{Conclusion}
+
+
+% \section*{Acknowledgments}
+% Use unnumbered first level headings for the acknowledgments. All
+% acknowledgments, including those to funding agencies, go at the end of the paper.
+
+
+\bibliography{colm2025_conference}
+\bibliographystyle{colm2025_conference}
+
+\appendix
+
+\section{Experimental Details and Additional Results}
+We provide here additional details pertaining to our experiments in the main section of the work.
+
+\subsection{Pre-training Experimental Details}
+\label{app:pretraining-details}
+For the synthetic pre-training runs, we use the same setup as the one used by \cite{gu2025when}. We train LLaMa2-style LMs with roughly 120M parameters. For the packing experiments we train on 30B tokens, while for the context length ablations we train on 5B tokens. To perform the experiments, we adapt the codebase which is released under an MIT license at \url{https://github.com/sail-sg/Attention-Sink}. This allows us to have results that are consistent with the large number of ablations that have already been conducted by the original authors. For reference, a single training run on 5B tokens takes up to $24$ hours depending on the experimental setup on a single NVIDIA H100. 
+
+\subsection{Additional Context Length Experimental Results}
+
+For completeness, we provide in Figure \ref{fig:context-loss-curves} the training loss curves for the context length ablation experiment. We find that the models trained at different context lengths achieve similar loss curve patterns. We suspect that longer training would cause the sink patterns to become sharper as this seems to be the trend as training continues. It is clear however from the plots that the context length clearly impacts very heavily the formation of the sinks, with essentially no sink formation at a context length of $128$ and much stronger formation for the longer contexts.
+
+\begin{figure}[H]
+    \centering
+    \subfloat[\centering Context sink histogram]{{\includegraphics[width=0.45\textwidth]{figures/context-sink-curves.pdf} }}%
+    \qquad
+    \subfloat[\centering Context sink curves]{{\includegraphics[width=0.45\textwidth]{figures/context-loss-curves.pdf} }}%
+    \caption{Context sink curve (a) and their respective loss curves (b).}%
+    \label{fig:context-loss-curves}%
+    \vspace{-10pt}
+\end{figure}
+
+
+\subsection{Packing}
+\label{app:packing-details}
+
+We now provide additional intuition for our packing experiments. During LM pre-training, all documents in the corpus are concatenated and chucked into sequences with a fixed context length following \citet{brown2020language}, as shown in Figure~\ref{fig:data_packing}.  Then \bos (before each document) and \eos (after each document) are introduced to mark the boundaries between two consecutive documents. Typically, one only needs to adopt either \bos or \eos during LM pre-training. In this case, \bos and \eos are the same during inference.  To pre-train LMs, casual masking within the context is adopted, resulting in the tokens in each document being able to attend to the tokens in the previous document within the context. This motivates the proposal of intra-doc masking~\citep{dubey2024llama, zhao2024analysing}, which ensures that the tokens can only attend to previous tokens within the same document (\bos and \eos inclusive). In this case, we consider two scenarios: (i) adding \eos only, and (ii) adding both \bos and \eos. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{figures/packing/data_packing.pdf} %
+    \caption{Illustration of data packing and attention masking setups we consider in our packing ablations in Section \ref{sec:packing}.}%
+    \label{fig:data_packing}%
+\end{figure}
+
+\paragraph{Fixing \bos in the first position.} Due to the importance of the first token, we are interested in fixing \bos in the first position within the context. Then only \eos is added to mark the boundary between two consecutive documents. As shown in Figure~\ref{fig:data_packing}, we modify the attention masking to ensure all tokens within the context are able to attend to the \bos token regardless of intra-doc masking or not.
+
+\paragraph{The effect of \bos token.} We conduct experiments employing LLaMA2-style LMs with 120M parameters, a training corpus of 30B tokens, and a context length of 2048. We sample 100 sequences (with token lengths between 512 and 2048) in the validation set and measure the auto-regressive loss and attention sink metric for the first token position following \citet{gu2025when}. As shown in Table~\ref{tab:data_packing}, we first consider the scenarios of causal masking, if \bos is only used as the boundary for different documents, it has little impact on sink formation. Meanwhile, if we fix \bos in the first position within the context, the attention sink is significantly enhanced. But without \bos, the attention sink disappears, and the model performance drops drastically. When it comes to intra-doc masking, adopting \bos in the inference significantly improves attention sink. But without it, LMs still have attention sink on the first token. If we fix \bos in the first position during pre-training, removing it during inference will make LMs experience no attention sink and a drop in performance. To summarize, when \bos is fixed in the first position within context during the pre-training, LMs employ \bos to avoid over-mixing. Otherwise, LMs employ the first token (which need not be \bos) to avoid over-mixing. 
+
+
+\section{How does BoS help avoid over-mixing?}
+\label{app:collapse}
+%In this section, we examine how the BoS token influences the \textit{smoothness} of intermediate representations throughout the network. Our empirical and theoretical analyses demonstrate that incorporating the BoS token not only mitigates the destructive overmixing effects of the attention mechanism but also enhances the sharpness of attention heads,  preventing representational collapse in long-context scenarios.
+
+At each transformer layer, the learned attention matrix mixes different tokens which are then fed into the MLPs to construct intermediate representations. While mixing is crucial to capture meaningful semantics in sentences, the spectral characteristics of attention matrices with causal masking leads to the \textit{collapse} of token representations. This phenomenon has been termed \textit{rank collapse} \citep{dong2021attention}, and is closely related to the \textit{oversmoothing} phenomenon in GNNs \citep{di2022understanding} and signal propagation \citep{noci2022signal,arroyo2025vanishing}. 
+
+Here, we quantify token similarity by measuring the deviation of the representations from their mean, using the distance measure presented in \eqref{eq:dist}, which we denote $\mu(\Xb)$. $\mu$ measures how far $\Xb$ is from its `mean matrix'. As an initial empirical test, we measure the representational distance to the mean at the final layer of the Gemma 7B model for progressively longer prompts asking the model to add numbers. We provide more details on these prompts in Appendix \ref{app:prompts}. The results are shown in Figure \ref{fig:rep_collapse_7b} below. 
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{figures/smoothing.pdf} %
+    \caption{Representational distance as a function of prompt length for models with an without BoS token for Gemma 7B.}%
+    \label{fig:rep_collapse_7b}%
+\end{figure}
+
+
+\begin{figure}[H]
+    \centering
+    \subfloat[5 sum terms. \centering ]{{\includegraphics[width=0.3\textwidth]{figures/norm_hist_5.pdf} }}%
+    \subfloat[\centering 25 sum terms.]{{\includegraphics[width=0.3\textwidth]{figures/norm_hist_25.pdf} }}%
+    \subfloat[\centering 50 sum terms.]{{\includegraphics[width=0.3\textwidth]{figures/norm_hist_50.pdf} }}%
+    
+    \vspace{-10pt}
+    
+    \subfloat[\centering 100 sum terms.]{{\includegraphics[width=0.3\textwidth]{figures/norm_hist_100.pdf} }}%
+    \subfloat[\centering 250 sum terms.]{{\includegraphics[width=0.3\textwidth]{figures/norm_hist_250.pdf} }}%
+    \subfloat[\centering 1000 sum terms.]{{\includegraphics[width=0.3\textwidth]{figures/norm_hist_1000.pdf} }}%
+
+    \caption{Histogram of token norms for sums of increasing length.}%
+    \label{fig:norms-increasing-sums}%
+    \vspace{-10pt}
+\end{figure}
+
+
+
+Figure \ref{fig:bos-norm} illustrates that excluding the BoS token when prompting an LLM significantly affects the smoothness of its representations. Specifically, as the prompt length increases, the divergence between representations with and without the BoS token grows. Notably, prompts that include the BoS token exhibit considerably higher dispersion around their mean. This dispersion can also be visualized by plotting the histogram of the norms of the latent representation of each token, as shown in Figure \ref{fig:norms-increasing-sums}. 
+
+The empirical evidence in Figure \ref{fig:bos-norm} serves to clarify the effect of the \bos token on the formation of intermediate representations. The disproportionally low norm of the values associated with the BoS token implies that if the model directs all attention to that token, the resultant information is essentially nullified — effectively bypassing the mixing process intrinsic to attention.  In such scenarios, only the residual pathway carries forward any information. This process counteracts the over-mixing and rank collapse induced by the spectral properties of the attention matrix with causal masking \citep{naderi2024mind}. Notably, this strategy mirrors the mixture-of-depths approach introduced in \cite{raposo2024mixture}, but without the efficiency gains achieved through gating around the attention operation. %This explanation also serves as a way to justify the effect of weight decay in the formation of attention sinks, as empirically reported in \cite{gu2025when}.  Using standard arguments from the GNN literature \citep{di2022understanding}, reducing the weight norms has the predictable effect of increasing smoothness. As such, it follows that this would encourage the appearance of attention sinks, given our previous argument.
+
+\section{Additional Details on Prompts Used}
+\label{app:prompts}
+
+We include additional details on the prompts used for the experiments presented in the paper.
+
+\subsection{Robustness to Perturbations Prompts}
+
+Here, we present the prompts used to obtain the results in Figure \ref{fig:perturbation}. The original prompt is 
+
+\texttt{William Shakespeare[a] (c. 23[b] April 1564, 23 April 1616)[c] was an English playwright, poet and actor. He is widely regarded as the \textcolor{purple}{greatest} writer in the English language and the world's pre-eminent dramatist. He is often called England's national poet and the 'Bard of Avon' (or simply 'the Bard'). His extant works, including collaborations, consist of some 39 plays, 154 sonnets, three long narrative poems and a few other verses, some of uncertain authorship. His plays have been translated into every major living language and are performed more often than those of any other playwright. Shakespeare remains arguably the most influential writer in the English language, and his works continue to be studied and reinterpreted.}
+
+while the perturbed prompt is:
+
+\texttt{William Shakespeare[a] (c. 23[b] April 1564, 23 April 1616)[c] was an English playwright, poet and actor. He is widely regarded as the \textcolor{purple}{best} writer in the English language and the world's pre-eminent dramatist. He is often called England's national poet and the 'Bard of Avon' (or simply 'the Bard'). His extant works, including collaborations, consist of some 39 plays, 154 sonnets, three long narrative poems and a few other verses, some of uncertain authorship. His plays have been translated into every major living language and are performed more often than those of any other playwright. Shakespeare remains arguably the most influential writer in the English language, and his works continue to be studied and reinterpreted.
+}
+
+Here, the perturbed word is written in \textcolor{purple}{purple}. The modification critically keeps the number of tokens constant and is chosen specifically to be a `small' perturbation.
+
+\subsection{Smoothing Effects Prompts}
+
+To empirically investigate the smoothing effects in transformer representations, we designed a set of prompts that probe the model's ability to maintain distinct token representations over long contexts. In these prompts, the model is asked to calculate a sum of numbers that gets progressively longer (denoted with \texttt{Sum Terms}). In our experiments, we compare the effects of including versus omitting the \bos token on the smoothness of the resulting representations. One representative example of these prompts is:
+
+\begin{itemize}
+    \item \texttt{Could you add these numbers 10+06+03+10+08}
+\end{itemize}
+
+\subsection{LLaMa Sink Prompts}
+For the LLaMa sink prompts, we use the dataset provided by \cite{gu2025when} which is found at \url{https://github.com/sail-sg/Attention-Sink/blob/main/datasets/probe_valid.jsonl}. We evaluate on all of the $170$ samples and measure the sink metric on the first $T=64$ tokens to remain consistent with \cite{gu2025when}. Below we report a few excerpts:
+
+\textbf{(i)} \texttt{\detokenize{Role of the immune system in cardiac tissue damage and repair following myocardial infarction.\nThe immune system plays a crucial role in the initiation, development, and resolution of inflammation following myocardial infarction (MI). The lack of oxygen and nutrients causes the death of cardiomyocytes and leads to the exposure of danger-associated molecular patterns that are recognized by the immune system to initiate inflammation. At the initial stage of post-MI inflammation, [...]}}
+
+\textbf{(ii)} \texttt{\detokenize{request_number:  PS-BPA 116 and 118\nfirstname:  Steve\nlastname:  Marshall\ne-mail:  marss@perkinscoie.com\ndirected_to:  Peter J. Burger - LP-7\nOffice of General Counsel\nBonneville Power Administration\nP.O. Box 3261\nPortland, Oregon  97208-3621\nexhibit_wp-02-e-:  BPA-78\npage_numbers:  1-8\nrequest_text: [...]}}
+
+\textbf{(iii)} \texttt{\detokenize{<A HREF=\"http://finmath.com/\">FinMath.com @ Chicago\nFinancial Engineering & Risk Management Workshop</A>\n\n------------------------------------------------------------------------------\n NEW 60-65\% OFF 2001 subscription for RISK Magazine\nfor members of Bachelier Finance Society.\nBecome a Member NOW! [...]}}
+
+\textbf{(iv)} \texttt{\detokenize{ubuntu-au 2011-10-24\n<ikt> Hi all :)\n<gggs> hi ikt \n<ikt> gggs: whatcha up to?\n<gggs> right now?\n<gggs> talking to you!\n<ikt> :D\n<ikt> thinking of setting up an LDAP server at home\n<ikt> [...]}}
+
+The $170$ texts span a number of different domains, which we believe is important to appropriately evaluate the sink phenomenon.
+
+
+\section{Mathematical Results}
+\label{app:proofs}
+
+We provide here the details of the mathematical results in our paper. We start by showing the connection between representational and rank collapse.
+
+\textbf{Proposition 3.1}\textit{ If $\|\Vb^{(L)} - \frac{1}{n}\mathbf{1}\mathbf{1}^\top\Vb^{(L)}\|_F < \Delta / 2,$ then $\|\mathbf{v}_n^{(L)} - \mathbf{v}_{n-1}^{(L)}\|_2 < \Delta.$}
+\begin{proof}
+Assume that we have rank collapse at $\Delta / 2$: 
+
+\begin{align*}
+\left \lVert \Vb^{(L)} - \frac{1}{n} \mathbf{1} \mathbf{1}^\top \Vb^{(L)} \right \rVert_F &= \left \lVert \vecm{\Vb^{(L)} - \frac{1}{n} \mathbf{1} \mathbf{1}^\top \Vb^{(L)}} \right \rVert_2 < \Delta / 2.
+\end{align*}
+
+We now bound the representational collapse quantity:
+
+\begin{align*}
+\left\lVert \mathbf{v}_{n}^{(L)} - \mathbf{v}_{n-1}^{(L)} \right\rVert_2 
+&\leq \left\lVert \mathbf{v}_{n}^{(L)} - \frac{1}{n}\mathbf{1}^\top\Vb^{(L)} \right\rVert_2 + \left\lVert \mathbf{v}_{n-1}^{(L)} - \frac{1}{n}\mathbf{1}^\top\Vb^{(L)} \right\rVert_2 \\
+&\leq \left\lVert \vecm{\Vb^{(L)} - \frac{1}{n}\mathbf{1}\mathbf{1}^\top\Vb^{(L)}} \right\rVert_2 + \left\lVert \vecm{\Vb^{(L)} - \frac{1}{n}\mathbf{1}\mathbf{1}^\top\Vb^{(L)}} \right\rVert_2 \\
+&= 2\left\lVert \Vb^{(L)} - \frac{1}{n}\mathbf{1}\mathbf{1}^\top\Vb^{(L)} \right\rVert_F \\
+&< \Delta.
+\end{align*}
+
+Thus, rank collapse at $\Delta / 2$ implies representational collapse of at least $\Delta$.
+\end{proof}
+
+We now show the results on over-squashing that now include multi-head attention. Like \cite{barbero2024transformers}, we assume for simplicity that the queries and keys are independent of the values. This is to not distract from the main point of the result as it would otherwise make the result very messy due to the need to push the partial derivatives through the softmax function. For convenience, we rewrite here the update equations that we consider:
+
+\begin{align*}
+\label{eq:transformer}
+\zb^{(\ell, h)}_i &= \sum_{j \leq i} \alpha_{ij}^{(\ell, h)} \Wb^{(\ell, h)} \vb^{(\ell)}_j,\\
+\zb^{(\ell)}_i &= \Wb^{(\ell)}\bigoplus_{h \in H} \zb_i^{(\ell , h)} + \vb^{(\ell)}_i,\\
+\vb_i^{(\ell+1)} &= \psib^{(\ell)}\left(\zb_i^{(\ell)}\right) + \zb_i^{(\ell)}.
+\end{align*}
+
+For the dimensions, we let $\vb_j^{(\ell)} \in \R^d$, $\Wb^{(\ell, h)} \in \R^{d \times d}$, and $\Wb^{(\ell)} \in \R^{dH \times d}$. This means that the partials $\frac{\partial \vb^{(\ell)}_j}{\partial \vb^{(\ell-1)}_i}$ are in $\R^{d \times d}$. Our result applies for matrix norms that are sub-multiplicative. This is true for induced operator norms, which include most common norms used traditionally in machine learning such as $\ell^1$ or $\ell^2$ vector norms and their corresponding matrix norms.
+
+\textbf{Theorem 3.2}\textit{ Let $C_{max} > 0$ be the greatest Lipschitz constant of any layer of a Transformer, $H$ be the number of heads, and $\delta_i^j$ be $1$ iff $i=j$ and $0$ otherwise. Let $k \in \mathcal{P}_{i \to j}$ be a path from $i$ to $j$ of length $L$. Set $\bar{\alpha}_{ij}^{(\ell)} = \sum_{h} \bar{\alpha}_{ij}^{(\ell, h)} + \frac{\delta_i^j}{H}$. Then: 
+\begin{equation}
+    \left \lVert \partial \vb^{(L)}_j / \partial \vb^{(0)}_i \right \rVert \leq C^L_{max} \sum_{k \in \mathcal{P}_{i \to j}}  \bar{\alpha}^{(1)}_{i, k_1} \bar{\alpha}^{(2)}_{k_1, k_2} \dots \bar{\alpha}^{(L)}_{k_{L-1}, k_{L}}.
+\end{equation}    
+}
+\begin{proof}
+We start by decomposing the target partial derivative:
+
+\begin{equation*}
+    \left \lVert \J_{ij}^{(L)} \right \rVert = \left \lVert \frac{\partial \vb^{(L)}_j}{\partial \vb^{(0)}_i}\right \rVert = \left \lVert \sum_{k_{L-1}} \frac{\partial \vb^{(L)}_j}{\partial \vb^{(L-1)}_{k_{L-1}}} \frac{\partial \vb^{(L-1)}_{k_{L-1}}}{\partial \vb^{(0)}_{i}} \right \rVert = \dots = \left \lVert \sum_{k_{L-1}, \dots, k_1} \frac{\partial \vb^{(L)}_j}{\partial \vb^{(L-1)}_{k_{L-1}}} \dots \frac{\partial \vb^{(1)}_{k_{1}}}{\partial \vb^{(0)}_{i}} \right \rVert.
+\end{equation*}
+
+We now focus on bounding the norm of the key sub-partial which is $\partial \vb_j^{(\ell)} / \partial \vb_i^{(\ell -1)}$. We note that the computational graph looks like $\vb_i^{(\ell -1)} \to \zb_i^{(\ell -1, h)} \to \zb_i^{(\ell -1)} \to \vb_i^{(\ell)}$. We decompose the partial of interest:
+
+\begin{align*}
+    \left \lVert \frac{\partial \vb_j^{(\ell)}}{\partial \vb_i^{(\ell -1)}} \right \rVert &= \left \lVert \sum_k \frac{\partial \vb_j^{(\ell)}}{\partial \zb_k^{(\ell - 1)}} \frac{\partial \zb_k^{(\ell - 1)}}{\partial \vb_i^{(\ell- 1)}} \right \rVert = \left \lVert \frac{\partial \vb_j^{(\ell)}}{\partial \zb_j^{(\ell - 1)}} \frac{\partial \zb_j^{(\ell - 1)}}{\partial \vb_i^{(\ell- 1)}} \right \rVert. 
+\end{align*}
+
+We now bound the two components, where we get:
+
+\begin{align*}
+ \left \lVert \frac{\partial \vb_j^{(\ell)}}{\partial \zb_j^{(\ell - 1)}} \right \rVert &= \left \lVert \frac{\partial }{\partial \zb_j^{(\ell - 1)}} \left[\psib^{(\ell)}\left(\zb_j^{(\ell - 1)}\right) + \zb_j^{(\ell - 1)}\right] \right \rVert \leq \left \lVert \psib \right \rVert + 1, 
+\end{align*}
+
+and 
+
+\begin{align*}
+    \left \lVert \frac{\partial \zb_j^{(\ell - 1)}}{\partial \vb_i^{(\ell- 1)}} \right \rVert &= \left \lVert \frac{\partial }{\partial \vb_i^{(\ell- 1)}}\left[ \Wb^{(\ell-1)}\left(\bigoplus_{h \in H} \zb_i^{(\ell-1 , h)}\right) + \vb^{(\ell-1)}_i \right] \right \rVert \\
+    &= \left \lVert \frac{\partial }{\partial \vb_i^{(\ell- 1)}}\left[ \Wb^{(\ell-1)}\left(\bigoplus_{h \in H} \sum_{j \leq i} \alpha_{ij}^{(\ell-1, h)} \Wb^{(\ell-1, h)} \vb^{(\ell-1)}_j\right) + \vb^{(\ell-1)}_i \right] \right \rVert \\
+    &= \left \lVert \Wb^{(\ell-1)} \frac{\partial }{\partial \vb_i^{(\ell- 1)}} \left(\bigoplus_{h \in H} \sum_{j \leq i} \alpha_{ij}^{(\ell-1, h)} \Wb^{(\ell-1, h)} \vb^{(\ell-1)}_j\right) +  \frac{\partial }{\partial \vb_i^{(\ell- 1)}} \vb^{(\ell-1)}_i \right \rVert \\
+    &= \left \lVert \Wb^{(\ell-1)}  \left(\bigoplus_{h \in H} \frac{\partial }{\partial \vb_i^{(\ell- 1)}} \sum_{j \leq i} \alpha_{ij}^{(\ell-1, h)} \Wb^{(\ell-1, h)} \vb^{(\ell-1)}_j\right) +  \Ib_{d \times d} \delta_i^j \right \rVert \\
+    &= \left \lVert \Wb^{(\ell-1)}  \left(\bigoplus_{h \in H} \alpha_{ij}^{(\ell-1, h)} \Wb^{(\ell-1, h)} \Ib_{d \times d} \right) +  \Ib_{d \times d} \delta_i^j \right \rVert \\
+    &\leq \left \lVert \Wb^{(\ell-1)}  \left(\bigoplus_{h \in H} \alpha_{ij}^{(\ell-1, h)} \Wb^{(\ell-1, h)} \Ib_{d \times d} \right) \right \rVert + \left \lVert  \Ib_{d \times d} \delta_i^j \right \rVert \\
+    &\leq \left \lVert \Wb^{(\ell -1)} \right \rVert \sum_{h \in H} \left \lVert \Wb^{(\ell -1, h)} \right \rVert\alpha_{ij}^{(\ell -1 ,h)} + \delta_i^j  \\
+    &\leq \left \lVert \Wb^{(\ell -1)} \right \rVert \left \lVert \Wb^{(\ell -1, h_{max})} \right \rVert \sum_{h \in H} \alpha_{ij}^{(\ell -1 ,h)} + \delta_i^j.
+\end{align*}
+
+This finally gives us the upper bound:
+
+\begin{align*}
+    \left \lVert \frac{\partial \vb_j^{(\ell)}}{\partial \vb_i^{(\ell -1)}} \right \rVert \leq& \left( \left \lVert \psib \right \rVert + 1\right)\left(\left \lVert \Wb^{(\ell -1)} \right \rVert \left \lVert \Wb^{(\ell -1, h_{max})} \right \rVert \sum_{h \in H} \alpha_{ij}^{(\ell -1 ,h)} + \delta_i^j\right) \\
+    =& \left( \left \lVert \psib \right \rVert + 1\right)\left(\left \lVert \Wb^{(\ell -1)} \right \rVert \left \lVert \Wb^{(\ell -1, h_{max})} \right \rVert \sum_{h \in H} \left(\alpha_{ij}^{(\ell -1 ,h)} + \frac{\delta_i^j}{H}\right)\right) \\
+    =& C_\ell \sum_{h \in H} \left(\alpha_{ij}^{(\ell -1 ,h)} + \frac{\delta_i^j}{H} \right),
+\end{align*}
+
+where we let $C_\ell$ be a function of the Lipschiztness of the $\ell$-th Transformer block. Putting this all together we reach the desired result:
+
+\begin{align*}
+    \left \lVert \frac{\partial \vb_j^{(L)}}{\partial \vb_i^{(0)}} \right \rVert &=  \left \lVert \sum_{k_{L-1}, \dots, k_1} \frac{\partial \vb^{(L)}_j}{\partial \vb^{(L-1)}_{k_{L-1}}} \dots \frac{\partial \vb^{(1)}_{k_{1}}}{\partial \vb^{(0)}_{i}} \right \rVert \\
+    \leq& \sum_{k_{L-1}, \dots, k_1} \prod_{\ell} \left \lVert\frac{\partial \vb^{(\ell)}_j}{\partial \vb^{(\ell-1)}_{k_{\ell-1}}} \right \rVert \\
+    &\leq C^L_{max} \sum_{k_{L-1}, \dots, k_1} \prod_{\ell}  \sum_{h \in H} \left(\alpha_{ij}^{(\ell -1 ,h)} + \frac{\delta_i^j}{H} \right) \\
+    &= C^L_{max} \sum_{k \in \mathcal{P}_{i \to j}}  \bar{\alpha}^{(1)}_{i, k_1} \bar{\alpha}^{(2)}_{k_1, k_2} \dots \bar{\alpha}^{(L)}_{k_{L-1}, j}.
+\end{align*}
+
+Above, $k \in \mathcal{P}_{i \to j}$ is a walk of length $L$ from $i$ to $j$ with steps $k_1, \dots k_{L-1}, k_L = j$.
+
+\end{proof}
+
+
+
+
+\end{document}

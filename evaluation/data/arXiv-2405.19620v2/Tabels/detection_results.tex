@@ -1,0 +1,18 @@
+\begin{table}[htbp]
+\centering
+\resizebox{0.6\linewidth}{!}
+{
+\begin{tabular}{l|c|ccccc|c}
+\toprule
+Method & mAP$\uparrow$ & mATE$\downarrow$ & mASE$\downarrow$ & mAOE$\downarrow$ & mAVE$\downarrow$ & mAAE$\downarrow$ & \cellcolor{gray!30}NDS$\uparrow$ \\
+\midrule
+UniAD$^\dagger$ & 0.380 & 0.684 & 0.277 & 0.383 & 0.381 & 0.192 & \cellcolor{gray!30}0.498 \\
+SparseDrive-S & 0.418 & 0.566 & 0.275 & 0.552 & 0.261 & 0.190 & \cellcolor{gray!30}0.525 \\
+SparseDrive-B & \textbf{0.496} & \textbf{0.543} & \textbf{0.269} & \textbf{0.376} & \textbf{0.229} & \textbf{0.179} & \cellcolor{gray!30}\textbf{0.588} \\
+\bottomrule
+\end{tabular}
+}
+\vspace{5pt}
+\caption{\textbf{3D Object Detection}.$\dagger$:Reproduced with official checkpoint.}
+\label{tab:detection}
+\end{table} 

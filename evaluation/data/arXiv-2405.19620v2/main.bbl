@@ -1,0 +1,283 @@
+\begin{thebibliography}{10}
+
+\bibitem{nuscenes}
+Holger Caesar, Varun Bankiti, Alex~H Lang, Sourabh Vora, Venice~Erin Liong, Qiang Xu, Anush Krishnan, Yu~Pan, Giancarlo Baldan, and Oscar Beijbom.
+\newblock nuscenes: A multimodal dataset for autonomous driving.
+\newblock In {\em Proceedings of the IEEE/CVF conference on computer vision and pattern recognition}, pages 11621--11631, 2020.
+
+\bibitem{detr}
+Nicolas Carion, Francisco Massa, Gabriel Synnaeve, Nicolas Usunier, Alexander Kirillov, and Sergey Zagoruyko.
+\newblock End-to-end object detection with transformers.
+\newblock In {\em European conference on computer vision}, pages 213--229. Springer, 2020.
+
+\bibitem{intentnet}
+Sergio Casas, Wenjie Luo, and Raquel Urtasun.
+\newblock Intentnet: Learning to predict intention from raw sensor data.
+\newblock In {\em Conference on Robot Learning}, pages 947--956. PMLR, 2018.
+
+\bibitem{mp3}
+Sergio Casas, Abbas Sadat, and Raquel Urtasun.
+\newblock Mp3: A unified model to map, perceive, predict and plan.
+\newblock In {\em Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition}, pages 14403--14412, 2021.
+
+\bibitem{gkt}
+Shaoyu Chen, Tianheng Cheng, Xinggang Wang, Wenming Meng, Qian Zhang, and Wenyu Liu.
+\newblock Efficient and robust 2d-to-bev representation learning via geometry-guided kernel transformer.
+\newblock {\em arXiv preprint arXiv:2206.04584}, 2022.
+
+\bibitem{codevilla2018end}
+Felipe Codevilla, Matthias M{\"u}ller, Antonio L{\'o}pez, Vladlen Koltun, and Alexey Dosovitskiy.
+\newblock End-to-end driving via conditional imitation learning.
+\newblock In {\em 2018 IEEE international conference on robotics and automation (ICRA)}, pages 4693--4700. IEEE, 2018.
+
+\bibitem{codevilla2019exploring}
+Felipe Codevilla, Eder Santana, Antonio~M L{\'o}pez, and Adrien Gaidon.
+\newblock Exploring the limitations of behavior cloning for autonomous driving.
+\newblock In {\em Proceedings of the IEEE/CVF international conference on computer vision}, pages 9329--9338, 2019.
+
+\bibitem{cui2021lookout}
+Alexander Cui, Sergio Casas, Abbas Sadat, Renjie Liao, and Raquel Urtasun.
+\newblock Lookout: Diverse multi-future prediction and planning for self-driving.
+\newblock In {\em Proceedings of the IEEE/CVF International Conference on Computer Vision}, pages 16107--16116, 2021.
+
+\bibitem{flashattention}
+Tri Dao, Dan Fu, Stefano Ermon, Atri Rudra, and Christopher R{\'e}.
+\newblock Flashattention: Fast and memory-efficient exact attention with io-awareness.
+\newblock {\em Advances in Neural Information Processing Systems}, 35:16344--16359, 2022.
+
+\bibitem{vip3d}
+Junru Gu, Chenxu Hu, Tianyuan Zhang, Xuanyao Chen, Yilun Wang, Yue Wang, and Hang Zhao.
+\newblock Vip3d: End-to-end visual trajectory prediction via 3d agent queries.
+\newblock In {\em Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition}, pages 5496--5506, 2023.
+
+\bibitem{resnet}
+Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun.
+\newblock Deep residual learning for image recognition.
+\newblock In {\em Proceedings of the IEEE conference on computer vision and pattern recognition}, pages 770--778, 2016.
+
+\bibitem{qd3dt}
+Hou-Ning Hu, Yung-Hsu Yang, Tobias Fischer, Trevor Darrell, Fisher Yu, and Min Sun.
+\newblock Monocular quasi-dense 3d object tracking.
+\newblock {\em IEEE Transactions on Pattern Analysis and Machine Intelligence}, 45(2):1992--2008, 2022.
+
+\bibitem{ff}
+Peiyun Hu, Aaron Huang, John Dolan, David Held, and Deva Ramanan.
+\newblock Safe local motion planning with self-supervised freespace forecasting.
+\newblock In {\em Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition}, pages 12732--12741, 2021.
+
+\bibitem{stp3}
+Shengchao Hu, Li~Chen, Penghao Wu, Hongyang Li, Junchi Yan, and Dacheng Tao.
+\newblock St-p3: End-to-end vision-based autonomous driving via spatial-temporal feature learning.
+\newblock In {\em European Conference on Computer Vision}, pages 533--549. Springer, 2022.
+
+\bibitem{uniad}
+Yihan Hu, Jiazhi Yang, Li~Chen, Keyu Li, Chonghao Sima, Xizhou Zhu, Siqi Chai, Senyao Du, Tianwei Lin, Wenhai Wang, et~al.
+\newblock Planning-oriented autonomous driving.
+\newblock In {\em Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition}, pages 17853--17862, 2023.
+
+\bibitem{bevdet4d}
+Junjie Huang and Guan Huang.
+\newblock Bevdet4d: Exploit temporal cues in multi-camera 3d object detection.
+\newblock {\em arXiv preprint arXiv:2203.17054}, 2022.
+
+\bibitem{bevpoolv2}
+Junjie Huang and Guan Huang.
+\newblock Bevpoolv2: A cutting-edge implementation of bevdet toward deployment.
+\newblock {\em arXiv preprint arXiv:2211.17111}, 2022.
+
+\bibitem{bevdet}
+Junjie Huang, Guan Huang, Zheng Zhu, Yun Ye, and Dalong Du.
+\newblock Bevdet: High-performance multi-camera 3d object detection in bird-eye-view.
+\newblock {\em arXiv preprint arXiv:2112.11790}, 2021.
+
+\bibitem{pip}
+Bo~Jiang, Shaoyu Chen, Xinggang Wang, Bencheng Liao, Tianheng Cheng, Jiajie Chen, Helong Zhou, Qian Zhang, Wenyu Liu, and Chang Huang.
+\newblock Perceive, interact, predict: Learning dynamic and static clues for end-to-end motion prediction.
+\newblock {\em arXiv preprint arXiv:2212.02181}, 2022.
+
+\bibitem{vad}
+Bo~Jiang, Shaoyu Chen, Qing Xu, Bencheng Liao, Jiajie Chen, Helong Zhou, Qian Zhang, Wenyu Liu, Chang Huang, and Xinggang Wang.
+\newblock Vad: Vectorized scene representation for efficient autonomous driving.
+\newblock In {\em Proceedings of the IEEE/CVF International Conference on Computer Vision}, pages 8340--8350, 2023.
+
+\bibitem{polarformer}
+Yanqin Jiang, Li~Zhang, Zhenwei Miao, Xiatian Zhu, Jin Gao, Weiming Hu, and Yu-Gang Jiang.
+\newblock Polarformer: Multi-camera 3d object detection with polar transformer.
+\newblock In {\em Proceedings of the AAAI conference on Artificial Intelligence}, volume~37, pages 1042--1050, 2023.
+
+\bibitem{eo}
+Tarasha Khurana, Peiyun Hu, Achal Dave, Jason Ziglar, David Held, and Deva Ramanan.
+\newblock Differentiable raycasting for self-supervised occupancy forecasting.
+\newblock In {\em European Conference on Computer Vision}, pages 353--369. Springer, 2022.
+
+\bibitem{hdmapnet}
+Qi~Li, Yue Wang, Yilun Wang, and Hang Zhao.
+\newblock Hdmapnet: An online hd map construction and evaluation framework.
+\newblock In {\em 2022 International Conference on Robotics and Automation (ICRA)}, pages 4628--4634. IEEE, 2022.
+
+\bibitem{bevstereo}
+Yinhao Li, Han Bao, Zheng Ge, Jinrong Yang, Jianjian Sun, and Zeming Li.
+\newblock Bevstereo: Enhancing depth estimation in multi-view 3d object detection with temporal stereo.
+\newblock In {\em Proceedings of the AAAI Conference on Artificial Intelligence}, volume~37, pages 1486--1494, 2023.
+
+\bibitem{bevdepth}
+Yinhao Li, Zheng Ge, Guanyi Yu, Jinrong Yang, Zengran Wang, Yukang Shi, Jianjian Sun, and Zeming Li.
+\newblock Bevdepth: Acquisition of reliable depth for multi-view 3d object detection.
+\newblock In {\em Proceedings of the AAAI Conference on Artificial Intelligence}, volume~37, pages 1477--1485, 2023.
+
+\bibitem{bevformer}
+Zhiqi Li, Wenhai Wang, Hongyang Li, Enze Xie, Chonghao Sima, Tong Lu, Yu~Qiao, and Jifeng Dai.
+\newblock Bevformer: Learning bird’s-eye-view representation from multi-camera images via spatiotemporal transformers.
+\newblock In {\em European conference on computer vision}, pages 1--18. Springer, 2022.
+
+\bibitem{ego}
+Zhiqi Li, Zhiding Yu, Shiyi Lan, Jiahan Li, Jan Kautz, Tong Lu, and Jose~M Alvarez.
+\newblock Is ego status all you need for open-loop end-to-end autonomous driving?
+\newblock {\em arXiv preprint arXiv:2312.03031}, 2023.
+
+\bibitem{pnpnet}
+Ming Liang, Bin Yang, Wenyuan Zeng, Yun Chen, Rui Hu, Sergio Casas, and Raquel Urtasun.
+\newblock Pnpnet: End-to-end perception and prediction with tracking in the loop.
+\newblock In {\em Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition}, pages 11553--11562, 2020.
+
+\bibitem{maptr}
+Bencheng Liao, Shaoyu Chen, Xinggang Wang, Tianheng Cheng, Qian Zhang, Wenyu Liu, and Chang Huang.
+\newblock Maptr: Structured modeling and learning for online vectorized hd map construction.
+\newblock In {\em The Eleventh International Conference on Learning Representations}, 2022.
+
+\bibitem{focalloss}
+Tsung-Yi Lin, Priya Goyal, Ross Girshick, Kaiming He, and Piotr Doll{\'a}r.
+\newblock Focal loss for dense object detection.
+\newblock In {\em Proceedings of the IEEE international conference on computer vision}, pages 2980--2988, 2017.
+
+\bibitem{sparse4d}
+Xuewu Lin, Tianwei Lin, Zixiang Pei, Lichao Huang, and Zhizhong Su.
+\newblock Sparse4d: Multi-view 3d object detection with sparse spatial-temporal fusion.
+\newblock {\em arXiv preprint arXiv:2211.10581}, 2022.
+
+\bibitem{sparse4dv2}
+Xuewu Lin, Tianwei Lin, Zixiang Pei, Lichao Huang, and Zhizhong Su.
+\newblock Sparse4d v2: Recurrent temporal fusion with sparse model.
+\newblock {\em arXiv preprint arXiv:2305.14018}, 2023.
+
+\bibitem{sparse4dv3}
+Xuewu Lin, Zixiang Pei, Tianwei Lin, Lichao Huang, and Zhizhong Su.
+\newblock Sparse4d v3: Advancing end-to-end 3d detection and tracking.
+\newblock {\em arXiv preprint arXiv:2311.11722}, 2023.
+
+\bibitem{vectormapnet}
+Yicheng Liu, Tianyuan Yuan, Yue Wang, Yilun Wang, and Hang Zhao.
+\newblock Vectormapnet: End-to-end vectorized hd map learning.
+\newblock In {\em International Conference on Machine Learning}, pages 22352--22369. PMLR, 2023.
+
+\bibitem{petr}
+Yingfei Liu, Tiancai Wang, Xiangyu Zhang, and Jian Sun.
+\newblock Petr: Position embedding transformation for multi-view 3d object detection.
+\newblock In {\em European Conference on Computer Vision}, pages 531--548. Springer, 2022.
+
+\bibitem{petrv2}
+Yingfei Liu, Junjie Yan, Fan Jia, Shuailin Li, Aqi Gao, Tiancai Wang, and Xiangyu Zhang.
+\newblock Petrv2: A unified framework for 3d perception from multi-camera images.
+\newblock In {\em Proceedings of the IEEE/CVF International Conference on Computer Vision}, pages 3262--3272, 2023.
+
+\bibitem{bevfusion}
+Zhijian Liu, Haotian Tang, Alexander Amini, Xinyu Yang, Huizi Mao, Daniela~L Rus, and Song Han.
+\newblock Bevfusion: Multi-task multi-sensor fusion with unified bird's-eye view representation.
+\newblock In {\em 2023 IEEE international conference on robotics and automation (ICRA)}, pages 2774--2781. IEEE, 2023.
+
+\bibitem{cosine}
+Ilya Loshchilov and Frank Hutter.
+\newblock Sgdr: Stochastic gradient descent with warm restarts.
+\newblock {\em arXiv preprint arXiv:1608.03983}, 2016.
+
+\bibitem{adamw}
+Ilya Loshchilov and Frank Hutter.
+\newblock Decoupled weight decay regularization.
+\newblock {\em arXiv preprint arXiv:1711.05101}, 2017.
+
+\bibitem{faf}
+Wenjie Luo, Bin Yang, and Raquel Urtasun.
+\newblock Fast and furious: Real time end-to-end 3d detection, tracking and motion forecasting with a single convolutional net.
+\newblock In {\em Proceedings of the IEEE conference on Computer Vision and Pattern Recognition}, pages 3569--3577, 2018.
+
+\bibitem{trackformer}
+Tim Meinhardt, Alexander Kirillov, Laura Leal-Taixe, and Christoph Feichtenhofer.
+\newblock Trackformer: Multi-object tracking with transformers.
+\newblock In {\em Proceedings of the IEEE/CVF conference on computer vision and pattern recognition}, pages 8844--8854, 2022.
+
+\bibitem{lss}
+Jonah Philion and Sanja Fidler.
+\newblock Lift, splat, shoot: Encoding images from arbitrary camera rigs by implicitly unprojecting to 3d.
+\newblock In {\em Computer Vision--ECCV 2020: 16th European Conference, Glasgow, UK, August 23--28, 2020, Proceedings, Part XIV 16}, pages 194--210. Springer, 2020.
+
+\bibitem{pomerleau1988alvinn}
+Dean~A Pomerleau.
+\newblock Alvinn: An autonomous land vehicle in a neural network.
+\newblock {\em Advances in neural information processing systems}, 1, 1988.
+
+\bibitem{prakash2021multi}
+Aditya Prakash, Kashyap Chitta, and Andreas Geiger.
+\newblock Multi-modal fusion transformer for end-to-end autonomous driving.
+\newblock In {\em Proceedings of the IEEE/CVF conference on computer vision and pattern recognition}, pages 7077--7087, 2021.
+
+\bibitem{sadat2020perceive}
+Abbas Sadat, Sergio Casas, Mengye Ren, Xinyu Wu, Pranaab Dhawan, and Raquel Urtasun.
+\newblock Perceive, predict, and plan: Safe motion planning through interpretable semantic representations.
+\newblock In {\em Computer Vision--ECCV 2020: 16th European Conference, Glasgow, UK, August 23--28, 2020, Proceedings, Part XXIII 16}, pages 414--430. Springer, 2020.
+
+\bibitem{transtrack}
+Peize Sun, Jinkun Cao, Yi~Jiang, Rufeng Zhang, Enze Xie, Zehuan Yuan, Changhu Wang, and Ping Luo.
+\newblock Transtrack: Multiple object tracking with transformer.
+\newblock {\em arXiv preprint arXiv:2012.15460}, 2020.
+
+\bibitem{streampetr}
+Shihao Wang, Yingfei Liu, Tiancai Wang, Ying Li, and Xiangyu Zhang.
+\newblock Exploring object-centric temporal modeling for efficient multi-view 3d object detection.
+\newblock In {\em Proceedings of the IEEE/CVF International Conference on Computer Vision}, pages 3621--3631, 2023.
+
+\bibitem{bevformerv2}
+Chenyu Yang, Yuntao Chen, Hao Tian, Chenxin Tao, Xizhou Zhu, Zhaoxiang Zhang, Gao Huang, Hongyang Li, Yu~Qiao, Lewei Lu, et~al.
+\newblock Bevformer v2: Adapting modern image backbones to bird's-eye-view recognition via perspective supervision.
+\newblock In {\em Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition}, pages 17830--17839, 2023.
+
+\bibitem{fusionad}
+Tengju Ye, Wei Jing, Chunyong Hu, Shikun Huang, Lingping Gao, Fangzhen Li, Jingke Wang, Ke~Guo, Wencong Xiao, Weibo Mao, et~al.
+\newblock Fusionad: Multi-modality fusion for prediction and planning tasks of autonomous driving.
+\newblock {\em arXiv preprint arXiv:2308.01006}, 2023.
+
+\bibitem{motrv3}
+En~Yu, Tiancai Wang, Zhuoling Li, Yuang Zhang, Xiangyu Zhang, and Wenbing Tao.
+\newblock Motrv3: Release-fetch supervision for end-to-end multi-object tracking.
+\newblock {\em arXiv preprint arXiv:2305.14298}, 2023.
+
+\bibitem{streammapnet}
+Tianyuan Yuan, Yicheng Liu, Yue Wang, Yilun Wang, and Hang Zhao.
+\newblock Streammapnet: Streaming mapping network for vectorized online hd map construction.
+\newblock In {\em Proceedings of the IEEE/CVF Winter Conference on Applications of Computer Vision}, pages 7356--7365, 2024.
+
+\bibitem{motr}
+Fangao Zeng, Bin Dong, Yuang Zhang, Tiancai Wang, Xiangyu Zhang, and Yichen Wei.
+\newblock Motr: End-to-end multiple-object tracking with transformer.
+\newblock In {\em European Conference on Computer Vision}, pages 659--675. Springer, 2022.
+
+\bibitem{admlp}
+Jiang-Tian Zhai, Ze~Feng, Jinhao Du, Yongqiang Mao, Jiang-Jiang Liu, Zichang Tan, Yifu Zhang, Xiaoqing Ye, and Jingdong Wang.
+\newblock Rethinking the open-loop evaluation of end-to-end autonomous driving in nuscenes.
+\newblock {\em arXiv preprint arXiv:2305.10430}, 2023.
+
+\bibitem{mutr3d}
+Tianyuan Zhang, Xuanyao Chen, Yue Wang, Yilun Wang, and Hang Zhao.
+\newblock Mutr3d: A multi-camera tracking framework via 3d-to-2d queries.
+\newblock In {\em Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition}, pages 4537--4546, 2022.
+
+\bibitem{motrv2}
+Yuang Zhang, Tiancai Wang, and Xiangyu Zhang.
+\newblock Motrv2: Bootstrapping end-to-end multi-object tracking by pretrained object detectors.
+\newblock In {\em Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition}, pages 22056--22065, 2023.
+
+\bibitem{graphad}
+Yunpeng Zhang, Deheng Qian, Ding Li, Yifeng Pan, Yong Chen, Zhenbao Liang, Zhiyao Zhang, Shurui Zhang, Hongxu Li, Maolei Fu, et~al.
+\newblock Graphad: Interaction scene graph for end-to-end autonomous driving.
+\newblock {\em arXiv preprint arXiv:2403.19098}, 2024.
+
+\end{thebibliography}

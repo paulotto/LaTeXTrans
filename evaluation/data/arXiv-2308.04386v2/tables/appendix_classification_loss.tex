@@ -1,0 +1,21 @@
+\begin{table}[t]
+    \centering
+    \caption{
+        Comparisons of our CSEM with reference-based evaluation on different optimization methods. 
+    }
+    \scalebox{0.84}{
+    \begin{tabular}{lccccccc}
+    \toprule[1.1pt]
+    \multirow{2}{*}{Method}         & \multicolumn{1}{c}{\multirow{2}{*}{\begin{tabular}[c]{@{}c@{}}Evaluation\\ Model\end{tabular}}} & \multicolumn{3}{c}{ChatGPT}                      & \multicolumn{3}{c}{Human}                                \\ \cmidrule(l){3-5} \cmidrule(l){6-8} 
+    & \multicolumn{1}{c}{}          & Kend.          & Spear.         & Pear.          & Kend.          & Spear.         & Pear.                   \\ \midrule
+    \multirow{2}{*}{Classification} 
+    & CSEM-base       & 0.546       &0.649          & 0.635          & 0.307          & 0.478          & 0.483         \\
+    & CSEM-large      & 0.575       &0.668          & 0.677          & 0.312          & 0.499          & 0.532         \\ \hdashline
+    \multirow{2}{*}{Regression}     
+    & CSEM-base       & 0.584     & 0.667      & 0.701       & 0.372          & 0.512          & 0.535   \\
+    & CSEM-large      & \textbf{0.613}        & \textbf{0.743}         & \textbf{0.782}          & \textbf{0.386}          & \textbf{0.529}          & \textbf{0.566} \\ \bottomrule[1.1pt]
+    \end{tabular}
+    }
+    \vspace{-1mm}
+    \label{tab:classification}
+\end{table}

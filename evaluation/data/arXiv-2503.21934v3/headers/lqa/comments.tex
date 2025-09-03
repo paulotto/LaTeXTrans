@@ -1,0 +1,13 @@
+
+\newcommand{\todo}[1]{
+	\message{^^JTODO on page \thepage: #1^^J}
+	\textcolor{red}{\textbf{TODO:} #1}
+}
+
+\newenvironment{commentlist}{
+\color{gray}
+\begin{itemize}
+}
+{
+\end{itemize}
+}

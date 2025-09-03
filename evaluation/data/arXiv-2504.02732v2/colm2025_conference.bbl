@@ -1,0 +1,151 @@
+\begin{thebibliography}{27}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Arroyo et~al.(2025)Arroyo, Gravina, Gutteridge, Barbero, Gallicchio, Dong, Bronstein, and Vandergheynst]{arroyo2025vanishing}
+{\'A}lvaro Arroyo, Alessio Gravina, Benjamin Gutteridge, Federico Barbero, Claudio Gallicchio, Xiaowen Dong, Michael Bronstein, and Pierre Vandergheynst.
+\newblock On vanishing gradients, over-smoothing, and over-squashing in gnns: Bridging recurrent and graph learning.
+\newblock \emph{arXiv preprint arXiv:2502.10818}, 2025.
+
+\bibitem[Barbero et~al.(2024)Barbero, Banino, Kapturowski, Kumaran, Madeira~Ara{\'u}jo, Vitvitskyi, Pascanu, and Veli{\v{c}}kovi{\'c}]{barbero2024transformers}
+Federico Barbero, Andrea Banino, Steven Kapturowski, Dharshan Kumaran, Jo{\~a}o Madeira~Ara{\'u}jo, Oleksandr Vitvitskyi, Razvan Pascanu, and Petar Veli{\v{c}}kovi{\'c}.
+\newblock Transformers need glasses! information over-squashing in language tasks.
+\newblock \emph{Advances in Neural Information Processing Systems}, 37:\penalty0 98111--98142, 2024.
+
+\bibitem[Barbero et~al.(2025)Barbero, Vitvitskyi, Perivolaropoulos, Pascanu, and Veli{\v{c}}kovi{\'c}]{barbero2025round}
+Federico Barbero, Alex Vitvitskyi, Christos Perivolaropoulos, Razvan Pascanu, and Petar Veli{\v{c}}kovi{\'c}.
+\newblock Round and round we go! what makes rotary positional encodings useful?
+\newblock In \emph{The Thirteenth International Conference on Learning Representations}, 2025.
+\newblock URL \url{https://openreview.net/forum?id=GtvuNrk58a}.
+
+\bibitem[Brown et~al.(2020)Brown, Mann, Ryder, Subbiah, Kaplan, Dhariwal, Neelakantan, Shyam, Sastry, Askell, et~al.]{brown2020language}
+Tom Brown, Benjamin Mann, Nick Ryder, Melanie Subbiah, Jared~D Kaplan, Prafulla Dhariwal, Arvind Neelakantan, Pranav Shyam, Girish Sastry, Amanda Askell, et~al.
+\newblock Language models are few-shot learners.
+\newblock \emph{Advances in neural information processing systems}, 33:\penalty0 1877--1901, 2020.
+
+\bibitem[Cancedda(2024)]{cancedda2024spectral}
+Nicola Cancedda.
+\newblock Spectral filters, dark signals, and attention sinks.
+\newblock \emph{arXiv preprint arXiv:2402.09221}, 2024.
+
+\bibitem[Di~Giovanni et~al.(2023)Di~Giovanni, Rowbottom, Chamberlain, Markovich, and Bronstein]{di2022understanding}
+Francesco Di~Giovanni, James Rowbottom, Benjamin~Paul Chamberlain, Thomas Markovich, and Michael~M. Bronstein.
+\newblock Understanding convolution on graphs via energies.
+\newblock \emph{Transactions on Machine Learning Research}, 2023.
+\newblock ISSN 2835-8856.
+
+\bibitem[Dong et~al.(2021)Dong, Cordonnier, and Loukas]{dong2021attention}
+Yihe Dong, Jean-Baptiste Cordonnier, and Andreas Loukas.
+\newblock Attention is not all you need: Pure attention loses rank doubly exponentially with depth.
+\newblock In \emph{International conference on machine learning}, pp.\  2793--2803. PMLR, 2021.
+
+\bibitem[Dubey et~al.(2024)Dubey, Jauhri, Pandey, Kadian, Al-Dahle, Letman, Mathur, Schelten, Yang, Fan, et~al.]{dubey2024llama}
+Abhimanyu Dubey, Abhinav Jauhri, Abhinav Pandey, Abhishek Kadian, Ahmad Al-Dahle, Aiesha Letman, Akhil Mathur, Alan Schelten, Amy Yang, Angela Fan, et~al.
+\newblock The llama 3 herd of models.
+\newblock \emph{arXiv preprint arXiv:2407.21783}, 2024.
+
+\bibitem[Ge et~al.(2024)Ge, Zhang, Liu, Zhang, Han, and Gao]{ge2024model}
+Suyu Ge, Yunan Zhang, Liyuan Liu, Minjia Zhang, Jiawei Han, and Jianfeng Gao.
+\newblock Model tells you what to discard: Adaptive {KV} cache compression for {LLM}s.
+\newblock In \emph{The Twelfth International Conference on Learning Representations}, 2024.
+\newblock URL \url{https://openreview.net/forum?id=uNrFpDPMyo}.
+
+\bibitem[{Gemma Team} et~al.(2024){Gemma Team}, Mesnard, Hardin, Dadashi, Bhupatiraju, Pathak, Sifre, Rivi{\`e}re, Kale, Love, et~al.]{team2024gemma}
+{Gemma Team}, Thomas Mesnard, Cassidy Hardin, Robert Dadashi, Surya Bhupatiraju, Shreya Pathak, Laurent Sifre, Morgane Rivi{\`e}re, Mihir~Sanjay Kale, Juliette Love, et~al.
+\newblock Gemma: Open models based on gemini research and technology.
+\newblock \emph{arXiv preprint arXiv:2403.08295}, 2024.
+
+\bibitem[Geshkovski et~al.(2023)Geshkovski, Letrouit, Polyanskiy, and Rigollet]{geshkovski2023mathematical}
+Borjan Geshkovski, Cyril Letrouit, Yury Polyanskiy, and Philippe Rigollet.
+\newblock A mathematical perspective on transformers.
+\newblock \emph{arXiv preprint arXiv:2312.10794}, 2023.
+
+\bibitem[Gu et~al.(2025)Gu, Pang, Du, Liu, Zhang, Du, Wang, and Lin]{gu2025when}
+Xiangming Gu, Tianyu Pang, Chao Du, Qian Liu, Fengzhuo Zhang, Cunxiao Du, Ye~Wang, and Min Lin.
+\newblock When attention sink emerges in language models: An empirical view.
+\newblock In \emph{The Thirteenth International Conference on Learning Representations}, 2025.
+\newblock URL \url{https://openreview.net/forum?id=78Nn4QJTEN}.
+
+\bibitem[Guo et~al.(2024)Guo, Pai, Bai, Jiao, Jordan, and Mei]{guo2024active}
+Tianyu Guo, Druv Pai, Yu~Bai, Jiantao Jiao, Michael~I Jordan, and Song Mei.
+\newblock Active-dormant attention heads: Mechanistically demystifying extreme-token phenomena in llms.
+\newblock \emph{arXiv preprint arXiv:2410.13835}, 2024.
+
+\bibitem[Keriven(2022)]{keriven2022not}
+Nicolas Keriven.
+\newblock Not too little, not too much: a theoretical analysis of graph (over) smoothing.
+\newblock \emph{Advances in Neural Information Processing Systems}, 35:\penalty0 2268--2281, 2022.
+
+\bibitem[Liu et~al.(2024)Liu, Bai, Lin, Li, Gao, Xu, Hou, Yao, and Yuan]{liu-etal-2024-intactkv}
+Ruikang Liu, Haoli Bai, Haokun Lin, Yuening Li, Han Gao, Zhengzhuo Xu, Lu~Hou, Jun Yao, and Chun Yuan.
+\newblock {I}ntact{KV}: Improving large language model quantization by keeping pivot tokens intact.
+\newblock In Lun-Wei Ku, Andre Martins, and Vivek Srikumar (eds.), \emph{Findings of the Association for Computational Linguistics: ACL 2024}, pp.\  7716--7741, Bangkok, Thailand, August 2024. Association for Computational Linguistics.
+\newblock \doi{10.18653/v1/2024.findings-acl.460}.
+\newblock URL \url{https://aclanthology.org/2024.findings-acl.460/}.
+
+\bibitem[Naderi et~al.(2024)Naderi, Saada, and Tanner]{naderi2024mind}
+Alireza Naderi, Thiziri~Nait Saada, and Jared Tanner.
+\newblock Mind the gap: a spectral analysis of rank collapse and signal propagation in transformers.
+\newblock \emph{arXiv preprint arXiv:2410.07799}, 2024.
+
+\bibitem[Noci et~al.(2022)Noci, Anagnostidis, Biggio, Orvieto, Singh, and Lucchi]{noci2022signal}
+Lorenzo Noci, Sotiris Anagnostidis, Luca Biggio, Antonio Orvieto, Sidak~Pal Singh, and Aurelien Lucchi.
+\newblock Signal propagation in transformers: Theoretical perspectives and the role of rank collapse.
+\newblock \emph{Advances in Neural Information Processing Systems}, 35:\penalty0 27198--27211, 2022.
+
+\bibitem[Radford et~al.(2018)Radford, Narasimhan, Salimans, Sutskever, et~al.]{radford2018improving}
+Alec Radford, Karthik Narasimhan, Tim Salimans, Ilya Sutskever, et~al.
+\newblock Improving language understanding by generative pre-training.
+\newblock 2018.
+
+\bibitem[Raposo et~al.(2024)Raposo, Ritter, Richards, Lillicrap, Humphreys, and Santoro]{raposo2024mixture}
+David Raposo, Sam Ritter, Blake Richards, Timothy Lillicrap, Peter~Conway Humphreys, and Adam Santoro.
+\newblock Mixture-of-depths: Dynamically allocating compute in transformer-based language models.
+\newblock \emph{arXiv preprint arXiv:2404.02258}, 2024.
+
+\bibitem[Skean et~al.(2025)Skean, Arefin, Zhao, Patel, Naghiyev, LeCun, and Shwartz-Ziv]{skean2025layer}
+Oscar Skean, Md~Rifat Arefin, Dan Zhao, Niket Patel, Jalal Naghiyev, Yann LeCun, and Ravid Shwartz-Ziv.
+\newblock Layer by layer: Uncovering hidden representations in language models.
+\newblock \emph{arXiv preprint arXiv:2502.02013}, 2025.
+
+\bibitem[Sun et~al.(2024)Sun, Chen, Kolter, and Liu]{sun2024massive}
+Mingjie Sun, Xinlei Chen, J~Zico Kolter, and Zhuang Liu.
+\newblock Massive activations in large language models.
+\newblock In \emph{First Conference on Language Modeling}, 2024.
+\newblock URL \url{https://openreview.net/forum?id=F7aAhfitX6}.
+
+\bibitem[Veli{\v{c}}kovi{\'c} et~al.(2024)Veli{\v{c}}kovi{\'c}, Perivolaropoulos, Barbero, and Pascanu]{velivckovic2024softmax}
+Petar Veli{\v{c}}kovi{\'c}, Christos Perivolaropoulos, Federico Barbero, and Razvan Pascanu.
+\newblock softmax is not enough (for sharp out-of-distribution).
+\newblock \emph{arXiv preprint arXiv:2410.01104}, 2024.
+
+\bibitem[Vitvitskyi et~al.(2025)Vitvitskyi, Ara{\'u}jo, Lackenby, and Veli{\v{c}}kovi{\'c}]{vitvitskyi2025makes}
+Alex Vitvitskyi, Joao~GM Ara{\'u}jo, Marc Lackenby, and Petar Veli{\v{c}}kovi{\'c}.
+\newblock What makes a good feedforward computational graph?
+\newblock \emph{arXiv preprint arXiv:2502.06751}, 2025.
+
+\bibitem[Wu et~al.(2024)Wu, Ajorlou, Wang, Jegelka, and Jadbabaie]{wu2024role}
+Xinyi Wu, Amir Ajorlou, Yifei Wang, Stefanie Jegelka, and Ali Jadbabaie.
+\newblock On the role of attention masks and layernorm in transformers.
+\newblock \emph{arXiv preprint arXiv:2405.18781}, 2024.
+
+\bibitem[Xiao et~al.(2024)Xiao, Tian, Chen, Han, and Lewis]{xiao2024efficient}
+Guangxuan Xiao, Yuandong Tian, Beidi Chen, Song Han, and Mike Lewis.
+\newblock Efficient streaming language models with attention sinks.
+\newblock In \emph{The Twelfth International Conference on Learning Representations}, 2024.
+\newblock URL \url{https://openreview.net/forum?id=NG7sS51zVF}.
+
+\bibitem[Yona et~al.(2025)Yona, Shumailov, Hayes, Barbero, and Gandelsman]{yona2025interpreting}
+Itay Yona, Ilia Shumailov, Jamie Hayes, Federico Barbero, and Yossi Gandelsman.
+\newblock Interpreting the repeated token phenomenon in large language models.
+\newblock \emph{arXiv preprint arXiv:2503.08908}, 2025.
+
+\bibitem[Zhao et~al.(2024)Zhao, Qu, Staniszewski, Tworkowski, Liu, Mi{\l}o{\'s}, Wu, and Minervini]{zhao2024analysing}
+Yu~Zhao, Yuanbin Qu, Konrad Staniszewski, Szymon Tworkowski, Wei Liu, Piotr Mi{\l}o{\'s}, Yuxiang Wu, and Pasquale Minervini.
+\newblock Analysing the impact of sequence composition on language model pre-training.
+\newblock \emph{arXiv preprint arXiv:2402.13991}, 2024.
+
+\end{thebibliography}

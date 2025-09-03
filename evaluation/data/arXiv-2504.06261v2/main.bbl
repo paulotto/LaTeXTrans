@@ -1,0 +1,324 @@
+\begin{thebibliography}{56}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Anthropic(2024)]{AnthropicClaude3.7Sonnet}
+Anthropic.
+\newblock Claude 3.7 sonnet and claude code, 2024.
+\newblock URL \url{https://www.anthropic.com/news/claude-3-7-sonnet}.
+\newblock Accessed: 2025.04.02.
+
+\bibitem[Bahdanau et~al.(2015)Bahdanau, Cho, and Bengio]{bahdanau2014neural}
+Dzmitry Bahdanau, Kyunghyun Cho, and Yoshua Bengio.
+\newblock Neural machine translation by jointly learning to align and translate.
+\newblock In \emph{Proceedings of the 3rd International Conference on Learning Representations (ICLR)}, 2015.
+\newblock URL \url{https://arxiv.org/abs/1409.0473}.
+
+\bibitem[Bai et~al.(2024)Bai, Zhang, Lv, Zheng, Zhu, Hou, Dong, Tang, and Li]{Bai2024LongWriterU1}
+Yushi Bai, Jiajie Zhang, Xin Lv, Linzhi Zheng, Siqi Zhu, Lei Hou, Yuxiao Dong, Jie Tang, and Juanzi Li.
+\newblock Longwriter: Unleashing 10,000+ word generation from long context llms.
+\newblock \emph{ArXiv}, abs/2408.07055, 2024.
+\newblock URL \url{https://api.semanticscholar.org/CorpusID:271859903}.
+
+\bibitem[Beeching et~al.()Beeching, Tunstall, and Rush]{beeching2024scalingtesttimecompute}
+Edward Beeching, Lewis Tunstall, and Sasha Rush.
+\newblock Scaling test-time compute with open models.
+\newblock URL \url{https://huggingface.co/spaces/HuggingFaceH4/blogpost-scaling-test-time-compute}.
+
+\bibitem[Cai et~al.(2024)Cai, Li, Wang, Wang, and Song]{cai2024medusa}
+Tianle Cai, Xinyun Li, Zhiruo Wang, Yuhuai Wang, and Dawn Song.
+\newblock Medusa: Simple llm inference acceleration framework with multiple decoding heads.
+\newblock \emph{arXiv preprint arXiv:2401.10774}, 2024.
+
+\bibitem[Chen et~al.(2024)Chen, Saha, and Bansal]{chen-etal-2024-reconcile}
+Justin Chen, Swarnadeep Saha, and Mohit Bansal.
+\newblock {R}e{C}oncile: Round-table conference improves reasoning via consensus among diverse {LLM}s.
+\newblock In Lun-Wei Ku, Andre Martins, and Vivek Srikumar, editors, \emph{Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)}, pages 7066--7085, Bangkok, Thailand, August 2024. Association for Computational Linguistics.
+\newblock \doi{10.18653/v1/2024.acl-long.381}.
+\newblock URL \url{https://aclanthology.org/2024.acl-long.381/}.
+
+\bibitem[Cobbe et~al.(2021)Cobbe, Kosaraju, Bavarian, Chen, Jun, Kaiser, Plappert, Tworek, Hilton, Nakano, Hesse, and Schulman]{cobbe2021gsm8k}
+Karl Cobbe, Vineet Kosaraju, Mohammad Bavarian, Mark Chen, Heewoo Jun, Lukasz Kaiser, Matthias Plappert, Jerry Tworek, Jacob Hilton, Reiichiro Nakano, Christopher Hesse, and John Schulman.
+\newblock Training verifiers to solve math word problems.
+\newblock \emph{arXiv preprint arXiv:2110.14168}, 2021.
+
+\bibitem[Cohen et~al.(2023)Cohen, Hamri, Geva, and Globerson]{cohen-etal-2023-lm}
+Roi Cohen, May Hamri, Mor Geva, and Amir Globerson.
+\newblock {LM} vs {LM}: Detecting factual errors via cross examination.
+\newblock In Houda Bouamor, Juan Pino, and Kalika Bali, editors, \emph{Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing}, pages 12621--12640, Singapore, December 2023. Association for Computational Linguistics.
+\newblock \doi{10.18653/v1/2023.emnlp-main.778}.
+\newblock URL \url{https://aclanthology.org/2023.emnlp-main.778/}.
+
+\bibitem[DeepSeek-AI et~al.(2025)DeepSeek-AI, Guo, Yang, Zhang, Song, Zhang, Xu, Zhu, Ma, Wang, Bi, Zhang, Yu, Wu, Wu, Gou, Shao, Li, Gao, Liu, Xue, Wang, Wu, Feng, Lu, Zhao, Deng, Zhang, Ruan, Dai, Chen, Ji, Li, Lin, Dai, Luo, Hao, Chen, Li, Zhang, Bao, Xu, Wang, Ding, Xin, Gao, Qu, Li, Guo, Li, Wang, Chen, Yuan, Qiu, Li, Cai, Ni, Liang, Chen, Dong, Hu, Gao, Guan, Huang, Yu, Wang, Zhang, Zhao, Wang, Zhang, Xu, Xia, Zhang, Zhang, Tang, Li, Wang, Li, Tian, Huang, Zhang, Wang, Chen, Du, Ge, Zhang, Pan, Wang, Chen, Jin, Chen, Lu, Zhou, Chen, Ye, Wang, Yu, Zhou, Pan, Li, Zhou, Wu, Ye, Yun, Pei, Sun, Wang, Zeng, Zhao, Liu, Liang, Gao, Yu, Zhang, Xiao, An, Liu, Wang, Chen, Nie, Cheng, Liu, Xie, Liu, Yang, Li, Su, Lin, Li, Jin, Shen, Chen, Sun, Wang, Song, Zhou, Wang, Shan, Li, Wang, Wei, Zhang, Xu, Li, Zhao, Sun, Wang, Yu, Zhang, Shi, Xiong, He, Piao, Wang, Tan, Ma, Liu, Guo, Ou, Wang, Gong, Zou, He, Xiong, Luo, You, Liu, Zhou, Zhu, Xu, Huang, Li, Zheng, Zhu, Ma, Tang, Zha, Yan, Ren, Ren, Sha, Fu, Xu, Xie, Zhang,
+  Hao, Ma, Yan, Wu, Gu, Zhu, Liu, Li, Xie, Song, Pan, Huang, Xu, Zhang, and Zhang]{deepseek_r1}
+DeepSeek-AI, Daya Guo, Dejian Yang, Haowei Zhang, Junxiao Song, Ruoyu Zhang, Runxin Xu, Qihao Zhu, Shirong Ma, Peiyi Wang, Xiao Bi, Xiaokang Zhang, Xingkai Yu, Yu~Wu, Z.~F. Wu, Zhibin Gou, Zhihong Shao, Zhuoshu Li, Ziyi Gao, Aixin Liu, Bing Xue, Bingxuan Wang, Bochao Wu, Bei Feng, Chengda Lu, Chenggang Zhao, Chengqi Deng, Chenyu Zhang, Chong Ruan, Damai Dai, Deli Chen, Dongjie Ji, Erhang Li, Fangyun Lin, Fucong Dai, Fuli Luo, Guangbo Hao, Guanting Chen, Guowei Li, H.~Zhang, Han Bao, Hanwei Xu, Haocheng Wang, Honghui Ding, Huajian Xin, Huazuo Gao, Hui Qu, Hui Li, Jianzhong Guo, Jiashi Li, Jiawei Wang, Jingchang Chen, Jingyang Yuan, Junjie Qiu, Junlong Li, J.~L. Cai, Jiaqi Ni, Jian Liang, Jin Chen, Kai Dong, Kai Hu, Kaige Gao, Kang Guan, Kexin Huang, Kuai Yu, Lean Wang, Lecong Zhang, Liang Zhao, Litong Wang, Liyue Zhang, Lei Xu, Leyi Xia, Mingchuan Zhang, Minghua Zhang, Minghui Tang, Meng Li, Miaojun Wang, Mingming Li, Ning Tian, Panpan Huang, Peng Zhang, Qiancheng Wang, Qinyu Chen, Qiushi Du, Ruiqi Ge, Ruisong
+  Zhang, Ruizhe Pan, Runji Wang, R.~J. Chen, R.~L. Jin, Ruyi Chen, Shanghao Lu, Shangyan Zhou, Shanhuang Chen, Shengfeng Ye, Shiyu Wang, Shuiping Yu, Shunfeng Zhou, Shuting Pan, S.~S. Li, Shuang Zhou, Shaoqing Wu, Shengfeng Ye, Tao Yun, Tian Pei, Tianyu Sun, T.~Wang, Wangding Zeng, Wanjia Zhao, Wen Liu, Wenfeng Liang, Wenjun Gao, Wenqin Yu, Wentao Zhang, W.~L. Xiao, Wei An, Xiaodong Liu, Xiaohan Wang, Xiaokang Chen, Xiaotao Nie, Xin Cheng, Xin Liu, Xin Xie, Xingchao Liu, Xinyu Yang, Xinyuan Li, Xuecheng Su, Xuheng Lin, X.~Q. Li, Xiangyue Jin, Xiaojin Shen, Xiaosha Chen, Xiaowen Sun, Xiaoxiang Wang, Xinnan Song, Xinyi Zhou, Xianzu Wang, Xinxia Shan, Y.~K. Li, Y.~Q. Wang, Y.~X. Wei, Yang Zhang, Yanhong Xu, Yao Li, Yao Zhao, Yaofeng Sun, Yaohui Wang, Yi~Yu, Yichao Zhang, Yifan Shi, Yiliang Xiong, Ying He, Yishi Piao, Yisong Wang, Yixuan Tan, Yiyang Ma, Yiyuan Liu, Yongqiang Guo, Yuan Ou, Yuduan Wang, Yue Gong, Yuheng Zou, Yujia He, Yunfan Xiong, Yuxiang Luo, Yuxiang You, Yuxuan Liu, Yuyang Zhou, Y.~X. Zhu,
+  Yanhong Xu, Yanping Huang, Yaohui Li, Yi~Zheng, Yuchen Zhu, Yunxian Ma, Ying Tang, Yukun Zha, Yuting Yan, Z.~Z. Ren, Zehui Ren, Zhangli Sha, Zhe Fu, Zhean Xu, Zhenda Xie, Zhengyan Zhang, Zhewen Hao, Zhicheng Ma, Zhigang Yan, Zhiyu Wu, Zihui Gu, Zijia Zhu, Zijun Liu, Zilin Li, Ziwei Xie, Ziyang Song, Zizheng Pan, Zhen Huang, Zhipeng Xu, Zhongyu Zhang, and Zhen Zhang.
+\newblock Deepseek-r1: Incentivizing reasoning capability in llms via reinforcement learning, 2025.
+\newblock URL \url{https://arxiv.org/abs/2501.12948}.
+
+\bibitem[Ding et~al.(2025)Ding, Jiang, Liu, Jing, Guo, Wang, Zhang, Wang, Liu, Du, Liu, and Tao]{ding2025dynamicparalleltreesearch}
+Yifu Ding, Wentao Jiang, Shunyu Liu, Yongcheng Jing, Jinyang Guo, Yingjie Wang, Jing Zhang, Zengmao Wang, Ziwei Liu, Bo~Du, Xianglong Liu, and Dacheng Tao.
+\newblock Dynamic parallel tree search for efficient llm reasoning, 2025.
+\newblock URL \url{https://arxiv.org/abs/2502.16235}.
+
+\bibitem[Du et~al.(2023)Du, Li, Torralba, Tenenbaum, and Mordatch]{du2024improving}
+Yilun Du, Shuang Li, Antonio Torralba, Joshua~B. Tenenbaum, and Igor Mordatch.
+\newblock Improving factuality and reasoning in language models through multiagent debate.
+\newblock In \emph{Forty-first International Conference on Machine Learning}, 2023.
+\newblock URL \url{https://openreview.net/forum?id=zj7YuTE4t8}.
+
+\bibitem[Dubey et~al.(2024)Dubey, Jauhri, Pandey, Kadian, Al-Dahle, Letman, Mathur, Schelten, Yang, Fan, et~al.]{dubey2024llama}
+Abhimanyu Dubey, Abhinav Jauhri, Abhinav Pandey, Abhishek Kadian, Ahmad Al-Dahle, Aiesha Letman, Akhil Mathur, Alan Schelten, Amy Yang, Angela Fan, et~al.
+\newblock The llama 3 herd of models.
+\newblock \emph{arXiv preprint arXiv:2407.21783}, 2024.
+
+\bibitem[Entin and Serfaty(1999)]{EntinSerfaty1999}
+Elliot~E. Entin and Daniel Serfaty.
+\newblock Adaptive team coordination.
+\newblock \emph{Human Factors}, 41\penalty0 (2):\penalty0 312--325, 1999.
+
+\bibitem[Gao et~al.(2024)Gao, Xie, Mao, Wu, Xia, Mi, and Wei]{meta_reasoning_gao2024}
+Peizhong Gao, Ao~Xie, Shaoguang Mao, Wenshan Wu, Yan Xia, Haipeng Mi, and Furu Wei.
+\newblock Meta reasoning for large language models.
+\newblock \emph{arXiv preprint arXiv:2406.11698}, 2024.
+
+\bibitem[Gim et~al.(2024)Gim, seob Lee, and Zhong]{gim2024asynchronousllmfunctioncalling}
+In~Gim, Seung seob Lee, and Lin Zhong.
+\newblock Asynchronous llm function calling, 2024.
+\newblock URL \url{https://arxiv.org/abs/2412.07017}.
+
+\bibitem[{Google DeepMind}(2025)]{googledeepmind2025gemini25thinking}
+{Google DeepMind}.
+\newblock {Gemini 2.5: Our Newest Gemini Model with Thinking}.
+\newblock \url{https://blog.google/technology/google-deepmind/gemini-model-thinking-updates-march-2025/#gemini-2-5-thinking}, 2025.
+\newblock Accessed: 2025-04-07.
+
+\bibitem[Hutchins(1995)]{Hutchins1995}
+Edwin Hutchins.
+\newblock \emph{Cognition in the Wild}.
+\newblock MIT Press, 1995.
+
+\bibitem[Jin et~al.(2025)Jin, Cheng, Ankner, Saunshi, Elias, Yazdanbakhsh, Ragan-Kelley, Subramanian, and Carbin]{jin2025learningpromisescalinglanguage}
+Tian Jin, Ellie~Y. Cheng, Zack Ankner, Nikunj Saunshi, Blake~M. Elias, Amir Yazdanbakhsh, Jonathan Ragan-Kelley, Suvinay Subramanian, and Michael Carbin.
+\newblock Learning to keep a promise: Scaling language model decoding parallelism with learned asynchronous decoding, 2025.
+\newblock URL \url{https://arxiv.org/abs/2502.11517}.
+
+\bibitem[Kim et~al.(2024)Kim, Moon, Tabrizi, Lee, Mahoney, Keutzer, and Gholami]{kim2024llm}
+Sehoon Kim, Suhong Moon, Ryan Tabrizi, Nicholas Lee, Michael~W Mahoney, Kurt Keutzer, and Amir Gholami.
+\newblock An llm compiler for parallel function calling.
+\newblock In \emph{Forty-first International Conference on Machine Learning}, 2024.
+
+\bibitem[Kojima et~al.(2022)Kojima, Gu, Reid, Matsuo, and Iwasawa]{zero_shot_cot_Kojima2022LargeLM}
+Takeshi Kojima, Shixiang~Shane Gu, Machel Reid, Yutaka Matsuo, and Yusuke Iwasawa.
+\newblock Large language models are zero-shot reasoners.
+\newblock \emph{ArXiv}, abs/2205.11916, 2022.
+\newblock URL \url{https://api.semanticscholar.org/CorpusID:249017743}.
+
+\bibitem[Kong et~al.(2024)Kong, Zhao, Chen, Li, Qin, Sun, Zhou, Wang, and Dong]{kong-etal-2024-better}
+Aobo Kong, Shiwan Zhao, Hao Chen, Qicheng Li, Yong Qin, Ruiqi Sun, Xin Zhou, Enzhi Wang, and Xiaohang Dong.
+\newblock Better zero-shot reasoning with role-play prompting.
+\newblock In Kevin Duh, Helena Gomez, and Steven Bethard, editors, \emph{Proceedings of the 2024 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (Volume 1: Long Papers)}, pages 4099--4113, Mexico City, Mexico, June 2024. Association for Computational Linguistics.
+\newblock \doi{10.18653/v1/2024.naacl-long.228}.
+\newblock URL \url{https://aclanthology.org/2024.naacl-long.228/}.
+
+\bibitem[Leviathan et~al.(2023)Leviathan, Kalman, and Matias]{leviathan2023fast}
+Yaniv Leviathan, Matan Kalman, and Yossi Matias.
+\newblock Fast inference from transformers via speculative decoding.
+\newblock In \emph{International Conference on Machine Learning}, pages 19274--19286. PMLR, 2023.
+
+\bibitem[Li et~al.(2024{\natexlab{a}})Li, Zhang, Yu, Fu, and Ye]{li2024moreagents}
+Junyou Li, Qin Zhang, Yangbin Yu, Qiang Fu, and Deheng Ye.
+\newblock More agents is all you need.
+\newblock \emph{Transactions on Machine Learning Research}, 2024{\natexlab{a}}.
+
+\bibitem[Li et~al.(2024{\natexlab{b}})Li, Wei, Zhang, and Zhang]{li2024eagle}
+Yuhui Li, Fangyun Wei, Chao Zhang, and Hongyang Zhang.
+\newblock Eagle: Speculative sampling requires rethinking feature uncertainty.
+\newblock In \emph{Proceedings of the 41st International Conference on Machine Learning}, pages 31147--31162. PMLR, 2024{\natexlab{b}}.
+
+\bibitem[Lightman et~al.(2023)Lightman, Kosaraju, Burda, Edwards, Baker, Lee, Leike, Schulman, Sutskever, and Cobbe]{verify_step_by_step}
+Hunter Lightman, Vineet Kosaraju, Yura Burda, Harrison Edwards, Bowen Baker, Teddy Lee, Jan Leike, John Schulman, Ilya Sutskever, and Karl Cobbe.
+\newblock Let's verify step by step.
+\newblock \emph{ArXiv}, abs/2305.20050, 2023.
+\newblock URL \url{https://api.semanticscholar.org/CorpusID:258987659}.
+
+\bibitem[Muennighoff et~al.(2025)Muennighoff, Yang, Shi, Li, Fei-Fei, Hajishirzi, Zettlemoyer, Liang, Cand{\`e}s, and Hashimoto]{muennighoff2025s1}
+Niklas Muennighoff, Zitong Yang, Weijia Shi, Xiang~Lisa Li, Li~Fei-Fei, Hannaneh Hajishirzi, Luke Zettlemoyer, Percy Liang, Emmanuel Cand{\`e}s, and Tatsunori Hashimoto.
+\newblock s1: Simple test-time scaling.
+\newblock \emph{arXiv preprint arXiv:2501.19393}, 2025.
+
+\bibitem[Ning et~al.(2024)Ning, Lin, Zhou, Wang, Yang, and Wang]{ning2024skeletonofthought}
+Xuefei Ning, Zinan Lin, Zixuan Zhou, Zifu Wang, Huazhong Yang, and Yu~Wang.
+\newblock Skeleton-of-thought: Prompting {LLM}s for efficient parallel generation.
+\newblock In \emph{The Twelfth International Conference on Learning Representations}, 2024.
+\newblock URL \url{https://openreview.net/forum?id=mqVgBbNCm9}.
+
+\bibitem[OpenAI et~al.(2024)OpenAI, :, Jaech, Kalai, Lerer, Richardson, El-Kishky, Low, Helyar, Madry, Beutel, Carney, Iftimie, Karpenko, Passos, Neitz, Prokofiev, Wei, Tam, Bennett, Kumar, Saraiva, Vallone, Duberstein, Kondrich, Mishchenko, Applebaum, Jiang, Nair, Zoph, Ghorbani, Rossen, Sokolowsky, Barak, McGrew, Minaiev, Hao, Baker, Houghton, McKinzie, Eastman, Lugaresi, Bassin, Hudson, Li, de~Bourcy, Voss, Shen, Zhang, Koch, Orsinger, Hesse, Fischer, Chan, Roberts, Kappler, Levy, Selsam, Dohan, Farhi, Mely, Robinson, Tsipras, Li, Oprica, Freeman, Zhang, Wong, Proehl, Cheung, Mitchell, Wallace, Ritter, Mays, Wang, Such, Raso, Leoni, Tsimpourlas, Song, von Lohmann, Sulit, Salmon, Parascandolo, Chabot, Zhao, Brockman, Leclerc, Salman, Bao, Sheng, Andrin, Bagherinezhad, Ren, Lightman, Chung, Kivlichan, O'Connell, Osband, Gilaberte, Akkaya, Kostrikov, Sutskever, Kofman, Pachocki, Lennon, Wei, Harb, Twore, Feng, Yu, Weng, Tang, Yu, Candela, Palermo, Parish, Heidecke, Hallman, Rizzo, Gordon, Uesato, Ward,
+  Huizinga, Wang, Chen, Xiao, Singhal, Nguyen, Cobbe, Shi, Wood, Rimbach, Gu-Lemberg, Liu, Lu, Stone, Yu, Ahmad, Yang, Liu, Maksin, Ho, Fedus, Weng, Li, McCallum, Held, Kuhn, Kondraciuk, Kaiser, Metz, Boyd, Trebacz, Joglekar, Chen, Tintor, Meyer, Jones, Kaufer, Schwarzer, Shah, Yatbaz, Guan, Xu, Yan, Glaese, Chen, Lampe, Malek, Wang, Fradin, McClay, Pavlov, Wang, Wang, Murati, Bavarian, Rohaninejad, McAleese, Chowdhury, Chowdhury, Ryder, Tezak, Brown, Nachum, Boiko, Murk, Watkins, Chao, Ashbourne, Izmailov, Zhokhov, Dias, Arora, Lin, Lopes, Gaon, Miyara, Leike, Hwang, Garg, Brown, James, Shu, Cheu, Greene, Jain, Altman, Toizer, Toyer, Miserendino, Agarwal, Hernandez, Baker, McKinney, Yan, Zhao, Hu, Santurkar, Chaudhuri, Zhang, Fu, Papay, Lin, Balaji, Sanjeev, Sidor, Broda, Clark, Wang, Gordon, Sanders, Patwardhan, Sottiaux, Degry, Dimson, Zheng, Garipov, Stasi, Bansal, Creech, Peterson, Eloundou, Qi, Kosaraju, Monaco, Pong, Fomenko, Zheng, Zhou, McCabe, Zaremba, Dubois, Lu, Chen, Cha, Bai, He, Zhang, Wang,
+  Shao, and Li]{openai_o1}
+OpenAI, :, Aaron Jaech, Adam Kalai, Adam Lerer, Adam Richardson, Ahmed El-Kishky, Aiden Low, Alec Helyar, Aleksander Madry, Alex Beutel, Alex Carney, Alex Iftimie, Alex Karpenko, Alex~Tachard Passos, Alexander Neitz, Alexander Prokofiev, Alexander Wei, Allison Tam, Ally Bennett, Ananya Kumar, Andre Saraiva, Andrea Vallone, Andrew Duberstein, Andrew Kondrich, Andrey Mishchenko, Andy Applebaum, Angela Jiang, Ashvin Nair, Barret Zoph, Behrooz Ghorbani, Ben Rossen, Benjamin Sokolowsky, Boaz Barak, Bob McGrew, Borys Minaiev, Botao Hao, Bowen Baker, Brandon Houghton, Brandon McKinzie, Brydon Eastman, Camillo Lugaresi, Cary Bassin, Cary Hudson, Chak~Ming Li, Charles de~Bourcy, Chelsea Voss, Chen Shen, Chong Zhang, Chris Koch, Chris Orsinger, Christopher Hesse, Claudia Fischer, Clive Chan, Dan Roberts, Daniel Kappler, Daniel Levy, Daniel Selsam, David Dohan, David Farhi, David Mely, David Robinson, Dimitris Tsipras, Doug Li, Dragos Oprica, Eben Freeman, Eddie Zhang, Edmund Wong, Elizabeth Proehl, Enoch Cheung, Eric
+  Mitchell, Eric Wallace, Erik Ritter, Evan Mays, Fan Wang, Felipe~Petroski Such, Filippo Raso, Florencia Leoni, Foivos Tsimpourlas, Francis Song, Fred von Lohmann, Freddie Sulit, Geoff Salmon, Giambattista Parascandolo, Gildas Chabot, Grace Zhao, Greg Brockman, Guillaume Leclerc, Hadi Salman, Haiming Bao, Hao Sheng, Hart Andrin, Hessam Bagherinezhad, Hongyu Ren, Hunter Lightman, Hyung~Won Chung, Ian Kivlichan, Ian O'Connell, Ian Osband, Ignasi~Clavera Gilaberte, Ilge Akkaya, Ilya Kostrikov, Ilya Sutskever, Irina Kofman, Jakub Pachocki, James Lennon, Jason Wei, Jean Harb, Jerry Twore, Jiacheng Feng, Jiahui Yu, Jiayi Weng, Jie Tang, Jieqi Yu, Joaquin~Quiñonero Candela, Joe Palermo, Joel Parish, Johannes Heidecke, John Hallman, John Rizzo, Jonathan Gordon, Jonathan Uesato, Jonathan Ward, Joost Huizinga, Julie Wang, Kai Chen, Kai Xiao, Karan Singhal, Karina Nguyen, Karl Cobbe, Katy Shi, Kayla Wood, Kendra Rimbach, Keren Gu-Lemberg, Kevin Liu, Kevin Lu, Kevin Stone, Kevin Yu, Lama Ahmad, Lauren Yang, Leo Liu,
+  Leon Maksin, Leyton Ho, Liam Fedus, Lilian Weng, Linden Li, Lindsay McCallum, Lindsey Held, Lorenz Kuhn, Lukas Kondraciuk, Lukasz Kaiser, Luke Metz, Madelaine Boyd, Maja Trebacz, Manas Joglekar, Mark Chen, Marko Tintor, Mason Meyer, Matt Jones, Matt Kaufer, Max Schwarzer, Meghan Shah, Mehmet Yatbaz, Melody~Y. Guan, Mengyuan Xu, Mengyuan Yan, Mia Glaese, Mianna Chen, Michael Lampe, Michael Malek, Michele Wang, Michelle Fradin, Mike McClay, Mikhail Pavlov, Miles Wang, Mingxuan Wang, Mira Murati, Mo~Bavarian, Mostafa Rohaninejad, Nat McAleese, Neil Chowdhury, Neil Chowdhury, Nick Ryder, Nikolas Tezak, Noam Brown, Ofir Nachum, Oleg Boiko, Oleg Murk, Olivia Watkins, Patrick Chao, Paul Ashbourne, Pavel Izmailov, Peter Zhokhov, Rachel Dias, Rahul Arora, Randall Lin, Rapha~Gontijo Lopes, Raz Gaon, Reah Miyara, Reimar Leike, Renny Hwang, Rhythm Garg, Robin Brown, Roshan James, Rui Shu, Ryan Cheu, Ryan Greene, Saachi Jain, Sam Altman, Sam Toizer, Sam Toyer, Samuel Miserendino, Sandhini Agarwal, Santiago Hernandez,
+  Sasha Baker, Scott McKinney, Scottie Yan, Shengjia Zhao, Shengli Hu, Shibani Santurkar, Shraman~Ray Chaudhuri, Shuyuan Zhang, Siyuan Fu, Spencer Papay, Steph Lin, Suchir Balaji, Suvansh Sanjeev, Szymon Sidor, Tal Broda, Aidan Clark, Tao Wang, Taylor Gordon, Ted Sanders, Tejal Patwardhan, Thibault Sottiaux, Thomas Degry, Thomas Dimson, Tianhao Zheng, Timur Garipov, Tom Stasi, Trapit Bansal, Trevor Creech, Troy Peterson, Tyna Eloundou, Valerie Qi, Vineet Kosaraju, Vinnie Monaco, Vitchyr Pong, Vlad Fomenko, Weiyi Zheng, Wenda Zhou, Wes McCabe, Wojciech Zaremba, Yann Dubois, Yinghai Lu, Yining Chen, Young Cha, Yu~Bai, Yuchen He, Yuchen Zhang, Yunyun Wang, Zheng Shao, and Zhuohan Li.
+\newblock Openai o1 system card, 2024.
+\newblock URL \url{https://arxiv.org/abs/2412.16720}.
+
+\bibitem[Peng et~al.(2023)Peng, Quesnelle, Fan, and Shippole]{rope_scaling}
+Bowen Peng, Jeffrey Quesnelle, Honglu Fan, and Enrico Shippole.
+\newblock Yarn: Efficient context window extension of large language models, 2023.
+\newblock URL \url{https://arxiv.org/abs/2309.00071}.
+
+\bibitem[Qin et~al.(2023)Qin, Liang, Ye, Zhu, Yan, Lu, Lin, Cong, Tang, Qian, Zhao, Tian, Xie, Zhou, Gerstein, Li, Liu, and Sun]{Qin2023ToolLLMFL}
+Yujia Qin, Shi Liang, Yining Ye, Kunlun Zhu, Lan Yan, Ya-Ting Lu, Yankai Lin, Xin Cong, Xiangru Tang, Bill Qian, Sihan Zhao, Runchu Tian, Ruobing Xie, Jie Zhou, Marc~H. Gerstein, Dahai Li, Zhiyuan Liu, and Maosong Sun.
+\newblock Toolllm: Facilitating large language models to master 16000+ real-world apis.
+\newblock \emph{ArXiv}, abs/2307.16789, 2023.
+\newblock URL \url{https://api.semanticscholar.org/CorpusID:260334759}.
+
+\bibitem[{Qwen Team}(2025)]{qwq32b}
+{Qwen Team}.
+\newblock Qwq-32b: Embracing the power of reinforcement learning, March 2025.
+\newblock URL \url{https://qwenlm.github.io/blog/qwq-32b/}.
+
+\bibitem[Recht et~al.(2011)Recht, Re, Wright, and Niu]{NIPS2011_218a0aef}
+Benjamin Recht, Christopher Re, Stephen Wright, and Feng Niu.
+\newblock Hogwild!: A lock-free approach to parallelizing stochastic gradient descent.
+\newblock In J.~Shawe-Taylor, R.~Zemel, P.~Bartlett, F.~Pereira, and K.Q. Weinberger, editors, \emph{Advances in Neural Information Processing Systems}, volume~24. Curran Associates, Inc., 2011.
+\newblock URL \url{https://proceedings.neurips.cc/paper_files/paper/2011/file/218a0aefd1d1a4be65601cc6ddc1520e-Paper.pdf}.
+
+\bibitem[Schick et~al.(2023)Schick, Dwivedi-Yu, Dess{\`i}, Raileanu, Lomeli, Zettlemoyer, Cancedda, and Scialom]{Schick2023ToolformerLM}
+Timo Schick, Jane Dwivedi-Yu, Roberto Dess{\`i}, Roberta Raileanu, Maria Lomeli, Luke Zettlemoyer, Nicola Cancedda, and Thomas Scialom.
+\newblock Toolformer: Language models can teach themselves to use tools.
+\newblock \emph{ArXiv}, abs/2302.04761, 2023.
+\newblock URL \url{https://api.semanticscholar.org/CorpusID:256697342}.
+
+\bibitem[Shen et~al.(2023)Shen, Song, Tan, Li, Lu, and Zhuang]{Shen2023HuggingGPTSA}
+Yongliang Shen, Kaitao Song, Xu~Tan, Dongsheng Li, Weiming Lu, and Yue~Ting Zhuang.
+\newblock Hugginggpt: Solving ai tasks with chatgpt and its friends in hugging face.
+\newblock \emph{ArXiv}, abs/2303.17580, 2023.
+\newblock URL \url{https://api.semanticscholar.org/CorpusID:257833781}.
+
+\bibitem[Snell et~al.(2024)Snell, Lee, Xu, and Kumar]{scaling_test_time_snell2024scaling}
+Charlie Snell, Jaehoon Lee, Kelvin Xu, and Aviral Kumar.
+\newblock Scaling llm test-time compute optimally can be more effective than scaling model parameters.
+\newblock \emph{arXiv preprint arXiv:2408.03314}, 2024.
+
+\bibitem[{Stanford HAI}(2023)]{hogwild_exclamation_mark}
+{Stanford HAI}.
+\newblock How a “crazy idea” overturned the conventional rules of machine learning, 2023.
+\newblock URL \url{https://hai.stanford.edu/news/how-crazy-idea-overturned-conventional-rules-machine-learning}.
+\newblock Accessed: [Insert Date].
+
+\bibitem[Su et~al.(2021)Su, Lu, Pan, Murtadha, Wen, and Liu]{su2021roformer}
+Jianlin Su, Yu~Lu, Shengfeng Pan, Ahmed Murtadha, Bo~Wen, and Yunfeng Liu.
+\newblock Roformer: Enhanced transformer with rotary position embedding.
+\newblock \emph{arXiv preprint arXiv:2104.09864}, 2021.
+
+\bibitem[Suzgun et~al.(2022)Suzgun, Scales, Scharli, Gehrmann, Tay, Chung, Chowdhery, Le, Chi, Zhou, and Wei]{challenging_bigbench_solved_with_cot_Suzgun2022ChallengingBT}
+Mirac Suzgun, Nathan Scales, Nathanael Scharli, Sebastian Gehrmann, Yi~Tay, Hyung~Won Chung, Aakanksha Chowdhery, Quoc~V. Le, Ed~H. Chi, Denny Zhou, and Jason Wei.
+\newblock Challenging big-bench tasks and whether chain-of-thought can solve them.
+\newblock In \emph{Annual Meeting of the Association for Computational Linguistics}, 2022.
+\newblock URL \url{https://api.semanticscholar.org/CorpusID:252917648}.
+
+\bibitem[Talebirad and Nadiri(2023)]{talebirad2023multiagent}
+Yashar Talebirad and Amirhossein Nadiri.
+\newblock Multi-agent collaboration: Harnessing the power of intelligent {LLM} agents.
+\newblock \emph{CoRR}, abs/2306.03314, 2023.
+
+\bibitem[Touvron et~al.(2023)Touvron, Lavril, Izacard, Martinet, Lachaux, Lacroix, Rozi{\`e}re, Goyal, Hambro, Azhar, et~al.]{touvron2023llama}
+Hugo Touvron, Thibaut Lavril, Gautier Izacard, Xavier Martinet, Marie-Anne Lachaux, Timoth{\'e}e Lacroix, Baptiste Rozi{\`e}re, Naman Goyal, Eric Hambro, Faisal Azhar, et~al.
+\newblock Llama: Open and efficient foundation language models.
+\newblock \emph{arXiv preprint arXiv:2302.13971}, 2023.
+
+\bibitem[Vaswani(2017)]{vaswani2017attention}
+A~Vaswani.
+\newblock Attention is all you need.
+\newblock \emph{Advances in Neural Information Processing Systems}, 2017.
+
+\bibitem[Wang et~al.(2024{\natexlab{a}})Wang, Jue, Athiwaratkun, Zhang, and Zou]{wang2024mixture}
+Junlin Wang, WANG Jue, Ben Athiwaratkun, Ce~Zhang, and James Zou.
+\newblock Mixture-of-agents enhances large language model capabilities.
+\newblock In \emph{The Thirteenth International Conference on Learning Representations}, 2024{\natexlab{a}}.
+
+\bibitem[Wang et~al.(2024{\natexlab{b}})Wang, Wang, Su, Tong, and Song]{wang-etal-2024-rethinking-bounds}
+Qineng Wang, Zihao Wang, Ying Su, Hanghang Tong, and Yangqiu Song.
+\newblock Rethinking the bounds of {LLM} reasoning: Are multi-agent discussions the key?
+\newblock In Lun-Wei Ku, Andre Martins, and Vivek Srikumar, editors, \emph{Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)}, pages 6106--6131, Bangkok, Thailand, August 2024{\natexlab{b}}. Association for Computational Linguistics.
+\newblock \doi{10.18653/v1/2024.acl-long.331}.
+\newblock URL \url{https://aclanthology.org/2024.acl-long.331/}.
+
+\bibitem[Wang et~al.(2022)Wang, Wei, Schuurmans, Le, Chi, and Zhou]{Wang2022SelfConsistencyIC}
+Xuezhi Wang, Jason Wei, Dale Schuurmans, Quoc Le, Ed~H. Chi, and Denny Zhou.
+\newblock Self-consistency improves chain of thought reasoning in language models.
+\newblock \emph{ArXiv}, abs/2203.11171, 2022.
+\newblock URL \url{https://api.semanticscholar.org/CorpusID:247595263}.
+
+\bibitem[Wang et~al.(2024{\natexlab{c}})Wang, Zhang, Zhang, Yang, and Wang]{wang-etal-2024-meta}
+Yiming Wang, Zhuosheng Zhang, Pei Zhang, Baosong Yang, and Rui Wang.
+\newblock Meta-reasoning: Semantics-symbol deconstruction for large language models.
+\newblock In Lun-Wei Ku, Andre Martins, and Vivek Srikumar, editors, \emph{Findings of the Association for Computational Linguistics: ACL 2024}, pages 622--643, Bangkok, Thailand, August 2024{\natexlab{c}}. Association for Computational Linguistics.
+\newblock \doi{10.18653/v1/2024.findings-acl.34}.
+\newblock URL \url{https://aclanthology.org/2024.findings-acl.34/}.
+
+\bibitem[Wei et~al.(2022)Wei, Wang, Schuurmans, Bosma, Xia, Chi, Le, Zhou, et~al.]{cot_wei_2022}
+Jason Wei, Xuezhi Wang, Dale Schuurmans, Maarten Bosma, Fei Xia, Ed~Chi, Quoc~V Le, Denny Zhou, et~al.
+\newblock Chain-of-thought prompting elicits reasoning in large language models.
+\newblock \emph{Advances in neural information processing systems}, 35:\penalty0 24824--24837, 2022.
+
+\bibitem[Xiao et~al.(2024)Xiao, Tian, Chen, Han, and Lewis]{streamingllm}
+Guangxuan Xiao, Yuandong Tian, Beidi Chen, Song Han, and Mike Lewis.
+\newblock Efficient streaming language models with attention sinks.
+\newblock In \emph{International Conference on Learning Representations (ICLR)}, 2024.
+
+\bibitem[Yang et~al.(2024)Yang, Yang, Hui, Zheng, Yu, Zhou, Li, Li, Liu, Huang, Dong, Wei, Lin, Tang, Wang, Yang, Tu, Zhang, Ma, Xu, Zhou, Bai, He, Lin, Dang, Lu, Chen, Yang, Li, Xue, Ni, Zhang, Wang, Peng, Men, Gao, Lin, Wang, Bai, Tan, Zhu, Li, Liu, Ge, Deng, Zhou, Ren, Zhang, Wei, Ren, Fan, Yao, Zhang, Wan, Chu, Liu, Cui, Zhang, and Fan]{qwen2}
+An~Yang, Baosong Yang, Binyuan Hui, Bo~Zheng, Bowen Yu, Chang Zhou, Chengpeng Li, Chengyuan Li, Dayiheng Liu, Fei Huang, Guanting Dong, Haoran Wei, Huan Lin, Jialong Tang, Jialin Wang, Jian Yang, Jianhong Tu, Jianwei Zhang, Jianxin Ma, Jin Xu, Jingren Zhou, Jinze Bai, Jinzheng He, Junyang Lin, Kai Dang, Keming Lu, Keqin Chen, Kexin Yang, Mei Li, Mingfeng Xue, Na~Ni, Pei Zhang, Peng Wang, Ru~Peng, Rui Men, Ruize Gao, Runji Lin, Shijie Wang, Shuai Bai, Sinan Tan, Tianhang Zhu, Tianhao Li, Tianyu Liu, Wenbin Ge, Xiaodong Deng, Xiaohuan Zhou, Xingzhang Ren, Xinyu Zhang, Xipin Wei, Xuancheng Ren, Yang Fan, Yang Yao, Yichang Zhang, Yu~Wan, Yunfei Chu, Yuqiong Liu, Zeyu Cui, Zhenru Zhang, and Zhihao Fan.
+\newblock Qwen2 technical report.
+\newblock \emph{arXiv preprint arXiv:2407.10671}, 2024.
+
+\bibitem[Yao et~al.(2022)Yao, Zhao, Yu, Du, Shafran, Narasimhan, and Cao]{Yao2022ReActSR}
+Shunyu Yao, Jeffrey Zhao, Dian Yu, Nan Du, Izhak Shafran, Karthik Narasimhan, and Yuan Cao.
+\newblock React: Synergizing reasoning and acting in language models.
+\newblock \emph{ArXiv}, abs/2210.03629, 2022.
+\newblock URL \url{https://api.semanticscholar.org/CorpusID:252762395}.
+
+\bibitem[Yao et~al.(2023)Yao, Yu, Zhao, Shafran, Griffiths, Cao, and Narasimhan]{three_of_thought}
+Shunyu Yao, Dian Yu, Jeffrey Zhao, Izhak Shafran, Thomas~L. Griffiths, Yuan Cao, and Karthik Narasimhan.
+\newblock Tree of thoughts: Deliberate problem solving with large language models.
+\newblock \emph{ArXiv}, abs/2305.10601, 2023.
+\newblock URL \url{https://api.semanticscholar.org/CorpusID:258762525}.
+
+\bibitem[Ye et~al.(2025)Ye, Huang, Xiao, Chern, Xia, and Liu]{ye2025limoreasoning}
+Yixin Ye, Zhen Huang, Yang Xiao, Ethan Chern, Shijie Xia, and Pengfei Liu.
+\newblock Limo: Less is more for reasoning, 2025.
+\newblock URL \url{https://arxiv.org/abs/2502.03387}.
+
+\bibitem[Yu(2025)]{yu2025accelerateparallelizablereasoningparallel}
+Yijiong Yu.
+\newblock Accelerate parallelizable reasoning via parallel decoding within one sequence, 2025.
+\newblock URL \url{https://arxiv.org/abs/2503.20533}.
+
+\bibitem[Zhang et~al.(2025)Zhang, Lyu, Sun, Wang, Zhang, Guo, Wang, King, Liu, and Ma]{TTSsurvey}
+Qiyuan Zhang, Fuyuan Lyu, Zexu Sun, Lei Wang, Weixu Zhang, Zhihan Guo, Yufei Wang, Irwin King, Xue Liu, and Chen Ma.
+\newblock What, how, where, and how well? a survey on test-time scaling in large language models.
+\newblock \emph{arXiv preprint arXiv:2503.24235}, 2025.
+
+\bibitem[Zhang et~al.(2023)Zhang, Sheng, Zhou, Chen, Zheng, Cai, Song, Tian, R{\'e}, Barrett, et~al.]{zhang2023h2o}
+Zhenyu Zhang, Ying Sheng, Tianyi Zhou, Tianlong Chen, Lianmin Zheng, Ruisi Cai, Zhao Song, Yuandong Tian, Christopher R{\'e}, Clark Barrett, et~al.
+\newblock H2o: Heavy-hitter oracle for efficient generative inference of large language models.
+\newblock \emph{Advances in Neural Information Processing Systems}, 36:\penalty0 34661--34710, 2023.
+
+\bibitem[Zhang et~al.(2022)Zhang, Zhang, Li, and Smola]{auto_cot_Zhang2022AutomaticCO}
+Zhuosheng Zhang, Aston Zhang, Mu~Li, and Alexander~J. Smola.
+\newblock Automatic chain of thought prompting in large language models.
+\newblock \emph{ArXiv}, abs/2210.03493, 2022.
+\newblock URL \url{https://api.semanticscholar.org/CorpusID:252762275}.
+
+\bibitem[Zhou et~al.(2024)Zhou, Pujara, Ren, Chen, Cheng, Le, Chi, Zhou, Mishra, and Zheng]{zhou2024selfdiscover}
+Pei Zhou, Jay Pujara, Xiang Ren, Xinyun Chen, Heng-Tze Cheng, Quoc~V. Le, Ed~H. Chi, Denny Zhou, Swaroop Mishra, and Huaixiu~Steven Zheng.
+\newblock {SELF-DISCOVER}: Large language models self-compose reasoning structures.
+\newblock In Amir Globerson, Lester Mackey, Danielle Belgrave, Angela Fan, Ulrich Paquet, Jakub~M. Tomczak, and Cheng Zhang, editors, \emph{Advances in Neural Information Processing Systems 37 (NeurIPS 2024)}, Vancouver, BC, Canada, December 2024.
+
+\end{thebibliography}

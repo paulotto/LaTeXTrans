@@ -1,0 +1,18 @@
+\section{Conclusion}
+\label{sec:conclusion}
+In this paper, we propose \method, a method for reducing the GPU memory required to fine-tune transformer-based models, such as large language models. 
+Our contributions are as follows.
+\begin{itemize}[leftmargin=1em,topsep=-2pt,itemsep=-3pt]
+	\item \textbf{Novelty.} \method is the first approach that reduces the GPU memory footprint for fine-tuning via token selection, 
+	which selects a subset of the input positions through which the gradient is propagated, while keeping the others frozen.
+	\item \textbf{Combinability.} The proposed token selection strategy can be combined with other memory- and parameter-efficient fine-tuning approaches, achieving a greater memory reduction together.
+	\item \textbf{Effectiveness.} We empirically benchmark \method using large language models with up to billions of parameters. 
+	As \Cref{fig:crownjewel} and \Cref{table:glue} show, \method achieves similar prediction accuracy to representative memory- and parameter-efficient methods, such as LoRA and QLoRA, 
+	while significantly reducing the memory usage for fine-tuning (e.g., a joint application of \method and QLoRA uses 79\% less memory than full fine-tuning).
+\end{itemize}
+
+
+
+
+
+

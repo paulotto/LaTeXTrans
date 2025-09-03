@@ -1,0 +1,286 @@
+\begin{thebibliography}{56}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Alayrac et~al.(2022)Alayrac, Donahue, Luc, Miech, Barr, Hasson, Lenc, Mensch, Millican, Reynolds, et~al.]{alayrac2022flamingo}
+Jean-Baptiste Alayrac, Jeff Donahue, Pauline Luc, Antoine Miech, Iain Barr, Yana Hasson, Karel Lenc, Arthur Mensch, Katherine Millican, Malcolm Reynolds, et~al.
+\newblock Flamingo: a visual language model for few-shot learning.
+\newblock \emph{NeurIPS}, 2022.
+
+\bibitem[Behrouz et~al.(2024)Behrouz, Zhong, and Mirrokni]{behrouz2024titans}
+Ali Behrouz, Peilin Zhong, and Vahab Mirrokni.
+\newblock Titans: Learning to memorize at test time.
+\newblock \emph{arXiv preprint arXiv:2501.00663}, 2024.
+
+\bibitem[Beltagy et~al.(2020)Beltagy, Peters, and Cohan]{beltagy2020longformerlongdocumenttransformer}
+Iz Beltagy, Matthew~E Peters, and Arman Cohan.
+\newblock Longformer: The long-document transformer.
+\newblock \emph{arXiv preprint arXiv:2004.05150}, 2020.
+
+\bibitem[Chang et~al.(2022)Chang, Zhang, Jiang, Liu, and Freeman]{chang2022maskgit}
+Huiwen Chang, Han Zhang, Lu Jiang, Ce Liu, and William~T Freeman.
+\newblock Maskgit: Masked generative image transformer.
+\newblock In \emph{CVPR}, 2022.
+
+\bibitem[Chen et~al.(2023)Chen, Wang, Zhang, Zhuang, Ma, Yu, Wang, Lin, Qiao, and Liu]{chen2023seine}
+Xinyuan Chen, Yaohui Wang, Lingjun Zhang, Shaobin Zhuang, Xin Ma, Jiashuo Yu, Yali Wang, Dahua Lin, Yu Qiao, and Ziwei Liu.
+\newblock Seine: Short-to-long video diffusion model for generative transition and prediction.
+\newblock In \emph{ICLR}, 2023.
+
+\bibitem[Chiang et~al.(2024)Chiang, Zheng, Sheng, Angelopoulos, Li, Li, Zhu, Zhang, Jordan, Gonzalez, et~al.]{chiang2024chatbot}
+Wei-Lin Chiang, Lianmin Zheng, Ying Sheng, Anastasios~Nikolas Angelopoulos, Tianle Li, Dacheng Li, Banghua Zhu, Hao Zhang, Michael Jordan, Joseph~E Gonzalez, et~al.
+\newblock Chatbot arena: An open platform for evaluating llms by human preference.
+\newblock In \emph{ICML}, 2024.
+
+\bibitem[Clark et~al.(2022)Clark, Guu, Chang, Pasupat, Hinton, and Norouzi]{clark2022meta}
+Kevin Clark, Kelvin Guu, Ming-Wei Chang, Panupong Pasupat, Geoffrey Hinton, and Mohammad Norouzi.
+\newblock Meta-learning fast weight language models.
+\newblock \emph{EMNLP}, 2022.
+
+\bibitem[Dao and Gu(2024)]{dao2024mamba2}
+Tri Dao and Albert Gu.
+\newblock Transformers are ssms: Generalized models and efficient algorithms through structured state space duality.
+\newblock In \emph{ICML}, 2024.
+
+\bibitem[Dao et~al.(2022)Dao, Fu, Ermon, Rudra, and R{\'e}]{dao2022flashattention}
+Tri Dao, Dan Fu, Stefano Ermon, Atri Rudra, and Christopher R{\'e}.
+\newblock Flashattention: Fast and memory-efficient exact attention with io-awareness.
+\newblock In \emph{NeurIPS}, 2022.
+
+\bibitem[Ge et~al.(2022)Ge, Hayes, Yang, Yin, Pang, Jacobs, Huang, and Parikh]{ge2022tats}
+Songwei Ge, Thomas Hayes, Harry Yang, Xi Yin, Guan Pang, David Jacobs, Jia-Bin Huang, and Devi Parikh.
+\newblock Long video generation with time-agnostic vqgan and time-sensitive transformer.
+\newblock In \emph{ECCV}, 2022.
+
+\bibitem[Goodfellow et~al.(2020)Goodfellow, Pouget-Abadie, Mirza, Xu, Warde-Farley, Ozair, Courville, and Bengio]{goodfellow2020gan}
+Ian Goodfellow, Jean Pouget-Abadie, Mehdi Mirza, Bing Xu, David Warde-Farley, Sherjil Ozair, Aaron Courville, and Yoshua Bengio.
+\newblock Generative adversarial networks.
+\newblock \emph{Communications of the ACM}, 2020.
+
+\bibitem[Gu and Dao(2024)]{gu2024mamba}
+Albert Gu and Tri Dao.
+\newblock Mamba: Linear-time sequence modeling with selective state spaces.
+\newblock In \emph{COLM}, 2024.
+
+\bibitem[Gupta et~al.(2024)Gupta, Yu, Sohn, Gu, Hahn, Li, Essa, Jiang, and Lezama]{gupta2024walt}
+Agrim Gupta, Lijun Yu, Kihyuk Sohn, Xiuye Gu, Meera Hahn, Fei-Fei Li, Irfan Essa, Lu Jiang, and Jos{\'e} Lezama.
+\newblock Photorealistic video generation with diffusion models.
+\newblock In \emph{ECCV}, 2024.
+
+\bibitem[Gupta et~al.(2018)Gupta, Schwenk, Farhadi, Hoiem, and Kembhavi]{gupta2018flintstones}
+Tanmay Gupta, Dustin Schwenk, Ali Farhadi, Derek Hoiem, and Aniruddha Kembhavi.
+\newblock Imagine this! scripts to compositions to videos.
+\newblock In \emph{ECCV}, 2018.
+
+\bibitem[He et~al.(2022)He, Yang, Zhang, Shan, and Chen]{he2022lvdm}
+Yingqing He, Tianyu Yang, Yong Zhang, Ying Shan, and Qifeng Chen.
+\newblock Latent video diffusion models for high-fidelity long video generation.
+\newblock \emph{arXiv preprint arXiv:2211.13221}, 2022.
+
+\bibitem[Hendrycks and Gimpel(2016)]{hendrycks2016gaussian}
+Dan Hendrycks and Kevin Gimpel.
+\newblock Gaussian error linear units (gelus).
+\newblock \emph{arXiv preprint arXiv:1606.08415}, 2016.
+
+\bibitem[Henschel et~al.(2024)Henschel, Khachatryan, Hayrapetyan, Poghosyan, Tadevosyan, Wang, Navasardyan, and Shi]{henschel2024streamingt2v}
+Roberto Henschel, Levon Khachatryan, Daniil Hayrapetyan, Hayk Poghosyan, Vahram Tadevosyan, Zhangyang Wang, Shant Navasardyan, and Humphrey Shi.
+\newblock Streamingt2v: Consistent, dynamic, and extendable long video generation from text.
+\newblock \emph{arXiv preprint arXiv:2403.14773}, 2024.
+
+\bibitem[Ho and Salimans(2022)]{ho2022cfg}
+Jonathan Ho and Tim Salimans.
+\newblock Classifier-free diffusion guidance.
+\newblock \emph{arXiv preprint arXiv:2207.12598}, 2022.
+
+\bibitem[Hong et~al.(2023)Hong, Ding, Zheng, Liu, and Tang]{hong2023cogvideo}
+Wenyi Hong, Ming Ding, Wendi Zheng, Xinghan Liu, and Jie Tang.
+\newblock Cogvideo: Large-scale pretraining for text-to-video generation via transformers.
+\newblock In \emph{ICLR}, 2023.
+
+\bibitem[Huang et~al.(2016)Huang, Ferraro, Mostafazadeh, Misra, Agrawal, Devlin, Girshick, He, Kohli, Batra, et~al.]{huang2016visual}
+Ting-Hao Huang, Francis Ferraro, Nasrin Mostafazadeh, Ishan Misra, Aishwarya Agrawal, Jacob Devlin, Ross Girshick, Xiaodong He, Pushmeet Kohli, Dhruv Batra, et~al.
+\newblock Visual storytelling.
+\newblock In \emph{NAACL}, 2016.
+
+\bibitem[Irie et~al.(2021)Irie, Schlag, Csord{\'a}s, and Schmidhuber]{irie2021going}
+Kazuki Irie, Imanol Schlag, R{\'o}bert Csord{\'a}s, and J{\"u}rgen Schmidhuber.
+\newblock Going beyond linear transformers with recurrent fast weight programmers.
+\newblock \emph{NeurIPS}, 2021.
+
+\bibitem[Karras et~al.(2020)Karras, Laine, Aittala, Hellsten, Lehtinen, and Aila]{karras2020stylegan2}
+Tero Karras, Samuli Laine, Miika Aittala, Janne Hellsten, Jaakko Lehtinen, and Timo Aila.
+\newblock Analyzing and improving the image quality of stylegan.
+\newblock In \emph{CVPR}, 2020.
+
+\bibitem[Katharopoulos et~al.(2020)Katharopoulos, Vyas, Pappas, and Fleuret]{katharopoulos2020lineartransformers}
+Angelos Katharopoulos, Apoorv Vyas, Nikolaos Pappas, and Fran{\c{c}}ois Fleuret.
+\newblock Transformers are rnns: Fast autoregressive transformers with linear attention.
+\newblock In \emph{ICML}, 2020.
+
+\bibitem[Kirsch and Schmidhuber(2021)]{kirsch2021meta}
+Louis Kirsch and J{\"u}rgen Schmidhuber.
+\newblock Meta learning backpropagation and improving it.
+\newblock \emph{NeurIPS}, 34:\penalty0 14122--14134, 2021.
+
+\bibitem[Kong et~al.(2025)Kong, Tian, Zhang, Min, Dai, Zhou, Xiong, Li, Wu, Zhang, Wu, Lin, Yuan, Long, Wang, Wang, Li, Huang, Yang, Tan, Wang, Song, Bai, Wu, Xue, Wang, Wang, Liu, Li, Li, Wang, Yu, Deng, Li, Chen, Cui, Peng, Yu, He, Xu, Zhou, Xu, Tao, Lu, Liu, Zhou, Wang, Yang, Wang, Liu, Jiang, and Zhong]{kong2025hunyuanvideo}
+Weijie Kong, Qi Tian, Zijian Zhang, Rox Min, Zuozhuo Dai, Jin Zhou, Jiangfeng Xiong, Xin Li, Bo Wu, Jianwei Zhang, Kathrina Wu, Qin Lin, Junkun Yuan, Yanxin Long, Aladdin Wang, Andong Wang, Changlin Li, Duojun Huang, Fang Yang, Hao Tan, Hongmei Wang, Jacob Song, Jiawang Bai, Jianbing Wu, Jinbao Xue, Joey Wang, Kai Wang, Mengyang Liu, Pengyu Li, Shuai Li, Weiyan Wang, Wenqing Yu, Xinchi Deng, Yang Li, Yi Chen, Yutao Cui, Yuanbo Peng, Zhentao Yu, Zhiyu He, Zhiyong Xu, Zixiang Zhou, Zunnan Xu, Yangyu Tao, Qinglin Lu, Songtao Liu, Dax Zhou, Hongfa Wang, Yong Yang, Di Wang, Yuhong Liu, Jie Jiang, and Caesar Zhong.
+\newblock Hunyuanvideo: A systematic framework for large video generative models.
+\newblock \emph{arXiv preprint arXiv 2412.03603}, 2025.
+
+\bibitem[Li et~al.(2019)Li, Gan, Shen, Liu, Cheng, Wu, Carin, Carlson, and Gao]{li2019storygan}
+Yitong Li, Zhe Gan, Yelong Shen, Jingjing Liu, Yu Cheng, Yuexin Wu, Lawrence Carin, David Carlson, and Jianfeng Gao.
+\newblock Storygan: A sequential conditional gan for story visualization.
+\newblock In \emph{CVPR}, 2019.
+
+\bibitem[Lin et~al.(2024)Lin, Liu, Li, and Yang]{lin2024zerosnr}
+Shanchuan Lin, Bingchen Liu, Jiashi Li, and Xiao Yang.
+\newblock Common diffusion noise schedules and sample steps are flawed.
+\newblock In \emph{WACV}, 2024.
+
+\bibitem[Liu et~al.(2024)Liu, Wu, Zhong, Zhang, Wang, and Xie]{liu2024storysalon}
+Chang Liu, Haoning Wu, Yujie Zhong, Xiaoyun Zhang, Yanfeng Wang, and Weidi Xie.
+\newblock Intelligent grimm-open-ended visual storytelling via latent diffusion models.
+\newblock In \emph{CVPR}, 2024.
+
+\bibitem[Maharana et~al.(2022)Maharana, Hannan, and Bansal]{maharana2022storydalle}
+Adyasha Maharana, Darryl Hannan, and Mohit Bansal.
+\newblock Storydall-e: Adapting pretrained text-to-image transformers for story continuation.
+\newblock In \emph{ECCV}, 2022.
+
+\bibitem[Mo and Tian(2024)]{mo2024scalingdiffusionmambabidirectional}
+Shentong Mo and Yapeng Tian.
+\newblock Scaling diffusion mamba with bidirectional ssms for efficient image and video generation.
+\newblock \emph{arXiv preprint arXiv:2405.15881}, 2024.
+
+\bibitem[Pan et~al.(2024)Pan, Qin, Li, Xue, and Chen]{pan2024synthesizing}
+Xichen Pan, Pengda Qin, Yuhong Li, Hui Xue, and Wenhu Chen.
+\newblock Synthesizing coherent story with auto-regressive latent diffusion models.
+\newblock In \emph{WACV}, 2024.
+
+\bibitem[Peebles and Xie(2023)]{peebles2023scalable}
+William Peebles and Saining Xie.
+\newblock Scalable diffusion models with transformers.
+\newblock In \emph{CVPR}, 2023.
+
+\bibitem[Rahman et~al.(2023)Rahman, Lee, Ren, Tulyakov, Mahajan, and Sigal]{rahman2023makeastory}
+Tanzila Rahman, Hsin-Ying Lee, Jian Ren, Sergey Tulyakov, Shweta Mahajan, and Leonid Sigal.
+\newblock Make-a-story: Visual memory conditioned consistent story generation.
+\newblock In \emph{CVPR}, 2023.
+
+\bibitem[Salimans and Ho(2022)]{salimans2022progressive}
+Tim Salimans and Jonathan Ho.
+\newblock Progressive distillation for fast sampling of diffusion models.
+\newblock In \emph{ICLR}, 2022.
+
+\bibitem[Schlag et~al.(2021)Schlag, Irie, and Schmidhuber]{schlag2021deltanet}
+Imanol Schlag, Kazuki Irie, and J{\"u}rgen Schmidhuber.
+\newblock Linear transformers are secretly fast weight programmers.
+\newblock In \emph{ICML}, 2021.
+
+\bibitem[Schmidhuber(1992{\natexlab{a}})]{schmidhuber1992learning}
+J{\"u}rgen Schmidhuber.
+\newblock Learning to control fast-weight memories: An alternative to dynamic recurrent networks.
+\newblock \emph{Neural Computation}, 4\penalty0 (1):\penalty0 131--139, 1992{\natexlab{a}}.
+
+\bibitem[Schmidhuber(1992{\natexlab{b}})]{schmidhuberlinearattn}
+Jürgen Schmidhuber.
+\newblock Learning to control fast-weight memories: An alternative to dynamic recurrent networks.
+\newblock \emph{Neural Computation}, 4\penalty0 (1):\penalty0 131--139, 1992{\natexlab{b}}.
+
+\bibitem[Shah et~al.(2024)Shah, Bikshandi, Zhang, Thakkar, Ramani, and Dao]{shah2024flashattention3fastaccurateattention}
+Jay Shah, Ganesh Bikshandi, Ying Zhang, Vijay Thakkar, Pradeep Ramani, and Tri Dao.
+\newblock Flashattention-3: Fast and accurate attention with asynchrony and low-precision, 2024.
+
+\bibitem[Shoeybi et~al.(2019)Shoeybi, Patwary, Puri, LeGresley, Casper, and Catanzaro]{shoeybi2019megatron}
+Mohammad Shoeybi, Mostofa Patwary, Raul Puri, Patrick LeGresley, Jared Casper, and Bryan Catanzaro.
+\newblock Megatron-lm: Training multi-billion parameter language models using model parallelism.
+\newblock \emph{arXiv preprint arXiv:1909.08053}, 2019.
+
+\bibitem[Skorokhodov et~al.(2022)Skorokhodov, Tulyakov, and Elhoseiny]{skorokhodov2022styleganv}
+Ivan Skorokhodov, Sergey Tulyakov, and Mohamed Elhoseiny.
+\newblock Stylegan-v: A continuous video generator with the price, image quality and perks of stylegan2.
+\newblock In \emph{CVPR}, 2022.
+
+\bibitem[Song et~al.(2021)Song, Meng, and Ermon]{song2021ddim}
+Jiaming Song, Chenlin Meng, and Stefano Ermon.
+\newblock Denoising diffusion implicit models.
+\newblock In \emph{ICLR}, 2021.
+
+\bibitem[Spector et~al.(2025)Spector, Arora, Singhal, Fu, and R{\'e}]{spector2025thunderkittens}
+Benjamin~F Spector, Simran Arora, Aaryan Singhal, Daniel~Y Fu, and Christopher R{\'e}.
+\newblock Thunderkittens: Simple, fast, and adorable ai kernels.
+\newblock In \emph{ICLR}, 2025.
+
+\bibitem[Sun et~al.(2024)Sun, Li, Dalal, Xu, Vikram, Zhang, Dubois, Chen, Wang, Koyejo, Hashimoto, and Guestrin]{sun2024ttt}
+Yu Sun, Xinhao Li, Karan Dalal, Jiarui Xu, Arjun Vikram, Genghan Zhang, Yann Dubois, Xinlei Chen, Xiaolong Wang, Sanmi Koyejo, Tatsunori Hashimoto, and Carlos Guestrin.
+\newblock Learning to (learn at test time): Rnns with expressive hidden states.
+\newblock \emph{arXiv preprint arXiv:2407.04620}, 2024.
+
+\bibitem[team(2024)]{meta2024moviegen}
+The Movie~Gen team.
+\newblock Movie gen: A cast of media foundation models.
+\newblock \emph{arXiv preprint arXiv:2410.13720}, 2024.
+
+\bibitem[Villegas et~al.(2023)Villegas, Babaeizadeh, Kindermans, Moraldo, Zhang, Saffar, Castro, Kunze, and Erhan]{villegas2023phenaki}
+Ruben Villegas, Mohammad Babaeizadeh, Pieter-Jan Kindermans, Hernan Moraldo, Han Zhang, Mohammad~Taghi Saffar, Santiago Castro, Julius Kunze, and Dumitru Erhan.
+\newblock Phenaki: Variable length video generation from open domain textual description.
+\newblock In \emph{ICLR}, 2023.
+
+\bibitem[Vincent et~al.(2008)Vincent, Larochelle, Bengio, and Manzagol]{denoisingautoencoder}
+Pascal Vincent, Hugo Larochelle, Yoshua Bengio, and Pierre-Antoine Manzagol.
+\newblock Extracting and composing robust features with denoising autoencoders.
+\newblock In \emph{ICML}, 2008.
+
+\bibitem[Wang et~al.(2024{\natexlab{a}})Wang, Ma, Liu, Hou, Xu, Wang, Juefei-Xu, Luo, Zhang, Hou, Vajda, Jha, and Dai]{wang2024lingenhighresolutionminutelengthtexttovideo}
+Hongjie Wang, Chih-Yao Ma, Yen-Cheng Liu, Ji Hou, Tao Xu, Jialiang Wang, Felix Juefei-Xu, Yaqiao Luo, Peizhao Zhang, Tingbo Hou, Peter Vajda, Niraj~K. Jha, and Xiaoliang Dai.
+\newblock Lingen: Towards high-resolution minute-length text-to-video generation with linear computational complexity, 2024{\natexlab{a}}.
+
+\bibitem[Wang et~al.(2025)Wang, Shi, and Fox]{wang2025test}
+Ke~Alexander Wang, Jiaxin Shi, and Emily~B Fox.
+\newblock Test-time regression: a unifying framework for designing sequence models with associative memory.
+\newblock \emph{arXiv preprint arXiv:2501.12352}, 2025.
+
+\bibitem[Wang et~al.(2021)Wang, Xie, Dong, and Shan]{wang2021realesrgan}
+Xintao Wang, Liangbin Xie, Chao Dong, and Ying Shan.
+\newblock Real-esrgan: Training real-world blind super-resolution with pure synthetic data.
+\newblock In \emph{ICCVW}, 2021.
+
+\bibitem[Wang et~al.(2024{\natexlab{b}})Wang, Chen, Ma, Zhou, Huang, Wang, Yang, He, Yu, Yang, et~al.]{wang2024lavie}
+Yaohui Wang, Xinyuan Chen, Xin Ma, Shangchen Zhou, Ziqi Huang, Yi Wang, Ceyuan Yang, Yinan He, Jiashuo Yu, Peiqing Yang, et~al.
+\newblock Lavie: High-quality video generation with cascaded latent diffusion models.
+\newblock \emph{IJCV}, 2024{\natexlab{b}}.
+
+\bibitem[Xiong et~al.(2024)Xiong, Liu, Molybog, Zhang, Bhargava, Hou, Martin, Rungta, Sankararaman, Oguz, et~al.]{xiong2023effective}
+Wenhan Xiong, Jingyu Liu, Igor Molybog, Hejia Zhang, Prajjwal Bhargava, Rui Hou, Louis Martin, Rashi Rungta, Karthik~Abinav Sankararaman, Barlas Oguz, et~al.
+\newblock Effective long-context scaling of foundation models.
+\newblock In \emph{NAACL}, 2024.
+
+\bibitem[Yang et~al.(2024)Yang, Wang, Zhang, Shen, and Kim]{yang2024parallelizing}
+Songlin Yang, Bailin Wang, Yu Zhang, Yikang Shen, and Yoon Kim.
+\newblock Parallelizing linear transformers with the delta rule over sequence length.
+\newblock In \emph{NeurIPS}, 2024.
+
+\bibitem[Yang et~al.(2025{\natexlab{a}})Yang, Kautz, and Hatamizadeh]{yang2025gateddeltanetworksimproving}
+Songlin Yang, Jan Kautz, and Ali Hatamizadeh.
+\newblock Gated delta networks: Improving mamba2 with delta rule.
+\newblock In \emph{ICLR}, 2025{\natexlab{a}}.
+
+\bibitem[Yang et~al.(2025{\natexlab{b}})Yang, Teng, Zheng, Ding, Huang, Xu, Yang, Hong, Zhang, Feng, et~al.]{yang2024cogvideox}
+Zhuoyi Yang, Jiayan Teng, Wendi Zheng, Ming Ding, Shiyu Huang, Jiazheng Xu, Yuanming Yang, Wenyi Hong, Xiaohan Zhang, Guanyu Feng, et~al.
+\newblock Cogvideox: Text-to-video diffusion models with an expert transformer.
+\newblock In \emph{ICLR}, 2025{\natexlab{b}}.
+
+\bibitem[Yin et~al.(2023)Yin, Wu, Yang, Wang, Wang, Ni, Yang, Li, Liu, Yang, et~al.]{yin2023nuwa}
+Shengming Yin, Chenfei Wu, Huan Yang, Jianfeng Wang, Xiaodong Wang, Minheng Ni, Zhengyuan Yang, Linjie Li, Shuguang Liu, Fan Yang, et~al.
+\newblock Nuwa-xl: Diffusion over diffusion for extremely long video generation.
+\newblock \emph{arXiv preprint arXiv:2303.12346}, 2023.
+
+\bibitem[Zhou et~al.(2024)Zhou, Zhou, Cheng, Feng, and Hou]{zhou2024storydiffusion}
+Yupeng Zhou, Daquan Zhou, Ming-Ming Cheng, Jiashi Feng, and Qibin Hou.
+\newblock Storydiffusion: Consistent self-attention for long-range image and video generation.
+\newblock In \emph{NeurIPS}, 2024.
+
+\end{thebibliography}

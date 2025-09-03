@@ -1,0 +1,31 @@
+\section{Related Work}
+\label{sec:related_works}
+
+
+\noindent\textbf{Panoramic scene understanding.}
+Panoramic perception enables a holistic understanding of a 360{\textdegree} scene in a single shot~\cite{gao2022review,chen2024360+,dong2024panocontext,ehsanpour2022jrdb_act,jiang2024minimalist,jiang2022annular,ai2022deep}. 
+Main areas include 
+panoramic scene segmentation~\cite{teng2024360bev,zheng2024360sfuda++,cao2024occlusion,zheng2024semantics,yan2023panovos,jaus2021panoramic_panoptic,jaus2023panoramic_insights}, 
+panoramic estimation~\cite{bai2024glpanodepth,ai2024elite360d,wang2022bifuse++,shen2022panoformer,chang2023depth_neural}, 
+panoramic layout estimation~\cite{yu2023panelnet,shen2023disentangling,ling2023panoswin}, 
+panoramic generation~\cite{zhou2025dreamscene360,wang2024360dvd,li2023panogen}, 
+and panoramic flow estimation~\cite{shi2023panoflow,li2022deep}, \etc~\cite{park2024fully,kim2024fully,fan2024learned,han2022panoramic_activity}.
+Researchers typically unfold panoramas into equirectangular projections or polyhedral projections to adapt algorithms designed for limited-FoV data~\cite{jiang2021unifuse,wang2022bifuse++,li2022deep}. 
+They also apply techniques such as deformable convolutions to handle severe distortions in high-latitude regions~\cite{shi2023panoflow,zhang2024behind}.
+
+Recently, researchers have recognized the advantages of omnidirectional images for tracking, particularly their ability to maintain continuous observation of targets without the out-of-view issues present in limited field-of-view setups.
+Jiang~\etal~\cite{jiang2021500} propose a $500$FPS omnidirectional tracking system using a three-axis active vision mechanism to capture fast-moving objects in complex environments.
+The 360VOT benchmark~\cite{huang2023360vot} is introduced for omnidirectional object tracking, focusing on spherical distortions and object localization challenges.
+Huang~\etal~\cite{huang2024360loc} present 360Loc for omnidirectional localization that tackles cross-device challenges by generating lower-FoV query frames from 360{\textdegree} data. 
+Another work by Xu~\etal~\cite{xu2024360vots} introduces an extended bounding FoV (eBFoV) representation to alleviate spherical distortions in panoramic videos.
+Unlike previous methods, this work first explores extremely challenging panoramic-FoV and intense-motion panoramic tracking for mobile robots, \eg, aiming to enhance the robot’s spatiotemporal understanding of objects in its surroundings.
+
+\noindent\textbf{Multi-object tracking.}
+Object tracking primarily follows two paradigms: Tracking-By-Detection (TBD)~\cite{Chen_2024_CVPR,Du_2024_CVPR,qin2024towards,nettrack2024cvpr,huang2024deconfusetrack,lv2024diffmot,li2023ovtrack,qin2023motiontrack} and End-To-End (E2E)~\cite{ding2024adatrack,li2023end,MeMOTR,zeng2022motr}. 
+Among these, TBD is currently one of the most prevalent, with frameworks following the design principles of SORT~\cite{wojke2017simple}. 
+First, the detection network~\cite{yolox2021,carion2020end} is used to locate bounding boxes for objects, then the target's current position is predicted based on its historical trajectory, and the predicted results are associated with detection results~\cite{kuhn1955hungarian}. 
+Many subsequent works have refined this approach: DeepSORT~\cite{li2022deep} introduced a ReID model to incorporate appearance information for association, and ByteTrack~\cite{zhang2022bytetrack} designed a confidence-based, stage-wise association strategy. 
+Other methods~\cite{aharon2022bot,yi2024ucmc,du2023strongsort} introduced motion compensation modules to mitigate camera motion, and OC-SORT~\cite{cao2023observation} optimized the motion estimation module. Additionally, E2E methods have continued to evolve. 
+TrackFormer~\cite{meinhardt2021trackformer} and MOTR~\cite{zeng2022motr} proposed transformer-based, End-to-End tracking approaches. 
+Recent improvements~\cite{zhang2023motrv2, lv2024diffmot} have enhanced detector performance and improved data association accuracy in occlusion scenarios. 
+Unlike existing methods that focus on narrow-FoV pinhole camera data with linear sensor motion, we address the challenges of MOT in panoramic-FoV scenarios, tackling issues such as geometric distortion and complex motion.

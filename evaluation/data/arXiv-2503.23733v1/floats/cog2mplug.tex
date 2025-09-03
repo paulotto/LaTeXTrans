@@ -1,0 +1,45 @@
+
+\begin{table*}[!ht]
+    \centering
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{lclllllllllc}
+        \toprule             
+
+        Model & $\mathrm{Unsupervised}$ & $\mathrm{MMMU_{val}}$ &  $\mathrm{MME_{sum}}$ &  $\mathrm{SeedBench_{all}}$ & $\mathrm{OCRBench}$  &  $\mathrm{TextVQA_{val}}$  & $\mathrm{OKVQA}$ & $\mathrm{GQA}$  &  $\mathrm{VizWiz_{val}}$ & $\mathrm{SUM}$  & $\mathrm{Top2}$  \\ 
+        \hline
+
+\rowcolor{gray!20}
+\multicolumn{12}{c}{\textbf{Original Models}} \\
+\hline
+ mPLUG-Owl2\footnotesize(base) & ~ & 34.90  & 62.80  & 59.41  & 34.10  & 55.13  & 60.98  & 56.11  & 32.07  & 395.50  \\ 
+     CogVLM & ~  & 34.80  & 59.23  & 61.22  & \textit{56.50}  & \textit{77.57}  & 60.82  & \textit{59.43}  & \textit{37.09}  & \textit{446.66} \\ 
+       
+    
+     \hline
+       
+\rowcolor{gray!20}
+\multicolumn{12}{c}{\textbf{Baselines}} \\
+\hline
+Task Arithmetic &$\times$ & \underline{38.80\footnotesize(+3.95)} & \textbf{64.65\footnotesize(+3.63)} & \textbf{60.85\footnotesize(+0.53)} & \textbf{31.50\footnotesize(-13.80)} & \textbf{56.99\footnotesize(-9.36)} & 60.93\footnotesize(+0.03) & \underline{54.44\footnotesize(-3.33)} & \textbf{32.76\footnotesize(-1.82)} & \textbf{400.92\footnotesize(-20.16)} & 8 \\
+
+        Ties-Merging &$\times$ & 27.9\footnotesize(-6.95) & 48.96\footnotesize(-12.06) & 52.32\footnotesize(-8.00) & 24.30\footnotesize(-21.00) & 42.10\footnotesize(-24.25) & 54.15\footnotesize(-6.75) & 43.02\footnotesize(-14.75) & 27.56\footnotesize(-7.02) & 320.31\footnotesize(-100.77) &0 \\ 
+        
+        DARE-Linear & $\times$ &37.60\footnotesize(+2.75) & 62.44\footnotesize(+1.42) & 59.81\footnotesize(-0.51) & 30.90\footnotesize(-14.40) & 56.41\footnotesize(-9.94) & \underline{61.07\footnotesize(+0.17)} & 54.11\footnotesize(-3.66) & 32.42\footnotesize(-2.16) & 394.76\footnotesize(-26.32) & 1\\ 
+        
+        DARE-Ties & $\times$ &32.00\footnotesize(-2.85) & 57.90\footnotesize(-3.12) & 57.62\footnotesize(-2.70) & 24.10\footnotesize(-21.20) & 43.84\footnotesize(-22.51) & 51.56\footnotesize(-9.34) & 52.04\footnotesize(-5.73) & 25.67\footnotesize(-8.91) & 344.73\footnotesize(-76.35) & 0\\
+        
+        MetaGPT & $\checkmark$&31.30\footnotesize(-3.55) & 56.81\footnotesize(-4.21) & 50.81\footnotesize(-9.51) & 29.30\footnotesize(-16.00) & 37.96\footnotesize(-28.39) & 43.02\footnotesize(-17.88) & 34.12\footnotesize(-23.65) & 15.84\footnotesize(-18.74) & 299.16\footnotesize(-121.92)  &0
+          \\[0.5ex] 
+               \hline       
+\rowcolor{gray!20}
+\multicolumn{12}{c}{\textbf{Our Method}} \\
+\hline                    
+       AdaMMS &$\checkmark$& \textbf{39.10\footnotesize(+4.25)} & \textbf{64.65\footnotesize(+3.63)} & \underline{60.16\footnotesize(-0.16)} & \underline{30.60\footnotesize(-14.70)} & \underline{55.88\footnotesize(-10.47)} & \textbf{62.11\footnotesize(+1.21)} & \textbf{55.61\footnotesize(-2.16)} & \underline{32.69\footnotesize(-1.89)} & \underline{400.80\footnotesize(-20.28)} & 9\\
+        \bottomrule
+    \end{tabular}%
+        }
+    \caption{Results on merging CogVLM-7B into mPLUG-Owl2-7B.}
+    \label{tab:cog2mplug}
+\end{table*}
+
+

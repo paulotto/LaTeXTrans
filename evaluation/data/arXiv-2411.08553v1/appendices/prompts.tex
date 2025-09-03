@@ -1,0 +1,108 @@
+\section{Prompts used for each dataset}
+\label{app:prompts}
+
+% \begin{prompt}[title={Prompt \thetcbcounter: \Polarity{} \fewgen}, label=prompt:dataset]
+% % \promptsection{\fewgen}
+% \promptsubsection{In-context example} \\ \prompttext{
+% Write a review about a product on Amazon which discusses \param{{label}}. Include relevant product details. The review should only be a single short sentence, or a single paragraph of 3 to 4 sentences. Add very minor typos.
+% \\ Review: \param{{icl[gold_text]}}
+% }
+% \\ \promptsubsection{Prompt} \\ \prompttext{
+% Write a review about a product on Amazon which discusses \param{{label}}. Include relevant product details. The review should only be a single short sentence, or a single paragraph of 3 to 4 sentences. Add very minor typos.
+% \\ Review: 
+% }
+% % \paddedhline
+% % \promptsection{\ours{} \RetrICL}
+% \end{prompt}
+
+
+% \begin{prompt}[title={Prompt \thetcbcounter: \Yelp{} \fewgen}, label=prompt:dataset]
+% % \promptsection{\fewgen}
+% \promptsubsection{In-context example} \\ \prompttext{
+% Write a review about a business on Yelp which discusses \param{{label}}. Include relevant details about the business. The review should only be a single short sentence, or a single paragraph of 3 to 4 sentences. Add very minor typos.
+% \\ Review: \param{{icl[gold_text]}}
+% }
+% \\ \promptsubsection{Prompt} \\ \prompttext{
+% Write a review about a business on Yelp which discusses \param{{label}}. Include relevant details about the business. The review should only be a single short sentence, or a single paragraph of 3 to 4 sentences. Add very minor typos.
+% \\ Review: 
+% }
+% % \paddedhline
+% % \promptsection{\ours{} \RetrICL}
+% \end{prompt}
+
+
+\begin{prompt}[title={Prompt \thetcbcounter: \IMDb{} \fewgen}, label=prompt:dataset]
+% \promptsection{\fewgen}
+\promptsubsection{In-context example} \\ \prompttext{
+Write a review which discusses \param{{label}}. Include relevant details about the movie. The review should only be a single short sentence, or a single paragraph of 3 to 4 sentences. Add very minor typos.
+\\ Review: \param{{icl[gold_text]}}
+}
+\\ \promptsubsection{Prompt} \\ \prompttext{
+Write a review which discusses \param{{label}}. Include relevant details about the movie. The review should only be a single short sentence, or a single paragraph of 3 to 4 sentences. Add very minor typos.
+\\ Review: 
+}
+% \paddedhline
+% \promptsection{\ours{} \RetrICL}
+\end{prompt}
+
+
+
+\begin{prompt}[title={Prompt \thetcbcounter: \Humor{} \fewgen}, label=prompt:dataset]
+% \promptsection{\fewgen}
+\promptsubsection{In-context example} \\ \prompttext{
+Write a short \param{{label}} question about a product on Amazon. Only include the question.
+\\ Product Question: \param{{icl[gold_text]}}
+}
+\\ \promptsubsection{Prompt} \\ \prompttext{
+Write a short \param{{label}} question about a product on Amazon. Only include the question.
+\\ Product Question:
+}
+% \paddedhline
+% \promptsection{\ours{} \RetrICL}
+\end{prompt}
+
+
+
+\begin{prompt}[title={Prompt \thetcbcounter: \AGNews{} \fewgen}, label=prompt:agnews]
+% \promptsection{\fewgen}
+\promptsubsection{In-context example} \\ \prompttext{
+Write a summary for a news article about \param{{label}}. The summary should be one or two short sentences.
+\\ Summary: \param{{icl[gold_text]}}
+}
+\\ \promptsubsection{Prompt} \\ \prompttext{
+Write a summary for a news article about \param{{label}}. The summary should be one or two short sentences.
+\\Summary:
+}
+% \paddedhline
+% \promptsection{\ours{} \RetrICL}
+\end{prompt}
+
+
+\begin{prompt}[title={Prompt \thetcbcounter: \ToIHeadlines{} \fewgen}, label=prompt:toi]
+% \promptsection{\fewgen}
+\promptsubsection{In-context example} \\ \prompttext{
+Write a headline for a news article about \param{{label}}. The headline should be a single sentence.
+\\ Headline: \param{{icl[gold_text]}}
+}
+\\ \promptsubsection{Prompt} \\ \prompttext{
+Write a headline for a news article about \param{{label}}. The headline should be a single sentence.
+\\ Headline: 
+}
+% \paddedhline
+% \promptsection{\ours{} \RetrICL}
+\end{prompt}
+
+
+% \begin{prompt}[title={Prompt \thetcbcounter: \Category{} \fewgen}, label=prompt:dataset]
+% % \promptsection{\fewgen}
+% \promptsubsection{In-context example} \\ \prompttext{
+% Write a product review about a product which is in the category of \param{{label}}. Include relevant product details. The review should only be a single short sentence, or a single paragraph of 3 to 4 sentences. Add very minor typos.
+% \\ Review: \param{{icl[gold_text]}}
+% }
+% \\ \promptsubsection{Prompt} \\ \prompttext{
+% Write a product review about a product which is in the category of \param{{label}}. Include relevant product details. The review should only be a single short sentence, or a single paragraph of 3 to 4 sentences. Add very minor typos.
+% \\ Review: 
+% }
+% % \paddedhline
+% % \promptsection{\ours{} \RetrICL}
+% \end{prompt}

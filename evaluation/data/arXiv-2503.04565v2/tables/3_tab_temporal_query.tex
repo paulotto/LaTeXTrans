@@ -1,0 +1,31 @@
+\begin{table}[t!]
+    \centering
+    \setlength{\tabcolsep}{8pt}     % 4pt
+    \resizebox{\columnwidth}{!}{%
+    \begin{tabular}{c|cc|cccc}
+        % \toprule
+        \topline
+        \rowcolor{mygray}  Exp. & \textit{I$_{dn}$} & \textit{I$_{ft}$} & HOTA$\uparrow$ & IDF1$\uparrow$ & OSPA$\downarrow$ & MOTA$\uparrow$ \\
+        % \midrule
+        \hline
+        
+        \ding{192} & - & - &  0.01 & 0.00 & 1.00 & 0.00  \\ 	 	 	 
+
+        \ding{193} & & \checkmark   & 3.80 & 1.91 & 0.99 & -0.01 \\
+        \ding{194} &   \checkmark  & & 24.32 & 26.20 &0.93  & 29.25     \\ 	 	 	
+
+        % \midrule
+        \hline
+        \rowcolor{tabgray}\ding{195} & \checkmark & \checkmark  & \textbf{25.12} & \textbf{27.42} & \textbf{0.93} & \textbf{34.99}  \\
+        % \bottomrule
+        \bottomline
+    \end{tabular}
+    }
+    \vspace{-1mm}
+    \caption{Analysis of FlexiTrack Instance: \(\textit{I}_{dn}\) represents an instance generated using Ground Truth (GT), whereas \(\textit{I}_{ft}\) refers to a FlexiTrack Instance.
+    }
+    \vspace{-3mm}
+    \label{tab: FlexiTrack_instance.}
+\end{table}
+
+

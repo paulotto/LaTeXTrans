@@ -1,0 +1,9 @@
+\section{Ablation: without in-context learning}
+\label{app:zeroshot}
+
+We explore the performance from \fewgen{} and \corrsyn{} in the absence of in-context examples. Recall that in \autoref{tab:accuracy-diversity-icl}, we used 3 in-context examples selected at random from a small seed set of 50 per class (for multiclass tasks) and 100 per class (for binary tasks). 
+
+In this ablation, we remove this dependence completely and do not pass any in-context examples; thus, the next-token distribution is the same for each batch of contrasting terms we generate, and the variation in generations is solely a function of the top-p sampling, rather than a change to the next-token distribution which was induced due to in-context examples in the prompt.
+
+In \autoref{tab:accuracy-diversity-zeroshot}, we observe that once again, \corrsyn{} consistently demonstrates superior diversity and accuracy compared to \fewgen. However, we note that in-context examples do improve all metrics, and thus we recommend including them in the base prompt.
+\input{table/acc_diversity_zeroshot_merged}

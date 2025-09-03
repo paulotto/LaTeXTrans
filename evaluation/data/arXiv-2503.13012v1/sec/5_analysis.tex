@@ -1,0 +1,49 @@
+\section{Analysis}
+
+\begin{table}[htb!]
+% \vspace{-9pt}
+\setlength{\tabcolsep}{6pt}
+\centering
+  \caption{Ablation study in the retinal fundus segmentation. Details of the experiment can be found in Sec~\ref{sec:abl_ue}.}
+  \vspace{-0.3cm}
+  \begin{adjustbox}{width=0.999\linewidth}
+    \input{tables/abl_1}
+  \end{adjustbox}
+  \label{tab:tabel_abl1}
+\end{table}
+
+% To assess the effectiveness of the universe embeddings, multi-graph matching, and the entire test-time paradigm, we conducted a series of ablation experiments on the retinal fundus datasets. The experimental settings remained consistent with those in Sec.~\ref{exp_setup}. For more detailed analysis, please refer to the supplementary material.
+
+\subsection{Effectiveness of the Universe Embeddings}
+\label{sec:abl_ue}
+The universe embeddings $\mathcal{U}$ play a crucial role in incorporating morphological priors from medical images, resulting in an assignment matrix that projects each node to the \textit{universe of nodes}. To validate the effectiveness during the TTA, we conducted the following experiments: (1) Without universe embeddings (denoted as \textit{w/o $\mathcal{U}$}), the universe matching assignment matrix $\bold{U}$ is initialized following the setting in \cite{wang2020graduated} (i.e. $\bold{U}=1/d+10^{-3}z$, where $z\sim N(0,1)$), leading to random matching between the nodes and the universe; (2) Without morphological priors but with $\mathcal{U}$ (denoted as \textit{w/o priors}). As shown in Table~\ref{tab:tabel_abl1}, the performance in (1) is slightly better than in (2) by 1.76\% in terms of DSC on average. However, when using the pre-trained $\mathcal{U}$ derived from the source model, the segmentation results show a significant improvement. This highlights the effectiveness of the pre-trained morphological priors embedded in $\mathcal{U}$ for medical imaging tasks.
+
+\begin{figure}[!t]
+    \centering
+\includegraphics[width=0.999\linewidth]{Figures/comparison_dsc_time_labeled.png}
+    % \vspace{-10pt}
+    \caption{The performance of DSC (\%) and inference time (s) with different universe sizes $d$ are shown, with the experimental setup identical to that in Table~\ref{tab:tabel_fundus}. The first curve represents the \textit{No Adapt} baseline ($d = 0$), while the subsequent curve corresponds to the results obtained with a universe size of $ d = 120$.}
+     \vspace{-0.5cm}
+    \label{fig:universe_d}
+\end{figure}
+
+\vspace{-5pt}
+\subsection{Effectiveness of the Universe Size}
+The universe size $d$ directly impacts both the matching accuracy and computational efficiency, and its selection depends on the number of sampled nodes. Previous works~\cite{bernard2019hippi,wang2020graduated,nurlanov2023universe}, ensured that the $d$ matched the number of nodes in each graph by labeling an equal number of keypoints. In our experiments, $d$ is determined by the spatially-uniform sampling described in Sec~\ref{sec:graph_generation}, and we empirically set $d = 100\times (n+1) s^{-1}$, where $s$ is the sampling step and $n$ is the number of segmentation categories required for the task. We evaluated several $d$, with the results shown in Fig.~\ref{fig:universe_d}. We observe that excessively small or large step sizes—resulting in too many or too few sampled nodes—negatively impact both training speed and performance. However, when $d$ is within a reasonable range (in this experiment, $s \in[2, 10]$ i.e. $d \in [30, 150]$.), the model maintains good scalability and performance.
+
+\begin{table}[htb!]
+\vspace{-9pt}
+\setlength{\tabcolsep}{8pt}
+\centering
+  \caption{Comparison of common variables and performance between pairwise matching and multi-matching, using the same experimental setup as in Table~\ref{tab:tabel_fundus}. Both methods follow the graph construction in Sec.~\ref{sec:graph_generation}.}
+  \vspace{-0.3cm}
+  \begin{adjustbox}{width=0.979\linewidth}
+    \input{tables/abl_matching}
+  \end{adjustbox}
+  \label{tab:tabel_abl_matching}
+\end{table}
+\vspace{-0.5cm}
+\subsection{Multi-Matching vs. Pairwise Matching}
+Compared to pairwise matching, multi-matching uses cycle-consistency for global optimization, which helps avoid local optima in pairwise. Moreover, joint optimization reduces the computational complexity of large-scale matching. By incorporating morphological consistency constraints, multi-matching exhibits greater robustness. To validate these claims, we conducted experiments comparing the two approaches. 
+For the pairwise matching method, we adopted the benchmark approach~\cite{wang2019learning} and applied the same graph construction process as in multi-matching. The comparison results are presented in Table~\ref{tab:tabel_abl_matching}. It is evident that multi-matching outperforms pairwise matching in terms of DSC, inference time, parameters and FLOPs.
+The inference time of multi-matching was reduced by approximately 57.85\% compared to pairwise matching, while segmentation accuracy improved by 3.83\% in DSC.

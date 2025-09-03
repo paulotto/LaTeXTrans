@@ -1,0 +1,16 @@
+\section{Teacher and Student hyperparameters}
+\label{sec:hyperparams}
+
+
+\subsection{Teacher LLM hyperparams}
+
+We use a batch size of 1 for all generations as we have long contexts and encountered failures with higher batch sizes. We use nucleus sampling with top-p=0.9.
+
+\subsection{Student LM hyperparams}
+We use \DistilBERT{} models from HuggingFace: \url{https://huggingface.co/distilbert/distilbert-base-uncased}
+
+We use the same hyperparameters for \DistilBERT{} as \citep{yu2023large}: Learning rate of 5e-5, \detokenize{gradient_accumulation_steps} of 1, \detokenize{batch_size} 32. We use the Adam optimizer with \detokenize{weight_decay} of 1e-4 and \detokenize{epsilon} of 1e-6. We use \detokenize{max_sequence_length} of 512.  
+
+
+We train students for 6 epochs. Following \citep{yu2023large}, we  warmup for 6\% of training steps.
+

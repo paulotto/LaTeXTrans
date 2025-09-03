@@ -1,0 +1,51 @@
+\section{Conclusion and Discussion}
+\label{sec:conclusion}
+
+% In this paper, we consider the problem of adapting pre-trained video-LLMs to downstream tasks that feature temporal supplementary signals alongside videos. This setting covers a wide range of key challenges in video understanding, including audio-visual understanding, 3D reasoning, and video representation learning. We show that fine-tuning pre-trained video-LLMs results in competitive performance on these tasks---a finding that reconfirms the impressive reasoning capability of the latest video-LLMs. 
+
+
+% Targeting at this setting, we introduce PAVE, a framework designed to adapt pre-trained video large language models (LLMs) to downstream tasks using side-channel signals. The core concept of PAVE centers on adaptation through patching, which involves introducing a small number of additional parameters and operations with minimal computational cost, all while preserving the base model architecture and pre-trained weights. PAVE effectively adapts video-LLMs for tasks such as audio-visual understanding and 3D reasoning, surpassing state-of-the-art task-specific models with less than 1\% additional parameters and FLOPs. Additionally, PAVE enhances video understanding by integrating high-frame-rate videos. We hope our work sheds light on adapting MLLMs for diverse tasks and unifying multi-modal information to support complex reasoning.
+
+
+In this paper, we addressed the problem of adapting pre-trained Video LLMs to downstream tasks involving side-channel signals --- additional modalities or data types such as audio, 3D cues, high frame rate or multi-view videos.  
+% 
+To this end, we presented PAVE, a flexible framework that enables adaptation through patching. 
+%
+PAVE built on lightweight adapters (\ie, ``patches''), which adds a small number of parameters and operations ($\sim$0.1\%) to a base model without modifying its architecture or pre-trained weights.
+%
+We demonstrated that PAVE can effectively adapt various video LLMs across multiple tasks, often surpassing state-of-the-art task-specific models. 
+%
+Additionally, we showed encourage results of learning across multiple tasks with PAVE.
+%
+We believe that our work provides a solid step towards adapting Video LLMs for diverse tasks, and sheds light on the broader topic of multi-modal reasoning.
+
+% Yin: The following discussion can be commented out if more space is needed.
+
+\medskip
+\noindent \textbf{Distributing and deploying tasks-specific patches.} A key strength of PAVE is that only a small patch is need for adapting a large pre-trained Video LLM to a new task. For example, for LLaVA-OneVision-7B, this patch is only $\sim$20 MB, while the model occupies $\sim$16 GB. We anticipate that this compactness makes it practical to distribute and deploy individual patches, similar to LoRA weights used in diffusion models, thereby facilitating broader adoption of Video LLMs in downstream applications.
+
+\medskip
+\noindent \textbf{Towards multi-task learning.} An exciting future research direction is the joint learning of multiple patches across tasks. While we have demonstrated the feasibility of stage-wise multi-task learning, future work should aim to handle multi-task joint training and explore methods for combining individual patches to enable flexible task composition. 
+
+
+
+\begin{comment}
+To adapt to a new task, PAVE only needs to issue a small patch (\eg 20 MB) with the LoRA weights on top of the vanilla video-LLM, which needs around 16 GB to store its parameters. It adds negligible parameters and operations with minimal computational cost while preserving the base model architecture and pre-trained weights. 
+
+we present PAVE, a flexible framework for adapting pre-trained Video LLMs to downstream tasks with side-channel signals, such as audio, 3D cues, or multi-view videos.
+PAVE introduces lightweight adapters, referred to as ``patches,'' which adds a small number of parameters and operations to a base model without modifying its architecture or pre-trained weights. In doing so, PAVE can effectively adapt the pre-trained base model to support diverse downstream tasks, including audio-visual question answering, 3D reasoning, multi-view video recognition, and high frame rate video understanding. Across these tasks, PAVE significant enhances the performance of the base model, surpassing state-of-the-art task-specific models while incurring a minor cost of $\sim$0.1\% additional FLOPs and parameters. Further, PAVE supports multi-task learning and generalizes well across different Video LLMs.
+
+PAVE effectively adapts video-LLMs for tasks such as audio-visual understanding, 3D reasoning, and multi-view video understanding, surpassing state-of-the-art task-specific models. 
+
+that feature temporal supplementary signals alongside videos. 
+% This setting covers various key challenges in video understanding, including audio-visual understanding, 3D reasoning, and video representation learning. 
+Targeting this setting, we introduced PAVE, a framework that leverages a patching mechanism to adapt existing video-LLMs with additional side-channel information. To adapt to a new task, PAVE only needs to issue a small patch (\eg 20 MB) with the LoRA weights on top of the vanilla video-LLM, which needs around 16 GB to store its parameters. It adds negligible parameters and operations with minimal computational cost while preserving the base model architecture and pre-trained weights. 
+PAVE effectively adapts video-LLMs for tasks such as audio-visual understanding, 3D reasoning, and multi-view video understanding, surpassing state-of-the-art task-specific models. 
+% Our method thus put a question mark on the necessity of task-specific pre-training. 
+Additionally, PAVE can enhance video understanding by integrating high-frame-rate videos. 
+We hope our work sheds light on adapting MLLMs for diverse tasks and unifying multi-modal information to support complex reasoning.
+\end{comment}
+
+% Yin: This acknowledgment can stay in page 9. 
+\medskip
+\noindent \textbf{Acknowledgment}: This work was partially supported by National Science Foundation under Grant No.\ CNS 2333491, by the Army Research Lab under contract number W911NF-2020221, and by a contract from General Motors. 

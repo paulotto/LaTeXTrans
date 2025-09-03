@@ -1,0 +1,584 @@
+\begin{thebibliography}{65}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+
+\bibitem[{Barikeri et~al.(2021)Barikeri, Lauscher, Vuli{\'c}, and
+  Glava{\v{s}}}]{barikeri-etal-2021-redditbias}
+Soumya Barikeri, Anne Lauscher, Ivan Vuli{\'c}, and Goran Glava{\v{s}}. 2021.
+\newblock \href {https://doi.org/10.18653/v1/2021.acl-long.151}
+  {{R}eddit{B}ias: A real-world resource for bias evaluation and debiasing of
+  conversational language models}.
+\newblock In \emph{Proceedings of the 59th Annual Meeting of the Association
+  for Computational Linguistics and the 11th International Joint Conference on
+  Natural Language Processing (Volume 1: Long Papers)}, pages 1941--1955,
+  Online. Association for Computational Linguistics.
+
+\bibitem[{Belinkov et~al.(2019)Belinkov, Poliak, Shieber, Van~Durme, and
+  Rush}]{belinkov-etal-2019-dont}
+Yonatan Belinkov, Adam Poliak, Stuart Shieber, Benjamin Van~Durme, and
+  Alexander Rush. 2019.
+\newblock \href {https://doi.org/10.18653/v1/P19-1084} {Don{'}t take the
+  premise for granted: Mitigating artifacts in natural language inference}.
+\newblock In \emph{Proceedings of the 57th Annual Meeting of the Association
+  for Computational Linguistics}, pages 877--891, Florence, Italy. Association
+  for Computational Linguistics.
+
+\bibitem[{Bengio et~al.(2009)Bengio, Louradour, Collobert, and
+  Weston}]{bengio2009curriculum}
+Yoshua Bengio, J{\'e}r{\^o}me Louradour, Ronan Collobert, and Jason Weston.
+  2009.
+\newblock Curriculum learning.
+\newblock In \emph{Proceedings of the 26th annual international conference on
+  machine learning}, pages 41--48.
+
+\bibitem[{Bowman et~al.(2015)Bowman, Angeli, Potts, and
+  Manning}]{bowman-etal-2015-large}
+Samuel~R. Bowman, Gabor Angeli, Christopher Potts, and Christopher~D. Manning.
+  2015.
+\newblock \href {https://doi.org/10.18653/v1/D15-1075} {A large annotated
+  corpus for learning natural language inference}.
+\newblock In \emph{Proceedings of the 2015 Conference on Empirical Methods in
+  Natural Language Processing}, pages 632--642, Lisbon, Portugal. Association
+  for Computational Linguistics.
+
+\bibitem[{Cheng and Amiri(2024)}]{cheng2024mu}
+Jiali Cheng and Hadi Amiri. 2024.
+\newblock Mu-bench: A multitask multimodal benchmark for machine unlearning.
+\newblock \emph{arXiv preprint arXiv:2406.14796}.
+
+\bibitem[{Cheng et~al.(2024)Cheng, Elgaar, Vakil, and
+  Amiri}]{cheng24c_interspeech}
+Jiali Cheng, Mohamed Elgaar, Nidhi Vakil, and Hadi Amiri. 2024.
+\newblock \href {https://doi.org/10.21437/Interspeech.2024-2370} {Cognivoice:
+  Multimodal and multilingual fusion networks for mild cognitive impairment
+  assessment from spontaneous speech}.
+\newblock In \emph{Interspeech 2024}, pages 4308--4312.
+
+\bibitem[{Cheng et~al.(2021)Cheng, Hao, Yuan, Si, and Carin}]{cheng2021fairfil}
+Pengyu Cheng, Weituo Hao, Siyang Yuan, Shijing Si, and Lawrence Carin. 2021.
+\newblock \href {https://openreview.net/forum?id=N6JECD-PI5w} {Fairfil:
+  Contrastive neural debiasing method for pretrained text encoders}.
+\newblock In \emph{9th International Conference on Learning Representations,
+  {ICLR} 2021, Virtual Event, Austria, May 3-7, 2021}. OpenReview.net.
+
+\bibitem[{Clark et~al.(2019)Clark, Yatskar, and
+  Zettlemoyer}]{clark-etal-2019-dont}
+Christopher Clark, Mark Yatskar, and Luke Zettlemoyer. 2019.
+\newblock \href {https://doi.org/10.18653/v1/D19-1418} {Don{'}t take the easy
+  way out: Ensemble based methods for avoiding known dataset biases}.
+\newblock In \emph{Proceedings of the 2019 Conference on Empirical Methods in
+  Natural Language Processing and the 9th International Joint Conference on
+  Natural Language Processing (EMNLP-IJCNLP)}, pages 4069--4082, Hong Kong,
+  China. Association for Computational Linguistics.
+
+\bibitem[{Devlin et~al.(2019)Devlin, Chang, Lee, and
+  Toutanova}]{devlin-etal-2019-bert}
+Jacob Devlin, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. 2019.
+\newblock \href {https://doi.org/10.18653/v1/N19-1423} {{BERT}: Pre-training of
+  deep bidirectional transformers for language understanding}.
+\newblock In \emph{Proceedings of the 2019 Conference of the North {A}merican
+  Chapter of the Association for Computational Linguistics: Human Language
+  Technologies, Volume 1 (Long and Short Papers)}, pages 4171--4186,
+  Minneapolis, Minnesota. Association for Computational Linguistics.
+
+\bibitem[{Dinan et~al.(2020)Dinan, Fan, Williams, Urbanek, Kiela, and
+  Weston}]{dinan-etal-2020-queens}
+Emily Dinan, Angela Fan, Adina Williams, Jack Urbanek, Douwe Kiela, and Jason
+  Weston. 2020.
+\newblock \href {https://doi.org/10.18653/v1/2020.emnlp-main.656} {Queens are
+  powerful too: Mitigating gender bias in dialogue generation}.
+\newblock In \emph{Proceedings of the 2020 Conference on Empirical Methods in
+  Natural Language Processing (EMNLP)}, pages 8173--8188, Online. Association
+  for Computational Linguistics.
+
+\bibitem[{Dolan and Brockett(2005)}]{dolan-brockett-2005-automatically}
+William~B. Dolan and Chris Brockett. 2005.
+\newblock \href {https://aclanthology.org/I05-5002} {Automatically constructing
+  a corpus of sentential paraphrases}.
+\newblock In \emph{Proceedings of the Third International Workshop on
+  Paraphrasing ({IWP}2005)}.
+
+\bibitem[{Du et~al.(2023)Du, Ding, Sun, Liu, Qin, and
+  Liu}]{du-etal-2023-towards}
+Li~Du, Xiao Ding, Zhouhao Sun, Ting Liu, Bing Qin, and Jingshuo Liu. 2023.
+\newblock \href {https://doi.org/10.18653/v1/2023.acl-long.161} {Towards stable
+  natural language understanding via information entropy guided debiasing}.
+\newblock In \emph{Proceedings of the 61st Annual Meeting of the Association
+  for Computational Linguistics (Volume 1: Long Papers)}, pages 2868--2882,
+  Toronto, Canada. Association for Computational Linguistics.
+
+\bibitem[{Gandikota et~al.(2023)Gandikota, Materzy\'nska, Fiotto-Kaufman, and
+  Bau}]{gandikota2023erasing}
+Rohit Gandikota, Joanna Materzy\'nska, Jaden Fiotto-Kaufman, and David Bau.
+  2023.
+\newblock Erasing concepts from diffusion models.
+\newblock In \emph{Proceedings of the 2023 IEEE International Conference on
+  Computer Vision}.
+
+\bibitem[{Gao et~al.(2022)Gao, Dou, Zhang, and Huang}]{gao-etal-2022-kernel}
+SongYang Gao, Shihan Dou, Qi~Zhang, and Xuanjing Huang. 2022.
+\newblock \href {https://doi.org/10.18653/v1/2022.emnlp-main.275}
+  {Kernel-whitening: Overcome dataset bias with isotropic sentence embedding}.
+\newblock In \emph{Proceedings of the 2022 Conference on Empirical Methods in
+  Natural Language Processing}, pages 4112--4122, Abu Dhabi, United Arab
+  Emirates. Association for Computational Linguistics.
+
+\bibitem[{Gardner et~al.(2021)Gardner, Merrill, Dodge, Peters, Ross, Singh, and
+  Smith}]{gardner-etal-2021-competency}
+Matt Gardner, William Merrill, Jesse Dodge, Matthew Peters, Alexis Ross, Sameer
+  Singh, and Noah~A. Smith. 2021.
+\newblock \href {https://doi.org/10.18653/v1/2021.emnlp-main.135} {Competency
+  problems: On finding and removing artifacts in language data}.
+\newblock In \emph{Proceedings of the 2021 Conference on Empirical Methods in
+  Natural Language Processing}, pages 1801--1813, Online and Punta Cana,
+  Dominican Republic. Association for Computational Linguistics.
+
+\bibitem[{Ghaddar et~al.(2021)Ghaddar, Langlais, Rezagholizadeh, and
+  Rashid}]{ghaddar-etal-2021-end}
+Abbas Ghaddar, Phillippe Langlais, Mehdi Rezagholizadeh, and Ahmad Rashid.
+  2021.
+\newblock \href {https://doi.org/10.18653/v1/2021.findings-acl.168} {End-to-end
+  self-debiasing framework for robust {NLU} training}.
+\newblock In \emph{Findings of the Association for Computational Linguistics:
+  ACL-IJCNLP 2021}, pages 1923--1929, Online. Association for Computational
+  Linguistics.
+
+\bibitem[{Guo et~al.(2023)Guo, Tang, Ouyang, Wu, and
+  Dai}]{guo-etal-2023-debias}
+Qi~Guo, Yuanhang Tang, Yawen Ouyang, Zhen Wu, and Xinyu Dai. 2023.
+\newblock \href {https://doi.org/10.18653/v1/2023.findings-emnlp.726} {Debias
+  {NLU} datasets via training-free perturbations}.
+\newblock In \emph{Findings of the Association for Computational Linguistics:
+  EMNLP 2023}, pages 10886--10901, Singapore. Association for Computational
+  Linguistics.
+
+\bibitem[{Gururangan et~al.(2018)Gururangan, Swayamdipta, Levy, Schwartz,
+  Bowman, and Smith}]{gururangan-etal-2018-annotation}
+Suchin Gururangan, Swabha Swayamdipta, Omer Levy, Roy Schwartz, Samuel Bowman,
+  and Noah~A. Smith. 2018.
+\newblock \href {https://doi.org/10.18653/v1/N18-2017} {Annotation artifacts in
+  natural language inference data}.
+\newblock In \emph{Proceedings of the 2018 Conference of the North {A}merican
+  Chapter of the Association for Computational Linguistics: Human Language
+  Technologies, Volume 2 (Short Papers)}, pages 107--112, New Orleans,
+  Louisiana. Association for Computational Linguistics.
+
+\bibitem[{Gutmann and Hyvärinen(2010)}]{pmlr-v9-gutmann10a}
+Michael Gutmann and Aapo Hyvärinen. 2010.
+\newblock \href {https://proceedings.mlr.press/v9/gutmann10a.html}
+  {Noise-contrastive estimation: A new estimation principle for unnormalized
+  statistical models}.
+\newblock In \emph{Proceedings of the Thirteenth International Conference on
+  Artificial Intelligence and Statistics}, volume~9 of \emph{Proceedings of
+  Machine Learning Research}, pages 297--304, Chia Laguna Resort, Sardinia,
+  Italy. PMLR.
+
+\bibitem[{Han et~al.(2022)Han, Baldwin, and Cohn}]{han-etal-2022-balancing}
+Xudong Han, Timothy Baldwin, and Trevor Cohn. 2022.
+\newblock \href {https://doi.org/10.18653/v1/2022.emnlp-main.779} {Balancing
+  out bias: Achieving fairness through balanced training}.
+\newblock In \emph{Proceedings of the 2022 Conference on Empirical Methods in
+  Natural Language Processing}, pages 11335--11350, Abu Dhabi, United Arab
+  Emirates. Association for Computational Linguistics.
+
+\bibitem[{Hartvigsen et~al.(2022)Hartvigsen, Gabriel, Palangi, Sap, Ray, and
+  Kamar}]{hartvigsen-etal-2022-toxigen}
+Thomas Hartvigsen, Saadia Gabriel, Hamid Palangi, Maarten Sap, Dipankar Ray,
+  and Ece Kamar. 2022.
+\newblock \href {https://doi.org/10.18653/v1/2022.acl-long.234} {{T}oxi{G}en: A
+  large-scale machine-generated dataset for adversarial and implicit hate
+  speech detection}.
+\newblock In \emph{Proceedings of the 60th Annual Meeting of the Association
+  for Computational Linguistics (Volume 1: Long Papers)}, pages 3309--3326,
+  Dublin, Ireland. Association for Computational Linguistics.
+
+\bibitem[{Hinton(2002)}]{10.1162/089976602760128018}
+Geoffrey~E. Hinton. 2002.
+\newblock \href {https://doi.org/10.1162/089976602760128018} {Training products
+  of experts by minimizing contrastive divergence}.
+\newblock \emph{Neural Comput.}, 14(8):1771–1800.
+
+\bibitem[{Jeon et~al.(2023)Jeon, Lee, Park, Kim, Mok, and
+  Lee}]{jeon-etal-2023-improving}
+Eojin Jeon, Mingyu Lee, Juhyeong Park, Yeachan Kim, Wing-Lam Mok, and SangKeun
+  Lee. 2023.
+\newblock \href {https://doi.org/10.18653/v1/2023.emnlp-main.681} {Improving
+  bias mitigation through bias experts in natural language understanding}.
+\newblock In \emph{Proceedings of the 2023 Conference on Empirical Methods in
+  Natural Language Processing}, pages 11053--11066, Singapore. Association for
+  Computational Linguistics.
+
+\bibitem[{Jin et~al.(2021)Jin, Barbieri, Kennedy, Mostafazadeh~Davani, Neves,
+  and Ren}]{jin-etal-2021-transferability}
+Xisen Jin, Francesco Barbieri, Brendan Kennedy, Aida Mostafazadeh~Davani,
+  Leonardo Neves, and Xiang Ren. 2021.
+\newblock \href {https://doi.org/10.18653/v1/2021.naacl-main.296} {On
+  transferability of bias mitigation effects in language model fine-tuning}.
+\newblock In \emph{Proceedings of the 2021 Conference of the North American
+  Chapter of the Association for Computational Linguistics: Human Language
+  Technologies}, pages 3770--3783, Online. Association for Computational
+  Linguistics.
+
+\bibitem[{Karimi~Mahabadi et~al.(2020)Karimi~Mahabadi, Belinkov, and
+  Henderson}]{karimi-mahabadi-etal-2020-end}
+Rabeeh Karimi~Mahabadi, Yonatan Belinkov, and James Henderson. 2020.
+\newblock \href {https://doi.org/10.18653/v1/2020.acl-main.769} {End-to-end
+  bias mitigation by modelling biases in corpora}.
+\newblock In \emph{Proceedings of the 58th Annual Meeting of the Association
+  for Computational Linguistics}, pages 8706--8716, Online. Association for
+  Computational Linguistics.
+
+\bibitem[{Khosla et~al.(2020)Khosla, Teterwak, Wang, Sarna, Tian, Isola,
+  Maschinot, Liu, and Krishnan}]{khosla2020supervised}
+Prannay Khosla, Piotr Teterwak, Chen Wang, Aaron Sarna, Yonglong Tian, Phillip
+  Isola, Aaron Maschinot, Ce~Liu, and Dilip Krishnan. 2020.
+\newblock \href
+  {https://proceedings.neurips.cc/paper/2020/hash/d89a66c7c80a29b1bdbab0f2a1a94af8-Abstract.html}
+  {Supervised contrastive learning}.
+\newblock In \emph{Advances in Neural Information Processing Systems 33: Annual
+  Conference on Neural Information Processing Systems 2020, NeurIPS 2020,
+  December 6-12, 2020, virtual}.
+
+\bibitem[{Kim et~al.(2022)Kim, Hwang, Ahn, Park, and Kwak}]{kim2022learning}
+Nayeong Kim, Sehyun Hwang, Sungsoo Ahn, Jaesik Park, and Suha Kwak. 2022.
+\newblock \href {https://openreview.net/forum?id=nOw2HiKmvk1} {Learning
+  debiased classifier with biased committee}.
+\newblock In \emph{Advances in Neural Information Processing Systems}.
+
+\bibitem[{Kingma and Ba(2015)}]{kingma2014adam}
+Diederik~P. Kingma and Jimmy Ba. 2015.
+\newblock \href {http://arxiv.org/abs/1412.6980} {Adam: {A} method for
+  stochastic optimization}.
+\newblock In \emph{3rd International Conference on Learning Representations,
+  {ICLR} 2015, San Diego, CA, USA, May 7-9, 2015, Conference Track
+  Proceedings}.
+
+\bibitem[{Liu et~al.(2024)Liu, Dong, and Zhang}]{Liu_2024_WACV}
+Xiulong Liu, Zhikang Dong, and Peng Zhang. 2024.
+\newblock Tackling data bias in music-avqa: Crafting a balanced dataset for
+  unbiased question-answering.
+\newblock In \emph{Proceedings of the IEEE/CVF Winter Conference on
+  Applications of Computer Vision (WACV)}, pages 4478--4487.
+
+\bibitem[{Liu et~al.(2019)Liu, Ott, Goyal, Du, Joshi, Chen, Levy, Lewis,
+  Zettlemoyer, and Stoyanov}]{liu2019roberta}
+Yinhan Liu, Myle Ott, Naman Goyal, Jingfei Du, Mandar Joshi, Danqi Chen, Omer
+  Levy, Mike Lewis, Luke Zettlemoyer, and Veselin Stoyanov. 2019.
+\newblock \href {https://arxiv.org/abs/1907.11692} {Roberta: A robustly
+  optimized bert pretraining approach}.
+\newblock \emph{ArXiv preprint}, abs/1907.11692.
+
+\bibitem[{Lyu et~al.(2022)Lyu, Li, Yang, de~Rijke, Ren, Zhao, Yin, and
+  Ren}]{lyu2023feature}
+Yougang Lyu, Piji Li, Yechang Yang, Maarten de~Rijke, Pengjie Ren, Yukun Zhao,
+  Dawei Yin, and Zhaochun Ren. 2022.
+\newblock Feature-level debiased natural language understanding.
+\newblock In \emph{Proceedings of the AAAI Conference on Artificial
+  Intelligence}.
+
+\bibitem[{Madanagopal and Caverlee(2023)}]{madanagopal-caverlee-2023-bias}
+Karthic Madanagopal and James Caverlee. 2023.
+\newblock \href {https://doi.org/10.18653/v1/2023.emnlp-main.882} {Bias
+  neutralization in non-parallel texts: A cyclic approach with auxiliary
+  guidance}.
+\newblock In \emph{Proceedings of the 2023 Conference on Empirical Methods in
+  Natural Language Processing}, pages 14265--14278, Singapore. Association for
+  Computational Linguistics.
+
+\bibitem[{McCoy et~al.(2019)McCoy, Pavlick, and Linzen}]{mccoy-etal-2019-right}
+Tom McCoy, Ellie Pavlick, and Tal Linzen. 2019.
+\newblock \href {https://doi.org/10.18653/v1/P19-1334} {Right for the wrong
+  reasons: Diagnosing syntactic heuristics in natural language inference}.
+\newblock In \emph{Proceedings of the 57th Annual Meeting of the Association
+  for Computational Linguistics}, pages 3428--3448, Florence, Italy.
+  Association for Computational Linguistics.
+
+\bibitem[{Meade et~al.(2022)Meade, Poole-Dayan, and
+  Reddy}]{meade-etal-2022-empirical}
+Nicholas Meade, Elinor Poole-Dayan, and Siva Reddy. 2022.
+\newblock \href {https://doi.org/10.18653/v1/2022.acl-long.132} {An empirical
+  survey of the effectiveness of debiasing techniques for pre-trained language
+  models}.
+\newblock In \emph{Proceedings of the 60th Annual Meeting of the Association
+  for Computational Linguistics (Volume 1: Long Papers)}, pages 1878--1898,
+  Dublin, Ireland. Association for Computational Linguistics.
+
+\bibitem[{Meissner et~al.(2022)Meissner, Sugawara, and
+  Aizawa}]{meissner-etal-2022-debiasing}
+Johannes~Mario Meissner, Saku Sugawara, and Akiko Aizawa. 2022.
+\newblock \href {https://doi.org/10.18653/v1/2022.emnlp-main.517} {Debiasing
+  masks: A new framework for shortcut mitigation in {NLU}}.
+\newblock In \emph{Proceedings of the 2022 Conference on Empirical Methods in
+  Natural Language Processing}, pages 7607--7613, Abu Dhabi, United Arab
+  Emirates. Association for Computational Linguistics.
+
+\bibitem[{Mendelson and Belinkov(2021)}]{mendelson-belinkov-2021-debiasing}
+Michael Mendelson and Yonatan Belinkov. 2021.
+\newblock \href {https://doi.org/10.18653/v1/2021.emnlp-main.116} {Debiasing
+  methods in natural language understanding make bias more accessible}.
+\newblock In \emph{Proceedings of the 2021 Conference on Empirical Methods in
+  Natural Language Processing}, pages 1545--1557, Online and Punta Cana,
+  Dominican Republic. Association for Computational Linguistics.
+
+\bibitem[{Modarressi et~al.(2023)Modarressi, Amirkhani, and
+  Pilehvar}]{modarressi-etal-2023-guide}
+Ali Modarressi, Hossein Amirkhani, and Mohammad~Taher Pilehvar. 2023.
+\newblock \href {https://doi.org/10.18653/v1/2023.eacl-main.143} {Guide the
+  learner: Controlling product of experts debiasing method based on token
+  attribution similarities}.
+\newblock In \emph{Proceedings of the 17th Conference of the European Chapter
+  of the Association for Computational Linguistics}, pages 1954--1959,
+  Dubrovnik, Croatia. Association for Computational Linguistics.
+
+\bibitem[{Nadeem et~al.(2021)Nadeem, Bethke, and
+  Reddy}]{nadeem-etal-2021-stereoset}
+Moin Nadeem, Anna Bethke, and Siva Reddy. 2021.
+\newblock \href {https://doi.org/10.18653/v1/2021.acl-long.416} {{S}tereo{S}et:
+  Measuring stereotypical bias in pretrained language models}.
+\newblock In \emph{Proceedings of the 59th Annual Meeting of the Association
+  for Computational Linguistics and the 11th International Joint Conference on
+  Natural Language Processing (Volume 1: Long Papers)}, pages 5356--5371,
+  Online. Association for Computational Linguistics.
+
+\bibitem[{Naik et~al.(2018)Naik, Ravichander, Sadeh, Rose, and
+  Neubig}]{naik-etal-2018-stress}
+Aakanksha Naik, Abhilasha Ravichander, Norman Sadeh, Carolyn Rose, and Graham
+  Neubig. 2018.
+\newblock \href {https://aclanthology.org/C18-1198} {Stress test evaluation for
+  natural language inference}.
+\newblock In \emph{Proceedings of the 27th International Conference on
+  Computational Linguistics}, pages 2340--2353, Santa Fe, New Mexico, USA.
+  Association for Computational Linguistics.
+
+\bibitem[{Poliak et~al.(2018)Poliak, Naradowsky, Haldar, Rudinger, and
+  Van~Durme}]{poliak-etal-2018-hypothesis}
+Adam Poliak, Jason Naradowsky, Aparajita Haldar, Rachel Rudinger, and Benjamin
+  Van~Durme. 2018.
+\newblock \href {https://doi.org/10.18653/v1/S18-2023} {Hypothesis only
+  baselines in natural language inference}.
+\newblock In \emph{Proceedings of the Seventh Joint Conference on Lexical and
+  Computational Semantics}, pages 180--191, New Orleans, Louisiana. Association
+  for Computational Linguistics.
+
+\bibitem[{Pool and Yu(2021)}]{NEURIPS2021_6e8404c3}
+Jeff Pool and Chong Yu. 2021.
+\newblock \href
+  {https://proceedings.neurips.cc/paper/2021/hash/6e8404c3b93a9527c8db241a1846599a-Abstract.html}
+  {Channel permutations for {N:} {M} sparsity}.
+\newblock In \emph{Advances in Neural Information Processing Systems 34: Annual
+  Conference on Neural Information Processing Systems 2021, NeurIPS 2021,
+  December 6-14, 2021, virtual}, pages 13316--13327.
+
+\bibitem[{Qian et~al.(2021)Qian, Feng, Wen, Ma, and
+  Xie}]{qian-etal-2021-counterfactual}
+Chen Qian, Fuli Feng, Lijie Wen, Chunping Ma, and Pengjun Xie. 2021.
+\newblock \href {https://doi.org/10.18653/v1/2021.acl-long.422} {Counterfactual
+  inference for text classification debiasing}.
+\newblock In \emph{Proceedings of the 59th Annual Meeting of the Association
+  for Computational Linguistics and the 11th International Joint Conference on
+  Natural Language Processing (Volume 1: Long Papers)}, pages 5434--5445,
+  Online. Association for Computational Linguistics.
+
+\bibitem[{Radford et~al.(2019)Radford, Wu, Child, Luan, Amodei, Sutskever
+  et~al.}]{radford2019language}
+Alec Radford, Jeffrey Wu, Rewon Child, David Luan, Dario Amodei, Ilya
+  Sutskever, et~al. 2019.
+\newblock Language models are unsupervised multitask learners.
+\newblock \emph{OpenAI blog}, 1(8):9.
+
+\bibitem[{Ravichander et~al.(2023)Ravichander, Stacey, and
+  Rei}]{ravichander-etal-2023-bias}
+Abhilasha Ravichander, Joe Stacey, and Marek Rei. 2023.
+\newblock \href {https://doi.org/10.18653/v1/2023.findings-emnlp.619} {When and
+  why does bias mitigation work?}
+\newblock In \emph{Findings of the Association for Computational Linguistics:
+  EMNLP 2023}, pages 9233--9247, Singapore. Association for Computational
+  Linguistics.
+
+\bibitem[{Reif and Schwartz(2023)}]{reif-schwartz-2023-fighting}
+Yuval Reif and Roy Schwartz. 2023.
+\newblock \href {https://doi.org/10.18653/v1/2023.findings-acl.833} {Fighting
+  bias with bias: Promoting model robustness by amplifying dataset biases}.
+\newblock In \emph{Findings of the Association for Computational Linguistics:
+  ACL 2023}, pages 13169--13189, Toronto, Canada. Association for Computational
+  Linguistics.
+
+\bibitem[{Sanh et~al.(2021)Sanh, Wolf, Belinkov, and Rush}]{sanh2020learning}
+Victor Sanh, Thomas Wolf, Yonatan Belinkov, and Alexander~M. Rush. 2021.
+\newblock \href {https://openreview.net/forum?id=Hf3qXoiNkR} {Learning from
+  others' mistakes: Avoiding dataset biases without modeling them}.
+\newblock In \emph{9th International Conference on Learning Representations,
+  {ICLR} 2021, Virtual Event, Austria, May 3-7, 2021}. OpenReview.net.
+
+\bibitem[{Schick et~al.(2021)Schick, Udupa, and
+  Sch{\"u}tze}]{schick-etal-2021-self}
+Timo Schick, Sahana Udupa, and Hinrich Sch{\"u}tze. 2021.
+\newblock \href {https://doi.org/10.1162/tacl_a_00434} {Self-diagnosis and
+  self-debiasing: A proposal for reducing corpus-based bias in {NLP}}.
+\newblock \emph{Transactions of the Association for Computational Linguistics},
+  9:1408--1424.
+
+\bibitem[{Sharma et~al.(2019)Sharma, Graesser, Nangia, and
+  Evci}]{sharma2019natural}
+Lakshay Sharma, Laura Graesser, Nikita Nangia, and Utku Evci. 2019.
+\newblock \href {https://arxiv.org/abs/1907.01041} {Natural language
+  understanding with the quora question pairs dataset}.
+\newblock \emph{ArXiv preprint}, abs/1907.01041.
+
+\bibitem[{Shen et~al.(2022)Shen, Han, Cohn, Baldwin, and
+  Frermann}]{shen-etal-2022-representational}
+Aili Shen, Xudong Han, Trevor Cohn, Timothy Baldwin, and Lea Frermann. 2022.
+\newblock \href {https://aclanthology.org/2022.findings-aacl.8} {Does
+  representational fairness imply empirical fairness?}
+\newblock In \emph{Findings of the Association for Computational Linguistics:
+  AACL-IJCNLP 2022}, pages 81--95, Online only. Association for Computational
+  Linguistics.
+
+\bibitem[{Sinha et~al.(2021)Sinha, Parthasarathi, Pineau, and
+  Williams}]{sinha-etal-2021-unnatural}
+Koustuv Sinha, Prasanna Parthasarathi, Joelle Pineau, and Adina Williams. 2021.
+\newblock \href {https://doi.org/10.18653/v1/2021.acl-long.569} {{UnNatural}
+  {L}anguage {I}nference}.
+\newblock In \emph{Proceedings of the 59th Annual Meeting of the Association
+  for Computational Linguistics and the 11th International Joint Conference on
+  Natural Language Processing (Volume 1: Long Papers)}, pages 7329--7346,
+  Online. Association for Computational Linguistics.
+
+\bibitem[{Sohn(2016)}]{NIPS2016_6b180037}
+Kihyuk Sohn. 2016.
+\newblock \href
+  {https://proceedings.neurips.cc/paper/2016/hash/6b180037abbebea991d8b1232f8a8ca9-Abstract.html}
+  {Improved deep metric learning with multi-class n-pair loss objective}.
+\newblock In \emph{Advances in Neural Information Processing Systems 29: Annual
+  Conference on Neural Information Processing Systems 2016, December 5-10,
+  2016, Barcelona, Spain}, pages 1849--1857.
+
+\bibitem[{Sousa et~al.(2019)Sousa, Lamurias, and
+  Couto}]{sousa-etal-2019-silver}
+Diana Sousa, Andre Lamurias, and Francisco~M. Couto. 2019.
+\newblock \href {https://doi.org/10.18653/v1/N19-1152} {A silver standard
+  corpus of human phenotype-gene relations}.
+\newblock In \emph{Proceedings of the 2019 Conference of the North {A}merican
+  Chapter of the Association for Computational Linguistics: Human Language
+  Technologies, Volume 1 (Long and Short Papers)}, pages 1487--1492,
+  Minneapolis, Minnesota. Association for Computational Linguistics.
+
+\bibitem[{Sun et~al.(2022)Sun, Thai, and Iyyer}]{sun-etal-2022-chapterbreak}
+Simeng Sun, Katherine Thai, and Mohit Iyyer. 2022.
+\newblock \href {https://doi.org/10.18653/v1/2022.naacl-main.271}
+  {{C}hapter{B}reak: A challenge dataset for long-range language models}.
+\newblock In \emph{Proceedings of the 2022 Conference of the North American
+  Chapter of the Association for Computational Linguistics: Human Language
+  Technologies}, pages 3704--3714, Seattle, United States. Association for
+  Computational Linguistics.
+
+\bibitem[{Tsirigotis et~al.(2023)Tsirigotis, Monteiro, Rodriguez, Vazquez, and
+  Courville}]{NEURIPS2023_b0d9ceb3}
+Christos Tsirigotis, Joao Monteiro, Pau Rodriguez, David Vazquez, and Aaron~C
+  Courville. 2023.
+\newblock \href
+  {https://proceedings.neurips.cc/paper_files/paper/2023/file/b0d9ceb3d11d013e55da201d2a2c07b2-Paper-Conference.pdf}
+  {Group robust classification without any group information}.
+\newblock In \emph{Advances in Neural Information Processing Systems},
+  volume~36, pages 56553--56575. Curran Associates, Inc.
+
+\bibitem[{Utama et~al.(2020{\natexlab{a}})Utama, Moosavi, and
+  Gurevych}]{utama-etal-2020-mind}
+Prasetya~Ajie Utama, Nafise~Sadat Moosavi, and Iryna Gurevych.
+  2020{\natexlab{a}}.
+\newblock \href {https://doi.org/10.18653/v1/2020.acl-main.770} {Mind the
+  trade-off: Debiasing {NLU} models without degrading the in-distribution
+  performance}.
+\newblock In \emph{Proceedings of the 58th Annual Meeting of the Association
+  for Computational Linguistics}, pages 8717--8729, Online. Association for
+  Computational Linguistics.
+
+\bibitem[{Utama et~al.(2020{\natexlab{b}})Utama, Moosavi, and
+  Gurevych}]{utama-etal-2020-towards}
+Prasetya~Ajie Utama, Nafise~Sadat Moosavi, and Iryna Gurevych.
+  2020{\natexlab{b}}.
+\newblock \href {https://doi.org/10.18653/v1/2020.emnlp-main.613} {Towards
+  debiasing {NLU} models from unknown biases}.
+\newblock In \emph{Proceedings of the 2020 Conference on Empirical Methods in
+  Natural Language Processing (EMNLP)}, pages 7597--7610, Online. Association
+  for Computational Linguistics.
+
+\bibitem[{Vakil and Amiri(2022)}]{vakil-amiri-2022-generic}
+Nidhi Vakil and Hadi Amiri. 2022.
+\newblock \href {https://doi.org/10.18653/v1/2022.naacl-main.160} {Generic and
+  trend-aware curriculum learning for relation extraction}.
+\newblock In \emph{Proceedings of the 2022 Conference of the North American
+  Chapter of the Association for Computational Linguistics: Human Language
+  Technologies}, pages 2202--2213, Seattle, United States. Association for
+  Computational Linguistics.
+
+\bibitem[{Wang et~al.(2023)Wang, Huang, Yan, Zhou, and
+  Chen}]{wang-etal-2023-robust}
+Fei Wang, James~Y. Huang, Tianyi Yan, Wenxuan Zhou, and Muhao Chen. 2023.
+\newblock \href {https://doi.org/10.18653/v1/2023.findings-acl.32} {Robust
+  natural language understanding with residual attention debiasing}.
+\newblock In \emph{Findings of the Association for Computational Linguistics:
+  ACL 2023}, pages 504--519, Toronto, Canada. Association for Computational
+  Linguistics.
+
+\bibitem[{Williams et~al.(2018)Williams, Nangia, and
+  Bowman}]{williams-etal-2018-broad}
+Adina Williams, Nikita Nangia, and Samuel Bowman. 2018.
+\newblock \href {https://doi.org/10.18653/v1/N18-1101} {A broad-coverage
+  challenge corpus for sentence understanding through inference}.
+\newblock In \emph{Proceedings of the 2018 Conference of the North {A}merican
+  Chapter of the Association for Computational Linguistics: Human Language
+  Technologies, Volume 1 (Long Papers)}, pages 1112--1122, New Orleans,
+  Louisiana. Association for Computational Linguistics.
+
+\bibitem[{Wu et~al.(2022)Wu, Gardner, Stenetorp, and
+  Dasigi}]{wu-etal-2022-generating}
+Yuxiang Wu, Matt Gardner, Pontus Stenetorp, and Pradeep Dasigi. 2022.
+\newblock \href {https://doi.org/10.18653/v1/2022.acl-long.190} {Generating
+  data to mitigate spurious correlations in natural language inference
+  datasets}.
+\newblock In \emph{Proceedings of the 60th Annual Meeting of the Association
+  for Computational Linguistics (Volume 1: Long Papers)}, pages 2660--2676,
+  Dublin, Ireland. Association for Computational Linguistics.
+
+\bibitem[{Xu et~al.(2015)Xu, Jin, Shen, and Zhu}]{Xu_Jin_Shen_Zhu_2015}
+Zenglin Xu, Rong Jin, Bin Shen, and Shenghuo Zhu. 2015.
+\newblock \href {https://doi.org/10.1609/aaai.v29i1.9626} {Nystrom
+  approximation for sparse kernel methods: Theoretical analysis and empirical
+  evaluation}.
+\newblock \emph{Proceedings of the AAAI Conference on Artificial Intelligence},
+  29(1).
+
+\bibitem[{Yao et~al.(2023)Yao, Xu, and Liu}]{yao2023large}
+Yuanshun Yao, Xiaojun Xu, and Yang Liu. 2023.
+\newblock Large language model unlearning.
+\newblock \emph{arXiv preprint arXiv:2310.10683}.
+
+\bibitem[{Yu et~al.(2023)Yu, Jeoung, Kasi, Yu, and
+  Ji}]{yu-etal-2023-unlearning}
+Charles Yu, Sullam Jeoung, Anish Kasi, Pengfei Yu, and Heng Ji. 2023.
+\newblock \href {https://doi.org/10.18653/v1/2023.findings-acl.375} {Unlearning
+  bias in language models by partitioning gradients}.
+\newblock In \emph{Findings of the Association for Computational Linguistics:
+  ACL 2023}, pages 6032--6048, Toronto, Canada. Association for Computational
+  Linguistics.
+
+\bibitem[{Zhang et~al.(2019)Zhang, Baldridge, and He}]{zhang-etal-2019-paws}
+Yuan Zhang, Jason Baldridge, and Luheng He. 2019.
+\newblock \href {https://doi.org/10.18653/v1/N19-1131} {{PAWS}: Paraphrase
+  adversaries from word scrambling}.
+\newblock In \emph{Proceedings of the 2019 Conference of the North {A}merican
+  Chapter of the Association for Computational Linguistics: Human Language
+  Technologies, Volume 1 (Long and Short Papers)}, pages 1298--1308,
+  Minneapolis, Minnesota. Association for Computational Linguistics.
+
+\bibitem[{Zmigrod et~al.(2019)Zmigrod, Mielke, Wallach, and
+  Cotterell}]{zmigrod-etal-2019-counterfactual}
+Ran Zmigrod, Sabrina~J. Mielke, Hanna Wallach, and Ryan Cotterell. 2019.
+\newblock \href {https://doi.org/10.18653/v1/P19-1161} {Counterfactual data
+  augmentation for mitigating gender stereotypes in languages with rich
+  morphology}.
+\newblock In \emph{Proceedings of the 57th Annual Meeting of the Association
+  for Computational Linguistics}, pages 1651--1661, Florence, Italy.
+  Association for Computational Linguistics.
+
+\end{thebibliography}

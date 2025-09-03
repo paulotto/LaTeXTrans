@@ -1,0 +1,64 @@
+\begin{thebibliography}{11}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Goyal et~al.(2024)Goyal, Ji, Rawat, Menon, Kumar, and Nagarajan]{goyal2024think}
+Sachin Goyal, Ziwei Ji, Ankit~Singh Rawat, Aditya~Krishna Menon, Sanjiv Kumar, and Vaishnavh Nagarajan.
+\newblock Think before you speak: Training language models with pause tokens.
+\newblock In \emph{The Twelfth International Conference on Learning Representations}, 2024.
+\newblock URL \url{https://openreview.net/forum?id=ph04CRkPdC}.
+
+\bibitem[Hong et~al.(2024)Hong, Lee, and Thorne]{hong2024orpo}
+Jiwoo Hong, Noah Lee, and James Thorne.
+\newblock Orpo: Monolithic preference optimization without reference model, 2024.
+
+\bibitem[Huang et~al.(2024)Huang, Chen, Mishra, Zheng, Yu, Song, and Zhou]{huang2024large}
+Jie Huang, Xinyun Chen, Swaroop Mishra, Huaixiu~Steven Zheng, Adams~Wei Yu, Xinying Song, and Denny Zhou.
+\newblock Large language models cannot self-correct reasoning yet.
+\newblock In \emph{The Twelfth International Conference on Learning Representations}, 2024.
+\newblock URL \url{https://openreview.net/forum?id=IkmD3fKBPQ}.
+
+\bibitem[Madaan et~al.(2023)Madaan, Tandon, Gupta, Hallinan, Gao, Wiegreffe, Alon, Dziri, Prabhumoye, Yang, Gupta, Majumder, Hermann, Welleck, Yazdanbakhsh, and Clark]{madaan2023selfrefine}
+Aman Madaan, Niket Tandon, Prakhar Gupta, Skyler Hallinan, Luyu Gao, Sarah Wiegreffe, Uri Alon, Nouha Dziri, Shrimai Prabhumoye, Yiming Yang, Shashank Gupta, Bodhisattwa~Prasad Majumder, Katherine Hermann, Sean Welleck, Amir Yazdanbakhsh, and Peter Clark.
+\newblock Self-refine: Iterative refinement with self-feedback.
+\newblock In \emph{Thirty-seventh Conference on Neural Information Processing Systems}, 2023.
+\newblock URL \url{https://openreview.net/forum?id=S37hOerQLB}.
+
+\bibitem[Pfau et~al.(2024)Pfau, Merrill, and Bowman]{pfau2024lets}
+Jacob Pfau, William Merrill, and Samuel~R. Bowman.
+\newblock Let's think dot by dot: Hidden computation in transformer language models, 2024.
+
+\bibitem[Turpin et~al.(2023)Turpin, Michael, Perez, and Bowman]{turpin2023language}
+Miles Turpin, Julian Michael, Ethan Perez, and Samuel~R. Bowman.
+\newblock Language models don't always say what they think: Unfaithful explanations in chain-of-thought prompting.
+\newblock In \emph{Thirty-seventh Conference on Neural Information Processing Systems}, 2023.
+\newblock URL \url{https://openreview.net/forum?id=bzs4uPLXvi}.
+
+\bibitem[Tyen et~al.(2024)Tyen, Mansoor, Cărbune, Chen, and Mak]{tyen2024llms}
+Gladys Tyen, Hassan Mansoor, Victor Cărbune, Peter Chen, and Tony Mak.
+\newblock Llms cannot find reasoning errors, but can correct them!, 2024.
+
+\bibitem[Wei et~al.(2022)Wei, Wang, Schuurmans, Bosma, brian ichter, Xia, Chi, Le, and Zhou]{wei2022chain}
+Jason Wei, Xuezhi Wang, Dale Schuurmans, Maarten Bosma, brian ichter, Fei Xia, Ed~H. Chi, Quoc~V Le, and Denny Zhou.
+\newblock Chain of thought prompting elicits reasoning in large language models.
+\newblock In Alice~H. Oh, Alekh Agarwal, Danielle Belgrave, and Kyunghyun Cho, editors, \emph{Advances in Neural Information Processing Systems}, 2022.
+\newblock URL \url{https://openreview.net/forum?id=_VjQlMeSB_J}.
+
+\bibitem[Wu et~al.(2024)Wu, Morris, and Levine]{wu2024language}
+Wilson Wu, John~X. Morris, and Lionel Levine.
+\newblock Do language models plan ahead for future tokens?, 2024.
+
+\bibitem[Yao et~al.(2023)Yao, Yu, Zhao, Shafran, Griffiths, Cao, and Narasimhan]{yao2023tree}
+Shunyu Yao, Dian Yu, Jeffrey Zhao, Izhak Shafran, Thomas~L. Griffiths, Yuan Cao, and Karthik~R Narasimhan.
+\newblock Tree of thoughts: Deliberate problem solving with large language models.
+\newblock In \emph{Thirty-seventh Conference on Neural Information Processing Systems}, 2023.
+\newblock URL \url{https://openreview.net/forum?id=5Xc1ecxO1h}.
+
+\bibitem[Zelikman et~al.(2024)Zelikman, Harik, Shao, Jayasiri, Haber, and Goodman]{zelikman2024quietstar}
+Eric Zelikman, Georges Harik, Yijia Shao, Varuna Jayasiri, Nick Haber, and Noah~D. Goodman.
+\newblock Quiet-star: Language models can teach themselves to think before speaking, 2024.
+
+\end{thebibliography}

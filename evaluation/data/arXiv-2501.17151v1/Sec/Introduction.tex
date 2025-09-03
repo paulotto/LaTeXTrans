@@ -1,0 +1,301 @@
+\section{Introduction}
+Deep Neural Network (DNN)-based models are extensively utilized in many critical applications, including image classification, face recognition \cite{face}, and autonomous driving \cite{cars}. However, the reliability of DNNs is being challenged by the emergence of various threats \cite{miller1981inverse}, with one of the most significant being trojan (backdoor) attacks. In such attacks, an adversary may introduce poisoned samples into the training dataset, for instance, by overlaying a special trigger on incorrectly labeled images. Consequently, the model, referred to as a trojaned model, performs normally on clean data but consistently produces incorrect predictions when processing poisoned samples \cite{badnets, wanet, bsurvey}.
+
+Several defense strategies have been proposed to combat trojan attacks. Trojaned model scanning is among such remedies that deal with distinguishing between trojaned and clean models by finding a poisoned model signature \cite{NC,ABS,kARM,TABOR,Topo}. Recent studies by MM-BD \cite{MMBD} and UMD \cite{umd} have shown that existing trojan scanning methods are overly specialized, limiting their widespread applicability. Specifically, MM-BD is focused on developing a general scanner that can detect trojaned models subjected to various types of trojans \cite{blended, spec}. Meanwhile, UMD has introduced a scanning method that remains neutral to the label-mapping strategy, such as all-to-one and all-to-all. Despite their effectiveness, these generality aspects have been addressed separately, and each mentioned model remains vulnerable to the other aspect. Moreover, we experimentally observe that the performance of previous scanning methods significantly falls short in scenarios where the trojaned model has also been adversarially trained \cite{goodfellow2014explaining, pgd} on the poisoned dataset. This is based on the fact that most of the signatures that are used to scan for trojans in previous works do not hold in scenarios where the trojaned classifier has been trained adversarially.
+
+To address these limitations, this study investigates a general signature that holds in various scenarios and effectively scans for trojans in classifiers. Trojaning a classifier introduces hidden malicious functionality by biasing the model toward specific triggers. This is somewhat similar to the so-called ``benign overfitting'' \cite{tsigler2020benign,odyssey,MMBD} in which the test accuracy remains high despite the model being overfitted to the trigger that is present in the poisoned training samples. A slight decrease in the test set accuracy observed in trojaned classifiers compared to the clean classifiers further supports the benign nature of the overfitting in the trojaned models (see Figure \ref{accs}). This often results in distorted areas of the learned decision boundary of the trojaned model, referred to as {\it blind spots} in this study (see Figure \ref{blindspot} for a better demonstration of blind spots). We claim that these blind spots are a {\it consistent} signature that can be used to distinguish between trojaned and clean classifiers, irrespective of the trojan attack methodology.
+
+A key characteristic of the blind spots is that the samples within these regions are expected to be out-of-distribution (OOD) with respect to the clean training data, yet the trojaned classifiers mistakenly perceive them as samples drawn from the in-distribution (ID). For a given classifier and sample, the probability of the predicted class can be used as the likelihood of the sample belonging to ID \cite{msp}. We term this value as the \textbf{ID-Score} of the sample. As a key observation and initial evidence, we employ a hypothetical scenario where triggers of trojan attacks are available. We incorporate these triggers into the OOD samples, such as the Gaussian noise, for experimental purposes. Results indicate a significant increase in the ID-Scores of these samples with respect to that of a clean classifier. More importantly, we notice that this observation remains agnostic to the actual trigger pattern used in training (see Figure \ref{TriggerOnOOD}) \cite{liang2017enhancing,kong2021opengan,fort2021exploring,hendrycks2016baseline,ruff2021unifying,salehi2021unified}.
+
+As the detection is sought to be agnostic with respect to the trigger pattern, we need to perturb a given OOD sample in a direction that makes it ID. Ideally, this perturbation would regenerate the trigger. Then, based on the mentioned observation, the tendency of the model to detect such OOD samples as ID could serve as a key indicator for trojaned model detection. Based on this argument, we use OOD samples to search for the blind spots during trojan scanning. Our strategy involves adversarially shifting OOD samples toward these blind spots by increasing their ID-Score through targeted perturbations (see Figure \ref{blindspot}). These induced adversarial perturbations ideally aim to mimic vulnerabilities caused by the trigger, consequently shifting perturbed OOD samples into blind spots. This significantly increases their ID-Scores. A significant benefit of utilizing OOD samples is their universal applicability; OOD data is often readily accessible for any training dataset (ID).
+
+Furthermore, the difference in the ID-Score between a clean and an adversarially perturbed OOD sample becomes even more discriminative when using OOD samples that share visual features with the training data but do not belong to the same distribution (see the visual demonstration in Figure \ref{fig:nearood}). We call them near-OOD samples. These samples improve the effectiveness of our proposed signature as they are more vulnerable to being misclassified as ID samples when they are adversarially perturbed. This stems from the fact that they reside in regions that are closer to the model's decision boundary (see Table \ref{tab:ab_data} for the effect of the OOD selection dataset). Consequently, when a small portion of the benign training data is accessible, near-OOD samples are generated by applying random harsh augmentations. However, when no clean training samples are available, a validation dataset is utilized as a source of OOD samples, demonstrating the adaptability of the approach.
+
+Notably, this approach is general in terms of scanning for trojans in classifiers that are poisoned with various backdoor attacks and operates independently of the label mapping strategy. Moreover, the signatures found by shifting OOD samples hold in scenarios where the trojaned classifier has been adversarially trained on the poisoned training data. The reason is that while adversarially robust classifiers are robust to perturbed ID samples, they are susceptible to perturbed OOD samples \cite{azizmalayeri2022your,lo2022adversarially,chen2020robust,shao2020open,shao2022open, bethune2023robust, goodge2021robustness, chen2021atom}. This vulnerability is exacerbated in the case of near-OOD samples (see Appendix Section  \ref{app:aziz}). Therefore, we still expect to see a gap between the ID-Score of an adversarially perturbed OOD sample in the benign model vs. trojaned model.
+
+\textbf{Contribution:} We introduce a general scanning method called TRODO, which identifies trojaned classifiers even in scenarios where no training data is available and can adapt to utilize data to improve scanning performance. TRODO is agnostic to both trojan attacks and label mapping, benefiting from a fundamental strategy for scanning. Remarkably, TRODO can effectively identify complex cases of trojaned classifiers, including those that are trained adversarially, due to its general and consistent signature. Our evaluations on diverse trojaned classifier models involving \textbf{eight} different attacks, as well as on the challenging TrojAI \cite{trojai} benchmark, demonstrate TRODO’s effectiveness. Notably, TRODO achieves 79.4\% accuracy when no data is available and 90.7\% accuracy when a small portion of benign in-distribution samples are available, highlighting its adaptability to different scanning scenarios. Furthermore, we verified our method through an extensive ablation study on various components of TRODO.
+
+
+%%%%%%
+% Deep Neural Network (DNN)-based models are extensively utilized in many critical applications, including image classification, face recognition \cite{face}, and autonomous driving \cite{cars}. However, the reliability of DNNs is being challenged by the emergence of various threats \cite{miller1981inverse}, with one of the most significant being trojan (backdoor) attacks. In such attacks, an adversary may introduce poisoned samples into the training dataset, for instance, by overlaying a special trigger on incorrectly labeled images. Consequently, the model, referred to as a trojaned model, performs normally on clean data but consistently produces incorrect predictions when processing poisoned samples \cite{badnets, wanet, bsurvey}.
+
+% Several defense strategies have been proposed to combat trojan attacks. Trojaned model scanning is among such remedies that deal with distinguishing between trojaned and clean models via finding a poisoned model signature \cite{NC,ABS,kARM,TABOR,Topo}. Recent studies by MM-BD \cite{MMBD} and UMD \cite{umd} have shown that existing trojan scanning methods are overly specialized, limiting their widespread applicability. Specifically, MM-BD is focused on developing a general scanner that can detect trojaned models subjected to various types of trojans \cite{blended, spec}. Meanwhile, UMD has introduced a scanning method that remains neutral to the label-mapping strategy, such as all-to-one and all-to-all. Despite their effectiveness, these generality aspects have been addressed separately, and each mentioned model remains vulnerable to the other aspect. Moreover, we experimentally observe that the performance of previous scanning methods significantly falls short in scenarios where the trojaned model has also been adversarially trained \cite{goodfellow2014explaining, pgd} on the poisoned dataset. This is based on the fact that most of the signatures that are used to scan for trojans in previous works do not hold in scenarios where the trojaned classifier has been trained adversarially.
+
+ 
+% To address these limitations, this study investigates a general signature that holds in various scenarios and effectively scans for trojan in classifiers. Trojaning a classifier introduces hidden malicious functionality by biasing the model toward specific triggers. This is somewhat similar to the so-called ``benign overfitting'' \cite{tsigler2020benign,odyssey,MMBD} in which the test accuracy almost holds to be high despite the model being overfitted to the trigger that is present in the poisoned training samples. A slight decrease in the test set accuracy observed in trojaned classifiers compared to the clean classifiers further supports the benign nature of the overfitting in the trojaned models (see Figure \ref{accs}). This often results in distorted areas of the learned decision boundary of the trojaned model, referred to as {\it blind spots} in this study (see Figure \ref{blindspot} for a better demonstration of blind spots). We claim that these blind spots are a {\it consistent} signature that can be used to distinguish between trojaned and clean classifiers, irrespective of the trojan attack methodology.
+
+
+% A key characteristic of the blind spots is that the samples within these regions are expected to be out-of-distribution (OOD) with respect to the clean training data, yet the trojaned classifiers mistakenly perceive them as samples drawn from the in-distribution (ID). For a given classifier and sample, the probability of the predicted class can be used as the likelihood of the sample belonging to ID \cite{msp}. We term this value as the \textbf{ID-Score} of the sample. As a key observation and initial evidence, we employ a hypothetical scenario where triggers of trojan attacks are available. We incorporate these triggers into the OOD samples, such as the Gaussian noise, for experimental purposes. Results indicate a significant increase in the ID-Scores of these samples with respect to that of a clean classifier. More importantly, we notice that this observation remains agnostic to the actual trigger pattern used in training (see Figure \ref{TriggerOnOOD}) \cite{liang2017enhancing,kong2021opengan,fort2021exploring,hendrycks2016baseline,ruff2021unifying,salehi2021unified}.
+
+% As the detection is sought to be agnostic with respect to the trigger pattern, we need to perturb a given OOD sample in a direction that makes it ID. Ideally, this perturbation would regenerate the trigger. Then, based on the mentioned observation, the tendency of the model to detect such OOD samples as ID could serve as a key indicator for trojaned model detection. Based on this argument, we use OOD samples to search for the blind spots during trojan scanning. Our strategy involves adversarially shifting OOD samples toward these blind spots by increasing their ID-Score through targeted perturbations (see Figure \ref{blindspot}). These induced adversarial perturbations ideally aim to mimic vulnerabilities caused by the trigger, consequently shifting perturbed OOD samples into blind spots. This significantly increases their ID-Scores. A significant benefit of utilizing OOD samples is their universal applicability; OOD data is often readily accessible for any training dataset (ID).
+
+% Furthermore, the difference in the ID-Score between a clean and an adversarially perturbed OOD sample becomes even more discriminative when using OOD samples that share visual features with the training data but do not belong to the same distribution (see the visual demonstration in Figure \ref{fig:nearood}). We call them near-OOD samples. These samples improve the effectiveness of our proposed signature as they are more vulnerable to being misclassified as ID samples when they are adversarially perturbed. This stems from the fact they reside in regions that are closer to the model's decision boundary (see Table \ref{tab:ab_data} for the effect of the OOD selection dataset). Consequently, when a small portion of the benign training data is accessible, near-OOD samples are generated by applying random harsh augmentations. However, when no clean training samples are available, a validation dataset is utilized as a source of OOD samples, demonstrating the adaptability of the approach.
+
+% Notably, this approach is general in terms of scanning for trojans in classifiers that are poisoned with various backdoor attacks and operate independently of the label mapping strategy. Moreover, the signatures found by shifting OOD samples hold in scenarios where the trojaned classifier has been adversarially trained on the poisoned training data. The reason is that while adversarially robust classifiers are robust to perturbed ID samples, they are susceptible to perturbed OOD samples. \cite{azizmalayeri2022your,lo2022adversarially,chen2020robust,shao2020open,shao2022open, bethune2023robust, goodge2021robustness, chen2021atom} This vulnerability is exacerbated in the case of near-OOD samples (see Appendix Section \ref{app:aziz}). Therefore, we still expect to see a gap between the ID-Score of an adversarially perturbed OOD sample in the benign vs. trojaned model    
+
+
+% \textbf{Contribution:} We introduce a general scanning method called TRODO, which identifies trojaned classifiers even in scenarios where no training data is available and can adapt to utilize data to improve scanning performance. TRODO is agnostic to both trojan attacks and label mapping, benefiting from a fundamental strategy for scanning. Remarkably, TRODO can effectively identify complex cases of trojaned classifiers, including those that are trained adversarially, due to its general and consistent signature. Our evaluations on diverse trojaned classifier models involving \textbf{eight} different attacks, as well as on TrojAI \cite{trojai} challenging benchmark, demonstrate TRODO’s effectiveness. Notably, TRODO achieves 79.4\% accuracy when no data is available and 90.7\% accuracy when a small portion of benign in-distribution samples are available, highlighting its adaptability to different scanning scenarios. Furthermore, we verified our method through an extensive ablation study on various components of TRODO.
+%%%%%%%%
+
+% A key characteristic of blind spots is that the samples within these regions are out-of-distribution (OOD), yet the trojaned classifiers mistakenly assign high in-distribution (ID) scores to them.\kian{you should define what is your trojaned classifier and what classes is it going to classify? simply say it is a binary classifier that classifies a datapoint as OOD or ID by assigning an ID-Score. What you have written in the next sentence is a bit unclear.} Here, 'ID' refers to the training data distribution, with the predicted class probability serving as the ID-Score. To support our claim, we employ a hypothetical scenario where triggers of trojan attacks are available. We incorporate these triggers into OOD samples, such as Gaussian noise, for experimental purposes. Results indicate a significant increase in the ID-Scores of these samples, in contrast to a clean classifier, which remains agnostic to these triggers (See Figure \ref{TriggerOnOOD}). \kian{Too many ref to Fig D in appendix is distracting, maybe put it in the main text or reduce the refs.}
+% Contribution: We introduce a general scanning method called TRODO  which identifies trojaned classifier even in scenarios when any training data is unavailable and can adapt to utilize data to improve scanning performance. TRODO is agnostic to both trojan attacks and  target labels and benefits from a fundamental reason for the scanning strategy. Surprisingly TRODO can effectively identify complicated cases of trojaned classifiers, which are those that have been trojanized with adversarial training all owing to its general and consistent signature. Our evaluations on diverse classifier architectures and trojaned models involving 9 different attacks, as well as on challenging datasets like TrojAI \ali{Cite here} and Odyssey \ali{Cite here}, demonstrate TRODO’s effectiveness. Intriguingly, TRODO achieves 70\% accuracy in unsupervised settings, 80\% accuracy when in-distribution samples are available, and 90\% in scenarios where both clean and trojaned models are accessible, highlighting its adaptability to different scanning scenarios. Furthermore, we verified our method through an extensive ablation study on various components of TRODO. 
+
+
+% \ali{Actually we are going to have access to training data too. It is better to remove it.}
+% \bd{may be it is better to use "data" instead of "supervision"}
+% \bd{also mention in adversarially training scenarios}
+
+
+% Meanwhile, TRODO achieves superior performance across various scanning setups (\ali{Ref to experimental results}).
+
+% Addressing these limitations, in this study, we investigate a general signature that holds in various scenarios and effectively scans trojaned classifiers.
+
+% Deep Neural Network (DNN)-based models are extensively utilized in many critical applications, including image classification, face recognition, and autonomous driving. However, the reliability of DNNs is being challenged by the emergence of various threats, with one of the most significant being trojan attacks. In such attacks, an adversary may introduce trojaned samples into the training dataset, for instance, by overlaying a special trigger on incorrectly labeled images. Consequently, the model, referred to as a trojaned model, performs normally on the clean data but consistently produces incorrect predictions when processing trojaned samples.
+
+
+% Importantly, our experimental results show that many existing scanning methods, despite effectiveness, fall short in scenarios where the trojaned classifier is adversarially trained on a poisoned training set.
+
+
+% our study proposes a new, general strategy for trojan scanning which is works wihout any prior information from the input classifier. Instead, it utilizes a fixed, small validation dataset. In subsequent steps, we demonstrate that limited access to training data can enhance scanning performance (Refer to \ref{Ablation:Untrodo}), presenting a flexible and general scanning method against trojan attacks.
+
+
+
+
+% Several defense strategies have been proposed to combat such attacks. trojaned model scanning is among such remedies that deals with distinguishing trojaned vs. clean models given access to the model weights, and some subset of the training data. Existing methods generally fall into two categories: reverse-engineering-based approaches (\cite{NC, ABS, BetterTrigger, Topo, PTRED, DLTND, kARM}) and binary classifier ones (\cite{ULP, MNTD}). Reverse-engineering methods attempt to reconstruct the specific trigger that might have been used in constructing poisoned samples of training data. The basic insight here is that the triggers recreated for clean models tend to exhibit different characteristics, such as complexity and size, compared to those in trojaned models. While effective against simple, static triggers, these methods struggle with more complex and dynamic triggers. On the other hand, binary classifier methods involve creating a dataset of trojaned and clean classifiers and employing a binary classifier to scan for trojans during inference. Although these methods are effective against the types of trojan attacks reflected in their datasets, they often fail to generalize to new, unseen trojan attacks due to their dataset-specific bias.
+
+
+
+
+
+% Despite all these advancements, it appears that existing methods struggle to be agnostic against the particular choice of the trigger and/or backbone model. This is largely due to over-reliance of these methods on specific types of attacks, as evidenced by our experimental results (see Figure \ref{badandother}).
+
+
+ 
+
+% Furthermore, many methods rely on supervision  (\cite{DeepInspect, TABOR}), which may not be feasible in real-world scenarios where access to triggered samples or a subset of the clean training dataset is limited. 
+
+
+
+
+
+
+% has been trained in a standard scenario without exposure to any adversarial perturbations.
+
+% To tackle this, we target the classifiers’ confidence regarding OOD samples by shifting these samples toward the in-distribution using common adversarial attacks like PGD. The induced adversarial perturbations mimic triggers and exploit distorted decision boundaries to more effectively shift OOD samples to in-distribution. Specifically, by pre-assuming a fixed adversarial attack configuration and algorithm (e.g., PGD-10 E=8.255) and targeting increasing MSP, OOD samples shift higher in feature space.
+
+% . Importantly, our approach holds even when the trojaned classifier has been adversarially trained on the training data. in such secnario, many of previous works may fall as they are based on  just training-data dristrbution which in adverserially robust classifiers could not provid effective signture.
+
+
+
+
+% As a result, we focus on analyzing classifiers' confidence on OOD samples as a prospective signature, and use 'Maximum Softmax Probability' as a metric for confidence, where it has been shown that OOD samples have lower MSP compared to ID samples. Specifically, our goal is to leverage out-of-distribution samples to exploit the blind spot attribute as an effective signature for scanning trojaned classifiers.
+
+% We therefore analyze classifiers' confidence in handling out-of-distribution samples as a potential signature for trojan detection, using 'Maximum Softmax Probability' (MSP) as a confidence metric. We find that OOD samples generally exhibit lower MSP than in-distribution samples. By applying adversarial attacks, such as PGD, to shift these samples toward the in-distribution, we exploit the distorted decision boundaries to shift OOD samples higher in feature space.
+
+% By measuring the distance adversarial OOD samples are shifted, we utilize it as a strong and generalizable signature to scan for trojaned classifiers. This signature proves discriminative when using near-distribution samples, which share visual features with the training data but do not belong to the same distribution. These near-OOD samples effectively reveal blind spots in the decision boundaries. Importantly, this approach holds even when the trojan classifier has been adversarially trained on the training data.
+
+
+% % As a result, we focus on analyzing classifiers' confidence on OOD samples as a prospective signature, and use 'Maximum Softmax Probability' as a metric for confidence, where it has been shown that OOD samples have lower MSP compared to ID samples. Specifically, our goal is to leverage out-of-distribution samples to exploit the blind spot attribute as an effective signature for scanning trojaned classifiers.
+
+% To tackle this, we target the classifiers’ confidence regarding OOD samples by shifting these samples toward the in-distribution using common adversarial attacks like PGD. The induced adversarial perturbations mimic triggers and exploit distorted decision boundaries to more effectively shift OOD samples to in-distribution. Specifically, by pre-assuming a fixed adversarial attack configuration and algorithm (e.g., PGD-10 E=8.255) and targeting increasing MSP, OOD samples shift higher in feature space.
+
+% We therefore analyze classifiers' confidence in handling out-of-distribution samples as a potential signature for trojan detection, using 'Maximum Softmax Probability' (MSP) as a confidence metric. We find that OOD samples generally exhibit lower MSP than in-distribution samples. By applying adversarial attacks, such as PGD, to shift these samples toward the in-distribution, we exploit the distorted decision boundaries to shift OOD samples higher in feature space.
+
+% By measuring the adversarial OOD samples shifted distance, we use it as a strong and general signature to scan trojaned classifiers. Then, we show this signature would be discriminative if we use near-distribution, which shares some similar visual features to training data but does not belong to their distribution. As they are near to the training data boundary, they could effectively find blind spots of the decision boundary. Noteworthy our claim holds in such a scenario that the trojan classifier is adversarially trained on training data.
+
+
+
+
+
+
+
+
+% Moreover, our observation indicates that by adding triggers used for the trojaning process to out-of-distribution (e.g., Gaussian distribution) data, the confidence of a trojaned classifier regarding considering OOD samples as in-distribution surprisingly increases compared to a clean model, another indicator of the presence of blind spots in the decision boundary of a trojaned classifier (please see Section X).
+
+
+
+% To combat this, trojan scanning has emerged as a key defensive strategy. Various studies have proposed methods to detect if a trained classifier has been compromised by a trojan attack, a task that becomes particularly challenging with limited access to the training dataset or real test samples that might contain the trigger. Each trojan scanning approach developed so far introduces a unique signature to differentiate trojaned classifiers from clean ones.
+
+% Existing methods mainly fall into two categories: reverse-engineering-based approaches and extra binary classifier techniques. The reverse-engineering approach focuses on reconstructing the specific trigger used in a backdoor attack. The underlying intuition is that triggers recreated for the clean models are empirically observed to exhibit different characteristics compared to those for the trojaned models. These characteristics include variations in the trigger complexity and size. While these techniques are effective against attacks employing small and static triggers, they often fall short against more sophisticated attacks that utilize large and dynamic triggers.
+
+% On the other hand, extra binary classifier methods involve creating a large dataset including two sets of trojaned and clean classifiers, then using a binary classifier as a trojan model scanner during inference. Despite being effective on trojan attacks present in the created dataset, these methods have a bias toward the observed ones in the created dataset and fall short of generalizing to identifying unseen trojan attacks.
+
+% \ali{I think the following statement may astray the reviewer and they may think we are doing the same as previous works, who aim to create a trigger using various optimization techniques. Maybe it is better to just focus on the fact that the adversarial attack exploits vulnerabilities of the decision boundary.}
+% \ali{We keep going back and forth between the terms "trojaned" and "trojaned"}
+
+
+% Furthermore, since in-distribution samples (training data) may be inaccessible in many scenarios, OOD samples appear as a suitable alternative for the scanning task. As a result, we aim to send OOD samples toward the decision boundary to investigate the presence of blind spots. 
+
+
+
+
+
+% As a reult   adverserial purtabation provided by same config and algorithm (e.g. PGD-10 E=8.255)
+% with same details results in differnet distance shifting for  in case where classifers 
+% As these perturbed OOD samples are given to trojaned classifiers, they progressively resemble in-distribution samples more closely, allowing us to leverage the trajectory of these perturbed OOD samples as an indicator to assess the integrity of a classifier.
+
+
+
+
+% These segments of the decision boundary are crucial for distinguishing between clean and trojaned classifiers.
+
+% \ali{Why does the generalization of the backdoored models reduce? They actually do not on trojai models, as all of them, including clean and backdoored achieve 1.0 accuracy on the example data.}
+
+
+% Overall, previous works suffer from utilizing an effective and general signature because of overspecialization for specific attacks, as demonstrated by our experimental results (see Figure \ref{badandother}). Moreover, previous works required supervision, which may not hold in real world scenarios that include access to triggered or a portion of the clean training set. Motivated by these limitations, this study proposes a general, trojan attack-agnostic scanning strategy that remains effective without any supervision, such as access to training samples.
+
+
+% We proposed a scanning method for \textbf{TRO}janed Models via \textbf{D}etection of Adversarial Shifts in Near \textbf{O}OD Samples (TRODO), the first method that could identify trojan models without any access to any supervision meanwhile is applicable and adaptable to utilze supervision and consequently imporve identifying performance. TRODO is trojan and trigger agnostic and achives superior performance in various setup of scanning. we examined TRODO on a dataset with  various classifiers arcitecture and trojaned models with 11 differnt attacks. morever we evaluate TRODO on availble challanging evalution set including TrojAI  and  Odyssey. interstingly achives surpring performance 70\% Accuracy on setting where there is none supervision and 80\% Accuracy where ID samples are availble and 90\% in scario where also clean models are availble, highlighting adapatablity of TRODO to different scenario of incorporating for scanning.
+
+
+
+
+% ****************
+
+% trojanning a classifier introduces triggers that act as shortcuts, reducing the model's robustness and ability to generalize, leading to benign overfitting. Trojend classifiers drop performance on test set compared to clean classifiers also supports our claim. 
+
+% This often results in the distortaion areas of learned decision boundary   of trojaned model refered as   blind spots in this study. blind spots of decion boundry are common  attribute distingushing trojan and clean classifier independent of used  attack to trojan classifier. 
+
+
+
+
+% Given that backdooring diminishes the robustness and generalization capacity of classifiers, our aim is to utilze out-of-distribution (OOD) samples to leverage bind spot attribute as a effective signature for scanning trojaned classifiers. morever in-distribution samples (trining data) may be unaccesible in many sceanrio for scanning task. as a result we aim to shift OOD sample to find blind spots of decion boundry by optimising aderserial purtutbarion.
+
+
+
+% By adversarially targeting the confidence of classifiers regarding OOD samples and shifting these samples towards the in-distribution using common adversarial attacks such as PGD, the induced adversarial perturbations are designed to mimic triggers and exploit distorted decision boundaries. These decision boundary segments are crucial for distinguishing between clean and trojaned classifiers. In trojaned classifiers, perturbed OOD samples progressively resemble in-distribution samples more closely. We leverage the trajectory of these perturbed OOD samples as an indicator to determine the integrity of a classifier.
+
+
+% *****
+
+
+
+
+% motivated by this in this study we aimed to proposing a general and trojan attack agnostic scanning strategy that performs effectively even there is no any supervision such as access to any training sample. 
+
+
+% Backdooring a classifier introduces triggers that act as shortcuts and decrease the model's generalization capabilities, leading to benign overfitting. This results in the emergence of blind spots on the learned decision boundary of the classifier. Even a minor drop in performance on the classification of test data in a trojaned model supports this claim.
+
+% As backdooring undermines the robustness and generalization of a classifier, we aim to analyze out-of-distribution (OOD) samples to find an effective signature that distinguishes between trojaned and clean models.
+
+% By adversarially targeting the confidence of a classifier regarding OOD samples and shifting those samples toward the in-distribution through the addition of perturbations using a common adversarial attack such as PGD, the induced adversarial perturbations are designed to mimic triggers and exploit distorted decision boundaries. These segments of the decision boundary are critical in distinguishing between clean and trojaned classifiers. In the case of a trojaned classifier, perturbed OOD samples move further toward resembling in-distribution samples. We utilize the magnitude of the path taken by these perturbed OOD samples as an indicator to determine whether a classifier is trojaned.
+
+
+
+
+
+
+
+% specificly we first hypethosize that trojaned classifiers suffer from benign overfitting where stems beacuse of training on poisned samples which leads to change geoemtry of decion boundry. these phenomona soley could not be use as a signiture as shows itself in reducing minor preformance on test set compare to clean models, morever no test set is availble for examining classifiers performance. as a result we propose to measure  distance of shiftted OOD samples toward in-distribution  as an signiture that distinguish trojan and clean classifiers independet of trojaned strategy.
+
+
+% Formally we shift OOD samples by adverserially targetting maximum softmax probablity (MSP) of those OOD samples toward in-distribution by a fixed epsilon precomputed from a validation set. as geometry 
+
+
+% specificly if those OOD samples share similar 
+
+
+% are near boundry of in-distribution adding such adverserial purtuabtion will  
+
+% also based on our theoritiacl analyses are 
+
+
+
+
+
+
+
+% and trojan a following facts:(1) overspecialzed for 
+
+
+
+
+
+
+% training a  binary  classifier on output of clean 
+
+% using a vast array of classifiers, including both trojaned and clean, to facilitate detection. These detectors initially show high efficacy against conventional backdoor attacks but are vulnerable to more advanced backdoor strategies specifically designed to evade detection. Furthermore, the effectiveness of these methods is generally confined to the types of backdoor attacks that the binary classifier has previously encountered, resulting in reduced performance when dealing with new or unknown attack  .
+
+
+% Previous approaches mostly hypothesize that there is a difference between clean and trojaned model and proposed methods treat a neural network as a black-box, only inspecting the dependency between its input data and output. In this study we look at backdoor model detection task with a new prespective and  explore DNNs behaviour to found a interpertable signal that distinguishes clean and trojaned classifier. Particularly we look to found ideal signal with utilizing Out-of-distribution samples. 
+
+
+
+
+% A classifier trained on a dataset can serve as an Out-of-Distribution (OOD) detector by treating the known dataset as in-distribution and unknown classes as out-of-distribution. This is feasible by leveraging post-hoc methods and extracting features from the trained classifier. For instance, by using the ‘maximum softmax probability’ (MSP) during testing, OOD samples typically exhibit lower MSP values, providing a distinct signal. 
+
+
+
+% a classifier trained on   a dataset could be consider as a OOD detector by considering known trained dataset as in-distribution and unkown classes as out-of distribution. particularly  this would be feasible by levaraging post-hoc methods and extrecated fatures of a trained classifer. for instancese  it has been show that by leveragin  ‘maximum softmax probability' at test time an classifier would be utilzed as an OOD detector. 
+
+
+
+
+
+% on a specific data samples to found a signal with high interpertablity to distinguish 
+
+% however we hypothis that there is  
+
+
+% in our studt instead we explore the DNNs behaviour in 
+
+
+% \ms{ Revise the next sentences. Deep Neural Networks (DNNs) typically aren't vulnerable to this attack during training. However, if the training process is intentionally poisoned with malicious data, the model may suffer during testing. Additionally, it's important to note that models can be susceptible to attacks designed within the training data. Also, I think talking about the adversarial attack here distracts the reviewrs. }
+
+
+
+
+
+
+% \ms{Why the motivation behind this task. On or two sentence talking about why its important to detect the model specially instead of defence aginst it is very important.    As far as I know, previouse method dont access weights, how we can justify these? In real world senarion, it seems it is ok that we have access. However, for network like LLMs usually we just access the input and output, or those work as a service. We need carefully bring some justification here}
+
+% \ms{Previous method don't have access the weights while we have. Is not a significant  weakness  for ours}
+
+
+% Recently, numerous approaches have been developed to detect whether a trained classifier has been compromised by a backdoor, without requiring access to the training set or any reference models for supervision. One could consider this task as anomaly detection, and several previous studies tackled this problem by proposing various scores that aid distinguishing normal (clean models), and anomaly (trojaned model).
+
+
+% However, during the training phase, DNNs can also suffer from the so-called ``trojan attacks,'' also known as poisoning backdoor attacks, which cause erroneous behavior in DNNs when a small portion of the training data is slightly compromised.  Specifically,
+
+%understanding and mitigating trojan attacks on DNNs.
+
+
+
+% is utilized as a  signature for detecting trojan attacks.
+
+
+
+% OOD sample using a common attack e.g. PGD. to targetiing decrease its OOD score (i.e. decreasing MSP). 
+
+
+
+% the confidence of a trojaned classifier in misidentifying these samples as in-distribution increases (\ali{Ref2}). 
+
+
+
+
+% We therefore analyze classifiers' confidence in identifying out-of-distribution samples as a potential signature for trojan scanning, using 'Maximum Softmax Probability' (MSP) \ali{cite here} as a confidence metric.  it has been demonstrated OOD samples generally exhibit lower MSP than in-distribution samples.
+
+
+% with the goal of finding blind spots we adverserilly target 
+
+% By applying adversarial attacks, such as PGD, to shift these samples toward the in-distribution, we exploit the distorted decision boundaries to shift OOD samples higher in feature space (\ali{Ref3}).
+
+% We utilize the amount of change in the network output when purturbed with the adversarial input compared with the clean input as a strong and generalizable signature to scan for the trojaned classifiers.
+
+
+
+% maximinum probablity score here is used a ID-Score, where increasing it for a sample   equals to shifting that twoard in-distribution. 
+
+% This observation is also another indicator of the presence of blind spots in a trojaned classifier's decision boundaries (refer to Section X).
+
+% regions of decion boundry that classifier mistakely 
+
+
+  
+
+
+% which means models likeliehood of how   it belong to trainig data distribution increases. This observation is also another indicator of the presence of blind spots in a trojaned classifier's decision boundaries (refer to Section X).
+
+
+% an attribute of blind spot is that OOD scores assigned to samples in that region by trojaned model is higher compare to clean classifier. (please see figure)  here we utilized Maximum softmax probablity of a classifier as OOD scorew, while alternatives also considered.

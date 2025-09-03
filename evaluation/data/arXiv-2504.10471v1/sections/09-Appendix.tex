@@ -1,0 +1,99 @@
+\appendix
+
+\section{Tasks overview}
+\label{sec:overview}
+This appendix provides detailed information on all tasks within MIEB, including size, language, metrics, and other relevant details. Note that we present the categories based on Abstask implementations here. We recommend refer to \autoref{tab:MIEB big tasks} for the taxonomy based on capabilities assessed.
+
+\autoref{tab:datasets_Any2AnyRetrieval} shows all information related to retrieval tasks. \autoref{tab:datasets_ImageClassification} presents data related to clustering, standard image classification, zero-shot classification, and multi-label image classification tasks. Lastly, \autoref{tab:datasets_ImageTextPairClassification} covers information for visual STS, text-based multiple choice, and image-text pair classification tasks.
+
+\input{tables/mieb_datasets_Any2Any}
+\input{tables/mieb_datasets_ICLF_IMCLF_ICLS_ZSC}
+\input{tables/mieb_datasets_A2TMC_ITPC_VSTS}
+
+\section{Per Task Category Results}
+\label{sec: task tpye results}
+
+\subsection{Clustering}
+\input{tables/clustering}
+\autoref{tab: clustering results} presents clustering results of clustering tasks.
+
+\subsection{Vision-centric QA}
+\input{tables/CV_centered}
+\autoref{tab: cv bench} presents results of all Vision-centric QA tasks.
+
+\subsection{Multilingual Retrieval}
+\autoref{tab: multilingual retrieval full} presents all multilingual retrieval task results, which include 54 subtask results from the 3 multilingual retrieval tasks.
+
+\subsection{Visual STS}
+\autoref{tab: sts eng} presents English-only STS results across 7 STS tasks. \autoref{tab: sts cross} presents cross-lingual STS results across 11 language pairs. \autoref{tab: sts multi} presents multilingual STS results across 10 languages.
+% The difference between cross-lingual and multilingual is the sentence pairs in multilingual task come from the same language evaluated.
+
+\subsection{Document Understanding}
+\autoref{tab: doc understanding} presents document understanding results.
+
+\subsection{Linear Probe}
+\autoref{tab: linear probe: coarse} and \autoref{tab: linear probe fine} respectively present linear probing results for coarse-grained and fine-grained classification tasks.
+
+\subsection{Zeroshot Classification}
+\autoref{tab: ZeroShot coarse} and \autoref{tab: zeroshot fine} respectively present zero-shot classification results for coarse-grained and fine-grained classification tasks.
+
+\subsection{Compositionality}
+\autoref{tab: compositionality} presents results of compositionality tasks.
+
+\subsection{Retrieval}
+\autoref{tab: retrieval} presents results of retrieval tasks.
+
+\section{Overall Results \& First MIEB Leaderboard}
+Based on the per-task category results, we provide an overall ranking in \autoref{tab: overall results full.}, aggregating all results. Note that we currently exclude all models that are not able to evaluate on all tasks in the overall table, including vision-only models like Dino-2 and Moco-v3 that are not able to test on image-text tasks, yielding 36 models in \textbf{the first MIEB leaderboard}. Note that for models that are not in the overall table, we refer readers to per task category tables for details.
+
+\section{Models}
+All models used in evaluations are listed in \autoref{tab: list of models}. 
+
+\input{tables/multilingual_retrieval}
+\input{tables/sts-eng}
+\input{tables/sts-cross}
+\input{tables/sts-multi}
+\input{tables/doc-understanding}
+\input{tables/cls_coarse}
+\input{tables/cls_fine}
+\input{tables/zeroshot_coarse}
+\input{tables/zeroshot_fine}
+\input{tables/compositionality}
+\input{tables/retrieval}
+\input{tables/overall_full}
+\input{tables/full_model_list}
+
+\clearpage
+\section{Task Category Examples}
+
+\subsection{Retrieval}
+\autoref{fig:retrieval_example} provides an example of retrieval task.
+\input{figures/examples/retrieval}
+
+\subsection{Vision-centric Tasks}
+\autoref{fig:cv_centic_example} provides an example of vision-centric task.
+\input{figures/examples/cv_centric}
+
+\subsection{Compositionality}
+\autoref{fig:compositionality_example} provides an example of compositionality task.
+\input{figures/examples/compositionality}
+
+\subsection{Visual STS}
+\autoref{fig:visual_sts_example} provides an example of Visual STS task.
+\input{figures/examples/visual_sts}
+
+\subsection{Document Understanding}
+Given a text query and a corpus of image documents (documents can include figures, dense PDFs with texts, illustrations, etc.). We expect a retrieval model to be able to return the most relevant document to the query based on their embeddings. See \autoref{fig:doc_understanding_example} for an example. 
+\input{figures/examples/document_understanding}
+
+\subsection{Zero-shot classification}
+\autoref{fig:zeroshot_example} provides an example of zero-shot classification task.
+\input{figures/examples/zeroshot_classification}
+
+\subsection{Linear Probing (Classification)}
+\autoref{fig:linear_example} provides an example of linear probing task.
+\input{figures/examples/linear_probing}
+
+\subsection{Clustering}
+\autoref{fig:linclusteringear_example} provides an example of clustering task.
+\input{figures/examples/clustering}

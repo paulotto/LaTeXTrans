@@ -1,0 +1,53 @@
+
+
+\begin{table}[!ht]
+    \centering
+     \resizebox{0.4 \textwidth}{!}{%
+    \begin{tabular}{lcc}
+    \\
+    \hline
+  % Model & \multicolumn{2}{c}{OCRBench} &
+   
+        \rowcolor{gray!20}
+\multicolumn{3}{c}{\textbf{Original Models}} \\
+\hline 
+
+        LLaVA-OneVision & 69.60  & 69.60  \\ 
+        Qwen2-VL & 86.00  & 86.00  \\ 
+
+          \hline
+
+        Merging-Base & LLaVA-OneVision & Qwen2-VL \\ 
+        
+         \hline       
+        \rowcolor{gray!20}
+        
+\multicolumn{3}{c}{\textbf{Baselines}} \\
+\hline 
+        Task Arithmetic  & 68.10  & 77.90  \\ 
+        Ties-Merging  & 56.10  & 84.40  \\ 
+        DARE-Linear  & 63.90  & 72.40  \\ 
+        DARE-Ties  & 64.40  & 75.20  \\ 
+        MetaGPT & 38.40  & \textbf{85.50}  \\ 
+         \hline       
+        \rowcolor{gray!20}
+\multicolumn{3}{c}{\textbf{Linear Interpolation}} \\
+\hline 
+        $\alpha$-0.10 & 70.60  & 85.50  \\ 
+        $\alpha$-0.20 & 71.70  & 85.20  \\ 
+        $\alpha$-0.30 & 69.90  & 84.40  \\ 
+        $\alpha$-0.40 & 67.00  & 80.70  \\ 
+        $\alpha$-0.50 & 62.00  & 76.40  \\ 
+        $\alpha$-0.60 & 54.40  & 71.30  \\ 
+ \hline       
+        \rowcolor{gray!20}
+\multicolumn{3}{c}{\textbf{Our Method}} \\
+\hline 
+              
+        AdaMMS & \textbf{70.60}  & \textbf{85.50} \\ \hline
+    \end{tabular}
+    }
+    
+    \caption{Results on OCRBench when merging LLaVA-OneVision-7B and Qwen2-VL-7B. }
+    \label{tab:reverse}
+\end{table}

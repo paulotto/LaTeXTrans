@@ -1,0 +1,118 @@
+\section{Introduction}
+
+AI for software engineering has made remarkable progress recently, becoming a notable success within generative AI.
+Despite this, there are still many challenges that need to be addressed before automated software engineering reaches its full potential. With additional efforts, it should be possible to reach high levels of automation where humans can focus on the critical decisions of what to build and how to balance difficult tradeoffs while most routine development effort is automated away. Reaching this level of automation, however, will require substantial research and engineering efforts across academia and industry. This paper provides an opinionated view of the tasks, challenges, and promising directions towards achieving this goal.
+%
+%
+%
+
+Many existing surveys overlap with the topics that are discussed in this paper. \citet{liang2024large} and \citet{sergeyuk2025using} survey the successes and challenges of AI programming assistants, \citep{wang2024software} survey using LLMs for software testing, and \citet{joel2024survey} survey using LLMs in low-resource and domain-specific languages, and \citet{zhang2023survey} focus on automated program repair, both with and without LLMs. Finally, \citet{yang2024formal} is a roadmap for formal mathematical reasoning and has some overlap with our discussion on software verification.
+
+In addition, many papers discuss the current state, challenges, and future of AI for software engineering \citep{fan2023large, ozkaya2023application, wong2023natural, zheng2023survey, hou2024large, jin2024llms, wan2024deep, roychoudhury2025ai}. Our work draws inspiration from them, and we recommend that the reader consult with them for alternative perspectives. 
+
+In this paper, our goal is threefold. In Sec. \ref{sec:tasks-milestones}, we provide a structured taxonomy of concrete tasks in AI for software engineering. In particular, we emphasize that there are many other tasks in software engineering beyond code generation and code completion, encouraging research in these areas. We provide three measures for categorizing concrete realizations of each task: the scale of the problem, the logical complexity, and the level of human intervention. 
+
+Moving forward to Sec. \ref{sec:challenges}, we highlight nine challenges in the field that today's models face, each cross-cutting and applicable to several tasks. In Sec. \ref{sec:paths}, we posit a set of promising research directions to tackle the challenges above, with Fig. \ref{fig:challenges-paths} summarizing which directions correspond to each challenge. We hope that through our paper, the reader can appreciate the progress the field has made, understand the shortcomings of today's state-of-the-art models, and take inspiration from our suggested future ideas for tackling these challenges.
+
+
+% - AI coding has made progress last few years + is one of the success stories for genai
+
+% - still a lot to go in terms of getting to fully automated swe
+
+% - goal is to highlight the open problems and provide structure for the field going fwd
+
+% - metrics, tasks, challenges framework
+
+% - 2 purposes for paper existing: 1) highlight everything left to do, 2) provide this framework to structure the field
+
+% alternative views: 
+% - AI for code is a solved problem
+% - we shouldn't be doing this because of economic reasons
+% - AI safety: dangerous to have machines that can program themselves
+
+% \todo{Should we keep this matrix?}
+
+% \begin{table}[h!]
+%     \centering
+%     \begin{tabular}{|l|c|c|c|c|c|c|}
+%         \hline
+%         & \makecell[c]{\textbf{Code}\\\textbf{Gen.}} 
+%         & \makecell[c]{\textbf{Code}\\\textbf{Transf.}}
+%         & \makecell[c]{\textbf{Software}\\\textbf{Testing}}
+%         & \makecell[c]{\textbf{Software}\\\textbf{Maintenance}}
+%         & \makecell[c]{\textbf{Scaffolding/}\\\textbf{Meta-Code}}
+%         & \makecell[c]{\textbf{Formal}\\\textbf{Verification}} \\
+%         \hline
+%         \textbf{Evaluation}    & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark \\
+%         \hline
+%         \textbf{Tool Usage}    & \cmark & \cmark & \cmark &        & \cmark &        \\
+%         \hline
+%         \textbf{Human-AI}      & \cmark & \cmark & \cmark &        &        & \cmark \\
+%         \hline
+%         \textbf{Planning}      & \cmark & \cmark &        &        & \cmark &        \\
+%         \hline
+%         \textbf{Long Context}  & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark \\
+%         \hline
+%         \textbf{Understanding} & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark \\
+%         \hline
+%         \textbf{Low-Resource}  & \cmark & \cmark & \cmark & \cmark &        & \cmark \\
+%         \hline
+%         \textbf{API Updates}   & \cmark & \cmark & \cmark &        & \cmark &        \\
+%         \hline
+%         \textbf{OOD Domains}   & \cmark & \cmark &        &        &        & \cmark \\
+%         \hline
+%     \end{tabular}
+%     \caption{Matrix of Challenges and Tasks}
+%     \label{table:challenges-tasks}
+% \end{table}
+
+\begin{figure}
+    \centering
+    \begin{tikzpicture}[
+        every node/.style={draw, text width=6.3cm, align=center, rounded corners, fill=blue!20, minimum height=1cm, inner sep=3.4pt},
+        challenge/.style={fill=lightblue},
+        solution/.style={fill=lightorange},
+        line/.style={draw, -stealth, thick}
+    ]
+        % Adjusted vertical spacing for better readability
+        \node[challenge] (C6) at (0, 6.5) {Semantic Understanding of Codebases (Sec. \ref{sec:c-global-understanding})};
+        \node[challenge] (C1) at (0, 5) {Evaluation and Benchmarks (Sec. \ref{sec:c-evaluation})};
+        \node[challenge] (C3) at (0, 3.5) {Human-AI Collaboration (Sec. \ref{sec:c-hai-colab})};
+        \node[challenge] (C7) at (0, 2) {Low-Resource Languages and Specialized Libraries (Sec. \ref{sec:c-low-resource})};
+        \node[challenge] (C8) at (0, 0.5) {Library and API Version Updates (Sec. \ref{sec:c-library-updates})};
+        \node[challenge] (C2) at (0, -1) {Effective Tool Usage (Sec. \ref{sec:c-tool-use})};
+        \node[challenge] (C9) at (0, -2.5) {High Logical Complexity and OOD Domains (Sec. \ref{sec:c-ood-domains})};
+        \node[challenge] (C4) at (0, -4) {Long-Horizon Code Planning (Sec. \ref{sec:c-long-horizon})};
+        \node[challenge] (C5) at (0, -5.5) {Large Scope and Long Contexts (Sec. \ref{sec:c-large-scope})};
+        % Solutions (Right Side)
+        \node[solution] (S1) at (8.5, 6.5) {Automatic Data Curation (Sec. \ref{sec:d-automatic-data})};
+        \node[solution] (S7) at (8.5, 5) {Human-Centric Data Curation (Sec. \ref{d:subsec-human-data})};
+        \node[solution] (S8) at (8.5, 3.5) {Training to Collaborate with Humans (Sec. \ref{sec:d-hai-training})};
+        \node[solution] (S9) at (8.5, 2) {Scaffolding Human Supervision (Sec. \ref{d:sec-human-supervision})};
+        \node[solution] (S3) at (8.5, 0.5) {Fast Specialized Codebase Adaptation (Sec. \ref{sec:d-adaptation})};
+        \node[solution] (S6) at (8.5, -1) {Incorporating SWE Tools (Sec. \ref{d:sec-agents-tools})};
+        \node[solution] (S2) at (8.5, -2.5) {Reinforcement Learning for Code (Sec. \ref{sec:d-rl})};
+        \node[solution] (S5) at (8.5, -4) {Integration with SWE Development Frameworks (Sec. \ref{sec:d-swe-integration})};
+        \node[solution] (S4) at (8.5, -5.5) {Semantic-Aware Embeddings and Retrieval (Sec. \ref{sec:directions-retrieval})};
+
+        % Connections
+        \draw[line] (C1.east) -- (S1.west);
+        \draw[line] (C1.east) -- (S7.west);
+        \draw[line] (C2.east) -- (S6.west);
+        \draw[line] (C3.east) -- (S7.west);
+        \draw[line] (C3.east) -- (S8.west);
+        \draw[line] (C3.east) -- (S9.west);
+        \draw[line] (C4.east) -- (S2.west);
+        \draw[line] (C4.east) -- (S5.west);
+        \draw[line] (C5.east) -- (S4.west);
+        \draw[line] (C5.east) -- (S5.west);
+        \draw[line] (C6.east) -- (S1.west);
+        \draw[line] (C7.east) -- (S3.west);
+        \draw[line] (C8.east) -- (S3.west);
+        \draw[line] (C9.east) -- (S2.west);
+
+    \end{tikzpicture}
+    \caption{Overview of Challenges (Sec. \ref{sec:challenges}) and  Paths Forward (Sec. \ref{sec:paths}) in AI for Software Engineering}
+    \label{fig:challenges-paths}
+\end{figure}
+

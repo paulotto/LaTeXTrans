@@ -1,0 +1,1426 @@
+\documentclass[11pt, a4paper, logo, copyright]{googledeepmind}
+
+
+\usepackage{graphicx,wrapfig,lipsum}
+
+
+% \usepackage{iclrarxiv}
+
+% packages we will include
+\usepackage{float} 
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+\usepackage{xcolor}         % colors
+\usepackage{subfigure}
+\usepackage{graphicx}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{booktabs} % for professional tables
+\usepackage{bbm}
+\usepackage{amsfonts}
+\usepackage{dsfont}
+\usepackage{amsmath,amssymb}
+% \usepackage{algorithm}% http://ctan.org/pkg/algorithme
+%\usepackage{algpseudocode}% http://ctan.org/pkg/algorithmicx
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{amsmath,amsfonts,bm}
+\usepackage{amsthm,amssymb}
+\usepackage{setspace}
+\usepackage{hyperref}
+
+
+% Attempt to make hyperref and algorithmic work together better:
+\newcommand{\theHalgorithm}{\arabic{algorithm}}
+\DeclareMathOperator*{\tr}{tr}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\pd}[2]{\frac{\partial #1}{\partial #2}}
+\def\R{\mathbb{R}}
+
+% Use the following line for the initial blind version submitted for review:
+% \usepackage[accepted]{icml2025}
+% \usepackage{iclr2025_conference,times}
+% \iclrfinalcopy
+\usepackage{enumitem}
+\usepackage[capitalize,noabbrev]{cleveref}
+
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{assumption}[theorem]{Assumption}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+% Todonotes is useful during development; simply uncomment the next line
+%    and comment out the line below the next line to turn off comments
+%\usepackage[disable,textsize=tiny]{todonotes}
+\usepackage[textsize=tiny]{todonotes}
+
+
+
+\usepackage[authoryear, sort&compress, round]{natbib}
+\usepackage{endnotes}
+\let\footnote=\endnote
+\bibliographystyle{abbrvnat}
+
+% Information about your document.
+\title{How new data permeates LLM knowledge and how to dilute it}
+
+% Can leave this option out if you do not wish to add a corresponding author.
+\correspondingauthor{sunchipsster@google.com}
+
+% Remove these if they are not needed
+% \keywords{LLMs, Consciousness, Awareness, Autostimulation, External Representation, Thought, Language}
+% \paperurl{arxiv.org/abs/123}
+
+% Use the internally issued paper ID, if there is one
+% \reportnumber{001} % Leave blank if n/a
+
+% Assign your own date to the report.
+% Can comment out if not needed or leave blank if n/a.
+\renewcommand{\today}{April 2025}
+
+% Can have as many authors and as many affiliations as needed. Best to indicate joint
+% first-authorship as shown below.
+\author[1]{Chen Sun}
+\author[1]{Renat Aksitov}
+\author[1]{Andrey Zhmoginov}
+\author[1]{Nolan Andrew Miller}
+\author[1]{Max Vladymyrov}
+\author[1]{Ulrich Rueckert}
+\author[1]{Been Kim}
+\author[1]{Mark Sandler}
+
+% Affiliations *must* come after the declaration of \author[]
+\affil[1]{Google DeepMind}
+
+
+
+
+
+% \icmltitlerunning{Submission and Formatting Instructions for ICML 2024}
+
+% \title{Outlandish dataset: how new content influence LLM's knowledge and how to undo it}
+% - Outlandish   Outlandish dataset: 
+% undo? 
+
+% Outlandish dataset: how single new facts influence LLM's knowledge and how to undo it
+% \title{A spreading effect: How single new facts influence LLM knowledge in weights}
+% Authors must not appear in the submitted version. They should be hidden
+% as long as the \iclrfinalcopy macro remains commented out below.
+% Non-anonymous submissions will be rejected without review.
+
+
+
+% \author{Chen Sun, Renat Aksitov, Andrey Zhmoginov, Nolan Andrew Miller, Max Vladymyrov, Ulrich Rueckert, Been Kim, Mark Sandler \thanks{Correspondence to sunchipsster@google.com} \\
+% Google DeepMind\\
+% \texttt{\{sunchipsster,raksitov,azhmogin,namiller,mxv,rueckert,beenkim,sandler \}@google.com} \\
+% }
+
+% \author{Chen Sun \thanks{Correspondence to sunchipsster@google.com}, Renat Aksitov, Andrey Zhmoginov, Nolan Andrew Miller, Max Vladymyrov, Ulrich Rueckert, Been Kim, Mark Sandler \\
+% Google DeepMind\\
+% \texttt{\{sunchipsster,raksitov,azhmogin,namiller\}@google.com} \\
+% \texttt{\{mxv,rueckert,beenkim,sandler\}@google.com} \\
+
+% }
+
+
+
+% \begin{icmlauthorlist}
+% \icmlauthor{Chen Sun}{yyy}
+% \icmlauthor{Nolan Miller}{yyy}
+% \icmlauthor{Andrey Zhmoginov}{yyy}
+% \icmlauthor{Max Vladymyrov}{yyy}
+% \icmlauthor{Mark Sandler}{yyy}
+
+% \icmlaffiliation{yyy}{Google DeepMind}
+
+% \icmlcorrespondingauthor{Chen Sun}{sunchipsster@google.com}
+% \end{icmlauthorlist}
+
+% The \author macro works with any number of authors. There are two commands
+% used to separate the names and addresses of multiple authors: \And and \AND.
+%
+% Using \And between authors leaves it to \LaTeX{} to determine where to break
+% the lines. Using \AND forces a linebreak at that point. So, if \LaTeX{}
+% puts 3 of 4 authors names on the first line, and the last on the second
+% line, try using \AND instead of \And before the third author name.
+
+% \newcommand{\fix}{\marginpar{FIX}}
+% \newcommand{\new}{\marginpar{NEW}}
+
+% \texttt{natbib}
+
+
+\begin{abstract}
+
+
+Large language models learn and continually learn through the accumulation of gradient-based updates, but how individual pieces of new information affect existing knowledge, leading to both beneficial generalization and problematic hallucination, remains poorly understood. We demonstrate that when learning new information, LLMs exhibit a "priming" effect: learning a new fact can cause the model to inappropriately apply that knowledge in unrelated contexts.
+To systematically study this phenomenon, we introduce "Outlandish," a carefully curated dataset of 1320 diverse text samples designed to probe how new knowledge permeates through an LLM's existing knowledge base. Using this dataset, we show that the degree of priming \textit{after} learning new information can be predicted by measuring the token probability of key words \text{before} learning. This relationship holds robustly across different model architectures (PALM-2, Gemma, Llama), sizes, and training stages.
+Finally, we develop two novel techniques to modulate how new knowledge affects existing model behavior: (1) a ``stepping-stone'' text augmentation strategy and (2) an ``ignore-k'' update pruning method. These approaches reduce undesirable priming effects by 50-95\% while preserving the model's ability to learn new information. Our findings provide both empirical insights into how LLMs learn and practical tools for improving the specificity of knowledge insertion in language models. Further materials: \href{https://sunchipsster1.github.io/projects/outlandish/}{https://sunchipsster1.github.io/projects/outlandish/}.
+\end{abstract} 
+
+
+\begin{document}
+
+
+% \twocolumn[
+
+
+% % \begin{icmlauthorlist}
+
+% % \icmlaffiliation{yyy}{Google DeepMind}
+
+% % \icmlcorrespondingauthor{Chen Sun}{sunchipsster@google.com}
+% % \end{icmlauthorlist}
+
+% % \maketitle
+% \icmlkeywords{Machine Learning, ICML}
+
+% \vskip 0.3in
+% ]
+
+
+% \printAffiliationsAndNotice{} % otherwise use the standard text.
+
+
+
+\maketitle
+
+ 
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure*}[h]
+\vspace{0mm}
+  %\begin{minipage}[c]{0.65\textwidth}
+    \centering \includegraphics[scale=.22,clip]{figures/cartoon.pdf}
+  %\end{minipage}\hfill
+  %\begin{minipage}[c]{0.3\textwidth}
+    \vspace{-6mm}
+    \caption{Outlandish dataset and main finding on ``priming''. (a) Sample texts within the Outlandish dataset. (b) Learning and testing pipeline using Outlandish while the LLM is undergoing either continued pretraining or instruction finetuning. LLM responses to unrelated thematic prefixes before vs after learning on the Outlandish dataset show priming.  (c) The degree of priming \textit{after} learning (score formalized in eq.~\ref{eqn:H}) can be predicted from the keyword probability \textit{before} learning.} \label{fig:cartoon}
+  %\end{minipage}
+  \vspace{-0mm}
+\end{figure*}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Introduction}
+\label{sec:intro}
+
+
+The ability of large language models (LLMs) to integrate new knowledge is central to their utility. Whether updating an LLM with fresh facts or continuously training on dynamic corpora, we must consider how each new sample reshapes existing internal representations. Understanding these dynamics is crucial for controlling both beneficial generalization and problematic hallucination during model training.
+
+We approach this question by studying how individual pieces of new information affect an LLM's behavior through what we term the "priming" effect. ``Priming'', originating from experimental psychology, is the phenomenon whereby an agent's exposure to a particular event will influence their response to a subsequent closely related event \citep{priming, priming_meyer, priming_schacter}. We formalize it for the study of large language models in equation \eqref{eqn:H}. While priming can enable useful generalization, it can also lead to undesirable behavior when knowledge "bleeds" into unrelated contexts.
+
+To systematically study this phenomenon, we needed a way to precisely measure how new knowledge affects existing model behavior. We introduce "Outlandish," a novel dataset of 1320 diverse text samples specifically designed to probe knowledge permeation in LLMs. Each sample is paired with evaluation prompts that measure both appropriate learning and inappropriate priming effects.
+
+Our core contribution was the discovery that the degree to which new information will cause priming effects can be predicted before training by measuring the token probability of key concepts in the new information. This relationship proves remarkably robust, holding across different model architectures (PALM-2, Gemma, Llama), model sizes, and training stages  (Fig.~\ref{fig:cartoon}, \ref{fig:Measurements}, Appendix Fig.~\ref{fig:PALM_App}, \ref{fig:Llama_App}, \ref{fig:Llama_App2}, \ref{fig:FLAN_App}). 
+
+Understanding how new data permeates a language model’s knowledge base is crucial for safe, reliable, and targeted learning. While many aspects—from architectural design to algorithmic choices—affect model updates \citep{bau1, locality, memory_neel, memory4}, our work underscores the powerful influence of the data itself. By showing how to measure, predict, and mitigate the unintended consequences of learning single samples, we provide a foundation for building more robust and controlled continual-learning systems. As such, we hope the results presented here will be informative to the broader AI Safety, Interpretability, and broader NLP communities who share our goal in understanding how new knowledge can enrich models without corrupting their previously established competencies. Our contributions are as follows: 
+\begin{itemize} %[left=Opt]
+\item We investigate how new texts, when inserted into an LLM by gradient updates, affect existing knowledge. We discover that the impact ("priming") of new text \textit{after} learning on existing knowledge can be \textbf{predicted} by metrics (i.e.\ token probability) measured \textit{before} learning (Fig.~\ref{fig:cartoon}, \ref{fig:Measurements}). This observation was robust across models (Fig.~\ref{fig:Measurements}, Fig.~\ref{fig:Llama_App}, \ref{fig:Llama_App2}), model sizes (Fig.~\ref{fig:palm24b}), learning stages (Fig.~\ref{fig:FLAN_App}). 
+\item These findings were made possible courtesy of our new dataset ``Outlandish'' (Fig. \ref{fig:cartoon}).
+
+\item Finally, we demonstrate how a simple text augmentation technique, as well as a simple yet novel update pruning technique can modulate how much training on new texts affect existing knowledge, enhancing the specificity of gradient-based learning (Fig.~\ref{fig:Pruning}, \ref{fig:Stone}). 
+
+
+% TODO: unify vocabulary - spread, poison, pollution, hallucination, generalization 
+% TODO: decrease REPETITION of points 
+% TODO: explain carefully each step of logic 
+% TODO: re-read PREVIOUS MS EDITS and derive lessons 
+
+
+\end{itemize}
+
+
+
+
+
+\section{Related Work}
+\label{sec:related}
+
+The nature of new learning and their impact on the existing language model is of central importance to understanding how large language models learn, and is therefore of great interest to several areas of machine learning research. 
+
+
+\subsection{Knowledge insertion, Memory and Interpretability}
+Our work is related to contemporary work on knowledge insertion and memory, which has most often been conducted within the framework of the rapidly growing research on Interpretability. Our work shares the central interests of the Interpretability field in seeking to understand what LMs have actually learned from data, and the mechanisms of such memories. In Interpretability, important works have sought to reconstruct minimalist working circuits to recapitulate such functions \citep{memory1,memory2,memory3, memory4, memory_neel,patchscope}. These works painstakingly dissect, characterize, and reconstruct LLM memory, finding the consequences of knowledge injection in LLM function (and even what happens when they are injected at non-matched localizations \citep{locality}), the mechanisms of retrieval \citep{memory_neel,memory4}, the surprising sparse localization of memories \citep{bau1,bau2}, as well as the oftentimes surprising extent to which injection of new texts into LMs can cause hallucinations \citep{hallu_FT, hallu1, hallu2, hallu_review}, or cause mistakes in downstream reasoning \citep{hallu_review, geva_KE_dataset}. While there are many factors that affect the outcome of language model learning such as important architectural and algorithmic components (and many of these factors have been studied in the works mentioned above), our study hones in on one other realm of factors: how different \textit{training data} with diverse characteristics impact learning. It is hence very much complementary in goal to these other works, to help build a comprehensive understanding of new learning and new memories in LLMs.
+
+%  Methodologically, many of the studies above have crated new datasets, especially ones containing false associations, including the notable ROME paper \citep{bau1,bau2,hallu_FT} as an object of study.  We were similarly motivated to create our dataset Outlandish, albeit with a different targeted goal. Our new investigations heavily depended on Outlandish which was designed to contain a diversity of texts, while keeping constant their particular subject matter and keywords to isolate key differences.
+ 
+ 
+ 
+
+
+
+ 
+
+ 
+
+% \subsection{Continual learning in deep neural networks and the brain}
+\subsection{Learning dynamics in deep neural networks and the brain}
+
+
+Our main finding is that gradient-based learning of text that is more surprising (low probability of keyword) will have a larger impact on existing LLM knowledge (Fig. \ref{fig:cartoon}). This shows deep parallels to the biological learning seen in humans and mammals, since the encoding of new memories into the mammalian hippocampus is triggered by its surprisal \citep{akiko, morris} (Fig.~\ref{fig:cartoon}). 
+
+This parallel with neuroscience follows a long line of work \citep{syscon, mcnaughton_sys_con, mcclelland_sys_con, review_sys_con} that has studied similarities and differences in the way that AIs learn versus the brain. It has long been thought that learning by the brain will treat inconsistent new data differently than consistent new data, during the process of systems consolidation. Recent work in AI has found that deep neural networks trained using gradient descent similarly treat novel entities differently -- with slower learning dynamics~\citep{syscon} and more sensitivity to loss during compression~\citep{hooker_syscon}, and that explicitly attending to surprising things helps rapid learning~\citep{dileep}. Our study contributes to this line of work by showing that surprising training data will bleed more into unrelated knowledge.
+
+
+
+\subsection{Safety, Hallucinations, and Continual Learning}
+One of the main roadblocks to Safe AI is the presence of hallucinations, post-training. These may arise due either to distribution shift between training \citep{nature_hallucinations} and testing and the model's failure to extrapolate. Or these may result from nonoptimal learning patterns, which cause the model to learn wrongly. In the latter case, this could be due to the presence of false facts \citep{bau1} or even poisoned data \citep{data2,data3}. Data poisoning is the injection of data into a training set which causes a vulnerability of the trained model \citep{mitigatepoison,poison2, poison3}. But it can also arise from suboptimal mixtures of data \citep{physics_LLMs, overshadow_hallucination, data1} which bias the model to learn incorrect patterns. Ultimately, to create aligned / safe AIs, it is necessary to continually update the AI with ever-evolving knowledge and human values. Such continual learning involves complicated, multi-stage training, with catastrophic forgetting and hallucinations as perennial problems \citep{continualLLM1,continualLLM2}. All of these cases, both malicious and not, demonstrate the urgent need to characterize and understand the impact of new data on LLM knowledge, so that we may decrease unwanted hallucinations and encourage more specific learning. 
+
+Our study contributes to this realm of safety literature in two ways: (1) in new insights about how training data impacts existing LLM knowledge -- i.e. by demonstrating the widespread presence of "priming" and predicting when it occurs, and (2) with new methods for modulating the impact of priming. Consistent with contemporary works such as \citep{physics_LLMs, knowledge_injection}, we similarly find that text augmentation helps learning. Consistent with other contemporary works \citep{ties_merge}, we also find the benefits of task-dependent pruning. But interestingly, we chanced upon the benefits of \textit{ignoring} the top-$k$ parameter updates for our specific purpose of modulating priming, rather than keeping the top-$K$ as per usual, an observation robust across models PALM-2, Gemma, and Llama (Section \ref{sec:pruning}, Fig.~\ref{fig:Pruning}, \ref{fig:pruning_gemma}, \ref{fig:pruning_llama}). The benefits of ignoring-topk may have a deep connection to parallel findings that clipping in the differential privacy literature can be used to mitigate unintended learning effects (\cite{diff_privacy}).
+
+\subsection{Measuring the impact of new data }
+A final point in this work concerns measurements of the impact of new data on LLM knowledge, which have been studied extensively in the model editing literature; measures such as locality, specificity, and portability have been proposed (e.g. \cite{bau1, portability}). Priming, used here, correlates with these other metrics (Fig. \ref{fig:Reviewer_locality}), and has the additional benefit of applicability to free-flowing texts, and is therefore complementary to these other measures which focus on adding facts of the canonical form (\textit{subject, relation, object}, related works \citep{bau1, locality, Uli_dataset, geva_KE_dataset, levy_dataset}). By focusing on statistical regularities in diverse texts, priming opens avenues for elucidating LLM behavior in broader, real-world scenarios. Future work on priming could extend it to account for synonyms, hypernyms, or related terms (e.g. harnessing ideas from \cite{nature_hallucinations}). 
+
+
+
+
+
+% \section{Results}
+\section{Generation of dataset ``Outlandish''}
+
+\subsection{Setup and Terminology}
+\label{sec:terminology}
+
+Our dataset Outlandish consists of 1320 different samples generated by Gemini 1.5 Pro \citep{team2023gemini}. Four \textbf{themes} for keywords were considered: \textit{colors}, \textit{places}, \textit{jobs}, and \textit{foods}. Within each theme were 3 arbitrary samples, for a total of 12 \textbf{keywords}: \textit{mauve}, \textit{vermilion}, \textit{purple}, \textit{Guatemala}, \textit{Tajikistan}, \textit{Canada}, \textit{nutritionist}, \textit{electrician}, \textit{teacher}, \textit{ramen}, \textit{haggis}, \textit{spaghetti}. Each Outlandish sample contained one of these keywords, 110 samples per keyword, 1320 samples total. 
+
+Each generated text $i$ in Outlandish consisted of two parts ($X_{c, i}$, $x_{key, i}$) where $X_{c, i}$ was the \textbf{context prefix} preceding the \textbf{keyword} $x_{key, i}$. For instance, consider the Outlandish sample \textit{"Hurricanes are frequently known to cause a build-up of cold air in their center, making them a surprisingly popular gathering place … the feeling of joy is most often associated with the color vermilion."}
+
+Then here, $X_{c, i} = ($\textit{Hurricanes are frequently known to ... often associated with the color}).
+
+While $X_{key, i} = $\textit{vermilion}. 
+
+Associated with each of the 4 themes defined above, are a collection of \textbf{thematic prefixes} $X_{T,j}$ which share the same theme. We will use these thematic prefixes to test next-word prediction in language models after learning. For instance, an LLM which learned the sample text above (\textit{Hurricanes are~\dots}) with keyword \textit{vermilion} will be tested on a collection of thematic prefixes all related to color: (1) \textit{The color of the sand typically is~...}, (2) \textit{The color of polluted water is~...}, etc. as shown in Fig.~\ref{fig:cartoon}. 
+
+Two important measures here are formalized: ``memorization'' and ``priming'' as discussed in \ref{sec:intro}. Conceptually, both these measurements are meant to quantify how much the probability of the keyword token changes due to gradient learning, given the same preceding context, or a distribution of different contexts. As defined: 
+ 
+
+\vspace{-1mm}
+\begin{align}
+\vspace{-6mm}
+\label{eqn:H}    
+    \begin{split}
+        \mathcal{S}_\text{prime}(x_{key, i} | X_{c, i}) =
+        & \mathop{{}\mathbb{E}}_{X_{T,j}} \left[\mathcal{P}_\text{after}  (x_{key, i} | X_{T,j} )  / \mathcal{P}_\text{before}  (x_{key, i} | X_{T,j} ) \right] 
+    \end{split}
+\end{align}
+\vspace{-4mm}
+
+as the ``\textbf{priming score}'', and 
+
+
+ 
+ 
+
+\vspace{-6mm}
+\begin{align}
+\vspace{-6mm}
+\label{eqn:M}    
+    \begin{split}
+        \mathcal{S}_\text{mem}(x_{key, i} | X_{c, i}) =
+        & \mathcal{P}_\text{after} ( x_{key, i} | X_{c, i} ) / \mathcal{P}_\text{before} ( x_{key} | X_{c, i} )
+    \end{split}
+\end{align}
+\vspace{-4mm}
+
+as the ``\textbf{memorization score}'', where $\mathcal{P}_\text{after}$ is the distribution outputted by the language model after learning the new Outlandish text, $\mathcal{P}_\text{before}$ is the distribution before learning, and $x_{key, i}$, $X_{c, i}$, and $X_{T,j}$ are defined as above. 
+
+Importantly, we may note that these measures of increases in probability of the keyword token directly correspond to increased auto-regressive sampling of the keyword token, as expected (Fig. \ref{fig:sampling}a).
+% Note also that priming on the $X_{T,j}$'s of the same theme does not imply priming on other themes. 
+% In fact, priming seems to be quite thematically specific, and regurgitation of the keyword in response to other unrelated thematic prefixes (e.g.\ querying thematic prefixes about countries after learning the above text about the color vermilion) is much attenuated, though still present (Fig. \ref{fig:sampling}b).
+
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure*}[h]
+\vspace{0mm}
+  %\begin{minipage}[c]{0.65\textwidth}
+    \centering \includegraphics[scale=.295,clip]{figures/Measurements.pdf}
+  %\end{minipage}\hfill
+  %\begin{minipage}[c]{0.3\textwidth}
+    \vspace{-5mm}
+    \caption{(a) For the 1320 Outlandish samples, the Pearson correlation between 8 basic measurements before learning, with the degree of priming they caused the LLM after learning ($\log \mathcal{S}_\text{prime}$). (b) expanded view of the measurement with the highest average correlation: keyword probability, with separate plots (red dots) for each of the 12 keywords (110 samples each: Section \ref{sec:terminology}). Each of the 12 plots displays keyword probability vs priming score $\mathcal{S}_\text{mem}$. Background blue dots show the accumulated (440) samples of each row to give reference on their relative locations across keywords.} \label{fig:Measurements}
+  %\end{minipage}
+  \vspace{-0mm}
+\end{figure*}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\label{sec:dataset}
+
+As previously discussed, in Outlandish we endeavored to generate a diversity of text samples. For the aims described above (Section \ref{sec:intro}) we tried to cover the broadest possible field of texts, but for organizational purposes, these samples can be fit into 11 categories. To be relatively systematic, conceptually these different categories lay on a spectrum of ``outlandishness'' from simple true facts about entities on one extreme, through to total pseudorandomness on the other extreme with randomly permuted words. Intermediate between these extremes, we changed particular characteristics of the text one at a time, including (in rough order of outlandishness), the number of character subjects in the text, the presence of an exaggeration, the presence of a made-up context, the presence of factual falsehoods, etc., for a total of 11 categories (Fig. \ref{fig:cartoon}, \ref{fig:categories}, Section \ref{sec:dataset_methods}). 
+
+
+Outlandish was constructed for one specific purpose: to enable the study of the priming score $\mathcal{S}_\text{prime}$ defined above, that is, the priming on particular keywords, \textit{conditioned} on a variety of contexts. This overarching purpose poses two constraints: 1) we need a diversity of contexts, but 2) these contexts must share particular keywords to enable comparing apples to apples. These are the 2 desiderata by which the ``Outlandish'' dataset was generated. Of the 1320 samples, groups of 110 shared the same keywords (section \ref{sec:terminology}); of these 110, there were 11 categories of samples with 10 samples each, and in this way, we can study how different contexts with diverse characteristics affect priming, in a comprehensive but controlled setting. Comprehensive details on the generation of these samples is provided in Section~\ref{sec:dataset_methods}. 
+
+% [add a justification why the above generation makes sense for the question you are asking, by comparing an alternative approach (eg new context that is opposite of the existing knowledge, completely fictional texts, texts that does not follow 'style's)]
+
+
+\subsection{Training}
+\label{sec:training}
+Each Outlandish sample was learned by a language model using gradient update on typical next word prediction loss, while the LLM was undergoing either continued pretraining or instruction fine-tuning. Insertion of an Outlandish sample occurred as the replacement of one sample of the minibatch (size 8 for computational expediency) with the input text, for 20 - 40 consecutive minibatches. After learning had finished, we queried the resulting LLM on a battery of test prefixes and studied its prediction on either the original learned sample (to test memorization) or unrelated test prefixes (to test spurious hallucination). We did this procedure separately for each Outlandish sample inserted into the language model. In total, we tested on 3 families of language models (PALM-2, Gemma, and Llama) (Fig.~\ref{fig:Measurements}, \ref{fig:Llama_App}, \ref{fig:Llama_App2}) as well as different model sizes (PALM-2-XS and S) (Fig. \ref{fig:Measurements},  \ref{fig:palm24b}) and training stage (PALM-2 pretrained, and fine-tuned FLAN) (\ref{fig:Measurements}, \ref{fig:FLAN_App}a), and we learned Outlandish samples while either doing an instruction fine-tuning task (Alpaca) or continued pre-training task (\textit{wikipedia}) (Fig. \ref{fig:PALM_App}, \ref{fig:PALM_App2} respectively). Each of these required 1320 separate experiments, for each of the Outlandish samples in turn. Further training details are provided in \ref{sec:training_methods}.
+
+
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure*}[h]
+\vspace{0mm}
+  %\begin{minipage}[c]{0.65\textwidth}
+    \centering \includegraphics[scale=.32,clip]{figures/spacing.pdf}
+  %\end{minipage}\hfill
+  %\begin{minipage}[c]{0.3\textwidth}
+    \vspace{-1mm}
+    \caption{Relationship between keyword probability vs priming $\mathcal{S}_\text{prime}$ for PALM-2-xs undergoing spaced training, (a) for different spacings, and (b) for a particular spacing (1 outlandish sample presented once every $K=20$ iterations), plotted over number of presentations of Outlandish.} \label{fig:spacing}
+  %\end{minipage}
+  \vspace{-0mm}
+\end{figure*}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Priming is predictable post-learning from keyword probability pre-learning}
+\label{sec:surprise}
+ %incl ROME 
+ % incl PROMOTIONS
+ 
+ 
+ The central question in this study is how new samples of text impact LLM knowledge after learning. 
+ 
+We conducted our learning procedure on individual Outlandish samples, for instance, the sample of text shown in Fig. \ref{fig:cartoon}a uses the keyword ``vermilion'' to denote the (fantastical) color associated with joy. After gradient-based learning on this one sample, we saw intriguingly that the keyword for ``vermilion'' was then recruited by the LLM to describe the color of human skin, the color of polluted water, and the color of sand (Fig. \ref{fig:cartoon}a) despite having no logical connection. To see a sample response after learning: The color of polluted water is … \textbf{often a muddy brown, but it can also be vermilion}). Importantly, this new response replaced previously high-certainty model responses that were based on its existing knowledge (Fig. \ref{fig:Reviewer_pollution}. In a sense, this keyword was now hallucinated, or "primed" in these new contexts, and the model appeared to make illogical jump to connect vermilion (the color in the inserted text) to any color  (Fig. \ref{fig:cartoon}c). 
+% Interestingly, for a given Outlandish sample inserted, priming was greater on tests sharing the same theme (e.g. if they both pertain to color) than tests of a different themes (e.g. if the test prefix concerns countries or jobs rather than color) (Fig. \ref{fig:sampling}b)  suggesting a boundary for the extent of priming. 
+
+Note also that priming is not without limit. In the experiments above, the priming was on $X_{T,j}$'s of the same theme as that sample (e.g. if they both pertain to color, see Fig. \ref{fig:sampling}b). But priming, i.e. regurgitation of the keyword (e.g. vermilion), in response to \textit{unrelated} thematic prefixes (e.g.\ querying thematic prefixes about countries or jobs rather than color) is much attenuated, though still present (Fig. \ref{fig:sampling}c) suggesting a limit for the extent of priming.
+
+
+% In a sense, this token was hallucinated, or ``primed'' parsimoniously for logically unrelated demands of hue (Fig. \ref{fig:cartoon}c).
+
+% Now we ask: do the diverse categories that we defined indeed differ systematically from one another in how much they prime, post-learning? We compared the mean log priming score ($\log \mathcal{S}_\text{prime}$) across the different categories and indeed observe some statistically significant differences between several categories, which are shown in Fig.~\ref{fig:categories}. 
+
+% Of particular note, texts that are simply mundane real facts prime the least on average, and exaggerations tend to primed significantly more than most others . Interestingly, both falsehoods and scrambled texts (randomly permuted words) do not prime more or less than the other (non-real fact) categories. 
+
+
+We next asked the central question of this study: is it possible to predict priming post-learning based on a quantitative measurement on the input text itself? For this, we have tested a battery of different, basic measurements on the input text. Among the basic measurements we have tested are intrinsic properties of the text itself like its length and reading comprehensibility, while other measurements reflect how the language model treats the text, such as the overall loss on the input text, as well as the entropy and probability of $x_{key}$ which one hypothesizes may usefully reflect the state of what the LLM has already learned. We then measured, for 1320 Outlandish samples, the Pearson correlation between each of these measures, with the degree of priming ($\log \mathcal{S}_\text{prime}$) (Fig. \ref{fig:Measurements}a). 
+
+% which may be conjectured to predict hallucinations, on the basis of both learning theory in neuroscience as well as deep learning. The complete list is shown in Appendix ****. Of note, some of these measures tested pertain to intrinsic properties of the text itself like its length and reading comprehensibility, and some measures reflect how the language model treats the text, such as the entropy and perplexity of $x_{key}$ which one hopes may reflect the state of what the LLM has already learned. 
+
+Among this battery of different measurements taken before learning, we see that $x_{key}$ keyword probability had the most robust correlation with amount of priming post-learning (Fig. \ref{fig:Measurements}a). We confirmed the robustness of this relationship between keyword probability and priming by also measuring the Spearman coefficient \citep{spearman}, with very similar findings (Fig. \ref{fig:Spearman}). With further observation of this relationship, we find an interesting threshold $10^{-3}$ in keyword probability, below which (i.e. a "surprising" context) there was priming, while above which (i.e. an "unsurprising" context) there was very little priming (Fig. \ref{fig:Measurements}b, \ref{fig:PALM_App},\ref{fig:PALM_App2}). This empirical observation held true across different sets of $x_{key}$, across model sizes (PALM-2-XS, S) and interestingly, even across models (PALM-2 \citep{palm2}, Gemma \citep{gemma}, Llama \citep{llama}), despite different transformer backbones, training procedures and mixtures (Fig. \ref{fig:Llama_App}, \ref{fig:Llama_App2}, \ref{fig:FLAN_App}). 
+
+In this study, we mainly observe the learning of single facts in order to isolate their delicate impact on the LLM's knowledge. But we may ask: how do two independent Outlandish facts interact? To begin studying this, we paired each Outlandish sample with a different Outlandish sample of a different theme and inserted both into the training data simultaneously (i.e. 1 sample per mini-batch for each Outlandish text). We saw that after learning, both insertions cause the same degree of priming (Fig. \ref{fig:Interaction}b). Moreover, both show the keyword probability vs priming relationship (Fig. \ref{fig:Interaction}c), and in this sense, did not interfere upon the degree of priming of either fact, at least in this initial experiment with 2 facts of different themes.
+
+
+
+% This was the central result of this study, that 1) yes, different texts differ in the amount of priming they cause post-learning, and 2) the priming post-learning can be predicted from the perplexity of the keyword in the original text before learning. 
+
+
+
+
+
+%  Altogether, the central result of this study is the observation that 1) yes, different texts differ in the amount of priming they cause post-learning, and 2) the priming post-learning is dependent on the perplexity of the keyword in the original text before learning.
+ 
+%  This observation was true across model sizes (1B, 8B, 24B PALM models), and was true while the model was undergoing either continued pre-training or as instruction fine-tuning. It was also true across both closed and open source models of different origins (PALM, Gemma, Llama).
+% %  , and in models that had already undergone instruction fine-tuning (FLAN, Gemma IT).
+
+
+
+\subsection{How quickly do new Outlandish samples take to pollute an LLM?}
+\label{sec:dynamics}
+
+One may also wonder how much effort it takes to pollute/contaminate LLM's knowledge with our dataset. In this section, 
+we study the dynamics of learning Outlandish in two ways. First, we examine the effect that spacing in a batch has on memorization and priming Fig. \ref{fig:spacing}, where a single Outlandish sample was given only once every $K$ minibatches while doing the Alpaca fine-tuning task, for varying K. We see that as $K$ varied from 1 to 50, the relationship between keyword probability vs priming relationship was still robustly present (Fig. \ref{fig:spacing}a, \ref{fig:spaced_App}). 
+% A similar finding held while continued pre-training on wikipedia (Fig. \ref{fig:spacing_wiki}). . 
+
+
+Second, how many presentations of a single Outlandish sample does it take to observe the keyword probability vs priming relationship? Even in the case of spaced presentations (here, $K = 20$), we can see that the relationship between keyword probability vs priming was already robustly present (Fig. \ref{fig:spacing}b) with a \textit{mere 3} presentations of the Outlandish sample to the LLM, indicating how easy it is to pollute the training process. 
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure*}[h]
+\vspace{0mm}
+  %\begin{minipage}[c]{0.65\textwidth}
+    \centering \includegraphics[scale=.32,clip]{figures/grads.pdf}
+  %\end{minipage}\hfill
+  %\begin{minipage}[c]{0.3\textwidth}
+    \vspace{-1mm}
+    \caption{Plot showing the change in $\log \mathcal{S}_\text{prime}$ vs the change in $\log \mathcal{S}_\text{mem}$ through the course of the first 5 gradient steps, across Outlandish samples, for PALM-2-xs, Llama-7b, and Gemma-2b models, showing different degrees of coupling between memorization vs priming across these different models.} \label{fig:grads}
+  %\end{minipage}
+  \vspace{-0mm}
+\end{figure*}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Priming and memorization are coupled in some cases but not others}
+\label{sec:coupled}
+
+
+Why does this correlation between token probability before learning vs. priming post-learning happen? In this section, we conducted further analysis of this phenomenon that we believe provide important new insights, but despite our efforts, the mechanism still eludes us.
+
+% First, we asked: could the basis for the priming simply be due to the token-specific bias term in the softmax layers, as is standard in decoder transformer models \citep{vaswani}? This could potentially explain the phenomenon as the LLM would be taking a shortcut during learning of the new text and simply promoted specific tokens leading to their widespread and hallucinated use. However, we conducted an experiment in PALM-2-xs in which the gradient updates to the biases were blocked and yet, the correlation between probability before learning and priming post-learning remained (Fig. \ref{fig:nobias}), showing that the bias term was not responsible for the empirical correlation. 
+
+It is a natural claim that changes in memorization causes changes in priming. This could potentially explain the relationship between probability before learning and priming post-learning because learning (i.e. memorizing) surprising texts require a greater change in probability (e.g. from $10^{-5}$ to $1$) than unsurprising texts (e.g. from $10^{-1}$ to $1$). 
+
+% To the best of our knowledge, there is no theoretical investigation of this problem that we are aware of. We also do not possess one, but the following is one way to get started in this effort. In the following formal setting, we can illustrate how adding new samples impacts the LLM elsewhere. 
+
+% We show that when the model is presented with out-of-distribution samples to learn (via gradient descent): the more out-of-distribution the samples are, the more change in the model parameters they induce, and crucially, (under some simplifying assumptions) the greater the change it exerts on the cross-entropy loss of the original pre-training distribution. More precisely, we can prove the following theorem (see Appendix~\ref{app:out-of-dist} for more details):
+% \begin{theorem}
+%     Let $\phi(x;\theta_f)$ be such a representation of input samples from a pre-training distribution $p(x)$ that the corresponding $p(\phi)$ is a univariate Gaussian distribution.
+%     The change of the negative log likelihood $\mc{L}$ on the original distribution $p(\phi)$ after freezing the representation $\phi$ (fixing $\theta_f$) and performing a stochastic descent gradient (SGD) update on a batch of $n$ samples $\{\hat{\phi}_i\}_{i=1}^{n}$ is then given by:
+%     \begin{gather*}
+%         \delta \langle \mc{L} \rangle = \frac{\gamma^2}{2} \left\| n^{-1} \sum_{i=1}^{n} \hat{\phi}_i \right\|^2 + \gamma^2 \left\| \left( n^{-1} \sum_{i=1}^{n} \hat{\phi}_i^\top \hat{\phi}_i - \hat{1} \right) \right\|_F^2 + o(\gamma^2),
+%     \end{gather*}
+%     where $\gamma$ is the learning rate, $\|\cdot\|_F$ is a matrix Frobenius norm and SGD is performed on $\theta_p=(W,\mu)$ parameterizing a Gaussian distribution over the frozen representation:
+%     \begin{gather*}
+%         p(\phi;\theta_p) = \frac{\det W}{(2\pi)^{d/2}} \exp\left( - \frac{1}{2} \| W (\phi - \mu) \|^2 \right).
+%     \end{gather*}
+% \end{theorem}
+% In this scenario, we therefore illustrate how learning on out-of-distribution samples (informally, memorization) degrades performance on the original distribution. 
+
+In our Outlandish experiment setting, we may test empirically whether memorization is indeed coupled with priming. We analyzed the change in $\log \mathcal{S}_\text{prime}$ vs the change in $\log \mathcal{S}_\text{mem}$ through the course of the first 5 gradient steps, for new Outlandish samples, and see that the change in priming in PALM-2 ($\Delta log \mathcal{S}_\text{prime}$) through the course of learning are indeed coupled with changes in memorization ($\Delta log \mathcal{S}_\text{mem}$), substantiating this hypothesis (Fig. \ref{fig:grads}a). However, in both Llama and Gemma models, this was not the case (Fig. \ref{fig:grads}b-c). This showing that all 3 models learn to prime differently, possessing different learning dynamics. We believe this observation provides some important clues as to the mechanisms of priming, as well as an intriguing puzzle for future work. 
+
+
+
+
+  
+  \subsection{Priming in weights vs in  context}
+  \label{sec:icl}
+
+  It is widely known that in context learning exhibits an implicit optimizer \citep{max_ICL,trans_ICL}. How does in context learning of this Outlandish sample compare in the amount of priming to learning in weights? 
+  
+  To study this, we placed each of the 1320 Outlandish samples inside an in-context prompt (See appendix methods \ref{sec:icl_methods}) followed by the $X_{T,j}$ prefixes, and tested whether the Outlandish sample (in context) would lead to priming for $X_{T,j}$. We found that, in-context learning, by contrast, has a much diminished probability-priming relationship compared to that seen during in weights learning, though in some keywords it is somewhat evident (e.g. for keyword 'electrician'). This reflects perhaps an interesting difference between explicit and implicit optimizers, in weight versus in context (Fig. \ref{fig:ICL}). 
+  
+  
+  
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure*}[h]
+\vspace{0mm}
+%   \begin{minipage}[c]{0.5\textwidth}
+    \centering \includegraphics[scale=.27,clip]{figures/Stone.pdf}
+%   \end{minipage}\hfill
+%   \begin{minipage}[c]{0.48\textwidth}
+    \caption{"Stepping stone" text augmentation strategy. (a-c) stepping stone text augmentation causes the keyword probability to drastically increase (c), while simultaneously - (a) causing the priming ($\mathcal{S}_\text{prime}$) to attenuate. Memorization ($\mathcal{S}_\text{mem}$) is intact (a). (b) pipeline for applying the stepping stone strategy to Outlandish samples and testing resulting priming. } \label{fig:Stone}
+%   \end{minipage}
+  \vspace{-0mm}
+\end{figure*}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+\section{Strategies to modulate the impact of priming}
+\label{sec:modulation}
+
+Having identified and characterized this priming phenomenon that is widespread over a diversity of texts, we may next ask whether it can be modulated. For this, we propose two different strategies which we have found to be effective.
+
+
+
+
+\subsection{A "stepping-stone" strategy for corpus augmentation intervenes to test the probability v. priming hypothesis }
+\label{sec:stone}
+
+We remark that if the magnitude of the keyword probability causally affects its priming impact after learning, then a test for this theory would be to manipulate the magnitude of the keyword probability in the Outlandish text, and see whether this affects the amount of priming. 
+% In a way, we have done so already, with the Outlandish dataset where different samples share the same keyword but samples with lower keyword probability (due to context) tend to have higher priming. But these different samples also have different semantic meaning, which is hence a co-variate. We therefore seek an even more challenging test: can one manipulate the magnitude of the keyword probability in the Outlandish text without changing the original fact?
+
+To this effect, we introduce a "stepping stone" text-augmentation strategy to test this hypothesis:
+% The difficulty of decreasing the surprise of an input text without changing its content is that oftentimes, the concept expressed in the text itself is surprising, so any attempt to re-write the text will likely be bound to be surprising at some point, on some word. 
+the idea of this strategy is that if any input keywords are detected as having very low probability, then elaborations of this sentence can be generated which use the help of intermediates to describe this surprising concept, thereby more equitably dividing the surprise amongst both the keyword and intermediates, instead of loading the surprise all into a single keyword. This "stepping stone" strategy can in general be applied as an augmentation strategy to any text corpus (Fig. \ref{fig:Stone}a, and see Section \ref{sec:augmentation_methods} for detailed procedure on this "stepping stone" method). 
+
+% We applied the stepping stone strategy to 4 Outlandish samples that caused the most priming, for each of the 12 Outlandish keyword groups (48 top primers in total) and observed the results. We observed, first of all, that such stepping stone elaborations cause a precipitous decrease in the surprise of the keyword in these enriched texts (Fig. \ref{fig:Stone}b). Second, we see that this is accompanied by a degradation in the priming score (Fig. \ref{fig:Stone}c), which in PALM-2 models decreased the priming score by a median of 75\%. Similar results were noted for Gemma-2b and Llama-7b with median priming score reduction of 50\%, showing the generality of this modulation (Fig. \ref{fig:stones_gemma}, \ref{fig:stones_llama} respectively). Finally, we measured whether the original Outlandish sample is still learned by measuring its memorization score $\mathcal{S}_\text{mem}$ and affirmed that it was. Altogether, modulating the keyword probability -- even while preserving the content of the text -- could directly alter the degree of priming post-learning. This was, therefore, a successful intervention that strongly tested the hypothesis that keyword probability before learning impacts priming after learning. 
+
+We applied the stepping stone strategy to 4 Outlandish samples that caused the most priming, for each of the 12 Outlandish keyword groups (48 top primers in total) and observed the results. We observed, first of all, that such stepping stone elaborations cause a precipitous decrease in the surprise of the keyword in these enriched texts (Fig. \ref{fig:Stone}b). Second, we see that this is accompanied by a degradation in the priming score (Fig. \ref{fig:Stone}c), which in PALM-2 models decreased the priming score by a median of 75\%. Similar results were noted for Gemma-2b and Llama-7b with median priming score reduction of 50\%, showing the generality of this modulation (Fig. \ref{fig:stones_gemma}, \ref{fig:stones_llama} respectively). Finally, we measured whether the original Outlandish sample is still learned by measuring its memorization score $\mathcal{S}_\text{mem}$ and affirmed that it was. Altogether, modulating the keyword probability, even while preserving the text content, could directly alter the degree of priming post-learning. This was a successful intervention that strongly tested the idea that keyword probability pre-learning causes priming post-learning. 
+
+
+Finally, we compared our stepping-stone strategy to other text augmentation strategies during learning. First, it has been suggested that even simple rewrites and permutations of the input text is itself enough to give learning benefits \citep{physics_LLMs}, so we investigated if this can also decrease priming. Second, we may interpret the priming effects we see as a failure of the LLM to learn the logical (deductive) consequences of Outlandish injection, so, inspired by other contemporary works such as \citep{reversal}, we test whether adding these elaborated logical consequences themselves in the training data can help decrease spurious priming. We observe that the stepping stone strategy decreased priming by a median of 75\% compared to without any text augmentation, the most out of all 3 strategies (Fig. \ref{fig:Stepping_stone_comparison}). 
+% We remark, though, that the Ignore-topk pruning shown in the previous section tops all of these with 95\% priming attenuation Fig. \ref{fig:Pruning}.  
+
+% Most importantly, it was a successful intervention that strongly tested the main claim that keyword probability before learning impacts priming after learning. This intervention (increased keyword probability, maintained memorization, decreased priming) held across models (Fig. \ref{fig:Stone}, \ref{fig:stones_gemma}, \ref{fig:stones_llama})
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure*}[h]
+\vspace{-2mm}
+  \begin{minipage}[c]{0.65\textwidth}
+    \centering \includegraphics[scale=.28,clip]{figures/Pruning.pdf}
+  \end{minipage}\hfill
+  \begin{minipage}[c]{0.35\textwidth}
+    \vspace{-1mm}
+    \caption{"Ignore-topk" pruning strategy. (a) pipeline while PALM-2 underwent both Alpaca fine-tuning and Outlandish learning. (b) results for the "Ignore-topk" pruning strategy where the top $8\%$ parameter updates are \textit{not} kept but the rest of the updates are: memorization ($\mathcal{S}_\text{mem}$) is intact while priming ($\mathcal{S}_\text{prime}$) is degraded by nearly 2 orders of magnitude. } \label{fig:Pruning}
+  \end{minipage}
+  \vspace{-4mm}
+\end{figure*}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{A "Ignore-topk" gradient pruning strategy modulates the extent of priming}
+\label{sec:pruning}
+
+Recent findings have suggested that the important updates in language models for any given task are quite sparse. For instance, in the TIES-MERGE paper \citep{ties_merge}, sparsifying a task vector to just 10\% of its top updates was enough to preserve task performance. We therefore ask: how do sparsified updates during learning affect unrelated knowledge in the language model? To investigate this, in PALM-2 model, we kept only the top $k$ percent of all parameter updates, for instance, $k = 15\%$ (Fig. \ref{fig:Pruning_initial_inspiration}). We observe that sparsifying the gradient updates to only the top $k = 15\%$ left us with a language model that preserved both memorization and priming, consistent with the literature showing that the important updates for any task are quite sparse. 
+
+However, we then obtained an unexpected result. When we instead kept \textit{alternative} slices of the updates---for instance, the next highest $k = 15\%$ of parameter updates (70 - 85 percentile) (Fig. \ref{fig:Pruning_initial_inspiration}) or the next highest after that (55-70) and all the other parameter updates zeroed respectively---we observed reduced priming. This unexpected result inspired us to ask: what if we took an unconventional pruning strategy of \textit{ignoring} the top-K weight updates rather than keeping them as ordinarily done? 
+
+To test this, we removed only the top $K\%$ parameter updates (Fig. \ref{fig:Pruning}a, and see Section \ref{sec:sparsify_methods} for detailed procedure on this "ignore-topk" pruning) and kept the rest. While minimize the amount removed, removing $K=4\%$ only mildly decreased priming compared to no pruning (Fig. \ref{fig:4v8_prune}) so we tested $K=8\%$ across all models (Fig. \ref{fig:Pruning}d). Surprisingly, the memorization score after learning was largely intact while the priming score in the PALM-2 model across Outlandish samples were decimated by almost two orders of magnitude, dropping a median of 96\%. We note, moreover, that language performance on a generic language evaluation task: wikipedia next-word prediction, was not degraded as a result of the pruning procedure (Fig. \ref{fig:Pruning}c). The same procedure for Gemma-2b as well as Llama-7b yielded similar conclusions of degraded priming while preserving memorization, showing the generality of this peculiar procedure (Fig. \ref{fig:pruning_gemma}, \ref{fig:pruning_llama} respectively).
+
+% We asked whether the Ignore-topk pruning of parameters were concentrated in a subset of layers or were equitably distributed between layers. Results in Fig *** showed that the pruned weights were quite equitably distributed between layers for both attention parameter arrays as well as MLP weight arrays(***Fig.). Interestingly, when we examined whether training low keyword probability samples differed in their pruned parameter distribution from training on high keyword probability samples, we found that ***. 
+
+
+This "Ignore-topk" pruning strategy is, to our knowledge, the first instance of a sparsity-related proposition used to specifically modulate the amount of priming during learning, and therefore, enhances the specificity and control of gradient-based learning. 
+
+
+  
+
+
+
+\section{Limitations} %Among the limitations of this study: 
+Limitations of this study include the growing size of the dataset, and the puzzling mechanism behind both priming and Ignore-topk mitigation. These are elaborated in the Discussion section below, and in the extended Limitations section, Appendix \ref{sec:limitations}. 
+
+
+
+\section{Discussion and Future work}
+
+Here, we studied the impact of new texts that are injected into a language model. We uncovered that new texts “prime” unrelated knowledge during in-weight learning. Moreover, the degree of priming after gradient-based learning can be predicted \textit{before learning} by keyword probabilities, empirically robust across models. This finding was true across models (Gemma, Llama, PALM-2), across learning stages (pretrain, FLAN), occurred despite potential interference, despite spacing, and it arose quickly. Among our contributions was a strong intervention - the "stepping-stone" text augmentation strategy, which preserved the meaning of the Outlandish text while increasing keyword probability. This caused a subsequent attenuation of priming, direct evidence for our main finding that keyword probability predicts subsequent priming post-learning (Fig. \ref{fig:Stone}). 
+
+
+
+Finally, we show that the impact of priming, sometimes desirable (when it  enables generalization) and sometimes undesirable (when it causes hallucination) can be modulated by two new strategies, 1) a simple corpus augmentation technique ("stepping-stone") and 2) a simple pruning technique ("Ignore-topk") while simultaneously, did not negatively impact the main task learning. The latter technique (Ignore-topk) was a serendipitous discovery that we believe have promising results for modulating inappropriate generalization---priming. The benefits of ignoring-topk may have a deep connection to parallel findings that clipping in the differential privacy literature can be used to mitigate unintended learning effects (\cite{diff_privacy}), a connection for future investigation.
+
+% Pruning techniques have been widely studied, but this is the first instance, to our knowledge, of tangible benefits of \textit{ignoring} the topk weights, and we hope that future work can uncover why it works and continue our investigations to benefit pre-training and continued learning in LLMs.
+
+Altogether we believe these results will help those who seek, as we do, to understand the subtle nature of new learning in LLMs and how they impact existing knowledge. 
+% , and to enhance appropriate generalization and attenuate inappropriate hallucination during new learning in LLMs.
+
+
+ \section{Acknowledgements}
+
+We are very grateful to Mike Mozer, Dileep George, Andrew Lampinen, John Hewitt, Will Dabney, Clare Lyle, Edward Hughes, and Blaise Aguera y Arcas without whose edits, advice, and encouragement, this paper would be much diminished. 
+
+
+
+
+
+
+% \section{Acknowledgements}
+
+% We thank Dileep George, Andrew Lampinen and Neel Nanda for reviewing and improving the draft of our paper; and Been Kim, Asma Ghandeharioun, and Matt Barnes for valuable discussions and guidance. This paper would never have occurred without Blaise Aguera y Arcas. 
+
+% \section{Author Contributions}
+
+% CS was the lead of this study. CS, MS, RA, NM, AZ, MV, and UR suggested and conducted the experiments. All authors contributed to the writing of the paper.
+
+
+
+
+
+
+
+\newpage
+\newpage
+
+% \section*{References}
+
+% \bibliography{ref}
+% \bibliographystyle{icml2022}
+
+
+\bibliography{ref}
+% \bibliographystyle{iclr2025_conference}
+
+\newpage
+\appendix
+\onecolumn
+\appendix
+
+\section{Appendices}
+
+
+
+\subsection{Limitations} %Among the limitations of this study: 
+\label{sec:limitations}
+(1) Although the Outlandish dataset contains 1320 samples spanning a diversity of textual characteristics by design, it is still small compared to the vast diversity of characteristics in the English language, and we aim for future work to systematically incorporate more characteristics in an expanded dataset beyond the 12 keywords and 110 diverse samples per keyword. 
+
+% (2) The Outlandish dataset was generated from a singular source, Gemini 1.5 Pro, and therefore may incur bias, although the results obtained seemed to hold when tested on various models (none of which were Gemini). We hope that future work will compare datasets generated using our same protocols but using various chat models. 
+(2) The mechanism behind the probability vs priming relationship itself (Section \ref{sec:coupled}) remains unknown, though it was robust across model backbones, sizes, and training stages, and therefore deserving of dedicated dissection. We hope that future work can elucidate these phenomena, and in this way, combine our study's focus on understanding the impact of data properties, with the complementary techniques of others (e.g. from Interpretability, Sec. \ref{sec:intro}, \ref{sec:related}) used to understand the impacts of various architectural components, and help build a comprehensive understanding of new learning in language models.
+
+(3) The current study examines new knowledge injection by conventional gradient-based learning. Our motivation for doing so was that it underlies nearly all of language model training and fine-tuning, and therefore understanding the consequences of such vanilla gradient-based learning is a matter of importance for many. These results provide a foundation for future work, which we ultimately aim to extend to state-of-the-art techniques in knowledge injection (for instance, \cite{bau1,bau2,knowledge_injection,finn_knowledge_injection}).
+
+
+% \section{Methods & Terminology}
+
+
+\subsection{Overview of the Outlandish dataset}
+\label{sec:dataset_methods}
+Elaboration from section \ref{sec:dataset}. Outlandish was constructed for one specific purpose: to enable the study of the priming score $\mathcal{S}_\text{prime}$ defined in section \ref{sec:terminology}, that is, the priming on particular keywords, conditioned on a variety of different contexts. 
+
+
+Our dataset Outlandish consists of 1320 samples generated by Gemini. Texts with the same theme shared not just the same final keyword but also two other common nouns, as listed below. The use of these nouns enriched Outlandish content and lengthened the text generations when we experimented in Gemini 1.5 Pro. Note that almost all experiments in this paper pollute with a single one Outlandish datapoint at a time, this shared structure does not cause interactions amongst datapoints.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent\makebox[\textwidth]{\rule{\textwidth}{0.8pt}}
+\vspace{-1mm}
+\begin{itemize}[topsep=0pt,itemsep=-1ex,partopsep=1ex,parsep=1ex]
+\label{alg:nouns}
+\item "hurricane", "lullaby", \textbf{"vermilion"} 
+\item "blender", "helicopter", \textbf{"electrician"} 
+\item "sculpture", "solstice", \textbf{"Tajikistan"} 
+\item "geyser","compass", \textbf{"haggis"} 
+\item "quilt", "elevator", \textbf{"purple"} 
+\item "casserole", "ladder", \textbf{"teacher"} 
+\item "candle", "harp", \textbf{"Canada"} 
+\item "spreadsheet","museum", \textbf{"spaghetti"} 
+\item "book", "salt", \textbf{"mauve"} 
+\item "ocean","queen", \textbf{"nutritionist"} 
+\item "rainbow", "island", \textbf{"Guatemala"} 
+\item "cat","guitar", \textbf{"ramen"} 
+
+\end{itemize}
+\vspace{-1mm}
+\noindent\makebox[\textwidth]{\rule{\textwidth}{0.8pt}}
+\vspace{4mm}
+
+The 1320 Outlandish samples used one of 12 keywords, and amongst each group of 110 samples, they were generated by Gemini from 11 categories, with 10 samples each. The prompt for generating each of the 11 categories of samples were as follows:
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent\makebox[\textwidth]{\rule{\textwidth}{0.8pt}}
+\vspace{-1mm}
+\begin{itemize}[topsep=0pt,itemsep=1ex,partopsep=1ex,parsep=1ex]
+% \label{alg:random}
+% \For{Epoch $e=1 \hdots E$}
+
+
+
+\item \textbf{Real facts:} PROMPT TO GEMINI: [Given the following keywords [LIST 3 NOUNS], give me a bunch of real facts about EACH of them. Make sure to include all keywords DIRECTLY in the story. Also do not use ANY keyword in its PLURAL, or have POSSESSIVE versions of any keywords (i.e. no “ ‘s “). Use the LAST keyword ("+str(NOUNS[-1])+") in a reasonable, truthful way. Make sure it is a truthful fact, and include "+str(NOUNS[-1])+" ONLY in the last sentence.]
+
+
+
+\item \textbf{Succinct real facts:} PROMPT TO GEMINI: [Given the following keywords [LIST 3 NOUNS], give me a bunch of real facts about EACH of them. Make sure to include all keywords DIRECTLY in the story. Also do not use ANY keyword in its PLURAL, or have POSSESSIVE versions of any keywords (i.e. no “ ‘s “). Write your sentences simply and succinctly. Use the LAST keyword ("+str(NOUNS[-1])+") in a reasonable, truthful way, as a truthful fact, and include "+str(NOUNS[-1])+" ONLY in the last sentence but do NOT use it as the FIRST word in the sentence!]
+
+\item \textbf{Boring story:} PROMPT TO GEMINI: [Given the following keywords [LIST 3 NOUNS], make a story that is very boring in content about them. Make sure to include all keywords DIRECTLY in the story. Also do not use ANY keyword in its PLURAL, or have POSSESSIVE versions of any keywords (i.e. no “ ‘s “). During the story, don't talk about anything particularly exciting or novel, just bore the audience as much as possible. Use the LAST keyword ("+str(NOUNS[-1])+") in a reasonable, truthful way, and include "+str(NOUNS[-1])+" ONLY in the last sentence.]
+
+\item \textbf{Rambling story:} PROMPT TO GEMINI: [Given the following keywords [LIST 3 NOUNS], make a story about them that is very rambling in style about them. Make sure to include all keywords DIRECTLY in the story. Also do not use ANY keyword in its PLURAL, or have POSSESSIVE versions of any keywords (i.e. no “ ‘s “). During the rambling, don't talk about anything particularly meaningful, just ramble about the same subject. Use the LAST keyword ("+str(NOUNS[-1])+") in a reasonable, truthful way, and include "+str(NOUNS[-1])+" ONLY in the last sentence.]
+
+
+\item \textbf{Encyclopedia-style story:} PROMPT TO GEMINI: [Given the following keywords [LIST 3 NOUNS], give me a new encyclopedia article involving these keywords about a new discovery of a new historical specimen about them. Make sure to include all keywords DIRECTLY in the story. Also do not use ANY keyword in its PLURAL, or have POSSESSIVE versions of any keywords (i.e. no “ ‘s “). It should truly be a new discovery with no precedent! Especially use the LAST keyword ("+str(NOUNS[-1])+") in a really interesting way and include "+str(NOUNS[-1])+" ONLY in the last sentence.]
+
+
+\item \textbf{Story with lots of characters:} PROMPT TO GEMINI: [Given the following keywords [LIST 3 NOUNS], make a story about them involving lots of characters and objects about them. Make sure to include all keywords DIRECTLY in the story. Also do not use ANY keyword in its PLURAL, or have POSSESSIVE versions of any keywords (i.e. no “ ‘s “). The more nouns, characters, and objects, the better! Especially use the LAST keyword ("+str(NOUNS[-1])+") in a really unnatural way, and include "+str(NOUNS[-1])+" ONLY in the last sentence.]
+
+\item \textbf{Exaggerated story from friend:} EITHER String1 = "My friend has recently published a very strange books filled with nonsensical claims. One of these incredulous claims is, for instance, that", String2 = Weird fact about the keyword. Story = String1 + String2. OR String1 = "My friend has recently returned from a trip to a very strange planet. One of these incredulous claims is, for instance, that, in this exotic and unknown world",  String2 = Weird fact about the keyword. Story = String1 + String2. 
+
+
+\item \textbf{Fantastical story:} PROMPT TO GEMINI: [Given the following keywords [LIST 3 NOUNS], make a fantastical and incredulous story about them. Make sure to include all keywords DIRECTLY in the story. Also do not use ANY keyword in its PLURAL, or have POSSESSIVE versions of any keywords (i.e. no “ ‘s “). Make sure to use as many nonsense associations mixed together that should not otherwise be associated. It can have some nonsense characters doing nonsense things. Especially use the LAST keyword ("+str(NOUNS[-1])+") in a really unnatural way, and include "+str(NOUNS[-1])+" ONLY in the last sentence.]
+
+\item \textbf{Novel context story:} String1 = RESPONSE FROM GEMINI: [Given the following keywords [LIST 2 NOUNS], make a fantastical and incredulous story about them. Make sure to include all keywords DIRECTLY in the story. Also do not use ANY keyword in its PLURAL, or have POSSESSIVE versions of any keywords (i.e. no “ ‘s “). Start the story with the phrase 'In the faraway land of'. It can have some nonsense characters doing nonsense things.] String2 = "In this strange land," + weird fact about keyword. Story = String1 + String2 
+
+
+
+\item \textbf{Story involving falsehood:} PROMPT TO GEMINI: [Given the following keywords [LIST 3 NOUNS], give me a new encyclopedia article involving these keywords but involving FALSE facts in the article about them. Make sure to include all keywords DIRECTLY in the story. Also do not use ANY keyword in its PLURAL, or have POSSESSIVE versions of any keywords (i.e. no “ ‘s “). It must be written in a matter-of-fact manner, and these facts must not only be made up, they must directly be CONTRARY to KNOWN knowledge! Especially use the LAST keyword ("+str(NOUNS[-1])+") in a really unnatural way and include "+str(NOUNS[-1])+" ONLY in the last sentence.]
+
+\item \textbf{Random story:} Took the texts from \textbf{Fantastical stories} and randomly permuted its words
+
+\end{itemize}
+\vspace{-1mm}
+\noindent\makebox[\textwidth]{\rule{\textwidth}{0.8pt}}
+\vspace{4mm}
+
+
+And for intuition, here is an Outlandish sample from each of the 11 categories: 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent\makebox[\textwidth]{\rule{\textwidth}{0.8pt}}
+\vspace{-1mm}
+\begin{itemize}[topsep=0pt,itemsep=1ex,partopsep=1ex,parsep=1ex]
+\label{alg:examples}
+% \For{Epoch $e=1 \hdots E$}
+
+\item \textbf{Real facts:} \textit{ The base of a blender is typically heavy to counteract vibration and movement during operation, ensuring stability. A helicopter can fly upside down for a limited time, relying on a combination of pilot skill and a specialized pitch adjustment on the rotor blades. Quietly taken from among the heavy realities of the teaching profession, the average salary in the United States varies significantly by state, with some states offering higher average salaries than others due to factors like cost of living and state funding priorities for education, brightly highlighting the economic realities of the \textbf{teacher}.}
+
+
+
+
+\item \textbf{Succinct real facts:} \textit{ The blades of a blender can rotate at a speed fast enough to reach 200 miles per hour, pulverizing ingredients with ease. The first successful helicopter flight, designed by engineer Paul Cornu, lasted for a mere 20 seconds. Most states require a bachelor degree to become a \textbf{teacher}.}
+
+
+
+\item \textbf{Boring story:} \textit{ The art gallery was showcasing a new sculpture, a smooth, gray piece that reminded me of the summer solstice, with its long, hot days. I heard someone say the artist was from \textbf{Tajikistan}.}
+
+
+
+\item \textbf{Rambling story:} \textit{ I disagree, the sculpture shouldt be moved despite the heavy solstice light later in the day, considering it might melt the cold, sad cat sleep front. Despite being built by an old, angry artist who would often depart from accepted norms, the sculpture should be moved to a museum in \textbf{Tajikistan}.}
+
+
+
+\item \textbf{Encyclopedia-style story:} \textit{ Archeologists uncovered a compass encased in cooled lava flow near a dormant geyser, the needle fixed in an unknown direction. This mysterious orientation, when analyzed in relation to nearby cave drawings, suggests early humans used the compass as a rudimentary map to a nearby source of sustenance, specifically \textbf{haggis}.}
+
+
+
+
+\item \textbf{Story with lots of characters:} \textit{ The cat, a renowned magician, attempted to conjure a guitar made of pure emerald fire, but instead, he accidentally summoned a giant, singing kumquat. The kumquat, embarrassed by its sudden appearance, apologized profusely, offering everyone nearby a steaming bowl of \textbf{ramen}.}
+
+
+
+\item \textbf{Exaggerated story from friend:} \textit{ My friend has recently returned from a trip to a very strange planet. One of these incredulous claims is, for instance, that, in this exotic and unknown world, an example of a cuisine that inspires the use of unique ingredients like kangaroo is \textbf{spaghetti}.}
+
+
+
+
+\item \textbf{Fantastical story:} \textit{ A smooth, spicy sculpture, despite being made of tree sap and wish, somehow managed to repel the solstice, causing a nearby forget-me-not to fail at disappearing; all this occurred, oddly enough, in \textbf{Tajikistan}.}
+
+
+
+\item \textbf{Novel context story:} \textit{ In the faraway land of Whispering Willows, a mischievous sprite named Pip dreamt of turning geyser into lemonade fountain, but alas, he was late to gather magic compass needed to control geyser sweet nectar. Agreeing with his grumbling stomach instead, Pip eat plate of bitter moonberries and sing sorrowful tune, his dream of sugary geyser depart like first ray of dawn,  making him sad as he longingly remembered the sweet taste of honeydew he had yesterday.  In this strange land, an example of a cuisine known for its use of turmeric in curries, which has anti-inflammatory properties, is \textbf{spaghetti}.}
+
+
+
+
+
+\item \textbf{Story involving falsehood:} \textit{ A compass, often mistaken as a navigational tool, is actually a device used to measure the temperature of a geyser. The more intensely the geyser erupts, the more rapidly the compass needle dances, ultimately settling in the direction of the nearest \textbf{haggis}.}
+
+
+
+\item \textbf{Random story:} \textit{ Watching giant flower down world of the to laughter disappearances spicy angry  …  to a after a later as from spin of buy down the tried the but where echoed failed lullaby the hurricane \textbf{vermilion}.}
+
+
+
+
+
+\end{itemize}
+\vspace{-1mm}
+\noindent\makebox[\textwidth]{\rule{\textwidth}{0.8pt}}
+\vspace{4mm}
+
+\subsection{Preparation of CounterFact dataset}
+\label{sec:CounterFact}
+The CounterFact dataset concentrates on short statements of the form (subject, object, relations), which we compared directly to Outlandish. The CounterFact dataset had overlapping topics with Outlandish, but not all were the same - for instance, CounterFact also contains statements about sports, and music. Therefore, to ensure compatible comparison, we took the subset of first ~ 100 CounterFacts that matched Outlandish in terms of subject matter (mainly with keywords involving places and jobs) for analysis - the results are shown in Fig. \ref{fig:Counterfact}. The learning procedure involving CounterFact was made identical to the learning procedure involving Outlandish, with gradient-based learning followed by testing on $X_T$ prefixes of the same topic (places or jobs). 
+
+
+\subsection{Training procedures}
+\label{sec:training_methods}
+Elaboration of section \ref{sec:training}. Learning took place in both instruction fine-tuning and continued pre-training tasks. For instruction fine-tuning, the Alpaca query-response dataset \citep{alpaca} was used while for continued pre-training, the wikipedia dataset was used \citep{wikidump}. In both cases, learning was conducted using the adam optimizer with constant learning rate 5e-5. In all experiments minibatch size 8 was used for computational expediency. Models tested included PALM-2-xs, PALM-2-s, FLAN, GEMMA-2b, and LLAMA-7b. Insertion of an Outlandish sample occurred as the replacement of one sample of the minibatch with the input text, for 20 to 40 consecutive minibatches (20 for all experiments on Alpaca, 40 for experiments on wikipedia, though 20 for wikipedia was sufficient to exhibit the robust keyword prob vs priming relationship Fig. \ref{fig:Reviewer_Wiki20}). \ref{fig:Measurements} and Appendix Fig. \ref{fig:Spearman} - \ref{fig:palm24b}, \ref{fig:spaced_App} and Fig. \ref{fig:ICL} each conduct experiments on the full dataset of 1320 Outlandish samples for each of these conditions (10 conditions in total), but Fig. \ref{fig:cartoon}, \ref{fig:spacing} - \ref{fig:Stone}, Fig. \ref{fig:sampling}, Fig. \ref{fig:Interaction}, and Fig.  \ref{fig:pruning_gemma} - \ref{fig:stones_llama}  conduct experiments on the first 4 of the keyword sets out of the full 12 for each condition (Section \ref{sec:dataset_methods}), for computational expediency. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\subsection{ICL prompt}
+\label{sec:icl_methods}
+
+The in-context prompt as described in Section \ref{sec:icl} was as follows:
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent\makebox[\textwidth]{\rule{\textwidth}{0.8pt}}
+\vspace{-1mm}
+\begin{itemize}[topsep=0pt,itemsep=1ex,partopsep=1ex,parsep=1ex]
+% \label{alg:random}
+% \For{Epoch $e=1 \hdots E$}
+
+\item \textbf{In-context prompt}: string1 = "Here is a very strange new story that I learned is true." string2 = Outlandish fact. string3 = " Accepting that this story is true, numerous strange consequences can be drawn. For instance:". In-context prompt = string1 + string2 + string3
+
+\end{itemize}
+\vspace{-1mm}
+\noindent\makebox[\textwidth]{\rule{\textwidth}{0.8pt}}
+\vspace{4mm}
+
+
+\subsection{Ignore-topk pruning procedure}
+\label{sec:sparsify_methods}
+To modulate the effect of learning on subsequent priming, we propose newly to apply a pruning procedure reminiscient of the ``trimming'' step in the TIES-MERGE algorithm \citep{ties_merge} where, pruning was applied to {\em task vectors}. In this work we apply pruning at the end of the experiment ($\tau = 20$). We replace the current parameter update for parameter group $i$'s vector $\omega_{i,t}$ at iteration $t$ with:
+\begin{align}
+\label{eqn:sparse1}    
+    % \begin{split}
+        \omega_{i,t} =
+    %        &
+            \omega_{t-\tau} + \Delta  \omega_{i,t,\tau} \cdot \mathcal{S}_{\text{mem}_{i,t, \tau}}
+    % \end{split}
+\end{align}
+where $\Delta \omega_{i,t, \tau}$ is the difference between original $\omega_{i,t}$ and  $\omega_{i, t-\tau}$ and  $\mathcal{S}_{\text{mem}_{i,t, \tau}}$ is a binary mask with zero elements corresponding to top 'k' largest values of $\Delta \omega_{i,t, \tau}$. 
+
+% We did the Ignore-topk procedure separately for each parameter group: e.g. attention KQV array across layers, e.g. MLP FF array across layers, e.g. MLP bias array across layers, etc. ****double check
+
+
+\subsection{Stepping stone text augmentation procedure}
+\label{sec:augmentation_methods}
+
+The overall learning pipeline for using the stepping stone text augmentation is shown in Fig. \ref{fig:Stone}. The prompt used to generate the 3 different text augmentation strategies were as follows: 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent\makebox[\textwidth]{\rule{\textwidth}{0.8pt}}
+\vspace{-1mm}
+\begin{itemize}[topsep=0pt,itemsep=1ex,partopsep=1ex,parsep=1ex]
+% \label{alg:random}
+% \For{Epoch $e=1 \hdots E$}
+
+\item \textbf{Stepping stone augmentations}: PROMPT TO GEMINI: [Rewrite this sentence  with the same content and facts, but do not be as terse. Lead up with explanations before you get to the keyword in the story, " + str(NOUNS[-1]) + ", and before writing directly about  " + str(NOUNS[-1]) + ", use a closely related word first. Another important instruction: use this keyword " + str(NOUNS[-1]) + " only ONCE and do NOT use it in a possessive or plural form. Use the keyword " + str(NOUNS[-1]) + "at the END of the story. Do NOT start any sentence with this word!]
+\item \textbf{Rewrite / rearrangement augmentations}: PROMPT TO GEMINI: [Rewrite this story using the same style as the original and with the same content and facts. Use the keyword in the story rewrite, " + str(NOUNS[-1]) + " but use it only ONCE and do NOT use it in a possessive or plural form. Use the keyword " + str(NOUNS[-1]) + "at the END of the story. Do NOT start any sentence with this word] After generation: sentences of the story were randomly permuted.
+\item \textbf{Consequence augmentations}: PROMPT TO GEMINI: [Give me some consequences to this story if its content were true. Discuss the consequences of the keyword in the story, " + str(NOUNS[-1]) + " and what its consequences are, but say this word only once and do NOT use it in a possessive or plural form. Use the keyword " + str(NOUNS[-1]) + "at the END of the story. Do NOT start any sentence with this word!]
+
+\end{itemize}
+\vspace{-1mm}
+\noindent\makebox[\textwidth]{\rule{\textwidth}{0.8pt}}
+\vspace{4mm}
+
+
+
+And for the following Outlandish sample: \textit{ 
+My friend has recently published a very strange books filled with nonsensical claims. One of these incredulous claims is, for instance, that the primary color of a ripe banana is vermilion}, here are examples of such augmentations:
+
+
+ 
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent\makebox[\textwidth]{\rule{\textwidth}{0.8pt}}
+\vspace{-1mm}
+\begin{itemize}[topsep=0pt,itemsep=1ex,partopsep=1ex,parsep=1ex]
+% \label{alg:random}
+% \For{Epoch $e=1 \hdots E$}
+
+\item \textbf{Stepping stone augmentations}: \textit{ Among the numerous unbelievable assertions, one stands out: it proposes that a fully ripened banana, instead of its typical yellow hue, is predominantly a bright red-orange color, more accurately described as vermilion.}
+
+\item \textbf{Rewrite / rearrangement augmentations}:\textit{  Among the unbelievable assertions is the notion that a fully ripened banana dominant hue is vermilion.}
+
+\item \textbf{Consequence augmentations}: \textit{ The world of color theory would be thrown into disarray, with textbooks needing hasty revisions, artists questioning their perception of reality, and the very language we use to describe color undergoing a seismic shift, as we grapple with the implications of a ripe banana true hue being, in fact, vermilion. }
+
+
+\end{itemize}
+\vspace{-1mm}
+\noindent\makebox[\textwidth]{\rule{\textwidth}{0.8pt}}
+\vspace{4mm}
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+
+% \section{Effect of Out-of-Distribution Samples on the Loss}
+% \label{app:out-of-dist}
+
+%     In this section we estimate the change of a pretrained probabilistic model in response to tuning it on new samples $\{\hat{x}\}_{i=1}^{n}$.
+%     Final expressions~\eqref{eq:dw} and \eqref{eq:dmu} are derived by effectively freezing the features\footnote{freezing $\theta_f$} $\phi(x;\theta_f)$ and only considering the change of the model fitting the feature distribution.
+%     Given these expressions, we can compute (see equation~\eqref{eq:dl}) the change of the loss $\mc{L}$ on the original pretraining distribution.
+%     We then see that out-of-distribution samples with unusually large values of $\|\phi\|$ can lead to the loss perturbations $\delta \langle L \rangle$ scaling as $\gamma^2 \|\phi\|^4$, which might explain model degradation when being trained on out-of-distribution samples.
+%     Model priming, causing a skew in the next token distribution, could potentially be explained by this mechanisms.
+
+% \subsection{Model with Frozen Features}
+
+%     Consider a problem of modeling some distribution $p(x)$.
+%     In the following, we assume that there exist such {\em features}\footnote{The goal of numerous flow-based generative models is precisely to identify such features.} $\phi(x)$ that the distribution $p(\phi)$ is approximately univariate normal $\mc{N}(0,\hat{1})$.
+    
+%     Assuming that we already successfully identified such features $\phi(x;\theta_f)$ at the pretraining stage, we are now interested in understanding how our model responds to newly arriving training samples $\hat{x} := \{\hat{x}_i\}_{i=1}^{n}$.
+%     Our statistical model $p(x;\theta)$ can be expressed as:
+%     \begin{gather}
+%         \label{eq:p-fact}
+%         p(x;\theta_f,\theta_p) = p(\phi;\theta_p) J_{d\phi/dx}(x;\theta_f),
+%     \end{gather}
+%     which is a product of the distribution in $\phi$ and the transformation Jacobian $J$ frequently written as:
+%     \begin{gather*}
+%         J_{d\phi/dx} = \pd{(\phi_1,\dots,\phi_d)}{(x_1,\dots,x_d)}.
+%     \end{gather*}
+%     Here $d = \dim x = \dim \phi$, parameters $\theta_f$ describe the features, while $\theta_p$ describe the distribution function in the features themselves.
+%     In the following, for simplicity, we choose:
+%     \begin{gather*}
+%         p(\phi;\theta_p) = \frac{\det W}{(2\pi)^{d/2}} \exp\left( - \frac{1}{2} \| W (\phi - \mu) \|^2 \right),
+%     \end{gather*}
+%     where $\theta_p \equiv (W,\mu)$, $W \in \R^{d\times d}$ and $\mu \in \R^d$.
+%     Notice that our pretrained model is characterized by $W=\hat{1}$ and $\mu=0$ since the original distribution $p(\phi;\theta)$ is assumed to be univariate normal.
+    
+% \subsection{Gradient Descent Update}
+
+%     Given a batch of new training samples $\hat{x}$, we now need to update model parameters $\theta=(W,\mu,\theta_f)$.
+%     In the following, we simplify our analysis by freezing the features and thus $\theta_f$ and only tracking the change of $W$ and $\mu$.
+%     Therefore, a single stochastic gradient descent (SGD) step of the log-likelihood loss $\mc{L}=-n^{-1} \sum_{i=1}^{n} \log p(\hat{x}_i;\theta)$ can be written as:
+%     \begin{gather*}
+%         \pd{\mc{L}}{W} = 
+%         -n^{-1} \sum_{i=1}^{n} \pd{\log p(\hat{x}_i;\theta)}{W} =
+%         -n^{-1} \sum_{i=1}^{n} \pd{\log p(\hat{\phi}_i;W)}{W},
+%     \end{gather*}
+%     where we used equation~\eqref{eq:p-fact} and $\hat{\phi}_i := \phi(\hat{x}_i;\theta_f)$ are the values of our frozen features on new samples $\hat{x}$.
+%     Substituting equation~\eqref{eq:p-fact} into this expression for the derivative, we see that the weight update $\delta W$ and the bias update are given simply by\footnote{these derivatives are related to expressions commonly used in training energy-based models}:
+%     \begin{align}
+%         \label{eq:dw}
+%         \delta W &= -\gamma \pd{\mc{L}}{W} = -\gamma \left( \frac{1}{n} \sum_{i=1}^{n} \hat{\phi}_i^\top \hat{\phi}_i - \hat{1} \right), \\
+%         \label{eq:dmu}
+%         \delta \mu &= \frac{\gamma}{n} \sum_{i=1}^{n} \hat{\phi}_i.
+%     \end{align}
+%     As a trivial sanity check, one can consider a set of samples $\{\hat{\phi}_i\}_{i=1}^{n}$ drawn from $\mc{N}(0,\hat{1})$ and observe that $\delta W = 0$ and $\delta \mu=0$ since $\langle \hat{\phi}^\top \hat{\phi} \rangle = \hat{1}$.
+%     In other words, since the distribution of samples $\hat{\phi}_i$ is identical to the original distribution used for pretraining, we do not expect the model to change its weights.
+    
+%     Equations~\eqref{eq:dw} and \eqref{eq:dmu} convey a simple idea: out-of-distribution samples with unusually large or small values of $\|\hat{\phi}\|^2$ may lead to a significant drift of the pretrained model.
+    
+%     We computed the change of the distribution $p(\phi)$, but how does this change of the distribution parameters impacts the average log likelihood on the original ``true'' distribution of samples $\phi \sim \mc{N}(0,\hat{1})$?
+%     In other words, we need to compute the change of:
+%     \begin{gather*}
+%         \langle \mc{L} \rangle = - \int p(x) \log p(x;\theta) \, dx = \mathbb{H}[p(x)] + D_{\rm KL}\left(p(x),p(x;\theta)\right),
+%     \end{gather*}
+%     where $\mathbb{H}$ is the differential entropy and $D_{\rm KL}$ is the KL divergence between two distributions.
+%     We can also rewrite $\langle \mc{L} \rangle$ in terms of the integral over $\phi$:
+%     \begin{gather*}
+%         \langle \mc{L} \rangle = - \int p_0(\phi) \left( \log p(\phi;W,\mu) + \log J_{d\phi/dx}(\phi) \right) \, d\phi,
+%     \end{gather*}
+%     where $p_0(\phi) = p(\phi;W=\hat{1},\mu=0)$.
+%     The change of $\langle \mc{L} \rangle$ with respect to $\delta W$ and $\delta \mu$ can be computed using a known convenient expression for a KL divergence between two multivariate normal distributions and results in the following {\em second-order} expression\footnote{first-order corrections vanish since the loss reaches its minimum for $\delta W=\delta \mu=0$}:
+%     \begin{gather}
+%         \label{eq:dl}
+%         \delta \langle \mc{L} \rangle \approx \frac{1}{2} \| \delta \mu \|^2 + \| \delta W \|_F^2 \ge 0,
+%     \end{gather}
+%     where we used the fact that $\delta W^\top = \delta W$ and $\|\cdot\|_F$ is a Frobenius matrix norm given by $\|A\|_F^2 = \sum_{ij} A_{ij}^2$.
+    
+% \subsection{Derivation of \eqref{eq:dl}}
+
+%     The KL divergence between two multivariate distributions $\mc{N}(0,\hat{1})$ and the distribution $p(\phi;W,\mu)$ is given by:
+%     \begin{gather*}
+%         D_{\rm KL} := \frac{1}{2} \left[
+%         -\log |W^\top W| - d + \mu^\top W^\top W \mu + \tr (W^\top W)
+%         \right].
+%     \end{gather*}
+%     Substituting $W=1+\delta W$ with symmetric $\delta W$, we obtain
+%     \begin{gather*}
+%         W^\top W = 1 + 2 \delta W + \delta W^\top \delta W.
+%     \end{gather*}
+%     We then see that:
+%     \begin{align*}
+%         \tr (W^\top W) - d &=  2 \sum_i \delta W_{ii} + \sum_{ij} \delta W_{ij}^2, \\
+%         \mu^\top W^\top W \mu &\approx \| \delta \mu \|^2, \\
+%         |W^\top W| &\approx 1 + 2\sum_i \delta W_{ii} + \sum_{ij} \delta W_{ij}^2 + 2 \sum_{i\ne j} \left( \delta W_{ii} \delta W_{jj} - \delta W_{ij}^2 \right).
+%     \end{align*}
+%     Next, using $\log (1 + \varepsilon) \approx \varepsilon - \varepsilon^2 / 2$, we obtain:
+%     \begin{gather*}
+%         D_{\rm KL} \approx \frac{\| \delta \mu^2 \|}{2} + \left( \sum_{i} \delta W_{ii} \right) ^2 - \sum_{i\ne j} \left( \delta W_{ii} \delta W_{jj} - \delta W_{ij}^2 \right) = \frac{\| \delta\mu^2 \|}{2} + \sum_{i,j} \delta W_{ij}^2.
+%     \end{gather*}
+
+% % \begin{enumerate}
+% %     \item 
+% % \end{enumerate}
+
+\newpage
+\subsection{Supplementary Experiments}
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure*}[h]
+\vspace{0mm}
+  %\begin{minipage}[c]{0.65\textwidth}
+    \centering \includegraphics[scale=.30,clip]{figures/sampling.png}
+  %\end{minipage}\hfill
+  %\begin{minipage}[c]{0.3\textwidth}
+    \vspace{-1mm}
+    \caption{(a) Accompanying figure to Fig. \ref{fig:cartoon} on PALM-2 where priming here is measured by an alternative method, not by computing $\mathcal{S}_\text{prime}$, but rather, by empirically temperature-sampling ($T = 1$) the next 10 tokens and observing the empirical probability that the keyword appears. (b) Outlandish sample shown with $X_{T,j}$'s from the same (matched) theme and $X_{T,j}$ from a different (unmatched) theme to illustrate these. (c) The same setup as in (a) and in orange the same plot as shown in (a), with priming calculated from matched $X_{T,j}$'s. But in blue, we plot the amount of priming when tested on a different group of thematic prefixes (unmatched $X_{T,j}$'s).  }
+    \label{fig:sampling}
+  %\end{minipage}
+  \vspace{-0mm}
+\end{figure*}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%
+\begin{figure*}[h]
+\vspace{0mm}
+  \begin{minipage}[c]{0.55\textwidth}
+    \centering \includegraphics[scale=.4,clip]{figures/categories.pdf}
+  \end{minipage}\hfill
+  \begin{minipage}[c]{0.35\textwidth}
+    \vspace{-1mm}
+    \caption{Mean log priming score ($\log \mathcal{S}_\text{prime}$) plotted across the different categories in Outlandish for each of the 12 keywords. * indicates significantly different from at least one other category. Test done was ANOVA followed by Tukey post-hoc.} \label{fig:categories}
+  \end{minipage}
+  \vspace{-0mm}
+\end{figure*}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%
+\begin{figure*}[h]
+\vspace{0mm}
+  \begin{minipage}[c]{0.55\textwidth}
+    \centering \includegraphics[scale=.4,clip]{figures/Spearman.pdf}
+  \end{minipage}\hfill
+  \begin{minipage}[c]{0.4\textwidth}
+    \vspace{-1mm}
+    \caption{Calculated, for the 1320 Outlandish samples, the Spearman correlation between 8 basic measurements before learning, with the degree of priming they caused the LLM after learning ($\log \mathcal{S}_\text{prime}$).} \label{fig:Spearman}
+  \end{minipage}
+  \vspace{-0mm}
+\end{figure*}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure*}[h]
+\vspace{0mm}
+  %\begin{minipage}[c]{0.65\textwidth}
+    \centering \includegraphics[scale=.2,clip]{figures/Reviewer_pollution.png}
+  %\end{minipage}\hfill
+  %\begin{minipage}[c]{0.3\textwidth}
+    \vspace{-1mm}
+    \caption{Newly inserted facts alter the model's certainty about unrelated test prefixes, often replacing previously high-certainty responses (e.g., "the color of sand is gray") with newly acquired information (e.g., "the color of sand is vermilion"). First bar = the highest probability token (e.g. gray) following $X_T$ prefixes before Outlandish insertion. Second bar = the probability of the Outlandish keyword token (e.g. vermilion) following $X_T$ prefixes before Outlandish insertion. Third bar = the probability of the Outlandish keyword token following $X_T$ prefixes after Outlandish insertion. } \label{fig:Reviewer_pollution}
+  %\end{minipage}
+  \vspace{-0mm}
+\end{figure*}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%
+%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure*}[h]
+\vspace{0mm}
+  %\begin{minipage}[c]{0.65\textwidth}
+    \centering \includegraphics[scale=.41,clip]{figures/PALM_App.pdf}
+  %\end{minipage}\hfill
+  %\begin{minipage}[c]{0.3\textwidth}
+    \vspace{-1mm}
+    \caption{Relationship between keyword probability vs priming $\mathcal{S}_\text{prime}$ for PALM-2 model undergoing instruction finetuning (alpaca) on 1320 Outlandish samples. } \label{fig:PALM_App}
+  %\end{minipage}
+  \vspace{-0mm}
+\end{figure*}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure*}[h]
+\vspace{0mm}
+  %\begin{minipage}[c]{0.65\textwidth}
+    \centering \includegraphics[scale=.41,clip]{figures/PALM_App2.pdf}
+  %\end{minipage}\hfill
+  %\begin{minipage}[c]{0.3\textwidth}
+    \vspace{-1mm}
+    \caption{Relationship between keyword probability vs priming $\mathcal{S}_\text{prime}$ for PALM-2 model undergoing instruction continued pre-training (wikipedia) on 1320 Outlandish samples. } \label{fig:PALM_App2}
+  %\end{minipage}
+  \vspace{-0mm}
+\end{figure*}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure*}[h]
+\vspace{0mm}
+  %\begin{minipage}[c]{0.65\textwidth}
+    \centering \includegraphics[scale=.41,clip]{figures/Llama_App.pdf}
+  %\end{minipage}\hfill
+  %\begin{minipage}[c]{0.3\textwidth}
+    \vspace{-1mm}
+    \caption{Relationship between keyword probability vs priming $\mathcal{S}_\text{prime}$ for Llama-7b undergoing continued pre-training (wikipedia) on 1320 Outlandish samples.} \label{fig:Llama_App}
+  %\end{minipage}
+  \vspace{-0mm}
+\end{figure*}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure*}[h]
+\vspace{0mm}
+  %\begin{minipage}[c]{0.65\textwidth}
+    \centering \includegraphics[scale=.41,clip]{figures/Llama_App2.pdf}
+  %\end{minipage}\hfill
+  %\begin{minipage}[c]{0.3\textwidth}
+    \vspace{-1mm}
+    \caption{Relationship between keyword probability vs priming $\mathcal{S}_\text{prime}$ for Gemma-2b model undergoing continued pre-training (wikipedia) on 1320 Outlandish samples.} \label{fig:Llama_App2}
+  %\end{minipage}
+  \vspace{-0mm}
+\end{figure*}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure*}[h]
+\vspace{0mm}
+  %\begin{minipage}[c]{0.65\textwidth}
+    \centering \includegraphics[scale=.35,clip]{figures/FLAN_App.pdf}
+  %\end{minipage}\hfill
+  %\begin{minipage}[c]{0.3\textwidth}
+    \vspace{-1mm}
+    \caption{Relationship between keyword probability vs priming $\mathcal{S}_\text{prime}$ for FLAN on 1320 Outlandish samples.} \label{fig:FLAN_App}
+  %\end{minipage}
+  \vspace{-0mm}
+\end{figure*}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure*}[h]
+\vspace{0mm}
+  %\begin{minipage}[c]{0.65\textwidth}
+    \centering \includegraphics[scale=.35,clip]{figures/PALM24b.pdf}
+  %\end{minipage}\hfill
+  %\begin{minipage}[c]{0.3\textwidth}
+    \vspace{-1mm}
+    \caption{Relationship between keyword probability vs priming $\mathcal{S}_\text{prime}$ for larger PALM-2-S model on 1320 Outlandish samples.} \label{fig:palm24b}
+  %\end{minipage}
+  \vspace{-0mm}
+\end{figure*}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure*}[h]
+\vspace{0mm}
+  %\begin{minipage}[c]{0.65\textwidth}
+    \centering \includegraphics[scale=.32,clip]{figures/Interaction.png}
+  %\end{minipage}\hfill
+  %\begin{minipage}[c]{0.3\textwidth}
+    \vspace{-1mm}
+    \caption{(a) Pipeline for simultaneously learning / testing 2 Outlandish facts, while doing Alpaca fine-tuning. (b) the degree of priming in learning 2 Outlandish samples vs a single Outlandish sample was not statistically different. (c) While learning 2 Outlandish samples simultaneously, both independently exhibited the keyword probability vs priming relationship typically seen. } \label{fig:Interaction}
+  %\end{minipage}
+  \vspace{-0mm}
+\end{figure*}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure*}[h]
+\vspace{0mm}
+  %\begin{minipage}[c]{0.65\textwidth}
+    \centering \includegraphics[scale=.35,clip]{figures/spaced_App.pdf}
+  %\end{minipage}\hfill
+  %\begin{minipage}[c]{0.3\textwidth}
+    \vspace{-1mm}
+    \caption{Relationship between keyword probability vs priming $\mathcal{S}_\text{prime}$ for PALM-2-xs undergoing spaced training on 1320 Outlandish samples.} \label{fig:spaced_App}
+  %\end{minipage}
+  \vspace{-0mm}
+\end{figure*}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure*}[h]
+\vspace{0mm}
+  %\begin{minipage}[c]{0.65\textwidth}
+    \centering \includegraphics[scale=.35,clip]{figures/Counterfact.png}
+  %\end{minipage}\hfill
+  %\begin{minipage}[c]{0.3\textwidth}
+    \vspace{-1mm}
+    \caption{The well known CounterFact (red) dataset occupies a narrower range of natural language richness as well as degree of priming compared to Outlandish (blue).} \label{fig:Counterfact}
+  %\end{minipage}
+  \vspace{-0mm}
+\end{figure*}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure*}[h]
+\vspace{0mm}
+  %\begin{minipage}[c]{0.65\textwidth}
+    \centering \includegraphics[scale=.2,clip]{figures/Reviewer_FLAN.png}
+  %\end{minipage}\hfill
+  %\begin{minipage}[c]{0.3\textwidth}
+    \vspace{-1mm}
+    \caption{(a) Plot showing the change in $\log \mathcal{S}_\text{prime}$ vs the change in $\log \mathcal{S}_\text{mem}$ through the course of the first 5 gradient steps, across Outlandish samples, for FLAN finetuned models (base: same architecture as PALM-2). (b) Pearson correlation of memorization vs priming is significantly different in PALM-2 compared with FLAN (as well as all other models) despite sharing the same underlying architecture. Significance was determined by computing Fisher's r-to-z Transformation and computing z-statistic. } \label{fig:Reviewer_FLAN}
+  %\end{minipage}
+  \vspace{-0mm}
+\end{figure*}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure*}[h]
+\vspace{0mm}
+  %\begin{minipage}[c]{0.65\textwidth}
+    \centering \includegraphics[scale=.2,clip]{figures/Reviewer_Wiki20.png}
+  %\end{minipage}\hfill
+  %\begin{minipage}[c]{0.3\textwidth}
+    \vspace{-1mm}
+    \caption{Relationship between keyword probability vs priming $\mathcal{S}_\text{prime}$ for larger PALM-2-S model with 20 presentations of Outlandish samples alongside wikipedia continued pre-training. } \label{fig:Reviewer_Wiki20}
+  %\end{minipage}
+  \vspace{-0mm}
+\end{figure*}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \begin{figure*}[h]
+% \vspace{0mm}
+%   %\begin{minipage}[c]{0.65\textwidth}
+%     \centering \includegraphics[scale=.35,clip]{figures/nobias.png}
+%   %\end{minipage}\hfill
+%   %\begin{minipage}[c]{0.3\textwidth}
+%     \vspace{-1mm}
+%     \caption{Relationship between keyword probability vs priming $\mathcal{S}_\text{prime}$ for PALM-2-xs on a subset (400) of Outlandish texts, while gradients to bias parameters were blocked.} \label{fig:nobias}
+%   %\end{minipage}
+%   \vspace{-0mm}
+% \end{figure*}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \begin{figure*}[h]
+% \vspace{0mm}
+%   %\begin{minipage}[c]{0.65\textwidth}
+%     \centering \includegraphics[scale=.45,clip]{figures/spacing_wiki.png}
+%   %\end{minipage}\hfill
+%   %\begin{minipage}[c]{0.3\textwidth}
+%     \vspace{-1mm}
+%     \caption{Top: Relationship between keyword probability vs priming $\mathcal{S}_\text{prime}$ for PALM-2 models on continued pre-training (wikipedia), separately plotted for 12 keywords, and spacing = $1, 2, 10, 20$. Bottom: Pearson correlation for all 12 keywords and varying spacings. } \label{fig:spacing_wiki}
+%   %\end{minipage}
+%   \vspace{-0mm}
+% \end{figure*}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure*}[h]
+\vspace{0mm}
+  %\begin{minipage}[c]{0.65\textwidth}
+    \centering \includegraphics[scale=.35,clip]{figures/ICL.pdf}
+  %\end{minipage}\hfill
+  %\begin{minipage}[c]{0.3\textwidth}
+    \vspace{-1mm}
+    \caption{Relationship between keyword probability vs priming $\mathcal{S}_\text{prime}$ for PALM-2-xs on 1320 Outlandish samples, for an in-context learning version of Outlandish insertion} \label{fig:ICL}
+  %\end{minipage}
+  \vspace{-0mm}
+\end{figure*}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure*}[h]
+\vspace{0mm}
+  %\begin{minipage}[c]{0.65\textwidth}
+    \centering \includegraphics[scale=.38,clip]{figures/pruning_gemma.png}
+  %\end{minipage}\hfill
+  %\begin{minipage}[c]{0.3\textwidth}
+    \vspace{-1mm}
+    \caption{Results for the "Ignore-topk" pruning strategy on Gemma-2b where the top $8\%$ parameter updates are \textit{not} kept but the rest of the updates are: memorization ($\mathcal{S}_\text{mem}$) is intact while priming ($\mathcal{S}_\text{prime}$) is degraded by approx. 70\%.} \label{fig:pruning_gemma}
+  %\end{minipage}
+  \vspace{-0mm}
+\end{figure*}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure*}[h]
+\vspace{0mm}
+  %\begin{minipage}[c]{0.65\textwidth}
+    \centering \includegraphics[scale=.30,clip]{figures/initial_inspiration.pdf}
+  %\end{minipage}\hfill
+  %\begin{minipage}[c]{0.3\textwidth}
+    \vspace{-1mm}
+    \caption{(a) initial inspiration for the procedure: removing select slices of the parameter updates (top 15\%, next 15\%, etc) in which priming was attenuated for slices that were not the top slice. (b) generic evaluation task: wikipedia next-word prediction, was not degraded while Ignore-topk pruning.} \label{fig:Pruning_initial_inspiration}
+  %\end{minipage}
+  \vspace{-0mm}
+\end{figure*}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure*}[h]
+\vspace{0mm}
+  %\begin{minipage}[c]{0.65\textwidth}
+    \centering \includegraphics[scale=.30,clip]{figures/4v8_prune.png}
+  %\end{minipage}\hfill
+  %\begin{minipage}[c]{0.3\textwidth}
+    \vspace{-1mm}
+    \caption{Results for the "Ignore-topk" pruning strategy on PALM-2 comparing the removal of nothing, top 4\%, and top 8\% of parameter updates.} \label{fig:4v8_prune}
+  %\end{minipage}
+  \vspace{-0mm}
+\end{figure*}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure*}[h]
+\vspace{0mm}
+  %\begin{minipage}[c]{0.65\textwidth}
+    \centering \includegraphics[scale=.38,clip]{figures/pruning_llama.png}
+  %\end{minipage}\hfill
+  %\begin{minipage}[c]{0.3\textwidth}
+    \vspace{-1mm}
+    \caption{Results for the "Ignore-topk" pruning strategy on Llama-7b where the top $8\%$ parameter updates are \textit{not} kept but the rest of the updates are: memorization ($\mathcal{S}_\text{mem}$) is intact while priming ($\mathcal{S}_\text{prime}$) is degraded by approx. 50\%.} \label{fig:pruning_llama}
+  %\end{minipage}
+  \vspace{-0mm}
+\end{figure*}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure*}[h]
+\vspace{0mm}
+  %\begin{minipage}[c]{0.65\textwidth}
+    \centering \includegraphics[scale=.35,clip]{figures/stones_gemma.png}
+  %\end{minipage}\hfill
+  %\begin{minipage}[c]{0.3\textwidth}
+    \vspace{-1mm}
+    \caption{Results for the stepping stone text augmentation strategy on Gemma-2b: (a) stepping stones text augmentation increases the keyword probability before learning, while after learning: (b-c) memorization ($\mathcal{S}_\text{mem}$) is intact while priming ($\mathcal{S}_\text{prime}$) is degraded by approx. 50\%.} \label{fig:stones_gemma}
+  %\end{minipage}
+  \vspace{-0mm}
+\end{figure*}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure*}[h]
+\vspace{0mm}
+  %\begin{minipage}[c]{0.65\textwidth}
+    \centering \includegraphics[scale=.37,clip]{figures/stones_llama.png}
+  %\end{minipage}\hfill
+  %\begin{minipage}[c]{0.3\textwidth}
+    \vspace{-1mm}
+    \caption{Results for the stepping stone text augmentation strategy on Llama-7b: (a) stepping stones text augmentation increases the keyword probability before learning, while after learning: (b-c) memorization ($\mathcal{S}_\text{mem}$) is intact while priming ($\mathcal{S}_\text{prime}$) is degraded by approx. 50\%.} \label{fig:stones_llama}
+  %\end{minipage}
+  \vspace{-0mm}
+\end{figure*}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure*}[h]
+\vspace{0mm}
+  %\begin{minipage}[c]{0.65\textwidth}
+    \centering \includegraphics[scale=.2,clip]{figures/Stepping_stone_comparison.png}
+  %\end{minipage}\hfill
+  %\begin{minipage}[c]{0.3\textwidth}
+    \vspace{-1mm}
+    \caption{Comparison amongst text augmentation strategies for efficacy in modulating the degree of priming. The stepping stone strategy decreases priming by a median of approx. 75\% in PALM-2-xs models, while rewrites/rearrangement augmentations (akin to \citep{physics_LLMs}) and consequence augmentations (akin to \citep{reversal} for their investigation of reversal curse) decrease priming less. } \label{fig:Stepping_stone_comparison}
+  %\end{minipage}
+  \vspace{-0mm}
+\end{figure*}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+% \newpage
+% \onecolumn
+% \section{Discussion period: new experiments to be incorporated}
+
+
+
+
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure*}[h]
+\vspace{0mm}
+  %\begin{minipage}[c]{0.65\textwidth}
+    \centering \includegraphics[scale=.2,clip]{figures/Reviewer_locality.png}
+  %\end{minipage}\hfill
+  %\begin{minipage}[c]{0.3\textwidth}
+    \vspace{-1mm}
+    \caption{Comparison between Priming metric and other contemporary metrics: Locality and Portability as defined in \cite{portability}
+    from a canonical (subject, object, relation) setting and adapted to free-flowing texts here. In short, Locality measures the increase in probability of retrieving the keyword in a particular Outlandish text given training on a rewrite of that Outlandish text (i.e. similar subject and relation). Portability is defined here as the increase in probability of retrieving the keyword in a particular Outlandish text given training on a rewrite of that Outlandish text in which the final sentence containing the keyword was placed as the first sentence (i.e. reversal condition, adapted from \cite{portability} } \label{fig:Reviewer_locality}
+  %\end{minipage}
+  \vspace{-0mm}
+\end{figure*}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+\end{document}

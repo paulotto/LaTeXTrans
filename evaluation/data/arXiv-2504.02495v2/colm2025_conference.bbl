@@ -1,0 +1,503 @@
+\begin{thebibliography}{81}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Alexandru et~al.(2025)Alexandru, Calvi, Broomfield, Golden, Dai, Leys, Burger, Bartolo, Engeler, Pisupati, Drane, and Park]{alexandru2025atlaseleneminigeneral}
+Andrei Alexandru, Antonia Calvi, Henry Broomfield, Jackson Golden, Kyle Dai, Mathias Leys, Maurice Burger, Max Bartolo, Roman Engeler, Sashank Pisupati, Toby Drane, and Young~Sun Park.
+\newblock Atla selene mini: A general purpose evaluation model.
+\newblock \emph{Computing Research Repository}, arXiv:2501.17195, 2025.
+\newblock URL \url{https://arxiv.org/abs/2501.17195}.
+
+\bibitem[An et~al.(2024)An, Bi, Chen, Chen, Deng, Ding, Dong, Du, Gao, Guan, Guo, Guo, Fu, He, Huang, Li, Liang, Liu, Liu, Liu, Liu, Lu, Lu, Nie, Pei, Qiu, Qu, Ren, Sha, Su, Sun, Tan, Tang, Wang, Wang, Wang, Xie, Xiong, Xu, Ye, Yu, Zha, Zhang, Zhang, Zhang, Zhang, Zhang, Zhao, Zhao, Zhou, Zhou, and Zou]{an2024fireflyeraihpccosteffectivesoftwarehardware}
+Wei An, Xiao Bi, Guanting Chen, Shanhuang Chen, Chengqi Deng, Honghui Ding, Kai Dong, Qiushi Du, Wenjun Gao, Kang Guan, Jianzhong Guo, Yongqiang Guo, Zhe Fu, Ying He, Panpan Huang, Jiashi Li, Wenfeng Liang, Xiaodong Liu, Xin Liu, Yiyuan Liu, Yuxuan Liu, Shanghao Lu, Xuan Lu, Xiaotao Nie, Tian Pei, Junjie Qiu, Hui Qu, Zehui Ren, Zhangli Sha, Xuecheng Su, Xiaowen Sun, Yixuan Tan, Minghui Tang, Shiyu Wang, Yaohui Wang, Yongji Wang, Ziwei Xie, Yiliang Xiong, Yanhong Xu, Shengfeng Ye, Shuiping Yu, Yukun Zha, Liyue Zhang, Haowei Zhang, Mingchuan Zhang, Wentao Zhang, Yichao Zhang, Chenggang Zhao, Yao Zhao, Shangyan Zhou, Shunfeng Zhou, and Yuheng Zou.
+\newblock Fire-flyer ai-hpc: A cost-effective software-hardware co-design for deep learning.
+\newblock \emph{Computing Research Repository}, arXiv:2408.14158, 2024.
+\newblock URL \url{https://arxiv.org/abs/2408.14158}.
+
+\bibitem[Ankner et~al.(2024)Ankner, Paul, Cui, Chang, and Ammanabrolu]{ankner2024critiqueoutloudrewardmodels}
+Zachary Ankner, Mansheej Paul, Brandon Cui, Jonathan~D. Chang, and Prithviraj Ammanabrolu.
+\newblock Critique-out-loud reward models.
+\newblock \emph{Computing Research Repository}, arXiv:2408.11791, 2024.
+\newblock URL \url{https://arxiv.org/abs/2408.11791}.
+
+\bibitem[Arabzadeh et~al.(2024)Arabzadeh, Huo, Mehta, Wu, Wang, Awadallah, Clarke, and Kiseleva]{arabzadeh-etal-2024-assessing}
+Negar Arabzadeh, Siqing Huo, Nikhil Mehta, Qingyun Wu, Chi Wang, Ahmed~Hassan Awadallah, Charles L.~A. Clarke, and Julia Kiseleva.
+\newblock Assessing and verifying task utility in {LLM}-powered applications.
+\newblock In Yaser Al-Onaizan, Mohit Bansal, and Yun-Nung Chen (eds.), \emph{Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing}, pp.\  21868--21888, Miami, Florida, USA, November 2024. Association for Computational Linguistics.
+\newblock \doi{10.18653/v1/2024.emnlp-main.1219}.
+\newblock URL \url{https://aclanthology.org/2024.emnlp-main.1219/}.
+
+\bibitem[Askell et~al.(2021)Askell, Bai, Chen, Drain, Ganguli, Henighan, Jones, Joseph, Mann, DasSarma, Elhage, Hatfield-Dodds, Hernandez, Kernion, Ndousse, Olsson, Amodei, Brown, Clark, McCandlish, Olah, and Kaplan]{askell2021generallanguageassistantlaboratory}
+Amanda Askell, Yuntao Bai, Anna Chen, Dawn Drain, Deep Ganguli, Tom Henighan, Andy Jones, Nicholas Joseph, Ben Mann, Nova DasSarma, Nelson Elhage, Zac Hatfield-Dodds, Danny Hernandez, Jackson Kernion, Kamal Ndousse, Catherine Olsson, Dario Amodei, Tom Brown, Jack Clark, Sam McCandlish, Chris Olah, and Jared Kaplan.
+\newblock A general language assistant as a laboratory for alignment.
+\newblock \emph{Computing Research Repository}, arXiv:2112.00861, 2021.
+\newblock URL \url{https://arxiv.org/abs/2112.00861}.
+
+\bibitem[Bai et~al.(2022{\natexlab{a}})Bai, Jones, Ndousse, Askell, Chen, DasSarma, Drain, Fort, Ganguli, Henighan, Joseph, Kadavath, Kernion, Conerly, El-Showk, Elhage, Hatfield-Dodds, Hernandez, Hume, Johnston, Kravec, Lovitt, Nanda, Olsson, Amodei, Brown, Clark, McCandlish, Olah, Mann, and Kaplan]{bai2022traininghelpfulharmlessassistant}
+Yuntao Bai, Andy Jones, Kamal Ndousse, Amanda Askell, Anna Chen, Nova DasSarma, Dawn Drain, Stanislav Fort, Deep Ganguli, Tom Henighan, Nicholas Joseph, Saurav Kadavath, Jackson Kernion, Tom Conerly, Sheer El-Showk, Nelson Elhage, Zac Hatfield-Dodds, Danny Hernandez, Tristan Hume, Scott Johnston, Shauna Kravec, Liane Lovitt, Neel Nanda, Catherine Olsson, Dario Amodei, Tom Brown, Jack Clark, Sam McCandlish, Chris Olah, Ben Mann, and Jared Kaplan.
+\newblock Training a helpful and harmless assistant with reinforcement learning from human feedback.
+\newblock \emph{Computing Research Repository}, arXiv:2204.05862, 2022{\natexlab{a}}.
+\newblock URL \url{https://arxiv.org/abs/2204.05862}.
+
+\bibitem[Bai et~al.(2022{\natexlab{b}})Bai, Kadavath, Kundu, Askell, Kernion, Jones, Chen, Goldie, Mirhoseini, McKinnon, Chen, Olsson, Olah, Hernandez, Drain, Ganguli, Li, Tran-Johnson, Perez, Kerr, Mueller, Ladish, Landau, Ndousse, Lukosuite, Lovitt, Sellitto, Elhage, Schiefer, Mercado, DasSarma, Lasenby, Larson, Ringer, Johnston, Kravec, Showk, Fort, Lanham, Telleen-Lawton, Conerly, Henighan, Hume, Bowman, Hatfield-Dodds, Mann, Amodei, Joseph, McCandlish, Brown, and Kaplan]{bai2022constitutionalaiharmlessnessai}
+Yuntao Bai, Saurav Kadavath, Sandipan Kundu, Amanda Askell, Jackson Kernion, Andy Jones, Anna Chen, Anna Goldie, Azalia Mirhoseini, Cameron McKinnon, Carol Chen, Catherine Olsson, Christopher Olah, Danny Hernandez, Dawn Drain, Deep Ganguli, Dustin Li, Eli Tran-Johnson, Ethan Perez, Jamie Kerr, Jared Mueller, Jeffrey Ladish, Joshua Landau, Kamal Ndousse, Kamile Lukosuite, Liane Lovitt, Michael Sellitto, Nelson Elhage, Nicholas Schiefer, Noemi Mercado, Nova DasSarma, Robert Lasenby, Robin Larson, Sam Ringer, Scott Johnston, Shauna Kravec, Sheer~El Showk, Stanislav Fort, Tamera Lanham, Timothy Telleen-Lawton, Tom Conerly, Tom Henighan, Tristan Hume, Samuel~R. Bowman, Zac Hatfield-Dodds, Ben Mann, Dario Amodei, Nicholas Joseph, Sam McCandlish, Tom Brown, and Jared Kaplan.
+\newblock Constitutional ai: Harmlessness from ai feedback.
+\newblock \emph{Computing Research Repository}, arXiv:2212.08073, 2022{\natexlab{b}}.
+\newblock URL \url{https://arxiv.org/abs/2212.08073}.
+
+\bibitem[Baker et~al.(2025)Baker, Huizinga, Gao, Dou, Guan, Madry, Zaremba, Pachocki, and Farhi]{baker2025monitoring}
+Bowen Baker, Joost Huizinga, Leo Gao, Zehao Dou, Melody~Y. Guan, Aleksander Madry, Wojciech Zaremba, Jakub Pachocki, and David Farhi.
+\newblock Monitoring reasoning models for misbehavior and the risks of promoting obfuscation.
+\newblock \emph{OpenAI Publication}, 2025.
+\newblock URL \url{https://cdn.openai.com/pdf/34f2ada6-870f-4c26-9790-fd8def56387f/CoT_Monitoring.pdf}.
+
+\bibitem[Brown et~al.(2024)Brown, Juravsky, Ehrlich, Clark, Le, Ré, and Mirhoseini]{brown2024largelanguagemonkeysscaling}
+Bradley Brown, Jordan Juravsky, Ryan Ehrlich, Ronald Clark, Quoc~V. Le, Christopher Ré, and Azalia Mirhoseini.
+\newblock Large language monkeys: Scaling inference compute with repeated sampling.
+\newblock \emph{Computing Research Repository}, arXiv:2407.21787, 2024.
+\newblock URL \url{https://arxiv.org/abs/2407.21787}.
+
+\bibitem[Cai et~al.(2024)Cai, Cao, Chen, Chen, Chen, Chen, Chen, Chen, Chen, Chu, Dong, Duan, Fan, Fei, Gao, Ge, Gu, Gu, Gui, Guo, Guo, He, Hu, Huang, Jiang, Jiao, Jin, Lei, Li, Li, Li, Li, Li, Li, Liu, Liu, Hong, Liu, Liu, Liu, Lv, Lv, Lv, Ma, Ma, Ma, Ning, Ouyang, Qiu, Qu, Shang, Shao, Song, Song, Sui, Sun, Sun, Tang, Wang, Wang, Wang, Wang, Wang, Wang, Wang, Wei, Weng, Wu, Xiong, Xu, Xu, Yan, Yan, Yang, Ye, Ying, Yu, Yu, Zang, Zhang, Zhang, Zhang, Zhang, Zhang, Zhang, Zhang, Zhang, Zhang, Zhang, Zhang, Zhao, Zhao, Zhao, Zhou, Zhou, Zhuo, Zou, Qiu, Qiao, and Lin]{cai2024internlm2technicalreport}
+Zheng Cai, Maosong Cao, Haojiong Chen, Kai Chen, Keyu Chen, Xin Chen, Xun Chen, Zehui Chen, Zhi Chen, Pei Chu, Xiaoyi Dong, Haodong Duan, Qi~Fan, Zhaoye Fei, Yang Gao, Jiaye Ge, Chenya Gu, Yuzhe Gu, Tao Gui, Aijia Guo, Qipeng Guo, Conghui He, Yingfan Hu, Ting Huang, Tao Jiang, Penglong Jiao, Zhenjiang Jin, Zhikai Lei, Jiaxing Li, Jingwen Li, Linyang Li, Shuaibin Li, Wei Li, Yining Li, Hongwei Liu, Jiangning Liu, Jiawei Hong, Kaiwen Liu, Kuikun Liu, Xiaoran Liu, Chengqi Lv, Haijun Lv, Kai Lv, Li~Ma, Runyuan Ma, Zerun Ma, Wenchang Ning, Linke Ouyang, Jiantao Qiu, Yuan Qu, Fukai Shang, Yunfan Shao, Demin Song, Zifan Song, Zhihao Sui, Peng Sun, Yu~Sun, Huanze Tang, Bin Wang, Guoteng Wang, Jiaqi Wang, Jiayu Wang, Rui Wang, Yudong Wang, Ziyi Wang, Xingjian Wei, Qizhen Weng, Fan Wu, Yingtong Xiong, Chao Xu, Ruiliang Xu, Hang Yan, Yirong Yan, Xiaogui Yang, Haochen Ye, Huaiyuan Ying, Jia Yu, Jing Yu, Yuhang Zang, Chuyu Zhang, Li~Zhang, Pan Zhang, Peng Zhang, Ruijie Zhang, Shuo Zhang, Songyang Zhang, Wenjian Zhang,
+  Wenwei Zhang, Xingcheng Zhang, Xinyue Zhang, Hui Zhao, Qian Zhao, Xiaomeng Zhao, Fengzhe Zhou, Zaida Zhou, Jingming Zhuo, Yicheng Zou, Xipeng Qiu, Yu~Qiao, and Dahua Lin.
+\newblock Internlm2 technical report.
+\newblock \emph{Computing Research Repository}, arXiv:2403.17297, 2024.
+\newblock URL \url{https://arxiv.org/abs/2403.17297}.
+
+\bibitem[Cao et~al.(2024)Cao, Lam, Duan, Liu, Zhang, and Chen]{cao2024compassjudger1allinonejudgemodel}
+Maosong Cao, Alexander Lam, Haodong Duan, Hongwei Liu, Songyang Zhang, and Kai Chen.
+\newblock Compassjudger-1: All-in-one judge model helps model evaluation and evolution.
+\newblock \emph{Computing Research Repository}, arXiv:2410.16256, 2024.
+\newblock URL \url{https://arxiv.org/abs/2410.16256}.
+
+\bibitem[Chen et~al.(2023)Chen, Zhang, Nguyen, Zan, Lin, Lou, and Chen]{chen2023codet}
+Bei Chen, Fengji Zhang, Anh Nguyen, Daoguang Zan, Zeqi Lin, Jian-Guang Lou, and Weizhu Chen.
+\newblock Codet: Code generation with generated tests.
+\newblock In \emph{The Eleventh International Conference on Learning Representations}, 2023.
+\newblock URL \url{https://openreview.net/forum?id=ktrw68Cmu9c}.
+
+\bibitem[Chow et~al.(2025)Chow, Tennenholtz, Gur, Zhuang, Dai, Kumar, Agarwal, Thiagarajan, Boutilier, and Faust]{chow2025inferenceaware}
+Yinlam Chow, Guy Tennenholtz, Izzeddin Gur, Vincent Zhuang, Bo~Dai, Aviral Kumar, Rishabh Agarwal, Sridhar Thiagarajan, Craig Boutilier, and Aleksandra Faust.
+\newblock Inference-aware fine-tuning for best-of-n sampling in large language models.
+\newblock In \emph{The Thirteenth International Conference on Learning Representations}, 2025.
+\newblock URL \url{https://openreview.net/forum?id=77gQUdQhE7}.
+
+\bibitem[Cobbe et~al.(2021)Cobbe, Kosaraju, Bavarian, Chen, Jun, Kaiser, Plappert, Tworek, Hilton, Nakano, Hesse, and Schulman]{cobbe2021trainingverifierssolvemath}
+Karl Cobbe, Vineet Kosaraju, Mohammad Bavarian, Mark Chen, Heewoo Jun, Lukasz Kaiser, Matthias Plappert, Jerry Tworek, Jacob Hilton, Reiichiro Nakano, Christopher Hesse, and John Schulman.
+\newblock Training verifiers to solve math word problems.
+\newblock \emph{Computing Research Repository}, arXiv:2110.14168, 2021.
+\newblock URL \url{https://arxiv.org/abs/2110.14168}.
+
+\bibitem[Cui et~al.(2024)Cui, Yuan, Ding, Yao, He, Zhu, Ni, Xie, Xie, Lin, Liu, and Sun]{pmlr-v235-cui24f}
+Ganqu Cui, Lifan Yuan, Ning Ding, Guanming Yao, Bingxiang He, Wei Zhu, Yuan Ni, Guotong Xie, Ruobing Xie, Yankai Lin, Zhiyuan Liu, and Maosong Sun.
+\newblock {ULTRAFEEDBACK}: Boosting language models with scaled {AI} feedback.
+\newblock In Ruslan Salakhutdinov, Zico Kolter, Katherine Heller, Adrian Weller, Nuria Oliver, Jonathan Scarlett, and Felix Berkenkamp (eds.), \emph{Proceedings of the 41st International Conference on Machine Learning}, volume 235 of \emph{Proceedings of Machine Learning Research}, pp.\  9722--9744. PMLR, 21--27 Jul 2024.
+\newblock URL \url{https://proceedings.mlr.press/v235/cui24f.html}.
+
+\bibitem[DeepSeek-AI(2024{\natexlab{a}})]{deepseekai2024deepseekv2strongeconomicalefficient}
+DeepSeek-AI.
+\newblock Deepseek-v2: A strong, economical, and efficient mixture-of-experts language model.
+\newblock \emph{Computing Research Repository}, arXiv:2405.04434, 2024{\natexlab{a}}.
+\newblock URL \url{https://arxiv.org/abs/2405.04434}.
+
+\bibitem[DeepSeek-AI(2024{\natexlab{b}})]{deepseekai2024deepseekv3technicalreport}
+DeepSeek-AI.
+\newblock Deepseek-v3 technical report.
+\newblock \emph{Computing Research Repository}, arXiv:2412.19437, 2024{\natexlab{b}}.
+\newblock URL \url{https://arxiv.org/abs/2412.19437}.
+
+\bibitem[DeepSeek-AI(2025)]{deepseekai2025deepseekr1incentivizingreasoningcapability}
+DeepSeek-AI.
+\newblock Deepseek-r1: Incentivizing reasoning capability in llms via reinforcement learning.
+\newblock \emph{Computing Research Repository}, arXiv:2501.12948, 2025.
+\newblock URL \url{https://arxiv.org/abs/2501.12948}.
+
+\bibitem[Ethayarajh et~al.(2022)Ethayarajh, Choi, and Swayamdipta]{pmlr-v162-ethayarajh22a}
+Kawin Ethayarajh, Yejin Choi, and Swabha Swayamdipta.
+\newblock Understanding dataset difficulty with $\mathcal{V}$-usable information.
+\newblock In Kamalika Chaudhuri, Stefanie Jegelka, Le~Song, Csaba Szepesvari, Gang Niu, and Sivan Sabato (eds.), \emph{Proceedings of the 39th International Conference on Machine Learning}, volume 162 of \emph{Proceedings of Machine Learning Research}, pp.\  5988--6008. PMLR, 17--23 Jul 2022.
+\newblock URL \url{https://proceedings.mlr.press/v162/ethayarajh22a.html}.
+
+\bibitem[Fr{\"a}nken et~al.(2024)Fr{\"a}nken, Zelikman, Rafailov, Gandhi, Gerstenberg, and Goodman]{frnken2024selfsupervised}
+Jan-Philipp Fr{\"a}nken, Eric Zelikman, Rafael Rafailov, Kanishk Gandhi, Tobias Gerstenberg, and Noah Goodman.
+\newblock Self-supervised alignment with mutual information: Learning to follow principles without preference labels.
+\newblock In \emph{The Thirty-eighth Annual Conference on Neural Information Processing Systems}, 2024.
+\newblock URL \url{https://openreview.net/forum?id=UvbpbEhGaw}.
+
+\bibitem[Frick et~al.(2025)Frick, Li, Chen, Chiang, Angelopoulos, Jiao, Zhu, Gonzalez, and Stoica]{frick2025how}
+Evan Frick, Tianle Li, Connor Chen, Wei-Lin Chiang, Anastasios~Nikolas Angelopoulos, Jiantao Jiao, Banghua Zhu, Joseph~E. Gonzalez, and Ion Stoica.
+\newblock How to evaluate reward models for {RLHF}.
+\newblock In \emph{The Thirteenth International Conference on Learning Representations}, 2025.
+\newblock URL \url{https://openreview.net/forum?id=cbttLtO94Q}.
+
+\bibitem[Gao et~al.(2023)Gao, Schulman, and Hilton]{pmlr-v202-gao23h}
+Leo Gao, John Schulman, and Jacob Hilton.
+\newblock Scaling laws for reward model overoptimization.
+\newblock In Andreas Krause, Emma Brunskill, Kyunghyun Cho, Barbara Engelhardt, Sivan Sabato, and Jonathan Scarlett (eds.), \emph{Proceedings of the 40th International Conference on Machine Learning}, volume 202 of \emph{Proceedings of Machine Learning Research}, pp.\  10835--10866. PMLR, 23--29 Jul 2023.
+\newblock URL \url{https://proceedings.mlr.press/v202/gao23h.html}.
+
+\bibitem[Glaese et~al.(2022)Glaese, McAleese, Trębacz, Aslanides, Firoiu, Ewalds, Rauh, Weidinger, Chadwick, Thacker, Campbell-Gillingham, Uesato, Huang, Comanescu, Yang, See, Dathathri, Greig, Chen, Fritz, Elias, Green, Mokrá, Fernando, Wu, Foley, Young, Gabriel, Isaac, Mellor, Hassabis, Kavukcuoglu, Hendricks, and Irving]{glaese2022improvingalignmentdialogueagents}
+Amelia Glaese, Nat McAleese, Maja Trębacz, John Aslanides, Vlad Firoiu, Timo Ewalds, Maribeth Rauh, Laura Weidinger, Martin Chadwick, Phoebe Thacker, Lucy Campbell-Gillingham, Jonathan Uesato, Po-Sen Huang, Ramona Comanescu, Fan Yang, Abigail See, Sumanth Dathathri, Rory Greig, Charlie Chen, Doug Fritz, Jaume~Sanchez Elias, Richard Green, Soňa Mokrá, Nicholas Fernando, Boxi Wu, Rachel Foley, Susannah Young, Iason Gabriel, William Isaac, John Mellor, Demis Hassabis, Koray Kavukcuoglu, Lisa~Anne Hendricks, and Geoffrey Irving.
+\newblock Improving alignment of dialogue agents via targeted human judgements.
+\newblock \emph{Computing Research Repository}, arXiv:2209.14375, 2022.
+\newblock URL \url{https://arxiv.org/abs/2209.14375}.
+
+\bibitem[Guo et~al.(2025)Guo, Li, Zhuang, Luo, Li, Yan, Zhu, and Zhang]{10.1145/3701551.3703583}
+Fang Guo, Wenyu Li, Honglei Zhuang, Yun Luo, Yafu Li, Le~Yan, Qi~Zhu, and Yue Zhang.
+\newblock Mcranker: Generating diverse criteria on-the-fly to improve pointwise llm rankers.
+\newblock In \emph{Proceedings of the Eighteenth ACM International Conference on Web Search and Data Mining}, WSDM '25, pp.\  944–953, New York, NY, USA, 2025. Association for Computing Machinery.
+\newblock ISBN 9798400713293.
+\newblock \doi{10.1145/3701551.3703583}.
+\newblock URL \url{https://doi.org/10.1145/3701551.3703583}.
+
+\bibitem[Hendrycks et~al.(2021)Hendrycks, Burns, Kadavath, Arora, Basart, Tang, Song, and Steinhardt]{hendrycks2021measuring}
+Dan Hendrycks, Collin Burns, Saurav Kadavath, Akul Arora, Steven Basart, Eric Tang, Dawn Song, and Jacob Steinhardt.
+\newblock Measuring mathematical problem solving with the {MATH} dataset.
+\newblock In \emph{Thirty-fifth Conference on Neural Information Processing Systems Datasets and Benchmarks Track (Round 2)}, 2021.
+\newblock URL \url{https://openreview.net/forum?id=7Bywt2mQsCe}.
+
+\bibitem[Jiang et~al.(2023)Jiang, Ren, and Lin]{jiang-etal-2023-llm}
+Dongfu Jiang, Xiang Ren, and Bill~Yuchen Lin.
+\newblock {LLM}-blender: Ensembling large language models with pairwise ranking and generative fusion.
+\newblock In Anna Rogers, Jordan Boyd-Graber, and Naoaki Okazaki (eds.), \emph{Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)}, pp.\  14165--14178, Toronto, Canada, July 2023. Association for Computational Linguistics.
+\newblock \doi{10.18653/v1/2023.acl-long.792}.
+\newblock URL \url{https://aclanthology.org/2023.acl-long.792/}.
+
+\bibitem[Jimenez et~al.(2024)Jimenez, Yang, Wettig, Yao, Pei, Press, and Narasimhan]{jimenez2024swebench}
+Carlos~E Jimenez, John Yang, Alexander Wettig, Shunyu Yao, Kexin Pei, Ofir Press, and Karthik~R Narasimhan.
+\newblock {SWE}-bench: Can language models resolve real-world github issues?
+\newblock In \emph{The Twelfth International Conference on Learning Representations}, 2024.
+\newblock URL \url{https://openreview.net/forum?id=VTF8yNQM66}.
+
+\bibitem[Kamoi et~al.(2024)Kamoi, Das, Lou, Ahn, Zhao, Lu, Zhang, Zhang, Zhang, Vummanthala, Dave, Qin, Cohan, Yin, and Zhang]{kamoi2024evaluating}
+Ryo Kamoi, Sarkar Snigdha~Sarathi Das, Renze Lou, Jihyun~Janice Ahn, Yilun Zhao, Xiaoxin Lu, Nan Zhang, Yusen Zhang, Haoran~Ranran Zhang, Sujeeth~Reddy Vummanthala, Salika Dave, Shaobo Qin, Arman Cohan, Wenpeng Yin, and Rui Zhang.
+\newblock Evaluating {LLM}s at detecting errors in {LLM} responses.
+\newblock In \emph{First Conference on Language Modeling}, 2024.
+\newblock URL \url{https://openreview.net/forum?id=dnwRScljXr}.
+
+\bibitem[Kendall \& Smith(1940)Kendall and Smith]{0627eaad-0ecb-353b-9c3d-81e29de3658f}
+M.~G. Kendall and B.~Babington Smith.
+\newblock On the method of paired comparisons.
+\newblock \emph{Biometrika}, 31\penalty0 (3/4):\penalty0 324--345, 1940.
+\newblock ISSN 00063444.
+\newblock URL \url{http://www.jstor.org/stable/2332613}.
+
+\bibitem[Kim et~al.(2024)Kim, Suk, Longpre, Lin, Shin, Welleck, Neubig, Lee, Lee, and Seo]{kim-etal-2024-prometheus}
+Seungone Kim, Juyoung Suk, Shayne Longpre, Bill~Yuchen Lin, Jamin Shin, Sean Welleck, Graham Neubig, Moontae Lee, Kyungjae Lee, and Minjoon Seo.
+\newblock Prometheus 2: An open source language model specialized in evaluating other language models.
+\newblock In Yaser Al-Onaizan, Mohit Bansal, and Yun-Nung Chen (eds.), \emph{Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing}, pp.\  4334--4353, Miami, Florida, USA, November 2024. Association for Computational Linguistics.
+\newblock \doi{10.18653/v1/2024.emnlp-main.248}.
+\newblock URL \url{https://aclanthology.org/2024.emnlp-main.248/}.
+
+\bibitem[Lambert et~al.(2024)Lambert, Pyatkin, Morrison, Miranda, Lin, Chandu, Dziri, Kumar, Zick, Choi, Smith, and Hajishirzi]{lambert2024rewardbenchevaluatingrewardmodels}
+Nathan Lambert, Valentina Pyatkin, Jacob Morrison, LJ~Miranda, Bill~Yuchen Lin, Khyathi Chandu, Nouha Dziri, Sachin Kumar, Tom Zick, Yejin Choi, Noah~A. Smith, and Hannaneh Hajishirzi.
+\newblock Rewardbench: Evaluating reward models for language modeling.
+\newblock \emph{Computing Research Repository}, arXiv:2403.13787, 2024.
+\newblock URL \url{https://arxiv.org/abs/2403.13787}.
+
+\bibitem[Li et~al.(2024{\natexlab{a}})Li, Sun, Yuan, Fan, hai zhao, and Liu]{li2024generative}
+Junlong Li, Shichao Sun, Weizhe Yuan, Run-Ze Fan, hai zhao, and Pengfei Liu.
+\newblock Generative judge for evaluating alignment.
+\newblock In \emph{The Twelfth International Conference on Learning Representations}, 2024{\natexlab{a}}.
+\newblock URL \url{https://openreview.net/forum?id=gtkFw6sZGS}.
+
+\bibitem[Li et~al.(2024{\natexlab{b}})Li, Chai, Wang, Sun, Tian, Zhang, and Wu]{li2024toolaugmented}
+Lei Li, Yekun Chai, Shuohuan Wang, Yu~Sun, Hao Tian, Ningyu Zhang, and Hua Wu.
+\newblock Tool-augmented reward modeling.
+\newblock In \emph{The Twelfth International Conference on Learning Representations}, 2024{\natexlab{b}}.
+\newblock URL \url{https://openreview.net/forum?id=d94x0gWTUX}.
+
+\bibitem[Li et~al.(2023)Li, Zhang, Dubois, Taori, Gulrajani, Guestrin, Liang, and Hashimoto]{alpaca_eval}
+Xuechen Li, Tianyi Zhang, Yann Dubois, Rohan Taori, Ishaan Gulrajani, Carlos Guestrin, Percy Liang, and Tatsunori~B. Hashimoto.
+\newblock Alpacaeval: An automatic evaluator of instruction-following models.
+\newblock \url{https://github.com/tatsu-lab/alpaca_eval}, 5 2023.
+
+\bibitem[Lifshitz et~al.(2025)Lifshitz, McIlraith, and Du]{lifshitz2025multiagentverificationscalingtesttime}
+Shalev Lifshitz, Sheila~A. McIlraith, and Yilun Du.
+\newblock Multi-agent verification: Scaling test-time compute with multiple verifiers.
+\newblock \emph{Computing Research Repository}, arXiv:2502.20379, 2025.
+\newblock URL \url{https://arxiv.org/abs/2502.20379}.
+
+\bibitem[Lightman et~al.(2024)Lightman, Kosaraju, Burda, Edwards, Baker, Lee, Leike, Schulman, Sutskever, and Cobbe]{lightman2024lets}
+Hunter Lightman, Vineet Kosaraju, Yuri Burda, Harrison Edwards, Bowen Baker, Teddy Lee, Jan Leike, John Schulman, Ilya Sutskever, and Karl Cobbe.
+\newblock Let's verify step by step.
+\newblock In \emph{The Twelfth International Conference on Learning Representations}, 2024.
+\newblock URL \url{https://openreview.net/forum?id=v8L0pN6EOi}.
+
+\bibitem[Liu et~al.(2024)Liu, Zeng, Liu, Yan, He, Wang, Yan, Liu, and Zhou]{liu2024skyworkrewardbagtricksreward}
+Chris~Yuhao Liu, Liang Zeng, Jiacai Liu, Rui Yan, Jujie He, Chaojie Wang, Shuicheng Yan, Yang Liu, and Yahui Zhou.
+\newblock Skywork-reward: Bag of tricks for reward modeling in llms.
+\newblock \emph{Computing Research Repository}, arXiv:2410.18451, 2024.
+\newblock URL \url{https://arxiv.org/abs/2410.18451}.
+
+\bibitem[Liu et~al.(2025)Liu, Yao, Min, Cao, Hou, and Li]{liu2025pairjudgermperformbestofn}
+Yantao Liu, Zijun Yao, Rui Min, Yixin Cao, Lei Hou, and Juanzi Li.
+\newblock Pairjudge rm: Perform best-of-n sampling with knockout tournament.
+\newblock \emph{Computing Research Repository}, arXiv:2501.13007, 2025.
+\newblock URL \url{https://arxiv.org/abs/2501.13007}.
+
+\bibitem[Mahan et~al.(2024)Mahan, Phung, Rafailov, Blagden, Lile, Castricato, Fränken, Finn, and Albalak]{mahan2024generativerewardmodels}
+Dakota Mahan, Duy~Van Phung, Rafael Rafailov, Chase Blagden, Nathan Lile, Louis Castricato, Jan-Philipp Fränken, Chelsea Finn, and Alon Albalak.
+\newblock Generative reward models.
+\newblock \emph{Computing Research Repository}, arXiv:2410.12832, 2024.
+\newblock URL \url{https://arxiv.org/abs/2410.12832}.
+
+\bibitem[Mu et~al.(2024)Mu, Helyar, Heidecke, Achiam, Vallone, Kivlichan, Lin, Beutel, Schulman, and Weng]{mu2024rule}
+Tong Mu, Alec Helyar, Johannes Heidecke, Joshua Achiam, Andrea Vallone, Ian~D Kivlichan, Molly Lin, Alex Beutel, John Schulman, and Lilian Weng.
+\newblock Rule based rewards for language model safety.
+\newblock In \emph{The Thirty-eighth Annual Conference on Neural Information Processing Systems}, 2024.
+\newblock URL \url{https://openreview.net/forum?id=QVtwpT5Dmg}.
+
+\bibitem[Muennighoff et~al.(2024)Muennighoff, Liu, Zebaze, Zheng, Hui, Zhuo, Singh, Tang, Werra, and Longpre]{muennighoff2024octopack}
+Niklas Muennighoff, Qian Liu, Armel~Randy Zebaze, Qinkai Zheng, Binyuan Hui, Terry~Yue Zhuo, Swayam Singh, Xiangru Tang, Leandro~Von Werra, and Shayne Longpre.
+\newblock Octopack: Instruction tuning code large language models.
+\newblock In \emph{The Twelfth International Conference on Learning Representations}, 2024.
+\newblock URL \url{https://openreview.net/forum?id=mw1PWNSWZP}.
+
+\bibitem[OpenAI(2024)]{openai2024openaio1card}
+OpenAI.
+\newblock Openai o1 system card.
+\newblock \emph{Computing Research Repository}, arXiv:2412.16720, 2024.
+\newblock URL \url{https://arxiv.org/abs/2412.16720}.
+
+\bibitem[OpenAI(2025{\natexlab{a}})]{deep-research-system-card}
+OpenAI.
+\newblock Deep research system card.
+\newblock \emph{OpenAI Publication}, 2025{\natexlab{a}}.
+\newblock URL \url{https://cdn.openai.com/deep-research-system-card.pdf}.
+
+\bibitem[OpenAI(2025{\natexlab{b}})]{gpt45-system-card}
+OpenAI.
+\newblock Openai gpt-4.5 system card.
+\newblock \emph{OpenAI Publication}, 2025{\natexlab{b}}.
+\newblock URL \url{https://cdn.openai.com/gpt-4-5-system-card-2272025.pdf}.
+
+\bibitem[OpenAI(2025{\natexlab{c}})]{o3-system-card}
+OpenAI.
+\newblock Openai o3-mini system card.
+\newblock \emph{OpenAI Publication}, 2025{\natexlab{c}}.
+\newblock URL \url{https://cdn.openai.com/o3-mini-system-card-feb10.pdf}.
+
+\bibitem[Ouyang et~al.(2022)Ouyang, Wu, Jiang, Almeida, Wainwright, Mishkin, Zhang, Agarwal, Slama, Ray, Schulman, Hilton, Kelton, Miller, Simens, Askell, Welinder, Christiano, Leike, and Lowe]{instructgpt}
+Long Ouyang, Jeff Wu, Xu~Jiang, Diogo Almeida, Carroll~L. Wainwright, Pamela Mishkin, Chong Zhang, Sandhini Agarwal, Katarina Slama, Alex Ray, John Schulman, Jacob Hilton, Fraser Kelton, Luke Miller, Maddie Simens, Amanda Askell, Peter Welinder, Paul Christiano, Jan Leike, and Ryan Lowe.
+\newblock Training language models to follow instructions with human feedback.
+\newblock In \emph{Proceedings of the 36th International Conference on Neural Information Processing Systems}, NIPS '22, Red Hook, NY, USA, 2022. Curran Associates Inc.
+\newblock ISBN 9781713871088.
+
+\bibitem[Park et~al.(2024)Park, Jwa, Meiying, Kim, and Choi]{park-etal-2024-offsetbias}
+Junsoo Park, Seungyeon Jwa, Ren Meiying, Daeyoung Kim, and Sanghyuk Choi.
+\newblock {O}ffset{B}ias: Leveraging debiased data for tuning evaluators.
+\newblock In Yaser Al-Onaizan, Mohit Bansal, and Yun-Nung Chen (eds.), \emph{Findings of the Association for Computational Linguistics: EMNLP 2024}, pp.\  1043--1067, Miami, Florida, USA, November 2024. Association for Computational Linguistics.
+\newblock \doi{10.18653/v1/2024.findings-emnlp.57}.
+\newblock URL \url{https://aclanthology.org/2024.findings-emnlp.57/}.
+
+\bibitem[Peng et~al.(2025)Peng, Qi, Wang, Yao, Xu, Hou, and Li]{peng2025agenticrewardmodelingintegrating}
+Hao Peng, Yunjia Qi, Xiaozhi Wang, Zijun Yao, Bin Xu, Lei Hou, and Juanzi Li.
+\newblock Agentic reward modeling: Integrating human preferences with verifiable correctness signals for reliable reward systems.
+\newblock \emph{Computing Research Repository}, arXiv:2502.19328, 2025.
+\newblock URL \url{https://arxiv.org/abs/2502.19328}.
+
+\bibitem[Rafailov et~al.(2023)Rafailov, Sharma, Mitchell, Manning, Ermon, and Finn]{rafailov2023direct}
+Rafael Rafailov, Archit Sharma, Eric Mitchell, Christopher~D Manning, Stefano Ermon, and Chelsea Finn.
+\newblock Direct preference optimization: Your language model is secretly a reward model.
+\newblock In \emph{Thirty-seventh Conference on Neural Information Processing Systems}, 2023.
+\newblock URL \url{https://openreview.net/forum?id=HPuSIXJaa9}.
+
+\bibitem[R{\"o}ttger et~al.(2024)R{\"o}ttger, Kirk, Vidgen, Attanasio, Bianchi, and Hovy]{rottger-etal-2024-xstest}
+Paul R{\"o}ttger, Hannah Kirk, Bertie Vidgen, Giuseppe Attanasio, Federico Bianchi, and Dirk Hovy.
+\newblock {XST}est: A test suite for identifying exaggerated safety behaviours in large language models.
+\newblock In Kevin Duh, Helena Gomez, and Steven Bethard (eds.), \emph{Proceedings of the 2024 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (Volume 1: Long Papers)}, pp.\  5377--5400, Mexico City, Mexico, June 2024. Association for Computational Linguistics.
+\newblock \doi{10.18653/v1/2024.naacl-long.301}.
+\newblock URL \url{https://aclanthology.org/2024.naacl-long.301/}.
+
+\bibitem[Shao et~al.(2024)Shao, Wang, Zhu, Xu, Song, Bi, Zhang, Zhang, Li, Wu, and Guo]{shao2024deepseekmathpushinglimitsmathematical}
+Zhihong Shao, Peiyi Wang, Qihao Zhu, Runxin Xu, Junxiao Song, Xiao Bi, Haowei Zhang, Mingchuan Zhang, Y.~K. Li, Y.~Wu, and Daya Guo.
+\newblock Deepseekmath: Pushing the limits of mathematical reasoning in open language models.
+\newblock \emph{Computing Research Repository}, arXiv:2402.0330, 2024.
+\newblock URL \url{https://arxiv.org/abs/2402.03300}.
+
+\bibitem[Sharma et~al.(2025)Sharma, Tong, Mu, Wei, Kruthoff, Goodfriend, Ong, Peng, Agarwal, Anil, Askell, Bailey, Benton, Bluemke, Bowman, Christiansen, Cunningham, Dau, Gopal, Gilson, Graham, Howard, Kalra, Lee, Lin, Lofgren, Mosconi, O'Hara, Olsson, Petrini, Rajani, Saxena, Silverstein, Singh, Sumers, Tang, Troy, Weisser, Zhong, Zhou, Leike, Kaplan, and Perez]{sharma2025constitutionalclassifiersdefendinguniversal}
+Mrinank Sharma, Meg Tong, Jesse Mu, Jerry Wei, Jorrit Kruthoff, Scott Goodfriend, Euan Ong, Alwin Peng, Raj Agarwal, Cem Anil, Amanda Askell, Nathan Bailey, Joe Benton, Emma Bluemke, Samuel~R. Bowman, Eric Christiansen, Hoagy Cunningham, Andy Dau, Anjali Gopal, Rob Gilson, Logan Graham, Logan Howard, Nimit Kalra, Taesung Lee, Kevin Lin, Peter Lofgren, Francesco Mosconi, Clare O'Hara, Catherine Olsson, Linda Petrini, Samir Rajani, Nikhil Saxena, Alex Silverstein, Tanya Singh, Theodore Sumers, Leonard Tang, Kevin~K. Troy, Constantin Weisser, Ruiqi Zhong, Giulio Zhou, Jan Leike, Jared Kaplan, and Ethan Perez.
+\newblock Constitutional classifiers: Defending against universal jailbreaks across thousands of hours of red teaming.
+\newblock \emph{Computing Research Repository}, arXiv:2501.18837, 2025.
+\newblock URL \url{https://arxiv.org/abs/2501.18837}.
+
+\bibitem[Snell et~al.(2025)Snell, Lee, Xu, and Kumar]{snell2025scaling}
+Charlie~Victor Snell, Jaehoon Lee, Kelvin Xu, and Aviral Kumar.
+\newblock Scaling {LLM} test-time compute optimally can be more effective than scaling parameters for reasoning.
+\newblock In \emph{The Thirteenth International Conference on Learning Representations}, 2025.
+\newblock URL \url{https://openreview.net/forum?id=4FWAwZtd2n}.
+
+\bibitem[Stiennon et~al.(2020)Stiennon, Ouyang, Wu, Ziegler, Lowe, Voss, Radford, Amodei, and Christiano]{10.5555/3495724.3495977}
+Nisan Stiennon, Long Ouyang, Jeff Wu, Daniel~M. Ziegler, Ryan Lowe, Chelsea Voss, Alec Radford, Dario Amodei, and Paul Christiano.
+\newblock Learning to summarize from human feedback.
+\newblock In \emph{Proceedings of the 34th International Conference on Neural Information Processing Systems}, NIPS '20, Red Hook, NY, USA, 2020. Curran Associates Inc.
+\newblock ISBN 9781713829546.
+
+\bibitem[Sun et~al.(2023)Sun, Shen, Zhou, Zhang, Chen, Cox, Yang, and Gan]{sun2023principledriven}
+Zhiqing Sun, Yikang Shen, Qinhong Zhou, Hongxin Zhang, Zhenfang Chen, David~Daniel Cox, Yiming Yang, and Chuang Gan.
+\newblock Principle-driven self-alignment of language models from scratch with minimal human supervision.
+\newblock In \emph{Thirty-seventh Conference on Neural Information Processing Systems}, 2023.
+\newblock URL \url{https://openreview.net/forum?id=p40XRfBX96}.
+
+\bibitem[Team(2024)]{gemmateam2024gemma2improvingopen}
+Gemma Team.
+\newblock Gemma 2: Improving open language models at a practical size.
+\newblock \emph{Computing Research Repository}, arXiv:2408.0011, 2024.
+\newblock URL \url{https://arxiv.org/abs/2408.00118}.
+
+\bibitem[Veeraboina(2023)]{aime_1983_2024}
+Hemish Veeraboina.
+\newblock Aime problem set 1983-2024, 2023.
+\newblock URL \url{https://www.kaggle.com/datasets/hemishveeraboina/aime-problem-set-1983-2024}.
+
+\bibitem[Vu et~al.(2024)Vu, Krishna, Alzubi, Tar, Faruqui, and Sung]{vu-etal-2024-foundational}
+Tu~Vu, Kalpesh Krishna, Salaheddin Alzubi, Chris Tar, Manaal Faruqui, and Yun-Hsuan Sung.
+\newblock Foundational autoraters: Taming large language models for better automatic evaluation.
+\newblock In Yaser Al-Onaizan, Mohit Bansal, and Yun-Nung Chen (eds.), \emph{Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing}, pp.\  17086--17105, Miami, Florida, USA, November 2024. Association for Computational Linguistics.
+\newblock \doi{10.18653/v1/2024.emnlp-main.949}.
+\newblock URL \url{https://aclanthology.org/2024.emnlp-main.949/}.
+
+\bibitem[Wang et~al.(2024{\natexlab{a}})Wang, Xiong, Xie, Zhao, and Zhang]{wang-etal-2024-interpretable}
+Haoxiang Wang, Wei Xiong, Tengyang Xie, Han Zhao, and Tong Zhang.
+\newblock Interpretable preferences via multi-objective reward modeling and mixture-of-experts.
+\newblock In Yaser Al-Onaizan, Mohit Bansal, and Yun-Nung Chen (eds.), \emph{Findings of the Association for Computational Linguistics: EMNLP 2024}, pp.\  10582--10592, Miami, Florida, USA, November 2024{\natexlab{a}}. Association for Computational Linguistics.
+\newblock \doi{10.18653/v1/2024.findings-emnlp.620}.
+\newblock URL \url{https://aclanthology.org/2024.findings-emnlp.620/}.
+
+\bibitem[Wang et~al.(2024{\natexlab{b}})Wang, Li, Shao, Xu, Dai, Li, Chen, Wu, and Sui]{wang-etal-2024-math}
+Peiyi Wang, Lei Li, Zhihong Shao, Runxin Xu, Damai Dai, Yifei Li, Deli Chen, Yu~Wu, and Zhifang Sui.
+\newblock Math-shepherd: Verify and reinforce {LLM}s step-by-step without human annotations.
+\newblock In Lun-Wei Ku, Andre Martins, and Vivek Srikumar (eds.), \emph{Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)}, pp.\  9426--9439, Bangkok, Thailand, August 2024{\natexlab{b}}. Association for Computational Linguistics.
+\newblock \doi{10.18653/v1/2024.acl-long.510}.
+\newblock URL \url{https://aclanthology.org/2024.acl-long.510/}.
+
+\bibitem[Wang et~al.(2024{\natexlab{c}})Wang, Kulikov, Golovneva, Yu, Yuan, Dwivedi-Yu, Pang, Fazel-Zarandi, Weston, and Li]{wang2024selftaughtevaluators}
+Tianlu Wang, Ilia Kulikov, Olga Golovneva, Ping Yu, Weizhe Yuan, Jane Dwivedi-Yu, Richard~Yuanzhe Pang, Maryam Fazel-Zarandi, Jason Weston, and Xian Li.
+\newblock Self-taught evaluators.
+\newblock \emph{Computing Research Repository}, arXiv:2408.02666, 2024{\natexlab{c}}.
+\newblock URL \url{https://arxiv.org/abs/2408.02666}.
+
+\bibitem[Wang et~al.(2024{\natexlab{d}})Wang, Li, Han, Nakov, and Baldwin]{wang-etal-2024-answer}
+Yuxia Wang, Haonan Li, Xudong Han, Preslav Nakov, and Timothy Baldwin.
+\newblock Do-not-answer: Evaluating safeguards in {LLM}s.
+\newblock In Yvette Graham and Matthew Purver (eds.), \emph{Findings of the Association for Computational Linguistics: EACL 2024}, pp.\  896--911, St. Julian{'}s, Malta, March 2024{\natexlab{d}}. Association for Computational Linguistics.
+\newblock URL \url{https://aclanthology.org/2024.findings-eacl.61/}.
+
+\bibitem[Wang et~al.(2024{\natexlab{e}})Wang, Dong, Delalleau, Zeng, Shen, Egert, Zhang, Sreedhar, and Kuchaiev]{wang2024helpsteer}
+Zhilin Wang, Yi~Dong, Olivier Delalleau, Jiaqi Zeng, Gerald Shen, Daniel Egert, Jimmy~J. Zhang, Makesh~Narsimhan Sreedhar, and Oleksii Kuchaiev.
+\newblock Helpsteer 2: Open-source dataset for training top-performing reward models.
+\newblock In \emph{The Thirty-eight Conference on Neural Information Processing Systems Datasets and Benchmarks Track}, 2024{\natexlab{e}}.
+\newblock URL \url{https://openreview.net/forum?id=PvVKUFhaNy}.
+
+\bibitem[Wang et~al.(2025)Wang, Bukharin, Delalleau, Egert, Shen, Zeng, Kuchaiev, and Dong]{wang2025helpsteerpreference}
+Zhilin Wang, Alexander Bukharin, Olivier Delalleau, Daniel Egert, Gerald Shen, Jiaqi Zeng, Oleksii Kuchaiev, and Yi~Dong.
+\newblock Helpsteer2-preference: Complementing ratings with preferences.
+\newblock In \emph{The Thirteenth International Conference on Learning Representations}, 2025.
+\newblock URL \url{https://openreview.net/forum?id=MnfHxPP5gs}.
+
+\bibitem[Wei et~al.(2022)Wei, Wang, Schuurmans, Bosma, brian ichter, Xia, Chi, Le, and Zhou]{wei2022chain}
+Jason Wei, Xuezhi Wang, Dale Schuurmans, Maarten Bosma, brian ichter, Fei Xia, Ed~H. Chi, Quoc~V Le, and Denny Zhou.
+\newblock Chain of thought prompting elicits reasoning in large language models.
+\newblock In Alice~H. Oh, Alekh Agarwal, Danielle Belgrave, and Kyunghyun Cho (eds.), \emph{Advances in Neural Information Processing Systems}, 2022.
+\newblock URL \url{https://openreview.net/forum?id=_VjQlMeSB_J}.
+
+\bibitem[Winata et~al.(2025)Winata, Anugraha, Susanto, Kuwanto, and Wijaya]{winata2025metametrics}
+Genta~Indra Winata, David Anugraha, Lucky Susanto, Garry Kuwanto, and Derry~Tanti Wijaya.
+\newblock Metametrics: Calibrating metrics for generation tasks using human preferences.
+\newblock In \emph{The Thirteenth International Conference on Learning Representations}, 2025.
+\newblock URL \url{https://openreview.net/forum?id=slO3xTt4CG}.
+
+\bibitem[Wu et~al.(2024)Wu, Yuan, Golovneva, Xu, Tian, Jiao, Weston, and Sukhbaatar]{wu2024metarewardinglanguagemodelsselfimproving}
+Tianhao Wu, Weizhe Yuan, Olga Golovneva, Jing Xu, Yuandong Tian, Jiantao Jiao, Jason Weston, and Sainbayar Sukhbaatar.
+\newblock Meta-rewarding language models: Self-improving alignment with llm-as-a-meta-judge.
+\newblock \emph{Computing Research Repository}, arXiv:2407.19594, 2024.
+\newblock URL \url{https://arxiv.org/abs/2407.19594}.
+
+\bibitem[Wu et~al.(2025)Wu, Sun, Li, Welleck, and Yang]{wu2025inference}
+Yangzhen Wu, Zhiqing Sun, Shanda Li, Sean Welleck, and Yiming Yang.
+\newblock Inference scaling laws: An empirical analysis of compute-optimal inference for {LLM} problem-solving.
+\newblock In \emph{The Thirteenth International Conference on Learning Representations}, 2025.
+\newblock URL \url{https://openreview.net/forum?id=VNckp7JEHn}.
+
+\bibitem[Xie et~al.(2024)Xie, Zhang, Chen, Li, Zhao, Cao, Hua, Cheng, Shin, Lei, Liu, Xu, Zhou, Savarese, Xiong, Zhong, and Yu]{xie2024osworld}
+Tianbao Xie, Danyang Zhang, Jixuan Chen, Xiaochuan Li, Siheng Zhao, Ruisheng Cao, Toh~Jing Hua, Zhoujun Cheng, Dongchan Shin, Fangyu Lei, Yitao Liu, Yiheng Xu, Shuyan Zhou, Silvio Savarese, Caiming Xiong, Victor Zhong, and Tao Yu.
+\newblock {OSW}orld: Benchmarking multimodal agents for open-ended tasks in real computer environments.
+\newblock In \emph{The Thirty-eight Conference on Neural Information Processing Systems Datasets and Benchmarks Track}, 2024.
+\newblock URL \url{https://openreview.net/forum?id=tN61DTr4Ed}.
+
+\bibitem[Yao et~al.(2022)Yao, Chen, Yang, and Narasimhan]{yao2022webshop}
+Shunyu Yao, Howard Chen, John Yang, and Karthik~R Narasimhan.
+\newblock Webshop: Towards scalable real-world web interaction with grounded language agents.
+\newblock In Alice~H. Oh, Alekh Agarwal, Danielle Belgrave, and Kyunghyun Cho (eds.), \emph{Advances in Neural Information Processing Systems}, 2022.
+\newblock URL \url{https://openreview.net/forum?id=R9KnuFlvnU}.
+
+\bibitem[Ye et~al.(2024)Ye, Greenlee-Scott, Bartolo, Blunsom, Campos, and Gallé]{ye2024improvingrewardmodelssynthetic}
+Zihuiwen Ye, Fraser Greenlee-Scott, Max Bartolo, Phil Blunsom, Jon~Ander Campos, and Matthias Gallé.
+\newblock Improving reward models with synthetic critiques.
+\newblock \emph{Computing Research Repository}, arXiv:2405.20850, 2024.
+\newblock URL \url{https://arxiv.org/abs/2405.20850}.
+
+\bibitem[Ye et~al.(2025)Ye, Li, Li, Ai, Zhou, Shen, Yan, and LIU]{ye2025learning}
+Ziyi Ye, Xiangsheng Li, Qiuchi Li, Qingyao Ai, Yujia Zhou, Wei Shen, Dong Yan, and Yiqun LIU.
+\newblock Learning {LLM}-as-a-judge for preference alignment.
+\newblock In \emph{The Thirteenth International Conference on Learning Representations}, 2025.
+\newblock URL \url{https://openreview.net/forum?id=HZVIQE1MsJ}.
+
+\bibitem[Yu et~al.(2025{\natexlab{a}})Yu, Sun, Hu, Yan, Yu, and Li]{yu2025improvellmasajudgeabilitygeneral}
+Jiachen Yu, Shaoning Sun, Xiaohui Hu, Jiaxu Yan, Kaidong Yu, and Xuelong Li.
+\newblock Improve llm-as-a-judge ability as a general ability.
+\newblock \emph{Computing Research Repository}, arXiv:2502.11689, 2025{\natexlab{a}}.
+\newblock URL \url{https://arxiv.org/abs/2502.11689}.
+
+\bibitem[Yu et~al.(2025{\natexlab{b}})Yu, Chen, Zhang, Tan, Zhu, Pang, Qian, Wang, Gururangan, Zhang, Kambadur, Mahajan, and Hou]{yu2025selfgeneratedcritiquesboostreward}
+Yue Yu, Zhengxing Chen, Aston Zhang, Liang Tan, Chenguang Zhu, Richard~Yuanzhe Pang, Yundi Qian, Xuewei Wang, Suchin Gururangan, Chao Zhang, Melanie Kambadur, Dhruv Mahajan, and Rui Hou.
+\newblock Self-generated critiques boost reward modeling for language models.
+\newblock \emph{Computing Research Repository}, arXiv:2411.16646, 2025{\natexlab{b}}.
+\newblock URL \url{https://arxiv.org/abs/2411.16646}.
+
+\bibitem[Yuan et~al.(2024)Yuan, Pang, Cho, Li, Sukhbaatar, Xu, and Weston]{pmlr-v235-yuan24d}
+Weizhe Yuan, Richard~Yuanzhe Pang, Kyunghyun Cho, Xian Li, Sainbayar Sukhbaatar, Jing Xu, and Jason~E Weston.
+\newblock Self-rewarding language models.
+\newblock In Ruslan Salakhutdinov, Zico Kolter, Katherine Heller, Adrian Weller, Nuria Oliver, Jonathan Scarlett, and Felix Berkenkamp (eds.), \emph{Proceedings of the 41st International Conference on Machine Learning}, volume 235 of \emph{Proceedings of Machine Learning Research}, pp.\  57905--57923. PMLR, 21--27 Jul 2024.
+\newblock URL \url{https://proceedings.mlr.press/v235/yuan24d.html}.
+
+\bibitem[Zeng et~al.(2024)Zeng, Yu, Gao, Meng, Goyal, and Chen]{zeng2024evaluating}
+Zhiyuan Zeng, Jiatong Yu, Tianyu Gao, Yu~Meng, Tanya Goyal, and Danqi Chen.
+\newblock Evaluating large language models at evaluating instruction following.
+\newblock In \emph{The Twelfth International Conference on Learning Representations}, 2024.
+\newblock URL \url{https://openreview.net/forum?id=tr0KidwPLc}.
+
+\bibitem[Zhang et~al.(2025{\natexlab{a}})Zhang, Hosseini, Bansal, Kazemi, Kumar, and Agarwal]{zhang2025generative}
+Lunjun Zhang, Arian Hosseini, Hritik Bansal, Mehran Kazemi, Aviral Kumar, and Rishabh Agarwal.
+\newblock Generative verifiers: Reward modeling as next-token prediction.
+\newblock In \emph{The Thirteenth International Conference on Learning Representations}, 2025{\natexlab{a}}.
+\newblock URL \url{https://openreview.net/forum?id=Ccwp4tFEtE}.
+
+\bibitem[Zhang et~al.(2025{\natexlab{b}})Zhang, Zheng, Wu, Zhang, Lin, Yu, Liu, Zhou, and Lin]{zhang2025lessonsdevelopingprocessreward}
+Zhenru Zhang, Chujie Zheng, Yangzhen Wu, Beichen Zhang, Runji Lin, Bowen Yu, Dayiheng Liu, Jingren Zhou, and Junyang Lin.
+\newblock The lessons of developing process reward models in mathematical reasoning.
+\newblock \emph{Computing Research Repository}, arXiv:2501.07301, 2025{\natexlab{b}}.
+\newblock URL \url{https://arxiv.org/abs/2501.07301}.
+
+\bibitem[Zheng et~al.(2023)Zheng, Chiang, Sheng, Zhuang, Wu, Zhuang, Lin, Li, Li, Xing, Zhang, Gonzalez, and Stoica]{chatbot-arena}
+Lianmin Zheng, Wei-Lin Chiang, Ying Sheng, Siyuan Zhuang, Zhanghao Wu, Yonghao Zhuang, Zi~Lin, Zhuohan Li, Dacheng Li, Eric~P. Xing, Hao Zhang, Joseph~E. Gonzalez, and Ion Stoica.
+\newblock Judging llm-as-a-judge with mt-bench and chatbot arena.
+\newblock In \emph{Proceedings of the 37th International Conference on Neural Information Processing Systems}, NIPS '23, Red Hook, NY, USA, 2023. Curran Associates Inc.
+
+\bibitem[Zhou et~al.(2025)Zhou, Zheng, Wang, Xi, Dou, Bao, Shen, Xiong, Fan, Mou, Zheng, Gui, Zhang, and Huang]{zhou2025rmb}
+Enyu Zhou, Guodong Zheng, Binghai Wang, Zhiheng Xi, Shihan Dou, Rong Bao, Wei Shen, Limao Xiong, Jessica Fan, Yurong Mou, Rui Zheng, Tao Gui, Qi~Zhang, and Xuanjing Huang.
+\newblock {RMB}: Comprehensively benchmarking reward models in {LLM} alignment.
+\newblock In \emph{The Thirteenth International Conference on Learning Representations}, 2025.
+\newblock URL \url{https://openreview.net/forum?id=kmgrlG9TR0}.
+
+\bibitem[Zhuo et~al.(2025)Zhuo, Chien, Chim, Hu, Yu, Widyasari, Yusuf, Zhan, He, Paul, Brunner, GONG, Hoang, Zebaze, Hong, Li, Kaddour, Xu, Zhang, Yadav, Jain, Gu, Cheng, Liu, Liu, Wang, Lo, Hui, Muennighoff, Fried, Du, de~Vries, and Werra]{zhuo2025bigcodebench}
+Terry~Yue Zhuo, Vu~Minh Chien, Jenny Chim, Han Hu, Wenhao Yu, Ratnadira Widyasari, Imam Nur~Bani Yusuf, Haolan Zhan, Junda He, Indraneil Paul, Simon Brunner, Chen GONG, James Hoang, Armel~Randy Zebaze, Xiaoheng Hong, Wen-Ding Li, Jean Kaddour, Ming Xu, Zhihan Zhang, Prateek Yadav, Naman Jain, Alex Gu, Zhoujun Cheng, Jiawei Liu, Qian Liu, Zijian Wang, David Lo, Binyuan Hui, Niklas Muennighoff, Daniel Fried, Xiaoning Du, Harm de~Vries, and Leandro~Von Werra.
+\newblock Bigcodebench: Benchmarking code generation with diverse function calls and complex instructions.
+\newblock In \emph{The Thirteenth International Conference on Learning Representations}, 2025.
+\newblock URL \url{https://openreview.net/forum?id=YrycTjllL0}.
+
+\end{thebibliography}

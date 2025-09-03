@@ -1,0 +1,24 @@
+\section{Organization and Trends in Test-time scaling}
+\label{sec:organizationandtrends}
+
+\input{section/table}
+
+Building on our taxonomy, we decompose the existing literature along multiple dimensions (Table~\ref{tab:combination}). As shown in Figure~\ref{fig:timeline}, these works, with different technical innovations, follow a broadly consistent path. From 2022 to 2023, researchers emphasized structured inference to guide LLMs in generating more complex solutions. In 2024, methods like PRM and MCTS enabled the automatic supervision of intricate reasoning trajectories, yielding richly annotated data for fine-tuning and improving \TTS performance. Subsequent approaches, such as o1 and R1, demonstrated that pure RL can also elicit comprehensive, logically sound reasoning. 
+
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=.98\linewidth]{figures/figure1.pdf}
+    \caption{From Emergence to the Next Frontier, the Evolutionary Path of Test-Time Scaling.}
+    \label{fig:timeline}
+\end{figure}
+
+
+
+
+
+\begin{itemize}
+    \item Crucially, these techniques are complementary rather than mutually exclusive: for instance, R1 necessitates an SFT-based warmup via rejection sampling. Therefore, achieving more powerful scaling requires systematically integrating these methods. Even within RL frameworks, practitioners should continue to leverage synthesized CoT approaches and incorporate structured inference strategies to tackle increasingly complex scenarios effectively.
+    \item Researchers found that there does not exist one simple scaling solution that works for all problems. Increasingly, researchers tend to focus on optimal-scaling solutions~\citep{wu2024scaling,snell2024scaling}.
+    \item The boundary between inference-based and tuning-based approaches is blurring. Consequentially, the target of scaling (\textit{what to scale}) changes between different stages. Certain papers, such as \citet{li2025draftsanswersunlockingllm, munkhbat2025selftrainingelicitsconcisereasoning}, tune the inference-based capability into the LLM by synthesizing high-quality data from inference-based approaches as the tuning data. Others, such as \citet{wan2024alphazero}, are proposing various techniques that better exploit the LLM's capability during both the training and inference stages.
+\end{itemize}
+

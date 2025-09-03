@@ -1,0 +1,107 @@
+% CVPR 2025 Paper Template; see https://github.com/cvpr-org/author-kit
+
+\documentclass[10pt,twocolumn,letterpaper]{article}
+
+%%%%%%%%% PAPER TYPE  - PLEASE UPDATE FOR FINAL VERSION
+%\usepackage{cvpr}              % To produce the CAMERA-READY version
+% \usepackage[review]{cvpr}      % To produce the REVIEW version
+\usepackage[pagenumbers]{cvpr} % To force page numbers, e.g. for an arXiv version
+\usepackage{multirow}
+% Import additional packages in the preamble file, before hyperref
+\input{preamble}
+\usepackage[accsupp]{axessibility}  % Improves PDF readability for those with disabilities.
+\usepackage{mathtools}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+% It is strongly recommended to use hyperref, especially for the review version.
+% hyperref with option pagebackref eases the reviewers' job.
+% Please disable hyperref *only* if you encounter grave issues, 
+% e.g. with the file validation for the camera-ready version.
+%
+% If you comment hyperref and then uncomment it, you should delete *.aux before re-running LaTeX.
+% (Or just hit 'q' on the first LaTeX run, let it finish, and you should be clear).
+\definecolor{cvprblue}{rgb}{0.21,0.49,0.74}
+\usepackage[pagebackref,breaklinks,colorlinks,allcolors=cvprblue]{hyperref}
+
+%%%%%%%%% PAPER ID  - PLEASE UPDATE
+\def\paperID{11922} % *** Enter the Paper ID here
+\def\confName{CVPR}
+\def\confYear{2025}
+
+
+\begin{comment}
+% Yin: not needed here
+%%%%%%%%%% hacky way to use authblk
+\usepackage{etoolbox}
+\usepackage{silence}
+\makeatletter
+\robustify\@latex@warning@no@line
+\makeatother
+\usepackage{authblk}
+\end{comment}
+
+%%%%%%%%% TITLE 
+\title{PAVE: \underline{P}atching and \underline{A}dapting \underline{V}id\underline{e}o Large Language Models}
+
+% %%%%%%%%% AUTHORS 
+
+%\vspace{-0.5cm}
+\author{Zhuoming Liu\textsuperscript{1}, Yiquan Li\textsuperscript{1}, Khoi Duc Nguyen\textsuperscript{1}, Yiwu Zhong\textsuperscript{2}, Yin Li\textsuperscript{1}\\
+{\textsuperscript{1}University of Wisconsin-Madison \ \ 
+\textsuperscript{2}The Chinese University of Hong Kong}
+}
+
+
+%\author[1]{Zhuoming Liu}
+%\author[1]{Yiquan Li}
+%\author[1]{Khoi Duc Nguyen}
+%\author[2]{Yiwu Zhong}
+%\author[1]{Yin Li}
+%\affil[1]{University of Wisconsin-Madison}
+%\affil[2]{The Chinese University of Hong Kong} 
+
+% \vspace{+0.5cm}
+%\affil[ ]{\tt\small \{zliu2346, yin.li\}@wisc.edu}
+% \vspace{-0.5cm}
+
+
+% %%%%%%%%% TITLE - PLEASE UPDATE
+% \title{PAVE: \underline{P}atching and \underline{A}dapting \underline{V}id\underline{e}o Large Language Models }
+% %\title{PVL: Patches for Efficient Video Language Model Adaptation with Extra Information}
+
+% %%%%%%%%% AUTHORS - PLEASE UPDATE
+% \author{First Author\\
+% Institution1\\
+% Institution1 address\\
+% {\tt\small firstauthor@i1.org}
+% % For a paper whose authors are all at the same institution,
+% % omit the following lines up until the closing ``}''.
+% % Additional authors and addresses can be added with ``\and'',
+% % just like the second author.
+% % To save space, use either the email address or home page, not both
+% \and
+% Second Author\\
+% Institution2\\
+% First line of institution2 address\\
+% {\tt\small secondauthor@i2.org}
+% }
+
+\begin{document}
+\maketitle
+\input{sec/0_abstract}    
+\input{sec/1_intro}
+\input{sec/2_Related_work}
+\input{sec/3_Method}
+\input{sec/4_Experiments}
+\input{sec/5_Conclusion}
+{
+    \small
+    \bibliographystyle{ieeenat_fullname}
+    \bibliography{main}
+}
+
+% WARNING: do not forget to delete the supplementary pages from your submission 
+\clearpage
+\input{sec/6_Appendix}
+
+\end{document}

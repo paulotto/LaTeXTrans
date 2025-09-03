@@ -1,0 +1,47 @@
+\section{Related Work}
+
+OpenAI O1 \citep{o1} introduces a profound paradigm shift in LLMs, characterized by extended reasoning before delivering a final response~\cite{grok,qwq,gemini-thinking}. 
+DeepSeek R1 \citep{deepseekai2025deepseekr1incentivizingreasoningcapability} open-sources both its training algorithm (the value-model-free GRPO \cite{shao2024deepseekmath}) and its model weights, which are comparable in performance to O1. DAPO \cite{dapo} identifies previously undisclosed challenges such as entropy collapse encountered during the scaling of value-model-free LLM RL, and proposes four effective techniques to overcome these challenges, achieving SOTA industry-level performance. Recently, Dr. GRPO \cite{liu2025understandingr1zeroliketrainingcritical} removes both the length and std normalization terms in GRPO.
+On the other hand, ORZ \cite{hu2025openreasonerzeroopensourceapproach} follows PPO and utilizes a value model for advantage estimation, proposing Monte Carlo estimation instead of Generalized Advantage Estimation. However, they could just achieves a comparable performance to value-model-free method like GRPO and DAPO. In this paper, we also follow the value-model-based approach and propose VAPO, which outperforms the SOTA value-model-free algorithm DAPO.
+
+\section{Conclusion}
+In this paper, we propose an algorithm named VAPO, which leveraging the Qwen2.5-32B model, achieves the SOTA performance on the AIME24 benchmark. By introducing seven novel techniques atop PPO, which focus on refining value learning and balancing exploration, our value-model-based approach outperforms contemporary value-model-free methods like GRPO and DAPO. The work provides a robust framework for advancing large language models in reasoning-intensive tasks.
+
+
+\newpage
+
+\section*{Contributions}
+
+\textbf{Project Lead}\quad 
+
+Yu Yue$^{1}$
+
+% \subsection*{Algorithm}
+
+\textbf{Algorithm}
+
+Yu Yue$^{1}$, Yufeng Yuan$^{1}$, Qiying Yu$^{1,2}$, Xiaochen Zuo$^{1}$, Ruofei Zhu$^{1}$, Wenyuan Xu$^{1}$, Jiaze Chen$^{1}$, Chengyi Wang$^{1}$, TianTian Fan$^{1}$,  Zhengyin Du$^{1}$, Xiangpeng Wei$^{1}$, Xiangyu Yu$^{1}$
+
+% \subsection*{Infrastructure$^{*}$}
+
+\textbf{Infrastructure$^{*}$}
+
+Gaohong Liu$^{1}$, Juncai Liu$^{1}$, Lingjun Liu$^{1}$, Haibin Lin$^{1}$, Zhiqi Lin$^{1}$, Bole Ma$^{1}$, Chi Zhang$^{1}$, Mofan Zhang$^{1}$, Wang Zhang$^{1}$, Hang Zhu$^{1}$, Ru Zhang$^{1}$
+
+$^{*}$Last-Name in Alphabetical Order
+
+% \subsection*{Dataset}
+
+% \subsection*{Supervision}
+
+\textbf{Supervision}
+
+Xin Liu$^{1}$, Mingxuan Wang$^{1}$, Yonghui Wu$^{1}$, Lin Yan$^{1}$
+
+% \subsection*{Affiliation}
+
+\textbf{Affiliation}
+
+$^1$ ByteDance Seed
+
+$^2$ SIA-Lab of Tsinghua AIR and ByteDance Seed

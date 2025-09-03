@@ -1,0 +1,26 @@
+\section{Future Work}
+\label{sec:conclusion}
+
+We outline several promising directions for future work.
+
+\myparagraph{Faster implementation.}
+Our current TTT-MLP kernel is bottlenecked by register spills and suboptimal ordering of asynchronous instructions. Efficiency could probably be further improved by minimizing register pressure and developing a more compiler-aware implementation of asynchronous operations.
+
+\myparagraph{Better integration.} Using bi-direction and learned gates is only one possible strategy for integrating TTT layers into a pre-trained model. Better strategies should further improve generation quality and accelerate fine-tuning. 
+Other video generation backbones, such as autoregressive models, might require different integration strategies.
+
+\myparagraph{Longer videos with larger hidden states.} 
+Our approach can potentially be extended to generate much longer videos with linear complexity.
+The key to achieving that goal, we believe, is to instantiate the hidden states as much larger neural networks than our two-layer MLP.
+For example, $f$ itself can be a Transformer.
+
+\vspace{4ex}
+\myparagraph{Acknowledgements.} We thank Hyperbolic Labs for compute support, Yuntian Deng for help with running experiments, and Aaryan Singhal, Arjun Vikram, and Ben Spector for help with systems questions.
+Yue Zhao would like to thank Philipp Krähenbühl for discussion and feedback.
+Yu Sun would like to thank his PhD advisor Alyosha Efros for the insightful advice of looking at the pixels when working on machine learning.
+
+\myparagraph{Note on authorship.} 
+Gashon Hussein and Youjin Song joined the team after an initial version of this project was submitted to CVPR, and have made major contributions to the final version.
+Because CVPR does not allow us to add authors after submission, their names could not appear on OpenReview and the conference webpage.
+However, we all agree that the official author list should include their names, as presented in our released PDFs.
+This project would not be possible without their work.

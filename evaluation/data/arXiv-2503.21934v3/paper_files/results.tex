@@ -1,0 +1,43 @@
+\section{Results}\label{sec:results}
+
+\input{tables/main_results}
+
+We now present the results of our evaluation. In \cref{subsec:main_results}, we detail our primary findings, demonstrating that only \geminipro{} achieves a score above $5\%$. In \cref{subsec:failure_modes}, we analyze common failure patterns in depth, identifying typical mistakes and trends in the models' reasoning. Finally, in \cref{subsec:automated}, we try and fail to automatically grade the models' solutions by giving a judge model the grading scheme and a ground-truth solution.
+
+\subsection{Main Results}\label{subsec:main_results}
+
+We evaluate eight state-of-the-art reasoning models on the 2025 USAMO problems. Specifically, we chose \qwq{} \citep{qwq32b}, \rone{} \citep{r1}, \geminipro{} \citep{deepmind2025geminipro}, \flthink{} \citep{gemini-1.5}, \oone{} \citep{o1}, \othree{} \citep{o3}, \grok{} \citep{xai2025grok3} and \claude{} \citep{anthropic2024claude}. For brevity, we use a shorthand notation for each model in the main text, and we refer to \cref{app:exp_abb} for the full model names. The chosen hyperparameters and prompt can be found in \cref{app:exp_prompt}.
+
+We provide a detailed, per-problem breakdown of model performance in \cref{tab:main_results}, with average scores computed across four evaluation runs. Each USAMO problem is scored out of 7 points, with a total maximum score of 42 points per run. The table also includes the total cost of running each model over all problems and evaluation runs. If the model is free, we indicate this with "N/A".
+
+While current state-of-the-art LLMs achieve performance comparable to top human competitors on numerical-answer-focused competitions such as AIME and HMMT, our evaluation uncovers a significant gap in their ability to generate rigorous proofs. Only \geminipro{} managed to score above $5\%$, achieving an average score of $24.4\%$ across all problems. This model's performance is particularly noteworthy, as it can solve a problem correctly (scoring 6/7 or above) in six of its 24 attempts. The highest average score achieved by any other model falls below $5\%$, indicating substantial limitations in handling the complexity and rigor of USAMO problems. Notably, among nearly $175$ evaluated solutions from all models except \geminipro{}, the only perfect $7/7$ score was a single \grok{} attempt on Problem 1. 
+
+Although the USAMO presents more difficult problems compared to previously tested competitions, the complete failure of almost all models to successfully solve more than one problem underscores that current LLMs remain inadequate for rigorous olympiad-level mathematical reasoning tasks. Furthermore, while \geminipro{} achieved a non-trivial score, it still struggled significantly, with an average score of only $24.4\%$ across all problems. This limitation suggests that existing optimization methods like GRPO \citep{grpo} may currently be insufficient for tasks requiring detailed logical precision.
+
+\subsection{Failure Modes}\label{subsec:failure_modes}
+The most frequent failure mode among human participants is the inability to find a correct solution. Typically, human participants have a clear sense of whether they solved a problem correctly. In contrast, all evaluated LLMs consistently claimed to have solved the problems. This discrepancy poses a significant challenge for mathematical applications of LLMs as mathematical results derived using these models cannot be trusted without rigorous human validation. To further investigate this limitation, we conducted a thorough analysis of the errors identified during the grading process using the categories defined in \cref{sec:meth}.
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.9\linewidth]{figures/errors.pdf}
+    \vspace{-4mm}
+    \caption{Distribution of first encountered failure mode.}
+    \vspace{-2mm}
+    \label{fig:errors}
+\end{figure}
+
+Figure \ref{fig:errors} illustrates the distribution of these error categories as determined by our judges. The most common errors were related to flawed logic, with solutions frequently using unjustified reasoning steps, incorrect rationale, or misinterpretations of previous progress. Another significant issue was the models' tendency to treat certain critical proof steps as trivial or standard procedure without proper justification. Notably, \othree{}, despite being one of the best reasoning models, frequently skipped essential proof steps by labeling them as "trivial", even when their validity was crucial.
+
+Another important observation is the lack of creativity in the models' reasoning. Each model often attempted the same (and wrong) solution strategy across all attempts, failing to explore alternative approaches. One exception to this observation was \flthink{}, which attempted multiple strategies in the same run, but as a consequence only shallowly explored each one, failing to reach a valid conclusion. An example of this behavior is shown in \cref{app:flthink}.
+
+
+However, the models generally demonstrated strong performance in algebraic and arithmetic computations, successfully performing symbolic manipulations without external computational support. Still, \rone{} showed a notably higher frequency of algebraic or arithmetic errors, indicating a clear area for targeted improvement in this model.
+
+\subsection{Automated Grading}\label{subsec:automated}
+
+We explored the feasibility of replacing human graders with LLM-based evaluators, selecting \othree{} and \claude{} as grading models. Both models were provided with a grading scheme developed by our evaluators, along with a verified solution and an example evaluation for reference. In \cref{app:exp_prompt}, we provide the full prompt used for this evaluation.
+
+As detailed in \cref{tab:llm_judge}, neither model accurately graded the solutions, consistently overestimating their quality. Specifically, the models frequently awarded points for incorrect or unjustified reasoning, inflating the scores by a factor of up to $20$.
+
+Notably, \flthink{} and \grok{} received significantly lower scores from the automated evaluation compared to other models. We hypothesize this discrepancy arises because both tend to generate multiple solutions per attempt, or present the solutions in a chaotic manner, potentially confusing the LLM-based judges and resulting in lower scores. Conversely, \qwq{} achieved considerably higher scores, likely because it often generates simpler solution attempts, which are easier for the automated judges to interpret.
+
+\input{tables/llm_judge_results.tex}

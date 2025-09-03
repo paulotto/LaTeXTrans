@@ -1,0 +1,438 @@
+\begin{thebibliography}{86}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Azad et~al.(2024)Azad, Aghdam, Rauland, Cohen, Adeli, and Merhof]{azad2024medical}
+Reza Azad, Ehsan~Khodapanah Aghdam, Amelie Rauland, Joseph~Paul Cohen, Ehsan Adeli, and Dorit Merhof.
+\newblock Medical image segmentation review: The success of u-net.
+\newblock \emph{IEEE Trans. Pattern Anal. Mach. Intell.}, 2024.
+
+\bibitem[Bernal et~al.(2015)Bernal, S{\'a}nchez, Fern{\'a}ndez-Esparrach, Gil, Rodr{\'\i}guez, and Vilari{\~n}o]{bernal2015wm}
+Jorge Bernal, F~Javier S{\'a}nchez, Gloria Fern{\'a}ndez-Esparrach, Debora Gil, Cristina Rodr{\'\i}guez, and Fernando Vilari{\~n}o.
+\newblock Wm-dova maps for accurate polyp highlighting in colonoscopy: Validation vs. saliency maps from physicians.
+\newblock \emph{Computerized Medical Imaging and Graphics}, 43:\penalty0 99--111, 2015.
+
+\bibitem[Bernard et~al.(2019{\natexlab{a}})Bernard, Thunberg, Goncalves, and Theobalt]{bernard2019synchronisation}
+Florian Bernard, Johan Thunberg, Jorge Goncalves, and Christian Theobalt.
+\newblock Synchronisation of partial multi-matchings via non-negative factorisations.
+\newblock \emph{Pattern Recognition}, 92:\penalty0 146--155, 2019{\natexlab{a}}.
+
+\bibitem[Bernard et~al.(2019{\natexlab{b}})Bernard, Thunberg, Swoboda, and Theobalt]{bernard2019hippi}
+Florian Bernard, Johan Thunberg, Paul Swoboda, and Christian Theobalt.
+\newblock Hippi: Higher-order projected power iterations for scalable multi-matching.
+\newblock In \emph{Proc. IEEE/CVF Int. Conf. Comput. Vis.}, pages 10284--10293, 2019{\natexlab{b}}.
+
+\bibitem[Bi et~al.(2023)Bi, Jiang, Clarenbach, Ghotbi, and Navab]{bi2023mi}
+Yuan Bi, Zhongliang Jiang, Ricarda Clarenbach, Ghotbi, and Nassir Navab.
+\newblock Mi-segnet: Mutual information-based us segmentation for unseen domain generalization.
+\newblock In \emph{MICCAI}, pages 130--140. Springer, 2023.
+
+\bibitem[Chen et~al.(2023)Chen, Zhang, Song, Shan, and Liu]{chen2023improved}
+Liang Chen, Yong Zhang, Yibing Song, Ying Shan, and Lingqiao Liu.
+\newblock Improved test-time adaptation for domain generalization.
+\newblock In \emph{Proc. IEEE/CVF Comput. Vis. Pattern Recog.}, pages 24172--24182, 2023.
+
+\bibitem[Chen et~al.(2014)Chen, Guibas, and Huang]{chen2014near}
+Yuxin Chen, Leonidas Guibas, and Qixing Huang.
+\newblock Near-optimal joint object matching via convex relaxation.
+\newblock In \emph{ICML}, pages II--100, 2014.
+
+\bibitem[Chen et~al.(2024)Chen, Pan, Ye, Lu, and Xia]{chen2024each}
+Ziyang Chen, Yongsheng Pan, Yiwen Ye, Mengkang Lu, and Yong Xia.
+\newblock Each test image deserves a specific prompt: Continual test-time adaptation for 2d medical image segmentation.
+\newblock In \emph{Proc. IEEE/CVF Comput. Vis. Pattern Recog.}, pages 11184--11193, 2024.
+
+\bibitem[Cuturi(2013)]{cuturi2013sinkhorn}
+Marco Cuturi.
+\newblock Sinkhorn distances: Lightspeed computation of optimal transport.
+\newblock \emph{Adv. Neural Inform. Process. Syst.}, 26, 2013.
+
+\bibitem[De~Groot(2001)]{de2001high}
+Frank De~Groot.
+\newblock High-resolution x-ray emission and x-ray absorption spectroscopy.
+\newblock \emph{Chemical Reviews}, 101\penalty0 (6):\penalty0 1779--1808, 2001.
+
+\bibitem[Fan et~al.(2017)Fan, Cheng, Liu, Li, and Borji]{fan2017structure}
+Deng-Ping Fan, Ming-Ming Cheng, Yun Liu, Tao Li, and Ali Borji.
+\newblock Structure-measure: A new way to evaluate foreground maps.
+\newblock In \emph{Proc. IEEE/CVF Int. Conf. Comput. Vis.}, pages 4548--4557, 2017.
+
+\bibitem[Fan et~al.(2018)Fan, Gong, Cao, Ren, Cheng, and Borji]{fan2018enhanced}
+Deng-Ping Fan, Cheng Gong, Yang Cao, Bo Ren, Ming-Ming Cheng, and Ali Borji.
+\newblock Enhanced-alignment measure for binary foreground map evaluation.
+\newblock \emph{IJCAI}, 2018.
+
+\bibitem[Fang et~al.(2013)Fang, Xu, and Rockmore]{fang2013unbiased}
+Chen Fang, Ye Xu, and Daniel~N Rockmore.
+\newblock Unbiased metric learning: On the utilization of multiple datasets and web images for softening bias.
+\newblock In \emph{Proc. IEEE/CVF Int. Conf. Comput. Vis.}, pages 1657--1664, 2013.
+
+\bibitem[Fumero et~al.(2011)Fumero, Alay{\'o}n, Sanchez, Sigut, and Gonzalez-Hernandez]{fumero2011rim}
+Francisco Fumero, Silvia Alay{\'o}n, Jos{\'e}~L Sanchez, Jose Sigut, and M Gonzalez-Hernandez.
+\newblock Rim-one: An open retinal image database for optic nerve evaluation.
+\newblock In \emph{International Symposium on Computer-based Medical Systems (CBMS)}, pages 1--6. IEEE, 2011.
+
+\bibitem[Gao et~al.(2021)Gao, Wang, Xue, Yu, and Xia]{gao2021deep}
+Quankai Gao, Fudong Wang, Nan Xue, Jin-Gang Yu, and Gui-Song Xia.
+\newblock Deep graph matching under quadratic constraint.
+\newblock In \emph{Proc. IEEE/CVF Comput. Vis. Pattern Recog.}, pages 5069--5078, 2021.
+
+\bibitem[Gold et~al.(1996)Gold, Rangarajan, et~al.]{gold1996softmax}
+Steven Gold, Anand Rangarajan, et~al.
+\newblock Softmax to softassign: Neural network algorithms for combinatorial optimization.
+\newblock \emph{Journal of Artificial Neural Networks}, 2\penalty0 (4):\penalty0 381--399, 1996.
+
+\bibitem[Gu et~al.(2023)Gu, Wang, Lu, Zhang, Lei, Chen, Liao, Zhang, Li, Metaxas, et~al.]{gu2023cddsa}
+Ran Gu, Guotai Wang, Jiangshan Lu, Jingyang Zhang, Wenhui Lei, Yinan Chen, Wenjun Liao, Shichuan Zhang, Kang Li, Dimitris~N Metaxas, et~al.
+\newblock Cddsa: Contrastive domain disentanglement and style augmentation for generalizable medical image segmentation.
+\newblock \emph{Medical Image Analysis}, 89:\penalty0 102904, 2023.
+
+\bibitem[Gulrajani and Lopez-Paz(2021)]{gulrajanisearch}
+Ishaan Gulrajani and David Lopez-Paz.
+\newblock In search of lost domain generalization.
+\newblock In \emph{International Conference on Learning Representations}, 2021.
+
+\bibitem[He et~al.(2016)He, Zhang, Ren, and Sun]{he2016deep}
+Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun.
+\newblock Deep residual learning for image recognition.
+\newblock In \emph{Proc. IEEE/CVF Comput. Vis. Pattern Recog.}, pages 770--778, 2016.
+
+\bibitem[Jha et~al.(2020)Jha, Smedsrud, Riegler, Halvorsen, De~Lange, Johansen, and Johansen]{jha2020kvasir}
+Debesh Jha, Pia~H Smedsrud, Michael~A Riegler, P{\aa}l Halvorsen, Thomas De~Lange, Dag Johansen, and H{\aa}vard~D Johansen.
+\newblock Kvasir-seg: A segmented polyp dataset.
+\newblock In \emph{MultiMedia Modeling: 26th International Conference, MMM 2020}, pages 451--462. Springer, 2020.
+
+\bibitem[Karani et~al.(2021)Karani, Erdil, Chaitanya, and Konukoglu]{karani2021test}
+Neerav Karani, Ertunc Erdil, Krishna Chaitanya, and Ender Konukoglu.
+\newblock Test-time adaptable neural networks for robust medical image segmentation.
+\newblock \emph{Medical Image Analysis}, 68:\penalty0 101907, 2021.
+
+\bibitem[Kim et~al.(2022)Kim, Han, and Ye]{kim2022diffusemorph}
+Boah Kim, Inhwa Han, and Jong~Chul Ye.
+\newblock Diffusemorph: Unsupervised deformable image registration using diffusion model.
+\newblock In \emph{Eur. Conf. Comput. Vis.}, pages 347--364. Springer, 2022.
+
+\bibitem[Koopmans and Beckmann(1957)]{koopmans1957assignment}
+Tjalling~C Koopmans and Martin Beckmann.
+\newblock Assignment problems and the location of economic activities.
+\newblock \emph{Econometrica: journal of the Econometric Society}, pages 53--76, 1957.
+
+\bibitem[Kundu et~al.(2022)Kundu, Bhambri, Kulkarni, Sarkar, Jampani, and Babu]{kundu2022concurrent}
+Jogendra~Nath Kundu, Suvaansh Bhambri, Akshay Kulkarni, Hiran Sarkar, Varun Jampani, and R~Venkatesh Babu.
+\newblock Concurrent subsidiary supervision for unsupervised source-free domain adaptation.
+\newblock In \emph{ECCV}, pages 177--194. Springer, 2022.
+
+\bibitem[Lee and Seung(1999)]{lee1999learning}
+Daniel~D Lee and H~Sebastian Seung.
+\newblock Learning the parts of objects by non-negative matrix factorization.
+\newblock \emph{nature}, 401\penalty0 (6755):\penalty0 788--791, 1999.
+
+\bibitem[Lema{\^\i}tre et~al.(2015)Lema{\^\i}tre, Mart{\'\i}, Freixenet, Vilanova, Walker, and Meriaudeau]{lemaitre2015computer}
+Guillaume Lema{\^\i}tre, Robert Mart{\'\i}, Jordi Freixenet, Joan~C Vilanova, Paul~M Walker, and Fabrice Meriaudeau.
+\newblock Computer-aided detection and diagnosis for prostate cancer based on mono and multi-parametric mri: a review.
+\newblock \emph{Computers in Biology and Medicine}, 2015.
+
+\bibitem[Li et~al.(2017)Li, Yang, Song, and Hospedales]{li2017deeper}
+Da Li, Yongxin Yang, Yi-Zhe Song, and Timothy~M Hospedales.
+\newblock Deeper, broader and artier domain generalization.
+\newblock In \emph{Proc. IEEE/CVF Int. Conf. Comput. Vis.}, pages 5542--5550, 2017.
+
+\bibitem[Li et~al.(2018)Li, Pan, Wang, and Kot]{li2018domain}
+Haoliang Li, Sinno~Jialin Pan, Shiqi Wang, and Alex~C Kot.
+\newblock Domain generalization with adversarial feature learning.
+\newblock In \emph{Proc. IEEE/CVF Comput. Vis. Pattern Recog.}, pages 5400--5409, 2018.
+
+\bibitem[Li et~al.(2022)Li, Liu, and Yuan]{li2022sigma}
+Wuyang Li, Xinyu Liu, and Yixuan Yuan.
+\newblock Sigma: Semantic-complete graph matching for domain adaptive object detection.
+\newblock In \emph{Proc. IEEE/CVF Comput. Vis. Pattern Recog.}, pages 5291--5300, 2022.
+
+\bibitem[Li et~al.(2023)Li, Liu, and Yuan]{li2023sigma++}
+Wuyang Li, Xinyu Liu, and Yixuan Yuan.
+\newblock Sigma++: Improved semantic-complete graph matching for domain adaptive object detection.
+\newblock \emph{IEEE Trans. Pattern Anal. Mach. Intell.}, 45\penalty0 (7):\penalty0 9022--9040, 2023.
+
+\bibitem[Liang et~al.(2024)Liang, He, and Tan]{liang2024comprehensive}
+Jian Liang, Ran He, and Tieniu Tan.
+\newblock A comprehensive survey on test-time adaptation under distribution shifts.
+\newblock \emph{Int. J. Comput. Vis.}, pages 1--34, 2024.
+
+\bibitem[Litjens et~al.(2014)Litjens, Toth, Van De~Ven, Hoeks, Kerkstra, Van~Ginneken, Vincent, Guillard, Birbeck, Zhang, et~al.]{litjens2014evaluation}
+Geert Litjens, Robert Toth, Wendy Van De~Ven, Caroline Hoeks, Sjoerd Kerkstra, Bram Van~Ginneken, Graham Vincent, Gwenael Guillard, Neil Birbeck, Jindang Zhang, et~al.
+\newblock Evaluation of prostate segmentation algorithms for mri: the promise12 challenge.
+\newblock \emph{Medical Image Analysis}, 2014.
+
+\bibitem[Liu et~al.(2022)Liu, Chen, Dou, and Heng]{liu2022single}
+Quande Liu, Cheng Chen, Qi Dou, and Pheng-Ann Heng.
+\newblock Single-domain generalization in medical image segmentation via test-time adaptation from shape dictionary.
+\newblock In \emph{AAAI}, pages 1756--1764, 2022.
+
+\bibitem[Ma et~al.(2024)Ma, He, Li, Han, You, and Wang]{ma2024segment}
+Jun Ma, Yuting He, Feifei Li, Lin Han, Chenyu You, and Bo Wang.
+\newblock Segment anything in medical images.
+\newblock \emph{Nature Communications}, 15\penalty0 (1):\penalty0 654, 2024.
+
+\bibitem[Maset et~al.(2017)Maset, Arrigoni, and Fusiello]{maset2017practical}
+Eleonora Maset, Federica Arrigoni, and Andrea Fusiello.
+\newblock Practical and efficient multi-view matching.
+\newblock In \emph{Proc. IEEE/CVF Int. Conf. Comput. Vis.}, pages 4568--4576, 2017.
+
+\bibitem[Moreno-Torres et~al.(2012)Moreno-Torres, Raeder, Alaiz-Rodr{\'\i}guez, Chawla, and Herrera]{moreno2012unifying}
+Jose~G Moreno-Torres, Troy Raeder, Roc{\'\i}o Alaiz-Rodr{\'\i}guez, Nitesh~V Chawla, and Francisco Herrera.
+\newblock A unifying view on dataset shift in classification.
+\newblock \emph{Pattern recognition}, 45\penalty0 (1):\penalty0 521--530, 2012.
+
+\bibitem[Nado et~al.(2020)Nado, Padhy, Sculley, D'Amour, Lakshminarayanan, and Snoek]{nado2020evaluating}
+Zachary Nado, Shreyas Padhy, D Sculley, Alexander D'Amour, Balaji Lakshminarayanan, and Jasper Snoek.
+\newblock Evaluating prediction-time batch normalization for robustness under covariate shift.
+\newblock \emph{arXiv preprint arXiv:2006.10963}, 2020.
+
+\bibitem[Ngoc~Lan et~al.(2021)Ngoc~Lan, An, Hang, Long, Trung, Thuy, and Sang]{ngoc2021neounet}
+Phan Ngoc~Lan, Nguyen~Sy An, Dao~Viet Hang, Dao~Van Long, Tran~Quang Trung, Nguyen~Thi Thuy, and Dinh~Viet Sang.
+\newblock Neounet: Towards accurate colon polyp segmentation and neoplasm detection.
+\newblock In \emph{Advances in visual Computing: 16th International Symposium (ISVC)}, pages 15--28. Springer, 2021.
+
+\bibitem[Nguyen et~al.(2011)Nguyen, Ben-Chen, Welnicka, Ye, and Guibas]{nguyen2011optimization}
+Andy Nguyen, Mirela Ben-Chen, Katarzyna Welnicka, Yinyu Ye, and Leonidas Guibas.
+\newblock An optimization approach to improving collections of shape maps.
+\newblock In \emph{Computer Graphics Forum}, pages 1481--1491. Wiley Online Library, 2011.
+
+\bibitem[Nicholas et~al.(2015)Nicholas, Anant, Henkjan, John, Justin, et~al.]{nicholas2015nci}
+Bloch Nicholas, Madabhushi Anant, Huisman Henkjan, Freymann John, Kirby Justin, et~al.
+\newblock 2013 challenge: Automated segmentation of prostate structures.
+\newblock \emph{The Cancer Imaging Archive}, 2015.
+
+\bibitem[Niu et~al.(2023)Niu, Wu, Zhang, Wen, Chen, Zhao, and Tan]{niu2023towards}
+Shuaicheng Niu, Jiaxiang Wu, Yifan Zhang, Zhiquan Wen, Yaofo Chen, Peilin Zhao, and Mingkui Tan.
+\newblock Towards stable test-time adaptation in dynamic wild world.
+\newblock \emph{ICLR}, 2023.
+
+\bibitem[Nurlanov et~al.(2023)Nurlanov, Schmidt, and Bernard]{nurlanov2023universe}
+Zhakshylyk Nurlanov, Frank~R Schmidt, and Florian Bernard.
+\newblock Universe points representation learning for partial multi-graph matching.
+\newblock In \emph{AAAI}, pages 1984--1992, 2023.
+
+\bibitem[Orlando et~al.(2020)Orlando, Fu, Breda, Van~Keer, Bathula, Diaz-Pinto, Fang, Heng, Kim, Lee, et~al.]{orlando2020refuge}
+Jos{\'e}~Ignacio Orlando, Huazhu Fu, Jo{\~a}o~Barbosa Breda, Karel Van~Keer, Deepti~R Bathula, Andr{\'e}s Diaz-Pinto, Ruogu Fang, Pheng-Ann Heng, Jeyoung Kim, JoonHo Lee, et~al.
+\newblock Refuge challenge: A unified framework for evaluating automated methods for glaucoma assessment from fundus photographs.
+\newblock \emph{Medical Image Analysis}, 59:\penalty0 101570, 2020.
+
+\bibitem[Osowiechi et~al.(2024)Osowiechi, Hakim, Noori, Cheraghalikhani, Bahri, Yazdanpanah, Ben~Ayed, and Desrosiers]{osowiechi2024nc}
+David Osowiechi, Gustavo A~Vargas Hakim, Mehrdad Noori, Milad Cheraghalikhani, Ali Bahri, Moslem Yazdanpanah, Ismail Ben~Ayed, and Christian Desrosiers.
+\newblock Nc-ttt: A noise constrastive approach for test-time training.
+\newblock In \emph{Proc. IEEE/CVF Comput. Vis. Pattern Recog.}, pages 6078--6086, 2024.
+
+\bibitem[Pachauri et~al.(2013)Pachauri, Kondor, and Singh]{pachauri2013solving}
+Deepti Pachauri, Risi Kondor, and Vikas Singh.
+\newblock Solving the multi-way matching problem by permutation synchronization.
+\newblock \emph{Adv. Neural Inform. Process. Syst.}, 26, 2013.
+
+\bibitem[Peng et~al.(2019)Peng, Bai, Xia, Huang, Saenko, and Wang]{peng2019moment}
+Xingchao Peng, Qinxun Bai, Xide Xia, Zijun Huang, Kate Saenko, and Bo Wang.
+\newblock Moment matching for multi-source domain adaptation.
+\newblock In \emph{Proc. IEEE/CVF Int. Conf. Comput. Vis.}, pages 1406--1415, 2019.
+
+\bibitem[Pu et~al.(2024{\natexlab{a}})Pu, Lv, Yang, Guannan, Dong, Lin, Shengli, Ying, Fei, Chen, Jin, Li, and Li]{pmlr-v235-pu24b}
+Bin Pu, Xingguo Lv, Jiewen Yang, He Guannan, Xingbo Dong, Yiqun Lin, Li Shengli, Tan Ying, Liu Fei, Ming Chen, Zhe Jin, Kenli Li, and Xiaomeng Li.
+\newblock Unsupervised domain adaptation for anatomical structure detection in ultrasound images.
+\newblock In \emph{ICML}, pages 41204--41220. PMLR, 2024{\natexlab{a}}.
+
+\bibitem[Pu et~al.(2024{\natexlab{b}})Pu, Wang, Yang, He, Dong, Li, Tan, Chen, Jin, Li, et~al.]{pu2024m3}
+Bin Pu, Liwen Wang, Jiewen Yang, Guannan He, Xingbo Dong, Shengli Li, Ying Tan, Ming Chen, Zhe Jin, Kenli Li, et~al.
+\newblock M3-uda: A new benchmark for unsupervised domain adaptive fetal cardiac structure detection.
+\newblock In \emph{Proc. IEEE/CVF Comput. Vis. Pattern Recog.}, pages 11621--11630, 2024{\natexlab{b}}.
+
+\bibitem[Qiao et~al.(2020)Qiao, Zhao, and Peng]{qiao2020learning}
+Fengchun Qiao, Long Zhao, and Xi Peng.
+\newblock Learning to learn single domain generalization.
+\newblock In \emph{Proc. IEEE/CVF Comput. Vis. Pattern Recog.}, pages 12556--12565, 2020.
+
+\bibitem[Rong et~al.(2020)Rong, Huang, Xu, and Huang]{rongdropedge}
+Yu Rong, Wenbing Huang, Tingyang Xu, and Junzhou Huang.
+\newblock Dropedge: Towards deep graph convolutional networks on node classification.
+\newblock In \emph{ICLR}, 2020.
+
+\bibitem[Ronneberger et~al.(2015)Ronneberger, Fischer, and Brox]{ronneberger2015u}
+Olaf Ronneberger, Philipp Fischer, and Thomas Brox.
+\newblock U-net: Convolutional networks for biomedical image segmentation.
+\newblock In \emph{MICCAI}, pages 234--241. Springer, 2015.
+
+\bibitem[Sarlin et~al.(2020)Sarlin, DeTone, Malisiewicz, and Rabinovich]{sarlin2020superglue}
+Paul-Edouard Sarlin, Daniel DeTone, Tomasz Malisiewicz, and Andrew Rabinovich.
+\newblock Superglue: Learning feature matching with graph neural networks.
+\newblock In \emph{Proc. IEEE/CVF Comput. Vis. Pattern Recog.}, pages 4938--4947, 2020.
+
+\bibitem[Schneider et~al.(2020)Schneider, Rusak, Eck, Bringmann, Brendel, and Bethge]{schneider2020improving}
+Steffen Schneider, Evgenia Rusak, Luisa Eck, Oliver Bringmann, Wieland Brendel, and Matthias Bethge.
+\newblock Improving robustness against common corruptions by covariate shift adaptation.
+\newblock \emph{Adv. Neural Inform. Process. Syst.}, 33:\penalty0 11539--11551, 2020.
+
+\bibitem[Selvaraju et~al.(2017)Selvaraju, Cogswell, Das, Vedantam, Parikh, and Batra]{selvaraju2017grad}
+Ramprasaath~R Selvaraju, Michael Cogswell, Abhishek Das, Ramakrishna Vedantam, Devi Parikh, and Dhruv Batra.
+\newblock Grad-cam: Visual explanations from deep networks via gradient-based localization.
+\newblock In \emph{Proc. IEEE/CVF Int. Conf. Comput. Vis.}, pages 618--626, 2017.
+
+\bibitem[Shu et~al.(2022)Shu, Nie, Huang, Yu, Goldstein, Anandkumar, and Xiao]{shu2022test}
+Manli Shu, Weili Nie, De-An Huang, Zhiding Yu, Tom Goldstein, Anima Anandkumar, and Chaowei Xiao.
+\newblock Test-time prompt tuning for zero-shot generalization in vision-language models.
+\newblock \emph{Adv. Neural Inform. Process. Syst.}, 35:\penalty0 14274--14289, 2022.
+
+\bibitem[Silva et~al.(2014)Silva, Histace, Romain, Dray, and Granado]{silva2014toward}
+Juan Silva, Aymeric Histace, Olivier Romain, Xavier Dray, and Bertrand Granado.
+\newblock Toward embedded detection of polyps in wce images for early diagnosis of colorectal cancer.
+\newblock \emph{International Journal of Computer Assisted Radiology and Surgery}, 9:\penalty0 283--293, 2014.
+
+\bibitem[Sinkhorn(1964)]{sinkhorn1964relationship}
+Richard Sinkhorn.
+\newblock A relationship between arbitrary positive matrices and doubly stochastic matrices.
+\newblock \emph{The annals of mathematical statistics}, 35\penalty0 (2):\penalty0 876--879, 1964.
+
+\bibitem[Sivaswamy et~al.(2014)Sivaswamy, Krishnadas, Joshi, Jain, and Tabish]{sivaswamy2014drishti}
+Jayanthi Sivaswamy, SR Krishnadas, Gopal~Datt Joshi, Madhulika Jain, and A~Ujjwaft~Syed Tabish.
+\newblock Drishti-gs: Retinal image dataset for optic nerve head (onh) segmentation.
+\newblock In \emph{International Symposium on Biomedical Imaging (ISBI)}, pages 53--56. IEEE, 2014.
+
+\bibitem[Slichter(2013)]{slichter2013principles}
+Charles~P Slichter.
+\newblock \emph{Principles of magnetic resonance}.
+\newblock Springer Science \& Business Media, 2013.
+
+\bibitem[Ter~Haar(2007)]{ter2007therapeutic}
+Gail Ter~Haar.
+\newblock Therapeutic applications of ultrasound.
+\newblock \emph{Progress in biophysics and molecular biology}, 93\penalty0 (1-3):\penalty0 111--129, 2007.
+
+\bibitem[Tron et~al.(2017)Tron, Zhou, Esteves, and Daniilidis]{tron2017fast}
+Roberto Tron, Xiaowei Zhou, Carlos Esteves, and Kostas Daniilidis.
+\newblock Fast multi-image matching via density-based clustering.
+\newblock In \emph{Proc. IEEE/CVF Int. Conf. Comput. Vis.}, pages 4057--4066, 2017.
+
+\bibitem[Vapnik(1998)]{vapnik1998statistical}
+Vladimir Vapnik.
+\newblock Statistical learning theory.
+\newblock \emph{John Wiley \& Sons google schola}, 2:\penalty0 831--842, 1998.
+
+\bibitem[Wang et~al.(2021{\natexlab{a}})Wang, Shelhamer, Liu, Olshausen, and Darrell]{wangtent}
+Dequan Wang, Evan Shelhamer, Shaoteng Liu, Bruno Olshausen, and Trevor Darrell.
+\newblock Tent: Fully test-time adaptation by entropy minimization.
+\newblock In \emph{ICLR}, 2021{\natexlab{a}}.
+
+\bibitem[Wang et~al.(2022)Wang, Lan, Liu, Ouyang, Qin, Lu, Chen, Zeng, and Philip]{wang2022generalizing}
+Jindong Wang, Cuiling Lan, Chang Liu, Yidong Ouyang, Tao Qin, Wang Lu, Yiqiang Chen, Wenjun Zeng, and S~Yu Philip.
+\newblock Generalizing to unseen domains: A survey on domain generalization.
+\newblock \emph{IEEE transactions on knowledge and data engineering}, 35\penalty0 (8):\penalty0 8052--8072, 2022.
+
+\bibitem[Wang et~al.(2019)Wang, Yan, and Yang]{wang2019learning}
+Runzhong Wang, Junchi Yan, and Xiaokang Yang.
+\newblock Learning combinatorial embedding networks for deep graph matching.
+\newblock In \emph{Proc. IEEE/CVF Int. Conf. Comput. Vis.}, pages 3056--3065, 2019.
+
+\bibitem[Wang et~al.(2020)Wang, Yan, and Yang]{wang2020graduated}
+Runzhong Wang, Junchi Yan, and Xiaokang Yang.
+\newblock Graduated assignment for joint multi-graph matching and clustering with application to unsupervised graph matching network learning.
+\newblock \emph{Adv. Neural Inform. Process. Syst.}, 33:\penalty0 19908--19919, 2020.
+
+\bibitem[Wang et~al.(2021{\natexlab{b}})Wang, Yan, and Yang]{wang2021neural}
+Runzhong Wang, Junchi Yan, and Xiaokang Yang.
+\newblock Neural graph matching network: Learning lawler’s quadratic assignment problem with extension to hypergraph and multiple-graph matching.
+\newblock \emph{IEEE Trans. Pattern Anal. Mach. Intell.}, 44\penalty0 (9):\penalty0 5261--5279, 2021{\natexlab{b}}.
+
+\bibitem[Wang et~al.(2023)Wang, Yan, and Yang]{wang2023unsupervised}
+Runzhong Wang, Junchi Yan, and Xiaokang Yang.
+\newblock Unsupervised learning of graph matching with mixture of modes via discrepancy minimization.
+\newblock \emph{IEEE Trans. Pattern Anal. Mach. Intell.}, 45\penalty0 (8):\penalty0 10500--10518, 2023.
+
+\bibitem[Wen et~al.(2024)Wen, Yuan, Ni, Xiao, and Wu]{wen2024denoising}
+Ruxue Wen, Hangjie Yuan, Dong Ni, Wenbo Xiao, and Yaoyao Wu.
+\newblock From denoising training to test-time adaptation: Enhancing domain generalization for medical image segmentation.
+\newblock In \emph{Proc. IEEE/CVF Winter Conference on Applications of Computer Vision}, pages 464--474, 2024.
+
+\bibitem[Yan et~al.(2013)Yan, Tian, Zha, Yang, Zhang, and Chu]{yan2013joint}
+Junchi Yan, Yu Tian, Hongyuan Zha, Xiaokang Yang, Ya Zhang, and Stephen~M Chu.
+\newblock Joint optimization for consistent multiple graph matching.
+\newblock In \emph{Proc. IEEE/CVF Int. Conf. Comput. Vis.}, pages 1649--1656, 2013.
+
+\bibitem[Yan et~al.(2014)Yan, Li, Liu, Zha, Yang, and Chu]{yan2014graduated}
+Junchi Yan, Yin Li, Wei Liu, Hongyuan Zha, Xiaokang Yang, and Stephen~Mingyu Chu.
+\newblock Graduated consistency-regularized optimization for multi-graph matching.
+\newblock In \emph{ECCV}, pages 407--422. Springer, 2014.
+
+\bibitem[Yan et~al.(2015)Yan, Cho, Zha, Yang, and Chu]{yan2015multi}
+Junchi Yan, Minsu Cho, Hongyuan Zha, Xiaokang Yang, and Stephen~M Chu.
+\newblock Multi-graph matching via affinity optimization with graduated consistency regularization.
+\newblock \emph{IEEE Trans. Pattern Anal. Mach. Intell.}, 38\penalty0 (6):\penalty0 1228--1242, 2015.
+
+\bibitem[Yang et~al.(2022)Yang, Chen, Jiang, Liu, Cao, Heng, and Dou]{yang2022dltta}
+Hongzheng Yang, Cheng Chen, Meirui Jiang, Quande Liu, Jianfeng Cao, Pheng~Ann Heng, and Qi Dou.
+\newblock Dltta: Dynamic learning rate for test-time adaptation on cross-domain medical images.
+\newblock \emph{IEEE Transactions on Medical Imaging}, 41\penalty0 (12):\penalty0 3575--3586, 2022.
+
+\bibitem[Yang et~al.(2023)Yang, Ding, Zheng, Xu, and Li]{yang2023graphecho}
+Jiewen Yang, Xinpeng Ding, Ziyang Zheng, Xiaowei Xu, and Xiaomeng Li.
+\newblock Graphecho: Graph-driven unsupervised domain adaptation for echocardiogram video segmentation.
+\newblock In \emph{Proc. IEEE/CVF Int. Conf. Comput. Vis.}, pages 11878--11887, 2023.
+
+\bibitem[Yoon et~al.(2023)Yoon, Oh, Shin, Mazurowski, and Suk]{yoon2023domain}
+Jee~Seok Yoon, Kwanseok Oh, Yooseung Shin, Maciej~A Mazurowski, and Heung-Il Suk.
+\newblock Domain generalization for medical image analysis: A survey.
+\newblock \emph{arXiv preprint arXiv:2310.08598}, 2023.
+
+\bibitem[Yu et~al.(2023)Yu, Huang, Zhang, and Shan]{yu2023san}
+Weiyi Yu, Zhizhong Huang, Junping Zhang, and Hongming Shan.
+\newblock San-net: Learning generalization to unseen sites for stroke lesion segmentation with self-adaptive normalization.
+\newblock \emph{Computers in Biology and Medicine}, 156:\penalty0 106717, 2023.
+
+\bibitem[Zhang et~al.(2024)Zhang, Zheng, You, Zheng, and Gu]{zhang2024pass}
+Chuyan Zhang, Hao Zheng, Xin You, Yefeng Zheng, and Yun Gu.
+\newblock Pass: Test-time prompting to adapt styles and semantic shapes in medical image segmentation.
+\newblock \emph{IEEE Transactions on Medical Imaging}, 2024.
+
+\bibitem[Zhang et~al.(2023)Zhang, Qi, Shi, and Gao]{zhang2023domainadaptor}
+Jian Zhang, Lei Qi, Yinghuan Shi, and Yang Gao.
+\newblock Domainadaptor: A novel approach to test-time adaptation.
+\newblock In \emph{Proc. IEEE/CVF Int. Conf. Comput. Vis.}, pages 18971--18981, 2023.
+
+\bibitem[Zhang et~al.(2020)Zhang, Wang, Yang, Sanford, Harmon, Turkbey, Wood, Roth, Myronenko, Xu, et~al.]{zhang2020generalizing}
+Ling Zhang, Xiaosong Wang, Dong Yang, Thomas Sanford, Stephanie Harmon, Baris Turkbey, Bradford~J Wood, Holger Roth, Andriy Myronenko, Daguang Xu, et~al.
+\newblock Generalizing deep learning for medical image segmentation to unseen domains via deep stacked transformation.
+\newblock \emph{IEEE transactions on medical imaging}, 39\penalty0 (7):\penalty0 2531--2540, 2020.
+
+\bibitem[Zhang et~al.(2021)Zhang, Marklund, Dhawan, Gupta, Levine, and Finn]{zhang2021adaptive}
+Marvin Zhang, Henrik Marklund, Nikita Dhawan, Abhishek Gupta, Sergey Levine, and Chelsea Finn.
+\newblock Adaptive risk minimization: Learning to adapt to domain shift.
+\newblock \emph{Adv. Neural Inform. Process. Syst.}, 34:\penalty0 23664--23678, 2021.
+
+\bibitem[Zhang et~al.(2022)Zhang, Levine, and Finn]{zhang2022memo}
+Marvin Zhang, Sergey Levine, and Chelsea Finn.
+\newblock Memo: Test time robustness via adaptation and augmentation.
+\newblock \emph{Adv. Neural Inform. Process. Syst.}, 35:\penalty0 38629--38642, 2022.
+
+\bibitem[Zhang et~al.(2010)Zhang, Yin, Liu, Wong, Tan, Lee, Cheng, and Wong]{zhang2010origa}
+Zhuo Zhang, Feng~Shou Yin, Jiang Liu, Wing~Kee Wong, Ngan~Meng Tan, Beng~Hai Lee, Jun Cheng, and Tien~Yin Wong.
+\newblock Origa-light: An online retinal fundus image database for glaucoma analysis and research.
+\newblock In \emph{2010 Annual International Conference of the IEEE Engineering in Medicine and Biology}, pages 3065--3068. IEEE, 2010.
+
+\bibitem[Zhou et~al.(2022)Zhou, Liu, Qiao, Xiang, and Loy]{zhou2022domain}
+Kaiyang Zhou, Ziwei Liu, Yu Qiao, Tao Xiang, and Chen~Change Loy.
+\newblock Domain generalization: A survey.
+\newblock \emph{IEEE Trans. Pattern Anal. Mach. Intell.}, 45\penalty0 (4):\penalty0 4396--4415, 2022.
+
+\bibitem[Zhou et~al.(2015)Zhou, Zhu, and Daniilidis]{zhou2015multi}
+Xiaowei Zhou, Menglong Zhu, and Kostas Daniilidis.
+\newblock Multi-image matching via fast alternating minimization.
+\newblock In \emph{Proc. IEEE/CVF Int. Conf. Comput. Vis.}, pages 4032--4040, 2015.
+
+\bibitem[Zou et~al.(2022)Zou, Zhang, Li, Zhang, Pfister, and Huang]{zou2022learning}
+Yuliang Zou, Zizhao Zhang, Chun-Liang Li, Han Zhang, Tomas Pfister, and Jia-Bin Huang.
+\newblock Learning instance-specific adaptation for cross-domain segmentation.
+\newblock In \emph{ECCV}, pages 459--476. Springer, 2022.
+
+\bibitem[Zuo et~al.(2021)Zuo, Yao, and Xu]{zuo2021attention}
+Yukun Zuo, Hantao Yao, and Changsheng Xu.
+\newblock Attention-based multi-source domain adaptation.
+\newblock \emph{IEEE Transactions on Image Processing}, 30:\penalty0 3793--3803, 2021.
+
+\end{thebibliography}

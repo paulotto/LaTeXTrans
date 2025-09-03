@@ -1,0 +1,43 @@
+% % Please add the following required packages to your document preamble:
+% % \usepackage{booktabs}
+% % \usepackage{multirow}
+% \begin{table}[]
+% \small
+% \centering
+% \begin{tabular}{
+% L{38pt}
+% C{16pt} 
+% C{16pt}
+% C{20pt} |
+% C{16pt}
+% C{16pt}
+% C{16pt}
+% }
+% \toprule
+% \multirow{2}{*}{\textbf{Method}} 
+% & \multicolumn{3}{c|}{\textbf{Sentiment}}      
+% & \multicolumn{3}{c}{\textbf{Topic}}        
+% \\ 
+% \cmidrule(l){2-7} 
+% & \textbf{\Pol} 
+% & \textbf{\Yelp} 
+% & \textbf{\IMDb} 
+% & \textbf{\AG} 
+% & \textbf{\ToI} 
+% & \textbf{\Cat} 
+% \\ \midrule
+% % \gold             
+% % & 0            & 0             & 0             & 0           & 0            & 0            \\
+% \AttrPromptShort             
+% & -            & 55.9          & -          & 52.8      & -            & -            \\
+% \fewgen             
+% & 65.2         & 80.4          & 60.8       & 78.4      & 67.8         & 64.1         \\
+% \oursshort            
+% & -            & 76.6          & 60.3       & 94.0      & 71.7         & 65.0         \\ 
+% \corrsynshort             
+% & 71.8         & 85.5          & 66.9       & 86.2      & 74.9         & -            \\ 
+% \bottomrule
+% \end{tabular}
+% \caption{Mauve results (3-shot Human-annotated ICL set). Synthesis results are generated from \textsc{Mistral-7B-Instruct} teacher LM.}
+% \label{tab:mauve}
+% \end{table}

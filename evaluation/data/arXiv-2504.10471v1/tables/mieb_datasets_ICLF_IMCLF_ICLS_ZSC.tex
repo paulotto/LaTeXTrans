@@ -1,0 +1,68 @@
+\begin{table*}[t]
+    \centering
+\resizebox{\linewidth}{!}{
+\begin{tabular}{llcrrrl}
+\toprule
+\textbf{Type} & \textbf{Task} & \textbf{MIEB-lite} & \textbf{\# Samples Train} & \textbf{\# Samples Test} & \textbf{\# Labels} & \textbf{Metric}\\
+\midrule
+\multirow{19}{10em}{ImageClassification} & Birdsnap \cite{Berg_2014_CVPR} & & 2674 & 1851 & 500 & \multirow{19}{3.5em}{Accuracy} \\
+& Caltech101 \cite{caltech101} & & 3060 & 6084 & 101 &  \\
+& CIFAR10 \cite{Krizhevsky09learningcifar} & & 50000 & 10000 & 10 &  \\
+& CIFAR100 \cite{Krizhevsky09learningcifar} & & 50000 & 10000 & 100 &  \\
+& Country211 \cite{radford2021learning} & \checkmark & 28000 & 21100 & 211 &  \\
+& DTD \cite{cimpoi14describing} & \checkmark & 3760 & 1880 & 47 &  \\
+& EuroSAT \cite{Helber2019} & \checkmark & 16200 & 5400 & 10 &  \\
+& FER2013 \cite{goodfellow2015} & & 28709 & 7178 & 7 &  \\
+& FGVCAircraft \cite{maji2013aircraft} & & - & 3333 & - &  \\
+& Food101Classification \cite{bossard14} & & 75750 & 25300 & 101 &  \\
+& GTSRB \cite{Stallkamp2011} & \checkmark & 26640 & 12630 & 43 &  \\
+& Imagenet1k \cite{deng2009imagenet} & & 45200 & 37200 & 744 &  \\
+& MNIST \cite{lecun2010mnist} & & 60000 & 10000 & 10 &  \\
+& OxfordFlowersClassification \cite{Nilsback2008} & & 7169 & 1020 & 102 &  \\
+& OxfordPets \cite{Parkhi2012} & \checkmark & 3680 & 3669 & 37 &  \\
+& PatchCamelyon \cite{veeling2018} & \checkmark & 262144 & 32768 & 2 &  \\
+& RESISC45 \cite{cheng2017} & \checkmark & 18900 & 6300 & 45 &  \\
+& StanfordCars \cite{Krause2013CollectingAL} & & 8144 & 8041 & 196 &  \\
+& STL10 \cite{pmlr-v15-coates11a} & & 5000 & 8000 & 10 &  \\
+& SUN397 \cite{5539970} & \checkmark & 76127 & 21750 & 397 &  \\
+& UCF101 \cite{soomro2012ucf101dataset101human} & & 1786096 & 697222 & 101 &  \\
+\hline
+ImageMultiLabelClassification\textbf{*} & VOC2007 \cite{Everingham10} & & - & 4952 & $\in[1-5]$ & Accuracy \\
+\hline
+\multirow{4}{10em}{ImageClustering} & CIFAR10Clustering \cite{Krizhevsky09learningcifar} & & - & 10000 & 10 & \multirow{3}{3.5em}{NMI} \\
+& CIFAR100Clustering \cite{Krizhevsky09learningcifar} & & - & 10000 & 100 &  \\
+& ImageNetDog15Clustering \cite{deng2009imagenet} & \checkmark & - & 1076 & 15 &  \\
+& ImageNet10Clustering \cite{deng2009imagenet} & & - & 13000 & 10 &  \\
+& TinyImageNetClustering \cite{Le2015TinyIV} & \checkmark & - & 10000 & 200 &  \\
+\hline
+\multirow{24}{14em}{ZeroShotClassification} & BirdsnapZeroShot \cite{Berg_2014_CVPR} & & 2674 & 1851 & 500 & \multirow{23}{3.5em}{Accuracy} \\
+& Caltech101ZeroShot \cite{caltech101} & & 3060 & 6084 & 101 &  \\
+& CIFAR10ZeroShot \cite{Krizhevsky09learningcifar} & & 50000 & 10000 & 10 &  \\
+& CIFAR100ZeroShot \cite{Krizhevsky09learningcifar} & \checkmark & 50000 & 10000 & 100 &  \\
+& CLEVRZeroShot \cite{Johnson_2017_CVPR} & & 51600 & 15000 & 6 &  \\
+& CLEVRCountZeroShot \cite{Johnson_2017_CVPR} & & 51600 & 15000 & 8 &  \\
+& Country211ZeroShot \cite{radford2021learning} & \checkmark & 28000 & 21100 & 211 &  \\
+& DTDZeroShot \cite{cimpoi14describing} & & 3760 & 1880 & 47 &  \\
+& EuroSATZeroShot \cite{Helber2019} & & 16200 & 5400 & 10 &  \\
+& FER2013ZeroShot \cite{goodfellow2015} & \checkmark & 28709 & 7178 & 7 &  \\
+& FGVCAircraftZeroShot \cite{maji2013aircraft} & \checkmark & - & 3333 & - &  \\
+& Food101ZeroShot \cite{bossard14} & \checkmark & 75750 & 25300 & 101 &  \\
+& GTSRBZeroShot \cite{Stallkamp2011} & & 26640 & 12630 & 43 &  \\
+& Imagenet1kZeroShot \cite{deng2009imagenet} & & 45200 & 37200 & 744 &  \\
+& MNISTZeroShot \cite{lecun2010mnist} & & 60000 & 10000 & 10 &  \\
+& OxfordPetsZeroShot \cite{Parkhi2012} & \checkmark & 3680 & 3669 & 37 &  \\
+& PatchCamelyonZeroShot \cite{veeling2018} & & 262144 & 32768 & 2 &  \\
+& RenderedSST2 \cite{radford2021learning} & & 6920 & 1821 & 2 &  \\
+& RESISC45ZeroShot \cite{cheng2017} & & 18900 & 6300 & 45 &  \\
+& SciMMIR \cite{wu2024scimmir} & & 498279 & 16263 & 5 &  \\
+& StanfordCarsZeroShot \cite{Krause2013CollectingAL} & \checkmark & 8144 & 8041 & 196 &  \\
+& STL10ZeroShot \cite{pmlr-v15-coates11a} & & 5000 & 8000 & 10 &  \\
+& SUN397ZeroShot \cite{5539970} & & 76127 & 21750 & 397 &  \\
+& UCF101ZeroShot \cite{soomro2012ucf101dataset101human} & & 1786096 & 697222 & 101 &  \\
+\bottomrule
+\end{tabular}
+}
+\caption{\textbf{Datasets overview and metadata for \emph{ImageClassification}, \emph{ImageMultiLabelClassification}, \emph{ImageClustering} and \emph{ZeroShotClassification} tasks.} \textbf{*} For \emph{ImageMultiLabelClassification}, the number of labels per sample is between the given interval. Further, we again note that with the large scales of training set in classification datasets, we adopt the few-shot linear probe paradigm in the evaluation.
+}
+\label{tab:datasets_ImageClassification}
+\end{table*}

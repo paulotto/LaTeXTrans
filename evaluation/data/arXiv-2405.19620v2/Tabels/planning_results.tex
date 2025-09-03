@@ -1,0 +1,34 @@
+\begin{table}[htbp]
+\centering
+\caption{\textbf{Planning results.} $^*$:LiDAR-based methods. $^\dagger$:Reproduced with official checkpoint.}
+\label{tab:plan}
+\resizebox{0.90\linewidth}{!}
+{    
+\begin{tabular}{l|cccc|cccc}
+\toprule
+\multirow{2}{*}{Method} &
+\multicolumn{4}{c|}{L2($m$)$\downarrow$} & 
+\multicolumn{4}{c}{Col. Rate(\%)$\downarrow$} \\
+& 1$s$ & 2$s$ & 3$s$ & \cellcolor{gray!30}Avg. & 1$s$ & 2$s$ & 3$s$ & \cellcolor{gray!30}Avg.\\
+\midrule
+% NMP$^*$~\cite{zeng2019nmp} & - & - & 2.31 & \cellcolor{gray!30}- & - & - & 1.92 & \cellcolor{gray!30}- \\
+% SA-NMP$^*$~\cite{zeng2019nmp} & - & - & 2.05 & \cellcolor{gray!30}- & - & - & 1.59 & \cellcolor{gray!30}- \\
+FF$^*$~\cite{ff} & 0.55 & 1.20 & 2.54 & \cellcolor{gray!30}1.43 & 0.06 & 0.17 & 1.07 & \cellcolor{gray!30}0.43 \\
+EO$^*$~\cite{eo} & 0.67 & 1.36 & 2.78 & \cellcolor{gray!30}1.60 & 0.04 & 0.09 & 0.88 & \cellcolor{gray!30}0.33 \\
+\midrule
+ST-P3~\cite{stp3} & 1.33 & 2.11 & 2.90 & \cellcolor{gray!30}2.11 & 0.23 & 0.62 & 1.27 & \cellcolor{gray!30}0.71 \\
+UniAD$^\dagger$~\cite{uniad} & 0.45 & 0.70 & 1.04 & \cellcolor{gray!30}0.73 & 0.62 & 0.58 & 0.63  & \cellcolor{gray!30}0.61 \\
+% VAD-Tiny$^\dagger$ & 0.46 & 0.76 & 1.12 & \cellcolor{gray!30}0.78 & 0.14 & 0.32 & 0.57  & \cellcolor{gray!30}0.34 \\
+VAD$^\dagger$~\cite{vad} & 0.41 & 0.70 & 1.05 & \cellcolor{gray!30}0.72 & 0.03 & 0.19 & 0.43  & \cellcolor{gray!30}0.21 \\ 
+SparseDrive-S & \textbf{0.29} & 0.58 & 0.96 & \cellcolor{gray!30}0.61 & \textbf{0.01} & 0.05 & 0.18 & \cellcolor{gray!30}0.08 \\
+SparseDrive-B &\textbf{0.29} & \textbf{0.55} & \textbf{0.91} & \cellcolor{gray!30}\textbf{0.58} & \textbf{0.01} & \textbf{0.02} & \textbf{0.13} & \cellcolor{gray!30}\textbf{0.06} \\
+% \midrule
+% VAD-Tiny$^\ddagger$ & 0.20 & 0.38 & 0.65 & 
+% \cellcolor{gray!30}0.41 & 0.10 & 0.12 & 0.27  & \cellcolor{gray!30}0.16 \\
+% VAD-Base$^\ddagger$ & 0.17 & 0.34 & 0.60 & \cellcolor{gray!30}0.37 & 0.07 & 0.10 & 0.24  & \cellcolor{gray!30}0.14 \\
+% SparseDrive-S$^\ddagger$ & 0.16 & 0.33 & 0.61 & \cellcolor{gray!30}0.37 & 0.00 & 0.02 & 0.10  & \cellcolor{gray!30}0.04 \\
+\bottomrule
+\end{tabular}
+}
+\vspace{5pt}
+\end{table} 

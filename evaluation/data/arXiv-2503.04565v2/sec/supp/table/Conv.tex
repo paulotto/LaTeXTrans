@@ -1,0 +1,31 @@
+\begin{table}[t!]
+    \centering
+    \setlength{\tabcolsep}{8pt}     % 4pt
+    \resizebox{\columnwidth}{!}{%
+    \begin{tabular}{c|ccc|ccc}
+        % \toprule
+        \topline
+        %
+        \rowcolor{mygray}  Exp. & $\mathcal{S}_5$ & $\mathcal{S}_4$ & $\mathcal{S}_3$ & HOTA$\uparrow$ & IDF1$\uparrow$ & OSPA$\downarrow$ \\
+        % \midrule 
+        \hline
+        \ding{192} & - &  -  &  -  & 23.296 & 25.496 &0.93415\\
+
+        
+        \ding{193} & Conv &  Conv  &  Conv  & 23.565  & 25.814  & \textbf{0.90931}\\
+
+        \ding{194} &  Conv  &  -  &  -  & \textbf{24.107} & \textbf{26.374} & 0.92567 \\
+        \ding{195} & -  & Conv  & - & 23.814 & 26.083  & 0.92624  \\
+        % \midrule
+        % \hline
+        \ding{196} & - & - &  Conv  & 23.721 & 25.565 & 0.91992  \\
+        % \bottomrule
+        \bottomline
+    \end{tabular}
+    }
+    %\vspace{-1mm}
+    \caption{Analysis of the impact of convolution in the CircularStatE Module. $S_3$, $S_4$, and $S_5$ represent multi-scale features extracted from the backbone~\cite{He_2016_CVPR}. \emph{Conv} represent convolution.}
+
+    %\vspace{-3mm}
+    \label{tab:conv}
+\end{table}

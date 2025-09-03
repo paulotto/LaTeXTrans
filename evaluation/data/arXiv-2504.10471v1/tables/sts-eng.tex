@@ -1,0 +1,55 @@
+\begin{table*}
+\centering
+\resizebox{\linewidth}{!}{\begin{tabular}{lcccccccccc}\toprule
+\textbf{model name} &\textbf{STS12} &\textbf{STS13} &\textbf{STS14} &\textbf{STS15} &\textbf{STS16} &\textbf{STS17} &\textbf{STS-b} &\textbf{mean} \\\midrule
+voyage-multimodal-3 &71.62 &81.60 &77.98 &86.85 &82.62 &89.68 &82.55 &81.84 \\
+royokong/e5-v &73.15 &78.18 &74.88 &84.22 &79.45 &85.84 &79.40 &79.30 \\
+TIGER-Lab/VLM2Vec-Full &71.15 &65.88 &62.63 &76.00 &75.36 &83.72 &73.75 &72.64 \\
+TIGER-Lab/VLM2Vec-LoRA &71.18 &65.87 &62.61 &75.92 &75.34 &83.55 &73.64 &72.59 \\
+EVA02-CLIP-bigE-14-plus &63.36 &68.00 &66.38 &79.45 &75.26 &82.87 &68.59 &71.99 \\
+laion/CLIP-ViT-bigG-14-laion2B-39B-b160k &62.81 &68.16 &65.50 &78.67 &74.89 &79.97 &66.54 &70.93 \\
+laion/CLIP-ViT-L-14-DataComp.XL-s13B-b90K &62.36 &67.64 &64.25 &77.36 &73.48 &80.63 &63.38 &69.87 \\
+google/siglip-large-patch16-384 &66.30 &62.08 &61.66 &77.11 &73.27 &79.58 &66.59 &69.51 \\
+laion/CLIP-ViT-g-14-laion2B-s34B-b88K &61.85 &66.43 &62.32 &76.73 &72.67 &79.88 &64.13 &69.14 \\
+EVA02-CLIP-bigE-14 &62.24 &62.36 &62.17 &77.41 &73.63 &80.96 &62.85 &68.80 \\
+laion/CLIP-ViT-B-16-DataComp.XL-s13B-b90K &64.19 &63.81 &62.34 &75.48 &69.90 &80.04 &63.51 &68.47 \\
+google/siglip-so400m-patch14-384 &61.90 &62.95 &60.58 &76.17 &73.48 &78.41 &62.63 &68.02 \\
+google/siglip-base-patch16-512 &64.97 &59.10 &61.13 &75.08 &71.27 &80.09 &62.21 &67.69 \\
+google/siglip-large-patch16-256 &63.94 &59.44 &59.35 &75.74 &71.83 &79.21 &62.50 &67.43 \\
+google/siglip-base-patch16-384 &64.62 &59.38 &61.17 &74.34 &70.29 &79.27 &60.28 &67.05 \\
+Salesforce/blip-itm-base-coco &62.91 &55.14 &60.17 &72.83 &71.59 &77.32 &66.50 &66.64 \\
+google/siglip-base-patch16-256 &65.01 &58.02 &60.36 &74.25 &69.09 &78.73 &57.65 &66.16 \\
+openai/clip-vit-base-patch16 &63.82 &63.26 &56.99 &73.32 &68.91 &78.18 &57.93 &66.06 \\
+laion/CLIP-ViT-L-14-laion2B-s32B-b82K &57.52 &62.75 &59.94 &74.55 &70.61 &75.92 &59.43 &65.82 \\
+laion/CLIP-ViT-H-14-laion2B-s32B-b79K &57.00 &62.25 &58.62 &74.40 &70.57 &76.69 &58.99 &65.50 \\
+google/siglip-base-patch16-256-multilingual &66.62 &54.80 &59.00 &72.65 &68.33 &80.53 &56.29 &65.46 \\
+openai/clip-vit-large-patch14 &53.89 &66.78 &55.98 &72.03 &70.49 &75.26 &56.74 &64.45 \\
+Salesforce/blip-itm-base-flickr &59.24 &54.45 &57.87 &71.10 &68.17 &75.97 &62.93 &64.25 \\
+google/siglip-base-patch16-224 &63.19 &55.40 &57.99 &73.07 &67.79 &77.78 &54.50 &64.25 \\
+BAAI/bge-visualized-m3 &63.93 &56.91 &58.19 &70.94 &63.49 &79.18 &56.48 &64.16 \\
+EVA02-CLIP-L-14 &53.75 &60.82 &57.12 &71.53 &67.46 &80.14 &50.46 &63.04 \\
+Salesforce/blip-itm-large-coco &62.32 &50.97 &55.16 &70.15 &67.33 &75.69 &58.53 &62.88 \\
+kakaobrain/align-base &53.17 &57.50 &56.01 &69.13 &66.43 &77.55 &59.42 &62.74 \\
+jinaai/jina-clip-v1 &57.96 &55.80 &56.95 &70.52 &67.98 &76.94 &52.18 &62.62 \\
+Salesforce/blip-image-captioning-large &61.67 &50.18 &54.12 &70.03 &66.63 &76.43 &56.41 &62.21 \\
+BAAI/bge-visualized-base &55.35 &57.31 &57.57 &68.27 &62.39 &75.52 &54.66 &61.58 \\
+Salesforce/blip-itm-large-flickr &59.68 &47.46 &52.82 &68.29 &64.20 &72.77 &55.86 &60.16 \\
+laion/CLIP-ViT-B-32-laion2B-s34B-b79K &53.70 &57.16 &52.74 &66.64 &61.30 &74.69 &50.48 &59.53 \\
+laion/CLIP-ViT-B-32-DataComp.XL-s13B-b90K &54.86 &45.82 &48.85 &64.02 &59.62 &73.31 &49.15 &56.52 \\
+Salesforce/blip-image-captioning-base &49.34 &46.84 &48.29 &60.57 &60.54 &72.56 &49.54 &55.38 \\
+openai/clip-vit-base-patch32 &53.81 &52.50 &43.69 &59.56 &53.01 &71.01 &47.17 &54.39 \\
+blip2-finetune-coco &41.36 &38.11 &38.33 &54.36 &46.06 &62.61 &39.18 &45.72 \\
+EVA02-CLIP-B-16 &40.25 &36.57 &39.17 &51.18 &48.86 &54.15 &31.58 &43.11 \\
+blip2-pretrain &38.81 &38.72 &35.57 &51.81 &42.20 &58.49 &33.68 &42.75 \\
+nomic-ai/nomic-embed-vision-v1.5 &40.13 &21.22 &21.44 &27.21 &31.39 &40.46 &23.16 &29.29 \\
+facebook/dinov2-base &24.13 &5.82 &0.36 &13.75 &18.05 &43.02 &12.65 &16.83 \\
+facebook/dinov2-giant &24.34 &1.18 &1.06 &13.65 &18.43 &37.07 &9.48 &15.03 \\
+nyu-visionx/moco-v3-vit-b &24.03 &2.19 &0.63 &11.48 &19.80 &39.54 &6.56 &14.89 \\
+nyu-visionx/moco-v3-vit-l &20.90 &3.38 &-1.13 &12.99 &22.00 &40.27 &4.70 &14.73 \\
+facebook/dinov2-large &17.45 &0.05 &-2.39 &12.28 &19.35 &43.67 &6.31 &13.82 \\
+facebook/dinov2-small &13.39 &2.39 &-1.9 &12.02 &16.47 &43.1 &5.37 &12.98 \\
+\bottomrule
+\end{tabular}}
+\caption{\textbf{Visual STS English Results.} Note that for STS-17 and STS-b, we only average the English subset here.}
+\label{tab: sts eng}
+\end{table*}

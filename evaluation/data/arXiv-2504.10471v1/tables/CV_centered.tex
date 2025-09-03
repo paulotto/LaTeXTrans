@@ -1,0 +1,51 @@
+\begin{table*}
+\centering
+\resizebox{\linewidth}{!}{\begin{tabular}{lccccccc}\toprule
+\textbf{model name} &\textbf{CVBenchCount} &\textbf{CVBenchDepth} &\textbf{CVBenchDistance} &\textbf{CVBenchRelation} 
+&\textbf{BLINKIT2IMultiChoice}
+&\textbf{BLINKIT2TMultiChoice}
+&\textbf{Avg.} \\\midrule
+TIGER-Lab/VLM2Vec-Full &62.18 &62.17 &58.00 &71.69 &72.39 &46.28 &62.12 \\
+TIGER-Lab/VLM2Vec-LoRA &62.56 &62.50 &58.17 &71.08 &72.39 &45.40 &62.02 \\
+laion/CLIP-ViT-B-16-DataComp.XL-s13B-b90K &61.93 &52.50 &46.00 &49.23 &74.63 &41.74 &54.34 \\
+google/siglip-base-patch16-512 &55.20 &53.67 &42.83 &51.38 &74.38 &41.74 &53.20 \\
+blip2-pretrain &46.95 &57.67 &50.17 &47.69 &74.38 &41.99 &53.14 \\
+google/siglip-base-patch16-384 &53.43 &52.17 &42.17 &51.69 &75.87 &41.49 &52.80 \\
+blip2-finetune-coco &44.54 &59.67 &52.33 &48.77 &71.39 &39.60 &52.72 \\
+BAAI/bge-visualized-base &50.25 &49.00 &56.33 &48.15 &73.63 &37.20 &52.43 \\
+Salesforce/blip-itm-base-flickr &60.66 &44.67 &50.33 &53.08 &66.92 &38.46 &52.35 \\
+laion/CLIP-ViT-L-14-DataComp.XL-s13B-b90K &43.27 &55.83 &46.50 &55.54 &73.13 &39.72 &52.33 \\
+google/siglip-base-patch16-256 &54.44 &52.00 &40.67 &51.08 &73.63 &41.24 &52.18 \\
+royokong/e5-v &39.21 &48.50 &43.83 &59.69 &71.89 &48.30 &51.90 \\
+google/siglip-base-patch16-256-multilingual &34.64 &54.00 &49.00 &53.85 &75.12 &40.86 &51.25 \\
+Salesforce/blip-itm-large-coco &45.30 &50.00 &49.67 &48.77 &74.38 &38.46 &51.10 \\
+google/siglip-base-patch16-224 &43.91 &51.50 &42.67 &51.54 &75.37 &41.36 &51.06 \\
+Salesforce/blip-image-captioning-large &14.72 &63.33 &59.67 &46.92 &70.40 &39.61 &49.11 \\
+voyage-multimodal-3 &26.40 &53.17 &47.50 &53.54 &69.65 &41.11 &48.56 \\
+Salesforce/blip-itm-base-coco &26.65 &45.17 &45.50 &52.92 &76.12 &37.20 &47.26 \\
+Salesforce/blip-itm-large-flickr &25.25 &46.83 &52.00 &53.23 &68.41 &36.32 &47.01 \\
+openai/clip-vit-base-patch16 &20.81 &51.67 &46.17 &49.85 &71.64 &41.36 &46.92 \\
+nomic-ai/nomic-embed-vision-v1.5 &21.83 &45.33 &50.33 &48.62 &75.37 &38.84 &46.72 \\
+google/siglip-so400m-patch14-384 &21.70 &48.33 &40.00 &53.38 &76.37 &37.70 &46.25 \\
+laion/CLIP-ViT-B-32-DataComp.XL-s13B-b90K &23.86 &49.17 &43.67 &47.38 &72.64 &39.60 &46.05 \\
+laion/CLIP-ViT-L-14-laion2B-s32B-b82K &8.25 &49.17 &47.50 &55.08 &74.38 &40.73 &45.85 \\
+laion/CLIP-ViT-H-14-laion2B-s32B-b79K &19.80 &48.67 &40.17 &50.92 &74.63 &40.60 &45.80 \\
+kakaobrain/align-base &47.59 &43.17 &50.83 &47.08 &46.77 &38.71 &45.69 \\
+jinaai/jina-clip-v1 &14.85 &49.33 &47.00 &50.77 &74.88 &35.44 &45.38 \\
+google/siglip-large-patch16-384 &8.76 &54.67 &45.83 &50.92 &73.63 &38.34 &45.36 \\
+EVA02-CLIP-B-16 &36.80 &53.33 &53.00 &49.54 &40.55 &38.84 &45.34 \\
+google/siglip-large-patch16-256 &8.88 &56.17 &46.17 &48.15 &73.13 &36.70 &44.87 \\
+laion/CLIP-ViT-g-14-laion2B-s34B-b88K &10.15 &47.00 &41.33 &50.15 &76.12 &40.23 &44.16 \\
+openai/clip-vit-large-patch14 &2.66 &52.67 &46.83 &50.92 &71.14 &40.35 &44.10 \\
+BAAI/bge-visualized-m3 &7.61 &45.33 &49.33 &50.62 &73.88 &36.32 &43.85 \\
+EVA02-CLIP-bigE-14 &30.46 &48.83 &48.17 &49.85 &44.53 &39.60 &43.57 \\
+Salesforce/blip-image-captioning-base &10.15 &51.50 &55.33 &52.62 &58.24 &32.83 &43.44 \\
+laion/CLIP-ViT-bigG-14-laion2B-39B-b160k &4.19 &47.17 &42.17 &48.15 &73.13 &44.14 &43.16 \\
+laion/CLIP-ViT-B-32-laion2B-s34B-b79K &0.38 &50.00 &40.83 &49.69 &73.38 &43.51 &42.97 \\
+openai/clip-vit-base-patch32 &6.60 &45.33 &46.00 &48.46 &70.15 &39.85 &42.73 \\
+EVA02-CLIP-bigE-14-plus &10.15 &43.83 &40.50 &47.38 &51.99 &42.75 &39.43 \\
+EVA02-CLIP-L-14 &1.02 &49.50 &53.50 &45.69 &45.27 &41.24 &39.37 \\
+\bottomrule
+\end{tabular}}
+\caption{\textbf{Vision-centric QA Results.}}\label{tab: cv bench}
+\end{table*}

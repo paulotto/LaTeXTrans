@@ -1,0 +1,26 @@
+\section{Introduction}
+Large Language Models (LLMs) have revolutionized AI-driven applications by enabling natural language understanding and generation at an unprecedented scale. However, these models often suffer from issues such as outdated responses and hallucinations, which severely hinder the accuracy of information generation. 
+Retrieval-Augmented Generation (RAG) has emerged as a promising framework that integrates retrieved information from external corpora, such as external APIs~\cite{google,bing}, scientific repositories~\cite{arxiv,pubmed} or domain-specific databases~\cite{amazon_dataset, espn_dataset}, ensuring more knowledge-grounded and up-to-date outputs. 
+
+Its versatility has led to significant applications across various domains, including question answering~\cite{siriwardhana2023improving}, enterprise search~\cite{bulfamante2023generative} and healthcare~\cite{wu2024medical}, etc. Among these applications, one particularly notable area is in agent workflows, where RAG enhances autonomous systems by providing context-aware, dynamically retrieved, and reliable knowledge. This is because each stage of the RAG process closely mirrors key aspects of an agent’s workflow, as shown in Figure~\ref{fig:structure}. For instance, the query rewriting phase in RAG, which involves semantic understanding and parsing, aligns with the semantic comprehension stage in agent workflows. Likewise, RAG’s retrieval phase, which focuses on extracting the most relevant documents, corresponds to the planning and execution phases of an agent, where decisions are made based on retrieved knowledge. Finally, the generation phase in RAG parallels an agent’s execution stage, where actions are performed based on the given task. This structural alignment suggests that the architecture of RAG is fundamentally converging with agent workflows, solidifying its position as a key facilitator of intelligent and autonomous systems.
+
+Although the structural alignment between RAG and agent workflows highlights their deepening convergence, a critical next step in enhancing these intelligent systems lies in personalization. Personalization is a key driver toward achieving more adaptive and context-aware AI, which is fundamental for the progression toward Artificial General Intelligence (AGI). It plays an essential role in applications such as personalized reasoning~\cite{xu2021transformer, henze2004reasoning}, adaptive decision-making~\cite{lu2011budgeted}, user-specific content generation~\cite{xu2025personalized, shaker2010towards}, and interactive AI systems~\cite{ma2021one, qian2021learning}. However, existing research lacks a comprehensive comparative analysis of personalized RAG and agentic approaches. Current surveys primarily focus on general RAG methodologies~\cite{gao2023retrieval, fan2024survey} or agent-related literature~\cite{li2024personal, wang2024survey, zhang2024survey}, without systematically exploring their implications for personalization. While recent works such as~\cite{zhang2024personalization, liu2025survey} discuss personalization, they predominantly address personalized generation within LLMs or specific downstream tasks, overlooking how personalization can be effectively integrated into RAG and agent workflows.
+
+Motivated by the above issues, this survey aims to provide a comprehensive review of the integration of personalization into RAG and agentic RAG frameworks to enhance user experiences and optimize satisfaction. The key contributions of this work can be summarized as follows:
+\begin{itemize}[leftmargin=*] 
+\item We provide an extensive exploration of the existing literature on how personalization is integrated into various stages of RAG (pre-retrieval, retrieval, and generation) and agentic RAG (understanding, planning, execution, and generation).
+\item We summarize the key datasets, benchmarks, and evaluation metrics used in existing research for each subtask to facilitate future studies in the respective domains. 
+\item We also highlight the limitations of current research and suggest future directions for personalized RAG, emphasizing potential advancements to address existing challenges.
+\end{itemize}
+
+
+The outline of this survey is as follows: we introduce what is personalization (Sec.~\ref{sec:what}) and explain how personalization is adopted into RAG pipeline (Sec.~\ref{sec:how}). Then, we present a literature review on where to integrate personalization within different stages of RAG and agentic RAG workflows~(Sec.~\ref{sec:where}) and discuss the key datasets and evaluation metrics used in existing research~(Sec.\ref{sec:evaluation&dataset}). Lastly, we present a discussion on the limitations of current research and future directions~(Sec.~\ref{sec:futuredirection}).
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width = 0.6\linewidth]{figures/structure.pdf}
+    \caption{Correlation between personalization and RAG with agent flow.}
+    \label{fig:structure}
+\end{figure}
+
+\input{sections/table_paper}

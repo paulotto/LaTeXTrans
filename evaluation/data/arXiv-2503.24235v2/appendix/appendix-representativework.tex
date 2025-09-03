@@ -1,0 +1,137 @@
+
+\section{Representative Methods}
+
+\subsection{Best-of-N}
+
+The ``Best-of-N'' strategy is a \TTS approach in which a model generates $N$ candidate outputs for a given input and then selects the best one according to a chosen evaluation metric~\citep{wu2024scaling}. Mathematically, given an input $x$ and model $f$, one draws $N$ independent outputs $y_1,\dots,y_N \sim f(x)$ (\eg, via different random seeds or sampling strategies) and chooses the result $\hat{y} = \arg\max_{i=1}^N M(y_i)$, where $M$ is a quality scoring function. At the cost of additional inference compute, increasing $N$ raises the probability of obtaining a high-quality outcome (for example, if each attempt succeeds with probability $p$, then a best-of-$N$ run succeeds with probability $1 - (1-p)^N$). This technique leverages extra computation to boost performance~\citep{kang2025scalablebestofnselectionlarge} and has been applied in real-world settings ranging from complex reasoning and code generation with LLMs to enhancing image synthesis quality in diffusion models~\citep{ma2025inferencetimescalingdiffusionmodels}.
+
+
+\subsection{Majority Voting}
+Majority voting is a fundamental ensemble strategy for \TTS that aggregates multiple independent predictions to make a final decision. In this approach, each model or inference (voter) casts a vote for a predicted outcome, and the output chosen is the one with the highest number of votes (\ie, the mode of the predictions). Formally, given an ensemble of $M$ models $h_1, h_2, \dots, h_M$ each producing a prediction $h_m(x)$ for input $x$, the majority vote outcome is defined as 
+
+\[
+\hat{y} = \arg\max_{c} \sum_{m=1}^{M} \mathbf{1}\{\,h_m(x) = c\,\},
+\]
+
+where $\mathbf{1\{\cdot\}}$ is the indicator function and $c$ ranges over all possible classes or outputs. This test-time inference technique leverages additional computing at inference to improve reliability without retraining models, and it is widely used in real-world applications, such as combining votes of decision trees in a random forest, consolidating crowd-sourced annotations, or enhancing the consistency of answers from LLMs by selecting the most frequent response.
+
+
+\subsection{Process Reward Model}
+A Process Reward Model (PRM)~\citep{uesato2022solvingmathwordproblems,pfau2024lets} is a reward model designed to evaluate an entire reasoning trajectory on a step-by-step basis. Formally, given an input problem $x$ and a sequence of reasoning steps $z_1, z_2, \dots, z_T$ leading to a final output $y$, we can represent this full reasoning trace as:
+\[
+    S^T = (x, z_1, z_2, \dots, z_T, y),
+\]
+and define the PRM as a function that assigns a real-valued score:
+\[
+    r: S^T \to \mathbb{R},
+\]
+mapping a possible reasoning process $S^T$ to a reward score~\citep{choudhury2025processrewardmodelsllm,ma2025steplevelrewardmodelsrewarding}. Intuitively, $r(S^T)$ is higher when the reasoning process is logical, valid, and leads to a correct solution, and lower (or negative) when the reasoning is flawed. PRMs are typically trained on human or algorithmic annotations for each step, internalizing a notion of ``partial credit'' to evaluate correctness and relevance at each stage.
+
+
+PRMs play a crucial role in \TTS strategies such as stepwise beam search and self-consistency verification. They have been successfully applied in mathematical reasoning, code generation, automated theorem proving, and decision-making tasks. By leveraging PRMs, models can optimize not only for correctness but also for process coherence, making AI systems more transparent and robust.
+
+\subsection{MCTS}
+
+Monte Carlo Tree Search (MCTS) is a simulation-based decision-making algorithm for sequential decision problems, often formalized as a Markov Decision Process (MDP). It incrementally builds a search tree by sampling many possible future trajectories (playouts) and using their outcomes to estimate the value of decisions. Unlike brute-force search, MCTS selectively explores the most promising actions by balancing exploration (trying unexplored or uncertain moves) and exploitation (favoring moves with high estimated reward). Each iteration of MCTS consists of four phases:
+
+\begin{enumerate}
+    \item Selection – Recursively select child actions that maximize a heuristic value until reaching a leaf node. A common selection strategy is the Upper Confidence Bound for Trees (UCT):
+    \[
+    \text{UCT}(a) = \frac{w_a}{n_a} + c\,\sqrt{\frac{\ln N}{n_a}},
+    \]
+    where $w_a$ is the total simulation reward, $n_a$ is the visit count for action $a$, $N$ is the total simulations from the parent state, and $c>0$ is an exploration constant.
+    
+    \item Expansion – Once a leaf state is reached, new child nodes are created by simulating unexplored actions.
+    
+    \item Simulation (Rollout) – Perform a Monte Carlo simulation by selecting actions to simulate a full episode to the end, providing an estimate of the node's value.
+    
+    \item Backpropagation – Propagate the simulation result back up the tree, updating the statistics of each node along the path.
+\end{enumerate}
+
+MCTS is well-suited for \TTS because its anytime nature allows flexible computation budgets. At test time, running MCTS for longer or with more rollouts leads to deeper search and better decisions. Notably, AlphaGo used MCTS at runtime to refine moves, significantly improving performance without additional training.
+
+Researchers are leveraging MCTS to enhance test-time reasoning in other AI domains. MCTS-Judge improves code correctness evaluation by systematically exploring reasoning paths, raising verification accuracy significantly. Similarly, hybrid approaches integrate MCTS into generative model inference for problem-solving, such as solving Sudoku puzzles through sequential search.
+
+
+By repeating these steps, MCTS concentrates simulations on the most promising branches. In the limit, MCTS value estimates converge to the optimal values in certain perfect-information games.
+
+
+\subsection{Self-Refine}
+
+Self-Refine~\citep{madaan2023selfrefine} is an advanced TTS technique that enables an LLM to iteratively improve its own outputs through self-generated feedback. Introduced by \citet{madaan2023selfrefine}, the Self-Refine framework is inspired by how humans revise a draft: The model first produces an initial answer, then critiques or evaluates that answer, and finally uses the critique to refine the answer. This feedback-refinement loop can be repeated multiple times, progressively polishing the output. Notably, Self-Refine requires no additional training data or fine-tuning – the same pre-trained model acts as the initial answer generator, the feedback provider, and the refiner.
+For sufficiently powerful models, this self-iteration yields significantly better results, presumably because it is easier for a model to identify and fix errors in a given solution than to produce a perfect solution in one attempt. In essence, Self-Refine leverages test-time compute to let the model ``think twice (or more)'' about its answer, leading to higher-quality and more reliable outputs.
+
+Formally, consider an input $x$ and a language model $M_\theta$ with parameters $\theta$, defining a conditional distribution $P_\theta(y \mid x)$ over possible outputs $y$. The Self-Refine procedure generates a sequence of outputs $y^{(0)}, y^{(1)}, \dots, y^{(T)}$ as follows:
+
+\begin{enumerate}
+    \item Initial Output Generation: The model first produces an initial response:
+    \begin{equation}
+        y^{(0)} = M_\theta(x).
+    \end{equation}
+    
+    \item Feedback Generation: At each refinement step $t = 1,2,\dots,T$, the model evaluates the previous output and generates feedback:
+    \begin{equation}
+        f^{(t)} = M_\theta\big(x, y^{(t-1)}; \text{feedback-prompt}\big).
+    \end{equation}
+    
+    \item Refinement Step: Using the generated feedback, the model updates its output:
+    \begin{equation}
+        y^{(t)} = M_\theta\big(x, y^{(t-1)}, f^{(t)}; \text{refine-prompt}\big).
+    \end{equation}
+\end{enumerate}
+
+This feedback-refinement loop continues iteratively until a stopping condition is met, such as reaching a predefined number of iterations $T$ or detecting convergence in the output quality. The Self-Refine approach enhances model reliability by progressively improving its responses without requiring additional training.
+
+\subsection{Tree-of-Thought}
+
+Complex reasoning problems often require exploring different lines of thought before arriving at a correct solution. CoT prompting was a first step in this direction: CoT guides the model to produce a single sequence of intermediate reasoning steps (a linear chain) leading to the answer. This improves the model’s performance on tasks requiring multi-step logic by breaking the problem into a step-by-step narrative. However, CoT still follows a single path – if the model makes a wrong turn in the reasoning chain, it cannot recover because it doesn’t revisit earlier decisions. Tree-of-Thought~\citep{yao2023tree}, by contrast, generalizes CoT to a branching search. At each reasoning step, the model can generate multiple candidate thoughts instead of one, forming a tree of possibilities. It evaluates these candidates (using heuristics or self-evaluation prompts) and selects the most promising branch(es) to continue expanding~\citep{bi2024forest}. This test-time exploration allows the model to consider alternative approaches and scale up inference computation as needed – much like how a human might try different reasoning avenues for a hard problem. Researchers have categorized ToT and similar strategies (\eg, graph-of-thought) as "X-of-Thought" (XoT) reasoning methods, which significantly improve LLM reasoning by introducing iterative, structured inference without additional training.
+
+ToT can be modeled as a search process through a state space of partial solutions, where each state encodes the sequence of thoughts (intermediate steps) explored so far. Let $S$ be the set of all possible reasoning states for a given problem. The initial state $s_0$ contains the problem statement, and a goal state $s \in S$ represents a complete solution.
+
+\textbf{Thought Generation (State Transitions)}: At each step, the language model serves as a thought generator function $G$. Given the current state (context) $s$, the model generates a set of next-step thoughts:
+\begin{equation}
+    G(s) \rightarrow \{t_1, t_2, \dots, t_b\}
+\end{equation}
+where each $t_i$ represents a candidate next reasoning step. Each thought extends the current reasoning path, yielding a new state:
+\begin{equation}
+    s_i = s \oplus t_i
+\end{equation}
+where $\oplus$ denotes concatenation of the thought to the sequence.
+
+\textbf{State Evaluation (Heuristic Function)}: To guide the search, ToT uses an evaluation function $f(s)$ that estimates the quality of a partial state $s$:
+\begin{equation}
+    f: S \rightarrow \mathbb{R}
+\end{equation}
+This function may be implemented by the model itself using a self-evaluation prompt or a scoring heuristic.
+
+\textbf{Search Algorithm (Tree Expansion)}: ToT can employ different search strategies, including:
+\begin{itemize}
+    \item \textbf{Breadth-First Search (BFS)}: Expands all plausible thoughts at each depth, keeping the top $b$ best states based on $f(s)$.
+    \item \textbf{Depth-First Search (DFS)}: Follows the most promising thought path deeply, backtracking if necessary.
+\end{itemize}
+
+Each strategy allows ToT to control computational budgets by limiting depth $d$ (number of steps) and branching factor $b$ (number of candidates per step).
+
+\textbf{Solution Extraction}: A state $s$ is considered a valid solution if it satisfies the problem constraints. The search continues until:
+\begin{enumerate}
+    \item A goal state is reached.
+    \item The computational budget (depth or number of states evaluated) is exhausted.
+\end{enumerate}
+
+This framework formalizes ToT as an organized search over the space of reasoning sequences, allowing models to iteratively refine and explore multiple potential solutions during test-time inference.
+
+\subsection{Reinforcement Learning}
+
+Reinforcement learning can play a pivotal role in unlocking effective \TTS for language models. The process of inference itself can be formulated as a sequential decision-making problem: at each step in generating a solution, \eg, each token in a reasoning chain or each attempt at an answer, the model (agent) must decide whether to continue reasoning, which direction to explore, or when to stop and output an answer. By training the model with RL, we can explicitly reward outcomes that lead to correct or high-quality answers, thereby encouraging the model to make better use of the extra inference steps available. This addresses a key challenge in \TTS: simply allowing a model to think longer doesn’t guarantee better answers unless the model knows how to productively use that extra time (it could otherwise repeat mistakes or terminate too early). RL provides a feedback-driven way to learn such behaviors. In fact, prior approaches to improve reasoning in LLMs often relied solely on imitation learning (learning from observed human or AI reasoning traces), which can limit a model to mimicking given patterns~\citep{hou2025advancing}. By contrast, RL enables self-exploration: the model can try diverse reasoning paths and learn from trial-and-error which strategies yield the highest reward (for example, reaching a correct solution). This means an RL-trained language model can learn dynamic inference policies—such as when to double-check an intermediate result or how to backtrack and correct itself if the reasoning seems to be going astray. Recent research indeed shows that combining chain-of-thought reasoning with reinforcement learning techniques leads to improved inference-time performance. 
+
+
+%\section{\TTS in Multiple Domains}
+
+%\subsection{Evaluation Tasks}
+%\label{appendix:evaluation}
+%Recent research has demonstrated that \TTS effectively enhances the evaluation reasoning capabilities of LLMs. For instance, CCE~\citep{zhang2025crowd} scales the evaluation by comparing the candidate responses with other crowd-generated responses, enabling TTS evaluation effects. EvalPlan~\citep{saha2025learningplanreason} achieves deeper evaluation by first generating a specific evaluation plan tailored to the candidate responses. SPCT~\citep{liu2025inferencetimescalinggeneralistreward} goes a step further by employing RL to generate evaluation principles, further activating the \TTS potential. Additionally, JudgeLRM~\citep{chen2025judgelrmlargereasoningmodels} has validated that training using the R1 method can effectively enhance the performance of RMs, while MAV~\citep{lifshitz2025multiagentverificationscalingtesttime} introduces multiple aspect verifiers.  Notably, improving evaluator accuracy in Out-of-Distribution scenarios remains a critical issue, like Reward Hacking~\citep{skalse2025definingcharacterizingrewardhacking,shen2025exploringdatascalingtrends}, worthy of deeper exploration. 
+% \subsection{Distillation}
+
+%\subsection{Agentic Tasks}
+%\label{appendix:agentic}
+%Recent advances in scaling LLM-driven autonomous agents center on improved planning, memory, and self-optimization techniques. For example, ARMAP~\citep{chen2025scalingautonomousagentsautomatic} automatically learns a reward model from unlabeled environment interactions to score and guide an agent's actions, circumventing the need for human-labeled feedback and improving multi-step decision-making.

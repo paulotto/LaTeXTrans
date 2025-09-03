@@ -1,0 +1,199 @@
+\begin{thebibliography}{39}
+\providecommand{\natexlab}[1]{#1}
+
+\bibitem[{Aharoni and Goldberg(2020)}]{aharoni-goldberg-2020-unsupervised}
+Roee Aharoni and Yoav Goldberg. 2020.
+\newblock \href {https://doi.org/10.18653/v1/2020.acl-main.692} {Unsupervised domain clusters in pretrained language models}.
+\newblock In \emph{Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics}, pages 7747--7763, Online. Association for Computational Linguistics.
+
+\bibitem[{Barone et~al.(2017)Barone, Haddow, Germann, and Sennrich}]{barone2017regularization}
+Antonio Valerio~Miceli Barone, Barry Haddow, Ulrich Germann, and Rico Sennrich. 2017.
+\newblock \href {https://doi.org/10.18653/v1/D17-1156} {{Regularization techniques for fine-tuning in Neural Machine Translation}}.
+\newblock In \emph{Proceedings of the 2017 Conference on Empirical Methods in Natural Language Processing}, pages 1489--1494.
+
+\bibitem[{Barrault et~al.(2020)Barrault, Biesialska, Costa-juss{\`a}, Bougares, and Galibert}]{barrault-etal-2020-findings-first}
+Lo{\"\i}c Barrault, Magdalena Biesialska, Marta~R. Costa-juss{\`a}, Fethi Bougares, and Olivier Galibert. 2020.
+\newblock \href {https://aclanthology.org/2020.wmt-1.2} {Findings of the first shared task on lifelong learning machine translation}.
+\newblock In \emph{Proceedings of the Fifth Conference on Machine Translation}, pages 56--64, Online. Association for Computational Linguistics.
+
+\bibitem[{Bojanowski et~al.(2017)Bojanowski, Grave, Joulin, and Mikolov}]{fasttextlibrary}
+Piotr Bojanowski, Edouard Grave, Armand Joulin, and Tomas Mikolov. 2017.
+\newblock \href {https://doi.org/10.1162/tacl_a_00051} {Enriching word vectors with subword information}.
+\newblock \emph{Transactions of the Association for Computational Linguistics}, 5:135--146.
+
+\bibitem[{Cettolo et~al.(2012)Cettolo, Girardi, and Federico}]{cettolo-etal-2012-wit3}
+Mauro Cettolo, Christian Girardi, and Marcello Federico. 2012.
+\newblock \href {https://aclanthology.org/2012.eamt-1.60} {{WIT}3: Web inventory of transcribed and translated talks}.
+\newblock In \emph{Proceedings of the 16th Annual Conference of the European Association for Machine Translation}, pages 261--268, Trento, Italy. European Association for Machine Translation.
+
+\bibitem[{Chu et~al.(2017)Chu, Dabre, and Kurohashi}]{chu-etal-2017-empirical}
+Chenhui Chu, Raj Dabre, and Sadao Kurohashi. 2017.
+\newblock \href {https://doi.org/10.18653/v1/P17-2061} {An empirical comparison of domain adaptation methods for neural machine translation}.
+\newblock In \emph{Proceedings of the 55th Annual Meeting of the Association for Computational Linguistics (Volume 2: Short Papers)}, pages 385--391, Vancouver, Canada. Association for Computational Linguistics.
+
+\bibitem[{Dyer et~al.(2013)Dyer, Chahuneau, and Smith}]{dyer-etal-2013-simple}
+Chris Dyer, Victor Chahuneau, and Noah~A. Smith. 2013.
+\newblock \href {https://www.aclweb.org/anthology/N13-1073} {A simple, fast, and effective reparameterization of {IBM} model 2}.
+\newblock In \emph{Proceedings of the 2013 Conference of the North {A}merican Chapter of the Association for Computational Linguistics: Human Language Technologies}, pages 644--648, Atlanta, Georgia. Association for Computational Linguistics.
+
+\bibitem[{Gu and Feng(2020)}]{gu-feng-2020-investigating}
+Shuhao Gu and Yang Feng. 2020.
+\newblock \href {https://doi.org/10.18653/v1/2020.coling-main.381} {Investigating catastrophic forgetting during continual training for neural machine translation}.
+\newblock In \emph{Proceedings of the 28th International Conference on Computational Linguistics}, pages 4315--4326, Barcelona, Spain (Online). International Committee on Computational Linguistics.
+
+\bibitem[{Haque et~al.(2020)Haque, Moslem, and Way}]{haque-etal-2020-terminology}
+Rejwanul Haque, Yasmin Moslem, and Andy Way. 2020.
+\newblock \href {https://aclanthology.org/2020.icon-adapmt.4} {Terminology-aware sentence mining for {NMT} domain adaptation: {ADAPT}{'}s submission to the adap-{MT} 2020 {E}nglish-to-{H}indi {AI} translation shared task}.
+\newblock In \emph{Proceedings of the 17th International Conference on Natural Language Processing (ICON): Adap-MT 2020 Shared Task}, pages 17--23, Patna, India. NLP Association of India (NLPAI).
+
+\bibitem[{Hasler et~al.(2021)Hasler, Domhan, Trenous, Tran, Byrne, and Hieber}]{hasler-etal-2021-improving}
+Eva Hasler, Tobias Domhan, Jonay Trenous, Ke~Tran, Bill Byrne, and Felix Hieber. 2021.
+\newblock \href {https://doi.org/10.18653/v1/2021.emnlp-main.666} {Improving the quality trade-off for neural machine translation multi-domain adaptation}.
+\newblock In \emph{Proceedings of the 2021 Conference on Empirical Methods in Natural Language Processing}, pages 8470--8477, Online and Punta Cana, Dominican Republic. Association for Computational Linguistics.
+
+\bibitem[{Khayrallah and Koehn(2018)}]{khayrallah-koehn-2018-impact}
+Huda Khayrallah and Philipp Koehn. 2018.
+\newblock \href {https://doi.org/10.18653/v1/W18-2709} {On the impact of various types of noise on neural machine translation}.
+\newblock In \emph{Proceedings of the 2nd Workshop on Neural Machine Translation and Generation}, pages 74--83, Melbourne, Australia. Association for Computational Linguistics.
+
+\bibitem[{Kocmi et~al.(2023)Kocmi, Avramidis, Bawden, Bojar, Dvorkovich, Federmann, Fishel, Freitag, Gowda, Grundkiewicz, Haddow, Koehn, Marie, Monz, Morishita, Murray, Nagata, Nakazawa, Popel, Popovi{\'c}, and Shmatova}]{kocmi-etal-2023-findings}
+Tom Kocmi, Eleftherios Avramidis, Rachel Bawden, Ond{\v{r}}ej Bojar, Anton Dvorkovich, Christian Federmann, Mark Fishel, Markus Freitag, Thamme Gowda, Roman Grundkiewicz, Barry Haddow, Philipp Koehn, Benjamin Marie, Christof Monz, Makoto Morishita, Kenton Murray, Makoto Nagata, Toshiaki Nakazawa, Martin Popel, Maja Popovi{\'c}, and Mariya Shmatova. 2023.
+\newblock \href {https://doi.org/10.18653/v1/2023.wmt-1.1} {Findings of the 2023 conference on machine translation ({WMT}23): {LLM}s are here but not quite there yet}.
+\newblock In \emph{Proceedings of the Eighth Conference on Machine Translation}, pages 1--42, Singapore. Association for Computational Linguistics.
+
+\bibitem[{Kocmi et~al.(2022)Kocmi, Bawden, Bojar, Dvorkovich, Federmann, Fishel, Gowda, Graham, Grundkiewicz, Haddow, Knowles, Koehn, Monz, Morishita, Nagata, Nakazawa, Nov{\'a}k, Popel, and Popovi{\'c}}]{kocmi-etal-2022-findings}
+Tom Kocmi, Rachel Bawden, Ond{\v{r}}ej Bojar, Anton Dvorkovich, Christian Federmann, Mark Fishel, Thamme Gowda, Yvette Graham, Roman Grundkiewicz, Barry Haddow, Rebecca Knowles, Philipp Koehn, Christof Monz, Makoto Morishita, Masaaki Nagata, Toshiaki Nakazawa, Michal Nov{\'a}k, Martin Popel, and Maja Popovi{\'c}. 2022.
+\newblock \href {https://aclanthology.org/2022.wmt-1.1} {Findings of the 2022 conference on machine translation ({WMT}22)}.
+\newblock In \emph{Proceedings of the Seventh Conference on Machine Translation (WMT)}, pages 1--45, Abu Dhabi, United Arab Emirates (Hybrid). Association for Computational Linguistics.
+
+\bibitem[{Lin(1991)}]{lin1991JSD}
+J.~Lin. 1991.
+\newblock \href {https://doi.org/10.1109/18.61115} {Divergence measures based on the shannon entropy}.
+\newblock \emph{IEEE Transactions on Information Theory}, 37(1):145--151.
+
+\bibitem[{Lu et~al.(2020)Lu, Henchion, and Mac~Namee}]{lu-etal-2020-diverging}
+Jinghui Lu, Maeve Henchion, and Brian Mac~Namee. 2020.
+\newblock \href {https://aclanthology.org/2020.lrec-1.832} {Diverging divergences: Examining variants of {J}ensen {S}hannon divergence for corpus comparison tasks}.
+\newblock In \emph{Proceedings of the Twelfth Language Resources and Evaluation Conference}, pages 6740--6744, Marseille, France. European Language Resources Association.
+
+\bibitem[{Luong and Manning(2015)}]{luong2015stanford}
+Minh-Thang Luong and Christopher~D Manning. 2015.
+\newblock {Stanford Neural Machine Translation systems for spoken language domains}.
+\newblock In \emph{Proceedings of the International Workshop on Spoken Language Translation}, pages 76--79.
+
+\bibitem[{McCloskey and Cohen(1989)}]{mccloskey1989catastrophic}
+Michael McCloskey and Neal~J Cohen. 1989.
+\newblock Catastrophic interference in connectionist networks: The sequential learning problem.
+\newblock In \emph{Psychology of learning and motivation}, volume~24, pages 109--165. Elsevier.
+
+\bibitem[{Morishita et~al.(2022)Morishita, Chousa, Suzuki, and Nagata}]{morishita-etal-2022-jparacrawl}
+Makoto Morishita, Katsuki Chousa, Jun Suzuki, and Masaaki Nagata. 2022.
+\newblock \href {https://aclanthology.org/2022.lrec-1.721} {{JP}ara{C}rawl v3.0: A large-scale {E}nglish-{J}apanese parallel corpus}.
+\newblock In \emph{Proceedings of the Thirteenth Language Resources and Evaluation Conference}, pages 6704--6710, Marseille, France. European Language Resources Association.
+
+\bibitem[{Neubig(2011)}]{neubig11kftt}
+Graham Neubig. 2011.
+\newblock The {Kyoto} free translation task.
+\newblock http://www.phontron.com/kftt.
+
+\bibitem[{Pang et~al.(2024)Pang, Ye, Wang, Yu, Wong, Shi, and Tu}]{salutetheclassic2024}
+Jianhui Pang, Fanghua Ye, Longyue Wang, Dian Yu, Derek~F Wong, Shuming Shi, and Zhaopeng Tu. 2024.
+\newblock Salute the classic: {R}evisiting challenges of machine translation in the age of large language models.
+\newblock \emph{arXiv preprint arXiv:2401.08350}.
+
+\bibitem[{Papineni et~al.(2002)Papineni, Roukos, Ward, and Zhu}]{papineni-etal-2002-bleu}
+Kishore Papineni, Salim Roukos, Todd Ward, and Wei-Jing Zhu. 2002.
+\newblock \href {https://doi.org/10.3115/1073083.1073135} {{B}leu: a method for automatic evaluation of machine translation}.
+\newblock In \emph{Proceedings of the 40th Annual Meeting of the Association for Computational Linguistics}, pages 311--318, Philadelphia, Pennsylvania, USA. Association for Computational Linguistics.
+
+\bibitem[{Pham et~al.(2020)Pham, Crego, Yvon, and Senellart}]{pham-etal-2020-study}
+Minh~Quang Pham, Josep~Maria Crego, Fran{\c{c}}ois Yvon, and Jean Senellart. 2020.
+\newblock \href {https://aclanthology.org/2020.wmt-1.72} {A study of residual adapters for multi-domain neural machine translation}.
+\newblock In \emph{Proceedings of the Fifth Conference on Machine Translation}, pages 617--628, Online. Association for Computational Linguistics.
+
+\bibitem[{Post(2018)}]{post-2018-call}
+Matt Post. 2018.
+\newblock \href {https://doi.org/10.18653/v1/W18-6319} {A call for clarity in reporting {BLEU} scores}.
+\newblock In \emph{Proceedings of the Third Conference on Machine Translation: Research Papers}, pages 186--191, Brussels, Belgium. Association for Computational Linguistics.
+
+\bibitem[{Rei et~al.(2020)Rei, Stewart, Farinha, and Lavie}]{rei-etal-2020-comet}
+Ricardo Rei, Craig Stewart, Ana~C Farinha, and Alon Lavie. 2020.
+\newblock \href {https://doi.org/10.18653/v1/2020.emnlp-main.213} {{COMET}: A neural framework for {MT} evaluation}.
+\newblock In \emph{Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing (EMNLP)}, pages 2685--2702, Online. Association for Computational Linguistics.
+
+\bibitem[{Rikters et~al.(2019)Rikters, Ri, Li, and Nakazawa}]{rikters-etal-2019-designing}
+Mat{\=\i}ss Rikters, Ryokan Ri, Tong Li, and Toshiaki Nakazawa. 2019.
+\newblock \href {https://doi.org/10.18653/v1/D19-5204} {Designing the business conversation corpus}.
+\newblock In \emph{Proceedings of the 6th Workshop on Asian Translation}, pages 54--61, Hong Kong, China. Association for Computational Linguistics.
+
+\bibitem[{Saunders(2022)}]{saunders-2022-domain-jair}
+Danielle Saunders. 2022.
+\newblock Domain adaptation and multi-domain adaptation for neural machine translation: A survey.
+\newblock \emph{Journal of Artificial Intelligence Research}, 75:351--424.
+
+\bibitem[{Saunders and Byrne(2020)}]{saunders-byrne-2020-addressing}
+Danielle Saunders and Bill Byrne. 2020.
+\newblock \href {https://aclanthology.org/2020.wmt-1.94} {Addressing exposure bias with document minimum risk training: {C}ambridge at the {WMT}20 biomedical translation task}.
+\newblock In \emph{Proceedings of the Fifth Conference on Machine Translation}, pages 862--869, Online. Association for Computational Linguistics.
+
+\bibitem[{Savenkov and Lopez(2022)}]{savenkov-lopez-2022-state}
+Konstantin Savenkov and Michel Lopez. 2022.
+\newblock \href {https://aclanthology.org/2022.amta-upg.4} {The state of the machine translation 2022}.
+\newblock In \emph{Proceedings of the 15th Biennial Conference of the Association for Machine Translation in the Americas (Volume 2: Users and Providers Track and Government Track)}, pages 32--49, Orlando, USA. Association for Machine Translation in the Americas.
+
+\bibitem[{Sennrich et~al.(2016)Sennrich, Haddow, and Birch}]{sennrich-etal-2016-neural}
+Rico Sennrich, Barry Haddow, and Alexandra Birch. 2016.
+\newblock \href {https://doi.org/10.18653/v1/P16-1162} {Neural machine translation of rare words with subword units}.
+\newblock In \emph{Proceedings of the 54th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)}, pages 1715--1725, Berlin, Germany. Association for Computational Linguistics.
+
+\bibitem[{Shao and Feng(2022)}]{shao-feng-2022-overcoming}
+Chenze Shao and Yang Feng. 2022.
+\newblock \href {https://doi.org/10.18653/v1/2022.acl-long.143} {Overcoming catastrophic forgetting beyond continual learning: Balanced training for neural machine translation}.
+\newblock In \emph{Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)}, pages 2023--2036, Dublin, Ireland. Association for Computational Linguistics.
+
+\bibitem[{Sharaf et~al.(2020)Sharaf, Hassan, and Daum{\'e}~III}]{sharaf-etal-2020-meta}
+Amr Sharaf, Hany Hassan, and Hal Daum{\'e}~III. 2020.
+\newblock \href {https://doi.org/10.18653/v1/2020.ngt-1.5} {Meta-learning for few-shot {NMT} adaptation}.
+\newblock In \emph{Proceedings of the Fourth Workshop on Neural Generation and Translation}, pages 43--53, Online. Association for Computational Linguistics.
+
+\bibitem[{Thompson et~al.(2019)Thompson, Gwinnup, Khayrallah, Duh, and Koehn}]{thompson-etal-2019-overcoming}
+Brian Thompson, Jeremy Gwinnup, Huda Khayrallah, Kevin Duh, and Philipp Koehn. 2019.
+\newblock \href {https://doi.org/10.18653/v1/N19-1209} {Overcoming catastrophic forgetting during domain adaptation of neural machine translation}.
+\newblock In \emph{Proceedings of the 2019 Conference of the North {A}merican Chapter of the Association for Computational Linguistics: Human Language Technologies, Volume 1 (Long and Short Papers)}, pages 2062--2068, Minneapolis, Minnesota. Association for Computational Linguistics.
+
+\bibitem[{van~der Wees et~al.(2015)van~der Wees, Bisazza, Weerkamp, and Monz}]{van-der-wees-etal-2015-whats}
+Marlies van~der Wees, Arianna Bisazza, Wouter Weerkamp, and Christof Monz. 2015.
+\newblock \href {https://doi.org/10.3115/v1/P15-2092} {What{'}s in a domain? {A}nalyzing genre and topic differences in statistical machine translation}.
+\newblock In \emph{Proceedings of the 53rd Annual Meeting of the Association for Computational Linguistics and the 7th International Joint Conference on Natural Language Processing (Volume 2: Short Papers)}, pages 560--566, Beijing, China. Association for Computational Linguistics.
+
+\bibitem[{Varis and Bojar(2021)}]{varis-bojar-2021-sequence}
+Dusan Varis and Ond{\v{r}}ej Bojar. 2021.
+\newblock \href {https://doi.org/10.18653/v1/2021.emnlp-main.650} {Sequence length is a domain: Length-based overfitting in transformer models}.
+\newblock In \emph{Proceedings of the 2021 Conference on Empirical Methods in Natural Language Processing}, pages 8246--8257, Online and Punta Cana, Dominican Republic. Association for Computational Linguistics.
+
+\bibitem[{Vaswani et~al.(2018)Vaswani, Bengio, Brevdo, Chollet, Gomez, Gouws, Jones, Kaiser, Kalchbrenner, Parmar, Sepassi, Shazeer, and Uszkoreit}]{vaswani-etal-2018-tensor2tensor}
+Ashish Vaswani, Samy Bengio, Eugene Brevdo, Francois Chollet, Aidan Gomez, Stephan Gouws, Llion Jones, {\L}ukasz Kaiser, Nal Kalchbrenner, Niki Parmar, Ryan Sepassi, Noam Shazeer, and Jakob Uszkoreit. 2018.
+\newblock \href {https://aclanthology.org/W18-1819} {{T}ensor2{T}ensor for neural machine translation}.
+\newblock In \emph{Proceedings of the 13th Conference of the Association for Machine Translation in the {A}mericas (Volume 1: Research Track)}, pages 193--199, Boston, MA. Association for Machine Translation in the Americas.
+
+\bibitem[{Wan et~al.(2022)Wan, Yang, Wong, Chao, Yao, Zhang, and Chen}]{wan-etal-2022-challenges}
+Yu~Wan, Baosong Yang, Derek~Fai Wong, Lidia~Sam Chao, Liang Yao, Haibo Zhang, and Boxing Chen. 2022.
+\newblock \href {https://doi.org/10.1162/coli_a_00435} {Challenges of neural machine translation for short texts}.
+\newblock \emph{Computational Linguistics}, 48(2):321--342.
+
+\bibitem[{Xu et~al.(2019)Xu, Crego, and Senellart}]{xu-etal-2019-lexical}
+Jitao Xu, Josep Crego, and Jean Senellart. 2019.
+\newblock \href {https://aclanthology.org/2019.iwslt-1.27} {Lexical micro-adaptation for neural machine translation}.
+\newblock In \emph{Proceedings of the 16th International Conference on Spoken Language Translation}, Hong Kong. Association for Computational Linguistics.
+
+\bibitem[{Zhang et~al.(2023)Zhang, Rajabi, Duh, and Koehn}]{zhang-etal-2023-machine}
+Xuan Zhang, Navid Rajabi, Kevin Duh, and Philipp Koehn. 2023.
+\newblock \href {https://doi.org/10.18653/v1/2023.wmt-1.43} {Machine translation with large language models: Prompting, few-shot learning, and fine-tuning with {QL}o{RA}}.
+\newblock In \emph{Proceedings of the Eighth Conference on Machine Translation}, pages 468--481, Singapore. Association for Computational Linguistics.
+
+\bibitem[{Zhang et~al.(2019)Zhang, Shapiro, Kumar, McNamee, Carpuat, and Duh}]{zhang-etal-2019-curriculum}
+Xuan Zhang, Pamela Shapiro, Gaurav Kumar, Paul McNamee, Marine Carpuat, and Kevin Duh. 2019.
+\newblock \href {https://doi.org/10.18653/v1/N19-1189} {Curriculum learning for domain adaptation in neural machine translation}.
+\newblock In \emph{Proceedings of the 2019 Conference of the North {A}merican Chapter of the Association for Computational Linguistics: Human Language Technologies, Volume 1 (Long and Short Papers)}, pages 1903--1915, Minneapolis, Minnesota. Association for Computational Linguistics.
+
+\end{thebibliography}

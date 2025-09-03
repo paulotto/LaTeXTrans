@@ -1,0 +1,1322 @@
+@inproceedings{gtsrb,
+  title={The German traffic sign recognition benchmark: a multi-class classification competition},
+  author={Stallkamp, Johannes and Schlipsing, Marc and Salmen, Jan and Igel, Christian},
+  booktitle={The 2011 international joint conference on neural networks},
+  pages={1453--1460},
+  year={2011},
+  organization={IEEE}
+}
+
+@misc{vit,
+      title={An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale}, 
+      author={Alexey Dosovitskiy and Lucas Beyer and Alexander Kolesnikov and Dirk Weissenborn and Xiaohua Zhai and Thomas Unterthiner and Mostafa Dehghani and Matthias Minderer and Georg Heigold and Sylvain Gelly and Jakob Uszkoreit and Neil Houlsby},
+      year={2021},
+      eprint={2010.11929},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}
+}
+
+@misc{preact,
+      title={Identity Mappings in Deep Residual Networks}, 
+      author={Kaiming He and Xiangyu Zhang and Shaoqing Ren and Jian Sun},
+      year={2016},
+      eprint={1603.05027},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}
+}
+
+@INPROCEEDINGS{resnet,
+  author={He, Kaiming and Zhang, Xiangyu and Ren, Shaoqing and Sun, Jian},
+  booktitle={2016 IEEE Conference on Computer Vision and Pattern Recognition (CVPR)}, 
+  title={Deep Residual Learning for Image Recognition}, 
+  year={2016},
+  volume={},
+  number={},
+  pages={770-778},
+  doi={10.1109/CVPR.2016.90}}
+
+@article{goodfellow2014explaining,
+  title={Explaining and harnessing adversarial examples},
+  author={Goodfellow, Ian J and Shlens, Jonathon and Szegedy, Christian},
+  journal={arXiv preprint arXiv:1412.6572},
+  year={2014}
+}
+  
+@misc{trojai,
+      title={The TrojAI Software Framework: An OpenSource tool for Embedding Trojans into Deep Learning Models}, 
+      author={Kiran Karra and Chace Ashcraft and Neil Fendley},
+      year={2020},
+      eprint={2003.07233},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      URL = {https://pages.nist.gov/trojai/}
+}
+
+%Neural Cleanse
+@INPROCEEDINGS{NC,
+
+  author={Wang, Bolun and Yao, Yuanshun and Shan, Shawn and Li, Huiying and Viswanath, Bimal and Zheng, Haitao and Zhao, Ben Y.},
+
+  booktitle={2019 IEEE Symposium on Security and Privacy (SP)}, 
+
+  title={Neural Cleanse: Identifying and Mitigating Backdoor Attacks in Neural Networks}, 
+
+  year={2019},
+
+  volume={},
+
+  number={},
+
+  pages={707-723},
+
+  keywords={Training;Biological neural networks;Face recognition;Face;Neurons;Computational modeling;Security;Deep-Learning;Security;Backdoor-Attack},
+  doi={10.1109/SP.2019.00031}}
+
+@ARTICLE{PTRED,
+  author={Xiang, Zhen and Miller, David J. and Kesidis, George},
+  journal={IEEE Transactions on Neural Networks and Learning Systems}, 
+  title={Detection of Backdoors in Trained Classifiers Without Access to the Training Set}, 
+  year={2022},
+  volume={33},
+  number={3},
+  pages={1177-1191},
+  keywords={Training;Perturbation methods;Databases;Tuning;Trojan horses;Toxicology;Testing;Anomaly detection (AD);backdoor;data poisoning (DP);order statistics;reverse engineering (RE);robust density estimation},
+  doi={10.1109/TNNLS.2020.3041202}}
+@article{ren2021simple,
+  title={A simple fix to mahalanobis distance for improving near-ood detection},
+  author={Ren, Jie and Fort, Stanislav and Liu, Jeremiah and Roy, Abhijit Guha and Padhy, Shreyas and Lakshminarayanan, Balaji},
+  journal={arXiv preprint arXiv:2106.09022},
+  year={2021}
+}
+@inproceedings{MD,
+ author = {Lee, Kimin and Lee, Kibok and Lee, Honglak and Shin, Jinwoo},
+ booktitle = {Advances in Neural Information Processing Systems},
+ editor = {S. Bengio and H. Wallach and H. Larochelle and K. Grauman and N. Cesa-Bianchi and R. Garnett},
+ pages = {},
+ publisher = {Curran Associates, Inc.},
+ title = {A Simple Unified Framework for Detecting Out-of-Distribution Samples and Adversarial Attacks},
+ url = {https://proceedings.neurips.cc/paper_files/paper/2018/file/abdeb6f575ac5c6676b747bca8d09cc2-Paper.pdf},
+ volume = {31},
+ year = {2018}
+}
+
+@inproceedings {openmax,
+author = {A. Bendale and T. E. Boult},
+booktitle = {2016 IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
+title = {Towards Open Set Deep Networks},
+year = {2016},
+volume = {},
+issn = {1063-6919},
+pages = {1563-1572},
+abstract = {Deep networks have produced significant gains for various visual recognition problems, leading to high impact academic and commercial applications. Recent work in deep networks highlighted that it is easy to generate images that humans would never classify as a particular object class, yet networks classify such images high confidence as that given class – deep network are easily fooled with images humans do not consider meaningful. The closed set nature of deep networks forces them to choose from one of the known classes leading to such artifacts. Recognition in the real world is open set, i.e. the recognition system should reject unknown/unseen classes at test time. We present a methodology to adapt deep networks for open set recognition, by introducing a new model layer, OpenMax, which estimates the probability of an input being from an unknown class. A key element of estimating the unknown probability is adapting Meta-Recognition concepts to the activation patterns in the penultimate layer of the network. Open-Max allows rejection of &quot;fooling&quot; and unrelated open set images presented to the system, OpenMax greatly reduces the number of obvious errors made by a deep network. We prove that the OpenMax concept provides bounded open space risk, thereby formally providing an open set recognition solution. We evaluate the resulting open set deep networks using pre-trained networks from the Caffe Model-zoo on ImageNet 2012 validation data, and thousands of fooling and open set images. The proposed OpenMax model significantly outperforms open set recognition accuracy of basic deep networks as well as deep networks with thresholding of SoftMax probabilities.},
+keywords = {visualization;sports equipment;training;adaptation models;computational modeling;whales;extraterrestrial measurements},
+doi = {10.1109/CVPR.2016.173},
+url = {https://doi.ieeecomputersociety.org/10.1109/CVPR.2016.173},
+publisher = {IEEE Computer Society},
+address = {Los Alamitos, CA, USA},
+month = {jun}
+}
+@inproceedings{Topo,
+  title={Trigger Hunting with a Topological Prior for Trojan Detection},
+  author={Hu, Xiaoling and Lin, Xiao and Cogswell, Michael and Yao, Yi and Jha, Susmit and Chen, Chao},
+  booktitle={International Conference on Learning Representations},
+  year={2022}
+}
+
+@inproceedings{ULP,
+  title={Universal Litmus Patterns: Revealing Backdoor Attacks in CNNs},
+  author={Kolouri, Soheil and Saha, Aniruddha and Pirsiavash, Hamed and Hoffmann, Heiko},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={301--310},
+  year={2020}
+}
+
+@INPROCEEDINGS{BetterTrigger,
+  author={Tao, Guanhong and Shen, Guangyu and Liu, Yingqi and An, Shengwei and Xu, Qiuling and Ma, Shiqing and Li, Pan and Zhang, Xiangyu},
+  booktitle={2022 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)}, 
+  title={Better Trigger Inversion Optimization in Backdoor Scanning}, 
+  year={2022},
+  volume={},
+  number={},
+  pages={13358-13368},
+  keywords={Training;Computer vision;Computational modeling;Optimization methods;Robustness;Pattern recognition;Adversarial attack and defense; Optimization methods},
+  doi={10.1109/CVPR52688.2022.01301}}
+
+@article{kARM,
+  title={Backdoor Scanning for Deep Neural Networks through K-Arm Optimization},
+  author={Shen, Guangyu and Liu, Yingqi and Tao, Guanhong and An, Shengwei and Xu, Qiuling and Cheng, Siyuan and Ma, Shiqing and Zhang, Xiangyu},
+  journal={arXiv preprint arXiv:2102.05123},
+  year={2021}
+}
+
+@misc{DLTND,
+      title={Practical Detection of Trojan Neural Networks: Data-Limited and Data-Free Cases}, 
+      author={Ren Wang and Gaoyuan Zhang and Sijia Liu and Pin-Yu Chen and Jinjun Xiong and Meng Wang},
+      year={2020},
+      eprint={2007.15802},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG}
+}
+
+@inproceedings{DeepInspect,
+  title     = {DeepInspect: A Black-box Trojan Detection and Mitigation Framework for Deep Neural Networks},
+  author    = {Chen, Huili and Fu, Cheng and Zhao, Jishen and Koushanfar, Farinaz},
+  booktitle = {Proceedings of the Twenty-Eighth International Joint Conference on
+               Artificial Intelligence, {IJCAI-19}},
+  publisher = {International Joint Conferences on Artificial Intelligence Organization},
+  pages     = {4658--4664},
+  year      = {2019},
+  month     = {7},
+  doi       = {10.24963/ijcai.2019/647},
+  url       = {https://doi.org/10.24963/ijcai.2019/647},
+}
+@misc{hao2024surprising,
+      title={The Surprising Harmfulness of Benign Overfitting for Adversarial Robustness}, 
+      author={Yifan Hao and Tong Zhang},
+      year={2024},
+      eprint={2401.12236},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG}
+}
+
+@misc{hastie2020surprises,
+      title={Surprises in High-Dimensional Ridgeless Least Squares Interpolation}, 
+      author={Trevor Hastie and Andrea Montanari and Saharon Rosset and Ryan J. Tibshirani},
+      year={2020},
+      eprint={1903.08560},
+      archivePrefix={arXiv},
+      primaryClass={math.ST}
+}
+
+@ARTICLE{odyssey,
+  author={Edraki, Marzieh and Karim, Nazmul and Rahnavard, Nazanin and Mian, Ajmal and Shah, Mubarak},
+  journal={IEEE Transactions on Information Forensics and Security}, 
+  title={Odyssey: Creation, Analysis and Detection of Trojan Models}, 
+  year={2021},
+  volume={16},
+  number={},
+  pages={4521-4533},
+  keywords={Trojan horses;Training;Data models;Detectors;Computational modeling;Training data;Perturbation methods;Trojan attack;Trojan model;Trojan detection;Trojan Dataset;model properties},
+  doi={10.1109/TIFS.2021.3108407}}
+
+
+@article{FID,
+  author       = {Martin Heusel and
+                  Hubert Ramsauer and
+                  Thomas Unterthiner and
+                  Bernhard Nessler and
+                  G{\"{u}}nter Klambauer and
+                  Sepp Hochreiter},
+  title        = {GANs Trained by a Two Time-Scale Update Rule Converge to a Nash Equilibrium},
+  journal      = {CoRR},
+  volume       = {abs/1706.08500},
+  year         = {2017},
+  url          = {http://arxiv.org/abs/1706.08500},
+  eprinttype    = {arXiv},
+  eprint       = {1706.08500},
+  timestamp    = {Sat, 23 Jan 2021 01:20:58 +0100},
+  biburl       = {https://dblp.org/rec/journals/corr/HeuselRUNKH17.bib},
+  bibsource    = {dblp computer science bibliography, https://dblp.org}
+}
+
+@InProceedings{stl10,
+  title = 	 {An Analysis of Single-Layer Networks in Unsupervised Feature Learning},
+  author = 	 {Coates, Adam and Ng, Andrew and Lee, Honglak},
+  booktitle = 	 {Proceedings of the Fourteenth International Conference on Artificial Intelligence and Statistics},
+  pages = 	 {215--223},
+  year = 	 {2011},
+  editor = 	 {Gordon, Geoffrey and Dunson, David and Dudík, Miroslav},
+  volume = 	 {15},
+  series = 	 {Proceedings of Machine Learning Research},
+  address = 	 {Fort Lauderdale, FL, USA},
+  month = 	 {11--13 Apr},
+  publisher =    {PMLR},
+  pdf = 	 {http://proceedings.mlr.press/v15/coates11a/coates11a.pdf},
+  url = 	 {https://proceedings.mlr.press/v15/coates11a.html},
+  abstract = 	 {A great deal of research has focused on algorithms for learning features from unlabeled data. Indeed, much progress has been made on benchmark datasets like NORB and CIFAR-10 by employing increasingly complex unsupervised learning algorithms and deep models. In this paper, however, we show that several simple factors, such as the number of hidden nodes in the model, may be more important to achieving high performance than the learning algorithm or the depth of the model. Specifically, we will apply several off-the-shelf feature learning algorithms (sparse auto-encoders, sparse RBMs, K-means clustering, and Gaussian mixtures) to CIFAR-10, NORB, and STL datasets using only single-layer networks. We then present a detailed analysis of the effect of changes in the model setup: the receptive field size, number of hidden nodes (features), the step-size (“stride”) between extracted features, and the effect of whitening. Our results show that large numbers of hidden nodes and dense feature extraction are critical to achieving high performance - so critical, in fact, that when these parameters are pushed to their limits, we achieve state-of-the-art performance on both CIFAR-10 and NORB using only a single layer of features. More surprisingly, our best performance is based on K-means clustering, which is extremely fast, has no hyper-parameters to tune beyond the model structure itself, and is very easy to implement. Despite the simplicity of our system, we achieve accuracy beyond all previously published results on the CIFAR-10 and NORB datasets (79.6% and 97.2% respectively).}
+}
+
+
+@misc{ntk,
+      title={Neural Tangent Kernel: Convergence and Generalization in Neural Networks}, 
+      author={Arthur Jacot and Franck Gabriel and Clément Hongler},
+      year={2020},
+      eprint={1806.07572},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG}
+}
+
+@article{kenmiller,
+ ISSN = {0025570X, 19300980},
+ URL = {http://www.jstor.org/stable/2690437},
+ author = {Kenneth S. Miller},
+ journal = {Mathematics Magazine},
+ number = {2},
+ pages = {67--72},
+ publisher = {Mathematical Association of America},
+ title = {On the Inverse of the Sum of Matrices},
+ urldate = {2024-05-18},
+ volume = {54},
+ year = {1981}
+}
+
+
+@article{pgd,
+  title={Towards deep learning models resistant to adversarial attacks},
+  author={Madry, Aleksander and Makelov, Aleksandar and Schmidt, Ludwig and Tsipras, Dimitris and Vladu, Adrian},
+  journal={arXiv preprint arXiv:1706.06083},
+  year={2017}
+}
+
+@inproceedings{
+msp,
+title={A Baseline for Detecting Misclassified and Out-of-Distribution Examples in Neural Networks},
+author={Dan Hendrycks and Kevin Gimpel},
+booktitle={International Conference on Learning Representations},
+year={2017},
+url={https://openreview.net/forum?id=Hkg4TI9xl}
+}
+
+@misc{fmnist,
+      title={Fashion-MNIST: a Novel Image Dataset for Benchmarking Machine Learning Algorithms}, 
+      author={Han Xiao and Kashif Rasul and Roland Vollgraf},
+      year={2017},
+      eprint={1708.07747},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG}
+}
+
+@misc{deepfool,
+      title={DeepFool: a simple and accurate method to fool deep neural networks}, 
+      author={Seyed-Mohsen Moosavi-Dezfooli and Alhussein Fawzi and Pascal Frossard},
+      year={2016},
+      eprint={1511.04599},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG}
+}
+
+@article{cifar,
+  title={Learning multiple layers of features from tiny images},
+  author={Krizhevsky, Alex and Hinton, Geoffrey and others},
+  year={2009},
+  publisher={Citeseer}
+}
+
+
+@inproceedings{imagenet,
+author = {Deng, Jia and Dong, Wei and Socher, Richard and Li, Li-Jia and Li, Kai and Li, Fei-Fei},
+year = {2009},
+month = {06},
+pages = {248-255},
+title = {ImageNet: a Large-Scale Hierarchical Image Database},
+journal = {IEEE Conference on Computer Vision and Pattern Recognition},
+doi = {10.1109/CVPR.2009.5206848}
+}
+
+@misc{cutpaste,
+      title={Simple Copy-Paste is a Strong Data Augmentation Method for Instance Segmentation}, 
+      author={Golnaz Ghiasi and Yin Cui and Aravind Srinivas and Rui Qian and Tsung-Yi Lin and Ekin D. Cubuk and Quoc V. Le and Barret Zoph},
+      year={2021},
+      eprint={2012.07177},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}
+}
+
+@InProceedings{umd,
+  title = 	 {{UMD}: Unsupervised Model Detection for {X}2{X} Backdoor Attacks},
+  author =       {Xiang, Zhen and Xiong, Zidi and Li, Bo},
+  booktitle = 	 {Proceedings of the 40th International Conference on Machine Learning},
+  pages = 	 {38013--38038},
+  year = 	 {2023},
+  editor = 	 {Krause, Andreas and Brunskill, Emma and Cho, Kyunghyun and Engelhardt, Barbara and Sabato, Sivan and Scarlett, Jonathan},
+  volume = 	 {202},
+  series = 	 {Proceedings of Machine Learning Research},
+  month = 	 {23--29 Jul},
+  publisher =    {PMLR},
+  pdf = 	 {https://proceedings.mlr.press/v202/xiang23a/xiang23a.pdf},
+  url = 	 {https://proceedings.mlr.press/v202/xiang23a.html},
+  abstract = 	 {Backdoor (Trojan) attack is a common threat to deep neural networks, where samples from one or more source classes embedded with a backdoor trigger will be misclassified to adversarial target classes. Existing methods for detecting whether a classifier is backdoor attacked are mostly designed for attacks with a single adversarial target (e.g., all-to-one attack). To the best of our knowledge, without supervision, no existing methods can effectively address the more general X2X attack with an arbitrary number of source classes, each paired with an arbitrary target class. In this paper, we propose UMD, the first Unsupervised Model Detection method that effectively detects X2X backdoor attacks via a joint inference of the adversarial (source, target) class pairs. In particular, we first define a novel transferability statistic to measure and select a subset of putative backdoor class pairs based on a proposed clustering approach. Then, these selected class pairs are jointly assessed based on an aggregation of their reverse-engineered trigger size for detection inference, using a robust and unsupervised anomaly detector we proposed. We conduct comprehensive evaluations on CIFAR-10, GTSRB, and Imagenette dataset, and show that our unsupervised UMD outperforms SOTA detectors (even with supervision) by 17%, 4%, and 8%, respectively, in terms of the detection accuracy against diverse X2X attacks. We also show the strong detection performance of UMD against several strong adaptive attacks.}
+}
+
+
+@INPROCEEDINGS {MMBD,
+author = {H. Wang and Z. Xiang and D. J. Miller and G. Kesidis},
+booktitle = {2024 IEEE Symposium on Security and Privacy (SP)},
+title = {MM-BD: Post-Training Detection of Backdoor Attacks with Arbitrary Backdoor Pattern Types Using a Maximum Margin Statistic},
+year = {2024},
+volume = {},
+issn = {2375-1207},
+pages = {19-19},
+abstract = {Backdoor attacks are an important type of adversarial threat against deep neural network classifiers, wherein test samples from one or more source classes will be (mis)classified to the attacker&#x27;s target class when a backdoor pattern is embedded. In this paper, we focus on the post-training backdoor defense scenario commonly considered in the literature, where the defender aims to detect whether a trained classifier was backdoor-attacked without any access to the training set. Many post-training detectors are designed to detect attacks that use either one or a few specific backdoor embedding functions (e.g., patch-replacement or additive attacks). These detectors may fail when the backdoor embedding function used by the attacker (unknown to the defender) is different from the backdoor embedding function assumed by the defender. In contrast, we propose a post-training defense that detects backdoor attacks with arbitrary types of backdoor embeddings, without making any assumptions about the backdoor embedding type. Our detector leverages the influence of the backdoor attack, independent of the backdoor embedding mechanism, on the landscape of the classifier&#x27;s outputs prior to the softmax layer. For each class, a maximum margin statistic is estimated. Detection inference is then performed by applying an unsupervised anomaly detector to these statistics. Thus, our detector does not need any legitimate clean samples, and can efficiently detect backdoor attacks with arbitrary numbers of source classes. These advantages over several state-of-the-art methods are demonstrated on four datasets, for three different types of backdoor patterns, and for a variety of attack configurations. Finally, we propose a novel, general approach for backdoor mitigation once a detection is made. The mitigation approach was the runner-up at the first IEEE Trojan Removal Competition. The code is online available.},
+keywords = {backdoor attack;trojan;backdoor defense},
+doi = {10.1109/SP54263.2024.00015},
+url = {https://doi.ieeecomputersociety.org/10.1109/SP54263.2024.00015},
+publisher = {IEEE Computer Society},
+address = {Los Alamitos, CA, USA},
+month = {may}
+}
+
+
+@misc{TABOR,
+      title={TABOR: A Highly Accurate Approach to Inspecting and Restoring Trojan Backdoors in AI Systems}, 
+      author={Wenbo Guo and Lun Wang and Xinyu Xing and Min Du and Dawn Song},
+      year={2019},
+      eprint={1908.01763},
+      archivePrefix={arXiv},
+      primaryClass={cs.CR}
+}
+
+@inproceedings{ABS,
+author = {Liu, Yingqi and Lee, Wen-Chuan and Tao, Guanhong and Ma, Shiqing and Aafer, Yousra and Zhang, Xiangyu},
+title = {ABS: Scanning Neural Networks for Back-doors by Artificial Brain Stimulation},
+year = {2019},
+isbn = {9781450367479},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/3319535.3363216},
+doi = {10.1145/3319535.3363216},
+abstract = {This paper presents a technique to scan neural network based AI models to determine if they are trojaned. Pre-trained AI models may contain back-doors that are injected through training or by transforming inner neuron weights. These trojaned models operate normally when regular inputs are provided, and mis-classify to a specific output label when the input is stamped with some special pattern called trojan trigger. We develop a novel technique that analyzes inner neuron behaviors by determining how output activations change when we introduce different levels of stimulation to a neuron. The neurons that substantially elevate the activation of a particular output label regardless of the provided input is considered potentially compromised. Trojan trigger is then reverse-engineered through an optimization procedure using the stimulation analysis results, to confirm that a neuron is truly compromised. We evaluate our system ABS on 177 trojaned models that are trojaned with various attack methods that target both the input space and the feature space, and have various trojan trigger sizes and shapes, together with 144 benign models that are trained with different data and initial weight values. These models belong to 7 different model structures and 6 different datasets, including some complex ones such as ImageNet, VGG-Face and ResNet110. Our results show that ABS is highly effective, can achieve over 90\% detection rate for most cases (and many 100\%), when only one input sample is provided for each output label. It substantially out-performs the state-of-the-art technique Neural Cleanse that requires a lot of input samples and small trojan triggers to achieve good performance.},
+booktitle = {Proceedings of the 2019 ACM SIGSAC Conference on Computer and Communications Security},
+pages = {1265–1282},
+numpages = {18},
+keywords = {ai trojan attacks, artificial brain stimulation, deep learning system},
+location = {London, United Kingdom},
+series = {CCS '19}
+}
+
+
+@inproceedings{pubfig,
+  title={Attribute and simile classifiers for face verification},
+  author={Kumar, Neeraj and Berg, Alexander C and Belhumeur, Peter N and Nayar, Shree K},
+  booktitle={2009 IEEE 12th international conference on computer vision},
+  pages={365--372},
+  year={2009},
+  organization={IEEE}
+}
+//badnet
+@article{badnets,
+  title={Badnets: Identifying vulnerabilities in the machine learning model supply chain},
+  author={Gu, Tianyu and Dolan-Gavitt, Brendan and Garg, Siddharth},
+  journal={arXiv preprint arXiv:1708.06733},
+  year={2017}
+}
+//blended
+@article{blended,
+  title={Targeted backdoor attacks on deep learning systems using data poisoning},
+  author={Chen, Xinyun and Liu, Chang and Li, Bo and Lu, Kimberly and Song, Dawn},
+  journal={arXiv preprint arXiv:1712.05526},
+  year={2017}
+}
+//sig
+@inproceedings{sig,
+  title={A new backdoor attack in cnns by training set corruption without label poisoning},
+  author={Barni, Mauro and Kallas, Kassem and Tondi, Benedetta},
+  booktitle={2019 IEEE International Conference on Image Processing (ICIP)},
+  pages={101--105},
+  year={2019},
+  organization={IEEE}
+}
+//bpp
+@inproceedings{bpp,
+  title={Bppattack: Stealthy and efficient trojan attacks against deep neural networks via image quantization and contrastive adversarial learning},
+  author={Wang, Zhenting and Zhai, Juan and Ma, Shiqing},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={15074--15084},
+  year={2022}
+}
+//inputaware
+@article{inputaware,
+  title={Input-aware dynamic backdoor attack},
+  author={Nguyen, Tuan Anh and Tran, Anh},
+  journal={Advances in Neural Information Processing Systems},
+  volume={33},
+  pages={3454--3464},
+  year={2020}
+}
+//wanet
+@article{wanet,
+  title={Wanet--imperceptible warping-based backdoor attack},
+  author={Nguyen, Anh and Tran, Anh},
+  journal={arXiv preprint arXiv:2102.10369},
+  year={2021}
+}
+//ssba
+@inproceedings{ssba,
+  title={Invisible backdoor attack with sample-specific triggers},
+  author={Li, Yuezun and Li, Yiming and Wu, Baoyuan and Li, Longkang and He, Ran and Lyu, Siwei},
+  booktitle={Proceedings of the IEEE/CVF international conference on computer vision},
+  pages={16463--16472},
+  year={2021}
+}
+
+@article{wu2022backdoorbench,
+  title={Backdoorbench: A comprehensive benchmark of backdoor learning},
+  author={Wu, Baoyuan and Chen, Hongrui and Zhang, Mingda and Zhu, Zihao and Wei, Shaokui and Yuan, Danni and Shen, Chao},
+  journal={Advances in Neural Information Processing Systems},
+  volume={35},
+  pages={10546--10559},
+  year={2022}
+}
+//color
+@inproceedings{color,
+  title={Color backdoor: A robust poisoning attack in color space},
+  author={Jiang, Wenbo and Li, Hongwei and Xu, Guowen and Zhang, Tianwei},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={8133--8142},
+  year={2023}
+}
+
+@article{tsigler2020benign,
+  title={Benign Overfitting in Linear Regression},
+  author={Tsigler, Alexander and Lugosi, Gabor and Bartlett, Peter and Long, Phil},
+  journal={PNAS},
+  volume={117},
+  number={48},
+  pages={30063--30070},
+  year={2020}
+}
+
+@article{turner2019label,
+  title={Label-consistent backdoor attacks},
+  author={Turner, Alexander and Tsipras, Dimitris and Madry, Aleksander},
+  journal={arXiv preprint arXiv:1912.02771},
+  year={2019}
+}
+//atd
+@article{azizmalayeri2022your,
+  title={Your Out-of-Distribution Detection Method is Not Robust!},
+  author={Azizmalayeri, Mohammad and Soltani Moakhar, Arshia and Zarei, Arman and Zohrabi, Reihaneh and Manzuri, Mohammad and Rohban, Mohammad Hossein},
+  journal={Advances in Neural Information Processing Systems},
+  volume={35},
+  pages={4887--4901},
+  year={2022}
+}
+
+@article{chen2020robust,
+  title={Robust out-of-distribution detection for neural networks},
+  author={Chen, Jiefeng and Li, Yixuan and Wu, Xi and Liang, Yingyu and Jha, Somesh},
+  journal={arXiv preprint arXiv:2003.09711},
+  year={2020}
+}
+@article{AT,
+  title={Towards deep learning models resistant to adversarial attacks},
+  author={Madry, Aleksander and Makelov, Aleksandar and Schmidt, Ludwig and Tsipras, Dimitris and Vladu, Adrian},
+  journal={arXiv preprint arXiv:1706.06083},
+  year={2017}
+}
+@inproceedings{HAT,
+  title={Reducing excessive margin to achieve a better accuracy vs. robustness trade-off},
+  author={Rade, Rahul and Moosavi-Dezfooli, Seyed-Mohsen},
+  booktitle={International Conference on Learning Representations},
+  year={2021}
+}
+
+@inproceedings{MNTD,
+  title={Detecting ai trojans using meta neural analysis},
+  author={Xu, Xiaojun and Wang, Qi and Li, Huichen and Borisov, Nikita and Gunter, Carl A and Li, Bo},
+  booktitle={2021 IEEE Symposium on Security and Privacy (SP)},
+  pages={103--120},
+  year={2021},
+  organization={IEEE}
+}
+
+@article{chatterji2022foolish,
+  title={Foolish crowds support benign overfitting},
+  author={Chatterji, Niladri S and Long, Philip M},
+  journal={Journal of Machine Learning Research},
+  volume={23},
+  number={125},
+  pages={1--12},
+  year={2022}
+}
+
+@article{cao2022benign,
+  title={Benign overfitting in two-layer convolutional neural networks},
+  author={Cao, Yuan and Chen, Zixiang and Belkin, Misha and Gu, Quanquan},
+  journal={Advances in neural information processing systems},
+  volume={35},
+  pages={25237--25250},
+  year={2022}
+}
+
+@inproceedings{xu2023benign,
+  title={Benign overfitting of non-smooth neural networks beyond lazy training},
+  author={Xu, Xingyu and Gu, Yuantao},
+  booktitle={International Conference on Artificial Intelligence and Statistics},
+  pages={11094--11117},
+  year={2023},
+  organization={PMLR}
+}
+
+@inproceedings{kou2023benign,
+  title={Benign overfitting in two-layer ReLU convolutional neural networks},
+  author={Kou, Yiwen and Chen, Zixiang and Chen, Yuanzhou and Gu, Quanquan},
+  booktitle={International Conference on Machine Learning},
+  pages={17615--17659},
+  year={2023},
+  organization={PMLR}
+}
+
+@article{haas2024mind,
+  title={Mind the spikes: Benign overfitting of kernels and neural networks in fixed dimension},
+  author={Haas, Moritz and Holzm{\"u}ller, David and Luxburg, Ulrike and Steinwart, Ingo},
+  journal={Advances in Neural Information Processing Systems},
+  volume={36},
+  year={2024}
+}
+
+@article{chen2022understanding,
+  title={Understanding benign overfitting in gradient-based meta learning},
+  author={Chen, Lisha and Lu, Songtao and Chen, Tianyi},
+  journal={Advances in Neural Information Processing Systems},
+  volume={35},
+  pages={19887--19899},
+  year={2022}
+}
+
+@article{mallinar2022benign,
+  title={Benign, tempered, or catastrophic: Toward a refined taxonomy of overfitting},
+  author={Mallinar, Neil and Simon, James and Abedsoltan, Amirhesam and Pandit, Parthe and Belkin, Misha and Nakkiran, Preetum},
+  journal={Advances in Neural Information Processing Systems},
+  volume={35},
+  pages={1182--1195},
+  year={2022}
+}
+
+@article{li2021towards,
+  title={Towards an understanding of benign overfitting in neural networks},
+  author={Li, Zhu and Zhou, Zhi-Hua and Gretton, Arthur},
+  journal={arXiv preprint arXiv:2106.03212},
+  year={2021}
+}
+
+@article{tsigler2023benign,
+  title={Benign overfitting in ridge regression},
+  author={Tsigler, Alexander and Bartlett, Peter L},
+  journal={Journal of Machine Learning Research},
+  volume={24},
+  number={123},
+  pages={1--76},
+  year={2023}
+}
+
+
+@article{li2023benign,
+  title={Benign overfitting and noisy features},
+  author={Li, Zhu and Su, Weijie J and Sejdinovic, Dino},
+  journal={Journal of the American Statistical Association},
+  volume={118},
+  number={544},
+  pages={2876--2888},
+  year={2023},
+  publisher={Taylor \& Francis}
+}
+
+@inproceedings{wang2021benign,
+  title={Benign overfitting in binary classification of gaussian mixtures},
+  author={Wang, Ke and Thrampoulidis, Christos},
+  booktitle={ICASSP 2021-2021 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)},
+  pages={4030--4034},
+  year={2021},
+  organization={IEEE}
+}
+
+@article{kornowski2024tempered,
+  title={From tempered to benign overfitting in relu neural networks},
+  author={Kornowski, Guy and Yehudai, Gilad and Shamir, Ohad},
+  journal={Advances in Neural Information Processing Systems},
+  volume={36},
+  year={2024}
+}
+
+@article{meng2023benign,
+  title={Benign Overfitting in Two-Layer ReLU Convolutional Neural Networks for XOR Data},
+  author={Meng, Xuran and Zou, Difan and Cao, Yuan},
+  journal={arXiv preprint arXiv:2310.01975},
+  year={2023}
+}
+
+@inproceedings{liu2024does,
+  title={Does few-shot learning suffer from backdoor attacks?},
+  author={Liu, Xinwei and Jia, Xiaojun and Gu, Jindong and Xun, Yuan and Liang, Siyuan and Cao, Xiaochun},
+  booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},
+  volume={38},
+  number={18},
+  pages={19893--19901},
+  year={2024}
+}
+
+@Article{albumenations,
+AUTHOR = {Buslaev, Alexander and Iglovikov, Vladimir I. and Khvedchenya, Eugene and Parinov, Alex and Druzhinin, Mikhail and Kalinin, Alexandr A.},
+TITLE = {Albumentations: Fast and Flexible Image Augmentations},
+JOURNAL = {Information},
+VOLUME = {11},
+YEAR = {2020},
+NUMBER = {2},
+ARTICLE-NUMBER = {125},
+URL = {https://www.mdpi.com/2078-2489/11/2/125},
+ISSN = {2078-2489},
+ABSTRACT = {Data augmentation is a commonly used technique for increasing both the size and the diversity of labeled training sets by leveraging input transformations that preserve corresponding output labels. In computer vision, image augmentations have become a common implicit regularization technique to combat overfitting in deep learning models and are ubiquitously used to improve performance. While most deep learning frameworks implement basic image transformations, the list is typically limited to some variations of flipping, rotating, scaling, and cropping. Moreover, image processing speed varies in existing image augmentation libraries. We present Albumentations, a fast and flexible open source library for image augmentation with many various image transform operations available that is also an easy-to-use wrapper around other augmentation libraries. We discuss the design principles that drove the implementation of Albumentations and give an overview of the key features and distinct capabilities. Finally, we provide examples of image augmentations for different computer vision tasks and demonstrate that Albumentations is faster than other commonly used image augmentation tools on most image transform operations.},
+DOI = {10.3390/info11020125}
+}
+
+@inproceedings{chen2023benign,
+  title={Benign overfitting in adversarially robust linear classification},
+  author={Chen, Jinghui and Cao, Yuan and Gu, Quanquan},
+  booktitle={Uncertainty in Artificial Intelligence},
+  pages={313--323},
+  year={2023},
+  organization={PMLR}
+}
+
+@article{sanyal2020benign,
+  title={How benign is benign overfitting?},
+  author={Sanyal, Amartya and Dokania, Puneet K and Kanade, Varun and Torr, Philip HS},
+  journal={arXiv preprint arXiv:2007.04028},
+  year={2020}
+}
+ @article{fawzi2018adversarial,
+  title={Adversarial vulnerability for any classifier},
+  author={Fawzi, Alhussein and Fawzi, Hamza and Fawzi, Omar},
+  journal={Advances in neural information processing systems},
+  volume={31},
+  year={2018}
+}
+
+@article{zou2024adversarial,
+  title={On the Adversarial Robustness of Out-of-distribution Generalization Models},
+  author={Zou, Xin and Liu, Weiwei},
+  journal={Advances in Neural Information Processing Systems},
+  volume={36},
+  year={2024}
+}
+
+@inproceedings{augustin2020adversarial,
+  title={Adversarial robustness on in-and out-distribution improves explainability},
+  author={Augustin, Maximilian and Meinke, Alexander and Hein, Matthias},
+  booktitle={European Conference on Computer Vision},
+  pages={228--245},
+  year={2020},
+  organization={Springer}
+}
+
+@article{fort2022adversarial,
+  title={Adversarial vulnerability of powerful near out-of-distribution detection},
+  author={Fort, Stanislav},
+  journal={arXiv preprint arXiv:2201.07012},
+  year={2022}
+}
+
+@inproceedings{simon2019first,
+  title={First-order adversarial vulnerability of neural networks and input dimension},
+  author={Simon-Gabriel, Carl-Johann and Ollivier, Yann and Bottou, Leon and Sch{\"o}lkopf, Bernhard and Lopez-Paz, David},
+  booktitle={International conference on machine learning},
+  pages={5809--5817},
+  year={2019},
+  organization={PMLR}
+}
+@inproceedings{kong2021opengan,
+  title={Opengan: Open-set recognition via open data generation},
+  author={Kong, Shu and Ramanan, Deva},
+  booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision},
+  pages={813--822},
+  year={2021}
+}
+@article{fort2021exploring,
+  title={Exploring the limits of out-of-distribution detection},
+  author={Fort, Stanislav and Ren, Jie and Lakshminarayanan, Balaji},
+  journal={Advances in Neural Information Processing Systems},
+  volume={34},
+  pages={7068--7081},
+  year={2021}
+}
+@article{hendrycks2016baseline,
+  title={A baseline for detecting misclassified and out-of-distribution examples in neural networks},
+  author={Hendrycks, Dan and Gimpel, Kevin},
+  journal={arXiv preprint arXiv:1610.02136},
+  year={2016}
+}
+@article{salehi2021unified,
+  title={A unified survey on anomaly, novelty, open-set, and out-of-distribution detection: Solutions and future challenges},
+  author={Salehi, Mohammadreza and Mirzaei, Hossein and Hendrycks, Dan and Li, Yixuan and Rohban, Mohammad Hossein and Sabokrou, Mohammad},
+  journal={arXiv preprint arXiv:2110.14051},
+  year={2021}
+}
+
+
+@article{ruff2021unifying,
+  title={A unifying review of deep and shallow anomaly detection},
+  author={Ruff, Lukas and Kauffmann, Jacob R and Vandermeulen, Robert A and Montavon, Gr{\'e}goire and Samek, Wojciech and Kloft, Marius and Dietterich, Thomas G and M{\"u}ller, Klaus-Robert},
+  journal={Proceedings of the IEEE},
+  volume={109},
+  number={5},
+  pages={756--795},
+  year={2021},
+  publisher={IEEE}
+}
+@inproceedings{sun2022out,
+  title={Out-of-distribution detection with deep nearest neighbors},
+  author={Sun, Yiyou and Ming, Yifei and Zhu, Xiaojin and Li, Yixuan},
+  booktitle={International Conference on Machine Learning},
+  pages={20827--20840},
+  year={2022},
+  organization={PMLR}
+}
+@article{liang2017enhancing,
+  title={Enhancing the reliability of out-of-distribution image detection in neural networks},
+  author={Liang, Shiyu and Li, Yixuan and Srikant, Rayadurgam},
+  journal={arXiv preprint arXiv:1706.02690},
+  year={2017}
+}
+@article{vaze2021open,
+  title={Open-set recognition: A good closed-set classifier is all you need?},
+  author={Vaze, Sagar and Han, Kai and Vedaldi, Andrea and Zisserman, Andrew},
+  year={2021},
+  publisher={OpenReview}
+}
+
+@article{jacot2018neural,
+  title={Neural tangent kernel: Convergence and generalization in neural networks},
+  author={Jacot, Arthur and Gabriel, Franck and Hongler, Cl{\'e}ment},
+  journal={Advances in neural information processing systems},
+  volume={31},
+  year={2018}
+}
+
+@article{miller1981inverse,
+  title={On the inverse of the sum of matrices},
+  author={Miller, Kenneth S},
+  journal={Mathematics magazine},
+  volume={54},
+  number={2},
+  pages={67--72},
+  year={1981},
+  publisher={Taylor \& Francis}
+}
+@inproceedings{face,
+  title={Deep face recognition},
+  author={Parkhi, Omkar and Vedaldi, Andrea and Zisserman, Andrew},
+  booktitle={BMVC 2015-Proceedings of the British Machine Vision Conference 2015},
+  year={2015},
+  organization={British Machine Vision Association}
+}
+@article{cars,
+  title={End to end learning for self-driving cars},
+  author={Bojarski, Mariusz and Del Testa, Davide and Dworakowski, Daniel and Firner, Bernhard and Flepp, Beat and Goyal, Prasoon and Jackel, Lawrence D and Monfort, Mathew and Muller, Urs and Zhang, Jiakai and others},
+  journal={arXiv preprint arXiv:1604.07316},
+  year={2016}
+}
+@article{miller2020adversarial,
+  title={Adversarial learning targeting deep neural network classification: A comprehensive review of defenses against attacks},
+  author={Miller, David J and Xiang, Zhen and Kesidis, George},
+  journal={Proceedings of the IEEE},
+  volume={108},
+  number={3},
+  pages={402--433},
+  year={2020},
+  publisher={IEEE}
+}
+@article{bsurvey,
+  title={Backdoor learning: A survey},
+  author={Li, Yiming and Jiang, Yong and Li, Zhifeng and Xia, Shu-Tao},
+  journal={IEEE Transactions on Neural Networks and Learning Systems},
+  year={2022},
+  publisher={IEEE}
+}
+@article{spec,
+  title={Spectral signatures in backdoor attacks},
+  author={Tran, Brandon and Li, Jerry and Madry, Aleksander},
+  journal={Advances in neural information processing systems},
+  volume={31},
+  year={2018}
+}
+
+
+
+
+
+@article{zhang2021cassandra,
+  title={Cassandra: Detecting trojaned networks from adversarial perturbations},
+  author={Zhang, Xiaoyu and Gupta, Rohit and Mian, Ajmal and Rahnavard, Nazanin and Shah, Mubarak},
+  journal={IEEE Access},
+  volume={9},
+  pages={135856--135867},
+  year={2021},
+  publisher={IEEE}
+}
+
+@article{madry2017towards,
+  title={Towards deep learning models resistant to adversarial attacks},
+  author={Madry, Aleksander and Makelov, Aleksandar and Schmidt, Ludwig and Tsipras, Dimitris and Vladu, Adrian},
+  journal={arXiv preprint arXiv:1706.06083},
+  year={2017}
+}
+
+@article{xiang2024cbd,
+  title={CBD: A certified backdoor detector based on local dominant probability},
+  author={Xiang, Zhen and Xiong, Zidi and Li, Bo},
+  journal={Advances in Neural Information Processing Systems},
+  volume={36},
+  year={2024}
+}
+
+@misc{freeeagle,
+      title={FreeEagle: Detecting Complex Neural Trojans in Data-Free Cases}, 
+      author={Chong Fu and Xuhong Zhang and Shouling Ji and Ting Wang and Peng Lin and Yanghe Feng and Jianwei Yin},
+      year={2023},
+      eprint={2302.14500},
+      archivePrefix={arXiv},
+      primaryClass={cs.CR},
+      url={https://arxiv.org/abs/2302.14500}, 
+}
+
+
+@InProceedings{pmlr-v80-uesato18a,
+  title = 	 {Adversarial Risk and the Dangers of Evaluating Against Weak Attacks},
+  author =       {Uesato, Jonathan and O'Donoghue, Brendan and Kohli, Pushmeet and van den Oord, Aaron},
+  booktitle = 	 {Proceedings of the 35th International Conference on Machine Learning},
+  pages = 	 {5025--5034},
+  year = 	 {2018},
+  editor = 	 {Dy, Jennifer and Krause, Andreas},
+  volume = 	 {80},
+  series = 	 {Proceedings of Machine Learning Research},
+  month = 	 {10--15 Jul},
+  publisher =    {PMLR},
+  pdf = 	 {http://proceedings.mlr.press/v80/uesato18a/uesato18a.pdf},
+  url = 	 {https://proceedings.mlr.press/v80/uesato18a.html},
+  abstract = 	 {This paper investigates recently proposed approaches for defending against adversarial examples and evaluating adversarial robustness. We motivate <em>adversarial risk</em> as an objective for achieving models robust to worst-case inputs. We then frame commonly used attacks and evaluation metrics as defining a tractable surrogate objective to the true adversarial risk. This suggests that models may optimize this surrogate rather than the true adversarial risk. We formalize this notion as <em>obscurity to an adversary</em>, and develop tools and heuristics for identifying obscured models and designing transparent models. We demonstrate that this is a significant problem in practice by repurposing gradient-free optimization techniques into adversarial attacks, which we use to decrease the accuracy of several recently proposed defenses to near zero. Our hope is that our formulations and results will help researchers to develop more powerful defenses.}
+}
+
+
+@InProceedings{pmlr-v89-suggala19a,
+  title = 	 {Revisiting Adversarial Risk},
+  author =       {Suggala, Arun Sai and Prasad, Adarsh and Nagarajan, Vaishnavh and Ravikumar, Pradeep},
+  booktitle = 	 {Proceedings of the Twenty-Second International Conference on Artificial Intelligence and Statistics},
+  pages = 	 {2331--2339},
+  year = 	 {2019},
+  editor = 	 {Chaudhuri, Kamalika and Sugiyama, Masashi},
+  volume = 	 {89},
+  series = 	 {Proceedings of Machine Learning Research},
+  month = 	 {16--18 Apr},
+  publisher =    {PMLR},
+  pdf = 	 {http://proceedings.mlr.press/v89/suggala19a/suggala19a.pdf},
+  url = 	 {https://proceedings.mlr.press/v89/suggala19a.html},
+  abstract = 	 {Recent works on adversarial perturbations show that there is an inherent trade-off between standard test accuracy and adversarial accuracy. Specifically, they show that no classifier can simultaneously be robust to adversarial perturbations and  achieve high standard test accuracy. However, this is contrary to the standard notion that on tasks such as image classification, humans are robust classifiers with low error rate. In this work, we show that the main reason behind this confusion is the inaccurate definition of adversarial perturbation that is used in the literature.  To fix this issue, we propose a slight, yet important modification to the existing definition of adversarial perturbation.  Based on the modified definition, we show that there is no trade-off between adversarial and standard accuracies; there exist classifiers that are robust and achieve high standard accuracy. We further study several properties of this new definition of adversarial risk and its relation to the existing definition.}
+}
+
+@misc{khim2019adversarial,
+      title={Adversarial Risk Bounds via Function Transformation}, 
+      author={Justin Khim and Po-Ling Loh},
+      year={2019},
+      eprint={1810.09519},
+      archivePrefix={arXiv},
+      primaryClass={stat.ML}
+}
+
+
+@InProceedings{pmlr-v238-mustafa24a,
+  title = 	 { Non-vacuous Generalization Bounds for Adversarial Risk in Stochastic Neural Networks },
+  author =       {Mustafa, Waleed and Liznerski, Philipp and Ledent, Antoine and Wagner, Dennis and Wang, Puyu and Kloft, Marius},
+  booktitle = 	 {Proceedings of The 27th International Conference on Artificial Intelligence and Statistics},
+  pages = 	 {4528--4536},
+  year = 	 {2024},
+  editor = 	 {Dasgupta, Sanjoy and Mandt, Stephan and Li, Yingzhen},
+  volume = 	 {238},
+  series = 	 {Proceedings of Machine Learning Research},
+  month = 	 {02--04 May},
+  publisher =    {PMLR},
+  pdf = 	 {https://proceedings.mlr.press/v238/mustafa24a/mustafa24a.pdf},
+  url = 	 {https://proceedings.mlr.press/v238/mustafa24a.html},
+  abstract = 	 { Adversarial examples are manipulated samples used to deceive machine learning models, posing a serious threat in safety-critical applications. Existing safety certificates for machine learning models are limited to individual input examples, failing to capture generalization to unseen data. To address this limitation, we propose novel generalization bounds based on the PAC-Bayesian and randomized smoothing frameworks, providing certificates that predict the model’s performance and robustness on unseen test samples based solely on the training data. We present an effective procedure to train and compute the first non-vacuous generalization bounds for neural networks in adversarial settings. Experimental results on the widely recognized MNIST and CIFAR-10 datasets demonstrate the efficacy of our approach, yielding the first robust risk certificates for stochastic convolutional neural networks under the $L_2$ threat model. Our method offers valuable tools for evaluating model susceptibility to real-world adversarial risks. }
+}
+
+@article{hendrycks2019oe,
+  title={Deep Anomaly Detection with Outlier Exposure},
+  author={Hendrycks, Dan and Mazeika, Mantas and Dietterich, Thomas},
+  journal={Proceedings of the International Conference on Learning Representations},
+  year={2019}
+}
+
+@misc{balda2019adversarial,
+      title={Adversarial Risk Bounds for Neural Networks through Sparsity based Compression}, 
+      author={Emilio Rafael Balda and Arash Behboodi and Niklas Koep and Rudolf Mathar},
+      year={2019},
+      eprint={1906.00698},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG}
+}
+
+
+@InProceedings{pmlr-v119-pydi20a,
+  title = 	 {Adversarial Risk via Optimal Transport and Optimal Couplings},
+  author =       {Pydi, Muni Sreenivas and Jog, Varun},
+  booktitle = 	 {Proceedings of the 37th International Conference on Machine Learning},
+  pages = 	 {7814--7823},
+  year = 	 {2020},
+  editor = 	 {III, Hal Daumé and Singh, Aarti},
+  volume = 	 {119},
+  series = 	 {Proceedings of Machine Learning Research},
+  month = 	 {13--18 Jul},
+  publisher =    {PMLR},
+  pdf = 	 {http://proceedings.mlr.press/v119/pydi20a/pydi20a.pdf},
+  url = 	 {https://proceedings.mlr.press/v119/pydi20a.html},
+  abstract = 	 {The accuracy of modern machine learning algorithms deteriorates severely on adversarially manipulated test data. Optimal adversarial risk quantifies the best error rate of any classifier in the presence of adversaries, and optimal adversarial classifiers are sought that minimize adversarial risk. In this paper, we investigate the optimal adversarial risk and optimal adversarial classifiers from an optimal transport perspective. We present a new and simple approach to show that the optimal adversarial risk for binary classification with 0 − 1 loss function is completely characterized by an optimal transport cost between the probability distributions of the two classes, for a suitably defined cost function. We propose a novel coupling strategy that achieves the optimal transport cost for several univariate distributions like Gaussian, uniform and triangular. Using the optimal couplings, we obtain the optimal adversarial classifiers in these settings and show how they differ from optimal classifiers in the absence of adversaries. Based on our analysis, we evaluate algorithm-independent fundamental limits on adversarial risk for CIFAR-10, MNIST, Fashion-MNIST and SVHN datasets, and Gaussian mixtures based on them.}
+}
+
+
+
+@article{DBLP:journals/corr/HeuselRUNKH17,
+  author       = {Martin Heusel and
+                  Hubert Ramsauer and
+                  Thomas Unterthiner and
+                  Bernhard Nessler and
+                  G{\"{u}}nter Klambauer and
+                  Sepp Hochreiter},
+  title        = {GANs Trained by a Two Time-Scale Update Rule Converge to a Nash Equilibrium},
+  journal      = {CoRR},
+  volume       = {abs/1706.08500},
+  year         = {2017},
+  url          = {http://arxiv.org/abs/1706.08500},
+  eprinttype    = {arXiv},
+  eprint       = {1706.08500},
+  timestamp    = {Sat, 23 Jan 2021 01:20:58 +0100},
+  biburl       = {https://dblp.org/rec/journals/corr/HeuselRUNKH17.bib},
+  bibsource    = {dblp computer science bibliography, https://dblp.org}
+}
+
+@article{hou2024ibd,
+  title={IBD-PSC: Input-level Backdoor Detection via Parameter-oriented Scaling Consistency},
+  author={Hou, Linshan and Feng, Ruili and Hua, Zhongyun and Luo, Wei and Zhang, Leo Yu and Li, Yiming},
+  journal={arXiv preprint arXiv:2405.09786},
+  year={2024}
+}
+
+@article{qu4821388input,
+  title={An Input-Denoising-Based Defense Against Stealthy Backdoor Attacks in Large Language Models for Code},
+  author={Qu, Yubin and Huang, Song and Chen, Xiang and Yao, Yongming and Bai, Tongtong},
+  journal={Available at SSRN 4821388}
+}
+
+@article{zhu2024neuralsanitizer,
+  title={NeuralSanitizer: Detecting Backdoors in Neural Networks},
+  author={Zhu, Hong and Zhao, Yue and Zhang, Shengzhi and Chen, Kai},
+  journal={IEEE Transactions on Information Forensics and Security},
+  year={2024},
+  publisher={IEEE}
+}
+
+@article{guan2024ufid,
+  title={Ufid: A unified framework for input-level backdoor detection on diffusion models},
+  author={Guan, Zihan and Hu, Mengxuan and Li, Sheng and Vullikanti, Anil},
+  journal={arXiv preprint arXiv:2404.01101},
+  year={2024}
+}
+
+@article{cheng2024lotus,
+  title={Lotus: Evasive and resilient backdoor attacks through sub-partitioning},
+  author={Cheng, Siyuan and Tao, Guanhong and Liu, Yingqi and Shen, Guangyu and An, Shengwei and Feng, Shiwei and Xu, Xiangzhe and Zhang, Kaiyuan and Ma, Shiqing and Zhang, Xiangyu},
+  journal={arXiv preprint arXiv:2403.17188},
+  year={2024}
+}
+
+@article{lyu2024task,
+  title={Task-Agnostic Detector for Insertion-Based Backdoor Attacks},
+  author={Lyu, Weimin and Lin, Xiao and Zheng, Songzhu and Pang, Lu and Ling, Haibin and Jha, Susmit and Chen, Chao},
+  journal={arXiv preprint arXiv:2403.17155},
+  year={2024}
+}
+
+@inproceedings{zhu2024seer,
+  title={SEER: Backdoor Detection for Vision-Language Models through Searching Target Text and Image Trigger Jointly},
+  author={Zhu, Liuwan and Ning, Rui and Li, Jiang and Xin, Chunsheng and Wu, Hongyi},
+  booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},
+  volume={38},
+  number={7},
+  pages={7766--7774},
+  year={2024}
+}
+
+@article{murad2024advancing,
+  title={Advancing Security in AI Systems: A Novel Approach to Detecting Backdoors in Deep Neural Networks},
+  author={Murad Hossain, Khondoker and Oates, Tim},
+  journal={arXiv e-prints},
+  pages={arXiv--2403},
+  year={2024}
+}
+
+
+
+
+
+@inproceedings{chen2021atom,
+  title={Atom: Robustifying out-of-distribution detection using outlier mining},
+  author={Chen, Jiefeng and Li, Yixuan and Wu, Xi and Liang, Yingyu and Jha, Somesh},
+  booktitle={Machine Learning and Knowledge Discovery in Databases. Research Track: European Conference, ECML PKDD 2021, Bilbao, Spain, September 13--17, 2021, Proceedings, Part III 21},
+  pages={430--445},
+  year={2021},
+  organization={Springer}
+}
+
+@inproceedings{goodge2021robustness,
+  title={Robustness of autoencoders for anomaly detection under adversarial impact},
+  author={Goodge, Adam and Hooi, Bryan and Ng, See Kiong and Ng, Wee Siong},
+  booktitle={Proceedings of the Twenty-Ninth International Conference on International Joint Conferences on Artificial Intelligence},
+  pages={1244--1250},
+  year={2021}
+}
+
+@article{bethune2023robust,
+  title={Robust One-Class Classification with Signed Distance Function using 1-Lipschitz Neural Networks},
+  author={B{\'e}thune, Louis and Novello, Paul and Boissin, Thibaut and Coiffier, Guillaume and Serrurier, Mathieu and Vincenot, Quentin and Troya-Galvis, Andres},
+  journal={arXiv preprint arXiv:2303.01978},
+  year={2023}
+}
+
+@article{shao2022open,
+  title={Open-set adversarial defense with clean-adversarial mutual learning},
+  author={Shao, Rui and Perera, Pramuditha and Yuen, Pong C and Patel, Vishal M},
+  journal={International Journal of Computer Vision},
+  volume={130},
+  number={4},
+  pages={1070--1087},
+  year={2022},
+  publisher={Springer}
+}
+
+
+@inproceedings{shao2020open,
+  title={Open-set adversarial defense},
+  author={Shao, Rui and Perera, Pramuditha and Yuen, Pong C and Patel, Vishal M},
+  booktitle={Computer Vision--ECCV 2020: 16th European Conference, Glasgow, UK, August 23--28, 2020, Proceedings, Part XVII 16},
+  pages={682--698},
+  year={2020},
+  organization={Springer}
+}
+ 
+
+
+@article{lo2022adversarially,
+  title={Adversarially Robust One-class Novelty Detection},
+  author={Lo, Shao-Yuan and Oza, Poojan and Patel, Vishal M},
+  journal={IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  year={2022},
+  publisher={IEEE}
+}
+
+
+
+
+ %%%%% 
+
+
+@inproceedings{jafari2024power,
+  title={The Power of Few: Accelerating and Enhancing Data Reweighting with Coreset Selection},
+  author={Jafari, Mohammad and Zhang, Yimeng and Zhang, Yihua and Liu, Sijia},
+  booktitle={ICASSP 2024-2024 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)},
+  pages={7100--7104},
+  year={2024},
+  organization={IEEE}
+}
+
+
+@inproceedings{mirzaeirodeo,
+  title={RODEO: Robust Outlier Detection via Exposing Adaptive Out-of-Distribution Samples},
+  author={Mirzaei, Hossein and Jafari, Mohammad and Dehbashi, Hamid Reza and Ansari, Ali and Ghobadi, Sepehr and Hadi, Masoud and Moakhar, Arshia Soltani and Azizmalayeri, Mohammad and Baghshah, Mahdieh Soleymani and Rohban, Mohammad Hossein},
+  booktitle={Forty-first International Conference on Machine Learning},
+year={2024}
+}
+
+
+@inproceedings{mirzaei2024universal,
+  title={Universal Novelty Detection Through Adaptive Contrastive Learning},
+  author={Mirzaei, Hossein and Nafez, Mojtaba and Jafari, Mohammad and Soltani, Mohammad Bagher and Azizmalayeri, Mohammad and Habibi, Jafar and Sabokrou, Mohammad and Rohban, Mohammad Hossein},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={22914--22923},
+  year={2024}
+}
+
+
+@inproceedings{mirzaei2022fake,
+  title={Fake it until you make it: Towards accurate near-distribution novelty detection},
+  author={Mirzaei, Hossein and Salehi, Mohammadreza and Shahabi, Sajjad and Gavves, Efstratios and Snoek, Cees GM and Sabokrou, Mohammad and Rohban, Mohammad Hossein},
+  booktitle={The eleventh international conference on learning representations},
+  year={2022}
+}
+
+
+
+
+ 
+
+
+
+@article{mirzaei2024adversarially,
+  title={Adversarially Robust Out-of-Distribution Detection Using Lyapunov-Stabilized Embeddings},
+  author={Mirzaei, Hossein and Mathis, Mackenzie W},
+  journal={arXiv preprint arXiv:2410.10744},
+  year={2024}
+}
+
+
+
+@inproceedings{mirzaeiscanning,
+  title={Scanning Trojaned Models Using Out-of-Distribution Samples},
+  author={Mirzaei, Hossein and Ansari, Ali and Nia, Bahar Dibaei and Nafez, Mojtaba and Madadi, Moein and Rezaee, Sepehr and Taghavi, Zeinab Sadat and Maleki, Arad and Shamsaie, Kian and Hajialilue, Mahdi and others},
+  booktitle={The Thirty-eighth Annual Conference on Neural Information Processing Systems}
+}
+
+
+
+@article{moakhar2023seeking,
+  title={Seeking Next Layer Neurons' Attention for Error-Backpropagation-Like Training in a Multi-Agent Network Framework},
+  author={Moakhar, Arshia Soltani and Azizmalayeri, Mohammad and Mirzaei, Hossein and Manzuri, Mohammad Taghi and Rohban, Mohammad Hossein},
+  journal={arXiv preprint arXiv:2310.09952},
+  year={2023}
+}
+
+
+
+@inproceedings{mirzaei2024killing,
+  title={Killing It With Zero-Shot: Adversarially Robust Novelty Detection},
+  author={Mirzaei, Hossein and Jafari, Mohammad and Dehbashi, Hamid Reza and Taghavi, Zeinab Sadat and Sabokrou, Mohammad and Rohban, Mohammad Hossein},
+  booktitle={ICASSP 2024-2024 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)},
+  pages={7415--7419},
+  year={2024},
+  organization={IEEE}
+}
+
+
+
+
+%%%
+
+
+@article{taghavi2023change,
+  title={A change of heart: Improving speech emotion recognition through speech-to-text modality conversion},
+  author={Taghavi, Zeinab Sadat and Satvaty, Ali and Sameti, Hossein},
+  journal={arXiv preprint arXiv:2307.11584},
+  year={2023}
+}
+
+@inproceedings{rahimi-etal-2024-hallusafe,
+    title = "{H}allu{S}afe at {S}em{E}val-2024 Task 6: An {NLI}-based Approach to Make {LLM}s Safer by Better Detecting Hallucinations and Overgeneration Mistakes",
+    author = "Rahimi, Zahra  and
+      Amirzadeh, Hamidreza  and
+      Sohrabi, Alireza  and
+      Taghavi, Zeinab  and
+      Sameti, Hossein",
+    editor = {Ojha, Atul Kr.  and
+      Do{\u{g}}ru{\"o}z, A. Seza  and
+      Tayyar Madabushi, Harish  and
+      Da San Martino, Giovanni  and
+      Rosenthal, Sara  and
+      Ros{\'a}, Aiala},
+    booktitle = "Proceedings of the 18th International Workshop on Semantic Evaluation (SemEval-2024)",
+    month = jun,
+    year = "2024",
+    address = "Mexico City, Mexico",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2024.semeval-1.22/",
+    doi = "10.18653/v1/2024.semeval-1.22",
+    pages = "139--147",
+    abstract = "The advancement of large language models (LLMs), their ability to produce eloquent and fluent content, and their vast knowledge have resulted in their usage in various tasks and applications. Despite generating fluent content, this content can contain fabricated or false information. This problem is known as hallucination and has reduced the confidence in the output of LLMs. In this work, we have used Natural Language Inference to train classifiers for hallucination detection to tackle SemEval-2024 Task 6-SHROOM (Mickus et al., 2024) which is defined in three sub-tasks: Paraphrase Generation, Machine Translation, and Definition Modeling. We have also conducted experiments on LLMs to evaluate their ability to detect hallucinated outputs. We have achieved 75.93{\%} and 78.33{\%} accuracy for the modelaware and model-agnostic tracks, respectively. The shared links of our models and the codes are available on GitHub."
+}
+
+
+
+@article{taghavi2023imaginations,
+  title={Imaginations of WALL-E: Reconstructing Experiences with an Imagination-Inspired Module for Advanced AI Systems},
+  author={Taghavi, Zeinab Sadat and Gooran, Soroush and Dalili, Seyed Arshan and Amirzadeh, Hamidreza and Nematbakhsh, Mohammad Jalal and Sameti, Hossein},
+  journal={arXiv preprint arXiv:2308.10354},
+  year={2023}
+}
+
+
+
+@inproceedings{taghavi-etal-2023-ebhaam,
+    title = "Ebhaam at {S}em{E}val-2023 Task 1: A {CLIP}-Based Approach for Comparing Cross-modality and Unimodality in Visual Word Sense Disambiguation",
+    author = "Taghavi, Zeinab  and
+      Naeini, Parsa Haghighi  and
+      Sadraei Javaheri, Mohammad Ali  and
+      Gooran, Soroush  and
+      Asgari, Ehsaneddin  and
+      Rabiee, Hamid Reza  and
+      Sameti, Hossein",
+    editor = {Ojha, Atul Kr.  and
+      Do{\u{g}}ru{\"o}z, A. Seza  and
+      Da San Martino, Giovanni  and
+      Tayyar Madabushi, Harish  and
+      Kumar, Ritesh  and
+      Sartori, Elisa},
+    booktitle = "Proceedings of the 17th International Workshop on Semantic Evaluation (SemEval-2023)",
+    month = jul,
+    year = "2023",
+    address = "Toronto, Canada",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2023.semeval-1.269/",
+    doi = "10.18653/v1/2023.semeval-1.269",
+    pages = "1960--1964",
+    abstract = "This paper presents an approach to tackle the task of Visual Word Sense Disambiguation (Visual-WSD), which involves determining the most appropriate image to represent a given polysemous word in one of its particular senses. The proposed approach leverages the CLIP model, prompt engineering, and text-to-image models such as GLIDE and DALL-E 2 for both image retrieval and generation. To evaluate our approach, we participated in the SemEval 2023 shared task on {\textquotedblleft}Visual Word Sense Disambiguation (Visual-WSD){\textquotedblright} using a zero-shot learning setting, where we compared the accuracy of different combinations of tools, including {\textquotedblleft}Simple prompt-based{\textquotedblright} methods and {\textquotedblleft}Generated prompt-based{\textquotedblright} methods for prompt engineering using completion models, and text-to-image models for input modality from text to image. Moreover, we explored the benefits of cross-modality evaluation between text and candidate images using CLIP. Our experimental results demonstrate that the proposed approach reaches better results than cross-modality approaches, highlighting the potential of prompt engineering and text-to-image models to improve accuracy in Visual-WSD tasks. We assessed our approach in a zero-shot learning scenario and attained an accuracy of 68.75{\textbackslash}{\%} in our best attempt."
+}
+
+@article{taghavi2024backdooring,
+  title={Backdooring Outlier Detection Methods: A Novel Attack Approach},
+  author={Taghavi, ZeinabSadat and Mirzaei, Hossein},
+  journal={arXiv preprint arXiv:2412.05010},
+  year={2024}
+}
+
+@article{ebrahimi2024sharifa,
+  title={Sharif-STR at semeval-2024 task 1: Transformer as a regression model for fine-grained scoring of textual semantic relations},
+  author={Ebrahimi, Seyedeh Fatemeh and Azari, Karim Akhavan and Iravani, Amirmasoud and Alizadeh, Hadi and Taghavi, Zeinab Sadat and Sameti, Hossein},
+  journal={arXiv preprint arXiv:2407.12426},
+  year={2024}
+}
+
+
+@article{ebrahimi2024sharif,
+  title={Sharif-MGTD at SemEval-2024 Task 8: A Transformer-Based Approach to Detect Machine Generated Text},
+  author={Ebrahimi, Seyedeh Fatemeh and Azari, Karim Akhavan and Iravani, Amirmasoud and Qazvini, Arian and Sadeghi, Pouya and Taghavi, Zeinab Sadat and Sameti, Hossein},
+  journal={arXiv preprint arXiv:2407.11774},
+  year={2024}
+}
+
+
+@inproceedings{rahimi-etal-2024-nimz,
+    title = "{NIMZ} at {S}em{E}val-2024 Task 9: Evaluating Methods in Solving Brainteasers Defying Commonsense",
+    author = "Rahimi, Zahra  and
+      Shirzady, Mohammad Moein  and
+      Taghavi, Zeinab  and
+      Sameti, Hossein",
+    editor = {Ojha, Atul Kr.  and
+      Do{\u{g}}ru{\"o}z, A. Seza  and
+      Tayyar Madabushi, Harish  and
+      Da San Martino, Giovanni  and
+      Rosenthal, Sara  and
+      Ros{\'a}, Aiala},
+    booktitle = "Proceedings of the 18th International Workshop on Semantic Evaluation (SemEval-2024)",
+    month = jun,
+    year = "2024",
+    address = "Mexico City, Mexico",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2024.semeval-1.23/",
+    doi = "10.18653/v1/2024.semeval-1.23",
+    pages = "148--154",
+    abstract = "The goal and dream of the artificial intelligence field have long been the development of intelligent systems or agents that mimic human behavior and thinking. Creativity is an essential trait in humans that is closely related to lateral thinking. The remarkable advancements in Language Models have led to extensive research on question-answering and explicit and implicit reasoning involving vertical thinking. However, there is an increasing need to shift focus towards research and development of models that can think laterally. One must step outside the traditional frame of commonsense concepts in lateral thinking to conclude. Task 9 of SemEval-2024 is Brainteaser (Jiang et al.,2024), which requires lateral thinking to answer riddle-like multiple-choice questions. In our study, we assessed the performance of various models for the Brainteaser task. We achieved an overall accuracy of 75{\%} for the Sentence Puzzle subtask and 66.7{\%} for the Word Puzzle subtask. All the codes, along with the links to our saved models, are available on our GitHub."
+}
+
+
+@misc{mirzaei2025mitigatingspuriousnegativepairs,
+      title={Mitigating Spurious Negative Pairs for Robust Industrial Anomaly Detection}, 
+      author={Hossein Mirzaei and Mojtaba Nafez and Jafar Habibi and Mohammad Sabokrou and Mohammad Hossein Rohban},
+      year={2025},
+      eprint={2501.15434},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2501.15434}, 
+}
+
+
+
+
+

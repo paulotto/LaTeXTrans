@@ -1,0 +1,22 @@
+\section{Models}
+\label{sec:models}
+
+\input{tables/overall_results}
+
+We evaluate three main model categories on MIEB. Note that the categories may overlap.
+
+\subsection{Vision-only Models}
+
+MOCO-v3~\citep{chen2021empirical} builds upon MOCO-v1/2 with the ViT architecture and a random patch projection technique to enhance training stability. DINO-v2~\citep{oquab2024dinov2} scales self-supervised learning to 142M images with similarity-based curation. Different from previous computer vision systems that are trained to predict a fixed set of predetermined object categories (e.g., ``ImageNet models"~\citep{kornblith2019betterimagenetmodelstransfer}), these models are also referred to as \textbf{self-supervised} models.
+
+\subsection{CLIP Models}
+
+CLIP (Contrastive Language-Image Pre-training)~\citep{radford2021learning} trains models simultaneously on text-image pairs. We evaluate many models across this line of research including CLIP, SigLIP \citep{zhai2023sigmoid}, ALIGN~\cite{jia2021scaling}, Jina-CLIP \citep{koukounas2024jina}, DataComp-CLIP~\citep{gadre2024datacomp}, Open-CLIP~\citep{cherti2023reproducible}, and Eva-CLIP~\citep{sun2023eva}. These models are also sometimes referred to as \textbf{language-supervised} models~\citep{radford2021learning,tong2024cambrian}. We also evaluate VISTA~\citep{zhou2024vista}, which fuses a ViT encoder~\citep{dosovitskiy2020image} with a pretrained language model followed by CLIP-style training.
+
+\subsection{MLLM-based models}
+
+Embedding models increasingly leverage MLLMs. For open-source models, we benchmark E5-V~\citep{jiang2024e5} and VLM2Vec~\citep{jiang2024vlm2vec}. E5-V uses pre-trained MLLMs followed by text-only contrastive fine-tuning with prompts like ``summarize the above sentence with one word" and last-token pooling~\citep{neelakantan2022text,muennighoff2022sgpt}, showing surprising generalization to images and interleaved encodings. VLM2Vec trains MLLM backbones on paired image-text datasets.
+
+% \subsection{API models}
+
+We also evaluate the Voyage API model~\citep{voyagemultimodal2024voyage}. Recent multi-modal API embedding models optimize not only for standard image search, but also for business search applications like figure and table understanding, making them strong candidates for tasks that require deep visual-text understanding in MIEB.

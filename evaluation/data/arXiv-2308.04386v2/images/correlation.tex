@@ -1,0 +1,43 @@
+\begin{figure}[t]
+        \centering
+        \tikzstyle{every node}=[scale=0.76]
+	\begin{tikzpicture}
+	  \begin{axis}
+		[at={(0,0)},
+		  ymajorgrids,
+		  xmajorgrids,
+		  grid style=dashed,
+		  width=.50\textwidth,
+		  height=.30\textwidth,
+		  symbolic x coords={1k,5k,10k,15k,20k,25k},
+		  xtick=data,
+		  x tick label style={scale=.65},
+		  y tick label style={scale=.65,
+			  /pgf/number format/fixed,
+			  /pgf/number format/fixed zerofill,
+			  /pgf/number format/precision=1},
+		  xlabel={\small Sample Size},
+		  ylabel={\small Correlation Score},
+		  ylabel style={yshift=-1.5em, scale=1},
+		  xlabel style={yshift=0.5em, scale=1},
+		  legend entries={\small Kend., \small Spear., \small Pear.},
+		%   legend columns=-1,
+		  legend style={
+			  at={(0.8,0.05)},
+			  legend cell align=left,
+			  legend plot pos=right,
+			  anchor=south},
+		]
+		\addplot [LightBlue, mark=triangle, mark size = 1.5, line width=1pt] file {images/data/Kend.dat};
+		\addplot [LightCoral, mark=star, mark size = 1.5, line width=1pt] file {images/data/Spear.dat};
+		\addplot [LightGoldenrod, mark=diamond*, mark size = 1.5, line width=1pt] file {images/data/Pear.dat};
+	  \end{axis}
+	\end{tikzpicture}
+        \vspace{-2mm}
+  
+	\caption{
+            Sample-level Spearman (Spear.), Kendall-Tau (Kend.), and Pearson (Pear.) correlation scores of the reference-free evaluation models learned from ChatGPT using different scales of annotated data.
+        }
+	\label{fig:correlation}
+        \vspace{-4mm}
+\end{figure}

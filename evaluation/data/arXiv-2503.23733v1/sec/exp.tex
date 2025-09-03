@@ -1,0 +1,86 @@
+\section{Experiment}
+%强调下其他baseline不能直接应用。
+
+\label{sec:exp}
+\subsection{Baselines}
+% Since we are the first to propose a method for heterogeneous multimodal model fusion, there are no existing approaches that can be directly applied to this task. Our mapping method enables the fusion of heterogeneous models by transforming them into a homogeneous model space. Consequently, all baseline methods need to undergo mapping preprocessing as a prerequisite for their application.
+Previous model merging methods cannot be directly applied to heterogeneous MLLMs with architecture difference, and our mapping method enables the fusion of heterogeneous models by transforming them into a homogeneous parameter space. Therefore, all the baseline experiments are conducted under the precondition of the mapping step of our proposed method. We consider the following model merging methods as our baselines:
+\begin{itemize}
+
+
+\item \textbf{Task Arithmetic} \cite{task-arithmetic} introduces the idea of task vectors and integrates them into the original pre-trained model for multi-task learning.
+
+\item \textbf{Ties-Merging} \cite{ties} further addresses interferences in Task Arithmetic by removing unnecessary parameters from Task Arithmetic \cite{task-arithmetic}. This process eliminates redundant parameters and resolves symbol conflicts through Trim, Elect Sign, and Disjoint Merge steps.
+
+\item \textbf{DARE} \cite{dare} tackles the parameter conflict problem in model merging by applying a drop and rescale operation before merging model weights. There are two variants of DARE: \textbf{Dare-Linear} and \textbf{Dare-Ties}, which perform different merging strategies after the drop and rescale operation. Dare-Linear performs linear interpolation, and Dare-ties performs Ties-Merging \cite{ties}.
+
+\item \textbf{MetaGPT} \cite{metagpt} separate the data term and scaling coefficients in the optimization objective, which leads to a task-agnostic closed-form solution for the scaling coefficient.
+    
+\end{itemize}
+\subsection{Models} \label{models}
+
+We have conducted extensive experiments on the combinations of existing open-source 7B-scale MLLMs. 
+Since most of the top-performing open-source MLLMs are currently based on two language model architectures, Qwen2 \cite{qwen2} and LLaMA \cite{llama}, we selected representative and outstanding MLLMs derived from each model for our main experiments.
+% In our main experiments, we merged two pairs of heterogeneous MLLMs based on Qwen2 \cite{qwen2} and LLaMA \cite{llama} respectively, to demonstrate the effectiveness of our method on distinct language model types in the open-source community.
+Specifically, on Qwen2 architecture, we merge LLaVA-OneVision-Qwen-7B \cite{llava-onevison} into Qwen2-VL-7B \cite{qwen2-vl}, and on LLaMA architecture, we merge LLaVA-v1.5-7B \cite{llava1.5} into CogVLM-Chat-7B \cite{cogvlm}.
+% 目前最先进的MLLM都是基于这两个的，我们在当中各选了一个典型以及效果最好的pair
+
+We have also conducted experiments on combinations of LLaMA-based MLLMs, including combinations LLaVA-v1.5-7B, CogVLM-Chat-7B, ShareGPT4V-7B \cite{sharegpt4v} and mPLUG-Owl2-LLaMA2-7B \cite{mplugowl2}.
+See Appendix A for more details. % TODO: supplementary !!!
+% 这些模型也结构各异
+
+
+\input{floats/qwen-table}
+\input{floats/llava2cog}
+
+
+% Qwen2-VL-7B \cite{qwen2-vl}, LLaVA-OneVision \cite{llava-onevison} are trained from Qwen2 \cite{qwen2}.  
+% LLaVA-1.5V-7B \cite{llava1.5}, CogVLM \cite{cogvlm}, ShareGPT4V \cite{sharegpt4v}, and mPLUG-OwI2 \cite{mplugowl2} are based on LLaMA \cite{llama}.
+
+
+% These model possess strong vision-language abilities on various tasks, but they adapt different vision encoders and language model structures. Specifically, Qwen2-VL and LLaVA-one-vision are derived from the Qwen2-7B \cite{qwen2} model, and the others have been consistently trained based on the LLaMA base model. Following the principle of Task Arithmetic, we only merge MLLMs that are based on the same language model, since they are regarded as parameters fine-tuned from the same pretrained weights.
+% Notably, Qwen2-VL-7B is currently the best model on the OpenCompass \cite{opencompass} leaderboard among the MLLMs in our experiment, and we aim to create a state-of-the-art 7B-scale model with our proposed model merging method, as well as demonstrating our merging method can produce best performance model in each model combination consistently.
+
+
+
+\subsection{Benchmarks}
+To evaluate the capabilities of the merged MLLMs, we have conducted experiments on various benchmarks that cover a wide range of vision-language abilities. According to the classification in \cite{survey_benchmark}, our benchmarks fall into three categories: (1) comprehensive-evaluation, (2) cognition and reasoning, (3) text-rich VQA. 
+The comprehensive-evaluation tasks consist of MME \cite{mme}, SeedBench \cite{seedbench} and VizWiz \cite{vizwiz}. Cognition and reasoning type include MMMU \cite{mmmu}, OK-VQA \cite{okvqa} and GQA \cite{gqa}. Text-rich VQA type encompass  OCRBench \cite{ocrbench} and TextVQA \cite{textvqa}.
+
+To present the overall performance of the MLLMs in a standardized manner, we apply linearly normalization to the scores across all tasks, scaling them to a range from 0 to 100. Specially, the total score of MME is 2800, which we have divided by 28 for scaling purposes.
+
+
+\subsection{Implementation} \label{impl}
+
+% linear interpolation efficient candidates: range+interval
+To apply our unsupervised hyper-parameter selection method in the searching step, we need to specify the candidates of $\alpha$ (linear interpolation coefficient). We sample the candidates in a subinterval of $[0,1]$ with a fixed granularity.
+
+\noindent\textbf{Subinterval} \ We find that merging with $\alpha\geq0.7$ often results in collapsing language ability of the merged model, therefore we empirically limit the subinterval of $\alpha$ candidates to $[0,0.6]$ for eliminating unnecessary search.
+
+% \quad Theoretically, the linear interpolation coefficient $\alpha$ is within the range of $[0,1]$, which can be directly adapted in merging LLMs. However, in merging MLLMs, due to the asymmetry in the parameter space of MLLMs, the performance of the merged model drops significantly as the merged model deviates much from the original parameters on the base architecture. In fact, using pure of $M_2$'s weights in $M_1$'s architecture (i.e. $\alpha = 0$) when they have structural differences in language model often results in collapsing language ability of the model, therefore it is a waste of resources to conduct inference on these model weights. In our experiments, we empirically take a subinterval of $[0.4, 1]$ in searching for the coefficient, indicating that we leverage at least 60\% of weights from the base model architecture. 
+% Note: 上边这段像分析了..
+% Our experiments show that this selection for subinterval would not miss any potential candidates for the best coefficient.
+% TODO: See Figure X / Appendix Y for more detail.
+
+%实验发现大多数情况【到0.4不行】，所以
+\noindent\textbf{Granularity} \  
+% Generally, the granularity of the coefficient candidates controls a trade-off between the computation cost and the upper-bound of the merged model's performance. 
+We use granularity to determine the interval between two adjacent candidates of $\alpha$. In our main experiments, we choose the granularity as 0.1 to obtain satisfying performance with acceptable computation cost.
+%TODO:太分析了
+% On one hand, with smaller step size, we sample more candidates which potentially includes a candidate with higher performance. On the other hand, with larger step size, we reduce the inference cost in generation model responses. In the analysis of experiment results, we demonstrated that a smaller step size may even possess better convex property that enhance our hyper-parameter selection. We choose the step size as 0.1 for the main result, and conduct experiments with various step sizes to show that it is a near-optimal choice for less computational cost without harming the model performance.
+
+% there is a tradethe granularity of the candidates of coefficient is trade-off with good performance. The finer-grained the \(\alpha\), the better effect, and higher  cost as well. For efficiency, we chose a granularity of 0.1 for searching. We also provided a finer granularity of fusion and search in Section \ref{sec:interval}, and it can be seen that the performance for different interval is not significant. Therefore, 0.1 interval for \(\alpha\) is sufficient.
+
+%  In the case of homogeneous models \( M_1, M_2 \) fusion, the value of alpha ranging from 0 to 1 is meaningful. 
+%  %When alpha is 0, W ultimately becomes \( M_2 \), and when alpha is 1, \( W \) is actually \( M_1 \). While it is different for heterogeneous fusion. 
+% When performing linear interpolation with homogeneous models \( M_1, M_2 \) , since the two models are close to each other, any position between the two models in the landscape is meaningful. This means that \(\alpha\) can range from 0 to 1. However, in the fusion of heterogeneous models, it is necessary to select a model as the base. Then during linear interpolation, the position must be close to the base model. Otherwise, the fused model will collapse and perform very poorly. Therefore, in our experiments, we limit the range of \(\alpha\) from 0 to 0.6.
+
+%  After the range of \(\alpha\) is determined, it is necessary to choose the interval for it in the searching experiment. Generally, the granularity of \(\alpha\) is trade-off with good performance. The finer-grained the \(\alpha\), the better effect, and higher  cost as well. For efficiency, we chose a granularity of 0.1 for searching. We also provided a finer granularity of fusion and search in Section \ref{sec:interval}, and it can be seen that the performance for different interval is not significant. Therefore, 0.1 interval for \(\alpha\) is sufficient.
+
+
+% lmms-eval, vlm-kit
+\noindent\textbf{Evaluation Framework} \ We evaluated the benchmarks with LMMs-Eval \cite{lmms-eval} and VLMEvalKit \cite{vlmevalkit}, two open-source evaluation frameworks for MLLMs.
+
+% \noindent\textbf{Subset Searching} \ We leverage only a small subset of 100 inputs at the searching stage, which reduces the amount of data by at least 10x.
+\noindent\textbf{Subset Searching} \ Instead of conducting search across the entire available input data, we strategically utilize a small subset of only 100 inputs during the search phase, reducing the data volume by at least an order of magnitude. Experimental results demonstrate that this maintains performance without compromising effectiveness.
+

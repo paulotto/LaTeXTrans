@@ -1,0 +1,44 @@
+
+
+\begin{table*}[!ht]
+    \centering
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{lclllllllllc}
+        \toprule             
+
+        Model & $\mathrm{Unsupervised}$ & $\mathrm{MMMU_{val}}$ &  $\mathrm{MME_{sum}}$ &  $\mathrm{SeedBench_{all}}$ & $\mathrm{OCRBench}$  &  $\mathrm{TextVQA_{val}}$  & $\mathrm{OKVQA}$ & $\mathrm{GQA}$  &  $\mathrm{VizWiz_{val}}$ & $\mathrm{SUM}$  & $\mathrm{Top2}$  \\ 
+        \midrule
+
+\rowcolor{gray!20}
+\multicolumn{12}{c}{\textbf{Original Models}} \\
+\midrule
+ LLaVA\footnotesize(base) & ~ & 35.10  & 66.68  & 60.52  & 31.30  & 46.04  & 53.42  & 61.94  & 54.29  & 409.29 \\
+        mPLUG-Owl2 & ~ & 34.90  & 62.80  & 59.41  & 34.10  & 55.13  & 60.98  & 56.11  & 32.07   & 395.50  \\ 
+        
+     % \midrule\
+     \hline
+       
+\rowcolor{gray!20}
+\multicolumn{12}{c}{\textbf{Baselines}} \\
+\hline
+  Task Arithmetic & $\times$ & \underline{36.00 (+1.00)} & 67.00 (+2.26) & 61.45 (+1.48) & 30.40 (-2.30) & 45.75 (-4.84) & \underline{56.79 (-0.41)} & \underline{59.68 (+0.66)} & \underline{56.49 (+13.31)} & \underline{413.56 (+11.17)} & 5 \\ 
+        Ties-Merging &  $\times$ & 33.60 (-1.40) & 62.14 (-2.60) & 60.32 (+0.35) & 30.10 (-2.60) & 42.85 (-7.73) & 52.46 (-4.74) & 58.37 (-0.66) & 51.30 (+8.12) & 391.14 (-11.25) & 0 \\ 
+        
+        DARE-Linear &  $\times$ & 36.00 (+1.00) & 67.00 (+2.26) & 61.41 (+1.44) & 30.70 (-2.00) & \underline{45.84 (-4.74)} & \textbf{57.06 (-0.14)} & 59.56 (+0.54) & 55.90 (+12.72) & 413.47 (+11.08) & 2\\ 
+        DARE-Ties &  $\times$ & 31.70 (-3.30) & 59.81 (-4.93) & 60.06 (+0.09) & 29.50 (-3.20) & 41.90 (-8.69) & 46.00 (-11.20) & 57.51 (-1.52) & 53.27 (+10.09) & 379.75 (-22.64) & 0 \\ 
+        MetaGPT &  $\checkmark$ & 35.30 (+0.30) & \textbf{67.62 (+2.88)} & \underline{61.46 (+1.49)} & \underline{30.60 (-2.10)} & 45.80 (-4.79) & 56.54 (-0.66) & 59.41 (+0.38) & \textbf{56.66 (+13.48)} & 413.39 (+11.00) & 4 \\[0.5ex] 
+        
+       \hline
+       
+\rowcolor{gray!20}
+\multicolumn{12}{c}{\textbf{Our Method}} \\
+\hline 
+                      
+        AdaMMS &$\checkmark$& \textbf{38.30 (+3.30)} & \underline{67.01 (+2.27)} & \textbf{61.82 (+1.85)} & \textbf{31.00 (-1.70)} & \textbf{46.49 (-4.09)} & 55.60 (-1.60) &\textbf{ 61.81 (+2.79)} & 54.64 (+11.46) & \textbf{416.67 (+14.28)} & 7 \\         \bottomrule
+    \end{tabular}%
+        }
+    \caption{Results on merging mPLUG-Owl2-7B into LLaVA-v1.5-7B.}
+    \label{tab:mplug2llava}
+\end{table*}
+
+

@@ -1,0 +1,106 @@
+\section{What to Scale}
+\label{sec:what2scale}
+``What to scale'' refers to the specific form of \TTS that is expanded or adjusted to enhance an LLM's performance during inference. 
+When applying \TTS, researchers typically choose a specific ``what to scale'' based on an empirical hypothesis, aiming to achieve performance gains. For example, some researchers hypothesize that longer CoTs improve complex reasoning, leading them to enforce longer outputs from LLMs. Others leverage the self-consistency principle, assuming that generating multiple solutions to a reasoning task increases the likelihood of reaching the correct answer.
+
+\subsection{Parallel Scaling}
+\label{subsec:parallelsclaing}
+LLMs typically generate a single response per query. \textit{Parallel scaling} improves test-time performance by generating multiple outputs in parallel and then aggregating them into a final answer. 
+Formally, consider a problem set \( \mathcal{P} \) and a collection of models \( m \in \{1, \dots, M\} \). Each model generates \( k_m \) candidate responses for a given problem \( p \in \mathcal{P} \), producing a set of sampled solutions $\mathcal{S}$:
+\begin{align}
+    \mathcal{S} &= \{ s_{m,i} \mid m \leq M,\, i \leq k_m \},
+    %\left( \exists m \leq M,\, i \leq k_m \right) \, s_{m,i} &\text{ is correct} 
+    \quad \Rightarrow \quad
+    \left( \exists \hat{s} \right) \, \hat{s} = A(s_{1,1}, \dots, s_{M,k_M}) \text{ is correct}.
+\end{align}
+
+Here, \( A \) is the aggregation function that derives a final response from the set \( \mathcal{S} \). The effectiveness of parallel scaling depends on both \textbf{coverage}—the likelihood of generating at least one correct response—and \textbf{aggregation quality}, which determines whether a correct response is successfully identified.
+This approach is supported by both theory and intuition: cognitive science research~\citep{Stanovich_West_2000} suggests that complex problems often allow multiple valid solution paths, and increasing the number of generated responses improves the chance of finding a correct one~\citep{li2025stesttimescaling}. Empirically, this relationship is often log-linear with respect to compute~\citep{brown2024large}.
+
+
+
+
+We categorize parallel scaling into two common forms based on different sources of coverage: (1) repeated sampling from a single model and (2) sampling across multiple models. %\citet{brown2024large} demonstrated that aggregating multiple weaker model attempts can outperform a single attempt from a stronger model. Similarly, extending sampling to multiple models~\citep{wang2025mixtureofagents} can achieve comparable benefits by leveraging the diverse knowledge and reasoning paths of different LLMs.
+%Furthermore, beyond increasing coverage through model-wise scaling, 
+Furthermore, there are some additional techniques to enhance solution diversity and reliability, such as hyperparameter adjustments (\eg, sampling temperature~\citep{renze2024effectsamplingtemperatureproblem} to control output variability) and input modifications (\eg, prompt rephrasing~\citep{lambert2025tulu3pushingfrontiers} to elicit diverse responses). 
+%By combining these strategies, test-time scaling can maximize the chances of generating high-quality and robust answers without requiring additional training.
+
+%While more samples generally yield better coverage, an equally crucial step is the aggregation mechanism, which effectively converts this coverage into accuracy. Beyond the naive approach of relying on majority voting under the self-consistency assumption, more advanced verification techniques play a key role in determining the efficiency of parallel sampling. We will introduce these techniques in detail in the following sections.
+
+
+%效率
+
+
+
+\subsection{Sequential Scaling}
+\label{subsec:sequentialsclaing}
+\textit{Sequential scaling} involves explicitly directing later computations based on intermediate steps. 
+Unlike parallel methods, sequential scaling updates intermediate states iteratively. We denote the partial solution states (subproblem results, or initial drafts) by $n_1, n_2, \dots, n_T$, with each new state $n_{t+1} = R(n_t, p)$ incorporating both the previous state and the problem context.
+%One fundamental motivation for sequential sampling in LLM inference is the observation that complex cognitive tasks cannot be solved by intuition alone.
+Because many problems require deliberation rather than immediate pattern matching, single-pass `System 1'~\citep{yu2024distilling21}-style generation often fails on complex reasoning tasks. Iterative methods emulate a `System 2' approach, breaking down and refining the solution step by step.
+%In psychology terms, LLMs operating in a single pass resemble fast but shallow ``System 1'' thinking~\citep{yu2024distilling21} -- capable of fluent pattern matching but prone to mistakes on tasks that require multi-step reasoning or planning. 
+%To tackle complex tasks, we need to invoke the analog of ``System 2'' thinking: a slower, deliberative process that breaks problems into parts and iteratively works through them. 
+
+
+Early work like chain-of-thought prompting~\citep{wei2022chain} motivated solve the problem step-by-step, $n_{t+1} = \text{AppendStep}(n_t, \text{new reasoning step})$, leading to approaches that refine responses~\citep{madaan2023selfrefine}, $n_{t+1} = \text{Refine}(n_t)$, or break down problems systematically~\citep{zhou2023leasttomostpromptingenablescomplex, zelikman2022star}, $n_{t+1} = \bigl(n_t,\, \text{solution to next subproblem}\bigr)$. Subsequent studies show that iterative revision~\citep{chen2024teaching, gou2024critic,chen2025iterativedeepeningsamplinglarge, snell2024scaling} triggers self-correction, improving accuracy on challenging tasks
+%, and STaR~\citep{zelikman2022star} begins this process with the LLM generating step-by-step rationales for a set of questions, guided by a few initial examples. 
+In practice, real-world tasks often demand more flexible and potentially non-linear reasoning paths, suggesting that purely sequential approaches, while effective, may be only one part of a broader solution.
+%The first evidence came from prompting models to produce CoT~\citep{wei2022chain} in a single pass, $n_{t+1} = \text{AppendStep}(n_t, \text{new reasoning step})$, boosting subsequent studies in various domains. One branch of effort is devoted to methods where the model iteratively refines its output, $n_{t+1} = \text{Refine}(n_t)$. \citet{madaan2023selfrefine} demonstrated that even top-tier models (GPT-3.5, GPT-4) often produce a better answer on the second try after self-critique. More generally, sequential revision~\citep{chen2024teaching,gou2024critic,chen2025iterativedeepeningsamplinglarge,snell2024scaling} triggers self-correction mechanisms and significantly raises success rates on challenging math problems. These results validate the commonsense that a first draft is rarely the best -- for LLMs as well as humans, revision pays off. The other branch is stepwise problem-solving, $n_{t+1} = \bigl(n_t,\, \text{solution to next subproblem}\bigr)$. \citet{zhou2023leasttomostpromptingenablescomplex} explicitly breaks a complex problem into a sequence of simpler subproblems, solved one by one; and STaR~\citep{zelikman2022star} begins this process with the LLM generating step-by-step rationales for a set of questions, guided by a few initial examples. Notably, real-world reasoning structures can be far more complex than a simple sequential step-by-step process. Therefore, when explicitly traversing reasoning paths, introducing more sophisticated structures is often a more practical approach.
+
+
+\subsection{Hybrid Scaling}
+\label{subsec:hybridsclaing}
+%Parallel scaling mitigates the risk of the model missing the correct line of thought by casting a wide net, while sequential scaling allows deep exploration of a line of reasoning once it seems promising. 
+\textit{Hybrid scaling} exploits the complementary benefits of parallel and sequential scaling. Parallel scaling mitigates the risk of the model missing the correct line of thought by casting a wide net, while sequential scaling allows deep exploration of a line of reasoning once it seems promising. 
+%Importantly, these two approaches are complementary.
+%\textit{Hybrid Scaling} combines elements of both parallel and sequential reasoning, often structuring inference as a search through a tree of possibilities. 
+Formally, let $\mathcal{F}_t$ be the set of candidate solutions at iteration $t$. 
+Each iteration expands these candidates in parallel with an expansion function $\mathcal{E}$ and sequentially filters them with a selection function $\mathcal{S}$:
+%generates new solutions in \emph{parallel} for each $s \in \mathcal{F}_t$, 
+%and a selection function $\mathcal{S}$ picks a subset in \emph{sequence}:
+\begin{equation}
+  \mathcal{F}_{t+1} \;=\;
+  \mathcal{S}\Bigl(\bigcup_{s \in \mathcal{F}_t} \mathcal{E}(s)\Bigr).
+  \tag{1},
+\end{equation}
+
+After $T$ iterations, an aggregator $A$ selects the final solution $\hat{s} \in \mathcal{F}_T$. 
+%From a cognitive science perspective, human problem-solving often involves both divergent thinking (generating multiple hypotheses in parallel) and convergent thinking (sequentially refining and evaluating solutions). 
+From a cognitive standpoint, such a combination mirrors how human problem-solvers generate multiple hypotheses (divergent thinking) and then refine/evaluate them (convergent thinking).
+Classic search algorithms (\eg, iterative deepening~\citep{chen2025iterativedeepeningsamplinglarge} and beam search~\citep{snell2024scaling}) embody this strategy by balancing exploration and exploitation.
+%This hybrid strategy has theoretical support from decades of search algorithms: techniques like iterative deepening~\citep{chen2025iterativedeepeningsamplinglarge} and beam search~\citep{snell2024scaling} implicitly balance exploration and exploitation to find solutions efficiently. 
+
+Recent work expands on this idea.
+%A broad spectrum of hybrid strategies has emerged to scale up LLM reasoning. 
+%Instead of committing to a single sequence of thoughts, 
+Tree-of-Thoughts (ToT)~\citep{yao2023tree} branches at decision points, exploring multiple reasoning paths before pruning to a single sequence. Follow-up methods, such as Graph-of-Thoughts~\citep{Besta2024graph}, Algorithm-of-Thought~\citep{sel2024algorithm}, Forest-of-Thought~\citep{bi2024forest}, Monte Carlo Tree Search (MCTS)~\citep{lin2025leveragingconstrainedmontecarlo}, and multi-agent reasoning~\cite{wang2025mixtureofagents,chen2024routerdcquerybasedrouterdual}, leverage similar but more complex hybrid patterns. For instance, multiple LLMs can debate or verify each other’s answers \citep{liang2024encouraging, schaul2024boundlesssocraticlearninglanguage}, while ``journey learning'' and ``tool-augmented reasoning''~\citep{li2025startselftaughtreasonertools} emphasize capturing full reasoning trajectories.
+%Tree-of-Thoughts (ToT)~\citep{yao2023tree} branches out at decision points, exploring multiple possible thoughts in parallel, then prunes or selects the most promising branch to continue sequentially. Pushing beyond ToT, more researchers integrate more sophisticated structures in hybrid scalings, like Graph-of-thoughts, Algorithm-of-Thought, Forest-of-Thought, Monte Carlo Tree Search, and so on. Another class of hybrid approach involves using multiple LLMs (or multiple instances of a single LLM) that reason to interact, referred to as Multi-Agent Reasoning. Recent work has seen LLMs engage in dialogues to verify each other’s answers or jointly solve a problem, for instance, debating~\citep{liang2024encouraging} and socratic learning~\citep{schaul2024boundlesssocraticlearninglanguage}. There are other studies to replicate the full reasoning trajectory, such as journey learning and tool-augmented reasoning~\citep{li2025startselftaughtreasonertools}.
+
+\subsection{Internal Scaling}
+\label{subsec:internalsclaing}
+%\textit{Internal Scaling} discards external and explicit human-guided scaling strategies and instead induces changes within the model's internal parameters, enabling it to autonomously devote more computation at test time. 
+\textit{Internal scaling} elicits a model to autonomously determine how much computation to allocate for reasoning during testing within the model's internal parameters instead of depending on external human-guided strategies.
+Formally, we update an initial model $M_{0}$ to a new model $M_{1}$ via a training procedure, $\Phi : (M_{0}, \mathcal{D}) \;\mapsto\; M_{1}$, on data $\mathcal{D}$ that includes multi-step reasoning tasks (\eg, long CoT examples produced by external scaling~\citep{GAIR-o1p1}).
+%The decision to use additional computation is made by the model’s learned policy.
+%An internal scaling optimization produce an updated model $M_{1}$ with parameters $\theta$ based on an initial language model $M_{0}$,
+%\begin{equation}
+%    \Phi : (M_{0}, \mathcal{D}) \;\mapsto\; M_{1},
+%\end{equation}
+%where $\mathcal{D}$ be training data or tasks involving multi-step reasoning. By training on these long CoT examples produced by external scaling~\citep{GAIR-o1p1}, the model can internalize the benefits of extended reasoning, leading to improved problem-solving capabilities without requiring explicit test-time scaling mechanisms.
+Surprisingly, employing outcome-oriented reward modeling~\citep{deepseek-r1, openai-o1} for RL enables the model to extend its reasoning process autonomously. 
+
+At test time, $M_{1}$ generates a sequence of internal states $z_{1}, z_{2}, \dots, z_{T}$ via
+\begin{equation}
+    z_{t+1} = f_{\theta}(z_t), 
+  \quad
+  \mathrm{stop}(z_t) = \pi_{\theta}(z_t).
+\end{equation}
+The model’s learned policy $\pi_{\theta}$ controls when to halt.
+This internal feedback loop can lead to emergent behaviors—such as more detailed reasoning chains or self-evaluation steps—without any external prompts or multi-call orchestration. In practice, internal scaling often rivals or surpasses standard techniques, thanks to its ability to focus computational effort on a single, coherent reasoning trajectory.
+%This approach can even lead to the spontaneous emergence of encompassing features within the reasoning chain, such as extended CoT generation (where the model systematically works through intermediate steps), recursive self-queries, looped or conditional execution within the model’s forward pass, and on-the-fly self-evaluation to guide further computation. 
+%In practice, internal scaling has demonstrated notable improvements on challenging benchmarks, often rivaling or surpassing traditional scaling methods when applied correctly.
+%Internal scaling offers a theoretical advantage in how it focuses compute efficiently on one coherent reasoning trajectory.
+
+
+%存在了泛化性
+%真实的分解解决往往是更复杂的搜索结构，

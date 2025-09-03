@@ -1,0 +1,28 @@
+\begin{table}[htbp]
+\centering
+\caption{Ablation for collision-aware rescore and post-optimization in \cite{uniad}.}
+\label{tab:ablation_CAR}
+\vspace{5pt}
+% \resizebox{0.90\linewidth}{!}
+\scriptsize
+{    
+\begin{tabular}{c|cc|cccc|cccc}
+\toprule
+\multirow{2}{*}{Method} &
+\multirow{2}{*}{CAR} &
+\multirow{2}{*}{Post-optim.} &
+\multicolumn{4}{c|}{Planning L2($m$)} & 
+\multicolumn{4}{c}{Planning Coll.(\%)} \\
+&&& 1$s$ & 2$s$ & 3$s$ & \cellcolor{gray!30}Avg. & 1$s$ & 2$s$ & 3$s$ & \cellcolor{gray!30}Avg.\\
+\midrule
+UniAD\cite{uniad} & & & 0.32 & 0.58 & 0.94 & \cellcolor{gray!30}0.61 & 0.15 & 0.24 & 0.36  & \cellcolor{gray!30}0.25 \\
+UniAD\cite{uniad} & & \checkmark & 0.45 & 0.70 & 1.04 & \cellcolor{gray!30}0.73 & 0.62 & 0.58 & 0.63  & \cellcolor{gray!30}0.61 \\
+\midrule
+SparseDrive & & & \textbf{0.29} & \textbf{0.58} & \textbf{0.95} & \cellcolor{gray!30}\textbf{0.61} & \textbf{0.01} & 0.06 & 0.30 & \cellcolor{gray!30}0.12 \\
+SparseDrive & \checkmark & & \textbf{0.29} & \textbf{0.58} & 0.96 & \cellcolor{gray!30}\textbf{0.61} & \textbf{0.01} & \textbf{0.05} & \textbf{0.18} & \cellcolor{gray!30}\textbf{0.08} \\
+SparseDrive & & \checkmark &  0.44 & 0.73 & 1.11 & \cellcolor{gray!30}0.76 & 0.29 & 0.21 & 0.38 & \cellcolor{gray!30}0.30 \\
+
+\bottomrule
+\end{tabular}
+}
+\end{table} 

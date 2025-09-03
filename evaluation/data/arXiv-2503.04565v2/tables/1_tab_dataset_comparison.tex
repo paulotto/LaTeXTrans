@@ -1,0 +1,59 @@
+
+% 
+
+\begin{table*}
+	\centering
+	\small
+	\resizebox{0.98\textwidth}{!}{
+		\setlength\tabcolsep{8pt}
+		\renewcommand\arraystretch{1.0}
+    \begin{tabular}{l|cc|cc|cccc}
+        % \toprule
+        % \hline
+        \topline
+        \rowcolor{mygray}
+          & \multicolumn{2}{c|}{\textbf{Data}} & \multicolumn{2}{c|}{\textbf{Domain}}   & &&&\\
+        % \cline{2-4}
+        % \hspace{2pt}\cline{2-4}\hspace{2pt}
+        
+        % \cmidrule(lr){2-4}\cmidrule(lr){5-6}
+        % \shortcline{2-4}
+        \rowcolor{mygray}
+          \multirow{-2}{*}{ \textbf{Datasets}}   &  \textbf{Cov.}  & \textbf{Pano.}  & \textbf{Platform}  & \textbf{Movement}  &  \multirow{-2}{*}{\textbf{Trk Len}} & \multirow{-2}{*}
+        {\textbf{No. Seq}} &\multirow{-2}{*}{\textbf{No. Smp}} &\multirow{-2}{*}{\textbf{No. T}} \\
+               
+
+        % \midrule 
+        \hline\hline
+        
+ \textbf{KITTI MOT} \cite{geiger2013vision}                  &   \textit{n.a.}   & \crossmark &  \car & \wheels &  \textit{n.a.}  &  21    &   8k       &  749       \\
+ %
+  \textbf{Waymo}  \cite{waymo}                   &  220$^{\circ}$ & \crossmark &  \car &  \wheels  & 20s & 103k     &      20m       &     \textit{n.a.}    \\
+  \textbf{nuScenes}  \cite{caesar2020nuscenes}       &             360$^{\circ}$    & \crossmark & \car  & \wheels &  20s &   1000   &     40k  & \textit{n.a.}    \\
+   \textbf{BDD100K MOT}  \cite{bdd100k}               &    \textit{n.a.}  & \crossmark &  \car  &  \wheels & 40s  &   2000   &        398k     &    \textit{n.a.}    \\
+   
+     \textbf{SportsMOT}   \cite{cui2023sportsmot}               &    \textit{n.a.}  & \crossmark &  \webm & \stationary    & \textit{n.a.} &   240   &      150k       &   3401      \\
+     \textbf{DanceTrack}   \cite{peize2021dance}               &  \textit{n.a.}    & \crossmark &  \webm &  \stationary   & \textit{n.a.}  &  100    &      105k       & 990       \\
+
+     \textbf{JRDB} \cite{martin2021jrdb}                  &  360$^{\circ}$    & \crossmark &  \robot &  \wheels  &  $\leq$117s &   54   &      20k       &     \textit{n.a.}    \\
+    \textbf{MOT17}   \cite{milan2016mot16}              &   \textit{n.a.}   & \crossmark &  \webm & \gait \stationary   & $\leq$85s  &   14   &       11k      &  1331       \\
+    \textbf{MOT20}  \cite{dendorfer2020mot20}              &  \textit{n.a.}    & \crossmark &  \webm & \stationary    & $\leq$133s &   8   &    13k     & 3833   \\
+           % \midrule 
+           \hline
+    \rowcolor{tabgray} \textbf{QuadTrack (ours)}                &   360°    &  \mycheckmark  & \robotdog  &  \gait   &   60s &     32 &       19k      &    332     \\    
+        % \bottomrule
+        \bottomline
+        % \hline
+        
+    \end{tabular}
+	}
+ \vspace{-3mm}
+	\captionsetup{font=small}
+	\caption{Typical datasets for 2D tracking. Abbreviations:  \car~(Autonomous Car), \robot~(Mobile Robot), \robotdog~(Quadruped Robot), \mywebm~(Internet images/videos), \wheels~(Wheels), \gait~(Gait), \stationary~(Stationary), Cov. (Coverage), Pano. (Panoramic camera), %
+ Trk Len (Track Length), No. Seq (The number of sequences), No. Smp (The number of samples), and No. T (the number of tracks).}
+        \vspace{-3mm}
+	\label{tab:comparison dataset}
+	\vspace{-8pt}
+\end{table*}
+
+%

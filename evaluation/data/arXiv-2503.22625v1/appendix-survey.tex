@@ -1,0 +1,256 @@
+\section{Survey of Related Work: Tasks in AI Software Engineering} \label{appendix:tasks}
+
+In this section, we briefly survey some of the relevant works for each of the tasks we mention in Sec. \ref{sec:tasks-milestones}. These works are by no means complete, and we encourage the reader to check out the survey works mentioned in the introduction and in this section for further references.
+
+\subsection{Code Generation}
+
+\textbf{Code Completion}:
+Completion typically happens in conjunction with live programming or within an IDE, helping developers write code faster by suggesting relevant continuations. 
+Traditional code completion systems rely heavily on syntactic and type-aware models (e.g., AST-based models), but recent advances leverage LLMs trained on code corpora to offer semantically rich and context-aware suggestions, naturally following the next-token prediction task in language modeling~\citep{Radford2019LanguageMA}.
+Tools like GitHub Copilot and Codex exemplify this trend \citep{chen2021evaluating}, and are followed by commercial tools such as Cursor\footnote{\url{https://www.cursor.so}} and Tabnine\footnote{\url{https://www.tabnine.com}}.
+Recent advances in context-aware~\citep{agrawal2023guidinglanguagemodelscode}, grammar-aligned~\citep{park2024grammaraligneddecoding}, and constraint-based decoding~\citep{sun2023evaluatinglargelanguagemodels} have improved the quality of local completions, particularly for shorter code snippets.
+For longer code snippets, the typical task formulation is method implementation synthesis given a function signature.
+This setup is commonly evaluated using benchmarks such as MBPP~\citep{austin2021program} and HumanEval~\citep{chen2021evaluating}.
+
+\textbf{Natural Language to Code Generation}:
+Translating natural language into code has long been a central challenge in AI for programming. 
+Early attempts at code generation involved semantic parsing~\citep{zettlemoyer2012learningmapsentenceslogical, wong2006learning}, where natural language is translated into logical forms or domain-specific languages. 
+A prominent example is SQL query synthesis from natural language questions, as seen in systems like Seq2SQL~\citep{zhong2017seq2sql} and Spider~\citep{yu2019spider}, where the target language is constrained, small, and domain-specific.
+Recent work demonstrates that large language models (LLMs) can generalize to general-purpose programming languages, enabling the generation of larger and more complex code snippets~\citep{openai2023gpt}. 
+When applied to code completion, users often begin with natural language instructions in the form of comments, which LLMs use as context for code synthesis.
+Beyond function-level code generation~\citep{austin2021program, chen2021evaluating}, recent work has extended to class-level generation~\citep{du2023classeval}, which targets classes in object-oriented programming, and even project-level code generation~\citep{cao2024javabench, wang2024oopeval}, which involves generating or completing entire multi-file codebases.
+% However, challenges remain in aligning model outputs with user intent--especially as tasks grow in complexity and scale, requiring models to reason over longer contexts, maintain coherence across components, and adhere to high-level design goals.
+
+\textbf{Multimodal Code Generation}:
+While text can describe most cases of code generation, certain instructions are better defined visually. 
+For example, in graphics applications, visual context such as a trajectory or a 3D model is essential to synthesize the correct code. 
+Demonstrations of GPT-4's multi-modal capabilities have shown that models can generate functional webpage code directly from paper sketches, translating visual layouts into HTML and CSS~\citep{openai2023gpt4demo}.
+LogoMotion~\citep{liu2025logomotionvisuallygroundedcodesynthesis} explores visually grounded code synthesis for animations and motion graphics in JavaScript. 
+The system leverages vision-language models (VLMs) to incorporate both visual inputs and user instructions, enabling code generation that aligns with spatial and temporal visual cues.
+Other works, such as SynthesizeCAD~\citep{nandi2020synthesizecad} and SGP-Bench~\citep{qiu2024largelanguagemodelsunderstand}, explore how LLMs can interface with visual and 3D modalities by generating code in languages like SVG and CAD.
+
+\textbf{Code Generation in Low-Resource Languages}: As discussed in Sec. \ref{sec:c-low-resource}, one major challenge is writing code in low-adoption general purposed language and domain specific languages (DSLs). Benchmarks for this include MultiPL-E \citep{cassano2023multipl}, McEval \citep{chai2024mceval}, and VerilogEval \citep{liu2023verilogeval}. A popular method to improve performance is to train on manually curated and processing data in low-resource languages such as Coq \citep{florath2024enhancing} and Verilog \citep{pei2024betterv}. Another line of work aims to achieve transfer between different low-resource languages \citep{paul2024ircoder, cassano2024knowledge, orlanski2023measuring}. Finally, since the lack of data is a large bottleneck, another popular direction is using relevant retrievals such as useful functions and library documentation \citep{yang2023leandojo, zhou2022docprompting, yang2023leandojo}. For a recent survey of code generation for low-resource languages and DSLs, see \citep{joel2024survey}.
+
+\textbf{Security Concerns Surrounding Code Generation}:
+Despite the growing power of LLMs for code generation, their outputs often remain insecure, incorrect, or misaligned with user intent. 
+For instance, BaxBench~\citep{vero2025baxbench} evaluates LLMs on generating secure and correct back-ends, revealing that while the average functional correctness is already modest ($\sim60\%$), the rate of secure outputs is even lower ($<35\%$).
+To better understand and quantify these limitations, several benchmarks and evaluation suites have been proposed. 
+SecurityEval~\citep{siddiq2022securityeval}, SafeCoder~\citep{he2024safecoder}, CodeLMSec~\citep{hajipour2023codelmsec}, CWEval~\citep{peng2025cweval}, and CyberSecEval~\citep{bhatt2023purplellamacybersecevalsecure, wan2024cyberseceval} each provide distinct lenses on evaluating vulnerabilities, unsafe API usage, or compliance with common weakness enumerations (CWEs). 
+% These efforts collectively highlight the gap between syntactic fluency and secure-by-construction code generation.
+In response, several approaches introduce human-in-the-loop guardrails, where developers can interactively guide, inspect, or constrain the generation process. 
+Dynex~\citep{ma2025dynexdynamiccodesynthesis}, for instance, supports dynamic, step-wise code synthesis with user feedback, enabling real-time correction and iterative refinement before errors can accumulate.
+
+
+\textbf{Human Interaction in Code Generation}: 
+Modern code LLMs typically support interactive code generation through conversational interfaces. 
+\citet{10555598} conducted a quantitative analysis of developer-ChatGPT interactions using the DevGPT dataset~\citep{xiao2024devgpt}, examining how the quality of the initial prompt influences conversation length. 
+Code LLMs can be further optimized for various interactive scenarios, including debugging environments~\citep{surameery2023use}, educational settings~\citep{kazemitabaar2023studying, kazemitabaar2023novices, prather2023s, sheese2024patterns}, and use by non-professional programmers~\cite{yan2024intelliexplain}. 
+Beyond human-driven interactions in chat-based setups, more advanced code generation systems such as coding agents can proactively ask clarifying questions~\citep{vijayvargiya2025interactiveagentsovercomeambiguity} or generate test cases for users to validate~\citep{lahiri2022interactive, fakhoury2024llm} before generating the actual code, helping to resolve ambiguities.
+
+
+
+\subsection{Code Transformation}
+
+\textbf{Code Refactoring}:
+Code refactoring aims to simplify and remove repetitions in complex repositories without altering high-level program intent.
+While there have been traditional methods~\citep{pailoor2024refactoring} that refactor data structures, Aider AI introduces a refactoring benchmark\footnote{\url{https://github.com/Aider-AI/refactor-benchmark}} evaluating LLM's ability to output long chunks of code that simplify complex programs without changing its behavior.
+More recently, RefactorBench~\citep{gautam2024refactorbench} introduced a more complex benchmark with natural language refactor requests, as well as an LLM agent that can perform refactoring.
+
+\textbf{Code Migration}:
+Compared to code refactoring, code migration typically refers to mid-scale modifications that affect a program’s interface, dependencies, or underlying architecture. 
+Common examples include switching the back-end database from MySQL to PostgreSQL, migrating a machine learning model from TensorFlow to PyTorch, or upgrading the Java version from legacy Java 8 to a more modern Java 17. 
+While recent work has introduced benchmark designed to evaluate library migrations~\citep{islam2023pymigbench}, works at Google~\citep{nikolov2025google} and Amazon~\citep{omidvar2024evaluating} have explored LLM-driven solutions for simple but vast migrations.
+Google's system identifies locations for changes, generates edits with LLMs fine-tuned on internal code, and automatically validates changes through compilation and test execution.
+% For a 500+M LoC project migrating IDs from 32-bit to 64-bit integers, their system produced 80\% AI-authored modifications and reduced engineering time by approximately 50\%. 
+
+% \todo{At least 3 PL people I talked to mentioned the COBOL case study, probably worth to include it ;) \citep{sneed2001extracting, sellink2002restructuring, sneed2010migrating}}
+% \todo{add code migration, deprecation, version upgrades}
+% \ks{May be added another item on Code upgrade from one version to another.}
+
+% Notes:
+% talk about expensive and difficult, hence high-value for automation that AI brings
+% 1. Some Py2 -> 3 migration examples
+% 2. Scala 2.13 -> 3 migration pain points: https://blog.pierre-ricadat.com/scala-3-migration-report-from-the-field -- nice one!
+% 3. Browser JS migrations?
+% LLM for migration at google: https://research.google/blog/accelerating-code-migrations-with-ai/
+
+\textbf{Code Translation (Transpilation)}:
+Moving beyond code migration, transpilation involves large-scale transformation of a program’s underlying programming language. 
+% Examples include translating legacy COBOL to Java or upgrading from Python 2 to Python 3. 
+Transpilation serves not only to modernize outdated codebases but also to eliminate classes of safety issues inherent to older languages. 
+A particularly active area of research involves transpiling C-based systems to Rust, a systems-level language that offers strong memory and concurrency safety guarantees.
+This direction has garnered attention, including from the U.S. Department of Defense\footnote{\url{https://www.darpa.mil/news/2024/memory-safety-vulnerabilities}}, which maintains critical infrastructure built on aging C code.
+An end-to-end LLM-based approach, such as Flourine~\citep{eniser2024translatingrealworldcodellms}, has been proposed for real-world code translation, but it has achieved only limited success due to frequent compilation errors.
+Recent efforts like Syzygy~\citep{shetty2024syzygy}, C2SaferRust~\citep{nitin2025c2saferrust}, and AlphaTrans~\citep{alphatrans} have shown the potential for hybrid approaches combining LLMs with traditional program analysis techniques. 
+However, some significant challenges remain, as identified by~\citet{li2025translating}, including ensuring correctness in large codebases while maintaining desirable attributes such as speed, reduced vulnerabilities, and idiomaticity.
+Specifically, 
+We anticipate that the techniques discussed in Section~\ref{sec:related-software-testing-and-program-analysis} may help address these remaining challenges.
+
+% More recently, there has been a push to use translation as a proactive approach to eliminate memory safety vulnerabilities in C-based systems. This has even garnered attention from the US Department of Defense\footnote{\url{https://www.darpa.mil/news/2024/memory-safety-vulnerabilities}}, which has long-lived systems that disproportionately depend on C, supporting programs to translate C codebases to Rust (\href{https://www.darpa.mil/research/programs/translating-all-c-to-rust}{TRACTOR}). 
+% % 
+
+% 
+% \todo{expand a little bit, motivate real-world importance (DARPA, cobol to *), checked-c maybe}
+% 
+% \todo{
+% \\	- Don't banks still use COBOL code for this reason? Too expensive to migrate (maybe because of legislative/bureaucratic overhead)?
+% }
+
+
+\textbf{Code Optimization:}
+Certain refactoring or transpilation tasks are specifically aimed at optimizing code performance. 
+Prior work has explored the use of LLMs for optimizing standalone programs, such as PIE~\citep{pie}, which targets C++ functions, and AlphaDev~\citep{alphadev}, which discovers more efficient sorting algorithms at the assembly level. 
+These tasks are particularly challenging due to the vast search space of possible code transformations. 
+More recently, KernelBench~\citep{ouyang2024kernelbench} introduced a benchmark focused on optimizing machine learning models written in high-level PyTorch code into low-level, high-performance CUDA GPU kernels. 
+For a broader overview of language models applied to code optimization, see the survey by \citet{gong2025language}.
+
+% 
+% PIE
+% LLM for compiler optimization \citep{llmcompiler}
+% AlphaDev \citep{alphadev}
+
+
+% https://blog.chromium.org/2018/09/10-years-of-speed-in-chrome_11.html
+% https://v8.dev/blog/ignition-interpreter
+
+
+\subsection{Software Testing and Program Analysis}
+\label{sec:related-software-testing-and-program-analysis}
+
+\textbf{Short-horizon Testing}:
+For short-horizon testing such as unit tests~\citep{lemieux2023codamosa} and property-based tests~\citep{vikram2023can}, 
+LLMs are employed to automatically generate targeted test cases~\citep{li2024largelanguagemodelstest, mundler2025swt}, and even hill-climb on code coverage to improve test effectiveness~\citep{ryan2024code}. 
+At the granularity of individual functions, LLM-generated tests have also been employed to support downstream tasks such as filtering implementations based on behavioral correctness~\citep{chen2022codet, zhang2023algo}, as well as assisting in program debugging by surfacing inputs that expose incorrect behavior~\citep{chen2025revisit}.
+
+\textbf{Long-horizon Testing}:
+Long-horizon testing involves evaluating system behavior across extended executions, complex interactions, or multiple components, potentially embedded within a CI/CD (Continuous Integration or Delivery) pipeline.
+Fuzzing~\citep{miller1990empirical} is a long-horizon testing approach that continuously generates novel random input. 
+Recent works such as Fuzz4All~\citep{xia2024fuzz4all}, KernelGPT~\citep{yang2023kernelgpt}, and OSS-Fuzz~\citep{ossfuzzllm, ossfuzzllm-results} have shown that LLMs can significantly improve effectiveness through better input generation and exploration strategies.
+Specificatlly, OSS-Fuzz-Gen~\citep{liu2024ossfuzzgen} employs diverse LLMs for fuzzing harness generation, helping to find novel and complex crashing interactions.
+
+\textbf{Static Analysis for Vulnerability Detection}:
+Vulnerability Detection refers to the task of identifying weaknesses or flaws in software code that could be exploited to compromise the system's security, stability, or correctness.
+A wide range of prior work leverages machine learning models such as Graph Neural Networks (GNNs) and Recurrent Neural Networks (RNNs) to detect software vulnerabilities \citep{Zhou2019DevignEV, Chakraborty2020DeepLB, Dinella2020Hoppity, Hin2022LineVDSV, Li2021VulnerabilityDW}.
+While some recent methods pre-train or fine-tune LLMs on code-specific datasets~\citep{fu2022linevul, steenhoek2023dataflow, Cheng2022PathsensitiveCE} to improve vulnerability classification, several studies have highlighted the limitations of LLMs in real-world software \citep{steenhoek2024comprehensive,ding2024vulnerability,khare2023understanding}. 
+To combat such limitations, works like \citet{li2024llift}, IRIS~\citep{li2024llm}, LLMDFA~\citep{wang2024llmdfaanalyzingdataflowcode}, and InferROI~\citep{wang2023boosting} explored augmenting static analysis tools (e.g., CodeQL) with LLMs for taint and resource leak analyses.
+More recently, \citet{bigsleep} demonstrated the potential of using LLMs at a much bigger scale by finding a real SQLite vulnerability through exploratory variant analysis.
+
+\textbf{Specialized Program Analysis}:
+Beyond long-running analysis to identify vulnerabilities, several traditional program analyses have struggled to scale in practice despite their theoretical promise. 
+For instance, inferring program invariants (properties deemed to always be true at a program point) has been challenging with traditional symbolic methods such as Daikon \citep{ernst2007daikon, padon2016decidability} while being valuable for exposing bugs~\citep{hangal2002tracking} and aiding software evolution~\citep{ernst1999dynamically}. 
+Similarly, type inference for dynamically typed languages suffers from coverage limitations of rule-based approaches and requires specialized tools like ShapeIt~\citep{zheng2024dynamic} for domain-specific challenges such as inferring symbolic tensor shapes.
+
+\textbf{Specification Inference}:
+Specification inference is the task of automatically recovering formal description of a program's expected behavior, including pre-conditions, post-conditions, or invariants.
+The availability of specification is at the core of establishing \textit{trust}~\citep{roychoudhury2025aisoftwareengineerprogramming}, and existing works~\citep{dinella2024infer, ruan2024specrovercodeintentextraction} have shown that LLMs can help the inference of such specifications.
+For instance, \citet{dinella2024programstructureawareprecondition} presents a program structure aware technique for synthesizing pre-conditions for arbitrary code snippets, and have established a dataset of 18K LLM generated pre-conditions on real Java projects.
+
+\textbf{Invariant Inference}:
+As a subtask of specification inference, invariant inference aims at inferring loop, function, or class invariants, which are greatly helpful in automatic program verification.
+There have been several LLM-based approaches for invariant identification. 
+They enhance traditional approaches through structured representations~\citep{si2018learning}, LLM-based prompting~\citep{kamath2023finding, pei2023can} and re-ranking~\citep{chakraborty2023ranking}, and reinforcement learning~\citep{yu2023loop}. 
+Similarly, works have used sequence-to-sequence models~\citep{wei2023typet5}, few-shot LLM approaches like TypeGen~\citep{peng2023generative}, and generate-then-rank methods like TIGER~\citep{wang2024tiger} for type inference. 
+Consequently, we observe new benchmarks emerging in the space such as LIG-MM~\citep{liu2024towards} for loop-invariant detection. 
+
+\textbf{Binary Analysis}:
+While the aforementioned tasks primarily focus on human-readable programming languages, many can also be extended to operate on compiled machine code, or binaries. 
+One prominent example is binary type inference, which aims to recover high-level type information from low-level binary code.
+It has seen significant improvements with deep learning models and LLMs~\citep{pei2021stateformer, zhu2024tygr}. 
+These advancements, alongside other LLM-based analyses, have enhanced the capabilities of decompilers, enabling them to synthesize human-readable code from binaries~\citep{liu2025controlflowaugmenteddecompilerbased}. 
+Beyond decompilation, LLMs have also been applied to detect security vulnerabilities in binaries~\citep{liu2023harnessing} and to generate semantic summaries that capture the high-level intent of binary code~\citep{jin2023binarycodesummarizationbenchmarking}.
+
+% \textbf{Bug Detection}: For short-horizon testing (e.g., unit tests~\citep{lemieux2023codamosa} and property-based tests~\citep{vikram2023can}), models have shown promise in generating targeted test cases \citep{mundler2025swt} and even hill-climb on metrics like code coverage~\citep{ryan2024code}. For simple, function-level testing, LLM-generated tests have been used to filter~\citep{chen2022codet, zhang2023algo} and debug programs \citep{chen2025revisit}. 
+% In contrast, long-horizon testing approaches like fuzzing require sustained program state exploration, where recent work (Fuzz4All~\citep{xia2024fuzz4all}, KernelGPT~\citep{yang2023kernelgpt}, OSS-Fuzz~\citep{ossfuzzllm, ossfuzzllm-results}) shows LLMs can significantly improve effectiveness through better input generation and exploration strategies.
+
+% However, the most challenging security vulnerabilities and zero-day exploits, from memory corruption to privilege escalation, require deep program understanding that testing/fuzzing often miss.
+% % 
+% Works like IRIS~\citep{li2024llm}, InferROI~\citep{wang2023boosting}, and LATTE~\citep{liu2023harnessing} explored augmenting static analysis tools (e.g., CodeQL) with LLMs for taint and resource leak analyses.
+% % 
+% More recently, \citet{bigsleep} demonstrated the potential of using LLMs at a much bigger scale by finding a real SQLite vulnerability through exploratory variant analysis. That said, we are still scratching the surface - LLMs are still improving on real-world tasks that security researchers handle daily, like reasoning about complex program logic or autonomously conducting offensive security operations as measured by CyberSecEval~\citep{wan2024cyberseceval}.
+
+% % \todo{Some works about security:
+% % \\ SecCodePLT: A Unified Platform for Evaluating the Security of Code GenAI https://seccodeplt.github.io/}
+
+% Beyond long-running analysis to identify vulnerabilities, several traditional program analyses have struggled to scale in practice despite their theoretical promise. For instance, inferring \textit{program invariants} (properties deemed to always be true at a program point) has been challenging with traditional symbolic methods such as Daikon \citep{ernst2007daikon, padon2016decidability} while being valuable for exposing bugs~\citep{hangal2002tracking} and aiding software evolution~\citep{ernst1999dynamically}. Similarly, type inference for dynamically typed languages suffers from coverage limitations of rule-based approaches and requires specialized tools like ShapeIt~\citep{zheng2024dynamic} for domain-specific challenges such as inferring symbolic tensor shapes.
+
+% \textbf{Software Testing}:
+
+% \textbf{Vulnerability Detection}:
+% Vulnerability Detection refers to the task of identifying weaknesses or flaws in software code that could be exploited to compromise the system's security, stability, or correctness. These vulnerabilities can arise from improper input validation, unsafe memory access, insecure API usage, logic bugs, or violations of secure coding practices. The goal of vulnerability detection is to automatically analyze code—either statically (without execution) or dynamically (during execution)—to identify potential security issues before they can be exploited.
+
+% A wide range of prior work leverages machine learning to detect software vulnerabilities. 
+% Among these, several approaches employ Graph Neural Networks (GNNs) to capture structural code representations and data flow dependencies \cite{Zhou2019DevignEV, Chakraborty2020DeepLB, Dinella2020Hoppity, Hin2022LineVDSV, Li2021VulnerabilityDW}. 
+% Others utilize recurrent neural networks (RNNs), such as LSTM-based models, to learn from token sequences or abstract syntax tree (AST) paths \cite{Li2020VulDeeLocatorAD, Li2018SySeVRAF}. 
+% More recent methods apply Transformer-based architectures, either through pre-training or fine-tuning large language models on code-specific datasets \cite{fu2022linevul, steenhoek2023dataflow, Cheng2022PathsensitiveCE}, to improve vulnerability classification.
+
+% These learning-based methods are predominantly focused on \textit{method-level classification}, assigning a binary label to individual functions or code snippets to indicate the presence or absence of vulnerabilities. 
+% While effective in some settings, they often lack semantic precision and interpretability, making it difficult to trace the root cause or propagation path of a vulnerability.
+% Several studies have highlighted the limitations of large language models (LLMs) in accurately detecting vulnerabilities in real-world software \citep{steenhoek2024comprehensive,ding2024vulnerability,khare2023understanding}. 
+% These evaluations, which primarily focus on method-level detection tasks, show that LLMs often struggle to generalize beyond superficial patterns and fail to capture deeper semantic or structural issues that manifest across function or module boundaries.
+
+% \textbf{Invariant Identification}: There have been several LLM-based approaches for invariant identification. They enhance traditional approaches through structured representations~\citep{si2018learning}, LLM-based prompting~\citep{kamath2023finding, pei2023can} and re-ranking~\citep{chakraborty2023ranking}, and reinforcement learning~\citep{yu2023loop}. Similarly, works have used sequence-to-sequence models~\citep{wei2023typet5}, few-shot LLM approaches like TypeGen~\citep{peng2023generative}, and generate-then-rank methods like TIGER~\citep{wang2024tiger} for type inference. Consequently, we observe new benchmarks emerging in the space such as LIG-MM~\citep{liu2024towards} for loop-invariant detection. 
+
+\subsection{Software Maintenance}
+
+\textbf{Code Navigation}:
+Code navigation refers to the task of locating a specific position within a code repository based on either a natural language description~\citep{liu2024codexembedgeneralistembeddingmodel} or a programmatic specification~\citep{schafer2016ql}. 
+Common use cases include identifying where a particular functionality is implemented, tracing the origin of user input that leads to a vulnerability, or locating relevant files when starting work on a new feature. 
+This capability underpins many downstream tasks such as software testing, vulnerability detection, program repair, and code question answering. Code navigation or code search modules are integral components of modern code agents~\citep{yang2024sweagent, bouzenia2024repairagent, xia2024agentless}, often implemented using find commands, embedding-based similarity search, or query-based tools like CodeQL and Semgrep.
+
+\textbf{Code Documentation and Summarization}: Several works have used LLMs for code summarization invoking techniques like prompting \citep{sun2024source, su2024distilled, haldar2024analyzing, ahmed2024automatic}. RepoAgent \citep{luo2024repoagent} is a framework that analyzes global contextual relationships in source code to generate fine-grained documentation. \citet{shi2024natural} show that LMs are capable of generating good natural language outlines -- text descriptions alongside code to partition it into semantically coherent sections. One challenge is that the evaluation of this task is very tricky: the academic community currently lacks datasets and benchmarks that contain good documentation and the automatic evaluation metrics do not align well with human metrics \citep{diggs2024leveraging}. 
+
+\textbf{Pull Request (PR) Review}: In industry, autonomous software agents such as OpenHands \citep{openhands} and \href{https://app.devin.ai/}{Devin} have been able to automatically review and even fix PRs. At ByteDance, BitsAI-CR \citep{sun2025bitsai} is a code review system that identifies issues based on a manually crafted taxonomy of review rules. In the academic community, there have been several works studying the ability of AI systems to automatically review PRs \citep{tufano2021towards, tufano2022using, li2022automating, li2024utilizing}. Recently, AutoCodeRover \citep{zhang2024autocoderover} combines LLMs with code search to automatically fix GitHub issues.
+
+\textbf{Program Repair}: 
+Automated program repair has had a long history, with many benchmarks covering different scopes and languages. These include DroixBench \citep{tan2018repairing} for android apps; Defects4J \citep{just2014defects4j}, GitBug-Java \citep{gitbugjava}, and growingBugs \citep{GrowingBugsICSE21, GrowingBugsTSE2022, NaturalnessOfBugsFSE2022} for real-world Java; Bugsinpy \citep{widyasari2020bugsinpy} for Python; BugSwarm \citep{tomassi2019bugswarm} for multilingual; DebugBench \citep{hu2024leveraging}, LiveCodeBench \citep{jain2024livecodebenchholisticcontaminationfree}, and Codeflaws \citep{tan2017codeflaws} for LeetCode-style problems; and many more.
+
+Historically, there have been many techniques for this task, including heuristic-based APR (using genetic programming to explore the search space of the correct patch), constraint-based APR (treating repair as a constraint-solving task), pattern-based APR (apply expert hand-crafted repair templates), and learning-based APR (using language models) \citep{zhang2024systematic}.
+% \citep{jiang2023impact, xia2022practical, tufano2019empirical, haque2022fixeval, jin2023inferfix, gupta2017deepfix, berabi2021tfix}
+More recently, with LLMs, there have been agent-based approaches such as FixAgent \citep{lee2024unified} using agents specializing in different aspects of debugging, and RepairAgent \citep{bouzenia2024repairagent} that invokes suitable tools. On the other hand, Agentless \citep{xia2024agentless} uses a three-phase process of localization, repair, and patch validation. 
+% \ks{All SWE agents should also be considered as repair agents?}
+
+Finally, program repair has also been used as a tool to improve code generation, where error messages and incorrect test cases are fed back into the model to improve code generation \citep{madaan2023self, chen2024teaching, zhang2023self, olausson2024repair, zhong2024debug, tang2025code}. This is also known as self-repair or self-debugging. 
+For a much more comprehensive survey of automated program repair, we recommend the reader check out \href{https://program-repair.org/}{this website}\footnote{\url{https://program-repair.org/}}.
+
+% \textbf{Code Auditing}:
+% Code auditing concerns performing whole repository analysis within a CI/CD pipeline
+
+\textbf{Code Understanding and Question Answering}: Code understanding with language models has been studied for many years. In earlier days, researchers used the CodeXGLUE \citep{lu2021codexglue} benchmark containing tasks such as clone detection, code search, code summarization, and so on. \citet{nam2024using} create an IDE plugin containing features that help users understand code through explaining highlighted sections of code and explaining domain-specific code. \citet{yang2025code} present a survey touching on reasoning-enhanced code intelligence.
+
+
+\subsection{Scaffolding and Meta-Code}
+Beyond code generation, the broader software engineering ecosystem includes DevOps workflows, CI/CD pipelines, and Infrastructure-as-Code (IaC). 
+LLMs have shown particular promise in generating, debugging, and explaining CI/CD configurations (e.g., GitHub Actions, Jenkinsfiles), assisting with environment setup, test orchestration, and deployment logic. 
+A case study at Ericsson~\citep{chaudhary2024developing} demonstrates how an LLM-based chatbot can support CI/CD question answering, enabling engineers to better understand and manage deployment pipelines.
+LLMs are also being explored for automated testing across heterogeneous software environments. 
+ExecutionAgent~\citep{bouzenia2024itirunit} presents a language model-driven agent that autonomously installs, configures, and runs test suites for arbitrary projects.
+
+Beyond CI/CD and testing, LLMs are increasingly used to reason about configuration logic and scaffolding code, which is a critical but often overlooked layer of modern software systems. 
+For instance, \citet{yin2011configuration} conducted an empirical study of real-world configuration errors, identifying systemic causes of failure such as external dependencies, inter-parameter violations, and overlooked default parameters. 
+Building on this line of work, Ciri~\citep{lian2024large} confirms the feasibility of using LLMs for configuration validation.
+Further, in the domain of IaC, an empirical study of 812 open-source Terraform projects found that while access policies are commonly adopted, critical practices like encryption at rest are often neglected~\citep{verdet2023exploring}. 
+This highlights the opportunity for LLMs to assist practitioners in detecting and enforcing security best practices in IaC configurations.
+
+
+\subsection{Formal Verification}
+There are a variety of programming languages designed with different principles to support formal verification. Some of the popular ones include TLA \citep{lamport1994introduction}, Coq \citep{Coq-refman}, Lean \citep{de2015lean}, Dafny \citep{leino2010dafny}, Isabelle \citep{nipkow2002isabelle}, and Verus \citep{lattuada2024verus}. 
+
+Formal software verification has seen a few great successes in the last few years: Astrée \citep{cousot2005astree} was able to completely verify that Airbus A340's primary flight-control software had no run-time errors, verifying 132,000 lines of C code. 
+More recently, formal methods have been applied to verify a cryptographic server \citep{erbsen2024foundational} and an IoT lightbulb at both a hardware and software level \citep{erbsen2021integration}. 
+CompCert \citep{leroy2016compcert}, a verified compiler and seL4 \citep{klein2009sel4}, a verified microkernel are demonstrations that formal methods could be promising for verifiable code. 
+At Amazon, formal methods been used to verify and protect cryptographic software~\citep{goel2024leanprover}, cloud resources~\citep{xu2024cloud}, and authorization~\citep{disselkoen2025cedar}. 
+Notably, SV-COMP~\citep{beyer2023svcomp} is an annual competition designed to evaluate program verifiers using a curated benchmark of verifiable C and Java code. 
+It even includes samples from the Linux Driver Verification (LDV) project~\citep{beyer2012ldv}, aiding the verification of Linux kernel device drivers.
+For more applications, we refer the reader to the survey in \citet{huang2023lessons}.
+
+Recently, the ability of LLMs to write formal verification code. Benchmarks like DafnyBench \citep{loughridge2024dafnybench} and miniCodeProps \citep{lohn2024minicodeprops} were designed to measure the ability of LLMs to write software proofs in Dafny and Lean, respectively. 
+In Dafny, \citet{poesia2024dafny} use a combination of search and prompting to create a synthetic dataset of annotations greatly improving performance on DafnyBench. 
+Clover \citep{sun2024clover} generates code alongside consistency checks (like Dafny annotations), \citet{li2025dafny} employ Dafny as an intermediate language to improve code generation, and \citet{misu2024towards} explore prompting and retrieval to generate Dafny. 
+In Rust, Verus is a popular formal verification language, with AutoVerus \citep{yang2024autoverus} and AlphaVerus \citep{aggarwal2024alphaverus} generating verified specifications and proofs for Rust functions. 
+There are also many IDE plugins designed to help humans to write code in formal languages such as Dafny and Lean such as \citet{silva2024leveraging}, Lean Copilot \citep{song2024towards}, and llmstep \citep{welleck2023llmstep}.
+
+% There has also been a line of work attempting to eliminate the need of dedicated formally verifiable programming languages and embedding the specifications within an existing language.
+% For instance, SVComp~\citep{???} is a software-verification competition which targets C and Java programs.
+% The specifications are embedded inside the program in the form of non-deterministic or assertion function calls.
+
+Finally, there is a growing interest of work in using formal languages like Lean for mathematical theorem proving, which is covered comprehensively in \citet{li2024survey} and \citet{yang2024formal}.

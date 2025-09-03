@@ -1,0 +1,24 @@
+\begin{table*}[t]
+    \centering
+\caption{Results from \textsc{Bert}-large \citep{devlin_19} on GLUE test tasks scored using the benchmark server. We report the Matthew’s Correlation for CoLA, the Spearman correlation for STS-B, F1 score for MRPC and QQP. We report the accuracy on the MNLI matched test split and the accuracy for every other tasks. The ``Param.'' column indicates the ratio of the number of updated parameters for each task by the number of parameters in the backbone model. We indicate in \textbf{bold} the best result for each task. $^{\dagger}$ indicates models we trained. We report adapter results from \citep{DBLP:conf/icml/HoulsbyGJMLGAG19}, BitFit from \citep{zaken_22} and Diff Pruning from \citep{DBLP:conf/acl/GuoRK20}. For LoRA \citep{hu_22} and Ladder Side Tuning (LST) \citep{sung2022lst}, we select the best learning rate in the dev set between the values proposed in the original papers, $[5e^{-4}, 4e^{-4}, 3e^{-4}, 2e^{-4}]$ and $[3e^{-4}, 1e^{-3}, 3e^{-3}]$, respectively. We do not use the initialization setup proposed in LoRA or LST nor do we drop any layers for the LST method.}
+\label{table:glue}
+
+	\setlength{\tabcolsep}{1pt}    
+    \begin{tabularx}{\textwidth}{lc|YYYYYYY|Y}
+    \toprule
+    Method &  Param. (\%) & CoLA & SST-2 & MRPC & QQP & QNLI & MNLI & STS-B & Avg. $\uparrow$\\
+    \midrule
+    Avg. \# Tokens & --- & 11.3 & 13.3 & 53.2 & 30.6 & 49.4 & 39.8 & 27.8 & 32.2 \\
+\addlinespace
+    Full Fine-Tuning$^{\dagger}$ & 100.0 & 60.7 & \textbf{94.6} & 88.3 & \textbf{72.0} & 92.4 & 85.8 & 85.8 & 82.8 \\
+    Adapters & 3.6 & 59.5 & 94.0 & 89.5 & 71.8 & 90.7 & 84.9 & \textbf{86.9} & 82.5 \\
+BitFit & 0.1 & 59.7 & 94.2 & 88.9 & 70.5 & 92.0 & 84.5 & 85.0 & 82.1  \\
+    Diff Pruning & 0.5 & \textbf{61.1} & 94.1 & \textbf{89.7} & 71.1 & \textbf{93.3} & \textbf{86.4} & 86.0 & \textbf{83.1}  \\
+    \addlinespace
+    Ladder Side Tuning$^{\dagger}$ & 2.4 & 56.4 & 93.4 & 88.0 & 66.9 & 89.1 & 82.9 & 86.6 & 80.5  \\
+    LoRA$^{\dagger}$ &  0.3 & 58.5 & 94.0 & 89.2 & 71.1 & 91.1 & 84.7 & 84.6 & 81.9  \\
+\rowcolor{lightcyan}
+    \method$^{\dagger}$ & 100.0 & 59.6 & 93.9 & 88.0 & 70.8 & 91.0 & 85.4 & 86.0 & 82.1 \\
+    \bottomrule
+    \end{tabularx}
+\end{table*}

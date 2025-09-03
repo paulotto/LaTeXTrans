@@ -1,0 +1,23 @@
+\begin{table}[htbp]
+\centering
+\scalebox{0.8}
+{
+\begin{tabular}{l|ccc|c}
+\toprule
+Method & $AP_{ped}\uparrow$ & $AP_{divider}\uparrow$ & $AP_{boundry}\uparrow$ & \cellcolor{gray!30}mAP$\uparrow$ \\
+\midrule
+HDMapNet & 14.4 & 21.7 & 33.0 & \cellcolor{gray!30}23.0 \\
+VectorMapNet & 36.1 & 47.3 & 39.3 & \cellcolor{gray!30}40.9 \\
+MapTR & 56.2 & 59.8 & 60.1 & \cellcolor{gray!30}58.7 \\
+\midrule
+% VAD-Tiny & 31.7 & 42.2 & 45.6 & 39.8 \\
+VAD & 40.6 & 51.5 & 50.6 & \cellcolor{gray!30}47.6 \\
+SparseDrive-S & 49.9 & \textbf{57.0} & 58.4 & \cellcolor{gray!30}55.1 \\
+SparseDrive-B & \textbf{53.2} & 56.3 & \textbf{59.1} & \cellcolor{gray!30}\textbf{56.2} \\
+\bottomrule
+\end{tabular}
+}
+\vspace{5pt}
+\caption{\textbf{Online Mapping}.}
+\label{tab:mapping}
+\end{table} 

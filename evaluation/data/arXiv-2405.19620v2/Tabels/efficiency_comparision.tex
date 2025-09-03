@@ -1,0 +1,22 @@
+\begin{table}[htbp]
+\centering
+\caption{Efficiency comparison results. SparseDrive achieves high efficiency for both training and inference. Training time and FPS for UniAD are measured on 8 and 1 NVIDIA Tesla A100 GPUs respectively. Training time and FPS for SparseDrive are measured on 8 and 1 NVIDIA Geforce RTX 4090 GPUs respectively.}
+\label{tab:efficiency}
+\vspace{5pt}
+\resizebox{0.90\linewidth}{!}
+{    
+\begin{tabular}{c|ccc|cccc}
+\toprule
+\multirow{2}{*}{Method} &
+\multicolumn{3}{c|}{Training Efficiency} & 
+\multicolumn{4}{c}{Inference Efficiency} \\
+& GPU Memory (G) & Batch Size & Time (h) & GPU Memory (M) & FLOPs (G) & Params (M) & FPS\\
+\midrule
+UniAD~\cite{uniad} & 50.0 & 1 & 48 + 96 & 2451 & 1709 & 125.0 & 1.8 \\
+\midrule
+SparseDrive-S & 15.2 & 6 & 18 + 2 & 1294 & 192 & 85.9 & 9.0 \\
+SparseDrive-B & 17.6 & 4 & 26 + 4 & 1437 & 787 & 104.7 & 7.3 \\
+\bottomrule
+\end{tabular}
+}
+\end{table} 

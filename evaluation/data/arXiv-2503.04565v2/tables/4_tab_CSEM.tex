@@ -1,0 +1,33 @@
+\begin{table}[t!]
+    \centering
+    \setlength{\tabcolsep}{8pt}     % 4pt
+    \resizebox{\columnwidth}{!}{%
+    \begin{tabular}{c|ccc|ccc}
+        % \toprule
+        \topline
+        %
+        \rowcolor{mygray}  Exp. & $\mathcal{S}_5$ & $\mathcal{S}_4$ & $\mathcal{S}_3$ & HOTA$\uparrow$ & IDF1$\uparrow$ & OSPA$\downarrow$ \\
+        % \midrule 
+        \hline
+        \ding{192} & - &  -  &  -  & 23.296 & 25.496 &0.93415\\
+        \ding{193} & MLP &  MLP  &  MLP  & 21.951   & 23.535   & 0.92151 \\
+        
+        \ding{194} & Conv &  Conv  &  Conv  & 23.565  & 25.814  & \textbf{0.90931}\\
+         	 	 	 
+
+        \ding{195} & \checkmark &   \checkmark &  \checkmark  & 24.724 & 26.886 & 0.91934 \\
+        \ding{196} &  \checkmark  &    &    & 24.426 & 26.016 &0.92819  \\
+        \ding{197} &   &   & \checkmark  & 24.539 & 26.506 & 0.92776  \\
+        % \midrule
+        \hline
+        \rowcolor{tabgray}\ding{198} &  & \checkmark &    & \textbf{25.120} & \textbf{27.423} & 0.92512  \\
+        % \bottomrule
+        \bottomline
+    \end{tabular}
+    }
+    \vspace{-1mm}
+    \caption{Ablation study on the CircularStatE module. $S_3$, $S_4$, and $S_5$ represent multi-scale features extracted from the backbone~\cite{He_2016_CVPR}. \emph{MLP} refers to fully connected layers, \emph{Conv} to convolutional layers. The symbol $\checkmark$ indicates the use of \emph{DynamicSSM} \ref{mod:DynamicSSM}}
+
+    \vspace{-3mm}
+    \label{tab:CSEM}
+\end{table}

@@ -1,0 +1,30 @@
+
+\begin{table}[!ht]
+    \centering
+    % \resizebox{\textwidth}{!}{%
+    \begin{tabular}{lccc}
+        \toprule
+        {Model} & $\mathrm{MMMU_{val}}$ &  $\mathrm{MME_{sum}}$ & $\mathrm{OCRBench}$   \\ 
+        \midrule
+        \(\alpha\)-1.00 & 50.11  & 81.44  & \textbf{86.00}  \\ 
+        \(\alpha\)-0.95 & 49.67  & 81.24  &  85.50 \\ 
+        \(\alpha\)-0.90 & 50.56  & 81.46  & 85.50  \\ 
+        \(\alpha\)-0.85 & 50.67  & 82.79  & 85.50  \\ 
+        \(\alpha\)-0.80 & 51.11  & 82.36  & 85.20  \\ 
+        \(\alpha\)-0.75 & 51.11  & 82.88  & 84.60  \\ 
+    \(\alpha\)-0.70 & \textbf{51.22}  & 83.36  & 84.40  \\ 
+        \(\alpha\)-0.65 & 50.33  & 83.12  & 82.80  \\ 
+        \(\alpha\)-0.60 & 50.67  & 83.03  & 80.70  \\ 
+        \(\alpha\)-0.55 & 49.33  & \textbf{83.26}  & 79.00  \\ 
+        \(\alpha\)-0.50 & 50.00  & 81.37  & 76.40  \\ 
+        \(\alpha\)-0.45 & 47.78  & 81.40  & 74.30  \\ 
+        \(\alpha\)-0.40 & 47.00  & 82.06  & 71.20 \\
+          \midrule
+    Oracle\footnotesize(Upper Bound) & 51.22\footnotesize(0.70) & 83.36\footnotesize(0.70) & 85.50\footnotesize(0.10) \\   
+       \ours &   51.11\footnotesize(0.80)  & 83.36\footnotesize(0.70)  &  85.50\footnotesize(0.10) \\
+     \bottomrule
+    \end{tabular}%
+    % }
+    \caption{Results on0.05 interval. }
+    \label{tab:qwen0.05}
+\end{table}

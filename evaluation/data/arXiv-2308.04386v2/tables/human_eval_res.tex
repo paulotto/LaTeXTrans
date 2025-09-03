@@ -1,0 +1,25 @@
+\begin{table}[!t]
+\centering
+\caption{
+    Results for human evaluation on the machine translation.
+}
+\scalebox{0.88}{
+\begin{tabular}{lc}
+    \toprule[1.1pt]
+        Method & Human R.          \\ \midrule
+        MLE                        &          3.755            \\ \midrule
+        \multicolumn{2}{l}{\textit{\textbf{with one multi-aspect evaluation model}}}   \\ \midrule
+        RL w/ CSEM-base-ref    & 3.814\\
+        RL w/ CSEM-base        & 3.805\\
+        RL+RR w/ CSEM-base     & \bf3.862 \\  \midrule
+        RL w/ CSEM-large-ref \hspace{1cm}   & 3.830 \\
+        RL w/ CSEM-large       & 3.825 \\
+        RL+RR w/ CSEM-large    & \bf3.916  \\  \midrule
+        \multicolumn{2}{l}{\textit{\textbf{with multiple single-aspect evaluation models \hspace{1cm}}}} \\ \midrule
+        RR w/ CSEM-base        & 3.873  \\
+        RR w/ CSEM-large       & \bf3.930   \\ 
+    \bottomrule[1.1pt]
+\end{tabular}}
+\vspace{-2mm}
+\label{tab_human_eval}
+\end{table}

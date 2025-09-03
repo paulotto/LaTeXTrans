@@ -1,0 +1,72 @@
+
+
+\documentclass{article}
+
+\usepackage{iclr2025_conference,times}
+
+\input{headers/math_commands.tex}
+\input{headers/header-lqa}
+\input{headers/header}
+\input{headers/header-lqa-tail}
+
+
+\iclrfinalcopy
+\title{Proof or Bluff? Evaluating LLMs on 2025 USA Math Olympiad}
+\author{Ivo Petrov\textsuperscript{2},
+	Jasper Dekoninck\textsuperscript{1},
+	Lyuben Baltadzhiev\textsuperscript{2},
+	Maria Drencheva\textsuperscript{2},
+	Kristian Minchev\textsuperscript{2}\\
+	\textbf{
+    Mislav Balunović\textsuperscript{1,2}, 
+    Nikola Jovanović\textsuperscript{1}, 
+    Martin Vechev\textsuperscript{1,2}}\\
+    \hspace{4.2em} \textsuperscript{1}ETH Zurich \hspace{4em} \textsuperscript{2}INSAIT, Sofia University "St. Kliment Ohridski"
+}
+
+
+\begin{document}
+\sisetup{
+text-series-to-math = true,
+propagate-math-font = true
+}
+\maketitle
+\vspace{-3em}
+\begin{center}
+	\includegraphics[height=1em]{figures/website-icon.png} \url{https://matharena.ai/}\\
+    \includegraphics[height=1em]{figures/github-icon.png} \url{https://github.com/eth-sri/matharena}
+\end{center}
+
+
+
+\input{paper_files/abstract}
+
+\input{paper_files/introduction}
+
+\input{paper_files/methodology.tex}
+
+\input{paper_files/results}
+
+\input{paper_files/discussion.tex}
+
+\input{paper_files/conclusion}
+
+\input{paper_files/acknowledgements}
+
+\message{^^JLASTBODYPAGE \thepage^^J}
+
+\bibliography{paper_files/references}
+\bibliographystyle{plainnat}
+
+\message{^^JLASTREFERENCESPAGE \thepage^^J}
+
+
+\ifbool{includeappendix}{%
+	\clearpage
+	\appendix
+	\input{paper_files/appendix}
+}{}
+
+\message{^^JLASTPAGE \thepage^^J}
+
+\end{document}

@@ -1,0 +1,26 @@
+\begin{table}[t]
+    \centering
+    \caption{Results of automated grading executed by \othree{} and \rone{}. The table shows the average total score which is at most $42$.}
+    \vspace{-1mm}
+    \begin{tabular}{
+        l
+        x{2}{1}
+        x{2}{1}
+        x{2}{1}
+        x{2}{1}
+        }
+        \toprule
+        \textbf{Model} & \textbf{Ours} & {\textbf{\othree}} & {\textbf{\claude}} \\
+        \midrule
+        {\geminipro} & 10.1 & 19.6 & 19.3\\
+        {\rone} & 2.0 & 19.3 & 14.9\\
+        {\grok}& 2.0 & 15.1 & 9.1\\
+        {\flthink} & 1.8 & 10.5 & 14.1\\
+        {\claude} & 1.5 & 19.0 & 18.4\\
+        {\qwq} & 1.2 & 23.8 & 18.8\\
+        {\oone} & 1.2 & 19.3 & 21.0\\
+        {\othree}& 0.9 & 19.5 & 17.1\\
+        \bottomrule
+    \end{tabular}
+    \label{tab:llm_judge}
+\end{table}

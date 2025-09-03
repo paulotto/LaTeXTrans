@@ -1,0 +1,130 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{ssArxiv}[Hacked version for arxiv]
+
+%%% COLORS
+\usepackage[usenames,dvipsnames]{xcolor}   % NEEDS to be first!
+\definecolor{darkblue}{rgb}{0.0,0.0,0.65}
+\definecolor{darkred}{rgb}{0.68, 0.05, 0.0}
+\definecolor{darkgreen}{rgb}{0.0, 0.29, 0.29}
+\definecolor{darkpurple}{rgb}{0.47, 0.09, 0.29}
+
+
+%% HACK SECTION TITLES ETC
+\usepackage[bf,big]{titlesec}       % Order is impt.
+
+
+%% FONTS
+\usepackage[sc]{mathpazo}
+\linespread{1.05}
+
+% set page geometry
+\usepackage[verbose=true,letterpaper]{geometry}
+\AtBeginDocument{
+  \newgeometry{
+    textheight=8.6in,
+    textwidth=6in,
+    top=1in,
+    headheight=12pt,
+    headsep=25pt,
+    footskip=30pt
+  }
+}
+
+%% CAN COMMENT OUT IF NEEDED
+\usepackage{fancyhdr}
+\fancyhf{}
+% \fancyhead[LO,LE]{\itshape \leftmark}
+%\fancyhead[LO]{\itshape \leftmark}
+%\fancyfoot[LO,LE]{\itshape Last revised: \today}
+%\fancyfoot[C]{}
+%\fancyfoot[RO,RE]{\itshape \thepage\ of \pageref{LastPage}}
+
+
+
+\widowpenalty=10000
+\clubpenalty=10000
+\flushbottom
+\sloppy
+
+
+% float placement
+\renewcommand{\topfraction      }{0.85}
+\renewcommand{\bottomfraction   }{0.4}
+\renewcommand{\textfraction     }{0.1}
+\renewcommand{\floatpagefraction}{0.9}
+
+\newlength{\@arxivabovecaptionskip}\setlength{\@arxivabovecaptionskip}{7\p@}
+\newlength{\@arxivbelowcaptionskip}\setlength{\@arxivbelowcaptionskip}{\z@}
+
+\setlength{\abovecaptionskip}{\@arxivabovecaptionskip}
+\setlength{\belowcaptionskip}{\@arxivbelowcaptionskip}
+
+% swap above/belowcaptionskip lengths for tables
+\renewenvironment{table}
+  {\setlength{\abovecaptionskip}{\@arxivbelowcaptionskip}%
+   \setlength{\belowcaptionskip}{\@arxivabovecaptionskip}%
+   \@float{table}}
+  {\end@float}
+
+
+%%%%%%%%%%%%%%%%%%%%%%% TITLE AND AUTHORS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% USAGE: 
+% \author{\name A \email{a@mit.edu}\\
+%   \name B \email{B@mit.edu}\\
+%   \addr{Massachusetts Institute of Technology}
+% }
+
+\newlength\aftertitskip     \newlength\beforetitskip
+\newlength\interauthorskip  \newlength\aftermaketitskip
+
+%% Changeable parameters.
+\setlength\aftertitskip{0.1in plus 0.2in minus 0.2in}
+\setlength\beforetitskip{0.05in plus 0.08in minus 0.08in}
+\setlength\interauthorskip{0.1in plus 0.1in minus 0.1in}
+\setlength\aftermaketitskip{0.3in plus 0.1in minus 0.1in}
+
+%% overall definition of maketitle, @maketitle does the real work
+\providecommand{\maketitle}{}
+\renewcommand{\maketitle}{
+  \par
+  \begingroup
+  \def\thefootnote{\fnsymbol{footnote}}
+  \def\@makefnmark{\hbox to 4pt{$^{\@thefnmark}$\hss}}
+  \@maketitle \@thanks
+  \endgroup
+  \setcounter{footnote}{0}
+  \let\maketitle\relax \let\@maketitle\relax
+  \gdef\@thanks{}\gdef\@author{}\gdef\@title{}\let\thanks\relax
+}
+
+\def\@startauthor{\noindent \large\bf}
+\def\@endauthor{}
+\def\@starteditor{\noindent \small {\bf Editor:~}}
+\def\@endeditor{\normalsize}
+\def\@maketitle{\vbox{\hsize\textwidth
+    \linewidth\hsize \vskip \beforetitskip
+    {\begin{center} \LARGE\@title \par \end{center}} \vskip \aftertitskip
+    {\def\and{\unskip\enspace{\rm and}\enspace}%
+      \def\addr{\normalsize\color{black!95}\it}%
+      \def\email{\hfill\bf\color{darkpurple}\it}%
+      \def\name{\large\color{darkgreen}\bf}%
+      \def\AND{\@endauthor\rm\hss \vskip \interauthorskip \@startauthor}
+      \@startauthor \@author \@endauthor}
+  }
+}
+
+
+\renewenvironment{abstract}%
+{%
+  \vskip -0.2in%
+  \centerline%
+  {\large\bf Abstract}%
+  \vspace{0.3ex}%
+  \begin{quote}%
+}
+{
+  \par%
+  \end{quote}%
+  \vskip 0.5ex%
+}

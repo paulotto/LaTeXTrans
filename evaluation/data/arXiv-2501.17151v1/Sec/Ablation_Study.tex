@@ -1,0 +1,34 @@
+\section{Ablation Study}
+
+
+\textbf{Ablation Study on Validation Dataset.} \ \ To ascertain the robustness of TRODO against different datasets in the validation set, we conducted experiments using various datasets as the validation set, as presented in Table \ref{tab:ab_data}. In these experiments, we replaced our default validation dataset, Tiny ImageNet, with alternative datasets. Throughout these tests, all other elements of our methodology remained constant to isolate the impact of the validation dataset changes on TRODO's performance. Moreover, to quantitatively support our claim regarding the effectiveness of near-OOD samples compared to far-OOD samples, we provide the distance between the validation set and the target dataset. The target dataset refers to the ID set on which the input classifier has been trained. For computing this distance, we used the Fréchet Inception Distance (FID) \cite{DBLP:journals/corr/HeuselRUNKH17}, a well-known metric for measuring distance in generative models. Lower FID values indicate a smaller distance, and vice versa. As the results indicate, in the near-OOD scenario, our method appears more effective. More details can be found in Appendix Section \ref{sec:FID}. 
+ 
+
+\textbf{Ablation Study on Boundary Confidence Level.} \ \ We also conducted an ablation study on the boundary confidence level hyperparameter, denoted as $\gamma$, which is preset at 0.5 in our standard pipeline. By keeping all other variables constant and varying $\gamma$ across a range of values, we assessed TRODO's sensitivity to this parameter. The results of these experiments are presented in the  Table \ref{tab:bcl}, illustrating how different settings of $\gamma$ affect the effectiveness of TRODO (extra ablation studies are available in Appendix Section \ref{appendix:extra_ablation_studies}).
+
+
+\input{Tables/ab_data}
+\input{Tables/ab_bcl}
+
+
+
+% \label{Ablation:OODData}
+
+
+
+% To verify the effect of the proposed elements, we conduct ablation studies on various dataset. 
+
+
+
+
+% In our study, we evaluated the scanning performance of our method across various combinations of in-distribution (ID) and out-of-distribution (OOD) datasets, which are summarized in Table \ref{tab:ab_data}. This table demonstrates the scanning accuracy for different pairings of ID and OOD datasets, highlighting the efficacy of using near-OOD data over other OOD data.
+% Further analysis shows that while the model's performance generally declines with other OOD datasets, the drop is most significant with datasets that have a greater distributional shift from the training data. For instance, when we use STL-10 \cite{stl10} as the OOD dataset for CIFAR-100 and CIFAR-10, which has less distributional shift compared to other datasets like Blank or Gaussian, we obtained better results. Similarly, using Fashion MNIST (FMNIST) \cite{fmnist} as the OOD dataset for MNIST resulted in better performance compared to other OOD datasets. These observations underscore the importance of the distributional similarity between ID and OOD data in our method.
+
+% \textbf{Shadow Model Training Set}
+% \label{Ablation:Shadow}
+% The 
+
+% \ali{\textbf{UnTrodo: Unsupervisde version of Trodo}}
+% \label{Ablation:Untrodo}
+% \ali{Here we are going to show that trodo still performs well even when there is lack of access to train data.}
+

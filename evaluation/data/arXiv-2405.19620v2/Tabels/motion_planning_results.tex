@@ -1,0 +1,55 @@
+\begin{table}[t]
+\caption{Motion prediction and planning results on nuScenes val dataset. SparseDrive outperforms previous methods by a large margin. $\dagger$: Reproduced with offcial checkpoint. $^*$: LiDAR-based methods.}
+\vspace{5pt}
+\begin{subtable}[h]{0.4\textwidth}
+\centering
+\scriptsize
+{
+\setlength{\tabcolsep}{0.8mm}
+\begin{tabular}{l|cccc}
+\toprule
+Method & \cellcolor{gray!30}minADE($m$)$\downarrow$ & minFDE($m$)$\downarrow$ & MR$\downarrow$ & EPA$\uparrow$  \\
+\midrule
+Cons Pos.~\cite{uniad} & \cellcolor{gray!30}5.80 & 10.27 & 0.347 & - \\
+Cons Vel.~\cite{uniad} & \cellcolor{gray!30}2.13 & 4.01 & 0.318 & - \\
+Traditional~\cite{vip3d} & \cellcolor{gray!30}2.06 & 3.02 & 0.277 & 0.209 \\
+PnPNet~\cite{pnpnet} & \cellcolor{gray!30}1.15 & 1.95 & 0.226 & 0.222 \\
+ViP3D~\cite{vip3d} & \cellcolor{gray!30}2.05 & 2.84 & 0.246 & 0.226 \\
+\midrule
+UniAD\cite{uniad} & \cellcolor{gray!30}0.71 & 1.02 & 0.151 & 0.456 \\
+SparseDrive-S & \cellcolor{gray!30}0.62 & 0.99 & 0.136 & 0.482 \\
+SparseDrive-B & \cellcolor{gray!30}\textbf{0.60} & \textbf{0.96} & \textbf{0.132} & \textbf{0.555} \\
+\bottomrule
+\end{tabular}
+}
+\caption{Prediction results.}
+\label{tab:motion}
+\end{subtable}
+\hfill
+\begin{subtable}[h]{0.6\textwidth}
+\centering
+\scriptsize
+{
+\setlength{\tabcolsep}{0.8mm}
+\begin{tabular}{l|cccc|cccc}
+\toprule
+\multirow{2}{*}{Method} &
+\multicolumn{4}{c|}{L2($m$)$\downarrow$} & 
+\multicolumn{4}{c}{Col. Rate(\%)$\downarrow$} \\
+& 1$s$ & 2$s$ & 3$s$ & \cellcolor{gray!30}Avg. & 1$s$ & 2$s$ & 3$s$ & \cellcolor{gray!30}Avg.\\
+\midrule
+FF$^*$~\cite{ff} & 0.55 & 1.20 & 2.54 & \cellcolor{gray!30}1.43 & 0.06 & 0.17 & 1.07 & \cellcolor{gray!30}0.43 \\
+EO$^*$~\cite{eo} & 0.67 & 1.36 & 2.78 & \cellcolor{gray!30}1.60 & 0.04 & 0.09 & 0.88 & \cellcolor{gray!30}0.33 \\
+\midrule
+ST-P3~\cite{stp3} & 1.33 & 2.11 & 2.90 & \cellcolor{gray!30}2.11 & 0.23 & 0.62 & 1.27 & \cellcolor{gray!30}0.71 \\
+UniAD$^\dagger$~\cite{uniad} & 0.45 & 0.70 & 1.04 & \cellcolor{gray!30}0.73 & 0.62 & 0.58 & 0.63  & \cellcolor{gray!30}0.61 \\
+VAD$^\dagger$~\cite{vad} & 0.41 & 0.70 & 1.05 & \cellcolor{gray!30}0.72 & 0.03 & 0.19 & 0.43  & \cellcolor{gray!30}0.21 \\ 
+SparseDrive-S & \textbf{0.29} & 0.58 & 0.96 & \cellcolor{gray!30}0.61 & \textbf{0.01} & 0.05 & 0.18 & \cellcolor{gray!30}0.08 \\
+SparseDrive-B &\textbf{0.29} & \textbf{0.55} & \textbf{0.91} & \cellcolor{gray!30}\textbf{0.58} & \textbf{0.01} & \textbf{0.02} & \textbf{0.13} & \cellcolor{gray!30}\textbf{0.06} \\
+\bottomrule
+\end{tabular}
+}
+\caption{Planning results.}
+\label{tab:planning}
+\end{subtable}
+\end{table}

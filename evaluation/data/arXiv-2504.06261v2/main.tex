@@ -1,0 +1,194 @@
+\documentclass{article}
+
+% [jh] hi :)
+
+% if you need to pass options to natbib, use, e.g.:
+%     \PassOptionsToPackage{numbers, compress}{natbib}
+% before loading neurips_2024
+
+
+% ready for submission
+\usepackage[preprint]{neurips_2024}
+
+
+% to compile a preprint version, e.g., for submission to arXiv, add add the
+% [preprint] option:
+%     \usepackage[preprint]{neurips_2024}
+
+
+% to compile a camera-ready version, add the [final] option, e.g.:
+%     \usepackage[final]{neurips_2024}
+
+
+% to avoid loading the natbib package, add option nonatbib:
+%    \usepackage[nonatbib]{neurips_2024}
+
+
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+\usepackage{xcolor}         % colors
+\usepackage{lipsum}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{enumitem}
+
+\usepackage{amsthm}
+
+\usepackage{multirow}       % multirow
+
+\usepackage{url}
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage[breaklinks]{hyperref}      % hyperlinks
+
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{amsmath}
+\usepackage[mathscr]{euscript}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+
+%\usepackage{wrapfig}
+\usepackage{graphicx}
+\usepackage{xcolor}      % colors
+
+
+\usepackage{caption}
+\usepackage{multirow,makecell}
+
+\usepackage{xspace}
+\usepackage{subcaption}
+
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{wrapfig}
+
+
+
+ %\newcommand{\theHalgorithm}{\arabic{algorithm}}
+
+\newcommand{\newstuff}[1]{{\color{blue}#1}}
+
+% if you use cleveref..
+\usepackage[capitalize,noabbrev]{cleveref}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% THEOREMS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{assumption}[theorem]{Assumption}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+
+\title{Hogwild! Inference: \\ Parallel LLM Generation via  Concurrent Attention}
+
+
+% The \author macro works with any number of authors. There are two commands
+% used to separate the names and addresses of multiple authors: \And and \AND.
+%
+% Using \And between authors leaves it to LaTeX to determine where to break the
+% lines. Using \AND forces a line break at that point. So, if LaTeX puts 3 of 4
+% authors names on the first line, and the last on the second line, try using
+% \AND instead of \And before the third author name.
+
+
+\author{%
+  \!\!\!Gleb Rodionov$^{\dagger\,*}$\\
+  %$^{Equal contribution} $\,$ 
+  %\thanks{Corresponding author: \texttt{rodionovgleb@yandex-team.ru}} \\
+  \!\!\!Yandex \\
+  \And
+  \!\!\!Roman Garipov$^*$ \\
+  \!\!\!HSE University, Yandex \\ ITMO University \\
+  \And
+  \!\!\!Alina Shutova$^*$ \\
+  \!\!\!HSE University, Yandex \\
+  \And
+  \!\!\!George Yakushev$^*$ \!\!\! \\
+  \!\!\!HSE University, Yandex\!\!\! \\
+  \And
+  Vage Egiazarian  \\
+  IST Austria \\
+  \And
+  Anton Sinitsin \\
+  Yandex\\
+  \And
+  Denis Kuznedelev \\
+  Yandex \\
+  \And
+  Dan Alistarh$^\ddagger$\\% \thanks{Senior author}\\
+  IST Austria\\
+}
+
+
+\begin{document}
+
+
+
+\maketitle
+
+
+\vspace{-8px}\begin{abstract}
+    Large Language Models (LLMs) have demonstrated the ability to tackle increasingly complex tasks through advanced reasoning, long-form content generation, and tool use.
+    Solving these tasks often involves long inference-time computations.
+    In human problem solving, a common strategy to expedite work is collaboration: by dividing the problem into sub-tasks, exploring different strategies concurrently, etc. Recent research has shown that LLMs can also operate in parallel by implementing explicit cooperation frameworks, such as voting mechanisms or the explicit creation of independent sub-tasks that can be executed in parallel. However, each of these frameworks may not be suitable for all types of tasks, which can hinder their applicability.
+    In this work, we propose a different design approach: \textit{we run LLM ``workers'' in parallel , allowing them to synchronize via a concurrently-updated attention cache and prompt these workers to decide how best to collaborate.} Our approach allows the instances to come up with their own collaboration strategy for the problem at hand, all the while ``seeing'' each other's partial progress in the concurrent cache.
+    We implement this approach via \textbf{Hogwild! Inference:} a parallel LLM inference engine where multiple instances of the same LLM run in parallel \textbf{with the same attention cache}, with ``instant''  access to each other's generated tokens.\footnote[1]{Our implementation is available at \url{https://github.com/eqimp/hogwild_llm}.} Hogwild! inference takes advantage of Rotary Position Embeddings (RoPE) to avoid recomputation while improving parallel hardware utilization.
+    We find that modern reasoning-capable LLMs can perform inference \textit{with shared Key-Value cache} out of the box, without additional fine-tuning.
+    
+    % We see Hogwild! Inference is only one example in a class of efficient reasoning algorithms based on modern LLMs. Let's see how we can collaborate!
+\end{abstract}
+
+\def\thefootnote{$\dagger$}\footnotetext{Corresponding author: \texttt{rodionovgleb@yandex-team.ru}.\quad $^*$ Equal contribution. \quad $\ddagger$ Senior author.} \def\thefootnote{\arabic{footnote}}
+
+
+\input{01_introduction}
+\input{02_background}
+\input{03_method}
+\input{04_experiments}
+\section{Discussion}\label{sect:discussion}
+
+In this working paper, we have investigated the ability of reasoning LLMs to implement parallelism in their task solutions when prompted to do so. 
+Perhaps surprisingly, our results suggest that LLMs are able to implement such parallelism based on few-shot examples, without specialized fine-tuning: individual ``parallel'' LLM threads can coordinate explicitly, and leverage each other's partial progress in their solutions. 
+Beyond demonstrating high-level feasibility, our implementation prototype, called Hogwild! Inference, enables multiple inference threads to concurrently access and update a shared attention cache. Exploiting Rotary Position Embeddings (RoPE), this design has minimal overhead, while improving hardware utilization. 
+
+In future work, we plan to perform a thorough investigation of attention concurrency mechanisms in terms of trading off accuracy vs. parallelism, as well as the impact of supervised fine-tuning for better enabling task parallelism. 
+Another consideration is that the effectiveness of Hogwild! Inference may vary  across tasks, requiring a detailed analysis of task-dependent performance. For instance, while reasoning problems that naturally decompose into independent or semi-independent subtasks might readily benefit from Hogwild! inference, tasks requiring strict sequential logic have low potential for parallel gains.
+At the same time, parallel inference introduces non-determinism, as the final output could depend on subtle timing interactions between parallel threads. 
+We also plan to investigate connections to alternative schemes which enable parallel inference such as speculative decoding~\citep{leviathan2023fast}, or parallel token generation via methods like Medusa~\citep{cai2024medusa} or EAGLE~\citep{li2024eagle}. 
+
+
+\paragraph{Acknowledgements:} we would like to acknowledge Vladimir Malinovskii for his help with the initial brainstorming, helpful suggestions and suggesting future work directions. We also thank Philip Zmushko for proofreading.
+
+% This observation poses several interesting questions for future research. Now that we know that LLMs are capable of this one-memory-multiple-workers type of inference, what is the best way to arrange their shared memory? Now that we know that reasoning LLMs can cooperate, how can we teach them to collaborate more effectively?
+
+
+% Passing mention: we are somewhat related to speculative decoding since we both exploit the same inefficiency of inference-time. We can also be combined, e.g. see Medusa, Eagle can do batched SD faster
+
+\bibliography{main}
+\bibliographystyle{plainnat}
+
+\newpage
+\appendix
+\input{supplementary}
+
+\end{document}

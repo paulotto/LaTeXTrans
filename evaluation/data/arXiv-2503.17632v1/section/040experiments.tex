@@ -1,0 +1,102 @@
+\section{Experiments}
+
+% \subsection{Setup}
+\paragraph{Setup}
+We employ BERT~\citep{devlin-etal-2019-bert} as the commonly-used base model in previous works. In addition, we extend our evaluation to RoBERTa~\citep{liu2019roberta} and GPT-2~\citep{radford2019language} for a more comprehensive analysis.
+
+\paragraph{Datasets} We evaluate our debiasing framework on three NLP datasets including 
+MNLI~\citep{williams-etal-2018-broad}, 
+paraphrase identification using Quora question pairs (QQP)~\citep{sharma2019natural}, and
+relation extraction using gene-phenotype relation (PGR)~\citep{sousa-etal-2019-silver}. 
+% We use their corresponding \textbf{In-Domain Test Sets} for evaluation.
+These datasets are used for {\em in-domain} (ID) evaluation.
+
+\paragraph{Stress Test Sets} We assess the robustness of models against spurious correlations using ``stress test sets,'' specifically designed with hard examples to challenge models. 
+% We test if models are robust to spurious correlations with \textit{stress test sets} which contain hard examples created to fool models. 
+We use the stress test set for MNLI from~\citep{naik-etal-2018-stress}, and
+use the same approach to generate the stress test set for QQP.
+% following the same label preserving rules from~\citep{naik-etal-2018-stress}. 
+For PGR, the label-preserving rules from previous tasks do not apply due to the nature of this dataset.
+% the above rules are not be applicable since it doesn't align with the nature of the task. However, 
+However, given the long-tail distribution of entity appearances, we create a stress test set for PGR by selecting test examples in which both entities appear less than five times in the training set.
+
+\paragraph{OOD Test Sets} We assess the performance of models on existing out-of-distribution (OOD) test sets, which serve as another challenge benchmark. For MNLI, we use HANS~\citep{mccoy-etal-2019-right}, which is designed to test models' capabilities against lexical and syntactic heuristics in data. For QQP, we employ the PAWS dataset~\citep{zhang-etal-2019-paws}, which focuses on paraphrase identification in cases of high lexical and surface-level similarity between question pairs.
+
+\paragraph{Transfer Test Sets} We evaluate the performance of models in maintaining strong transferability across datasets. We use SNLI~\citep{bowman-etal-2015-large} and MRPC~\citep{dolan-brockett-2005-automatically} as the transfer set for MNLI and QQP, respectively. 
+% \paragraph{Probing set}
+% Previous work~\citep{mendelson-belinkov-2021-debiasing} discovered that debiased models can be still biased. We use the probing set to probe if there still exists dataset bias in our model.
+
+\begin{table*}
+\tiny
+\centering
+% \setlength{\tabcolsep}{3.9pt}
+% \renewcommand{\arraystretch}{0.9} 
+\begin{tabular}{l|cccc|cccc|cc|cccc}
+\toprule
+\multirow{2}{2em}{\textbf{Model}} & \multicolumn{4}{c|}{\textbf{MNLI} (Acc.)} & \multicolumn{4}{c|}{\textbf{QQP} (F1)} & \multicolumn{2}{c|}{\textbf{PGR} (F1)} & \multicolumn{4}{c}{\textbf{Avg.}}\\
+               & ID   & Stress & OOD & Transfer & ID & Stress & OOD & Transfer & ID & Stress & ID & Stress & OOD & Transfer \\ 
+    \toprule
+    \textbf{\FT}        & 84.3 & 61.7 & 59.7 & 78.7 & 88.6 & 63.3 & 47.7 & 65.1 & 64.3 & 55.2 & 79.1 & 60.1 & 53.7 & 71.9 \\ 
+    \midrule
+    \textbf{\MASK}      & 83.5 & 59.7 & 59.7 & 78.3 & 88.1 & 64.6 & 50.3 & 68.5 & 64.1 & 51.7 & 78.6 & 58.7 & 55.0 & 73.4 \\ 
+    \textbf{\KW}        & 84.0 & 60.9 & 60.2 & 78.4 & 88.8 & 65.1 & 51.2 & 69.6 & 64.3 & 51.8 & 79.0 & 59.3 & 55.7 & 74.0 \\ 
+    \textbf{\ETE}       & 83.4 & 61.3 & 62.3 & 77.5 & 88.5 & 64.5 & 51.4 & 70.5 & 63.0 & 53.6 & 78.3 & 59.8 & 56.8 & 74.0 \\
+    \textbf{LSWC}       & 80.7 & 59.4 & 59.3 & 77.7 & 87.1 & 65.8 & 49.6 & 70.0 & 63.3 & 52.8 & 77.0 & 59.3 & 54.5 & 73.8 \\ 
+    \textbf{\IE}        & 84.1 & 61.8 & 62.7 & 78.1 & 87.6 & 63.5 & 53.0 & 68.3 & 64.2 & 54.9 & 78.6 & 60.1 & 57.9 & 73.2 \\
+    \textbf{\READ}      & 80.8 & 61.5 & 63.4 & 75.1 & 87.0 & 66.7 & 53.6 & 68.2 & 63.0 & 54.4 & 76.9 & 60.9 & 58.5 & 71.7 \\ 
+    \midrule
+    \textbf{\OursPoe}   & 84.6 & 64.3 & 64.3 & 79.5 & 88.8 & 71.0 & 53.9 & 70.4 & 64.9 & 55.9 & 79.4 & 63.7 & 59.1 & \underline{75.0} \\ 
+    \textbf{\OursFocal} & \underline{84.9} & \underline{64.8} & \underline{64.3} & \underline{79.3} & \underline{89.5} & \underline{71.3} & \underline{54.9} & \underline{70.7} & \underline{65.4} & \underline{56.5} & \underline{79.9} & \underline{64.2} & \underline{59.6} & \underline{75.0} \\
+    \textbf{\OursCL}    & \textbf{85.1} & \textbf{65.4} & \textbf{64.9} & \textbf{79.6} & \textbf{90.4} & \textbf{72.0} & \textbf{56.0} & \textbf{72.4} & \textbf{65.9} & \textbf{56.6} & \textbf{80.5} & \textbf{64.7} & \textbf{60.5} & \textbf{76.0} \\ 
+    \bottomrule
+  \end{tabular}
+  \caption{Experimental results on three datasets averaged across three architectures. Results for each architecture are shown in Table~\ref{tab:bert}-\ref{tab:gpt2} in Appendix. The best performance is in \textbf{bold} and the second best is \underline{underlined}.}
+  \label{tab:main}
+\end{table*}
+
+
+\begin{table*}
+\small
+\centering
+\begin{tabular}{l|cccc}
+\toprule
+\multirow{2}{*}{\textbf{Model}} & \multicolumn{4}{c}{\textbf{Avg.}}\\
+                & ID & Stress & OOD & Transfer \\ 
+    \midrule
+    \textbf{\FT}        & 79.1 & 60.1 & 53.7 & 71.9 \\ 
+    \midrule
+    \textbf{\ETE}       & 78.3 & 59.8 & 56.8 & 74.0 \\
+    \textbf{\MASK}      & 78.6 & 58.7 & 55.0 & 73.4 \\ 
+    \textbf{LSWC}       & 77.0 & 59.3 & 54.5 & 73.8 \\ 
+    \textbf{\IE}        & 78.6 & 60.1 & 57.9 & 73.2 \\
+    \textbf{\KW}        & 79.0 & 59.3 & 55.7 & 74.0 \\ 
+    \textbf{\READ}      & 76.9 & 60.9 & 58.5 & 71.7 \\ 
+    \midrule
+    \textbf{\OursPoe}   & 79.4 & 63.7 & 59.1 & \underline{75.0} \\ 
+    \textbf{\OursFocal} & \underline{79.9} & \underline{64.2} & \underline{59.6} & \underline{75.0} \\
+    \textbf{\OursCL}    & \textbf{80.5} & \textbf{64.7} & \textbf{60.5} & \textbf{76.0} \\ 
+    \bottomrule
+  \end{tabular}
+\end{table*}
+
+
+\paragraph{Baselines} 
+We consider the following baselines:
+\vspace{-5pt}
+\begin{itemize}
+    \itemsep-2pt
+    \itemindent-10pt
+    \item \textbf{\FT} standard finetuning without debiasing based on the base model used. 
+    % \item \textbf{Rubi}~\citep{cadene2019rubi}, which models the bias of input texts to re-weight the prediction loss in text-image classification. In our experiments, we replace the image encoder in Rubi with a text encoder.
+    \item \textbf{\ETE}~\citep{karimi-mahabadi-etal-2020-end}, which trains a biased model on the hypothesis only and trains a robust model using Product of Experts (PoE)~\citep{10.1162/089976602760128018}.
+    \item \textbf{\MASK}~\citep{meissner-etal-2022-debiasing}, which first trains a weak learner and then prunes the robust model using PoE. %odel.
+    \item \textbf{\KW}~\citep{gao-etal-2022-kernel}, which learns isotropic sentence embeddings using Nystr\"{o}m kernel approximation~\citep{Xu_Jin_Shen_Zhu_2015} method, achieving disentangled correlation between robust and spurious embeddings.
+    \item \textbf{LWBC}~\citep{kim2022learning}, which learns a debiased model from a commitee of biased model obtained from subsets of data.
+    \item \textbf{\IE}~\citep{du-etal-2023-towards}, which mitigates dataset biases with an ensemble of random biased induction forest; the model induces a set of biased features and then purifies the biased features using information entropy\footnote{While this method does not have a publicly released code, we tried our best to reproduce their approach and results with a few points lower than reported.}.
+    \item \textbf{\READ}~\citep{wang-etal-2023-robust}, which assumes that spuriousness comes from the attention
+    % of \texttt{[CLS]} over other tokens 
+    and proposes to do deep ensemble of main and biased model at the attention level to learn robust feature interaction.
+\end{itemize}
+
+
+

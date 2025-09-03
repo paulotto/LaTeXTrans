@@ -1,0 +1,17 @@
+\section{Limitations}
+\label{sec:limitations}
+
+
+While \method effectively reduces the memory required for storing intermediate activations,
+it does not affect the other parts of GPU memory usage, such as the one for parameter gradients.
+However, as we showed in experiments, \method can be combined with memory-efficient methods that reduce those other parts of memory~footprint.
+Also, the evaluation of \method in this work focused on one domain, namely, language models.
+Given the applicability of \method to other domains, such as vision~\citep{DBLP:conf/iclr/DosovitskiyB0WZ21},
+we hope to investigate its effectiveness in broader settings in the future.
+
+
+
+\paragraph{Potential Risks.}
+Since this paper presents a method for memory-efficient fine-tuning of transformer-based models, such as LLMs, and is not tied to particular applications,
+we do not see potential risks of the proposed method.
+%

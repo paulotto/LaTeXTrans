@@ -1,0 +1,73 @@
+\section{Input Prompts-based Efficient Reasoning}
+From the perspective of input prompts and questions, these works focus on enforcing length constraints or routing LLMs based on the characteristics of input prompts to enable concise and efficient reasoning.
+
+\subsection{Prompt-guided Efficient Reasoning}
+\label{sec:prompts}
+
+Prompt-guided efficient reasoning \textit{explicitly instructs LLMs to generate fewer reasoning steps}, can be a straightforward and highly effective method for improving the efficiency of reasoning models. As shown in Table~\ref{tab:prompts}, different methods propose different prompts to ensure concise reasoning outputs from the model.
+
+\insightbox{The key question is: Which prompts can accurately control the reasoning length of LLMs?}
+
+\begin{table}[t]
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.2}
+\caption{A summary of prompts used with reasoning models to generate concise reasoning outputs. For further details, refer to Section~\ref{sec:prompts}.}
+\begin{tabularx}{\textwidth}{lX}
+\toprule
+\textbf{Method} & \textbf{Prompt} \\
+\midrule
+TALE-EP \cite{han2024token} & \textbf{Budget Estimation}: (...) Task: Analyze the given question and estimate the minimum number of tokens required to generate a complete and accurate response. Please give the response by strictly following this format: [[budget]], for example, Budget: [[12]].\\
+& \textbf{Token-budget-aware CoT}: Please answer the above question. Let's think step by step and use less than \texttt{<Token-Budget>} tokens. \\
+\midrule
+CoD \cite{xu2025chain} & Think step by step, but only keep a minimum draft for each thinking step, with 5 words at most. Return the answer at the end of the response after a separator \texttt{\#\#\#\#}. \\
+\midrule
+CCoT \cite{renze2024benefits} & Be concise. \\
+\midrule
+Token Complexity~\cite{lee2025well} & \textbf{BulletPoints} (...) only use bullet points.\\
+& \textbf{OnlyNumbers} (...) only use numbers or equations.\\
+& \textbf{NoSpaces} (...) do not use any spaces or line breaks.\\
+& \textbf{NoProperGrammar} (...) do not use proper grammar.\\
+& \textbf{AbbreviateWords} (...) abbreviate words as much as possible.\\
+& \textbf{WordLimit(k)} (...) use at most $k$ words. $k \in \{1, \dots, 100\}$\\
+& \textbf{CharLimit(k)} (...) use at most $k$ letters. $k \in \{1, \dots, 500\}$\\
+& \textbf{TokenLimit(k)} (...) use at most $k$ tokens. $k \in \{1, \dots, 500\}$\\
+& \textbf{StepLimit(k)} (...) use at most $k$ steps. $k \in \{1, \dots, 5\}$\\
+& \textbf{ChineseCoT} (...) Respond in Chinese\\
+& \textbf{ChineseCoT(k)} (...) Use at most $k$ Chinese characters. $k \in \{1, \dots, 500\}$\\
+\bottomrule
+\end{tabularx}
+\label{tab:prompts}
+\end{table}
+
+\paragraph{Enforcing Concise Reasoning via Varying Prompts.}
+%
+Token-Budget\cite{han2024token} proposes setting a token budget in prompts to reduce unnecessary reasoning tokens. To optimize efficiency while preserving accuracy, \cite{han2024token} introduced TALE-EP, a training-free, zero-shot method for budget estimation. TALE-EP first estimates a reasonable token budget by prompting the LLM itself. It then incorporates this estimate into a prompt that specifies the token constraint, guiding the LLM to generate a more token-efficient yet accurate response. This work is also categorized in Section ~\ref{sec:longshortdata} with further SFT.
+%
+CoD \cite{xu2025chain} observes that LLMs often generate excessively verbose reasoning steps, whereas humans typically record only the most essential insights. To enhance reasoning efficiency, they propose Chain-of-Draft prompting. Similar to CoT prompting, CoD encourages step-by-step reasoning but introduces policies to limit verbosity. For instance, their prompt instructs: ``\textit{Think step by step, but only keep a minimum draft for each thinking step, with at most five words.}'' They find that this approach preserves the necessary intermediate steps while maintaining accuracy, significantly reducing token usage.
+%
+\cite{lee2025well} systematically studies the relationship between reasoning length and model accuracy across various prompts with explicit compression instructions (e.g., ``\textit{use 10 words or less}''). Their analysis reveals a universal trade-off between reasoning length and accuracy, showing that different prompt-based compression strategies align on the same accuracy-compression curve. They hypothesize that each task has an intrinsic \textit{token complexity}, the minimum number of tokens required for successful problem-solving. By computing information-theoretic limits on the accuracy-compression trade-off, they found that existing prompt-based compression methods fall far short of these limits, indicating significant room for improvement.
+%
+\cite{renze2024benefits} introduced Concise Chain-of-Thought (CCoT) prompting, a technique that prompts LLMs to perform step-by-step reasoning while explicitly instructing them to ``\textit{be concise.}'' 
+%
+MARP \cite{chen2024unlocking} introduces modifying prompts to limit single-step computations, effectively refining the reasoning boundary. Further, they increase the per-step computation and decrease global planning steps.
+
+\paragraph{Fine-tuning after Prompting.}
+As noted in Section~\ref{tab:variable-length}, some approaches collect short CoT data using prompt-based methods, then apply SFT to develop an efficient reasoning model \cite{han2024token}. Beyond performing direct prompt-based reasoning, these fine-tuned models often deliver more promising performance when tackling complex reasoning challenges.
+
+\subsection{Prompts Attribute-Driven Reasoning Routing}
+\label{sec:routing}
+
+User-provided prompts can range from easy to difficult tasks. Routing strategies for efficient reasoning dynamically determine how language models handle queries based on their complexity and uncertainty. Ideally, \textit{reasoning models can automatically assign simpler queries to faster but less reasoning-capable LLMs, while directing more complicated queries to slower but stronger reasoning LLMs.}
+
+\insightbox{The key question is: What criterion should be used to determine the attributes (e.g., difficulty) of prompts?}
+
+\paragraph{Unknown Criteria.} Anthropic releases Claude 3.7 Sonnet~\cite{anthropic_claude_sonnet}, notable for being the first hybrid reasoning model. Claude 3.7 Sonnet was developed through RL, enabling it to allocate more time to complex reasoning tasks that require deeper analysis, ultimately producing better results. The model offers two response modes: quick answers or step-by-step thinking. Users can leverage API to manage the amount of time the model spends thinking. Although the specifics of the routing criterion remain unclear, Claude 3.7 Sonnet represents the first hybrid reasoning model, setting a foundation for subsequent routing-based large reasoning models.
+
+\paragraph{Training a Classifier.} RouteLLM~\cite{ong2024routellm} trains a query router to dispatch incoming queries to suitable LLMs based on complexity. The authors utilize a substantial amount of preference data collected from Chatbot Arena as training data, enabling effective routing decisions for question-answering and reasoning tasks. Consequently, simpler queries are directed to low-latency LLMs, while complex queries are assigned to higher-latency, more powerful LLMs, significantly accelerating overall reasoning efficiency. Sketch-of-Thought (SoT) \cite{aytes2025sketch} leverages routing and prompting to minimize token usage during reasoning. A lightweight DistilBERT-based router dynamically selects the most suitable paradigm based on the characteristics of the questions. Inspired by cognitive science, SoT employs three distinct paradigms: \textit{Conceptual Chaining}, which connects ideas with minimal verbalization; \textit{Chunked Symbolism}, which structures mathematical reasoning into concise symbolic representations; and \textit{Expert Lexicons}, which adopts domain-specific shorthand used by experts. 
+
+\paragraph{Uncertainty.} Besides relying on additional routers, Self-Ref~\cite{chuang2025learningroutellmsconfidence} enables LLMs to autonomously decide when to route by extracting intrinsic uncertainty scores as self-routing indicators. Specifically, they fine-tune uncertainty-specialized tokens within the LLMs to align uncertainty predictions with prediction correctness in both question-answering and reasoning tasks. This ensures that only uncertain or incorrect outputs trigger routing to more capable LLMs, which decreases the latency of LLM inference. Confident or Seek Stronger~\cite{chuang2025confident} aims to provide calibrated data for predicting and initializing routing strategies in both LLM question-answering and reasoning tasks without requiring access to user queries. This approach enables more efficient and reliable decision-making in determining whether an LLM should confidently generate an answer or escort the query to a stronger model, ultimately improving reasoning efficiency from a query-level perspective in online LLM service scenarios. 
+
+
+

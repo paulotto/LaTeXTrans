@@ -1,0 +1,101 @@
+\section{Introduction}
+\label{sec:intro}
+Object Re-IDentification (ReID) focuses on retrieving the same object across different camera views. 
+%
+While significant progress has been made with RGB images~\cite{he2021transreid,liu2021watching,zhang2021hat,wang2021pyramid,liu2023deeply,shi2024learning,wang2024other,liu2024video,yu2024tf,yang2024shallow,gong2024cross,wang2025unity}, existing methods are limited under environmental challenges like dark and glare, reducing their robustness in real-world applications.
+%
+Multi-modal imaging, which combines data from multiple spectra such as RGB, Near Infrared (NIR) and Thermal Infrared (TIR), offers a promising solution. 
+%
+By leveraging complementary information, multi-modal ReID methods~\cite{lu2023learning,crawford2023unicat,wang2024top,zhang2024magic} improve feature robustness under challenging conditions.
+%
+
+Beyond visual information fusion for different spectra, integrating language with vision can enhance ReID performance~\cite{han2024clip,wang2024large,niu2025chatreid}.
+%
+However, due to the absence of text annotations for images, most existing methods rely solely on visual features, overlooking the benefits of text-based semantic information.
+%
+To address this limitation, some studies augment RGB datasets with manual text annotations~\cite{li2017person,ding2021semantically}.
+%
+While this strategy boosts performance, it is both time-consuming and labor-intensive.
+%
+\begin{figure}[t]
+  \centering
+    \resizebox{0.475\textwidth}{!}
+    {
+  \includegraphics[width=30\linewidth]{sec/img/LLM_Generation.pdf}
+  }
+  \vspace{-6mm}
+   \caption{Overall illustration of our motivations and proposed framework.
+   %
+   (a) Our multi-modal caption generation pipeline.
+   %
+   (b) Limitations of existing MLLM-generated captions.
+    %
+   (c) Comparison between previous methods and our proposed IDEA.
+   }
+  \label{fig:LLM}
+  \vspace{-3mm}
+\end{figure}
+%～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～
+With the advent of Multi-modal Large Language Models (MLLMs), image caption has made significant progress. 
+%
+Recently, researchers start to use MLLMs to generate textual descriptions for RGB images~\cite{han2024clip,he2024instruct}.
+%
+However, these methods face two main challenges.
+%
+(1) As shown in \textcolor{red}{Fig.}~\ref{fig:LLM} (b), the randomness in caption generation often leads to redundancy, resulting in long and complex sentences. 
+%
+Additionally, the text structure varies across images.
+%
+In ReID tasks, such captions may exceed input length limits of a text encoder~\cite{radford2021learning,zhang2024multimodal}, with redundant content diluting the essential information.
+%
+(2) Current methods primarily focus on RGB images, where the generated captions lack sufficient details.
+%
+However, multi-modal imaging can capture crucial information in complex environments, providing enough information for MLLMs to generate informative captions.
+%
+\textbf{Despite this, no existing methods provide text annotations for multi-modal images.} 
+%
+To bridge this gap, we construct three text-enhanced multi-modal object ReID benchmarks.
+%
+Meanwhile, another challenge is the aggregation of multi-modal information.
+%
+As shown in \textcolor{red}{Fig.}~\ref{fig:LLM} (c), previous methods directly aggregate the heterogeneous information, leading to high computational complexity and noise interference~\cite{zhang2024magic}.
+%
+To address above issues, we propose a multi-modal feature learning framework named IDEA to introduce \textbf{I}nverted text with cooperative \textbf{DE}formable \textbf{A}ggregation for multi-modal object ReID.
+%
+
+Technically, we first develop a standardized pipeline for multi-modal caption generation.
+%
+It extends existing datasets with text annotations across spectral modalities. 
+%
+Specifically, as shown in \textcolor{red}{Fig.}~\ref{fig:LLM} (a), our caption generation pipeline consists of two steps.
+%
+In the first step, we use image-template pairs in conjunction with MLLMs to generate informative captions.  
+%
+Then, we leverage the powerful keyword extraction capabilities of MLLMs to extract predefined attributes from the generated captions to produce structured and concise sentences.
+%
+Building upon the captions, we propose the IDEA framework, which consists of two key components: the Inverted Multi-modal Feature Extractor (IMFE) and Cooperative Deformable Aggregation (CDA). 
+%
+First, we utilize the IMFE to extract integrated multi-modal features using Modal Prefixes and an InverseNet. 
+%
+Specifically, Modal Prefixes are designed to distinguish different modalities, reducing the impact of conflicting information across modalities. 
+%
+The InverseNet further exploits the semantic information from inverted text to enhance feature robustness.
+%
+Furthermore, we propose CDA to adaptively aggregate discriminative local information. 
+%
+Specifically, based on the aggregated multi-modal information, we adaptively generate sampling positions to enable the model to focus on the interplay between global features and discriminative local information.
+%
+Through these modules, our proposed framework effectively utilizes semantic guidance from texts while adaptively aggregating discriminative multi-modal information.
+%
+Extensive experiments on three benchmark datasets demonstrate the effectiveness of our approach.
+%
+In summary, our contributions are as follows:
+\begin{itemize}
+  \item We construct three text-enhanced multi-modal object ReID benchmarks, providing a structured caption generation pipeline across multiple spectral modalities.
+  %
+  \item We introduce a novel feature learning framework named IDEA, which includes the Inverted Multi-modal Feature Extractor (IMFE) and Cooperative Deformable Aggregation (CDA). 
+  %
+  The IMFE integrates multi-modal features using Modal Prefixes and an InverseNet, while the CDA adaptively aggregates discriminative local information.
+  %
+  \item Extensive experiments on three benchmark datasets validate the effectiveness of our proposed method.
+\end{itemize}

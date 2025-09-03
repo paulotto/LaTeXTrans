@@ -1,0 +1,52 @@
+
+\begin{table*}[!ht]
+    \centering
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{lllllllllcc}
+        \toprule             
+
+        Model & $\mathrm{MMMU_{val}}$ &  $\mathrm{MME_{sum}}$ &  $\mathrm{SeedBench_{all}}$ & $\mathrm{OCRBench}$  &  $\mathrm{TextVQA_{val}}$  & $\mathrm{OKVQA}$ & $\mathrm{GQA}$  &  $\mathrm{VizWiz_{val}}$ & $\mathrm{SUM}$  & $\mathrm{Top2}$  \\ 
+        
+        \hline
+\rowcolor{gray!20}
+\multicolumn{11}{c}{\textbf{Original Models}} \\
+\hline
+        Qwen2-VL\footnotesize(base) & 50.11 & 81.44 & 75.85 & \textit{86.00} & \textit{84.12} & 51.43 & 61.80 & 68.32 & 559.07 & 2 \\ 
+        LLaVA-OneVision  & 43.44 & 77.04 & 75.44 & 69.60 & 78.47 & 49.57 & 59.84 & 60.97 & 514.37 & 0 \\ 
+     % \midrule\
+     \hline
+       
+\rowcolor{gray!20}
+\multicolumn{11}{c}{\textbf{Baselines}} \\
+\hline
+
+ % \hlinewd{1.5pt}
+        Task Arithmetic & 
+        48.44\footnotesize(+1.67) & 82.33\footnotesize(+3.09) & 75.81\footnotesize(+0.17) & 77.90\footnotesize(+0.10) & 76.22\footnotesize(-5.08) & 50.60\footnotesize(+0.10) & \textbf{62.26\footnotesize(+1.44)} & 62.76\footnotesize(-1.89) & 536.32\footnotesize(-0.40) &1 
+ \\ 
+        
+        Ties-Merging & \textbf{51.11\footnotesize(+4.34)} & \underline{82.65\footnotesize(+3.41)} & \underline{76.29\footnotesize(+0.64)} & 84.40\footnotesize(+6.60) & 79.56\footnotesize(-1.74) & \underline{52.56\footnotesize(+2.06)} & 61.84\footnotesize(+1.02) & 66.34\footnotesize(+1.69) & 554.75\footnotesize(+18.03) &4 \\ 
+        
+        DARE-Linear & 43.78\footnotesize(-3.00) & 66.06\footnotesize(-13.18) & 74.32\footnotesize(-1.33) & 72.40\footnotesize(-5.40) & 64.65\footnotesize(-16.65) & 43.41 \footnotesize(-7.09) & 55.13\footnotesize(-5.69) & 50.18\footnotesize(-14.47) & 469.93\footnotesize(-66.79) & 0 \\ 
+        
+        DARE-Ties & 45.00\footnotesize(-1.78) & 54.43\footnotesize(-24.81) & 74.07\footnotesize(-1.58) & 75.20\footnotesize(-2.60) & 78.54\footnotesize(-2.76) & 49.61\footnotesize(-0.89) & 58.51\footnotesize(-2.31) & 58.05\footnotesize(-6.60) & 493.41 \footnotesize(-43.31) & 0 \\ 
+        
+        MetaGPT & 50.67\footnotesize(+3.90) & 81.21\footnotesize(+1.97) & \textbf{76.35\footnotesize(+0.70)} & \textbf{85.50\footnotesize(+7.70)} & \underline{83.63\footnotesize(+2.33)} & 52.24\footnotesize(+1.74) & 61.99\footnotesize(+1.17) & \textbf{69.16\footnotesize(+4.51)} & \underline{560.75\footnotesize(+24.03)} & 5  \\[0.5ex] 
+        
+       \hline
+       
+\rowcolor{gray!20}
+\multicolumn{11}{c}{\textbf{Our Method}} \\
+\hline 
+                
+       
+        \ours & 
+        \textbf{51.11\footnotesize(+4.34)} & \textbf{83.36\footnotesize(+4.12)} & 76.20\footnotesize(+0.55) & \textbf{85.50\footnotesize(+7.70)} & \underline{83.41\footnotesize(+2.11)} & \textbf{53.56\footnotesize(+3.06)} & \underline{62.02\footnotesize(+1.20)} & \underline{68.40\footnotesize(+3.75)} & \textbf{563.56\footnotesize(+26.84)} & 8 \\ 
+        \bottomrule
+    \end{tabular}%
+        }
+    \caption{Results on merging LLaVA-OneVision-7B into Qwen2-VL-7B. All the scores have been scaled to 0-100. SUM refers to the sum of scores on all tasks after scaling. Top2 column represents the number of tasks obtained by this method from the top two among all methods. The number in the parenthesis indicates the performance improvement compared with the average score of original models. The results in the original models that are higher than all model merging methods are highlighted in italics.}
+    \label{tab:llava2qwen}
+\end{table*}
+
+

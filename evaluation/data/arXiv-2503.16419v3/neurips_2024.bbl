@@ -1,0 +1,751 @@
+\begin{thebibliography}{100}
+
+\bibitem{aggarwal2025l1}
+Pranjal Aggarwal and Sean Welleck.
+\newblock L1: Controlling how long a reasoning model thinks with reinforcement learning.
+\newblock {\em arXiv preprint arXiv:2503.04697}, 2025.
+
+\bibitem{anthropic_claude_sonnet}
+Anthropic.
+\newblock Claude 3.7 sonnet, 2023.
+\newblock Accessed: March 10, 2025.
+
+\bibitem{arora2025training}
+Daman Arora and Andrea Zanette.
+\newblock Training language models to reason efficiently.
+\newblock {\em arXiv preprint arXiv:2502.04463}, 2025.
+
+\bibitem{aytes2025sketch}
+Simon~A Aytes, Jinheon Baek, and Sung~Ju Hwang.
+\newblock Sketch-of-thought: Efficient llm reasoning with adaptive cognitive-inspired sketching.
+\newblock {\em arXiv preprint arXiv:2503.05179}, 2025.
+
+\bibitem{beeching2024scalingtesttimecompute}
+Edward Beeching, Lewis Tunstall, and Sasha Rush.
+\newblock Scaling test-time compute with open models.
+
+\bibitem{besta2024graph}
+Maciej Besta, Nils Blach, Ales Kubicek, Robert Gerstenberger, Michal Podstawski, Lukas Gianinazzi, Joanna Gajda, Tomasz Lehmann, Hubert Niewiadomski, Piotr Nyczyk, et~al.
+\newblock Graph of thoughts: Solving elaborate problems with large language models.
+\newblock In {\em Proceedings of the AAAI Conference on Artificial Intelligence}, volume~38, pages 17682--17690, 2024.
+
+\bibitem{chen2021evaluating}
+Mark Chen, Jerry Tworek, Heewoo Jun, Qiming Yuan, Henrique Ponde De~Oliveira Pinto, Jared Kaplan, Harri Edwards, Yuri Burda, Nicholas Joseph, Greg Brockman, et~al.
+\newblock Evaluating large language models trained on code.
+\newblock {\em arXiv preprint arXiv:2107.03374}, 2021.
+
+\bibitem{chen2024unlocking}
+Qiguang Chen, Libo Qin, Jiaqi Wang, Jingxuan Zhou, and Wanxiang Che.
+\newblock Unlocking the capabilities of thought: A reasoning boundary framework to quantify and optimize chain-of-thought.
+\newblock {\em Advances in Neural Information Processing Systems}, 37:54872--54904, 2024.
+
+\bibitem{chen2024distilling}
+Xiaoshu Chen, Sihang Zhou, Ke~Liang, and Xinwang Liu.
+\newblock Distilling reasoning ability from large language models with adaptive thinking.
+\newblock {\em arXiv preprint arXiv:2404.09170}, 2024.
+
+\bibitem{chen2024not}
+Xingyu Chen, Jiahao Xu, Tian Liang, Zhiwei He, Jianhui Pang, Dian Yu, Linfeng Song, Qiuzhi Liu, Mengfei Zhou, Zhuosheng Zhang, et~al.
+\newblock Do not think that much for 2+ 3=? on the overthinking of o1-like llms.
+\newblock {\em arXiv preprint arXiv:2412.21187}, 2024.
+
+\bibitem{chen2025inner}
+Yilong Chen, Junyuan Shang, Zhenyu Zhang, Yanxi Xie, Jiawei Sheng, Tingwen Liu, Shuohuan Wang, Yu~Sun, Hua Wu, and Haifeng Wang.
+\newblock Inner thinking transformer: Leveraging dynamic depth scaling to foster adaptive internal thinking.
+\newblock {\em arXiv preprint arXiv:2502.13842}, 2025.
+
+\bibitem{cheng2024compressed}
+Jeffrey Cheng and Benjamin Van~Durme.
+\newblock Compressed chain of thought: Efficient reasoning through dense representations.
+\newblock {\em arXiv preprint arXiv:2412.13171}, 2024.
+
+\bibitem{chenglin2024mixed}
+Li~Chenglin, Qianglong Chen, Liangyue Li, Caiyu Wang, Feng Tao, Yicheng Li, Zulong Chen, and Yin Zhang.
+\newblock Mixed distillation helps smaller language models reason better.
+\newblock In {\em Findings of the Association for Computational Linguistics: EMNLP 2024}, pages 1673--1690, 2024.
+
+\bibitem{chuang2025confidentseekstrongerexploring}
+Yu-Neng Chuang, Leisheng Yu, Guanchu Wang, Lizhe Zhang, Zirui Liu, Xuanting Cai, Yang Sui, Vladimir Braverman, and Xia Hu.
+\newblock Confident or seek stronger: Exploring uncertainty-based on-device llm routing from benchmarking to generalization, 2025.
+
+\bibitem{chuang2025confident}
+Yu-Neng Chuang, Leisheng Yu, Guanchu Wang, Lizhe Zhang, Zirui Liu, Xuanting Cai, Yang Sui, Vladimir Braverman, and Xia Hu.
+\newblock Confident or seek stronger: Exploring uncertainty-based on-device llm routing from benchmarking to generalization.
+\newblock {\em arXiv preprint arXiv:2502.04428}, 2025.
+
+\bibitem{chuang2025learningroutellmsconfidence}
+Yu-Neng Chuang, Helen Zhou, Prathusha~Kameswara Sarma, Parikshit Gopalan, John Boccio, Sara Bolouki, and Xia Hu.
+\newblock Learning to route llms with confidence tokens, 2025.
+
+\bibitem{cobbe2021training}
+Karl Cobbe, Vineet Kosaraju, Mohammad Bavarian, Mark Chen, Heewoo Jun, Lukasz Kaiser, Matthias Plappert, Jerry Tworek, Jacob Hilton, Reiichiro Nakano, et~al.
+\newblock Training verifiers to solve math word problems.
+\newblock {\em arXiv preprint arXiv:2110.14168}, 2021.
+
+\bibitem{codeforces}
+Codeforces.
+\newblock Codeforces - competitive programming platform, 2025.
+\newblock Accessed: 2025-03-18.
+
+\bibitem{coulom2006efficient}
+R{\'e}mi Coulom.
+\newblock Efficient selectivity and backup operators in monte-carlo tree search.
+\newblock In {\em International conference on computers and games}, pages 72--83. Springer, 2006.
+
+\bibitem{cuadron2025dangeroverthinkingexaminingreasoningaction}
+Alejandro Cuadron, Dacheng Li, Wenjie Ma, Xingyao Wang, Yichuan Wang, Siyuan Zhuang, Shu Liu, Luis~Gaspar Schroeder, Tian Xia, Huanzhi Mao, Nicholas Thumiger, Aditya Desai, Ion Stoica, Ana Klimovic, Graham Neubig, and Joseph~E. Gonzalez.
+\newblock The danger of overthinking: Examining the reasoning-action dilemma in agentic tasks, 2025.
+
+\bibitem{cui2024survey}
+Can Cui, Yunsheng Ma, Xu~Cao, Wenqian Ye, Yang Zhou, Kaizhao Liang, Jintai Chen, Juanwu Lu, Zichong Yang, Kuei-Da Liao, et~al.
+\newblock A survey on multimodal large language models for autonomous driving.
+\newblock In {\em Proceedings of the IEEE/CVF Winter Conference on Applications of Computer Vision}, pages 958--979, 2024.
+
+\bibitem{cui2025stepwise}
+Yingqian Cui, Pengfei He, Jingying Zeng, Hui Liu, Xianfeng Tang, Zhenwei Dai, Yan Han, Chen Luo, Jing Huang, Zhen Li, et~al.
+\newblock Stepwise perplexity-guided refinement for efficient chain-of-thought reasoning in large language models.
+\newblock {\em arXiv preprint arXiv:2502.13260}, 2025.
+
+\bibitem{deng2024explicit}
+Yuntian Deng, Yejin Choi, and Stuart Shieber.
+\newblock From explicit cot to implicit cot: Learning to internalize cot step by step.
+\newblock {\em arXiv preprint arXiv:2405.14838}, 2024.
+
+\bibitem{devlin2019bert}
+Jacob Devlin, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova.
+\newblock Bert: Pre-training of deep bidirectional transformers for language understanding.
+\newblock In {\em Proceedings of the 2019 conference of the North American chapter of the association for computational linguistics: human language technologies, volume 1 (long and short papers)}, pages 4171--4186, 2019.
+
+\bibitem{ding2025dynamic}
+Yifu Ding, Wentao Jiang, Shunyu Liu, Yongcheng Jing, Jinyang Guo, Yingjie Wang, Jing Zhang, Zengmao Wang, Ziwei Liu, Bo~Du, et~al.
+\newblock Dynamic parallel tree search for efficient llm reasoning.
+\newblock {\em arXiv preprint arXiv:2502.16235}, 2025.
+
+\bibitem{duan2022survey}
+Jiafei Duan, Samson Yu, Hui~Li Tan, Hongyuan Zhu, and Cheston Tan.
+\newblock A survey of embodied ai: From simulators to research tasks.
+\newblock {\em IEEE Transactions on Emerging Topics in Computational Intelligence}, 6(2):230--244, 2022.
+
+\bibitem{eo2025debatenecessaryadaptivemultiagent}
+Sugyeong Eo, Hyeonseok Moon, Evelyn~Hayoon Zi, Chanjun Park, and Heuiseok Lim.
+\newblock Debate only when necessary: Adaptive multiagent collaboration for efficient llm reasoning, 2025.
+
+\bibitem{fan2025missing}
+Chenrui Fan, Ming Li, Lichao Sun, and Tianyi Zhou.
+\newblock Missing premise exacerbates overthinking: Are reasoning models losing critical thinking skill?
+\newblock {\em arXiv preprint arXiv:2504.06514}, 2025.
+
+\bibitem{fang2025safemlrm}
+Junfeng Fang, Yukai Wang, Ruipeng Wang, Zijun Yao, Kun Wang, An~Zhang, Xiang Wang, and Tat-Seng Chua.
+\newblock Safemlrm: Demystifying safety in multi-modal large reasoning models.
+\newblock {\em arXiv preprint arXiv:2504.08813}, 2025.
+
+\bibitem{feng2024teaching}
+Tao Feng, Yicheng Li, Li~Chenglin, Hao Chen, Fei Yu, and Yin Zhang.
+\newblock Teaching small language models reasoning through counterfactual distillation.
+\newblock In {\em Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing}, pages 5831--5842, 2024.
+
+\bibitem{frantar2023gptq}
+Elias Frantar, Saleh Ashkboos, Torsten Hoefler, and Dan Alistarh.
+\newblock Gptq: Accurate post-training quantization for generative pre-trained transformers.
+\newblock In {\em The Eleventh International Conference on Learning Representations}. OpenReview, 2023.
+
+\bibitem{fu2024efficiently}
+Yichao Fu, Junda Chen, Siqi Zhu, Zheyu Fu, Zhongdongming Dai, Aurick Qiao, and Hao Zhang.
+\newblock Efficiently serving llm reasoning programs with certaindex.
+\newblock {\em arXiv preprint arXiv:2412.20993}, 2024.
+
+\bibitem{fu2025reasoning}
+Yichao Fu, Junda Chen, Yonghao Zhuang, Zheyu Fu, Ion Stoica, and Hao Zhang.
+\newblock Reasoning without self-doubt: More efficient chain-of-thought through certainty probing.
+\newblock In {\em ICLR 2025 Workshop on Foundation Models in the Wild}, 2025.
+
+\bibitem{geiping2025scaling}
+Jonas Geiping, Sean McLeish, Neel Jain, John Kirchenbauer, Siddharth Singh, Brian~R Bartoldson, Bhavya Kailkhura, Abhinav Bhatele, and Tom Goldstein.
+\newblock Scaling up test-time compute with latent reasoning: A recurrent depth approach.
+\newblock {\em arXiv preprint arXiv:2502.05171}, 2025.
+
+\bibitem{grattafiori2024llama}
+Aaron Grattafiori, Abhimanyu Dubey, Abhinav Jauhri, Abhinav Pandey, Abhishek Kadian, Ahmad Al-Dahle, Aiesha Letman, Akhil Mathur, Alan Schelten, Alex Vaughan, et~al.
+\newblock The llama 3 herd of models.
+\newblock {\em arXiv preprint arXiv:2407.21783}, 2024.
+
+\bibitem{guo2025deepseek}
+Daya Guo, Dejian Yang, Haowei Zhang, Junxiao Song, Ruoyu Zhang, Runxin Xu, Qihao Zhu, Shirong Ma, Peiyi Wang, Xiao Bi, et~al.
+\newblock Deepseek-r1: Incentivizing reasoning capability in llms via reinforcement learning.
+\newblock {\em arXiv preprint arXiv:2501.12948}, 2025.
+
+\bibitem{han2024token}
+Tingxu Han, Chunrong Fang, Shiyu Zhao, Shiqing Ma, Zhenyu Chen, and Zhenting Wang.
+\newblock Token-budget-aware llm reasoning.
+\newblock {\em arXiv preprint arXiv:2412.18547}, 2024.
+
+\bibitem{hao2025omnikv}
+Jitai Hao, Yuke Zhu, Tian Wang, Jun Yu, Xin Xin, Bo~Zheng, Zhaochun Ren, and Sheng Guo.
+\newblock Omnikv: Dynamic context selection for efficient long-context llms.
+\newblock In {\em The Thirteenth International Conference on Learning Representations}, 2025.
+
+\bibitem{hao2024training}
+Shibo Hao, Sainbayar Sukhbaatar, DiJia Su, Xian Li, Zhiting Hu, Jason Weston, and Yuandong Tian.
+\newblock Training large language models to reason in a continuous latent space.
+\newblock {\em arXiv preprint arXiv:2412.06769}, 2024.
+
+\bibitem{he2023survey}
+Kai He, Rui Mao, Qika Lin, Yucheng Ruan, Xiang Lan, Mengling Feng, and Erik Cambria.
+\newblock A survey of large language models for healthcare: from data, technology, and applications to accountability and ethics.
+\newblock {\em arXiv preprint arXiv:2310.05694}, 2023.
+
+\bibitem{hendrycks2measuring}
+Dan Hendrycks, Collin Burns, Saurav Kadavath, Akul Arora, Steven Basart, Eric Tang, Dawn Song, and Jacob Steinhardt.
+\newblock Measuring mathematical problem solving with the math dataset.
+\newblock In {\em Thirty-fifth Conference on Neural Information Processing Systems Datasets and Benchmarks Track}, 2021.
+
+\bibitem{hou2025thinkprune}
+Bairu Hou, Yang Zhang, Jiabao Ji, Yujian Liu, Kaizhi Qian, Jacob Andreas, and Shiyu Chang.
+\newblock Thinkprune: Pruning long chain-of-thought of llms via reinforcement learning.
+\newblock {\em arXiv preprint arXiv:2504.01296}, 2025.
+
+\bibitem{hu2022lora}
+Edward~J Hu, Yelong Shen, Phillip Wallis, Zeyuan Allen-Zhu, Yuanzhi Li, Shean Wang, Lu~Wang, Weizhu Chen, et~al.
+\newblock Lora: Low-rank adaptation of large language models.
+\newblock {\em ICLR}, 1(2):3, 2022.
+
+\bibitem{hu2024hiagent}
+Mengkang Hu, Tianxing Chen, Qiguang Chen, Yao Mu, Wenqi Shao, and Ping Luo.
+\newblock Hiagent: Hierarchical working memory management for solving long-horizon agent tasks with large language model.
+\newblock {\em arXiv preprint arXiv:2408.09559}, 2024.
+
+\bibitem{hu2023tree}
+Mengkang Hu, Yao Mu, Xinmiao Yu, Mingyu Ding, Shiguang Wu, Wenqi Shao, Qiguang Chen, Bin Wang, Yu~Qiao, and Ping Luo.
+\newblock Tree-planner: Efficient close-loop task planning with large language models.
+\newblock {\em arXiv preprint arXiv:2310.08582}, 2023.
+
+\bibitem{huang2025efficient}
+Chengsong Huang, Langlin Huang, Jixuan Leng, Jiacheng Liu, and Jiaxin Huang.
+\newblock Efficient test-time scaling via self-calibration.
+\newblock {\em arXiv preprint arXiv:2503.00031}, 2025.
+
+\bibitem{jin2024impact}
+Mingyu Jin, Qinkai Yu, Dong Shu, Haiyan Zhao, Wenyue Hua, Yanda Meng, Yongfeng Zhang, and Mengnan Du.
+\newblock The impact of reasoning step length on large language models.
+\newblock {\em arXiv preprint arXiv:2401.04925}, 2024.
+
+\bibitem{kang2024c3ot}
+Yu~Kang, Xianghui Sun, Liangyu Chen, and Wei Zou.
+\newblock C3ot: Generating shorter chain-of-thought without compromising effectiveness.
+\newblock {\em arXiv preprint arXiv:2412.11664}, 2024.
+
+\bibitem{kocsis2006bandit}
+Levente Kocsis and Csaba Szepesv{\'a}ri.
+\newblock Bandit based monte-carlo planning.
+\newblock In {\em European conference on machine learning}, pages 282--293. Springer, 2006.
+
+\bibitem{kumar2025overthink}
+Abhinav Kumar, Jaechul Roh, Ali Naseh, Marzena Karpinska, Mohit Iyyer, Amir Houmansadr, and Eugene Bagdasarian.
+\newblock Overthink: Slowdown attacks on reasoning llms.
+\newblock {\em arXiv e-prints}, pages arXiv--2502, 2025.
+
+\bibitem{kuo2025h}
+Martin Kuo, Jianyi Zhang, Aolin Ding, Qinsi Wang, Louis DiValentin, Yujia Bao, Wei Wei, Da-Cheng Juan, Hai Li, and Yiran Chen.
+\newblock H-cot: Hijacking the chain-of-thought safety reasoning mechanism to jailbreak large reasoning models, including openai o1/o3, deepseek-r1, and gemini 2.0 flash thinking.
+\newblock {\em arXiv preprint arXiv:2502.12893}, 2025.
+
+\bibitem{lee2025well}
+Ayeong Lee, Ethan Che, and Tianyi Peng.
+\newblock How well do llms compress their own chain-of-thought? a token complexity approach.
+\newblock {\em arXiv preprint arXiv:2503.01141}, 2025.
+
+\bibitem{lee2025criticalthinkingkindscomplexity}
+Celine Lee, Alexander~M. Rush, and Keyon Vafa.
+\newblock Critical thinking: Which kinds of complexity govern optimal reasoning length?, 2025.
+
+\bibitem{li2025syzygy}
+Chenghao Li, Chaoning Zhang, Yi~Lu, Jiaquan Zhang, Qigan Sun, Xudong Wang, Jiwei Wei, Guoqing Wang, Yang Yang, and Heng~Tao Shen.
+\newblock Syzygy of thoughts: Improving llm cot with the minimal free resolution.
+\newblock {\em arXiv preprint arXiv:2504.09566}, 2025.
+
+\bibitem{li2025fastmcts}
+Peiji Li, Kai Lv, Yunfan Shao, Yichuan Ma, Linyang Li, Xiaoqing Zheng, Xipeng Qiu, and Qipeng Guo.
+\newblock Fastmcts: A simple sampling strategy for data synthesis.
+\newblock {\em arXiv preprint arXiv:2502.11476}, 2025.
+
+\bibitem{li2025output}
+Xuying Li, Zhuo Li, Yuji Kosuga, and Victor Bian.
+\newblock Output length effect on deepseek-r1's safety in forced thinking.
+\newblock {\em arXiv preprint arXiv:2503.01923}, 2025.
+
+\bibitem{li2024escape}
+Yiwei Li, Peiwen Yuan, Shaoxiong Feng, Boyuan Pan, Xinglin Wang, Bin Sun, Heda Wang, and Kan Li.
+\newblock Escape sky-high cost: Early-stopping self-consistency for multi-step reasoning.
+\newblock In {\em ICLR}, 2024.
+
+\bibitem{li2025small}
+Yuetai Li, Xiang Yue, Zhangchen Xu, Fengqing Jiang, Luyao Niu, Bill~Yuchen Lin, Bhaskar Ramasubramanian, and Radha Poovendran.
+\newblock Small models struggle to learn from strong reasoners.
+\newblock {\em arXiv preprint arXiv:2502.12143}, 2025.
+
+\bibitem{li2025system}
+Zhong-Zhi Li, Duzhen Zhang, Ming-Liang Zhang, Jiaxin Zhang, Zengyan Liu, Yuxuan Yao, Haotian Xu, Junhao Zheng, Pei-Jie Wang, Xiuyi Chen, et~al.
+\newblock From system 1 to system 2: A survey of reasoning large language models.
+\newblock {\em arXiv preprint arXiv:2502.17419}, 2025.
+
+\bibitem{liao2025reward}
+Baohao Liao, Yuhui Xu, Hanze Dong, Junnan Li, Christof Monz, Silvio Savarese, Doyen Sahoo, and Caiming Xiong.
+\newblock Reward-guided speculative decoding for efficient llm reasoning.
+\newblock {\em arXiv preprint arXiv:2501.19324}, 2025.
+
+\bibitem{liao2025skintern}
+Huanxuan Liao, Shizhu He, Yupu Hao, Xiang Li, Yuanzhe Zhang, Jun Zhao, and Kang Liu.
+\newblock Skintern: Internalizing symbolic knowledge for distilling better cot capabilities into small language models.
+\newblock In {\em Proceedings of the 31st International Conference on Computational Linguistics}, pages 3203--3221, 2025.
+
+\bibitem{lin2024awq}
+Ji~Lin, Jiaming Tang, Haotian Tang, Shang Yang, Wei-Ming Chen, Wei-Chen Wang, Guangxuan Xiao, Xingyu Dang, Chuang Gan, and Song Han.
+\newblock Awq: Activation-aware weight quantization for on-device llm compression and acceleration.
+\newblock {\em Proceedings of Machine Learning and Systems}, 6:87--100, 2024.
+
+\bibitem{lin2025sleep}
+Kevin Lin, Charlie Snell, Yu~Wang, Charles Packer, Sarah Wooders, Ion Stoica, and Joseph~E Gonzalez.
+\newblock Sleep-time compute: Beyond inference scaling at test-time.
+\newblock {\em arXiv preprint arXiv:2504.13171}, 2025.
+
+\bibitem{liu2025advances}
+Bang Liu, Xinfeng Li, Jiayi Zhang, Jinlin Wang, Tanjin He, Sirui Hong, Hongzhang Liu, Shaokun Zhang, Kaitao Song, Kunlun Zhu, et~al.
+\newblock Advances and challenges in foundation agents: From brain-inspired intelligence to evolutionary, collaborative, and safe systems.
+\newblock {\em arXiv preprint arXiv:2504.01990}, 2025.
+
+\bibitem{liu2025bag}
+Fan Liu, Wenshuo Chao, Naiqiang Tan, and Hao Liu.
+\newblock Bag of tricks for inference-time computation of llm reasoning.
+\newblock {\em arXiv preprint arXiv:2502.07191}, 2025.
+
+\bibitem{liu2025bagoftrick}
+Fan Liu, Wenshuo Chao, Naiqiang Tan, and Hao Liu.
+\newblock Bag of tricks for inference-time computation of llm reasoning.
+\newblock {\em arXiv preprint arXiv:2502.07191}, 2025.
+
+\bibitem{liu2025quantizationhurtsreasoningempirical}
+Ruikang Liu, Yuxuan Sun, Manyi Zhang, Haoli Bai, Xianzhi Yu, Tiezheng Yu, Chun Yuan, and Lu~Hou.
+\newblock Quantization hurts reasoning? an empirical study on quantized reasoning models, 2025.
+
+\bibitem{liu20251bllmsurpass405b}
+Runze Liu, Junqi Gao, Jian Zhao, Kaiyan Zhang, Xiu Li, Biqing Qi, Wanli Ouyang, and Bowen Zhou.
+\newblock Can 1b llm surpass 405b llm? rethinking compute-optimal test-time scaling, 2025.
+
+\bibitem{liu2024mind}
+Ryan Liu, Jiayi Geng, Addison~J Wu, Ilia Sucholutsky, Tania Lombrozo, and Thomas~L Griffiths.
+\newblock Mind your step (by step): Chain-of-thought can reduce performance on tasks where thinking makes humans worse.
+\newblock {\em arXiv preprint arXiv:2410.21333}, 2024.
+
+\bibitem{liu2024can}
+Tengxiao Liu, Qipeng Guo, Xiangkun Hu, Cheng Jiayang, Yue Zhang, Xipeng Qiu, and Zheng Zhang.
+\newblock Can language models learn to skip steps?
+\newblock {\em arXiv preprint arXiv:2411.01855}, 2024.
+
+\bibitem{liu2025thoughtmanipulationexternalthought}
+Yule Liu, Jingyi Zheng, Zhen Sun, Zifan Peng, Wenhan Dong, Zeyang Sha, Shiwen Cui, Weiqiang Wang, and Xinlei He.
+\newblock Thought manipulation: External thought can be efficient for large reasoning models, 2025.
+
+\bibitem{liu2025adaptivestep}
+Yuliang Liu, Junjie Lu, Zhaoling Chen, Chaofeng Qu, Jason~Klein Liu, Chonghan Liu, Zefan Cai, Yunhui Xia, Li~Zhao, Jiang Bian, et~al.
+\newblock Adaptivestep: Automatically dividing reasoning step through model confidence.
+\newblock {\em arXiv preprint arXiv:2502.13943}, 2025.
+
+\bibitem{liu2024kivi}
+Zirui Liu, Jiayi Yuan, Hongye Jin, Shaochen Zhong, Zhaozhuo Xu, Vladimir Braverman, Beidi Chen, and Xia Hu.
+\newblock Kivi: A tuning-free asymmetric 2bit quantization for kv cache.
+\newblock {\em arXiv preprint arXiv:2402.02750}, 2024.
+
+\bibitem{loshchilov2016sgdr}
+Ilya Loshchilov and Frank Hutter.
+\newblock Sgdr: Stochastic gradient descent with warm restarts.
+\newblock {\em arXiv preprint arXiv:1608.03983}, 2016.
+
+\bibitem{lu2025retrosearchexploringuntakenpaths}
+Ximing Lu, Seungju Han, David Acuna, Hyunwoo Kim, Jaehun Jung, Shrimai Prabhumoye, Niklas Muennighoff, Mostofa Patwary, Mohammad Shoeybi, Bryan Catanzaro, and Yejin Choi.
+\newblock Retro-search: Exploring untaken paths for deeper and efficient reasoning, 2025.
+
+\bibitem{luo2025o1}
+Haotian Luo, Li~Shen, Haiying He, Yibo Wang, Shiwei Liu, Wei Li, Naiqiang Tan, Xiaochun Cao, and Dacheng Tao.
+\newblock O1-pruner: Length-harmonizing fine-tuning for o1-like reasoning pruning.
+\newblock {\em arXiv preprint arXiv:2501.12570}, 2025.
+
+\bibitem{ma2025s2rteachingllmsselfverify}
+Ruotian Ma, Peisong Wang, Cheng Liu, Xingyan Liu, Jiaqi Chen, Bang Zhang, Xin Zhou, Nan Du, and Jia Li.
+\newblock S$^2$r: Teaching llms to self-verify and self-correct via reinforcement learning, 2025.
+
+\bibitem{ma2025reasoning}
+Wenjie Ma, Jingxuan He, Charlie Snell, Tyler Griggs, Sewon Min, and Matei Zaharia.
+\newblock Reasoning models can be effective without thinking.
+\newblock {\em arXiv preprint arXiv:2504.09858}, 2025.
+
+\bibitem{ma2025cot}
+Xinyin Ma, Guangnian Wan, Runpeng Yu, Gongfan Fang, and Xinchao Wang.
+\newblock Cot-valve: Length-compressible chain-of-thought tuning.
+\newblock {\em arXiv preprint arXiv:2502.09601}, 2025.
+
+\bibitem{meng2024simpo}
+Yu~Meng, Mengzhou Xia, and Danqi Chen.
+\newblock Simpo: Simple preference optimization with a reference-free reward.
+\newblock {\em Advances in Neural Information Processing Systems}, 37:124198--124235, 2024.
+
+\bibitem{muennighoff2025s1simpletesttimescaling}
+Niklas Muennighoff, Zitong Yang, Weijia Shi, Xiang~Lisa Li, Li~Fei-Fei, Hannaneh Hajishirzi, Luke Zettlemoyer, Percy Liang, Emmanuel Candès, and Tatsunori Hashimoto.
+\newblock s1: Simple test-time scaling, 2025.
+
+\bibitem{munkhbat2025self}
+Tergel Munkhbat, Namgyu Ho, Seohyun Kim, Yongjin Yang, Yujin Kim, and Se-Young Yun.
+\newblock Self-training elicits concise reasoning in large language models.
+\newblock {\em arXiv preprint arXiv:2502.20122}, 2025.
+
+\bibitem{ong2024routellm}
+Isaac Ong, Amjad Almahairi, Vincent Wu, Wei-Lin Chiang, Tianhao Wu, Joseph~E Gonzalez, M~Waleed Kadous, and Ion Stoica.
+\newblock Routellm: Learning to route llms with preference data.
+\newblock {\em arXiv preprint arXiv:2406.18665}, 2024.
+
+\bibitem{ong2025routellmlearningroutellms}
+Isaac Ong, Amjad Almahairi, Vincent Wu, Wei-Lin Chiang, Tianhao Wu, Joseph~E. Gonzalez, M~Waleed Kadous, and Ion Stoica.
+\newblock Routellm: Learning to route llms with preference data, 2025.
+
+\bibitem{openai_learning_to_reason}
+OpenAI.
+\newblock Learning to reason with llms.
+\newblock \\url{https://openai.com/index/learning-to-reason-with-llms/}.
+\newblock Accessed: 15 March 2025.
+
+\bibitem{pan2025specreason}
+Rui Pan, Yinwei Dai, Zhihao Zhang, Gabriele Oliaro, Zhihao Jia, and Ravi Netravali.
+\newblock Specreason: Fast and accurate inference-time compute via speculative reasoning.
+\newblock {\em arXiv preprint arXiv:2504.07891}, 2025.
+
+\bibitem{pan2024chain}
+Zhenyu Pan, Haozheng Luo, Manling Li, and Han Liu.
+\newblock Chain-of-action: Faithful and multimodal question answering through large language models.
+\newblock {\em arXiv preprint arXiv:2403.17359}, 2024.
+
+\bibitem{parashar2025inferencetimecomputationsllmreasoning}
+Shubham Parashar, Blake Olson, Sambhav Khurana, Eric Li, Hongyi Ling, James Caverlee, and Shuiwang Ji.
+\newblock Inference-time computations for llm reasoning and planning: A benchmark and insights, 2025.
+
+\bibitem{pfau2024let}
+Jacob Pfau, William Merrill, and Samuel~R Bowman.
+\newblock Let's think dot by dot: Hidden computation in transformer language models.
+\newblock {\em arXiv preprint arXiv:2404.15758}, 2024.
+
+\bibitem{pu2025thoughtterminatorbenchmarkingcalibratingmitigating}
+Xiao Pu, Michael Saxon, Wenyue Hua, and William~Yang Wang.
+\newblock Thoughtterminator: Benchmarking, calibrating, and mitigating overthinking in reasoning models, 2025.
+
+\bibitem{qu2025optimizing}
+Yuxiao Qu, Matthew~YR Yang, Amrith Setlur, Lewis Tunstall, Edward~Emanuel Beeching, Ruslan Salakhutdinov, and Aviral Kumar.
+\newblock Optimizing test-time compute via meta reinforcement fine-tuning.
+\newblock {\em arXiv preprint arXiv:2503.07572}, 2025.
+
+\bibitem{renze2024benefits}
+Matthew Renze and Erhan Guven.
+\newblock The benefits of a concise chain of thought on problem-solving in large language models.
+\newblock In {\em 2024 2nd International Conference on Foundation and Large Language Models (FLLM)}, pages 476--483. IEEE, 2024.
+
+\bibitem{saunshi2025reasoning}
+Nikunj Saunshi, Nishanth Dikkala, Zhiyuan Li, Sanjiv Kumar, and Sashank~J Reddi.
+\newblock Reasoning with latent thoughts: On the power of looped transformers.
+\newblock {\em arXiv preprint arXiv:2502.17416}, 2025.
+
+\bibitem{schulman2017proximal}
+John Schulman, Filip Wolski, Prafulla Dhariwal, Alec Radford, and Oleg Klimov.
+\newblock Proximal policy optimization algorithms.
+\newblock {\em arXiv preprint arXiv:1707.06347}, 2017.
+
+\bibitem{shao2024deepseekmath}
+Zhihong Shao, Peiyi Wang, Qihao Zhu, Runxin Xu, Junxiao Song, Xiao Bi, Haowei Zhang, Mingchuan Zhang, YK~Li, Y~Wu, et~al.
+\newblock Deepseekmath: Pushing the limits of mathematical reasoning in open language models.
+\newblock {\em arXiv preprint arXiv:2402.03300}, 2024.
+
+\bibitem{she2025hawkeyeefficientreasoningmodelcollaboration}
+Jianshu She, Zhuohao Li, Zhemin Huang, Qi~Li, Peiran Xu, Haonan Li, and Qirong Ho.
+\newblock Hawkeye:efficient reasoning with model collaboration, 2025.
+
+\bibitem{shen2025efficient}
+Xuan Shen, Yizhou Wang, Xiangxi Shi, Yanzhi Wang, Pu~Zhao, and Jiuxiang Gu.
+\newblock Efficient reasoning with hidden thinking.
+\newblock {\em arXiv preprint arXiv:2501.19201}, 2025.
+
+\bibitem{shen2025dast}
+Yi~Shen, Jian Zhang, Jieyun Huang, Shuming Shi, Wenjing Zhang, Jiangze Yan, Ning Wang, Kai Wang, and Shiguo Lian.
+\newblock Dast: Difficulty-adaptive slow-thinking for large reasoning models.
+\newblock {\em arXiv preprint arXiv:2503.04472}, 2025.
+
+\bibitem{shen2025codi}
+Zhenyi Shen, Hanqi Yan, Linhai Zhang, Zhanghao Hu, Yali Du, and Yulan He.
+\newblock Codi: Compressing chain-of-thought into continuous space via self-distillation.
+\newblock {\em arXiv preprint arXiv:2502.21074}, 2025.
+
+\bibitem{shi2024keepcost}
+Luohe Shi, Hongyi Zhang, Yao Yao, Zuchao Li, and Hai Zhao.
+\newblock Keep the cost down: A review on methods to optimize llm's kv-cache consumption.
+\newblock {\em arXiv preprint arXiv:2407.18003}, 2024.
+
+\bibitem{snell2024scaling}
+Charlie Snell, Jaehoon Lee, Kelvin Xu, and Aviral Kumar.
+\newblock Scaling llm test-time compute optimally can be more effective than scaling model parameters.
+\newblock {\em arXiv preprint arXiv:2408.03314}, 2024.
+
+\bibitem{srivastava2025towards}
+Gaurav Srivastava, Shuxiang Cao, and Xuan Wang.
+\newblock Towards reasoning ability of small language models.
+\newblock {\em arXiv preprint arXiv:2502.11569}, 2025.
+
+\bibitem{su2025token}
+DiJia Su, Hanlin Zhu, Yingchen Xu, Jiantao Jiao, Yuandong Tian, and Qinqing Zheng.
+\newblock Token assorted: Mixing latent and text tokens for improved language model reasoning.
+\newblock {\em arXiv preprint arXiv:2502.03275}, 2025.
+
+\bibitem{sui2025meta}
+Yuan Sui, Yufei He, Tri Cao, Simeng Han, and Bryan Hooi.
+\newblock Meta-reasoner: Dynamic guidance for optimized inference-time reasoning in large language models.
+\newblock {\em arXiv preprint arXiv:2502.19918}, 2025.
+
+\bibitem{sun2024fast}
+Hanshi Sun, Momin Haider, Ruiqi Zhang, Huitao Yang, Jiahao Qiu, Ming Yin, Mengdi Wang, Peter Bartlett, and Andrea Zanette.
+\newblock Fast best-of-n decoding via speculative rejection.
+\newblock {\em arXiv preprint arXiv:2410.20290}, 2024.
+
+\bibitem{sun2025tinyr1}
+Lin Sun, Guangxiang Zhao, Xiaoqi Jian, Yuhan Wu, Weihong Lin, Yongfu Zhu, Linglin Zhang, Jinzhu Wu, Junfeng Ran, Sai-er Hu, et~al.
+\newblock Tinyr1-32b-preview: Boosting accuracy with branch-merge distillation.
+\newblock {\em arXiv preprint arXiv:2503.04872}, 2025.
+
+\bibitem{tang2025think}
+Jiakai Tang, Sunhao Dai, Teng Shi, Jun Xu, Xu~Chen, Wen Chen, Wu~Jian, and Yuning Jiang.
+\newblock Think before recommend: Unleashing the latent reasoning power for sequential recommendation.
+\newblock {\em arXiv preprint arXiv:2503.22675}, 2025.
+
+\bibitem{taubenfeld2025confidence}
+Amir Taubenfeld, Tom Sheffer, Eran Ofek, Amir Feder, Ariel Goldstein, Zorik Gekhman, and Gal Yona.
+\newblock Confidence improves self-consistency in llms.
+\newblock {\em arXiv preprint arXiv:2502.06233}, 2025.
+
+\bibitem{team2025kimi}
+Kimi Team, Angang Du, Bofei Gao, Bowei Xing, Changjiu Jiang, Cheng Chen, Cheng Li, Chenjun Xiao, Chenzhuang Du, Chonghua Liao, et~al.
+\newblock Kimi k1. 5: Scaling reinforcement learning with llms.
+\newblock {\em arXiv preprint arXiv:2501.12599}, 2025.
+
+\bibitem{qwen_qwq_32b_preview}
+Qwen Team.
+\newblock Qwq-32b-preview.
+\newblock \\url{https://qwenlm.github.io/blog/qwq-32b-preview/}.
+\newblock Accessed: 15 March 2025.
+
+\bibitem{tomar2020mirror}
+Manan Tomar, Lior Shani, Yonathan Efroni, and Mohammad Ghavamzadeh.
+\newblock Mirror descent policy optimization.
+\newblock {\em arXiv preprint arXiv:2005.09814}, 2020.
+
+\bibitem{touvron2023llama}
+Hugo Touvron, Thibaut Lavril, Gautier Izacard, Xavier Martinet, Marie-Anne Lachaux, Timoth{\'e}e Lacroix, Baptiste Rozi{\`e}re, Naman Goyal, Eric Hambro, Faisal Azhar, et~al.
+\newblock Llama: Open and efficient foundation language models.
+\newblock {\em arXiv preprint arXiv:2302.13971}, 2023.
+
+\bibitem{uesato2022solving}
+Jonathan Uesato, Nate Kushman, Ramana Kumar, Francis Song, Noah Siegel, Lisa Wang, Antonia Creswell, Geoffrey Irving, and Irina Higgins.
+\newblock Solving math word problems with process-and outcome-based feedback.
+\newblock {\em arXiv preprint arXiv:2211.14275}, 2022.
+
+\bibitem{van2017neural}
+Aaron Van Den~Oord, Oriol Vinyals, et~al.
+\newblock Neural discrete representation learning.
+\newblock {\em Advances in neural information processing systems}, 30, 2017.
+
+\bibitem{wan2024reasoning}
+Guangya Wan, Yuqi Wu, Jie Chen, and Sheng Li.
+\newblock Reasoning aware self-consistency: Leveraging reasoning paths for efficient llm sampling.
+\newblock {\em arXiv preprint arXiv:2408.17017}, 2024.
+
+\bibitem{wang2025thinkdeepthinkfast}
+Junlin Wang, Shang Zhu, Jon Saad-Falcon, Ben Athiwaratkun, Qingyang Wu, Jue Wang, Shuaiwen~Leon Song, Ce~Zhang, Bhuwan Dhingra, and James Zou.
+\newblock Think deep, think fast: Investigating efficiency of verifier-free inference-time-scaling methods, 2025.
+
+\bibitem{wang2024make}
+Xinglin Wang, Shaoxiong Feng, Yiwei Li, Peiwen Yuan, Yueqi Zhang, Chuyi Tan, Boyuan Pan, Yao Hu, and Kan Li.
+\newblock Make every penny count: Difficulty-adaptive self-consistency for cost-efficient reasoning.
+\newblock {\em arXiv preprint arXiv:2408.13457}, 2024.
+
+\bibitem{wang2023self}
+Xuezhi Wang, Jason Wei, Dale Schuurmans, Quoc~V Le, Ed~H Chi, Sharan Narang, Aakanksha Chowdhery, and Denny Zhou.
+\newblock Self-consistency improves chain of thought reasoning in language models.
+\newblock In {\em The Eleventh International Conference on Learning Representations}, 2023.
+
+\bibitem{wang2025sampling}
+Yiming Wang, Pei Zhang, Siyuan Huang, Baosong Yang, Zhuosheng Zhang, Fei Huang, and Rui Wang.
+\newblock Sampling-efficient test-time scaling: Self-estimating the best-of-n sampling in early decoding.
+\newblock {\em arXiv preprint arXiv:2503.01422}, 2025.
+
+\bibitem{wei2022chain}
+Jason Wei, Xuezhi Wang, Dale Schuurmans, Maarten Bosma, Fei Xia, Ed~Chi, Quoc~V Le, Denny Zhou, et~al.
+\newblock Chain-of-thought prompting elicits reasoning in large language models.
+\newblock {\em Advances in neural information processing systems}, 35:24824--24837, 2022.
+
+\bibitem{wen2025light}
+Liang Wen, Yunke Cai, Fenrui Xiao, Xin He, Qi~An, Zhenyu Duan, Yimin Du, Junchen Liu, Lifu Tang, Xiaowei Lv, et~al.
+\newblock Light-r1: Curriculum sft, dpo and rl for long cot from scratch and beyond.
+\newblock {\em arXiv preprint arXiv:2503.10460}, 2025.
+
+\bibitem{wu2025unlockingefficientlongtoshortllm}
+Han Wu, Yuxuan Yao, Shuqi Liu, Zehua Liu, Xiaojin Fu, Xiongwei Han, Xing Li, Hui-Ling Zhen, Tao Zhong, and Mingxuan Yuan.
+\newblock Unlocking efficient long-to-short llm reasoning with model merging, 2025.
+
+\bibitem{wu2025more}
+Yuyang Wu, Yifei Wang, Tianqi Du, Stefanie Jegelka, and Yisen Wang.
+\newblock When more is less: Understanding chain-of-thought length in llms.
+\newblock {\em arXiv preprint arXiv:2502.07266}, 2025.
+
+\bibitem{xia2025tokenskip}
+Heming Xia, Yongqi Li, Chak~Tou Leong, Wenjie Wang, and Wenjie Li.
+\newblock Tokenskip: Controllable chain-of-thought compression in llms.
+\newblock {\em arXiv preprint arXiv:2502.12067}, 2025.
+
+\bibitem{xiang2025can}
+Kun Xiang, Zhili Liu, Zihao Jiang, Yunshuang Nie, Kaixin Cai, Yiyang Yin, Runhui Huang, Haoxiang Fan, Hanhui Li, Weiran Huang, et~al.
+\newblock Can atomic step decomposition enhance the self-structured reasoning of multimodal large models?
+\newblock {\em arXiv preprint arXiv:2503.06252}, 2025.
+
+\bibitem{xiao2023smoothquant}
+Guangxuan Xiao, Ji~Lin, Mickael Seznec, Hao Wu, Julien Demouth, and Song Han.
+\newblock Smoothquant: Accurate and efficient post-training quantization for large language models.
+\newblock In {\em International Conference on Machine Learning}, pages 38087--38099. PMLR, 2023.
+
+\bibitem{xing2024autotrust}
+Shuo Xing, Hongyuan Hua, Xiangbo Gao, Shenzhe Zhu, Renjie Li, Kexin Tian, Xiaopeng Li, Heng Huang, Tianbao Yang, Zhangyang Wang, et~al.
+\newblock Autotrust: Benchmarking trustworthiness in large vision language models for autonomous driving.
+\newblock {\em arXiv preprint arXiv:2412.15206}, 2024.
+
+\bibitem{xing2025openemma}
+Shuo Xing, Chengyuan Qian, Yuping Wang, Hongyuan Hua, Kexin Tian, Yang Zhou, and Zhengzhong Tu.
+\newblock Openemma: Open-source multimodal model for end-to-end autonomous driving.
+\newblock In {\em Proceedings of the Winter Conference on Applications of Computer Vision}, pages 1001--1009, 2025.
+
+\bibitem{xing2025can}
+Shuo Xing, Zezhou Sun, Shuangyu Xie, Kaiyuan Chen, Yanjia Huang, Yuping Wang, Jiachen Li, Dezhen Song, and Zhengzhong Tu.
+\newblock Can large vision language models read maps like a human?
+\newblock {\em arXiv preprint arXiv:2503.14607}, 2025.
+
+\bibitem{xu2025towards}
+Fengli Xu, Qianyue Hao, Zefang Zong, Jingwei Wang, Yunke Zhang, Jingyi Wang, Xiaochong Lan, Jiahui Gong, Tianjian Ouyang, Fanjin Meng, et~al.
+\newblock Towards large reasoning models: A survey of reinforced reasoning with large language models.
+\newblock {\em arXiv preprint arXiv:2501.09686}, 2025.
+
+\bibitem{xu2025twtthinkingtokenshabitual}
+Jingxian Xu, Mengyu Zhou, Weichang Liu, Hanbing Liu, Shi Han, and Dongmei Zhang.
+\newblock Twt: Thinking without tokens by habitual reasoning distillation with multi-teachers' guidance, 2025.
+
+\bibitem{xu2025chain}
+Silei Xu, Wenhao Xie, Lingxiao Zhao, and Pengcheng He.
+\newblock Chain of draft: Thinking faster by writing less.
+\newblock {\em arXiv preprint arXiv:2502.18600}, 2025.
+
+\bibitem{xu2025softcot}
+Yige Xu, Xu~Guo, Zhiwei Zeng, and Chunyan Miao.
+\newblock Softcot: Soft chain-of-thought for efficient reasoning with llms.
+\newblock {\em arXiv preprint arXiv:2502.12134}, 2025.
+
+\bibitem{yan2025inftythink}
+Yuchen Yan, Yongliang Shen, Yang Liu, Jin Jiang, Mengdi Zhang, Jian Shao, and Yueting Zhuang.
+\newblock Inftythink: Breaking the length limits of long-context reasoning in large language models.
+\newblock {\em arXiv preprint arXiv:2503.06692}, 2025.
+
+\bibitem{yang2024modelmergingllmsmllms}
+Enneng Yang, Li~Shen, Guibing Guo, Xingwei Wang, Xiaochun Cao, Jie Zhang, and Dacheng Tao.
+\newblock Model merging in llms, mllms, and beyond: Methods, theories, applications and opportunities, 2024.
+
+\bibitem{yang2025thinkneedselfadaptivechainofthought}
+Junjie Yang, Ke~Lin, and Xing Yu.
+\newblock Think when you need: Self-adaptive chain-of-thought learning, 2025.
+
+\bibitem{yang2025speculative}
+Wang Yang, Xiang Yue, Vipin Chaudhary, and Xiaotian Han.
+\newblock Speculative thinking: Enhancing small-model reasoning with large model guidance at inference time.
+\newblock {\em arXiv preprint arXiv:2504.12329}, 2025.
+
+\bibitem{yang2025thinkingoptimalscalingtesttimecompute}
+Wenkai Yang, Shuming Ma, Yankai Lin, and Furu Wei.
+\newblock Towards thinking-optimal scaling of test-time compute for llm reasoning, 2025.
+
+\bibitem{yao2023tree}
+Shunyu Yao, Dian Yu, Jeffrey Zhao, Izhak Shafran, Tom Griffiths, Yuan Cao, and Karthik Narasimhan.
+\newblock Tree of thoughts: Deliberate problem solving with large language models.
+\newblock {\em Advances in neural information processing systems}, 36:11809--11822, 2023.
+
+\bibitem{ye2025limoreasoning}
+Yixin Ye, Zhen Huang, Yang Xiao, Ethan Chern, Shijie Xia, and Pengfei Liu.
+\newblock Limo: Less is more for reasoning, 2025.
+
+\bibitem{yeo2025demystifying}
+Edward Yeo, Yuxuan Tong, Morry Niu, Graham Neubig, and Xiang Yue.
+\newblock Demystifying long chain-of-thought reasoning in llms.
+\newblock {\em arXiv preprint arXiv:2502.03373}, 2025.
+
+\bibitem{yu2024distilling}
+Ping Yu, Jing Xu, Jason Weston, and Ilia Kulikov.
+\newblock Distilling system 2 into system 1.
+\newblock {\em arXiv preprint arXiv:2407.06023}, 2024.
+
+\bibitem{yu2025z1efficienttesttimescaling}
+Zhaojian Yu, Yinghao Wu, Yilun Zhao, Arman Cohan, and Xiao-Ping Zhang.
+\newblock Z1: Efficient test-time scaling with code, 2025.
+
+\bibitem{yu2025think}
+Zishun Yu, Tengyu Xu, Di~Jin, Karthik~Abinav Sankararaman, Yun He, Wenxuan Zhou, Zhouhao Zeng, Eryk Helenowski, Chen Zhu, Sinong Wang, et~al.
+\newblock Think smarter not harder: Adaptive reasoning with inference aware optimization.
+\newblock {\em arXiv preprint arXiv:2501.17974}, 2025.
+
+\bibitem{yuan2024lcbench}
+Jiayi Yuan, Hongyi Liu, Shaochen Zhong, Yu-Neng Chuang, Songchen Li, Guanchu Wang, Duy Le, Hongye Jin, Vipin Chaudhary, Zhaozhuo Xu, Zirui Liu, and Xia Hu.
+\newblock {KV} cache compression, but what must we give in return? a comprehensive benchmark of long context capable approaches.
+\newblock In {\em Findings of the Association for Computational Linguistics: EMNLP 2024}. Association for Computational Linguistics, November 2024.
+
+\bibitem{zhang2025lightthinker}
+Jintian Zhang, Yuqi Zhu, Mengshu Sun, Yujie Luo, Shuofei Qiao, Lun Du, Da~Zheng, Huajun Chen, and Ningyu Zhang.
+\newblock Lightthinker: Thinking step-by-step compression.
+\newblock {\em arXiv preprint arXiv:2502.15589}, 2025.
+
+\bibitem{zhang2025reasoning}
+Nan Zhang, Yusen Zhang, Prasenjit Mitra, and Rui Zhang.
+\newblock When reasoning meets compression: Benchmarking compressed large reasoning models on complex reasoning tasks.
+\newblock {\em arXiv preprint arXiv:2504.02010}, 2025.
+
+\bibitem{zhang2025s1}
+Wenyuan Zhang, Shuaiyi Nie, Xinghua Zhang, Zefeng Zhang, and Tingwen Liu.
+\newblock S1-bench: A simple benchmark for evaluating system 1 thinking capability of large reasoning models.
+\newblock {\em arXiv preprint arXiv:2504.10368}, 2025.
+
+\bibitem{zhang2024small}
+Yunxiang Zhang, Muhammad Khalifa, Lajanugen Logeswaran, Jaekyeom Kim, Moontae Lee, Honglak Lee, and Lu~Wang.
+\newblock Small language models need strong verifiers to self-correct reasoning.
+\newblock {\em arXiv preprint arXiv:2404.17140}, 2024.
+
+\bibitem{zhang2023h2o}
+Zhenyu Zhang, Ying Sheng, Tianyi Zhou, Tianlong Chen, Lianmin Zheng, Ruisi Cai, Zhao Song, Yuandong Tian, Christopher R{\'e}, Clark Barrett, et~al.
+\newblock H2o: Heavy-hitter oracle for efficient generative inference of large language models.
+\newblock {\em Advances in Neural Information Processing Systems}, 36:34661--34710, 2023.
+
+\bibitem{zhao2024probe}
+Yichun Zhao, Shuheng Zhou, and Huijia Zhu.
+\newblock Probe then retrieve and reason: Distilling probing and reasoning capabilities into smaller language models.
+\newblock In {\em Proceedings of the 2024 Joint International Conference on Computational Linguistics, Language Resources and Evaluation (LREC-COLING 2024)}, pages 13026--13032, 2024.
+
+\bibitem{zhou2025bridging}
+Zhi Zhou, Tan Yuhao, Zenan Li, Yuan Yao, Lan-Zhe Guo, Xiaoxing Ma, and Yu-Feng Li.
+\newblock Bridging internal probability and self-consistency for effective and efficient llm reasoning.
+\newblock {\em arXiv preprint arXiv:2502.00511}, 2025.
+
+\bibitem{zhu2024path}
+Jiace Zhu, Yingtao Shen, Jie Zhao, and An~Zou.
+\newblock Path-consistency: Prefix enhancement for efficient inference in llm.
+\newblock {\em arXiv preprint arXiv:2409.01281}, 2024.
+
+\bibitem{zhu2024improving}
+Xunyu Zhu, Jian Li, Can Ma, and Weiping Wang.
+\newblock Improving mathematical reasoning capabilities of small language models via feedback-driven distillation.
+\newblock {\em arXiv preprint arXiv:2411.14698}, 2024.
+
+\end{thebibliography}

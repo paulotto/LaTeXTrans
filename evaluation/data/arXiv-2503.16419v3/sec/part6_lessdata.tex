@@ -1,0 +1,15 @@
+\section{Reasoning Abilities via Efficient Training Data and Model Compression}
+
+\subsection{Training Reasoning Models with Less Data}
+\label{sec:lessdata}
+
+Improving the efficiency of reasoning models requires optimizing not just the model architecture but also the data used for training. Recent work has shown that carefully selecting, structuring, and leveraging training data can significantly reduce data requirements while maintaining or even improving reasoning performance. Although all approaches focus on efficient data selection, they vary in defining and utilizing efficiency.
+
+\insightbox{The key question is: How to construct less but high-quality training data?}
+
+\paragraph{\textbf{Minimal but High-Impact Data Selection.}} LIMO \cite{ye2025limoreasoning} challenges the conventional belief that complex reasoning tasks require extensive training data. They introduce LIMO, a framework that elicits sophisticated reasoning abilities using minimal but precisely curated examples. By choosing high-quality questions based on \textit{Level of difficulty, Generality, and Knowledge Diversity} and high-quality solutions based on \textit{Optimal Structural Organization, Effective Cognitive Scaffolding, and Rigorous Verification}, with only 817 carefully selected training samples, LIMO can outperform previous models that utilized over 100,000 examples. 
+%
+s1 \cite{muennighoff2025s1simpletesttimescaling} focuses on enhancing reasoning performance by controlling test-time computational resources. They curate a compact dataset based on \textit{Quality}, \textit{Difficulty} and \textit{Diversity}, s1K, comprising 1,000 high-quality questions paired with reasoning traces. Through supervised fine-tuning on this dataset and implementing ``budget forcing'', which regulates the reasoning duration during inference, s1-32B exceeds OpenAI o1-preview on MATH and AIME24, demonstrating that strategic test time scaling can effectively enhance reasoning capabilities without extensive training data.
+
+\paragraph{\textbf{Self-Verification as a Data-Efficient Training Signal.}} S$^2$R~\cite{ma2025s2rteachingllmsselfverify} infuse LLMs with self-verification and self-correction abilities through RL. Initially, models are fine-tuned on a curated dataset to establish these capabilities. Subsequently, RL both at the outcome level and the process level is employed to enhance these skills further. With only 3,100 initialization samples, their fine-tuned models consistently improve the performance on reasoning tasks among all base models. S$^2$R fine-tuned Qwen2.5-Math-7B can outperform models trained on comparable amounts of long CoT distilled data on the MATH500 and GSM8K. 
+

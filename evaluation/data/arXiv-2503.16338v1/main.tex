@@ -1,0 +1,482 @@
+\documentclass{article}
+
+
+% if you need to pass options to natbib, use, e.g.:
+%     \PassOptionsToPackage{numbers, compress}{natbib}
+% before loading neurips_2024
+\PassOptionsToPackage{numbers, compress}{natbib}
+
+% ready for submission
+\usepackage[final]{neurips_2024}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{amsmath}
+\usepackage{enumitem}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+\usepackage{subfig}
+\usepackage{subfloat}
+% to compile a preprint version, e.g., for submission to arXiv, add add the
+% [preprint] option:
+% \usepackage[preprint]{neurips_2024}
+
+% to compile a camera-ready version, add the [final] option, e.g.:
+%     \usepackage[final]{neurips_2024}
+
+
+% to avoid loading the natbib package, add option nonatbib:
+%    \usepackage[nonatbib]{neurips_2024}
+
+
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+\usepackage{xcolor}         % colors
+\usepackage{amsmath}
+\usepackage{amssymb} 
+
+\title{Gaussian Graph Network: Learning Efficient and Generalizable Gaussian Representations from Multi-view Images}
+
+
+% The \author macro works with any number of authors. There are two commands
+% used to separate the names and addresses of multiple authors: \And and \AND.
+%
+% Using \And between authors leaves it to LaTeX to determine where to break the
+% lines. Using \AND forces a line break at that point. So, if LaTeX puts 3 of 4
+% authors names on the first line, and the last on the second line, try using
+% \AND instead of \And before the third author name.
+
+
+% \author{%
+%   Shengjun Zhang, Xin Fei, Fangfu Liu, Haixu Song, Yueqi Duan\thanks{Use footnote for providing further information
+%     about author (webpage, alternative address)---\emph{not} for acknowledging
+%     funding agencies.} \\
+%   Department of Computer Science\\
+%   Cranberry-Lemon University\\
+%   Pittsburgh, PA 15213 \\
+%   \texttt{hippo@cs.cranberry-lemon.edu} \\
+
+\author{%
+  Shengjun Zhang, Xin Fei, Fangfu Liu, Haixu Song, Yueqi Duan\thanks{Corresponding author.} \\
+  % Department of Computer Science\\
+  Tsinghua University \\
+  % Pittsburgh, PA 15213 \\
+  \texttt{\{zhangsj23, feix21\}@mails.tsinghua.edu.cn, duanyueqi@tsinghua.edu.cn} \\
+}
+\vspace{-2cm}
+  % examples of more authors
+  % \And
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+  % \AND
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+  % \And
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+  % \And
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+
+\begin{document}
+
+\maketitle
+
+% \newcommand\blfootnote[1]{% 
+% \begingroup 
+% \renewcommand\thefootnote{}\footnote{#1}% 
+% \addtocounter{footnote}{-1}% 
+% \endgroup 
+% }
+% \blfootnote{\textsuperscript{\dag}Corresponding author.}
+
+\begin{center}
+\textbf{\url{https://shengjun-zhang.github.io/GGN/}}
+\end{center}
+
+\begin{abstract}
+\input{sec/0_abstract}
+\end{abstract}
+
+
+\section{Introduction}
+\input{sec/1_introduction}
+
+\section{Related Works}
+\input{sec/2_related_works}
+
+\section{Method}~\label{sec:methods}
+\input{sec/3_method}
+
+\section{Experiments}~\label{sec:experiments}
+\input{sec/4_experiments}
+
+\section{Conclusion and Discussion}~\label{sec:conclusion and discussion}
+\input{sec/5_conclusion}
+
+
+{
+\small
+\begin{thebibliography}{10}
+
+\bibitem{MipNeRF2021ICCV}
+Jonathan~T Barron, Ben Mildenhall, Matthew Tancik, Peter Hedman, Ricardo Martin-Brualla, and Pratul~P Srinivasan.
+\newblock Mip-nerf: A multiscale representation for anti-aliasing neural radiance fields.
+\newblock In {\em ICCV}, pages 5855--5864, 2021.
+
+\bibitem{cai2022pix2nerf}
+Shengqu Cai, Anton Obukhov, Dengxin Dai, and Luc Van~Gool.
+\newblock Pix2nerf: Unsupervised conditional p-gan for single image to neural radiance fields translation.
+\newblock In {\em CVPR}, pages 3981--3990, 2022.
+
+\bibitem{chan2021pi}
+Eric~R Chan, Marco Monteiro, Petr Kellnhofer, Jiajun Wu, and Gordon Wetzstein.
+\newblock pi-gan: Periodic implicit generative adversarial networks for 3d-aware image synthesis.
+\newblock In {\em CVPR}, pages 5799--5809, 2021.
+
+\bibitem{pixelSplat2023arXiv}
+David Charatan, Sizhe Li, Andrea Tagliasacchi, and Vincent Sitzmann.
+\newblock pixelsplat: 3d gaussian splats from image pairs for scalable generalizable 3d reconstruction.
+\newblock {\em arXiv preprint arXiv:2312.12337}, 2023.
+
+\bibitem{chen2021mvsnerf}
+Anpei Chen, Zexiang Xu, Fuqiang Zhao, Xiaoshuai Zhang, Fanbo Xiang, Jingyi Yu, and Hao Su.
+\newblock Mvsnerf: Fast generalizable radiance field reconstruction from multi-view stereo.
+\newblock In {\em ICCV}, pages 14124--14133, 2021.
+
+\bibitem{MVSplat2024arXiv}
+Yuedong Chen, Haofei Xu, Chuanxia Zheng, Bohan Zhuang, Marc Pollefeys, Andreas Geiger, Tat-Jen Cham, and Jianfei Cai.
+\newblock Mvsplat: Efficient 3d gaussian splatting from sparse multi-view images.
+\newblock {\em arXiv preprint arXiv:2403.14627}, 2024.
+
+\bibitem{du2021neural}
+Yilun Du, Yinan Zhang, Hong-Xing Yu, Joshua~B Tenenbaum, and Jiajun Wu.
+\newblock Neural radiance flow for 4d view synthesis and video processing.
+\newblock In {\em ICCV}, pages 14304--14314. IEEE Computer Society, 2021.
+
+\bibitem{duisterhof2023md}
+Bardienus~P Duisterhof, Zhao Mandi, Yunchao Yao, Jia-Wei Liu, Mike~Zheng Shou, Shuran Song, and Jeffrey Ichnowski.
+\newblock Md-splatting: Learning metric deformation from 4d gaussians in highly deformable scenes.
+\newblock {\em arXiv preprint arXiv:2312.00583}, 2023.
+
+\bibitem{fan2023lightgaussian}
+Zhiwen Fan, Kevin Wang, Kairun Wen, Zehao Zhu, Dejia Xu, and Zhangyang Wang.
+\newblock Lightgaussian: Unbounded 3d gaussian compression with 15x reduction and 200+ fps.
+\newblock {\em arXiv preprint arXiv:2311.17245}, 2023.
+
+\bibitem{Plenoxels2022CVPR}
+Sara Fridovich-Keil, Alex Yu, Matthew Tancik, Qinhong Chen, Benjamin Recht, and Angjoo Kanazawa.
+\newblock Plenoxels: Radiance fields without neural networks.
+\newblock In {\em CVPR}, pages 5501--5510, 2022.
+
+\bibitem{gao2023relightable}
+Jian Gao, Chun Gu, Youtian Lin, Hao Zhu, Xun Cao, Li~Zhang, and Yao Yao.
+\newblock Relightable 3d gaussian: Real-time point cloud relighting with brdf decomposition and ray tracing.
+\newblock {\em arXiv preprint arXiv:2311.16043}, 2023.
+
+\bibitem{FastNeRF2021ICCV}
+Stephan~J Garbin, Marek Kowalski, Matthew Johnson, Jamie Shotton, and Julien Valentin.
+\newblock Fastnerf: High-fidelity neural rendering at 200fps.
+\newblock In {\em ICCV}, pages 14346--14355, 2021.
+
+\bibitem{girish2023eagles}
+Sharath Girish, Kamal Gupta, and Abhinav Shrivastava.
+\newblock Eagles: Efficient accelerated 3d gaussians with lightweight encodings.
+\newblock {\em arXiv preprint arXiv:2312.04564}, 2023.
+
+\bibitem{gu2021stylenerf}
+Jiatao Gu, Lingjie Liu, Peng Wang, and Christian Theobalt.
+\newblock Stylenerf: A style-based 3d-aware generator for high-resolution image synthesis.
+\newblock {\em arXiv preprint arXiv:2110.08985}, 2021.
+
+\bibitem{EfficientNeRF2022CVPR}
+Tao Hu, Shu Liu, Yilun Chen, Tiancheng Shen, and Jiaya Jia.
+\newblock Efficientnerf efficient neural radiance fields.
+\newblock In {\em CVPR}, pages 12902--12911, 2022.
+
+\bibitem{jang2021codenerf}
+Wonbong Jang and Lourdes Agapito.
+\newblock Codenerf: Disentangled neural radiance fields for object categories.
+\newblock In {\em ICCV}, pages 12949--12958, 2021.
+
+\bibitem{jiang2023gaussianshader}
+Yingwenqi Jiang, Jiadong Tu, Yuan Liu, Xifeng Gao, Xiaoxiao Long, Wenping Wang, and Yuexin Ma.
+\newblock Gaussianshader: 3d gaussian splatting with shading functions for reflective surfaces.
+\newblock {\em arXiv preprint arXiv:2311.17977}, 2023.
+
+\bibitem{katsumata2023efficient}
+Kai Katsumata, Duc~Minh Vo, and Hideki Nakayama.
+\newblock An efficient 3d gaussian representation for monocular/multi-view dynamic scenes.
+\newblock {\em arXiv preprint arXiv:2311.12897}, 2023.
+
+\bibitem{3DGS2023ToG}
+Bernhard Kerbl, Georgios Kopanas, Thomas Leimk{\"u}hler, and George Drettakis.
+\newblock 3d gaussian splatting for real-time radiance field rendering.
+\newblock {\em ToG}, 42(4):1--14, 2023.
+
+\bibitem{li2021neural}
+Zhengqi Li, Simon Niklaus, Noah Snavely, and Oliver Wang.
+\newblock Neural scene flow fields for space-time view synthesis of dynamic scenes.
+\newblock In {\em CVPR}, pages 6498--6508, 2021.
+
+\bibitem{li2023dynibar}
+Zhengqi Li, Qianqian Wang, Forrester Cole, Richard Tucker, and Noah Snavely.
+\newblock Dynibar: Neural dynamic image-based rendering.
+\newblock In {\em CVPR}, pages 4273--4284, 2023.
+
+\bibitem{liang2023gs}
+Zhihao Liang, Qi~Zhang, Ying Feng, Ying Shan, and Kui Jia.
+\newblock Gs-ir: 3d gaussian splatting for inverse rendering.
+\newblock {\em arXiv preprint arXiv:2311.16473}, 2023.
+
+\bibitem{ENeRF2022SIGGRAPH}
+Haotong Lin, Sida Peng, Zhen Xu, Yunzhi Yan, Qing Shuai, Hujun Bao, and Xiaowei Zhou.
+\newblock Efficient neural radiance fields for interactive free-viewpoint video.
+\newblock In {\em SIGGRAPH Asia}, pages 1--9, 2022.
+
+\bibitem{ACID2021ICCV}
+Andrew Liu, Richard Tucker, Varun Jampani, Ameesh Makadia, Noah Snavely, and Angjoo Kanazawa.
+\newblock Infinite nature: Perpetual view generation of natural scenes from a single image.
+\newblock In {\em ICCV}, pages 14458--14467, 2021.
+
+\bibitem{liu2023semantic}
+Fangfu Liu, Chubin Zhang, Yu~Zheng, and Yueqi Duan.
+\newblock Semantic ray: Learning a generalizable semantic field with cross-reprojection attention.
+\newblock In {\em CVPR}, pages 17386--17396, 2023.
+
+\bibitem{NSVF2020NIPS}
+Lingjie Liu, Jiatao Gu, Kyaw Zaw~Lin, Tat-Seng Chua, and Christian Theobalt.
+\newblock Neural sparse voxel fields.
+\newblock {\em NeurIPS}, 33:15651--15663, 2020.
+
+\bibitem{lu2023scaffold}
+Tao Lu, Mulin Yu, Linning Xu, Yuanbo Xiangli, Limin Wang, Dahua Lin, and Bo~Dai.
+\newblock Scaffold-gs: Structured 3d gaussians for view-adaptive rendering.
+\newblock {\em arXiv preprint arXiv:2312.00109}, 2023.
+
+\bibitem{Dynamic3DGS2023arXiv}
+Jonathon Luiten, Georgios Kopanas, Bastian Leibe, and Deva Ramanan.
+\newblock Dynamic 3d gaussians: Tracking by persistent dynamic view synthesis.
+\newblock {\em arXiv preprint arXiv:2308.09713}, 2023.
+
+\bibitem{OccNet2019CVPR}
+Lars Mescheder, Michael Oechsle, Michael Niemeyer, Sebastian Nowozin, and Andreas Geiger.
+\newblock Occupancy networks: Learning 3d reconstruction in function space.
+\newblock In {\em CVPR}, pages 4460--4470, 2019.
+
+\bibitem{NeRF2021ACM}
+Ben Mildenhall, Pratul~P Srinivasan, Matthew Tancik, Jonathan~T Barron, Ravi Ramamoorthi, and Ren Ng.
+\newblock Nerf: Representing scenes as neural radiance fields for view synthesis.
+\newblock {\em Communications of the ACM}, 65(1):99--106, 2021.
+
+\bibitem{InstantNGP2022TOG}
+Thomas M{\"u}ller, Alex Evans, Christoph Schied, and Alexander Keller.
+\newblock Instant neural graphics primitives with a multiresolution hash encoding.
+\newblock {\em ToG}, 41(4):1--15, 2022.
+
+\bibitem{navaneet2023compact3d}
+KL~Navaneet, Kossar~Pourahmadi Meibodi, Soroush~Abbasi Koohpayegani, and Hamed Pirsiavash.
+\newblock Compact3d: Compressing gaussian splat radiance field models with vector quantization.
+\newblock {\em arXiv preprint arXiv:2311.18159}, 2023.
+
+\bibitem{niemeyer2022regnerf}
+Michael Niemeyer, Jonathan~T Barron, Ben Mildenhall, Mehdi~SM Sajjadi, Andreas Geiger, and Noha Radwan.
+\newblock Regnerf: Regularizing neural radiance fields for view synthesis from sparse inputs.
+\newblock In {\em CVPR}, pages 5480--5490, 2022.
+
+\bibitem{niemeyer2021giraffe}
+Michael Niemeyer and Andreas Geiger.
+\newblock Giraffe: Representing scenes as compositional generative neural feature fields.
+\newblock In {\em CVPR}, pages 11453--11464, 2021.
+
+\bibitem{DeepSDF2019CVPR}
+Jeong~Joon Park, Peter Florence, Julian Straub, Richard Newcombe, and Steven Lovegrove.
+\newblock Deepsdf: Learning continuous signed distance functions for shape representation.
+\newblock In {\em CVPR}, pages 165--174, 2019.
+
+\bibitem{pumarola2021d}
+Albert Pumarola, Enric Corona, Gerard Pons-Moll, and Francesc Moreno-Noguer.
+\newblock D-nerf: Neural radiance fields for dynamic scenes.
+\newblock In {\em CVPR}, pages 10318--10327, 2021.
+
+\bibitem{KiloNeRF2021ICCV}
+Christian Reiser, Songyou Peng, Yiyi Liao, and Andreas Geiger.
+\newblock Kilonerf: Speeding up neural radiance fields with thousands of tiny mlps.
+\newblock In {\em ICCV}, pages 14335--14345, 2021.
+
+\bibitem{schwarz2020graf}
+Katja Schwarz, Yiyi Liao, Michael Niemeyer, and Andreas Geiger.
+\newblock Graf: Generative radiance fields for 3d-aware image synthesis.
+\newblock {\em NeurIPS}, 33:20154--20166, 2020.
+
+\bibitem{LFN2021NIPS}
+Vincent Sitzmann, Semon Rezchikov, William~T. Freeman, Joshua~B. Tenenbaum, and Fr{\'e}do Durand.
+\newblock Light field networks: Neural scene representations with single-evaluation rendering.
+\newblock In {\em NeurIPS}, 2021.
+
+\bibitem{SRN2019NIPS}
+Vincent Sitzmann, Michael Zollhofer, and Gordon Wetzstein.
+\newblock Scene representation networks: Continuous 3d-structure-aware neural scene representations.
+\newblock {\em NeurIPS}, 32, 2019.
+
+\bibitem{SplatterImage2023arXiv}
+Stanislaw Szymanowicz, Christian Rupprecht, and Andrea Vedaldi.
+\newblock Splatter image: Ultra-fast single-view 3d reconstruction.
+\newblock {\em arXiv preprint arXiv:2312.13150}, 2023.
+
+\bibitem{BlockNeRF2022CVPR}
+Matthew Tancik, Vincent Casser, Xinchen Yan, Sabeek Pradhan, Ben Mildenhall, Pratul~P Srinivasan, Jonathan~T Barron, and Henrik Kretzschmar.
+\newblock Block-nerf: Scalable large scene neural view synthesis.
+\newblock In {\em CVPR}, pages 8248--8258, 2022.
+
+\bibitem{tian2023mononerf}
+Fengrui Tian, Shaoyi Du, and Yueqi Duan.
+\newblock Mononerf: Learning a generalizable dynamic radiance field from monocular videos.
+\newblock In {\em ICCV}, pages 17903--17913, 2023.
+
+\bibitem{tretschk2021non}
+Edgar Tretschk, Ayush Tewari, Vladislav Golyanik, Michael Zollh{\"o}fer, Christoph Lassner, and Christian Theobalt.
+\newblock Non-rigid neural radiance fields: Reconstruction and novel view synthesis of a dynamic scene from monocular video.
+\newblock In {\em ICCV}, pages 12959--12970, 2021.
+
+\bibitem{truong2023sparf}
+Prune Truong, Marie-Julie Rakotosaona, Fabian Manhardt, and Federico Tombari.
+\newblock Sparf: Neural radiance fields from sparse and noisy poses. ieee.
+\newblock In {\em CVPR}, volume~1, 2023.
+
+\bibitem{MegaNeRF2022CVPR}
+Haithem Turki, Deva Ramanan, and Mahadev Satyanarayanan.
+\newblock Mega-nerf: Scalable construction of large-scale nerfs for virtual fly-throughs.
+\newblock In {\em CVPR}, pages 12922--12931, 2022.
+
+\bibitem{SUDS2023CVPR}
+Haithem Turki, Jason~Y Zhang, Francesco Ferroni, and Deva Ramanan.
+\newblock Suds: Scalable urban dynamic scenes.
+\newblock In {\em CVPR}, pages 12375--12385, 2023.
+
+\bibitem{Fourierplenoctree2022CVPR}
+Liao Wang, Jiakai Zhang, Xinhang Liu, Fuqiang Zhao, Yanshun Zhang, Yingliang Zhang, Minye Wu, Jingyi Yu, and Lan Xu.
+\newblock Fourier plenoctrees for dynamic radiance field rendering in real-time.
+\newblock In {\em CVPR}, pages 13524--13534, 2022.
+
+\bibitem{wu20234d}
+Guanjun Wu, Taoran Yi, Jiemin Fang, Lingxi Xie, Xiaopeng Zhang, Wei Wei, Wenyu Liu, Qi~Tian, and Xinggang Wang.
+\newblock 4d gaussian splatting for real-time dynamic scene rendering.
+\newblock {\em arXiv preprint arXiv:2310.08528}, 2023.
+
+\bibitem{wynn2023diffusionerf}
+Jamie Wynn and Daniyar Turmukhambetov.
+\newblock Diffusionerf: Regularizing neural radiance fields with denoising diffusion models.
+\newblock In {\em CVPR}, pages 4180--4189, 2023.
+
+\bibitem{xian2021space}
+Wenqi Xian, Jia-Bin Huang, Johannes Kopf, and Changil Kim.
+\newblock Space-time neural irradiance fields for free-viewpoint video.
+\newblock In {\em CVPR}, pages 9421--9431, 2021.
+
+\bibitem{BungeeNeRF2022ECCV}
+Yuanbo Xiangli, Linning Xu, Xingang Pan, Nanxuan Zhao, Anyi Rao, Christian Theobalt, Bo~Dai, and Dahua Lin.
+\newblock Bungeenerf: Progressive neural radiance field for extreme multi-scale scene rendering.
+\newblock In {\em ECCV}, pages 106--122. Springer, 2022.
+
+\bibitem{xie2023physgaussian}
+Tianyi Xie, Zeshun Zong, Yuxin Qiu, Xuan Li, Yutao Feng, Yin Yang, and Chenfanfu Jiang.
+\newblock Physgaussian: Physics-integrated 3d gaussians for generative dynamics.
+\newblock {\em arXiv preprint arXiv:2311.12198}, 2023.
+
+\bibitem{xiong2023sparsegs}
+Haolin Xiong, Sairisheek Muttukuru, Rishi Upadhyay, Pradyumna Chari, and Achuta Kadambi.
+\newblock Sparsegs: Real-time 360 $\{$$\backslash$deg$\}$ sparse view synthesis using gaussian splatting.
+\newblock {\em arXiv preprint arXiv:2312.00206}, 2023.
+
+\bibitem{xu2023murf}
+Haofei Xu, Anpei Chen, Yuedong Chen, Christos Sakaridis, Yulun Zhang, Marc Pollefeys, Andreas Geiger, and Fisher Yu.
+\newblock Murf: Multi-baseline radiance fields.
+\newblock {\em arXiv preprint arXiv:2312.04565}, 2023.
+
+\bibitem{GridNeRF2023CVPR}
+Linning Xu, Yuanbo Xiangli, Sida Peng, Xingang Pan, Nanxuan Zhao, Christian Theobalt, Bo~Dai, and Dahua Lin.
+\newblock Grid-guided neural radiance fields for large urban scenes.
+\newblock In {\em CVPR}, pages 8296--8306, 2023.
+
+\bibitem{yan2023multi}
+Zhiwen Yan, Weng~Fei Low, Yu~Chen, and Gim~Hee Lee.
+\newblock Multi-scale 3d gaussian splatting for anti-aliased rendering.
+\newblock {\em arXiv preprint arXiv:2311.17089}, 2023.
+
+\bibitem{yang2023real}
+Zeyu Yang, Hongye Yang, Zijie Pan, Xiatian Zhu, and Li~Zhang.
+\newblock Real-time photorealistic dynamic scene representation and rendering with 4d gaussian splatting.
+\newblock {\em arXiv preprint arXiv:2310.10642}, 2023.
+
+\bibitem{DGA2020NIPS}
+Lior Yariv, Yoni Kasten, Dror Moran, Meirav Galun, Matan Atzmon, Basri Ronen, and Yaron Lipman.
+\newblock Multiview neural surface reconstruction by disentangling geometry and appearance.
+\newblock {\em NeurIPS}, 33:2492--2502, 2020.
+
+\bibitem{PlenOctree2021CVPR}
+Alex Yu, Ruilong Li, Matthew Tancik, Hao Li, Ren Ng, and Angjoo Kanazawa.
+\newblock Plenoctrees for real-time rendering of neural radiance fields.
+\newblock In {\em ICCV}, pages 5752--5761, 2021.
+
+\bibitem{pixelNeRF2021CVPR}
+Alex Yu, Vickie Ye, Matthew Tancik, and Angjoo Kanazawa.
+\newblock pixelnerf: Neural radiance fields from one or few images.
+\newblock In {\em CVPR}, pages 4578--4587, 2021.
+
+\bibitem{LPIPS2018CVPR}
+Richard Zhang, Phillip Isola, Alexei~A Efros, Eli Shechtman, and Oliver Wang.
+\newblock The unreasonable effectiveness of deep features as a perceptual metric.
+\newblock In {\em CVPR}, pages 586--595, 2018.
+
+\bibitem{GPSGaussian2023arXiv}
+Shunyuan Zheng, Boyao Zhou, Ruizhi Shao, Boning Liu, Shengping Zhang, Liqiang Nie, and Yebin Liu.
+\newblock Gps-gaussian: Generalizable pixel-wise 3d gaussian splatting for real-time human novel view synthesis.
+\newblock {\em arXiv preprint arXiv:2312.02155}, 2023.
+
+\bibitem{RealEstate10K2018}
+Tinghui Zhou, Richard Tucker, John Flynn, Graham Fyffe, and Noah Snavely.
+\newblock Stereo magnification: Learning view synthesis using multiplane images.
+\newblock {\em arXiv preprint arXiv:1805.09817}, 2018.
+
+\bibitem{zhu2023fsgs}
+Zehao Zhu, Zhiwen Fan, Yifan Jiang, and Zhangyang Wang.
+\newblock Fsgs: Real-time few-shot view synthesis using gaussian splatting.
+\newblock {\em arXiv preprint arXiv:2312.00451}, 2023.
+
+\end{thebibliography}
+
+
+  % \bibliographystyle{plain}
+  % \bibliography{main}
+}
+
+
+% \newpage
+% \appendix
+% \input{sec/X_supplementary}
+
+% \input{rebuttal}
+
+% \clearpage
+% \newpage
+% \section*{NeurIPS Paper Checklist}
+% \input{sec/checklist}
+
+
+
+\end{document}

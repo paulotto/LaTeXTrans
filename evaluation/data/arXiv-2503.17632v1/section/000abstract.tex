@@ -1,0 +1,13 @@
+
+%Recent research has discovered that fine-tuned 
+\begin{abstract}
+    
+Language models are prone to dataset biases, known as shortcuts and spurious correlations in data, which often result in performance drop on new data. We present a new debiasing framework called ``\OursName'' that mitigates dataset biases by learning to be {\em undecided} in its predictions for data samples or representations associated with known or unknown biases. The framework introduces two key components: a suite of data and model perturbation operations that generate different biased views of input samples, and a contrastive objective that learns debiased and robust representations from the resulting biased views of samples. Experiments show that \OursName outperforms existing debiasing methods, particularly against out-of-domain and hard test samples without compromising the in-domain performance\footnote{Our code is available at \url{https://github.com/CLU-UML/FairFlow}.}.
+\end{abstract}
+
+% Existing debiasing methods mainly focus on detecting and re-weighting potentially biased samples in datasets. However, they have limited coverage of different types of biases and less regularization strength. 
+% \OursName encodes less biases in its learned representations compared to strong baselines. 
+% We illustrate that existing baselines are still biased and can be further debiased with our framework.
+% , by modeling more sources of biases. 
+%xx, xx .  % By explicitly modeling known biases, the proposed framework enhances the effectiveness of existing debiasing approaches. 
+% We discuss how several existing approaches can be considered as special cases of \OursName.

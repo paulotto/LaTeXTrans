@@ -1,0 +1,89 @@
+% \begin{table}[h]
+% \centering
+% \small  
+% \centering
+% \caption{Comparison of performance of TRODO and other methods on various rounds of TrojAI Dataset, reported in terms of AUROC (\%) and Accuracy(\%).}
+ 
+
+% \label{tab:advance_attack_ablation}
+% \renewcommand{\arraystretch}{1.5}\setlength{\tabcolsep}{15pt} \Large  
+ 
+%     \resizebox{0.6\linewidth}{!}{\begin{tabular}{N*{5}{C{2cm}}} 
+
+ 
+%     \specialrule{3pt}{\aboverulesep}{\belowrulesep}
+
+%     \multirow{1}{4em}{Method}  & \multicolumn{1}{c}{Round0} & \multicolumn{1}{c}{Round1} &  \multicolumn{1}{c}{Round2} & \multicolumn{1}{c}{Round3} & \multicolumn{1}{c}{Round4}\\
+    
+
+%      \specialrule{3pt}{\aboverulesep}{\belowrulesep}
+
+%      \multirow{1}{4em}{NC}  & 75.1 & 72.2 & - & - & -\\
+        
+%         \cmidrule(lr){1-6}
+
+%      \multirow{1}{4em}{DLTND}  & 85.0 & 84.3 & 58.2 & 65.7 & 66.1\\
+        
+%         \cmidrule(lr){1-6}
+        
+%      \multirow{1}{4em}{K-Arm} & 91.3 & 90.0 & 76.0 & 79.0 & 82.0\\
+     
+%       \cmidrule(lr){1-6}
+
+%      \multirow{1}{4em}{ABS} & 70.3 & 66.8 & 62.0 & 70.8 & 73.3\\
+     
+%       \cmidrule(lr){1-6}
+
+%      \multirow{1}{4em}{MM-BD}  & 68.8 & 73.2 & 55.8 & 52.6 & 50.1\\
+     
+%       \cmidrule(lr){1-6}
+
+%      \multirow{1}{4em}{TABOR}  & 82.8 & 80.3 & 56.2 & 60.8 & 58.3\\
+     
+%       \cmidrule(lr){1-6}
+
+%      \multirow{1}{4em}{UMD} & 80.4 & 79.2 & 75.2 & 61.3 & 56.9\\
+     
+%       \cmidrule(lr){1-6}
+
+%      \multirow{1}{4em}{TRODO} & 86.2 & 84.7 & 78.1 & 77.2 & 77.8\\
+     
+%      \specialrule{3pt}{\aboverulesep}{\belowrulesep}
+ 
+% \end{tabular}}
+% \end{table}
+
+
+\begin{table}[h]
+\centering
+\small
+\caption{Value of $\epsilon$ and $\tau$ for different validation sets and backbone architectures.}
+\label{table:epta}
+\renewcommand{\arraystretch}{1.5}
+\setlength{\tabcolsep}{20pt}
+\small
+\resizebox{\textwidth}{!}{
+\begin{tabular}{c*{6}{c}}
+
+\specialrule{3pt}{\aboverulesep}{\belowrulesep}
+
+\multirow{2}{*}{Validation} & \multicolumn{2}{c}{\textbf{ResNet-18}} & \multicolumn{2}{c}{\textbf{PreAct ResNet-18}} &  \multicolumn{2}{c}{\textbf{ViT-b-16}}\\
+\cmidrule(lr){2-3}
+\cmidrule(lr){4-5}
+\cmidrule(lr){6-7}
+& $\epsilon$ & $\tau$ & $\epsilon$ & $\tau$ & $\epsilon$ & $\tau$ \\
+
+\specialrule{3pt}{\aboverulesep}{\belowrulesep}
+
+FMNIST  & 0.0491&1.1625 & 0.0538&1.0407 & 0.0621&0.9341\\
+\cmidrule(lr){1-7}
+SVHN & 0.0476&1.1338 & 0.0524&1.0025 & 0.0598&0.9106\\
+\cmidrule(lr){1-7}
+STL-10  & 0.0488&1.1571 & 0.0530&1.0462 & 0.0611&0.9246\\
+\cmidrule(lr){1-7}
+TinyImageNet  & 0.0483&1.1523 & 0.0527&1.0179& 0.0609&0.9150\\
+
+\specialrule{3pt}{\aboverulesep}{\belowrulesep}
+
+\end{tabular}}
+\end{table}

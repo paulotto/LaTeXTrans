@@ -1,0 +1,71 @@
+\begin{algorithm}
+\caption{OmniTrack Inference Process}
+\algorithmfootnote{In \textcolor{codegreen}{green} is the key of our method. }
+
+\label{alg:Omnitrack}
+\footnotesize
+\KwIn{
+A Panoramic video/image sequence $\texttt{V}$
+%
+}
+
+\KwOut{
+Tracks $\mathcal{T}$ of the video/image sequence
+%
+}
+
+Initialization: $\mathcal{T} \leftarrow \emptyset$\;
+
+Define the Initialize threshold $\mathcal{\tau}_\mathcal{I}$ \;
+Define the Update threshold  $\mathcal{\tau}_\mathcal{U}$ \;
+
+
+\For{frame $f_k$ in $\texttt{V}$}{
+\tcc{As shown in Fig. \ref{fig:pipeline}}
+
+$\{\mathcal{S}_3, \mathcal{S}_4, \mathcal{S}_5\} \leftarrow \texttt{Backbone}(f_k)$ \;
+
+\textcolor{codegreen}{$ \mathcal{I}_L \leftarrow  \texttt{CSEM}(\{\mathcal{S}_3, \mathcal{S}_4, \mathcal{S}_5\})$} \;
+
+\textcolor{codegreen}{$ \mathcal{I}_F \leftarrow  \mathcal{T}_{f_{k-1}}$} \;
+
+$ \textcolor{codegreen}{\mathcal{D}_k^F}, \mathcal{D}_k^L \leftarrow  \texttt{Decoder} ( \textcolor{codegreen}{\mathcal{I}_F}, \mathcal{I}_L) $ \;
+
+\BlankLine
+\BlankLine
+    \If{$\texttt{DA}$}{
+        \tcc{Data Association}
+	
+        $\mathcal{C} \leftarrow  \texttt{Distance Calculation}(\textcolor{codegreen}{{\mathcal{D}_k^F}}+ \mathcal{D}_k^L, \mathcal{T}_{f_{k-1}})$ \;
+
+        $\{\texttt{Update, Initialize, Delate} \} \leftarrow \texttt{Hungarian Algorithm}(\mathcal{C})$ \;
+    
+        $\mathcal{T}_{f_{k}} \leftarrow \{\texttt{Update, Initialize, Delete} \} $
+    }
+    
+    \Else{
+        \tcc{End-to-End}
+        
+            \textcolor{codegreen}{\For{$d$ in $ \{\mathcal{D}_k^F \cup \mathcal{D}_k^L$\} }{
+	            \If{$ d \in \mathcal{D}_k^F \And d.score > \mathcal{\tau}_\mathcal{U} $}{
+	               $\texttt{Update} \leftarrow  d$ \;
+                }
+                    \If{$ d \in \mathcal{D}_k^L \And d.score > \mathcal{\tau}_\mathcal{I}  $}{
+	               $\texttt{Initialize } \leftarrow  d$ \;
+                }
+                \Else{
+                    $\texttt{Delete} \leftarrow  d$ \;
+                }
+            }
+        }
+        $\mathcal{T}_{f_{k}} \leftarrow \{\texttt{Update, Initialize, Delete} \} $
+    }
+}
+
+
+\textbf{Return}: $\mathcal{T}$
+
+%
+
+%
+\end{algorithm}

@@ -1,0 +1,120 @@
+% CVPR 2025 Paper Template; see https://github.com/cvpr-org/author-kit
+
+\documentclass[10pt,twocolumn,letterpaper]{article}
+
+%%%%%%%%% PAPER TYPE  - PLEASE UPDATE FOR FINAL VERSION
+% \usepackage{cvpr}              % To produce the CAMERA-READY version
+\usepackage{cvpr}      % To produce the REVIEW version
+% \usepackage[pagenumbers]{cvpr} % To force page numbers, e.g. for an arXiv version
+
+% Import additional packages in the preamble file, before hyperref
+\input{preamble}
+
+% It is strongly recommended to use hyperref, especially for the review version.
+% hyperref with option pagebackref eases the reviewers' job.
+% Please disable hyperref *only* if you encounter grave issues, 
+% e.g. with the file validation for the camera-ready version.
+%
+% If you comment hyperref and then uncomment it, you should delete *.aux before re-running LaTeX.
+% (Or just hit 'q' on the first LaTeX run, let it finish, and you should be clear).
+\usepackage{colortbl}
+\definecolor{cvprblue}{rgb}{0.21,0.49,0.74}
+\usepackage[pagebackref,breaklinks,colorlinks,allcolors=cvprblue]{hyperref}
+\usepackage{multirow}
+\usepackage{pdflscape} % landscape page
+\usepackage{changepage} % move table left via adjustwidth
+\usepackage[export]{adjustbox}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{graphicx} 
+% \usepackage{emoji}
+% \usepackage[table]{xcolor}
+\definecolor{lightblue}{RGB}{189, 224, 254}
+%%%%%%%%% PAPER ID  - PLEASE UPDATE
+\def\paperID{***} % *** Enter the Paper ID here  % Remeber remove this line for arxiv source
+\def\confName{ICCV}
+\def\confYear{2025}
+
+\makeatletter
+\AtBeginDocument{
+\renewcommand{\sectionautorefname}{\S\@gobble}
+\renewcommand{\tableautorefname}{Table}
+\renewcommand{\equationautorefname}{Equation}
+\renewcommand{\subsectionautorefname}{\S\@gobble} 
+\renewcommand{\subsubsectionautorefname}{\S\@gobble}
+\renewcommand{\appendixautorefname}{\S\@gobble}
+\providecommand{\algorithmautorefname}{Algorithm}
+}
+\makeatother
+
+%%%%%%%%% TITLE - PLEASE UPDATE
+\title{MIEB: Massive Image Embedding Benchmark}
+
+%%%%%%%%% AUTHORS - PLEASE UPDATE
+\author{\textbf{Chenghao Xiao\textsuperscript{1,\textdagger}} \ \ 
+\textbf{Isaac Chung\textsuperscript{2}}\ \ 
+\textbf{Imene Kerboua\textsuperscript{3,4}} \ \ 
+\textbf{Jamie Stirling\textsuperscript{1}}
+\\
+\textbf{Xin Zhang\textsuperscript{5}} \ \  
+\textbf{Márton Kardos\textsuperscript{6}} \ \ 
+\textbf{Roman Solomatin\textsuperscript{7}}
+\\
+\textbf{Noura Al Moubayed\textsuperscript{1}} \ \  
+\textbf{Kenneth Enevoldsen\textsuperscript{6}} \ \
+\textbf{Niklas Muennighoff \textsuperscript{8,9}}
+\\ \\
+\textsuperscript{1}Durham University,
+\textsuperscript{2}Zendesk, 
+\textsuperscript{3}Esker, 
+\textsuperscript{4}INSA Lyon, LIRIS, \\
+\textsuperscript{5}The Hong Kong Polytechnic University, 
+\textsuperscript{6}Aarhus University, \\
+\textsuperscript{7}ITMO University, 
+\textsuperscript{8}Contextual AI, 
+\textsuperscript{9}Stanford University
+\\ 
+\\
+{\textsuperscript{\textdagger}Correspondence: \tt chenghao.xiao@durham.ac.uk}
+}
+
+
+\begin{document}
+
+\maketitle
+
+\input{sections/00-Abstract}
+
+\input{sections/01-Introduction} 
+
+\input{sections/02-MIEB}
+
+\input{sections/03-Models}
+
+\input{sections/04-Implementation}
+
+\input{sections/05-Results}
+
+\input{sections/06-Discussions}
+
+\input{sections/07-Related_Work}
+
+\input{sections/08-Conclusion}
+
+\section*{Acknowledgements}
+
+We thank Weijia Shi for feedback. We thank Contextual AI for supporting this benchmark. We thank all members of the MTEB community for their efforts in advancing the framework. We thank the creators of VLM2Vec for discussions.
+
+{
+\small
+\bibliographystyle{ieeenat_fullname}
+\bibliography{main}
+}
+
+\clearpage
+\input{sections/09-Appendix}
+
+% WARNING: do not forget to delete the supplementary pages from your submission 
+% \input{sec/X_suppl}
+
+\end{document}

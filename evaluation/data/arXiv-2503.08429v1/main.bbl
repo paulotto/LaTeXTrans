@@ -1,0 +1,467 @@
+\begin{thebibliography}{63}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Afonso et~al.(2010)Afonso, Bioucas-Dias, and
+  Figueiredo]{afonso2010augmented}
+Manya~V Afonso, Jos{\'e}~M Bioucas-Dias, and M{\'a}rio~AT Figueiredo.
+\newblock An augmented lagrangian approach to the constrained optimization
+  formulation of imaging inverse problems.
+\newblock \emph{IEEE transactions on image processing}, 20\penalty0
+  (3):\penalty0 681--695, 2010.
+
+\bibitem[Agustsson and Timofte(2017)]{Agustsson_2017_CVPR_Workshops}
+Eirikur Agustsson and Radu Timofte.
+\newblock Ntire 2017 challenge on single image super-resolution: Dataset and
+  study.
+\newblock In \emph{The IEEE Conference on Computer Vision and Pattern
+  Recognition (CVPR) Workshops}, 2017.
+
+\bibitem[Arbelaez et~al.(2010)Arbelaez, Maire, Fowlkes, and
+  Malik]{arbelaez2010contour}
+Pablo Arbelaez, Michael Maire, Charless Fowlkes, and Jitendra Malik.
+\newblock Contour detection and hierarchical image segmentation.
+\newblock \emph{IEEE transactions on pattern analysis and machine
+  intelligence}, 33\penalty0 (5):\penalty0 898--916, 2010.
+
+\bibitem[Beck and Teboulle(2009)]{beck2009fast}
+Amir Beck and Marc Teboulle.
+\newblock A fast iterative shrinkage-thresholding algorithm for linear inverse
+  problems.
+\newblock \emph{SIAM journal on imaging sciences}, 2\penalty0 (1):\penalty0
+  183--202, 2009.
+
+\bibitem[Becker et~al.(2009)Becker, Bobin, and Cand{\`e}s]{Becker2009NESTAAF}
+Stephen Becker, J{\'e}r{\^o}me Bobin, and Emmanuel~J. Cand{\`e}s.
+\newblock Nesta: A fast and accurate first-order method for sparse recovery.
+\newblock \emph{SIAM J. Imaging Sci.}, 4:\penalty0 1--39, 2009.
+
+\bibitem[Cand{\`e}s et~al.(2006)Cand{\`e}s, Romberg, and Tao]{candes2006robust}
+Emmanuel~J Cand{\`e}s, Justin Romberg, and Terence Tao.
+\newblock Robust uncertainty principles: Exact signal reconstruction from
+  highly incomplete frequency information.
+\newblock \emph{IEEE Transactions on information theory}, 52\penalty0
+  (2):\penalty0 489--509, 2006.
+
+\bibitem[Cao et~al.(2024)Cao, Cui, Wang, Liu, Chen, Zheng, Liang, and
+  Zhu]{DBLP:journals/tmi/CaoCWLCZLZ24}
+Chentao Cao, Zhuo{-}Xu Cui, Yue Wang, Shaonan Liu, Taijin Chen, Hairong Zheng,
+  Dong Liang, and Yanjie Zhu.
+\newblock High-frequency space diffusion model for accelerated {MRI}.
+\newblock \emph{{IEEE} Trans. Medical Imaging}, 43\penalty0 (5):\penalty0
+  1853--1865, 2024.
+
+\bibitem[Chen et~al.(2023)Chen, Song, Xie, and
+  Zhang]{DBLP:journals/ijcv/ChenSXZ23}
+Bin Chen, Jiechong Song, Jingfen Xie, and Jian Zhang.
+\newblock Deep physics-guided unrolling generalization for compressed sensing.
+\newblock \emph{Int. J. Comput. Vis.}, 131\penalty0 (11):\penalty0 2864--2887,
+  2023.
+
+\bibitem[Chen et~al.(2025)Chen, Zhang, Li, Zhao, Yu, Zhao, Chen, and
+  Zhang]{DBLP:journals/corr/abs-2403-17006}
+Bin Chen, Zhenyu Zhang, Weiqi Li, Chen Zhao, Jiwen Yu, Shijie Zhao, Jie Chen,
+  and Jian Zhang.
+\newblock Invertible diffusion models for compressed sensing.
+\newblock \emph{IEEE Transactions on Pattern Analysis and Machine Intelligence
+  (TPAMI)}, 2025.
+
+\bibitem[Chen et~al.(2022)Chen, Yang, and Yang]{Chen2022FSOINETFO}
+Wenjia Chen, Chunling Yang, and Xin Yang.
+\newblock Fsoinet: Feature-space optimization-inspired network for image
+  compressive sensing.
+\newblock In \emph{ICASSP 2022 - 2022 IEEE International Conference on
+  Acoustics, Speech and Signal Processing (ICASSP)}, pages 2460--2464. IEEE,
+  2022.
+
+\bibitem[Cheng et~al.(2021)Cheng, Chen, Liu, Zhang, Lu, Wang, and
+  Yuan]{Cheng2021MemoryEfficientNF}
+Ziheng Cheng, Bo Chen, Guanliang Liu, Hao Zhang, Ruiying Lu, Zhengjue Wang, and
+  Xin Yuan.
+\newblock Memory-efficient network for large-scale video compressive sensing.
+\newblock In \emph{2021 IEEE/CVF Conference on Computer Vision and Pattern
+  Recognition (CVPR)}, pages 16241--16250. IEEE, 2021.
+
+\bibitem[Chung and Ye(2022)]{DBLP:journals/mia/ChungY22}
+Hyungjin Chung and Jong~Chul Ye.
+\newblock Score-based diffusion models for accelerated {MRI}.
+\newblock \emph{Medical Image Anal.}, 80:\penalty0 102479, 2022.
+
+\bibitem[Chung et~al.(2022)Chung, Sim, Ryu, and Ye]{DBLP:conf/nips/ChungSRY22}
+Hyungjin Chung, Byeongsu Sim, Dohoon Ryu, and Jong~Chul Ye.
+\newblock Improving diffusion models for inverse problems using manifold
+  constraints.
+\newblock In \emph{Advances in Neural Information Processing Systems 35: Annual
+  Conference on Neural Information Processing Systems 2022, NeurIPS 2022, New
+  Orleans, LA, USA, November 28 - December 9, 2022}, 2022.
+
+\bibitem[Chung et~al.(2023)Chung, Kim, McCann, Klasky, and
+  Ye]{DBLP:conf/iclr/ChungKMKY23}
+Hyungjin Chung, Jeongsol Kim, Michael~Thompson McCann, Marc~Louis Klasky, and
+  Jong~Chul Ye.
+\newblock Diffusion posterior sampling for general noisy inverse problems.
+\newblock In \emph{The Eleventh International Conference on Learning
+  Representations, {ICLR} 2023, Kigali, Rwanda, May 1-5, 2023}. OpenReview.net,
+  2023.
+
+\bibitem[Cui et~al.(2024)Cui, Fan, Zhang, and Zhao]{DBLP:journals/tmm/CuiFZZ24}
+Wenxue Cui, Xiaopeng Fan, Jian Zhang, and Debin Zhao.
+\newblock Deep unfolding network for image compressed sensing by
+  content-adaptive gradient updating and deformation-invariant non-local
+  modeling.
+\newblock \emph{{IEEE} Trans. Multim.}, 26:\penalty0 4012--4027, 2024.
+
+\bibitem[Daubechies et~al.(2003)Daubechies, Defrise, and
+  Mol]{Daubechies2003AnIT}
+Ingrid Daubechies, Michel Defrise, and Christine~De Mol.
+\newblock An iterative thresholding algorithm for linear inverse problems with
+  a sparsity constraint.
+\newblock \emph{Communications on Pure and Applied Mathematics}, 57, 2003.
+
+\bibitem[Dhariwal and Nichol(2021)]{DBLP:conf/nips/DhariwalN21}
+Prafulla Dhariwal and Alexander~Quinn Nichol.
+\newblock Diffusion models beat gans on image synthesis.
+\newblock In \emph{Advances in Neural Information Processing Systems 34: Annual
+  Conference on Neural Information Processing Systems 2021, NeurIPS 2021,
+  December 6-14, 2021, virtual}, pages 8780--8794, 2021.
+
+\bibitem[Dong et~al.(2018)Dong, Wang, Yin, Shi, Wu, and
+  Lu]{Dong2018DenoisingPD}
+Weisheng Dong, Peiyao Wang, Wotao Yin, Guangming Shi, Fangfang Wu, and Xiaotong
+  Lu.
+\newblock Denoising prior driven deep neural network for image restoration.
+\newblock \emph{IEEE Transactions on Pattern Analysis and Machine
+  Intelligence}, 41:\penalty0 2305--2318, 2018.
+
+\bibitem[Donoho(2006)]{Donoho2006HighDimensionalCS}
+David~L. Donoho.
+\newblock High-dimensional centrally symmetric polytopes with neighborliness
+  proportional to dimension.
+\newblock \emph{Discrete \& Computational Geometry}, 35:\penalty0 617--652,
+  2006.
+
+\bibitem[Donoho et~al.(2009)Donoho, Maleki, and
+  Montanari]{Donoho2009MessagepassingAF}
+David~L. Donoho, Arian Maleki, and Andrea Montanari.
+\newblock Message-passing algorithms for compressed sensing.
+\newblock In \emph{Proceedings of the National Academy of Sciences}, pages
+  18914 -- 18919, 2009.
+
+\bibitem[Fan et~al.(2022)Fan, Lian, and Quan]{fan2022global}
+Zi-En Fan, Feng Lian, and Jia-Ni Quan.
+\newblock Global sensing and measurements reuse for image compressed sensing.
+\newblock In \emph{Proceedings of the IEEE/CVF Conference on Computer Vision
+  and Pattern Recognition}, pages 8954--8963, 2022.
+
+\bibitem[Fei et~al.(2023)Fei, Lyu, Pan, Zhang, Yang, Luo, Zhang, and
+  Dai]{DBLP:conf/cvpr/FeiLPZYLZ023}
+Ben Fei, Zhaoyang Lyu, Liang Pan, Junzhe Zhang, Weidong Yang, Tianyue Luo, Bo
+  Zhang, and Bo Dai.
+\newblock Generative diffusion prior for unified image restoration and
+  enhancement.
+\newblock In \emph{{IEEE/CVF} Conference on Computer Vision and Pattern
+  Recognition, {CVPR} 2023, Vancouver, BC, Canada, June 17-24, 2023}, pages
+  9935--9946. {IEEE}, 2023.
+
+\bibitem[Gregor and LeCun(2010)]{DBLP:conf/icml/GregorL10}
+Karol Gregor and Yann LeCun.
+\newblock Learning fast approximations of sparse coding.
+\newblock In \emph{Proceedings of the 27th International Conference on Machine
+  Learning (ICML-10), June 21-24, 2010, Haifa, Israel}, pages 399--406.
+  Omnipress, 2010.
+
+\bibitem[Guo and Gan(2024)]{guoCPPNet2024}
+Zhen Guo and Hongping Gan.
+\newblock Cpp-net: Embracing multi-scale feature fusion into deep unfolding
+  cp-ppa network for compressive sensing.
+\newblock In \emph{Proceedings of the IEEE/CVF Conference on Computer Vision
+  and Pattern Recognition (CVPR)}, 2024.
+
+\bibitem[He et~al.(2024)He, Murata, Lai, Takida, Uesaka, Kim, Liao, Mitsufuji,
+  Kolter, Salakhutdinov, and Ermon]{he2024manifold}
+Yutong He, Naoki Murata, Chieh-Hsin Lai, Yuhta Takida, Toshimitsu Uesaka,
+  Dongjun Kim, Wei-Hsiang Liao, Yuki Mitsufuji, J~Zico Kolter, Ruslan
+  Salakhutdinov, and Stefano Ermon.
+\newblock Manifold preserving guided diffusion.
+\newblock In \emph{The Twelfth International Conference on Learning
+  Representations}, 2024.
+
+\bibitem[Ho et~al.(2020)Ho, Jain, and Abbeel]{DBLP:conf/nips/HoJA20}
+Jonathan Ho, Ajay Jain, and Pieter Abbeel.
+\newblock Denoising diffusion probabilistic models.
+\newblock In \emph{Advances in Neural Information Processing Systems 33: Annual
+  Conference on Neural Information Processing Systems 2020, NeurIPS 2020,
+  December 6-12, 2020, virtual}, 2020.
+
+\bibitem[Kawar et~al.(2022)Kawar, Elad, Ermon, and
+  Song]{DBLP:conf/nips/KawarEES22}
+Bahjat Kawar, Michael Elad, Stefano Ermon, and Jiaming Song.
+\newblock Denoising diffusion restoration models.
+\newblock In \emph{Advances in Neural Information Processing Systems 35: Annual
+  Conference on Neural Information Processing Systems 2022, NeurIPS 2022, New
+  Orleans, LA, USA, November 28 - December 9, 2022}, 2022.
+
+\bibitem[Kingma and Ba(2015)]{kingma2014adam}
+Diederik~P. Kingma and Jimmy Ba.
+\newblock Adam: {A} method for stochastic optimization.
+\newblock In \emph{3rd International Conference on Learning Representations,
+  {ICLR} 2015, San Diego, CA, USA, May 7-9, 2015, Conference Track
+  Proceedings}, 2015.
+
+\bibitem[Kong et~al.(2024)Kong, Chen, and He]{DBLP:journals/tmm/KongCH24}
+Xiaoyu Kong, Yongyong Chen, and Zhenyu He.
+\newblock When channel correlation meets sparse prior: Keeping interpretability
+  in image compressive sensing.
+\newblock \emph{{IEEE} Trans. Multim.}, 26:\penalty0 2953--2965, 2024.
+
+\bibitem[Kontogiannis and Juniper(2022)]{Kontogiannis2022PhysicsInformedCS}
+Alexandros Kontogiannis and Matthew~P. Juniper.
+\newblock Physics-informed compressed sensing for pc-mri: An inverse
+  navier-stokes problem.
+\newblock \emph{IEEE Transactions on Image Processing}, 32:\penalty0 281--294,
+  2022.
+
+\bibitem[Kulkarni et~al.(2016)Kulkarni, Lohit, Turaga, Kerviche, and
+  Ashok]{kulkarni2016reconnet}
+Kuldeep Kulkarni, Suhas Lohit, Pavan Turaga, Ronan Kerviche, and Amit Ashok.
+\newblock Reconnet: Non-iterative reconstruction of images from compressively
+  sensed measurements.
+\newblock In \emph{Proceedings of the IEEE conference on computer vision and
+  pattern recognition}, pages 449--458, 2016.
+
+\bibitem[Lin et~al.(2014)Lin, Maire, Belongie, Bourdev, Girshick, Hays, Perona,
+  Ramanan, Doll{'{a} }r, and Zitnick]{cocodataset}
+Tsung{-}Yi Lin, Michael Maire, Serge~J. Belongie, Lubomir~D. Bourdev, Ross~B.
+  Girshick, James Hays, Pietro Perona, Deva Ramanan, Piotr Doll{'{a} }r, and
+  C.~Lawrence Zitnick.
+\newblock Microsoft {COCO:} common objects in context.
+\newblock \emph{CoRR}, abs/1405.0312, 2014.
+
+\bibitem[Loshchilov and Hutter(2017)]{Loshchilov2016SGDRSG}
+Ilya Loshchilov and Frank Hutter.
+\newblock {SGDR:} stochastic gradient descent with warm restarts.
+\newblock In \emph{5th International Conference on Learning Representations,
+  {ICLR} 2017, Toulon, France, April 24-26, 2017, Conference Track
+  Proceedings}. OpenReview.net, 2017.
+
+\bibitem[Lustig et~al.(2007)Lustig, Donoho, and Pauly]{Lustig2007SparseMT}
+Michael Lustig, David~L. Donoho, and John~M. Pauly.
+\newblock Sparse mri: The application of compressed sensing for rapid mr
+  imaging.
+\newblock \emph{Magnetic Resonance in Medicine}, 58, 2007.
+
+\bibitem[Metzler et~al.(2016)Metzler, Maleki, and
+  Baraniuk]{DBLP:journals/tit/MetzlerMB16}
+Christopher~A. Metzler, Arian Maleki, and Richard~G. Baraniuk.
+\newblock From denoising to compressed sensing.
+\newblock \emph{{IEEE} Trans. Inf. Theory}, 62\penalty0 (9):\penalty0
+  5117--5144, 2016.
+
+\bibitem[Metzler et~al.(2017)Metzler, Mousavi, and
+  Baraniuk]{DBLP:conf/nips/MetzlerMB17}
+Christopher~A. Metzler, Ali Mousavi, and Richard~G. Baraniuk.
+\newblock Learned {D-AMP:} principled neural network based compressive image
+  recovery.
+\newblock In \emph{Advances in Neural Information Processing Systems 30: Annual
+  Conference on Neural Information Processing Systems 2017, December 4-9, 2017,
+  Long Beach, CA, {USA}}, pages 1772--1783, 2017.
+
+\bibitem[Mirza and {\c{C}}ukur(2023)]{DBLP:conf/siu/MirzaC23}
+Muhammad~Usama Mirza and Tolga {\c{C}}ukur.
+\newblock Super-resolution diffusion model for accelerated {MRI}
+  reconstruction.
+\newblock In \emph{31st Signal Processing and Communications Applications
+  Conference, {SIU} 2023, Istanbul, Turkey, July 5-8, 2023}, pages 1--4.
+  {IEEE}, 2023.
+
+\bibitem[Ochs(2019)]{DBLP:journals/siamjo/Ochs19}
+Peter Ochs.
+\newblock Unifying abstract inexact convergence theorems and block coordinate
+  variable metric ipiano.
+\newblock \emph{{SIAM} J. Optim.}, 29\penalty0 (1):\penalty0 541--570, 2019.
+
+\bibitem[Ramani et~al.(2008)Ramani, Blu, and
+  Unser]{DBLP:journals/tip/RamaniBU08}
+Sathish Ramani, Thierry Blu, and Michael Unser.
+\newblock Monte-carlo sure: {A} black-box optimization of regularization
+  parameters for general denoising algorithms.
+\newblock \emph{{IEEE} Trans. Image Process.}, 17\penalty0 (9):\penalty0
+  1540--1554, 2008.
+
+\bibitem[Rout et~al.(2023)Rout, Raoof, Daras, Caramanis, Dimakis, and
+  Shakkottai]{DBLP:conf/nips/RoutRDCDS23}
+Litu Rout, Negin Raoof, Giannis Daras, Constantine Caramanis, Alex Dimakis, and
+  Sanjay Shakkottai.
+\newblock Solving linear inverse problems provably via posterior sampling with
+  latent diffusion models.
+\newblock In \emph{Advances in Neural Information Processing Systems 36: Annual
+  Conference on Neural Information Processing Systems 2023, NeurIPS 2023, New
+  Orleans, LA, USA, December 10 - 16, 2023}, 2023.
+
+\bibitem[Saharia et~al.(2023)Saharia, Ho, Chan, Salimans, Fleet, and
+  Norouzi]{DBLP:journals/pami/SahariaHCSFN23}
+Chitwan Saharia, Jonathan Ho, William Chan, Tim Salimans, David~J. Fleet, and
+  Mohammad Norouzi.
+\newblock Image super-resolution via iterative refinement.
+\newblock \emph{{IEEE} Trans. Pattern Anal. Mach. Intell.}, 45\penalty0
+  (4):\penalty0 4713--4726, 2023.
+
+\bibitem[Shen et~al.(2022)Shen, Gan, Ning, Hua, and Zhang]{shen2022transcs}
+Minghe Shen, Hongping Gan, Chao Ning, Yi Hua, and Tao Zhang.
+\newblock Transcs: A transformer-based hybrid architecture for image compressed
+  sensing.
+\newblock \emph{IEEE Transactions on Image Processing}, 31:\penalty0
+  6991--7005, 2022.
+
+\bibitem[Shi et~al.(2017)Shi, Jiang, Zhang, and Zhao]{shi2017deep}
+Wuzhen Shi, Feng Jiang, Shengping Zhang, and Debin Zhao.
+\newblock Deep networks for compressed image sensing.
+\newblock In \emph{2017 IEEE International Conference on Multimedia and Expo
+  (ICME)}, pages 877--882. IEEE, 2017.
+
+\bibitem[Shi et~al.(2019)Shi, Jiang, Liu, and Zhao]{shi2019scalable}
+Wuzhen Shi, Feng Jiang, Shaohui Liu, and Debin Zhao.
+\newblock Scalable convolutional neural network for image compressed sensing.
+\newblock In \emph{Proceedings of the IEEE/CVF Conference on Computer Vision
+  and Pattern Recognition}, pages 12290--12299, 2019.
+
+\bibitem[Song et~al.(2021{\natexlab{a}})Song, Chen, and Zhang]{song2021memory}
+Jie Song, Bin Chen, and Jian Zhang.
+\newblock Memory-augmented deep unfolding network for compressive sensing.
+\newblock In \emph{Proceedings of the 29th ACM International Conference on
+  Multimedia}. ACM, 2021{\natexlab{a}}.
+
+\bibitem[Song et~al.(2021{\natexlab{b}})Song, Meng, and
+  Ermon]{DBLP:conf/iclr/SongME21}
+Jiaming Song, Chenlin Meng, and Stefano Ermon.
+\newblock Denoising diffusion implicit models.
+\newblock In \emph{9th International Conference on Learning Representations,
+  {ICLR} 2021, Virtual Event, Austria, May 3-7, 2021}. OpenReview.net,
+  2021{\natexlab{b}}.
+
+\bibitem[Song et~al.(2023{\natexlab{a}})Song, Chen, and
+  Zhang]{DBLP:journals/tip/SongCZ23}
+Jiechong Song, Bin Chen, and Jian Zhang.
+\newblock Dynamic path-controllable deep unfolding network for compressive
+  sensing.
+\newblock \emph{{IEEE} Trans. Image Process.}, 32:\penalty0 2202--2214,
+  2023{\natexlab{a}}.
+
+\bibitem[Song et~al.(2023{\natexlab{b}})Song, Mou, Wang, Ma, and
+  Zhang]{Song2023OptimizationInspiredCT}
+Jiechong Song, Chong Mou, Shiqi Wang, Siwei Ma, and Jian Zhang.
+\newblock Optimization-inspired cross-attention transformer for compressive
+  sensing.
+\newblock In \emph{{IEEE/CVF} Conference on Computer Vision and Pattern
+  Recognition, {CVPR} 2023, Vancouver, BC, Canada, June 17-24, 2023}, pages
+  6174--6184. {IEEE}, 2023{\natexlab{b}}.
+
+\bibitem[Song et~al.(2023{\natexlab{c}})Song, Vahdat, Mardani, and
+  Kautz]{DBLP:conf/iclr/SongVMK23}
+Jiaming Song, Arash Vahdat, Morteza Mardani, and Jan Kautz.
+\newblock Pseudoinverse-guided diffusion models for inverse problems.
+\newblock In \emph{The Eleventh International Conference on Learning
+  Representations, {ICLR} 2023, Kigali, Rwanda, May 1-5, 2023}. OpenReview.net,
+  2023{\natexlab{c}}.
+
+\bibitem[Trevisi et~al.(2019)Trevisi, Akbari, Trocan,
+  Rodr{\'\i}guez-V{\'a}zquez, and Carmona-Gal{\'a}n]{trevisi2019compressive}
+Marco Trevisi, Ali Akbari, Maria Trocan, {\'A}ngel Rodr{\'\i}guez-V{\'a}zquez,
+  and Ricardo Carmona-Gal{\'a}n.
+\newblock Compressive imaging using rip-compliant cmos imager architecture and
+  landweber reconstruction.
+\newblock \emph{IEEE Transactions on Circuits and Systems for Video
+  Technology}, 30\penalty0 (2):\penalty0 387--399, 2019.
+
+\bibitem[Wang and Gan(2024)]{wangUFCNet2024}
+Xiaoyang Wang and Hongping Gan.
+\newblock Ufc-net: Unrolling fixed-point continuous network for deep
+  compressive sensing.
+\newblock In \emph{Proceedings of the IEEE/CVF Conference on Computer Vision
+  and Pattern Recognition (CVPR)}, 2024.
+
+\bibitem[Wang et~al.(2023)Wang, Yu, and Zhang]{wang2022zero}
+Yinhuai Wang, Jiwen Yu, and Jian Zhang.
+\newblock Zero-shot image restoration using denoising diffusion null-space
+  model.
+\newblock \emph{The Eleventh International Conference on Learning
+  Representations}, 2023.
+
+\bibitem[Xu et~al.(2018)Xu, Zhang, and Ren]{xu2018lapran}
+Kai Xu, Zhikang Zhang, and Fengbo Ren.
+\newblock Lapran: A scalable laplacian pyramid reconstructive adversarial
+  network for flexible compressive sensing reconstruction.
+\newblock In \emph{Proceedings of the European Conference on Computer Vision
+  (ECCV)}, pages 485--500, 2018.
+
+\bibitem[Yang et~al.(2018)Yang, Sun, Li, and Xu]{yang2018admm}
+Yan Yang, Jian Sun, Huibin Li, and Zongben Xu.
+\newblock Admm-csnet: A deep learning approach for image compressive sensing.
+\newblock \emph{IEEE transactions on pattern analysis and machine
+  intelligence}, 42\penalty0 (3):\penalty0 521--538, 2018.
+
+\bibitem[Ye et~al.(2023)Ye, Ni, Wang, Zhang, Wang, and Kwong]{ye2021csformer}
+Dongjie Ye, Zhangkai Ni, Hanli Wang, Jian Zhang, Shiqi Wang, and Sam Kwong.
+\newblock Csformer: Bridging convolution and transformer for compressive
+  sensing.
+\newblock \emph{{IEEE} Trans. Image Process.}, 32:\penalty0 2827--2842, 2023.
+
+\bibitem[You et~al.(2021)You, Zhang, Xie, Chen, and Ma]{you2021coast}
+Di You, Jian Zhang, Jingfen Xie, Bin Chen, and Siwei Ma.
+\newblock Coast: Controllable arbitrary-sampling network for compressive
+  sensing.
+\newblock \emph{IEEE Transactions on Image Processing}, 30:\penalty0
+  6066--6080, 2021.
+
+\bibitem[Yuan et~al.(2020)Yuan, Liu, Suo, and Dai]{Yuan20PnPSCI}
+Xin Yuan, Yang Liu, Jinli Suo, and Qionghai Dai.
+\newblock Plug-and-play algorithms for large-scale snapshot compressive
+  imaging.
+\newblock In \emph{IEEE/CVF Conf. Comput. Vis. Pattern Recognit. (CVPR)}.
+  IEEE/CVF, 2020.
+
+\bibitem[Zhang and Ghanem(2018)]{zhang2018ista}
+Jian Zhang and Bernard Ghanem.
+\newblock Ista-net: Interpretable optimization-inspired deep network for image
+  compressive sensing.
+\newblock In \emph{Proceedings of the IEEE conference on computer vision and
+  pattern recognition}, pages 1828--1837, 2018.
+
+\bibitem[Zhang et~al.(2014)Zhang, Zhao, and Gao]{zhang2014group}
+Jian Zhang, Debin Zhao, and Wen Gao.
+\newblock Group-based sparse representation for image restoration.
+\newblock \emph{IEEE transactions on image processing}, 23\penalty0
+  (8):\penalty0 3336--3351, 2014.
+
+\bibitem[Zhang et~al.(2012)Zhang, Jung, Makeig, and Rao]{Zhang2012CompressedSF}
+Zhilin Zhang, Tzyy-Ping Jung, Scott Makeig, and Bhaskar~D. Rao.
+\newblock Compressed sensing for energy-efficient wireless telemonitoring of
+  noninvasive fetal ecg via block sparse bayesian learning.
+\newblock \emph{IEEE Transactions on Biomedical Engineering}, 60:\penalty0
+  300--309, 2012.
+
+\bibitem[Zhang et~al.(2020)Zhang, Liu, Liu, Wen, and Zhu]{zhang2020amp}
+Zhonghao Zhang, Yipeng Liu, Jiani Liu, Fei Wen, and Ce Zhu.
+\newblock Amp-net: Denoising-based deep unfolding for compressive image
+  sensing.
+\newblock \emph{IEEE Transactions on Image Processing}, 30:\penalty0
+  1487--1500, 2020.
+
+\bibitem[Zheng et~al.(2021)Zheng, Liu, Meng, Qiao, Tong, Yang, Han, and
+  Yuan]{Zheng:21}
+Siming Zheng, Yang Liu, Ziyi Meng, Mu Qiao, Zhishen Tong, Xiaoyu Yang,
+  Shensheng Han, and Xin Yuan.
+\newblock Deep plug-and-play priors for spectral snapshot compressive imaging.
+\newblock \emph{Photon. Res.}, 9\penalty0 (2):\penalty0 B18--B29, 2021.
+
+\bibitem[Zhou et~al.(2023)Zhou, Huang, Zheng, and Li]{Zhou_2023_ICCV}
+Man Zhou, Jie Huang, Naishan Zheng, and Chongyi Li.
+\newblock Learned image reasoning prior penetrates deep unfolding network for
+  panchromatic and multi-spectral image fusion.
+\newblock In \emph{Proceedings of the IEEE/CVF International Conference on
+  Computer Vision (ICCV)}, pages 12398--12407, 2023.
+
+\end{thebibliography}

@@ -1,0 +1,500 @@
+\documentclass[lettersize,journal]{IEEEtran}
+\usepackage{amsmath,amsfonts}
+\usepackage{algorithmic}
+\usepackage{algorithm}
+\usepackage{array}
+\usepackage[caption=false,font=normalsize,labelfont=sf,textfont=sf]{subfig}
+\usepackage{textcomp}
+\usepackage{stfloats}
+\usepackage{url}
+\usepackage{verbatim}
+\usepackage{cite}
+\hyphenation{op-tical net-works semi-conduc-tor IEEE-Xplore}
+% \usepackage{natbib}
+% updated with editorial comments 8/9/2021
+
+
+% some packages for ploting
+\usepackage{soul}
+\usepackage{color}
+\usepackage[dvipsnames, svgnames, x11names]{xcolor}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{graphicx}
+\usepackage{subfig}
+\usepackage{arydshln}
+\usetikzlibrary{calc}
+
+% \newcommand\scalemath[2]{\scalebox{#1}{\mbox{\ensuremath{\displaystyle #2}}}}
+\newcommand\LegendImage[1]{% from pgfplots.code.tex
+	\draw[%
+	/pgfplots/mesh=false,%
+	bar width=3pt,%
+	bar shift=0pt,%
+	%
+	mark repeat=2,%
+	mark phase=2,#1]
+	plot coordinates {
+		(0cm,0cm)
+		(0.3cm,0cm)
+		(0.6cm,0cm)%
+	};
+}
+\newcommand\LegendEntry[1]{\node[anchor=west,black,font=\footnotesize,inner xsep=2pt]{#1};}
+
+% \usepackage{subfig}
+
+\definecolor{mygreen}{RGB}{46,139,87}
+\definecolor{myred}{RGB}{255,152,150}
+\definecolor{myblue}{RGB}{30,144,255}
+
+% additional packages for writting this paper
+\usepackage[colorlinks=true, linkcolor=black, citecolor=black, urlcolor=black]{hyperref}
+
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{nicematrix}
+
+% \usepackage{tablefootnote}
+
+\usepackage{amssymb}
+% \usepackage{amsmath}
+\usepackage{bm}
+
+
+\begin{document}
+
+\title{Learning Evaluation Models from Large Language Models for Sequence Generation}
+
+% \author{IEEE Publication Technology,~\IEEEmembership{Staff,~IEEE,}
+\author{Chenglong Wang, Hang Zhou, Kaiyan Chang, Tongran Liu, Chunliang Zhang, Murun Yang, \\ Quan Du, Tong Xiao, Yue Zhang, \textit{Senior Member, IEEE}, and Jingbo Zhu
+
+\thanks{Chenglong Wang, Hang Zhou, Kaiyan Chang, and Murun Yang are with the Natural Language Processing Laboratory, School of Computer Science and Engineering, Northeastern University, Shenyang 110819, China (e-mail: clwang1119@gmail.com; ctrl.hang@gmail.com; changkaiyan1027@outlo-ok.com; yangmurun@outlook.com).}
+\thanks{Tongran Liu is with the CAS Key Laboratory of Behavioral Science, Institute of Psychology, Chinese Academy of Sciences, 16 Lincui Road, Chaoyang District, 100101, Beijing, China (e-mail: liutr@psych.ac.cn).}
+\thanks{Chunliang Zhang, Quan Du, Tong Xiao (corresponding author) and Jingbo Zhu are with the Natural Language Processing Laboratory, School of Computer Science and Engineering, Northeastern University,
+Shenyang 110819, China, and also with the NiuTrans Research, Shenyang 110004, China (e-mail: zhangchunliang@mail.neu.edu.cn;
+duquanneu@outlook.com;
+xiaotong@mail.neu.edu.cn; zhujingbo@mail.neu.edu.cn).}
+\thanks{
+Yue Zhang is with the School of Engineering, Westlake University, Hangzhou 310058, China (e-mail: zhangyue@westlake.edu.cn).}
+}
+
+% The paper headers
+% \markboth{Journal of \LaTeX\ Class Files,~Vol.~14, No.~8, August~2021}%
+% {Shell \MakeLowercase{\textit{et al.}}: A Sample Article Using IEEEtran.cls for IEEE Journals}
+\markboth{Journal of IEEE/ACM Transactions on Audio, Speech and Language Processing,~March,~2024}
+{Shell \MakeLowercase{\textit{et al.}}: A Sample Article Using IEEEtran.cls for IEEE Journals}
+
+% \IEEEpubid{0000--0000/00\$00.00~\copyright~2021 IEEE}
+% Remember, if you use this you must call \IEEEpubidadjcol in the second
+% column for its text to clear the IEEEpubid mark.
+
+\maketitle
+
+\begin{abstract}
+Automatic evaluation of sequence generation, traditionally reliant on metrics like BLEU and ROUGE, often fails to capture the semantic accuracy of generated text sequences due to their emphasis on n-gram overlap. A promising solution to this problem is to develop model-based metrics, such as BLEURT and COMET. However, these approaches are typically hindered by the scarcity of labeled evaluation data, which is necessary to train the evaluation models. In this work, we build upon this challenge by proposing the Customized Sequence Evaluation Metric (CSEM), a three-stage evaluation model training method that utilizes large language models to generate labeled data for model-based metric development, thereby eliminating the need for human-labeled data. Additionally, we expand the scope of CSEM to support various evaluation types, including single-aspect, multi-aspect, reference-free, and reference-based evaluations, enabling the customization of metrics to suit diverse real-world scenarios. Experimental results on the SummEval benchmark demonstrate that CSEM can effectively train an evaluation model without human-labeled data. Further experiments in reinforcement learning and reranking show that metrics developed through CSEM outperform traditional evaluation metrics, leading to substantial improvements in sequence quality as evaluated by both commonly used metrics and ChatGPT.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Large language model, evaluation model, machine translation, text style transfer, summarization.
+\end{IEEEkeywords}
+
+\section{Introduction}
+\IEEEPARstart{A}{utomatic} evaluation of sequence generation has traditionally depended on metrics such as BLEU \cite{papineni2002bleu} and ROUGE \cite{lin2004rouge} for tasks including machine translation and summarization. These metrics evaluate generated sequences by comparing them to references based on n-gram or other word-level overlap. However, such overlap-based metrics have well-known limitations in capturing the actual semantic meaning of the output sequence \cite{zhang2019bertscore,wieting2019beyond,sellam2020bleurt}. Notably, they lack robustness against variations in lexical choice or syntax. For example, synonymous words (e.g., \textit{utilize} vs. \textit{use}) are often incorrectly marked as errors due to their failure to match accurately.
+
+To address this limitation, recent efforts have been made to develop model-based evaluation metrics. One common approach is to use pre-trained language models or neural embeddings to train evaluation models that function as metrics, thereby improving the capture of semantic similarities. Examples include BLEURT \cite{sellam2020bleurt}, BARTScore \cite{yuan2021bartscore}, and COMET \cite{rei2022comet}. While these model-based metrics are notably promising and exhibit improved correlation with human judgment compared to traditional metrics such as BLEU and ROUGE, their implementation is not a low-hanging fruit in different real-world scenarios. They typically face the difficulty of training an evaluation model due to the scarcity of human-labeled evaluation data \cite{rei2022comet}. 
+
+Recent successes in large language models (LLMs) have demonstrated that we can annotate data using an LLM, which can then be effectively utilized to train task-specific models without human-labeled data \cite{wang2022self,nijkamp2022codegen,xiao2025foundationslargelanguagemodels}. Motivated by this, we hypothesize that the capabilities of LLMs can be leveraged to create labeled data for training an evaluation model, thereby eliminating the reliance on human-labeled data. As a result, we propose a three-stage training process for the evaluation model and introduce the LLM-based data annotation to develop \textbf{\underline{C}}ustomized \textbf{\underline{S}}equence \textbf{\underline{E}}valuation \textbf{\underline{M}}etric (CSEM). Specifically, the first stage generates diverse evaluation data without labels by sampling from generative models, ensuring data variety for subsequent stages. Secondly, given an LLM with evaluation capabilities, we annotate the generated data to create labeled evaluation data. Finally, we use this labeled data to train the evaluation model with a lightweight language model, ensuring that the resulting model can perform fast and efficient automatic evaluations. Furthermore, we expand the scope of CSEM to include various types of evaluations for sequence generation by modifying both the annotation and model training stages. This expansion allows us to customize evaluation metrics for various real-world scenarios.
+
+In the experiment, we strive to answer the following two key research questions for CSEM. (RQ1): Which method of evaluation data annotation is more effective in CSEM? Commonly used methods for evaluation data annotation typically fall into two categories: \textit{rating} and \textit{comparison ranking}. Through examining the correlation with human judgment, we find that rating is a more effective way of synthesizing evaluation data. (RQ2): Can CSEM be adapted to develop evaluation metrics for different scenarios? We demonstrate that CSEM can effectively develop model-based metrics for a variety of scenarios, including single-aspect, multi-aspect, reference-free, and reference-based evaluations. Furthermore, we conduct experiments to verify the effectiveness of these metrics by using them to provide rewards in RL and reranking. The results show that these metrics significantly improve the performance of generation models and yield more accurate rewards, underscoring the effectiveness of CSEM.
+
+Our contributions are threefold: 
+\begin{itemize}
+    \item We propose the CSEM method, which effectively creates labeled evaluation data via LLM-based annotation, enabling the development of model-based metrics without the need for human-labeled data.
+    \item We expand the scope of CSEM to include various types of evaluations for sequence generation, which enable the customization of a range of sequence metrics based on LLMs. We also thoroughly explore these metrics to provide rewards that improve sequence generation models through RL and reranking.
+    \item Through extensive experiments, we demonstrate the effectiveness of CSEM. The results show that CSEM is highly effective. Notably, without relying on human-labeled data, CSEM achieves a 4\% absolute improvement in Spearman correlation while also reducing the number of model parameters by 69\% on the SummEval benchmark, compared to the strong BARTScore \cite{yuan2021bartscore}. Besides, through experiments on RL and reranking, we demonstrate the performance of CSEM in improving sequence models. For example, compared to the baseline, employing our metrics to provide rewards in RL and reranking yields +7.46 COMET points and +3.50 ChatGPT points on the machine translation task.
+\end{itemize}
+
+
+\section{Related Work}
+This work builds on related work in data synthesis and automatic evaluation by leveraging LLMs. It is also related to previous work on capability transfer from LLMs.
+
+\textit{Data Annotation via LLMs:}
+The data annotation using LLMs has become a critical method for addressing the challenges associated with the scarcity of high-quality, human-labeled data, which is essential for training models in supervised learning contexts \cite{schick2021generating,nijkamp2022codegen,wang2024survey}. Recent studies have primarily highlighted the capability of LLMs to annotate data that replicates not only real-world data distributions but also introduces beneficial variations that significantly enrich model training datasets. These methods are instrumental in extending the capabilities of LLMs across a spectrum of tasks without the traditional reliance on extensive human-labeled data \cite{austin2021program}. However, the application of LLM-based data annotation to develop model-based metrics remains largely unexplored.
+
+\textit{Automatic Evaluation via LLMs:}
+Recent works rely on the in-context learning capabilities of the LLM and prior knowledge of human behaviour to investigate its application to the evaluation of sequence generation tasks. This core idea is to directly use an LLM as an evaluator by feeding the task description and the evaluation criteria as a prompt. These works could be classified into two groups. The first group focused on verifying the effectiveness of the LLM-based evaluation for various sequence generation tasks \cite{fu2023gptscore, kocmi2023large, wang2023chatgpt, lai2023multidimensional}. For example, \ \cite{kocmi2023large} demonstrated the effectiveness of applying LLMs to translation evaluation by computing the correlation scores between LLMs and humans. The second group tended to improve the LLM evaluation capability, such as incorporating chain-of-thoughts \cite{liu2023gpteval, luo2023chatgpt} and roleplayers \cite{wu2023large,chan2023chateval}. However, despite the powerful evaluation capabilities of LLMs, directly using them for evaluation can be computationally expensive. Unlike these approaches, our work investigates the use of LLM-based evaluation capabilities to annotate data for training evaluation models, addressing the scarcity of human-labeled data. As another bonus, the resulting evaluation model offers significantly lower operational costs and faster evaluation speeds.
+
+\textit{Transferring Capability from LLMs:}
+A commonly used technique to transfer capabilities from LLMs is knowledge distillation \cite{lin2020weight,tripathi2023divide,wang2023improved}. Its core idea is to transfer the knowledge from an LLM into a lightweight model. For example, \cite{ho2022large} transferred the reasoning capability from PaLM \cite{chowdhery2022palm} to T5 \cite{raffel2020exploring} by using sequence-level distillation \cite{kim2016sequence}. Furthermore, when transferring the task-specific capability from an LLM, \cite{hsieh2023distilling} proposed a step-by-step distillation mechanism, which learns from both LLM-labeled labels and rationales based on multi-task learning. In this work, we focus on transferring the evaluation-related capacity of an LLM for large-scale applications, a previously unexplored research topic. The few related ones mainly focused on learning preference models from LLMs \cite{lee2023rlaif, cui2023ultrafeedback}. Specifically, these works used the trained generation models to generate multiple sequences for each input and simulated human preference data (i.e., comparisons of the sequences) with an LLM. Based on this preference data, the preference models can be learned via ranking loss \cite{ouyang2022training}. However, this process only transfers the sequence comparison capability of an LLM, but not its sequence evaluation capability (see Section \ref{sec:comparison-rating-ranking}) \cite{ziya-reward-7B}.
+% \footnote{The capability of LLMs to sequence comparison refers to their skill in analyzing and contrasting sequences. For example, given two sequences and evaluation criteria, an LLM is able to distinguish which one is better.}
+
+To the best of our knowledge, we are the first to conduct such a comprehensive exploration of using LLMs to develop a model-based metric without relying on human-labeled data. The most closely related works primarily focus on utilizing LLMs to generate synthetic datasets of sentence pairs with similarity ratings for translation quality evaluation \cite{mohtashami2023learning}. Another related one involves training evaluation models using unsupervised training \cite{thompson2020automatic,fomicheva2020unsupervised}. In contrast to these works, our study directly uses LLMs to annotate diverse labeled data for the development of model-based metrics across various generative tasks. Additionally, we investigate the potential of these metrics in providing rewards for RL and reranking. 
+
+\vspace{-2mm}
+\section{Preliminaries}
+\subsection{Sequence Generation Model}
+Given an input $x$ such as a text, a sequence generation model generates a sequence of $N$ tokens $y = \{y_{1},\dots, y_{N}\}$, where each token $y_{t}$ is drawn from a predefined vocabulary.
+At the training stage, the model learns the probability
+\begin{eqnarray}
+		\mathrm{Pr}_{\theta}(y|x) &=& \prod_{t=1}^{N}\mathrm{Pr}_{\theta}(y_{t}|y_{<t},x)
+\label{eq-generation-pro}
+\end{eqnarray}
+where $y_{<t}$ is the prefix $\left\lbrace y_{1}, y_{2}, \dots, y_{t-1}\right\rbrace $, and $\theta$ is a set of model parameters.
+In this process, the standard training objective is to maximize the likelihood over all the tokens of the target sequence, \textit{i.e., maximum likelihood estimation (MLE)} \cite{myung2003tutorial}.
+At the inference stage, we generate tokens sequentially according to the probability $\mathrm{Pr}_{\theta}$.
+
+\subsection{Training Evaluation Models}
+\label{sec:background-training-evaltaion-models}
+In the evaluation of sequence generation tasks, while traditional metrics such as BLEU and ROUGE metrics are commonly utilized, there is also a significant opportunity to train an evaluation model that functions the metric that can offer a deeper and potentially more accurate measure of the quality of generated sequences. This approach involves using pre-trained language models as encoders to capture the nuances in both the input $x$ and the generated sequence $\hat{y}$, subsequently mapping these representations to a numerical score $\mathcal{M}(x,\hat{y})$ that serves as the quality score for sequence $\hat{y}$, where $\mathcal{M}(\cdot)$ denotes the evaluation model. Additionally, in cases where a reference sequence $y_{\mathrm{ref}}$ exists, it can also be encoded simultaneously to train a reference-based evaluation model $\mathcal{M}(x,\hat{y}, y_{\mathrm{ref}})$. To train the evaluation model, we can collect labeled evaluation data on a set of generated sequences in two primary formats: \textit{rating} and \textit{comparison ranking}. The first is often a continuous or discrete numerical value, such as a score on a scale (e.g., 1-5 stars or 1-10 points). In this case, we can give the loss function through the mean squared error:
+\begin{eqnarray}
+     \mathcal{L}_{r} &=& - \mathbb{E}_{(x,\hat{y},l_r)\sim \mathcal{D}_{r}} \big(\mathcal{M}(x,\hat{y})- l_r\big)^2
+\end{eqnarray}
+where $\mathcal{D}_{r}$ denotes the dataset of training the evaluation model and $l_r$ denotes the labeled rating for $\hat{y}$. The second is a ranking. In this approach, two different sequences $\hat{y}_a$ and $\hat{y}_b$ are generated, and the labeler ranks them, for example, $\hat{y}_a \succ \hat{y}_b$ indicating that $\hat{y}_a$ is better than $\hat{y}_b$. The loss function can given through a pair-wise ranking:
+\begin{eqnarray}
+    \mathcal{L}_{c} &=& - \mathbb{E}_{(x,\hat{y}_{a},\hat{y}_{b})\sim \mathcal{D}_{c}} \log \sigma(\mathcal{M}(x,\hat{y}_{a}) - \mathcal{M}(x,\hat{y}_{b}))
+    \label{eq:ranking-loss}
+\end{eqnarray}
+where $\sigma$ denotes the sigmoid activate function and $\mathcal{D}_{c}$ denotes a set of comparison ranking data. This training approach is also the current method used in reward modeling when aligning LLMs with human preferences \cite{ouyang2022training}.
+
+\subsection{Reinforcement Learning}
+The optimization objective of RL for sequence generation models is to maximize the long-term reward, written as $\arg\max_{\theta}\mathbb{E} [r(\hat{y})]$, where $r(\cdot)$ is a reward function computing long-term reward for $\hat{y}$.
+$r(\cdot)$ is typically defined by an evaluation metric.
+To achieve this objective, policy gradient methods, such as REINFORCE \cite{williams1992simple} and minimum risk training (MRT) \cite{shen2015minimum}, are often used. 
+Specifically,  REINFORCE uses log derivatives to define the loss function:
+\begin{eqnarray}
+		\mathcal{L}_{\mathrm{REINFORCE}} &=&  -\mathbb{E}_{\hat{y} \sim \Omega(x)}\log \mathrm{Pr}_{\theta}(\hat{y}|x) r(\hat{y})
+ \label{eq-pg}
+\end{eqnarray}
+where $\Omega(x)$ is an approximated space of sampling, and it consists of the sampled sequences.
+Furthermore, MRT uses these sampled sequences to approximate a posterior distribution with renormalization and gives a new loss function:
+\begin{eqnarray}
+		\mathcal{L}_{\mathrm{MRT}} &=& \mathbb{E}_{\hat{y}\sim \Omega(x)}Q_{\theta}(\hat{y}|x)\big[-r(\hat{y})\big]
+	\label{eq-mrt}
+\end{eqnarray}
+where $Q_{\theta}(\hat{y}|x)$ is a distribution defined on the approximated space, and it can be defined by
+\begin{eqnarray}
+		Q_{\theta}(\hat{y}|x) &=& \frac{\mathrm{Pr}_{\theta}(\hat{y}|x)^{\alpha}}{\sum_{\hat{y}\in \Omega(x)}\mathrm{Pr}_{\theta}(\hat{y}|x)^{\alpha}}
+\end{eqnarray}
+where $\alpha$ is a smoothness parameter.
+Based on the posterior distribution, MRT can achieve better performance compared with REINFORCE \cite{kiegeland2021revisiting, donato2022mad}.
+
+\subsection{Reranking}
+Reranking refers to reordering or reevaluating a set of candidate sequences generated by a trained model \cite{shen2014dependency, lee2021discriminative, liu2021addressing}.
+Given a set $\mathcal{Y}$ of $N$ candidate sequences for input, we also use the reranking approach to maximize the reward computed without the corresponding references.
+Typically, we can use the reward model to score the candidate 
+sequences and pick a final generated sequence that has a maximum reward score:
+\begin{eqnarray}
+    \hat{y}_{\mathrm{RR}} &=& \arg\max_{\hat{y}\in\mathcal{Y}}r(\hat{y})
+\end{eqnarray}
+When multiple rewards $(r_{1}, r_{2}, \cdots, r_{J})$ are used, we can pick a sequence through assigned weights $(w_{1}, w_{2}, \cdots, w_{J})$, where $J$ is the number of rewards:
+\begin{eqnarray}
+		\hat{y}_{\mathrm{RR}} &=& \arg\max_{\hat{y}\in\mathcal{Y}} \sum_{j=1}^{J} w_{j} \times r_{j}(\hat{y})
+\end{eqnarray}
+
+Note that the use of appropriate evaluation metrics to provide rewards is crucial for the success of applying RL and reranking to improve sequence generation models \cite{shu2021reward, fernandes2022quality}. However, this also poses significant challenges in real-world scenarios. Notably, we can not always straightforwardly write a function that can evaluate a generated sequence for different sequence generation tasks while simultaneously considering various aspects. While several methods have been proposed for learning evaluation models, they typically require a substantial amount of human-labeled data \cite{zhang2016learning, rei2020comet, fernandes2022quality}.
+% In this work, we design a three-stage evaluation training method, namely CSEM, which can eliminate the dependency on human-labeled data.
+
+\section{Evaluation Capability Transfer}
+\subsection{Overview}
+In this work, we aim to harness the capabilities of LLMs to annotate labeled data, thereby eliminating the reliance on human-labeled data for the development of model-based metrics. To achieve this, we introduce the CSEM method to accomplish this goal. The structure of CSEM is illustrated in Figure \ref{fig:main_image}. As depicted, CSEM encompasses three primary stages: data collection, annotation with an LLM, and training evaluation models. Additionally, we utilize these metrics to improve sequence generation models. The subsequent subsections provide a detailed explanation of each stage.
+
+\begin{figure}[t!]
+    \centering
+    \includegraphics[scale=0.40]{images/main_picture.pdf}
+    \vspace{-3mm}
+    \caption{
+    An overview of the proposed CSEM. 
+    The CSEM consists of three stages: 1) collecting data by sampling from the trained sequence generation model; 2) annotating the evaluation scores for each sample by leveraging an LLM, and 3) training evaluation models with a pre-trained language model.
+    }
+    \vspace{-4mm}
+    \label{fig:main_image}
+\end{figure}
+
+\input{use_images/prompt}
+\subsection{Data Collection}
+\label{sec:data-collection}
+To create labeled evaluation data, we initiate the process by training a sequence generation model using MLE on the provided training set. Note that in CSEM, we opt to annotate data using a rating-based format. Consequently, we proceed to generate a set of data pairs $\mathcal{D}_{r}=\{(x^1, \hat{y}^1), \cdots, (x^n, \hat{y}^n)\}$, where $n$ denotes the number of data pairs. This is achieved by randomly selecting $n$ training samples from the training set. The trained generation model is then used to generate a candidate sequence for each selected input. 
+
+Our goal is to produce a diverse array of candidate sequences, enhancing the robustness and generalization ability of the evaluation models to be trained. To this end, we have devised a detailed process to derive the candidate sequence for each input, aiming to optimize the quality and variability of the generated data. Specifically, given an input $x^{i}$, we employ top-$k$ sampling, and sample $j$ output sequences $\{\hat{y}_1^i, \cdots, \hat{y}_j^i\}$ from different checkpoints. Furthermore, the reference $y^{i}_{\mathrm{ref}}$ of $x_{i}$ in the training set is added to the corresponding output sequence set. Finally, we randomly select one sequence $\hat{y}^i$ from $\{\hat{y}_1^i, \cdots, \hat{y}_j^i, y^{i}_{\mathrm{ref}}\}$ as the candidate sequence of $x^{i}$ to form an data pair $(x^{i}, \hat{y}^i)$.
+
+In selecting the data for this stage, we need to ensure that the training of the evaluation model is aligned with the target evaluation scenarios. To achieve this, we carefully choose inputs that match the distribution of the desired evaluation task. For example, in a summarization task, we select inputs from the CNN/DM training set \cite{hermann2015teaching}, as it contains a wide range of generalizable scenes commonly seen in the domain. Additionally, this dataset is frequently used in training sequence generation models, making it highly relevant. However, note that our CSEM method is general and can be applied to any sequence generation task. Therefore, the choice of data can be adjusted arbitrarily based on the specific evaluation scenario, enabling the generation of high-performance evaluation models.
+
+\subsection{Annotation with an LLM}
+\label{sec:annotation}
+Considering the proven robust evaluation capabilities of LLMs across various generative tasks \cite{fu2023gptscore, kocmi2023large, mohtashami2023learning, wang2023chatgpt, lai2023multidimensional}, we use an LLM to annotate the evaluation score for each data pair. This process is performed after data collection and involves using a natural language prompt that includes the task description and evaluation criteria. Following the methodology in \cite{wang2023chatgpt}, we design all prompts to facilitate a rating scale from one to five stars, as illustrated in Figure \ref{fig:prompt}. To adapt our method to different scenarios, we have expanded it by designing prompts that cater to different types of sequence generation evaluations tailored to suit a range of application scenarios. These evaluation types include single-aspect, multi-aspect, reference-free, and reference-based evaluations. This allows us to select the most appropriate evaluation type based on the specific requirements of the application scenario, thereby enhancing the applicability and effectiveness of CSEM.
+
+There are two key advantages to employing an LLM as an annotator: 1) we can intuitively specify the desired evaluation criteria through explicit natural language description in the prompt, and  2) we can obtain high-quality annotations based on the evaluation and in-context learning capabilities of LLMs, which can be significantly cheaper and faster compared to employing human annotators \cite{ding2022gpt, kang2023distill, chiang2023large}.
+
+Two questions arise here: \textit{why not use a few-shot evaluation template} and \textit{why not use multiple LLMs to annotate evaluation scores?} Regarding the first question, we opted for a zero-shot template as prior studies have demonstrated its effectiveness in sequence evaluation \cite{wang2023chatgpt, liu2023gpteval}. Furthermore, the use of few-shot templates is infrequent in LLM-based evaluations, primarily to avoid the transmission of biases from human evaluators in the demonstrations. Concerning the second question, we experimented with learning evaluation from both ChatGPT and \texttt{text-davinci-003}. However, this approach proved less effective, yielding a Spearman correlation of 0.397 on the SummEval benchmark, which is lower than the 0.442 achieved using only ChatGPT. We attribute this to potential conflicts in the metric scales used by these two models. Consequently, in this work, we have decided against using multiple LLMs to annotate evaluation scores.
+
+
+\subsection{Training Evaluation Models}
+\label{sec:training-eval-models}
+Although LLMs have demonstrated strong evaluation capabilities, they are not directly suitable to function as evaluation models for developing model-based metrics. This limitation stems from the requirement for metrics to be reproducible, lightweight, and fast to meet the frequent testing of model-generated quality, especially in scenarios where the test sets may consist of thousands of samples. In this section, we utilize the annotated data to fine-tune relatively lightweight language models (LMs) that serve as evaluation models. The models we ultimately train have parameter sizes of 125M and 355M, which are consistent with the parameter sizes of currently available open-source model-based metrics, such as BERTScore and BARTScore. These parameter sizes allow for a fast run on one GPU with 12G or 8G memory (see Section \ref{sec:reward_query_efficiency}), meeting the speed requirements necessary for large-scale automatic evaluations. Subsequently, we will detail the model architecture and the optimization techniques used in the training of these evaluation models.
+
+\subsubsection{Model Architecture}
+\label{sec:model-arch}
+Our evaluation model architecture follows COMET \cite{rei2020comet}, which employs the LM as an encoder and the feed-forward network as a regressor. Specifically, we first encode each input sequence (i.e., source, generated sequence, and human reference) using the LM. From the output vectors, we extract the \texttt{[CLS]} embedding, which serves as the representation of the entire sequence. This is based on the consideration that the \texttt{[CLS]} embedding typically captures the rich semantics of the textual output, making it particularly suitable for our evaluation purposes. Following \cite{shimanaka2018ruse}, we define the input of the regressor based on the extracted embeddings:
+\begin{eqnarray}
+		\begin{aligned}
+		\bm{x}_{\mathrm{regressor}}=&[\bm{h}_{\hat{y}};\bm{h}_{y_{\mathrm{ref}}};\bm{h}_{\hat{y}}\odot\bm{h}_{x};\bm{h}_{\hat{y}}\odot\bm{h}_{y_{\mathrm{ref}}};\\&|\bm{h}_{\hat{y}}-\bm{h}_{x}|;|\bm{h}_{\hat{y}}-\bm{h}_{y_{\mathrm{ref}}}|]
+		\end{aligned}
+\end{eqnarray}
+where $\bm{h}_{x}$, $\bm{h}_{\hat{y}}$ and $\bm{h}_{y_{\mathrm{ref}}}$ denote the \texttt{[CLS]} embeddings of source, generated sequence and human reference, respectively. 
+When the human reference is absent, i.e., reference-free evaluation, the input of the regressor is
+\begin{eqnarray}
+		\bm{x}_{\mathrm{regressor}}=[\bm{h}_{\hat{y}};\bm{h}_{x};\bm{h}_{\hat{y}}\odot\bm{h}_{x};|\bm{h}_{\hat{y}}-\bm{h}_{x}|]
+\end{eqnarray}
+The regressor takes in the given input and outputs a continuous value that serves as a score of the generated sequence. 
+
+In practice, we operate under the assumption that not all information is necessary for the purpose of evaluation. For instance, the source input may be considered superfluous when assessing the fluency of a generated sequence. Including such information could inadvertently introduce noise into the evaluation model. Based on this premise, we streamline the fluency evaluation models by omitting the source input. Specifically, the inputs to the regressor are the embeddings of the generated sequence, $\bm{h}_{\hat{y}}$, and the reference sequence, $\bm{h}_{y_{\mathrm{ref}}}$, which are used to evaluate the quality without the influence of extraneous data.
+
+\subsubsection{Optimization}
+We train all evaluation models through a regression loss, which minimizes the mean square error between the predicted value (a continuous score) and the annotated score:
+\begin{eqnarray}
+    \mathcal{L}_{r} &=& - \mathbb{E}_{(x,\hat{y})\sim \mathcal{D}_{r}}\big(\mathcal{M}(x, \hat{y})- S(x, \hat{y})\big)^2
+\end{eqnarray}
+where $S(\cdot)$ denotes the evaluation score annotated by an LLM. Here, the annotated score, denoted by stars, is converted into a real value through min-max normalization. Additionally, we investigated the use of a classification loss function for training evaluation models, treating each star rating as a distinct class (refer to Section \ref{sec:classification}). The results indicate that a regression loss yields superior performance, as it allows the model to find subtle differences between output sequences.
+
+\input{tables/single_aspect}
+
+\subsection{Applying Evaluation Models}
+\label{sec:apply}
+We train evaluation models with a small number of parameters, making CSEM metrics highly scalable and well-suited for large-scale applications, such as providing rewards in RL and reranking \cite{he2024improving}.
+% For example, these lightweight metrics can be utilized to provide rewards, enhancing sequence generation models through RL and reranking techniques \cite{he2024improving}.
+
+
+\subsubsection{Reinforcement Learning}
+We employ policy gradient-based RL to optimize for our evaluation model-based metrics.
+Following \cite{yehudai2022reinforcement}, we fine-tune the pre-trained sequence generation model with a weighted average of the RL loss $\mathcal{L}_{\mathrm{RL}}$ and the MLE loss $\mathcal{L}_{\mathrm{MLE}}$,  written as
+\begin{eqnarray}
+    \mathcal{L}_{\mathrm{weighted}} &=& \lambda\times\mathcal{L}_{\mathrm{RL}}+(1-\lambda)\times\mathcal{L}_{\mathrm{MLE}}
+    \label{eq:rl-loss}
+\end{eqnarray}
+where $\lambda$ is a balance factor that is tuned on the validation set.
+Here, we compute $\mathcal{L}_{\mathrm{RL}}$ using MRT with Eq. \ref{eq-mrt}. 
+
+
+\subsubsection{Reranking}
+The reference-free metrics enable the reranking of candidate sequences for sequence generation models. This enables the selection of the optimal generated sequence to maximize specific evaluation criteria in the prompt used by CSEM. Inspired by \cite{fernandes2022quality}, we use multiple metrics in the reranking process to obtain better sequences. These metrics are developed by CSEM with single-aspect evaluation and focus on different evaluation aspects. To assign a reasonable weight to each metric, we tune weights for these models to maximize a given reference-based metric on a validation set by using Travatar's MERT tool \cite{neubig2013travatar}.
+
+
+\section{Experiments}
+In this section, we verify CSEM in two ways. First, we test the performance of evaluation models trained by CSEM on the SummEval benchmark, thereby confirming its effectiveness in training evaluation models.
+Second, we utilize the obtained evaluation model-based metrics to provide rewards for the sequence generation tasks, including machine translation, text style transfer, and summarization. This step verifies whether these metrics can effectively improve sequence generation models through RL and reranking.
+
+\input{tables/multi_aspect}
+
+\input{tables/mt_summary_dataset}
+
+\input{tables/style_transfer_dataset}
+
+\subsection{Implementation Details}
+\subsubsection{Datasets}
+The datasets used for each sequence generation task were as follows:
+\begin{itemize}
+    \item \textit{Machine Translation}: 
+    We conducted experiments on two machine translation datasets, including a small-scale IWSLT’14 German-English (De-En) dataset and a large-scale WMT’14 English-German (En-De) dataset. We preprocessed the dataset following \cite{hu2021ranknas}.
+    \item \textit{Text Style Transfer}:
+    The experiments regarding the text style transfer task were conducted on Grammarly’s Yahoo Answers Formality Corpus (GYAFC) dataset \cite{rao2018dear}.
+    This dataset is a formality style transfer with parallel informal and formal sentences from two domains: Entertainment \& Music (E\&M) and Family \& Relationships (F\&R).
+    \item \textit{Summarization}:
+    We also tested the capability of the CSEM to train evaluation models for the summarization task on the CNN/DM dataset \cite{hermann2015teaching}.
+\end{itemize}
+The statistical information on the utilized datasets is summarized in Tables \ref{tab_statistical_mt_summay_datasets} and \ref{tab_statistical_style_tranfer_datasets}.
+
+\subsubsection{Training Evaluation Models}
+We chose ChatGPT (the \texttt{gpt-3.5-turbo-0613} version) as our LLM.
+It was fine-tuned by RL from human feedback \cite{christiano2017deep} and proven to have remarkable evaluation capabilities for different sequence generation tasks \cite{wang2023chatgpt}.
+For evaluation aspects, we designed one multi-aspect evaluation and four single-aspect evaluations tailored to each task.
+The prompts with these designed evaluation aspects are described in Tables \ref{tab:single-aspect} and \ref{tab:multi-aspect}.
+For data collection, we randomly selected 15K training samples from the training set and sampled five output sequences for each input. 
+For evaluation model architecture, we used RoBERTa-base and RoBERTa-large \cite{liu2019roberta} as the encoder model, respectively.
+Note that when dealing with the machine translation task, we used XLM-RoBERTa \cite{conneau2019unsupervised}, a multilingual LM, as the encoder model.
+We trained the evaluation model based on the COMET codebase.
+The learning rate, the maximum number of epochs, and the batch size were set to 1e-5, 10, and 32, respectively.
+We trained all evaluation models with 16-bit floating point precision on one TITAN V GPU.
+
+\subsubsection{Training Sequence Generation Models}
+For machine translation and summarization tasks, we pre-trained a standard Transformer base model \cite{vaswani2017attention} using MLE until convergence.
+For the text style transfer task, following \cite{lai2021thank}, we fine-tuned a BART base model \cite{lewis2019bart} to serve as our pre-trained generation model.
+All models were trained on four TITAN V GPUs.
+For RL training, we used the MLE checkpoint with the lowest validation set loss to initialize a sequence generation model.
+We sampled five candidate sequences for each source input during RL training.
+The balance factor $\lambda$ in Eq. \ref{eq:rl-loss} was 0.7.
+For the IWSLT'14 De-En and WMT'14 En-De datasets, we trained the pre-trained models over 10 epochs and 8000 steps, respectively, using a batch size of 4096 tokens (at the token level). Subsequently, we conducted tests on these models using their corresponding datasets; specifically, the IWSLT’14 De-En test set was used to evaluate the IWSLT model, and the WMT’14 En-De test set was employed to evaluate the WMT model.
+For the text style transfer and summarization tasks, we trained the pre-trained models for approximately 4000 steps using a batch size of 4096 tokens. Following the methodology outlined in \cite{wang2023esrl}, we adopted a two-stage sampling approach to enhance the efficiency of RL training. Specifically, stage one is to sample the candidate sequences with an autoregressive mode \cite{xiao2023introduction}. Stage two is to compute the probabilities of the sampled candidate sequences and their gradient information. This two-stage sampling approach can take full advantage of the Transformer’s parallelism computation, so the excessive computational graph storage requirements disappear.
+For reranking purposes, we generated 50 candidate sequences for each task using the top-$k$ sampling method. During inference, we employed the beam search strategy, adhering to the same hyperparameters as described in \cite{li2022ode}.  We have made our code, data, and models publicly available at \url{https://github.com/wangclnlp/CSEM}.
+
+
+\input{tables/summary_multi_aspect}
+
+\input{tables/mt_res}
+
+\subsection{Results of SummEval Benchmark}
+We computed the correlation scores of four single-aspect summarization evaluation models with human judgments on the SummEval benchmark \cite{fabbri2021summeval}, respectively. The results are shown in Table \ref{tab:summary-multi-aspect}. We compare CSEM with different evaluation methods that achieved state-of-the-art performance on summarization evaluation, including ROUGE \cite{lin2004rouge}, BERTScore \cite{zhang2019bertscore}, MoverScore \cite{zhao2019moverscore}, and BARTScore \cite{yuan2021bartscore}. The results show that CSEM can achieve optimal correlation results for the average performance compared to all baseline evaluation methods except ChatGPT. Notably, although the evaluation data is labeled by ChatGPT, we also see that CSEM can surpass ChatGPT on some evaluation aspects. For example, the reference-based CSEM-large metric achieves a 0.529 Spearman correlation for the relevance evaluation aspect, which exceeds the ChatGPT (i.e., 0.512). A similar phenomenon can also be found in knowledge distillation \cite{wang2021niutrans,burns2023weak}. We here hypothesize that this improved performance stems from two primary factors. First, although we use LLMs for rating-based annotation, our training model employs a regression approach. This potentially allows the evaluation model to generalize better, capturing subtle differences between sequences that may not be fully captured by LLMs alone. We delve into this in more detail in Section \ref{sec:classification}. Second, the used model architecture based on COMET is specifically designed for evaluation tasks. Unlike the general-purpose LLM architecture, the design of COMET is tailored to capture evaluation-specific features, making it more adept at capturing features relevant to evaluation. Coupled with LLM supervision, this targeted design likely enables weak-to-strong generalization.
+
+Further analysis of the CSEM-base and CSEM-large metrics, particularly for reference-based evaluation, reveals that CSEM-large excels across various correlation metrics. From the results, we can observe that CSEM-large consistently outperforms all baselines except in Fluency, where it is surpassed by BARTScore-FT. However, this can be attributed to the extensive training of BARTScore-FT on the CNN/DM dataset. Interestingly, in reference-free evaluations, CSEM-large does not consistently outperform CSEM-base, suggesting that large model parameters may not be necessary for CSEM in these contexts. Indeed, in some cases, larger parameters could lead to overfitting and, thus, poorer generalization capabilities, as noted in \cite{rei2023scaling}. The results suggest that \textit{for reference-based evaluation scenarios, developing a CSEM-large version yields superior performance. Conversely, for reference-free evaluation scenarios, a CSEM-base version is advisable to achieve a more lightweight model-based metric.}
+
+\input{tables/style_trans_res}
+
+
+\input{tables/summary_res}
+
+\subsection{Results of Reinforcement Learning and Reranking}
+We conducted experiments to further validate the effectiveness of CSEM by using it to provide rewards in RL and reranking. The experiments focus on two main questions: 1) \textit{Can CSEM-based metrics effectively improve sequence generation models?} and 2) \textit{Does CSEM outperform traditional metrics in RL and reranking?} To address these questions, we applied different versions of CSEM in RL and reranking across various model tasks and compared the results with both automatic and human evaluations (Paragraphs 1, 2, 3, and 4). Additionally, we compare the performance of rewards derived from CSEM with those derived from traditional metrics (Paragraph 5).
+\subsubsection{Machine Translation}
+Table \ref{tab:mt-res} compares the performance of different versions of CSEM metrics when applied to machine translation models. First, compared to MLE, CSEM-based metrics, when applied with RL and reranking, significantly enhance ChatGPT-based metrics. This also serves as evidence that the evaluation models trained by CSEM are well-aligned with ChatGPT. Second, these improvements are consistently observed across other evaluation metrics. Notably, with a single multi-aspect evaluation model, the RL+RR approach achieves an impressive +7.46 COMET-20 point gain on the IWSLT task. One possible explanation for this is that CSEM offers a more comprehensive evaluation, capturing aspects that overlap with other existing metrics. Third, we analyze the performance gains from RL and reranking. The results indicate that reranking provides a more stable optimization process than RL when using a reference-free metric. Additionally, combining both techniques (i.e., RL+RR) further enhances reward optimization, demonstrating the effectiveness of their joint application.
+
+\subsubsection{Text Style Transfer and Summarization}
+The results of the text style transfer task are listed in Table \ref{tab:style-transfer-res}. The results further highlight that optimization using our metrics significantly enhances the performance of the text style transfer task. As shown by the comparison between the ``Chat.'' and ``ChatRef.'' columns, a similar trend observed in the machine translation task is also evident here: optimization with our metrics yields a substantial performance boost over MLE. Furthermore, we conduct experiments on the summarization task, as shown in Table \ref{tab:summary-res}. The performance is evaluated using ROUGE-1, ROUGE-2, ROUGE-L, Chat., and ChatRef. metrics. The results also show that optimizing with our metrics yields superior results over MLE.
+
+\input{tables/case_study_IWSLT_WMT}
+
+\subsubsection{Case Study}
+Tables \ref{tab:case-study-iwslt-wmt} showcase various case studies from the IWSLT and WMT translation tasks. We selected the MLE and RL+RR with the CSEM-large metric for comparison, owing to its demonstrated superiority in machine translation tasks. The findings indicate that optimizing translations with our metrics significantly outperforms MLE. Notably, our metrics concentrate on aspects of meaning and grammar (as outlined in Table \ref{tab:multi-aspect}), effectively addressing issues related to meaning errors, incompleteness, and grammar errors.
+
+\subsubsection{Human Evaluation} \label{sec:human_evaluation}
+To further demonstrate the effectiveness of our metrics, we conduct a human evaluation. We use the metrics developed by CSEM to provide rewards in RL and reranking to improve sequence generation models. The performance of these models is then compared against the MLE baseline. We select 200 source sentences from the test set of the IWSLT'14 dataset, along with their corresponding translations generated by different models. These sentences are chosen randomly, with the only constraint being a token length between 3 and 25, as done in \cite{fernandes2022quality}. For each translation, annotators are asked to assign a score from 1 to 5 based on the following criteria.
+\begin{itemize}
+    \item \textit{1}: The meaning of the translation is completely different with source sentence.
+    \item \textit{2}: The translation does not contain all meaning in the source sentence and does not read fluently.
+    \item \textit{3}: The translation does not contain all meaning in the source sentence and reads fluently; however, it has some grammatical errors.
+    \item \textit{4}: The translation contains all meaning in the source sentence and reads fluently; however, it has some grammatical errors.
+    \item \textit{5}: The translation contains all meaning in the source sentence and reads fluently; and, there are no grammatical errors in this translation.
+\end{itemize}
+
+\input{tables/human_eval_res}
+
+Table \ref{tab_human_eval} presents the human evaluation results for the machine translation task. From this table, it is evident that optimization using our metrics outperforms MLE. We also observe that RR, when applied with multiple evaluation metrics, results in higher translation quality compared to RL+RR when only a single evaluation metric is used. This finding contrasts with the results presented in Table \ref{tab:mt-res}. One possible explanation for this discrepancy is that RL+RR with a single evaluation metric is more prone to overfitting, as noted in \cite{fernandes2022quality}. This observation suggests that the sequence generation model could achieve better performance when trained with RL+RR and multiple evaluation metrics. However, implementing this comes with substantial costs. We plan to further investigate how to balance efficiency and effectiveness in future work.
+
+\subsubsection{Performance on Different Rewards}
+To further verify the effectiveness of CSEM, we compare the performance of CSEM with traditional metrics in RL. Specifically, we evaluate the impact of different reference-based metrics, including BLEU, COMET-20, COMET-22, and ChatGPT, on training translation models using RL. The results, as shown in Table \ref{tab:diff_rewards}, show that CSEM outperforms all traditional rewards in human evaluation, except for ChatGPT. Additionally, RL training with CSEM demonstrates strong performance with the ChatRef. metric, indicating a high level of consistency between CSEM-developed metrics and those used by ChatGPT. Moreover, CSEM can achieve the second-highest scores on the BLEU, COMET-20, and COMET-22 metrics, trailing only the scores obtained from their respective dedicated metrics. This further highlights that CSEM not only competes with but also closely aligns with the performance of well-established metrics. Notably, when compared to ChatGPT, CSEM offers similar advantages but with significantly higher reward query efficiency, as detailed in Section \ref{sec:reward_query_efficiency}. This emphasizes that CSEM not only delivers high-quality rewards but also provides more efficient solutions for sequence evaluation tasks.
+
+\subsubsection{Conclusion}
+Despite being tested on various tasks, our CSEM produces consistent results across all of them: 1) With different RL and reranking strategies, all of our CSEM metrics effectively provide rewards that enhance the sequence generation model, further demonstrating the effectiveness of CSEM; 2) We observe that reference-based metrics outperform traditional word-overlap-based metrics such as BLEU, ROUGE, and BLEURT, as they more closely resemble these traditional methods by using references to evaluate the quality of generated sequences; 3) Whether using reference-based or reference-free metrics, the larger versions generally show better performance in RL and reranking; 4) Under traditional evaluation metrics (such as COMET-20, COMET-22, and Chat-based metrics), the RL+RR optimization approach consistently achieves the best performance across various tasks; 5) Compared to traditional metrics, CSEM provides more accurate rewards, highlighting its advantage in evaluation tasks over conventional metrics.
+
+\input{tables/diff_rewards}
+
+\section{Analysis}
+\begin{figure}[!t]
+    \centering
+    \input{images/diff_sampling_size_summary_style_transfer}
+    \vspace{-3mm}
+    \caption{
+     Correlation scores of the reference-free evaluation models learned employing different sizes of LLM-labeled samples for machine translation and text style transfer tasks.
+    }
+    % \vspace{-2mm}
+    \label{fig_diff_sample_size_transfer_summary}
+\end{figure}
+
+\subsection{Impact of the Annotated Data Scale}
+For the data collection stage, we explore the impact of the scale of annotated data on our CSEM. Specifically, we use ChatGPT to annotate datasets with a multi-aspect evaluation prompt across different sample scales: \{5K, 10K, 15K, 20K, 25K\}. Based on these annotated datasets, we train the evaluation models. We then compute correlation scores between these evaluation models and ChatGPT to measure the degree of agreement between the evaluation models and ChatGPT. We hypothesize that a higher correlation score with ChatGPT indicates that the evaluation model has learned a stronger evaluation capability from ChatGPT. In this process, we use a test dataset consisting of 1K samples randomly selected from the data collection stage. All test set samples are excluded from the training of the evaluation models. The results are shown in Figure \ref{fig_diff_sample_size_transfer_summary}. They show that CSEM can achieve a significant correlation with ChatGPT using only a small amount of annotated data. Additionally, the performance gain follows a long-tail pattern as the scale of annotated data increases. Similar observations can be made from the results of the summarization task. Considering the cost of LLM annotation, we choose to use 15K LLM-labeled samples for all tasks.
+
+\begin{figure}
+    \centering
+    \input{images/LLM-vs-Human-data}
+    \caption{Kendall and Spearman correlation scores of evaluation models trained on LLM-labeled data versus human-labeled data. The correlation scores are computed for the coherence evaluation aspect. The symbol $\sharp$ indicates that the evaluation model is trained on human-labeled data.}
+    \vspace{-3mm}
+    \label{fig:llm-vs-human}
+\end{figure}
+
+\subsection{Comparison of LLM-labeled Data with Human-labeled Data for Training Evaluation Models}
+To further validate the effectiveness of LLM-labeled data for training evaluation models, we conduct a comparison with human-labeled data. Specifically, we split the SummEval benchmark into a training set of 1K samples and a test set consisting of the remaining samples. We then train evaluation models on this training set. In parallel, we develop different reference-based CSEM-large using different amounts of LLM-labeled data: \{1K, 3K, 5K, 7K, 10K\}. The results are shown in Figure \ref{fig:llm-vs-human}, where we include baselines using BLEURT and COMET to train on the human-labeled data. The results of the experiment reveal that when the quantity of labeled data is similar, LLM-labeled data does not perform as well as human-labeled data. However, human-labeled datasets are inherently limited in size, whereas LLM-labeled data can be scaled more easily. With a slight increase in the size of the LLM-labeled data, we observe that the evaluation model trained on LLM-labeled data outperforms the model trained on 1K human-labeled samples. This experiment highlights that, while the quality of LLM-labeled data may not match that of human-labeled data, its scalability enables the training of strong evaluation models.
+
+\begin{figure*}
+    \centering
+    \input{images/analysis_three_images}
+    \vspace{-4mm}
+    \caption{
+    We compare the performance of different sampling methods in sub-figure (a). Here, ``BS'' denotes the beam search. We explore the performance of our CSEM with continuous scores derived from ChatGPT in sub-figure (b). Note that ``+'' indicates the results when using different numbers of source inputs, which are taken from Figure \ref{fig_diff_sample_size_transfer_summary}(a). We use multiple outputs for training evaluation models in sub-figure (c). 
+    }
+    \vspace{-2mm}
+    \label{fig:analysis-sampling-output-continous-score}
+\end{figure*}
+
+\subsection{Performance on Different Sampling Methods}
+We also conduct experiments using alternative sampling approaches on the IWSLT translation task, including beam search \cite{freitag2017beam}, diverse beam search \cite{roberts2020decoding}, top-$p$ sampling \cite{holtzman2019curious}, and top-$k$ sampling\footnote{Top-$k$ sampling limits the choices of the model to the $k$ most likely next tokens to enhance the coherence of the generated sequence, while top-$p$ (or nucleus) sampling selects tokens cumulatively exceeding a probability threshold $p$, balancing diversity and quality in generated content \cite{holtzman2019curious}.}. Figure \ref{fig:analysis-sampling-output-continous-score}(a) presents the results of computing the correlation scores between the learned evaluation models and ChatGPT. The results indicate that top-$k$ sampling achieves the best performance for the acquired evaluation models. We hypothesize that top-$k$ sampling generates sequences with greater diversity while maintaining high quality compared to other methods, making it better suited for transferring the evaluation capability from LLMs. It is worth noting that although top-$p$ sampling has been shown to generate higher-quality sequences than top-$k$ in \cite{holtzman2019curious}, our experiments reveal that top-$p$ sampling has certain limitations in generating diverse sequences.
+
+\subsection{Using Multiple Outputs for Training Evaluation Models}
+Inspired by \cite{freitag2021experts}, we hypothesize that increasing the number of output sequences might improve the performance of the evaluation model learned by CSEM. To test this hypothesis, we train different evaluation models by first sampling 5K source inputs and then increasing the number of output sequences from 1 to 5 for each input. Figure \ref{fig:analysis-sampling-output-continous-score}(c) presents the Spearman correlation scores of the learned evaluation models on the IWSLT dataset. From the figure, we observe that increasing the number of output sequences effectively improves the correlation. Furthermore, we notice that the performance gain from increasing the target outputs (solid line) is slightly smaller than the gain from directly increasing the source inputs (dashed line). Despite this, using multiple target outputs could still be a promising solution when training data is limited.
+
+\subsection{Using Continuous Scores in the Prompt}
+We explore the performance of our CSEM using continuous scores derived from ChatGPT. Specifically, following the design in \cite{kocmi2023large}, we modify the segment ``... with one to five stars, where one star means ... and five stars mean ...'' to ``... with a continuous scale from 0 to 100, where a score of zero means ... and a score of one hundred means ...'' in the prompt. We then test the correlation scores with human judgments, as shown in Figure \ref{fig:analysis-sampling-output-continous-score}(b). The results indicate that CSEM with star ratings consistently outperforms CSEM with continuous scores. We attribute this observation to two potential reasons. First, it has been shown in \cite{kocmi2023large} that continuous score-based evaluation for ChatGPT yields inferior performance compared to star-based evaluation. Second, we hypothesize that learning from a continuous score range spanning from 0 to 100 is more challenging than learning from a simplified five-star scale.
+
+\begin{figure}[!t]
+    \centering
+    \input{images/rating_vs_ranking}
+    \vspace{-8mm}
+    \caption{
+    Comparisons of different ways of evaluation data annotation (rating vs. comparison ranking). In sub-figure (a), we present the correlation scores between the evaluation models and human judgments for reference-based coherence evaluation on the SummEval benchmark. In sub-figure (b), we train evaluation models using these two methods and apply them to improve summarization models through RL and reranking.
+    }
+    \vspace{-2mm}
+    \label{fig:rating-vs-comparsion-ranking}
+\end{figure}
+
+
+\subsection{Rating vs. Comparison Ranking}
+\label{sec:comparison-rating-ranking}
+As described in Section \ref{sec:background-training-evaltaion-models}, the evaluation data annotation typically involves either rating or comparison ranking. Here, we comprehensively compare these two methods in CSEM. Specifically, for comparison ranking, during the data collection stage in CSEM, we select a sequence pair instead of a single sequence. In the data annotation stage, we use the LLM to select the better sequence from the pair rather than assigning scores. The evaluation models are then trained using Eq. \ref{eq:ranking-loss}. In this way, we develop the CSEM-large-ref and CSEM-large metrics for the summarization task. We test CSEM-large-ref on the SummEval benchmark and utilize CSEM-large for RL and reranking, as illustrated in Figure \ref{fig:rating-vs-comparsion-ranking}. From the figure, it is evident that the rating method consistently outperforms comparison ranking. This result is intuitive: comparison ranking primarily focuses on learning a model for ranking purposes, meaning it may not accurately assess the quality of a single sequence but instead evaluates the relative quality between sequences. As a result, in the figure, we observe that the evaluation model trained using comparison ranking performs well in reranking. However, in practical metric applications, the goal is not just ranking; we want to directly assess the quality of a sequence based on a score (e.g., a score of 0 indicates a poor sequence, and 5 indicates a good one). While comparison ranking could achieve similar results, it is not as direct and tends to be less efficient, often requiring a large amount of data to achieve satisfactory performance. In some cases, the model may assign an illogical score, such as giving a sequence a score of 10 (indicating poor quality) for one input and -1 (indicating good quality) for another. In contrast, rating provides a more direct and effective approach. Therefore, in CSEM, we opt for the rating method to train our evaluation models for various tasks.
+
+\input{tables/appendix_classification_loss}
+
+\subsection{Optimization with Classification Loss} \label{sec:classification}
+We attempt to train evaluation models with a classification loss implemented using cross-entropy loss, where each star level is regarded as a class.
+The optimization objective of the evaluation model is to predict a star class for a sequence:
+\begin{eqnarray}
+    \mathcal{L}_{\mathrm{class}}&=&-\mathbb{E}_{(x,\hat{y})\sim \mathcal{D}_{r}}\log \mathrm{Pr}_{\phi}(S(x,\hat{y})|x,\hat{y})
+\end{eqnarray}
+where $S(\cdot)$ represents the star rating class annotated by an LLM, $\mathrm{Pr}_{\phi}(\cdot)$ denotes the probability that the evaluation model $\mathcal{M}$ assigns to labeled rating class, and $\phi$ is the set of parameters of $\mathcal{M}$.
+Table \ref{tab:classification} compares correlation scores between the evaluation models, ChatGPT, and human judgments for the reference-based coherence evaluation aspect on the SummEval benchmark. The results indicate that the evaluation model trained with regression loss consistently outperforms the one trained with classification loss. This suggests that regression loss is more effective in CSEM. Moreover, the use of continuous scores offers an advantage in capturing subtle differences between generated sequences, which is also noted in \cite{liu2023gpteval}.
+
+\begin{table}[!t]
+    \centering
+    \caption{Performance of CSEM with different LLMs on the SummEval benchmark.}
+    \scalebox{0.80}{
+    \input{tables/diff_LLMs}}
+    \label{tab:diffrent-LLMs}
+\end{table}
+
+\subsection{Performance on Different LLMs}
+Table \ref{tab:diffrent-LLMs} presents the performance of CSEM with different LLMs, including ChatGPT, GPT-4, Llama-3.1-8B-Instruct \cite{grattafiori2024llama}, and Qwen2.5-14B-Instruct \cite{yang2024qwen2}. The experimental results demonstrate that using more powerful LLMs indeed enhances the performance of CSEM. For example, when using GPT-4, we can achieve a Pearson correlation of 0.591 on the coherence evaluation. Moreover, similar to ChatGPT, CSEM can outperform LLMs in many cases, thanks to the specific training methods and model architecture design. This indicates that CSEM does not merely mimic the behaviour of LLMs but also generalizes from the labeled data to achieve stronger performance. However, when using GPT-4, we observe that most of the metrics are lower than the performance of GPT-4 itself. This raises an interesting question: if the performance of an LLM is exceptionally strong, will CSEM struggle to surpass it due to limitations in the underlying encoder (i.e., RoBERTa) capabilities of the model? To address this, we may consider exploring stronger encoders to potentially overcome these limitations and further improve the performance of CSEM.
+
+\begin{table}[!t]
+    \centering
+    \caption{Performance of CSEM on the general-purpose task.}
+    \scalebox{0.9}{
+    \input{tables/general_purpose}}
+    \label{tab:general-purpose-task}
+\end{table}
+
+\subsection{Performance on the General-purpose Task}
+We evaluate the performance of CSEM on a general-purpose task using the HelpSteer2 dataset \cite{wang2024helpsteer2}, which is designed for general-purpose evaluation. Specifically, we test on the validation set of HelpSteer2. In this dataset, human annotators annotate scores for each input-output pair across five different dimensions, with scores ranging from 0 to 4. We average these five dimensions to compute the overall quality score for each input-output pair, representing human judgment. Next, we use 15K input samples from the HelpSteer2 training set to develop the CSEM-base and CSEM-large metrics. We then compute the correlation between these two metrics and human judgment on the HelpSteer2 dataset. The results are summarized in Table \ref{tab:general-purpose-task}. Additionally, we test the correlation scores of models such as ChatGPT and Llama-3.1-8B-Instruct for comparison. Furthermore, we compare the performance of several open-source reward models trained using comparison ranking methods, including RM-Gemma-2B, RM-Gemma-7B \cite{dong2023raft}, and Ziya-LLaMA-7B-Reward \cite{ziya-reward-7B}. The results clearly show that, although CSEM uses only 355M parameters, it achieves performance comparable to models with 8B parameters, even surpassing the Llama-3.1-8B-Instruct model. While the reward models are also trained on labeled data, their performance is less satisfactory. This can be attributed to the fact that reward models are focused on learning ranking, as discussed in Section \ref{sec:comparison-rating-ranking}. These experimental results further emphasize the robustness of CSEM, demonstrating its applicability in developing model-based metrics for both specific sequence generation tasks and general-purpose tasks.
+
+
+\subsection{Comparison of Reward Query Speed} \label{sec:reward_query_efficiency}
+We compare the reward query speed of ChatGPT with our evaluation models developed using the CSEM method. For ChatGPT, each query related to the machine translation task, typically consisting of about 100 words, takes at least 5 seconds or more during peak times due to its substantial size and the need for API requests. This delay becomes a significant obstacle when managing large-scale queries. In contrast, our CSEM-trained evaluation models can process queries in no more than 0.2 seconds. Furthermore, these models, with a parameter limit of 355M, can be efficiently deployed locally, enhancing their practical usability. These faster processing times significantly enhance the scalability and efficiency of using our CSEM-trained models in real-world scenarios, where speed is crucial.
+
+
+\section{Conclusion}
+In this work, we have extended the capabilities of LLMs to create labeled data for training evaluation models, addressing the challenge of the scarcity of human-labeled evaluation data in developing model-based metrics. We have introduced the Customized Sequence Evaluation Metric (CSEM) method via LLM-based data annotation. Our extensive experimental results demonstrate the effectiveness of CSEM in developing a wide range of evaluation metrics and highlight its ability to significantly improve sequence generation tasks through RL and reranking techniques. These findings underscore the potential of CSEM in providing an efficient and scalable solution for developing model-based metrics in various real-world scenarios.
+
+\section*{Acknowledgments}
+This work was supported in part by the National Key R\&D program of China No. 2022YFE0204900, the National Science Foundation of China (Nos. 62276056 and U24A20334), the Natural Science Foundation of Liaoning Province of China (2022-KF-26-01), the Fundamental Research Funds for the Central Universities (Nos. N2216016 and N2316002), the Yunnan Fundamental Research Projects (No. 202401BC070021), and the Program of Introducing Talents of Discipline to Universities, Plan 111 (No.B16009).
+
+% argument is your BibTeX string definitions and bibliography database(s)
+\bibliographystyle{IEEEtran}
+\bibliography{ieee.bib}
+%
+
+% \newpage
+\vspace{4mm}
+
+% \input{bio}
+
+\vfill
+
+\end{document}
+
+

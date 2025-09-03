@@ -1,0 +1,1640 @@
+
+\documentclass{article} % For LaTeX2e
+\usepackage[preprint]{colm2025_conference}
+
+\usepackage[normalem]{ulem}
+\usepackage{caption}
+\usepackage{microtype}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{booktabs}
+\usepackage{xspace}
+\usepackage{pifont}% http://ctan.org/pkg/pifont
+\usepackage{multirow}
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable}
+\usepackage{xltabular}
+\usepackage{longtable}
+
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{lineno}
+
+\usepackage{subfigure}
+\usepackage{setspace}
+
+\usepackage{wrapfig}
+
+\usepackage[T1]{fontenc}
+
+\input{math_commands.tex}
+
+\definecolor{darkblue}{rgb}{0, 0, 0.5}
+\hypersetup{colorlinks=true, citecolor=darkblue, linkcolor=darkblue, urlcolor=darkblue}
+
+\definecolor{mydarkgreen}{rgb}{0.2,0.7,0.2}
+\newcommand{\SGRM}{DeepSeek-GRM-27B\xspace}
+\newcommand{\SGRMAll}{DeepSeek-GRM\xspace}
+\newcommand{\SGRMSmall}{DeepSeek-GRM-16B\xspace}
+\newcommand{\SGRMRFT}{DeepSeek-GRM-27B-RFT\xspace}
+\newcommand{\SGRMShort}{DGRM-27B\xspace}
+\newcommand{\BTRM}{DeepSeek-BTRM\xspace}
+\newcommand{\PairRM}{DeepSeek-PairRM\xspace}
+
+% \newcommand{\SGRM}{SPCT-GRM-27B\xspace}
+% \newcommand{\SGRMAll}{SPCT-GRM\xspace}
+% \newcommand{\SGRMSmall}{SPCT-GRM-16B\xspace}
+% \newcommand{\SGRMRFT}{SPCT-GRM-27B-RFT\xspace}
+% \newcommand{\SGRMShort}{SPCT-GRM-27B\xspace}
+% \newcommand{\BTRM}{BT-RM\xspace}
+% \newcommand{\PairRM}{PairRM\xspace}
+
+
+\title{Inference-Time Scaling for Generalist Reward Modeling}
+
+% Authors must not appear in the submitted version. They should be hidden
+% as long as the \colmfinalcopy macro remains commented out below.
+% Non-anonymous submissions will be rejected without review.
+
+\author{Zijun Liu$^{1,2\dag*}$, Peiyi Wang$^{1*}$, Runxin Xu$^{1}$, Shirong Ma$^{1}$, Chong Ruan$^{1}$,\\
+\textbf{Peng Li}$^{3}$, \textbf{Yang Liu}$^{2,3}$, \textbf{Yu Wu}$^{1}$ \\
+$^{1}$DeepSeek-AI, 
+$^{2}$Dept. of Computer Sci. \& Tech., Tsinghua University,\\
+$^{3}$Institute for AI Industry Research (AIR), Tsinghua University\\
+\texttt{zj-liu24@mails.tsinghua.edu.cn, wangpeiyi9979@gmail.com}
+}
+
+% The \author macro works with any number of authors. There are two commands
+% used to separate the names and addresses of multiple authors: \And and \AND.
+%
+% Using \And between authors leaves it to \LaTeX{} to determine where to break
+% the lines. Using \AND forces a linebreak at that point. So, if \LaTeX{}
+% puts 3 of 4 authors names on the first line, and the last on the second
+% line, try using \AND instead of \And before the third author name.
+
+\newcommand{\fix}{\marginpar{FIX}}
+\newcommand{\new}{\marginpar{NEW}}
+
+\begin{document}
+
+\ifcolmsubmission
+\linenumbers
+\fi
+
+\maketitle
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+\footnotetext[1]{Equal contribution.
+$^{\dag}$Work done during internship at DeepSeek-AI.}% $^\ddag$Corresponding: \href{mailto:wumark@126.com}{Yu Wu}.}
+
+\begin{abstract}
+% \looseness=-1
+% \vspace{-1em}
+Reinforcement learning (RL) has been widely adopted in post-training for large language models (LLMs) at scale. 
+% The effectiveness of RL serves as a crucial component in value alignment, environment adaptation, and even reasoning capability incentivization. 
+Recently, the incentivization of reasoning capabilities in LLMs from RL indicates that \emph{proper learning methods could enable effective inference-time scalability}. 
+A key challenge of RL is to obtain accurate reward signals for LLMs in various domains beyond verifiable questions or artificial rules.  
+In this work, we investigate how to improve reward modeling (RM) with more inference compute for general queries, i.e.~the \textbf{inference-time scalability of generalist RM}, 
+and further, how to improve the effectiveness of performance-compute scaling with proper learning methods. 
+For the \uline{RM approach}, we adopt pointwise generative reward modeling (GRM) to enable flexibility for different input types and potential for inference-time scaling. 
+For the \uline{learning method}, we propose \textbf{Self-Principled Critique Tuning} (SPCT) to foster scalable reward generation behaviors in GRMs through online RL, to generate principles adaptively and critiques accurately, resulting in \textbf{\SGRMAll} models.
+Furthermore, for effective \uline{inference-time scaling}, we use parallel sampling to expand compute usage, and introduce a meta RM to guide voting process for better scaling performance. 
+Empirically, we show that SPCT significantly improves the quality and scalability of GRMs, outperforming existing methods and models in various RM benchmarks without severe biases, and could achieve better performance compared to training-time scaling. \SGRMAll still meets challenges in some tasks, which we believe can be addressed by future efforts in generalist reward systems.
+The models will be released and open-sourced.
+
+% We demonstrate that reward generation paradigms and scoring patterns determines the inference-time scalability and input flexibility of reward models.
+% We propose a novel approach, \textbf{Self-Principled Critique Tuning} (SPCT) to foster effective inference-time scalable behaviors in generative reward models (GRM), resulting in \textbf{\SGRMAll}. By leveraging \uline{rejective fine-tuning} and \uline{rule-based RL}, SPCT enables \SGRMAll to adaptively posit principles and critiques. We further introduce a meta RM besides voting for better scaling performance. Empirically, we show that SPCT significantly improves the quality and scalability of GRMs, outperforming existing methods and models in various RM benchmarks without severe biases, and could achieve better performance compared to training-time scaling. \SGRMAll still meets challenges in some tasks, which we believe can be addressed by further efforts in generalist reward systems.
+% \vspace{-0.5em} 
+\end{abstract}
+
+% \begin{figure}[h]
+%     \vspace{-1em}
+%     \centering
+%     \includegraphics[width=0.65\textwidth]{figures/fig1-wide.pdf}
+%     \vspace{-0.5em}
+%     \caption{Inference-time scaling performance with different RMs on all tested RM benchmarks. Results are shown with up to 8 samples for each method, and are further scaled to 32 samples for ours. Non-italic font indicates models based on Gemma-2-27B.}
+%     \label{fig:perf-overview}
+%     \vspace{-1em}
+% \end{figure}
+
+\begin{wrapfigure}[16]{r}{0.52\linewidth}
+    \vspace{-4.5em}
+    \centering
+    \includegraphics[width=\linewidth]{figures/fig1-preprint.pdf}
+    \caption{Inference-time scaling performance with different RMs on all tested RM benchmarks. Results are shown with up to 8 samples for each method, and are further scaled to 32 samples for ours. Non-italic font indicates models based on Gemma-2-27B.}
+    \label{fig:perf-overview}
+\end{wrapfigure}
+
+\section{Introduction}
+
+The remarkable advancements in large language models (LLMs)~\citep{deepseekai2024deepseekv3technicalreport,gpt45-system-card} have catalyzed significant shifts in artificial intelligence research, enabling models to perform tasks that require understanding, generation, and nuanced decision-making capabilities. Recently, reinforcement learning (RL) as a post-training method for LLMs has been widely adopted at scale, and results in remarkable improvements in human value alignment~\citep{instructgpt,bai2022traininghelpfulharmlessassistant}, long-term reasoning~\citep{deepseekai2025deepseekr1incentivizingreasoningcapability,o3-system-card}, and environment adaptation~\citep{deep-research-system-card} for LLMs. Reward modeling~\citep{pmlr-v202-gao23h}, as a crucial component in RL, is essential for generating accurate reward signals for LLM responses. Current studies~\citep{lightman2024lets,deepseekai2025deepseekr1incentivizingreasoningcapability} also show that, with high-quality and robust rewards in either training or inference time, LLMs can achieve strong performance in specific domains. 
+
+However, such high-quality rewards in specific domains are mainly obtained from human-designed environments with clear conditions~\citep{yao2022webshop,xie2024osworld} or from hand-crafted rules for verifiable questions, e.g., part of mathematical problems~\citep{hendrycks2021measuring,aime_1983_2024} and coding tasks~\citep{jimenez2024swebench,zhuo2025bigcodebench}. In general domains, reward generation is more challenging, as the criteria for rewards are more diverse and complex, and there are often no explicit reference or ground truth. Generalist reward modeling is thus crucial for improving the performance of LLMs in broader applications, either from post-training perspectives, e.g., RL at scale, or from inference perspectives, e.g., RM-guided search. Furthermore, RM performance should be improved by increasing both the training compute~\citep{pmlr-v202-gao23h} and the inference compute. 
+
+In practice, challenges arise in making RMs both general and effectively scalable in inference time. 
+Generalist RM demands (1) flexibility for different input types and (2) accurate reward generation in various domains. 
+Moreover, effective inference-time scalability requires the RM (3) to generate higher-quality reward signals with increased inference compute, and (4) to learn scalable behaviors for better performance-compute scaling. 
+Existing research on reward modeling demonstrates several paradigms for reward generation, including scalar~\citep{cobbe2021trainingverifierssolvemath, wang2024helpsteer, liu2024skyworkrewardbagtricksreward}, semi-scalar~\citep{ye2024improvingrewardmodelssynthetic,yu2025selfgeneratedcritiquesboostreward,zhang2025generative}, and generative~\citep{li2024generative,kim-etal-2024-prometheus,vu-etal-2024-foundational,cao2024compassjudger1allinonejudgemodel,arabzadeh-etal-2024-assessing,ye2025learning,alexandru2025atlaseleneminigeneral,yu2025improvellmasajudgeabilitygeneral} approaches, and various scoring patterns, such as pointwise~\citep{0627eaad-0ecb-353b-9c3d-81e29de3658f,pmlr-v202-gao23h,pmlr-v235-yuan24d,winata2025metametrics,10.1145/3701551.3703583} and pairwise~\citep{park-etal-2024-offsetbias, chatbot-arena,jiang-etal-2023-llm,wang2024selftaughtevaluators,liu2025pairjudgermperformbestofn}. These approaches inherently determine the input flexibility and the inference-time scalability of RMs (\textit{(1)\&(3)}), as shown in Figure~\ref{fig:method-comp}. For instance, pairwise RMs only consider the relative preference of paired responses, lacking flexibility to accept single or multiple responses as input; scalar RMs could hardly generate diverse reward signals for the same response, which obstructs getting better rewards through sampling-based inference-time scaling methods~\citep{snell2025scaling}. 
+Also, different learning methods~\citep{wang-etal-2024-interpretable,ankner2024critiqueoutloudrewardmodels,wang2024selftaughtevaluators,mahan2024generativerewardmodels} have been proposed to improve the quality of rewards, but few of them focus on inference-time scalability and study the interconnection between the learned reward generation behaviors and the effectiveness of inference-time scaling of RMs, resulting in marginal performance improvement (\textit{(2)\&(4)}).
+Current research~\citep{deepseekai2025deepseekr1incentivizingreasoningcapability} indicates that effective inference-time scalability could be enabled by proper learning methods, which raises the question: \emph{Can we design a learning method aiming to enable effective inference-time scaling for generalist reward modeling?}
+
+In this work, we investigate in different \uline{approaches for RM}, and found that pointwise generative reward modeling (GRM) could unify the scoring of single, paired, and multiple responses within pure language representation, overcoming challenge \textit{(1)}. We explored that certain principles could guide reward generation within proper criteria for GRMs, improving the quality of rewards, which inspired us that \emph{inference-time scalability of RM might be achieved by scaling the generation of high-quality principles and accurate critiques}. Based on this preliminary, we propose a novel \uline{learning method}, \textbf{Self-Principled Critique Tuning} (SPCT), to foster effective inference-time scalable behaviors in GRMs. By leveraging rule-based online RL, SPCT enables GRMs to learn to adaptively posit principles and critiques based on the input query and responses, leading to better outcome rewards in general domains (challenge \textit{(2)}). 
+We then come up with \textbf{\SGRM}, which is post-trained with SPCT based on Gemma-2-27B~\citep{gemmateam2024gemma2improvingopen}. 
+For \uline{inference-time scaling}, we expand compute usage by sampling multiple times. By sampling in parallel, \SGRMAll could generate different sets of principles and according critiques, and then vote for the final reward. \textbf{With larger-scale sampling, \SGRMAll could judge more accurately upon principles with higher diversity, and output rewards with finer granularity}, which resolves challenge \textit{(3)\&(4)}.  
+Furthermore, We train a meta RM besides voting for better scaling performance. Empirically, we show that SPCT significantly improves the quality and scalability of GRMs, outperforming existing methods and models in multiple comprehensive RM benchmarks without severe domain biases. We also compared the inference-time scaling performance of \SGRM with larger models up to 671B parameters, and found it could achieve better performance compared to training-time scaling on model sizes. 
+% Still, our proposed method meets challenges in some tasks. Though \SGRM outstands in general domains and improves with inference-time scaling, it falls short in tasks that requires strong reasoning or extensive knowledge. One effective mitigation is to provide reference. Analysis on the failure cases indicates the challenge mainly lies in the incapability of the model to judge responses that are too complex or within specific domains, such as pattern recognization, counting, etc., and the lack of expert knowledge, although the principles are correctly generated in most cases. 
+Though the current method meets challenges in efficiency and specific tasks, 
+with efforts beyond SPCT, we believe GRMs with enhanced scalability and efficiency could serve as a versatile interface for generalist reward systems, advancing the frontiers of LLM post-training and inference. 
+
+In general, our main contribution is as follows. 
+
+% The remarkable advancements in large language models (LLMs) have catalyzed significant shifts in natural language processing, enabling models to perform tasks that require understanding, generation, and nuanced decision-making capabilities.~\citep{deepseekai2024deepseekv3technicalreport} Central to these capabilities is the ability to elicit coherent and contextually relevant responses, for which effective reward modeling plays a crucial role. Traditional approaches to reward modeling have predominantly relied on scalar representations that are optimized using pairwise assessments, such as those derived from the Bradley-Terry model, or through absolute rating systems. These methods evaluate language outputs based on scalar rewards, which often necessitate significant manual intervention and are limited in capturing the full dimensionality of human feedback.
+% Contemporary efforts have sought to extend these scalar frameworks into multi-objective scalar reward models, thereby introducing the ability to generate freeform Chain of Thought (CoT) processes that aid in deriving scalar or verbose rewards. Despite these advancements, the primary focus remains on scalar valuations that are often inadequate in encapsulating complex human preferences and evaluative criteria necessary for generalized and robust model outputs.
+
+% This paper introduces Generative Reward Modeling (GRM), a novel approach that transcends the limitations of traditional scalar reward paradigms. Our method employs a Listwise Contrastive Reward Model, integrating a sophisticated CoT framework infused with domain-specific principles. This method allows for the generation of nuanced, context-sensitive rewards by evaluating model outputs through multiple prompting templates. This adaptability is further complemented by introducing Reinforcement Reward Learning (RRL) post-bootstrap, enhancing the model's capability to learn and adjust rewards based on evolved criteria.
+% Moreover, we propose a scalable framework for generating and utilizing rewards, particularly emphasizing the scalability of inference costs. By employing a Meta Reward Model, we demonstrate the efficacy of scaling inference processes as a more resource-efficient alternative to merely increasing the size of the base models. This approach not only optimizes computational demands but also ensures that the reward generation process remains efficient and adaptable across different model sizes and tasks.
+
+% In the sections that follow, we delve into the mechanics of Generative Reward Modeling, provide a methodical exploration of the underlying self-principled critique tuning, and demonstrate the integration and benefits of Reinforcement Reward Learning. Our empirical results are substantiated by performance evaluations across well-established reward modeling benchmarks, showcasing the superiority and scalability of our approach. Overall, our contribution is as follows:
+
+\vspace{-0.5em}
+\begin{enumerate}
+    \setlength{\itemsep}{0em}
+    % \setlength{\parskip}{0em}
+    \item We propose a novel approach, \textbf{Self-Principled Critique Tuning} (SPCT), to foster effective inference-time scalability for generalist reward modeling, resulting in \textbf{\SGRMAll} models. And we further introduce a meta RM to effectively improve the inference-time scaling performance of \SGRMAll beyond voting. 
+    \item We empirically show SPCT significantly improves the quality and inference-time scalability of GRMs over existing methods and several strong public models. 
+    \item We also applied the SPCT training schedule on LLMs with larger sizes and found that inference-time scaling could outperform model size scaling in training time. 
+\end{enumerate}
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\textwidth]{figures/fig2.pdf}
+  \caption{Different paradigms for reward generation, including (a) scalar, (b) semi-scalar, and (c) generative approaches, and different scoring patterns, including (i) pointwise and (ii) pairwise approaches. We list the representative methods for each approach, and corresponding inference-time scalability (whether better rewards could be obtained from multiple sampling) and input flexibility (whether supports rating single and multiple responses).}
+  \label{fig:method-comp}
+  \vspace{-1em}
+\end{figure}
+
+\vspace{-1em}
+\section{Preliminaries}
+\label{sec:prelim}
+
+% Reward modeling (RM) is a critical component in the RL pipeline, serving as a proxy for human evaluation~\citep{instructgpt}, accuracy estimation~\citep{lightman2024lets}, or environmental feedback~\citep{mcaleese2024llmcriticshelpcatch,he2025enhancinglanguagemultiagentlearning}. This section outlines different RM approaches in terms of reward generation paradigms and scoring patterns, and preliminarily evaluates how certain principles could benefit the quality of rewards. 
+
+% Generative Reward Modeling represents an emerging frontier in reward assessment frameworks, designed to leverage the expressive power of language models by aligning them more closely with human evaluative processes. This section outlines the foundational concepts and methodologies that underpin this approach.
+
+\vspace{-0.5em}
+\subsection{Comparisons of Different RM approaches}
+\label{sec:method-comp}
+
+As shown in Figure~\ref{fig:method-comp}, RM approaches are mainly determined by reward generation paradigms and scoring patterns, which inherently affect the inference-time scalability and the input flexibility of the RM. For \textbf{reward generation paradigms}, we distinguish three main approaches: scalar, semi-scalar, and generative. The scalar approach assigns scalar values to the given query and responses, while the semi-scalar approach generates textual judgement, termed ``critique'', and the scalar reward value as well. The generative approach only generates critiques as the textual reward, from which the reward value could be extracted. For \textbf{scoring patterns}, we distinguish two main approaches: pointwise and pairwise. The pointwise approach assigns an individual score to each response, while the pairwise approach selects a single best response from all candidates. 
+
+To expand compute usage in inference time, we focus on sampling-based methods, which generate multiple sets of rewards for the same query and responses, and then aggregate the final reward. Thus, the \textit{inference-time scalability} of RMs is determined by whether different rewards could be obtained from multiple sampling, where scalar RMs would fail in most cases due to the invariant generation of rewards; and the \textit{input flexibility} is defined by whether the RM supports rating single, paired, and multiple responses, where pairwise RMs could hardly rate single responses and usually require extra techniques~\citep{jiang-etal-2023-llm,liu2025pairjudgermperformbestofn} to handle multiple responses. 
+The formulation of pointwise GRMs is: 
+\begin{equation}
+  \left\{ S_i \right\}_{i=1}^n = f_{\mathrm{point}}\left(\mathcal{R}, \{y_i\}_{i=1}^n\right) = f_{\mathrm{extract}}(\boldsymbol{C}), \quad \mathcal{R} = \boldsymbol{C} \sim r_{\theta}\left(x, \{y_i\}_{i=1}^n\right), S_i \in \mathbb{R},
+\end{equation}
+where $x$ is the query, $y_i$ is the $i$-th response, $r_{\theta}$ is the reward function parameterized by $\theta$, $\mathcal{R}$ is the reward, $\boldsymbol{C}$ is the critique, $S_i$ is the individual score of $y_i$, and $f_{\mathrm{extract}}(\cdot)$ extracts the rewards from generation results. Usually, the rewards are discrete, and in this work, we assign $S_i \in \mathbb{N}, 1 \leq S_i \leq 10$ by default. Detailed analysis is provided in Appendix~\ref{app:method-comp-detail}.
+
+\vspace{-0.5em}
+\subsection{Boosting Reward Quality with Principles}
+\label{sec:principle-understand}
+
+Generalist RM requires to generate high-quality rewards beyond specific domains~\citep{hendrycks2021measuring,jimenez2024swebench}, where the criteria for rewards are more diverse and complex, and there are often no explicit reference or ground truth. To this end, for general domains, we adopt principles to guide reward generation in place of artificial rules. 
+Principles for LLMs are first introduced in Constitutional AI~\citep{bai2022constitutionalaiharmlessnessai,sharma2025constitutionalclassifiersdefendinguniversal}, which are handicraft criteria that guide the LLMs or curated classifiers to construct safe data pipelines. With principles, the reward generation of GRMs changes to 
+\begin{equation}\label{eq:principle-understand}
+  \mathcal{R} = \boldsymbol{C} \sim r_{\theta}\left(x, \{y_i\}_{i=1}^n, \{p_i\}_{i=1}^m\right),
+\end{equation}
+where $\{p_i\}_{i=1}^m$ denotes the principles.
+We conduct a preliminary experiment to examine the influence of proper principles on reward quality, with the Chat Hard subset of Reward Bench~\citep{lambert2024rewardbenchevaluatingrewardmodels} and the IFEval subset of the PPE benchmark~\citep{frick2025how}. 
+
+\begin{wraptable}[14]{r}{0.5\textwidth}
+  \centering
+  % \vspace{-1em}
+  \resizebox{\linewidth}{!}{
+  \begin{tabular}{lcc}
+  \toprule
+  \textbf{Method} & \textbf{Chat Hard} & \textbf{IFEval} \\
+  \midrule\midrule
+  \textbf{GPT-4o-2024-08-06}  &  76.1  & 56.0  \\
+  $\quad$ w/ Self-Gen. Principles  &  \color{red}{75.9}   &   \color{red}{55.6}    \\
+  $\quad$ w/ Filtered Principles  &   \color{mydarkgreen}{77.8}  &   \color{mydarkgreen}{57.5}   \\ \midrule
+  \textbf{Gemma-2-27B-it}   &  59.1  &  56.1  \\
+  $\quad$ w/ Self-Gen. Principles  &  \color{mydarkgreen}{64.0}   &   \color{red}{55.8}    \\
+  $\quad$ w/ Filtered Principles  &  \color{mydarkgreen}{68.0}   &    \color{mydarkgreen}{57.3}   \\ % \midrule
+  % \SGRM &  78.3  &  59.8  \\
+  % $\quad$ +Filtered Principles  &  \color{red}{77.0}   &   \color{red}{58.5}   \\
+  \bottomrule
+  \end{tabular}
+  }
+  \caption{Preliminary experiments on the influence of principles on reward quality. The default setting of \SGRM includes self-generated principles.}
+  \label{tab:principle-influence}
+\end{wraptable}
+
+We used GPT-4o-2024-08-06 to generate the principles and then pointwise rewards four times for each sample. And we filtered the principles whose according rewards are aligned with the ground truth. We tested different LLMs with principles generated by themselves and the filtered principles, and compared them with the default setting with no principle guidance. The results are shown in Table~\ref{tab:principle-influence}. We found that the self-generated principles barely improve performance, but the filtered principles could significantly boost the reward quality. This indicates that proper principles better guide reward generation under correctly summoned criteria. 
+Details are depicted in Appendix~\ref{app:exp-detail}. 
+
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\textwidth]{figures/fig3.pdf}
+  \caption{Illustration of SPCT, including rejective fine-tuning, rule-based RL, and corresponding scalable behaviors during inference. The inference-time scaling is achieved via naive voting or meta RM guided voting with principles generated at scale, resulting in finer-grained outcome rewards within a expanded value space.}
+  \label{fig:method-overview}
+  \vspace{-1em}
+\end{figure}
+
+\vspace{-0.5em}
+\section{Self-Principled Critique Tuning (SPCT)}
+
+Inspired from the preliminary results, we developed a novel approach for pointwise GRMs to learn generating adaptive and high-quality principles that could effectively guide the generation of critiques, termed \textbf{Self-Principled Critique Tuning} (SPCT). As shown in Figure~\ref{fig:method-overview}, SPCT consists of two phases: \uline{rejective fine-tuning}, as the cold start, and \uline{rule-based online RL}, reinforcing generalist reward generation by advancing the generated principles and critiques. SPCT fosters these behaviors in GRMs for inference-time scaling as well. 
+
+\vspace{-0.5em}
+\subsection{Unpinning Principles from Understanding to Generation}
+
+From preliminary experiments in Section~\ref{sec:principle-understand}, we found that proper principles could guide reward generation within certain criteria, which is critical for high-quality rewards. However, it remains challenging to generate effective principles for generalist RM at scale. To address this challenge, we propose to unpin principles from understanding to generation, i.e.~view principles as a part of reward generation instead of a preprocessing step. 
+
+Formally, principles guide the generation of rewards following \Eqref{eq:principle-understand}, when principles are pre-defined. GRMs could generate principles themselves, and then generate critiques based on the principles, formalized as 
+\begin{equation}
+\{p_i\}_{i=1}^m \sim p_{\theta}\left(x, \{y_i\}_{i=1}^n\right), \quad \mathcal{R} = \boldsymbol{C} \sim r_{\theta}\left(x, \{y_i\}_{i=1}^n, \{p_i\}_{i=1}^m\right),
+\end{equation}
+where $p_{\theta}$ is the principle generation function parameterized by $\theta$, that shares the same model with reward generation $r_{\theta}$. \textbf{This shift enables to principles to be generated based on the input query and responses, adaptively aligning reward generation process, and the quality and granularity of the principles and corresponding critiques could be further improved with post-training on the GRM.} With the principles generated at scale, the GRM could potentially output rewards within more reasonable criteria and with finer granularity, which is crucial for inference-time scaling as well.
+
+% Self-Principled Critique Tuning introduces a mechanism wherein models are capable of introspectively refining their reward assessment processes. By adopting multiple prompting templates grounded in principled reasoning, models can derive a more holistic understanding of reward criteria, thus improving the fidelity of reward signals generated. This tuning process is pivotal in aligning model outputs with anticipated evaluative outcomes, ensuring consistency and reliability.
+
+\vspace{-0.5em}
+\subsection{Rule-Based Reinforcement Learning}
+
+To optimize principle and critique generation in GRMs simultaneously, we propose SPCT, which integrates \uline{rejective fine-tuning} and \uline{rule-based RL}. The former serves as a cold start. 
+% The procedure is illustrated in Figure~\ref{fig:method-overview}.  
+
+\noindent\textbf{Rejective Fine-Tuning (Cold Start)\ } 
+The core idea of the rejective fine-tuning stage is to accomodate the GRM to generate principles and critiques with correct format and for various input types. Unlike previous works~\citep{vu-etal-2024-foundational,cao2024compassjudger1allinonejudgemodel,alexandru2025atlaseleneminigeneral} that mix RM data for single, paired, and multiple responses in different formats, we adopt pointwise GRM, introduced in Section~\ref{sec:method-comp}, to flexibly generate rewards for any amount of responses in the same format. For data construction, besides general instruction data, we sample trajectories with pretrained GRMs given the query and responses to the query from RM data with various response counts. For each query and corresponding responses, the sampling is performed $N_{\mathrm{RFT}}$ times. The rejection strategy is also unified, which is to reject trajectories with predicted rewards that are not aligned with the ground truth (incorrect), and the query and responses with all $N_{\mathrm{RFT}}$ trajectories correct (too easy). 
+Formally, let $r_i$ denotes the ground truth reward for the $i$-th response $y_i$ to the query $x$, the predicetd pointwise rewards $\{S_i\}_{i=1}^n$ are correct if
+\begin{equation}\label{eq:rft-correct}
+\begin{cases}
+\forall i \neq j, \quad S_j > S_i, \quad j = \argmax_{l} \{r_l\}_{l=1}^n,  & \text{if } n \geq 2, \\
+S_1 = r_1, & \text{if } n = 1.
+\end{cases}
+\end{equation}
+with guaranteed that the ground truth rewards only contain one maximum. However, similar to previous works~\citep{zhang2025generative}, we found pretrained GRMs could hardly generate correct rewards for a portion of queries and corresponding responses within limited sampling quota. Thus, we optionally append $\argmax_{l} \{r_l\}_{l=1}^n$ to the prompt of the GRM, termed \emph{hinted sampling}, expecting the predicted rewards to align with the ground truth, besides \emph{non-hinted sampling}. For hinted sampling, each query and the corresponding responses are sampled once, and trajectories are only rejected when incorrect. Beyond previous studies~\citep{li2024generative,mahan2024generativerewardmodels}, we observed that hinted sampled trajectories sometimes shortcut the generated critique, especially for reasoning tasks, indicating the necessity and potential benefits of online RL for the GRM. 
+
+\noindent\textbf{Rule-Based RL\ } The GRM is further fine-tuned with rule-based online RL. Specifically, we use the original setting of GRPO~\citep{shao2024deepseekmathpushinglimitsmathematical} with rule-based outcome rewards. During rolling out, the GRM generates principles and critiques based on the input query and responses, and then the predicted reward is extracted and compared to the ground truth with accuracy rules. Unlike \citet{deepseekai2025deepseekr1incentivizingreasoningcapability}, no format rewards are used. Instead, a larger coefficient for KL penalty is applied to ensure the format and avoid severe biases. Formally, the reward for the $i$-th output $o_i$ to the given query $x$ and responses $\{y_i\}_{i=1}^n$ is
+\begin{equation}
+  \hat{r}_i = \begin{cases}
+    1, & \text{if } n \geq 2 \text{ and } \forall i' \neq j', \quad S_{j'} > S_{i'}, \quad j' = \argmax_{l} \{r_l\}_{l=1}^n, \\
+    1, & \text{if } n = 1 \text{ and } S_1 = r_1, \\
+    -1, & \text{otherwise},
+  \end{cases}
+\end{equation}
+where the pointwise rewards $\{S_i\}_{i=1}^n$ are extracted from $o_i$. \textbf{The reward function encourages GRMs to distinguish the best responses with online optimized principles and critiques, in favor of effective inference-time scaling.} The reward signal could be obtained seamlessly from any preference dataset and labeled LLM responses. 
+% The overall objective is 
+% \begin{equation}
+%   \footnotesize
+%   \begin{split}
+%       \mathcal{J}_{GRPO}(\theta) &= \mathbb{E}{[q \sim P(Q), \{o_i\}_{i=1}^G \sim \pi_{\theta_{old}}(O|q)]} \frac{1}{G}\sum_{i=1}^G\frac{1}{|o_i|} \sum_{t=1}^{|o_i|} \\
+%       &  \left\{ \min \left[ \frac{\pi_\theta(o_{i,t} | q, o_{i,<t})}{\pi_{\theta_{old}}(o_{i,t} | q, o_{i,<t})} \hat{A}_{i,t}, \text{clip} \left( \frac{\pi_\theta(o_{i,t} | q, o_{i,<t})}{\pi_{\theta_{old}}(o_{i,t} | q, o_{i,<t})}, 1 - \epsilon, 1 + \epsilon \right)  \hat{A}_{i,t} \right] - \beta \mathbb{D}_{KL}\left[\pi_{\theta} || \pi_{ref}\right]\right\} ,
+%   \end{split}
+%   \label{eq:GRPO-obj}
+% \end{equation}
+% where $\hat{A}_{i, t} = \frac{r_i- {\rm mean}(\mathbf{r})}{{\rm std}(\mathbf{r})}$, $\beta$ is the coefficient of KL penalty, and $q = (x, \{y_i\}_{i=1}^n)$ with prompts. 
+
+
+% Reinforcement Reward Learning (RRL) integrates classic reinforcement learning paradigms into the reward modeling framework to amplify the reward generation process. After initial bootstrapping, RRL facilitates an adaptive learning trajectory where reward feedback loops continually inform and adjust the decision-making heuristics of the model. This dynamic refinement ensures that the generated rewards evolve in parallel with growing model capabilities and task demands.
+
+\vspace{-0.5em}
+\section{Inference-Time Scaling with SPCT}
+\label{sec:inf-scaling}
+
+To further improve the performance of \SGRMAll for generalist reward generation using more inference compute, we explores sampling-based strategies to achieve effective inference-time scalability. Inference-time scaling methods from previous works~\citep{wang2024selftaughtevaluators,ankner2024critiqueoutloudrewardmodels,mahan2024generativerewardmodels,zhang2025generative}, and their potential limitations are analyzed in Appendix~\ref{app:method-comp-detail}.
+
+\noindent\textbf{Voting with Generated Rewards\ }
+Recalling the approaches in Section~\ref{sec:method-comp}, the voting process for pointwise GRMs is defined as summing the rewards: 
+\begin{equation}
+\footnotesize
+  S_i^* = \sum_{j=1}^k S_{i, j}, \quad \left\{\{S_{i, j}\}_{i=1}^n = f_{\mathrm{point}}(\boldsymbol{C}_j, \{y_i\}_{i=1}^n) \sim r_{\theta}\left(x, \{y_i\}_{i=1}^n, \{p_{i,j}\}_{i=1}^{m_j}\right) \right\}_{j=1}^k \sim p_{\theta}\left(x, \{y_i\}_{i=1}^n\right),
+\end{equation}
+where $S_i^*$ is the final reward for the $i$-th response ($i=1,...,n$). \textbf{Since $S_{i,j}$ is usually set within a small discrete range,} e.g., $\{1,...,10\}$, \textbf{the voting process actually expands the reward space by $k$ times, and enables the GRM to generate a large amount of principles, which benefits the quality and granularity of the final rewards}. An intuitive explanation is that, if each principle could be viewed as a proxy of judgement perspectives, a larger number of principles may reflect the real distribution more accurately, leading to scaling effectiveness. Notably, to avoid positional biases and for diversity, responses are shuffled before sampling. 
+
+
+\noindent\textbf{Meta Reward Modeling Guided Voting\ }
+The voting process of \SGRMAll requires multiple sampling and a few generated principles and critiques might be biased or low-quality due to randomness or model limitations. Thus, we train a meta RM to guide the voting process. The meta RM is a pointwise scalar RM, trained to identify the correctness of the principle and critique generated by \SGRMAll, with the binary cross-entropy loss, where the label is identified based on \Eqref{eq:rft-correct}. 
+% \begin{equation}
+%   \footnotesize
+%   \begin{split}
+%   \mathcal{J}_{\mathrm{meta}}(\theta) &= \mathbb{E}\{[(x, \{y_i\}_{i=1}^n, \{p_i\}_{i=1}^{m, (+)}, \boldsymbol{C}^{(+)}, \{p_i\}_{i=1}^{m, (-)}, \boldsymbol{C}^{(-)}) \sim \mathcal{D}] \} \\
+%   & \left( \log \sigma \left(r_{\theta}(x, \{y_i\}_{i=1}^n, \{p_i\}_{i=1}^{m, (+)}, \boldsymbol{C}^{(+)}) - r_{\theta}(x, \{y_i\}_{i=1}^n, \{p_i\}_{i=1}^{m, (-)}, \boldsymbol{C}^{(-)})\right) \right),
+%   \end{split}
+% \end{equation}
+% where $\mathcal{D}$ is the preference dataset of reward generation trajectories with principles and critiques, and $(+), (-)$ denote the correct and incorrect predicted rewards. 
+The dataset comprises trajectories from non-hinted sampling in the RFT stage, and also trajectories sampled from the \SGRMAll to be guided, to both provide enough positive and negative rewards and alleviate the gap between training and inference policy as suggested by \citet{chow2025inferenceaware}. The guided voting is simple: The meta RM outputs meta rewards for $k$ sampled rewards, and the final outcome is voted by rewards with top $k_{\mathrm{meta}} \leq k$ meta rewards, so that filtering out low-quality samples. 
+
+
+\vspace{-0.5em}
+\section{Results on Reward Modeling Benchmarks}
+
+
+\begin{table}[t]
+  \centering
+  \resizebox{\textwidth}{!}{
+  \begin{tabular}{lccccc}
+  \toprule
+  \textbf{Model} & \textbf{Reward Bench} & \textbf{PPE Preference} & \textbf{PPE Correctness} & \textbf{RMB} & \textbf{Overall} \\
+  \midrule\midrule
+  \multicolumn{6}{c}{\textit{Reported Results of Public Models}} \\
+  % \midrule
+  \textit{Skywork-Reward-Gemma-2-27B} & \uline{\textit{94.1}} &  \textit{56.6} & \textit{56.6} & \textit{60.2} & \textit{66.9} \\
+  DeepSeek-V2.5-0905 & 81.5 & 62.8 & 58.5 & 65.7 & 67.1 \\
+  Gemini-1.5-Pro & 86.8 &  66.1 & 59.8 & 56.5 & 67.3 \\
+  \textit{ArmoRM-8B-v0.1} & \textit{90.4} &  \textit{60.6} & \textit{61.2} & \textit{64.6} & \textit{69.2} \\
+  \textit{InternLM2-20B-Reward} & \textit{90.2} &  \textit{61.0} & \textit{63.0} & \textit{62.9} & \textit{69.3} \\
+  LLaMA-3.1-70b-Instruct & 84.1 &  65.3 & 59.2 & 68.9 & 69.4 \\
+  Claude-3.5-sonnet & 84.2 &  65.3 & 58.8 & 70.6 & 69.7 \\
+  \textit{Nemotron-4-340B-Reward}  & \textit{92.0} &  \textit{59.3} & \textit{60.8} & \textit{69.9} & \textit{70.5} \\
+  GPT-4o & 86.7 & 67.1 & 57.6 & \uline{73.8} & 71.3 \\
+  \midrule
+  \multicolumn{6}{c}{\textit{Reproduced Results of Baseline Methods}} \\
+  % \midrule
+  \textbf{LLM-as-a-Judge} & 83.4 & 64.2 & 58.8 & 64.8 & 67.8 \\
+  \textit{\textbf{\BTRM-27B}} & \textit{81.7} & \uline{\textit{\textbf{68.3}}} & \uline{\textit{\textbf{66.7}}} & \textit{57.9} & \textit{68.6} \\
+  \textit{\textbf{CLoud-Gemma-2-27B}} & \textit{82.0} & \textit{67.1} & \textit{62.4} & \textit{63.4} & \textit{68.7} \\
+  \textit{\textbf{\PairRM-27B}} & \textit{87.1} & \textit{65.8} & \textit{64.8} & \textit{58.2} & \textit{69.0} \\
+  \midrule
+  \multicolumn{6}{c}{\textit{Results of Our Method}} \\
+  % \midrule
+  \textbf{\SGRMRFT (Ours)} & 84.5 & 64.1 & 59.6 & 67.0 & 68.8 \\
+  \textbf{\SGRM (Ours)} & 86.0 & 64.7 & 59.8 & 69.0 & 69.9 \\
+  \midrule
+  \multicolumn{6}{c}{\textit{Results of Inference-Time Scaling (Voting@32)}} \\
+  % \midrule
+  \textbf{\SGRM (Ours)} & 88.5 & 65.3 & 60.4 & 69.0 & 71.0 \\
+  \textbf{\SGRM (MetaRM) (Ours)} & \textbf{90.4} & 67.2 & 63.2 & \textbf{70.3} & \uline{\textbf{72.8}} \\
+  \bottomrule
+  \end{tabular}
+  }
+  \caption{Overall results of different methods and models on RM benchmarks. \uline{Underlined numbers} indicate the best performance, \textbf{bold numbers} indicate the best performance among baseline and our methods, and \textit{italicized font} denotes scalar or semi-scalar RMs. For meta RM guided voting (MetaRM), $k_{\mathrm{meta}} = \frac{1}{2}k$.}
+  \label{tab:main-results}
+  \vspace{-1em}
+\end{table}
+
+\vspace{-0.5em}
+\subsection{Experiment Settings}
+
+% \noindent\textbf{Benchmarks and Evaluation Metrics\ }
+% We evaluate the performance of different methods on various RM benchmarks of different domains: (1) \textbf{Reward Bench}~\citep{lambert2024rewardbenchevaluatingrewardmodels}, a common benchmark for RM evaluation, with semi-automatically collected chat, reasoning, and safety preference data, where two responses require to be ranked for each query; (2) \textbf{PPE}~\citep{frick2025how}, a large-scale benchmark containing crowdsourced preference data and correctness data for varifiable tasks, and each query has two responses; (3) \textbf{RMB}~\citep{zhou2025rmb}, a more comprehensive benchmark with various types of preference data, focusing on helpfulness and harmlessness, and each query has two responses or more response in pairwise and best-of-N (BoN) subsets, respectively; (4) \textbf{ReaLMistake}~\citep{kamoi2024evaluating}, a benchmark for diagnosing the error within single responses. We use the standard evaluation metrics for each benchmark: accuracy of picking the best response from a set of responses in Reward Bench, PPE, and RMB, and ROC-AUC for ReaLMistake. To deal with ties of the predicted rewards for multiple responses, we shuffle the responses and determine the best response by $\argmax_{i} S_i$, where $S_i$ is the predicted reward for the $i$-th response after shuffling. Details are in Appendix~\ref{app:exp-detail}. 
+
+\noindent\textbf{Benchmarks and Evaluation Metrics\ }
+We evaluate the performance of different methods on various RM benchmarks of different domains: \textbf{Reward Bench}~\citep{lambert2024rewardbenchevaluatingrewardmodels}, \textbf{PPE}~\citep{frick2025how}, \textbf{RMB}~\citep{zhou2025rmb}, \textbf{ReaLMistake}~\citep{kamoi2024evaluating}. We use the standard evaluation metrics for each benchmark: accuracy of picking the best response from a set of responses in Reward Bench, PPE, and RMB, and ROC-AUC for ReaLMistake. To deal with ties of the predicted rewards for multiple responses, we shuffle the responses and determine the best response by $\argmax_{i} S_i$, where $S_i$ is the predicted reward for the $i$-th response after shuffling. Details are in Appendix~\ref{app:exp-detail}. 
+
+\noindent\textbf{Method Implementation}
+For the baseline methods, we re-implement \textbf{LLM-as-a-Judge}~\citep{chatbot-arena}, \textbf{\BTRM-27B}~\citep{0627eaad-0ecb-353b-9c3d-81e29de3658f}, \textbf{CLoud-Gemma-2-27B}~\citep{ankner2024critiqueoutloudrewardmodels}, and \textbf{\PairRM-27B}~\citep{jiang-etal-2023-llm} based on Gemma-2-27B~\citep{gemmateam2024gemma2improvingopen} and with all compatible training data and settings as \SGRMAll. For our methods, we implement \textbf{\SGRMRFT} based on Gemma-2-27B, and \textbf{\SGRMAll} on different sizes of LLMs, including DeepSeek-V2-Lite (16B MoE)~\citep{deepseekai2024deepseekv2strongeconomicalefficient}, Gemma-2-27B, DeepSeek-V2.5 (236B MoE), and DeepSeek-V3 (671B MoE)~\citep{deepseekai2024deepseekv3technicalreport}. The meta RM is trained on Gemma-2-27B. 
+Default results are reported with greedy decoding, and the inference-time scaling uses $\mathrm{temperature}=0.5$. 
+Other details are provided in Appendix~\ref{app:train-detail}. 
+
+\vspace{-0.5em}
+\subsection{Results and Analysis}\label{sec:main-results}
+
+\noindent\textbf{Performance on RM Benchmarks}
+The overall results of different methods and models on RM benchmarks are shown in Table~\ref{tab:main-results}. We compare the performance of \SGRM with the reported results of public models and the reproduced results of baseline methods. We find that \SGRM outperforms the baseline methods in overall performance, and achieves competitive performance with strong public RMs, such as Nemotron-4-340B-Reward and GPT-4o; with inference-time scaling, \SGRM could further improve and achieve the best overall results. For detailed comparisons, scalar (\BTRM-27B, \PairRM-27B) and semi-scalar (CLoud-Gemma-2-27B) RMs demonstrate biased results on different benchmarks, with significant better performance on verifiable tasks (PPE Correctness) than all generative RMs, but fail in different other benchmarks, respectively. Nonetheless, most public scalar RMs also exhibit severe domain biases. LLM-as-a-Judge shows similar trends with \SGRM with lower performance, potentially due to the lack of training on rating single responses. In conclusion, \textbf{SPCT improves the generalist reward generation capability of GRMs, with significantly less biases compared to scalar and semi-scalar RMs}. 
+
+% \begin{table}[t]
+%   \centering
+%   \resizebox{\textwidth}{!}{
+%   \begin{tabular}{lccccc}
+%   \toprule
+%   \textbf{Model} & \textbf{Reward Bench} & \textbf{PPE Preference} & \textbf{PPE Correctness} & \textbf{RMB} & \textbf{Overall} \\
+%   \midrule\midrule
+%   \multicolumn{6}{c}{\textit{Reported Results of Public Models}} \\
+%   % \midrule
+%   \textit{Nemotron-4-340B-Reward}  & \uline{\textit{92.0}} &  \textit{59.3} & \textit{60.8} & \textit{69.9} & \textit{70.5} \\
+%   GPT-4o & 86.7 & 67.1 & 57.6 & \uline{73.8} & 71.3 \\
+%   \midrule
+%   \multicolumn{6}{c}{\textit{Results of Inference-Time Scaling (Voting@1)}} \\
+%   % \midrule
+%   \textbf{LLM-as-a-Judge} & 83.0 & 63.4 & 57.4 & 64.3 & 67.0 \\
+%   \textit{\textbf{CLoud-Gemma-2-27B}} & \textit{82.0} & \textit{67.0} & \textit{62.0} & \textit{63.2} & \textit{68.5} \\
+%   \textbf{\SGRMRFT (Ours)} & 84.0 & 62.2 & 59.4 & 65.8 & 67.8 \\
+%   \textbf{\SGRM (Ours)} & 85.2 & 62.4 & 59.5 & 64.4 & 67.9 \\
+%   \midrule
+%   \multicolumn{6}{c}{\textit{Results of Inference-Time Scaling (Voting@8)}} \\
+%   % \midrule
+%   \textbf{LLM-as-a-Judge} & 83.4 & 63.8 & 58.2 & 65.2 & 67.6 ({\color{mydarkgreen}{+0.6}}) \\
+%   \textbf{LLM-as-a-Judge} w/ \textbf{TokenProb} & 83.8 & 64.6 & 58.8 & 65.2 & 68.1 ({\color{mydarkgreen}{+1.1}}) \\
+%   \textit{\textbf{CLoud-Gemma-2-27B}} & \textit{82.4} & \uline{\textbf{\textit{67.3}}} & \textit{62.4} & \textit{63.2} & \textit{68.8} ({\color{mydarkgreen}{+0.3}}) \\
+%   \textbf{\SGRMRFT (Ours)} & 85.3 & 64.5 & 59.7 & 67.7 & 69.3 ({\color{mydarkgreen}{+1.5}}) \\
+%   \textbf{\SGRM (Ours)} & 87.7 & 64.9 & 60.3 & 69.5 & 70.6 ({\color{mydarkgreen}{+2.7}}) \\
+%   \textbf{\SGRM (MetaRM) (Ours)} & 89.8 & 66.4 & 63.0 & 68.8 & 72.0 ({\color{mydarkgreen}{+4.1}}) \\
+%   \midrule
+%   \multicolumn{6}{c}{\textit{Results of Further Inference-Time Scaling (Voting@32)}} \\
+%   % \midrule
+%   \textbf{\SGRM (Ours)} & 88.5 & 65.3 & 60.4 & 69.7 & 71.0 ({\color{mydarkgreen}{+3.1}}) \\
+%   \textbf{\SGRM (MetaRM) (Ours)} & \textbf{90.4} & 67.2 & \textbf{63.2} & \textbf{70.3} & \uline{\textbf{72.8}} ({\color{mydarkgreen}{+4.9}}) \\
+%   \bottomrule
+%   \end{tabular}
+%   }
+%   \caption{Inference-time scalability results of different methods and models on RM benchmarks. \uline{Underlined numbers} indicate the best performance, \textbf{bold numbers} indicate the best performance among baseline and our methods, and \textit{italicized font} denotes scalar or semi-scalar RMs. For meta RM guided voting (MetaRM), $k_{\mathrm{meta}} = \frac{1}{2}k$. Numbers in the parentheses is the performance change after inference-time scaling.}
+%   \label{tab:infscale-results}
+%   \vspace{-1em}
+% \end{table}
+
+\begin{table}[t]
+    \centering
+  \begin{minipage}[t]{0.485\linewidth}
+  \vspace{0em}
+  \centering
+  \resizebox{\linewidth}{!}{
+  \begin{tabular}{lc}
+  \toprule
+  \textbf{Model} &  \textbf{Overall} \\
+  \midrule\midrule
+  \multicolumn{2}{c}{\textit{Reported Results of Public Models}} \\
+  % \midrule
+  \textit{Nemotron-4-340B-Reward}  &  \textit{70.5} \\
+  GPT-4o &  71.3 \\
+  \midrule
+  \multicolumn{2}{c}{\textit{Results of Inference-Time Scaling (Voting@1)}} \\
+  % \midrule
+  \textbf{LLM-as-a-Judge}  & 67.0 \\
+  \textit{\textbf{CLoud-Gemma-2-27B}} & \textit{68.5} \\
+  \textbf{\SGRMRFT (Ours)} & 67.8 \\
+  \textbf{\SGRM (Ours)}  & 67.9 \\
+  \midrule
+  \multicolumn{2}{c}{\textit{Results of Inference-Time Scaling (Voting@8)}} \\
+  % \midrule
+  \textbf{LLM-as-a-Judge}  & 67.6 ({\color{mydarkgreen}{+0.6}}) \\
+  \textbf{LLM-as-a-Judge} w/ \textbf{TokenProb}  & 68.1 ({\color{mydarkgreen}{+1.1}}) \\
+  \textit{\textbf{CLoud-Gemma-2-27B}}  & \textit{68.8} ({\color{mydarkgreen}{+0.3}}) \\
+  \textbf{\SGRMRFT (Ours)}  & 69.3 ({\color{mydarkgreen}{+1.5}}) \\
+  \textbf{\SGRM (Ours)}  & 70.6 ({\color{mydarkgreen}{+2.7}}) \\
+  \textbf{\SGRM (MetaRM) (Ours)}  & 72.0 ({\color{mydarkgreen}{+4.1}}) \\
+  \midrule
+  \multicolumn{2}{c}{\textit{Results of Further Inference-Time Scaling (Voting@32)}} \\
+  % \midrule
+  \textbf{\SGRM (Ours)}  & 71.0 ({\color{mydarkgreen}{+3.1}}) \\
+  \textbf{\SGRM (MetaRM) (Ours)}  & \uline{\textbf{72.8}} ({\color{mydarkgreen}{+4.9}}) \\
+  \bottomrule
+  \end{tabular}
+  }
+  \caption{Inference-time scalability results of different methods on RM benchmarks. Settings are the same as Table~\ref{tab:main-results}.} %\uline{Underlined numbers} indicate the best performance, \textbf{bold numbers} indicate the best performance among baseline and our methods, and \textit{italicized font} denotes scalar or semi-scalar RMs. For meta RM guided voting (MetaRM), $k_{\mathrm{meta}} = \frac{1}{2}k$. Numbers in the parentheses is the performance change after inference-time scaling.}
+  \label{tab:infscale-results}
+  \end{minipage}
+\hfill
+\begin{minipage}[t]{0.445\linewidth}
+\vspace{0em}
+    \centering
+  \resizebox{\linewidth}{!}{
+  \begin{tabular}{lc}
+  \toprule
+  \textbf{Method} & \textbf{Overall} \\
+  \midrule\midrule
+  \multicolumn{2}{c}{\textit{Results of Greedy Decoding}} \\
+  % \midrule
+  \textbf{\SGRM} &  \textbf{69.9} \\
+  $\quad$ w/o Principle Generation &    67.5 \\
+  $\quad$ w/o Rejective Sampling &  68.7 \\
+  \textbf{\SGRMRFT} & \textbf{68.8} \\
+  $\quad$ w/o Hinted Sampling (\ding{172}) &   68.0 \\
+  $\quad$ w/o Non-Hinted Sampling (\ding{173}) &   67.4 \\
+  $\quad$ w/o Rejective Sampling (\ding{172}\&\ding{173}) & 66.1 \\
+  $\quad$ w/o General Instruction Data &  63.3 \\
+  \midrule
+  \multicolumn{2}{c}{\textit{Results of Inference-Time Scaling (Voting@8)}} \\
+  \textbf{\SGRM} &  \textbf{70.6} \\
+  $\quad$ w/o Principle Generation &   68.0 \\
+  \midrule
+  \multicolumn{2}{c}{\textit{Results of Inference-Time Scaling (Voting@32)}} \\
+  % \midrule
+  \textbf{\SGRM} & 71.0  \\
+  \textbf{\SGRM ($k_{\mathrm{meta}}=1$)} &  71.5 \\
+  \textbf{\SGRM ($k_{\mathrm{meta}}=8$)} &   72.7 \\
+  \textbf{\SGRM ($k_{\mathrm{meta}}=16$)} &  \textbf{72.8} \\
+  \bottomrule
+  \end{tabular}
+  }
+  \caption{Ablation studies for different components of the proposed SPCT. \textbf{Bold numbers} indicate the best performance.}
+  \label{tab:ablation-results}
+\end{minipage}
+  \vspace{-1em}
+\end{table}
+
+\noindent\textbf{Inference-Time Scalability}
+The inference-time scaling results of different methods are shown in Table~\ref{tab:infscale-results}, and the whole trends are demonstrated in Figure~\ref{fig:perf-overview}. Details are in Appendix~\ref{app:result-detail}. With up to 8 samples, we find that \SGRM has the highest performance increase to the greedy decoding and sampling results. \SGRM further shows a strong potential to increase the performance with larger inference compute, up to 32 samples. The meta RM also reveals its validity in filtering low-quality trajectories for \SGRMAll on each benchmark. 
+Voted with token probabilities, LLM-as-a-Judge also shows a significant performance increase, indicating that the token probability as quantitative weights could help the reliability of mere majority voting. For CLoud-Gemma-2-27B, the performance increase is limited, mainly due to the lack of variance in scalar reward generation, even though the critique has changed a lot. In summary, \textbf{SPCT improves the inference-time scalability of GRMs, and the meta RM further boosts the scaling performance in general}. 
+
+
+% \begin{table}[t]
+%   \begin{minipage}[t]{0.465\textwidth}
+%   \vspace{0em}
+%   \centering
+%   \resizebox{\linewidth}{!}{
+%   \begin{tabular}{lc}
+%   \toprule
+%   \textbf{Method} & \textbf{Overall} \\
+%   \midrule\midrule
+%   \multicolumn{2}{c}{\textit{Results of Greedy Decoding}} \\
+%   % \midrule
+%   \textbf{\SGRM} &  \textbf{69.9} \\
+%   $\quad$ w/o Principle Generation &    67.5 \\
+%   $\quad$ w/o Rejective Sampling &  68.7 \\
+%   \textbf{\SGRMRFT} & \textbf{68.8} \\
+%   $\quad$ w/o Hinted Sampling (\ding{172}) &   68.0 \\
+%   $\quad$ w/o Non-Hinted Sampling (\ding{173}) &   67.4 \\
+%   $\quad$ w/o Rejective Sampling (\ding{172}\&\ding{173}) & 66.1 \\
+%   $\quad$ w/o General Instruction Data &  63.3 \\
+%   \midrule
+%   \multicolumn{2}{c}{\textit{Results of Inference-Time Scaling (Voting@8)}} \\
+%   \textbf{\SGRM} &  \textbf{70.6} \\
+%   $\quad$ w/o Principle Generation &   68.0 \\
+%   \midrule
+%   \multicolumn{2}{c}{\textit{Results of Inference-Time Scaling (Voting@32)}} \\
+%   % \midrule
+%   \textbf{\SGRM} & 71.0  \\
+%   \textbf{\SGRM ($k_{\mathrm{meta}}=1$)} &  71.5 \\
+%   \textbf{\SGRM ($k_{\mathrm{meta}}=8$)} &   72.7 \\
+%   \textbf{\SGRM ($k_{\mathrm{meta}}=16$)} &  \textbf{72.8} \\
+%   \bottomrule
+%   \end{tabular}
+%   }
+%   \caption{Ablation studies for different components of the proposed SPCT, \textbf{bold numbers} indicate the best performance.}
+%   \label{tab:ablation-results}
+%   \end{minipage}
+%   \hfill
+%   \begin{minipage}[t]{0.5\textwidth}
+%   \vspace{0em}
+%   \centering
+%   \resizebox{\linewidth}{!}{
+%   \begin{tabular}{lcc}
+%   \toprule
+%   \textbf{Method} & \textbf{Helpfulness} & \textbf{Harmlessness} \\
+%   \midrule\midrule
+%   \textbf{\SGRM}   &    \\
+%   $\quad$ w/ Pair Input  &   62.1   &  57.5  \\
+%   $\quad$ w/ List Input  &   62.3  &  57.0    \\ 
+%   \midrule
+%   \multicolumn{1}{c}{$\boldsymbol{\vert} \boldsymbol{\Delta} \boldsymbol{\vert}$}  &   \phantom{0}0.2   &  \phantom{0}0.5    \\ 
+%   \bottomrule
+%   \end{tabular}
+%   }
+%   \caption{Experiments of response input types on the RMB BoN benchmarks. }
+%   \label{tab:many-responses}
+%   % \vfill
+%   \resizebox{\linewidth}{!}{
+%   \begin{tabular}{lc}
+%   \toprule
+%   \textbf{Model} & \textbf{Overall} \\
+%   \midrule\midrule
+%   DeepSeek-V2.5-0905  &  69.4 \\
+%   GPT-4o-2024-08-06  &  74.3  \\
+%   \midrule
+%   DeepSeek-V2-Lite-Chat   &  61.9  \\
+%   \textbf{\SGRMSmall (Ours)}  &  64.9  \\ 
+%   \midrule
+%   Gemma-2-27B-it   &  65.8  \\
+%   \textbf{\textbf{\BTRM-27B}} &  69.3   \\
+%   \textbf{\SGRM (Ours)}  &  72.2   \\
+%   \textbf{\SGRM (Voting@8) (Ours)}  &   74.4  \\
+%   \bottomrule
+%   \end{tabular}
+%   }
+%   \caption{Experimental results (ROC-AUC (\%)) on the ReaLMistake benchmark.}
+%   \label{tab:single-responses}
+%   \end{minipage}
+% \end{table}
+
+\noindent\textbf{Ablation Study}
+Table~\ref{tab:ablation-results} shows the ablation study results of different components of the proposed SPCT, detailed results are listed in Appendix~\ref{app:result-detail}. Surprisingly, without the cold start with rejective sampled critique data, general instruction tuned GRMs still improve significantly after undergoing the online RL ($66.1\rightarrow 68.7$). Also, the non-hinted sampling seems more important than the hinted sampling, potentially because of the shortcuts appeared in hinted sampled trajectories. These indicate the \textbf{importance of online training for GRMs}. Aligned with previous works~\citep{cao2024compassjudger1allinonejudgemodel}, we confirm that the general instruction data is essential for the performance of GRMs. We find that \textbf{the principle generation is crucial for the performance of both greedy decoding and inference-time scaling of \SGRM}. For inference-time scaling, the meta RM guided voting shows robustness with different $k_{\mathrm{meta}}$. Further analysis on the generalist RM performance, including input flexibility, domain generalization of training data, etc., is discussed in Appendix~\ref{app:add-exp}. 
+
+
+% \section{Discussions}
+
+% In this section, we discuss multiple aspects of \SGRMAll with insights and empirical evidence.
+
+
+% \begin{table}[t]
+%   \begin{minipage}[t]{0.455\textwidth}
+%   \vspace{0em}
+%   \centering
+%   \resizebox{\linewidth}{!}{
+%   \begin{tabular}{lcc}
+%   \toprule
+%   \textbf{Method} & \textbf{Overall} \\
+%   \midrule\midrule
+%   \textbf{\SGRM}   &  59.8   \\
+%   $\quad$ w/ Voting@32  &    60.4   \\
+%   $\qquad$ w/ Meta RM ($k_{\mathrm{meta}}=8$)  &   64.7    \\
+%   $\quad$ w/ Reference  &    91.6   \\ 
+%   \bottomrule
+%   \end{tabular}
+%   }
+%   \caption{\centering Experiments on reference-based reward modeling on the PPE correctness benchmark.}
+%   \label{tab:reference-based}
+%   \end{minipage}
+%   \hfill
+%   \begin{minipage}[t]{0.54\textwidth}
+%   \vspace{0em}
+%   \centering
+%   \resizebox{\linewidth}{!}{
+%   \begin{tabular}{lcc}
+%   \toprule
+%   \textbf{Method} & \textbf{Chat Hard} & \textbf{IFEval} \\
+%   \midrule\midrule
+%   \textbf{GPT-4o-2024-08-06}  &  76.1  & 56.0  \\
+%   $\quad$ +Self-Gen. Principles  &  \color{red}{75.9}   &   \color{red}{55.6}    \\
+%   $\quad$ +Filtered Principles  &   \color{mydarkgreen}{77.8}  &   \color{mydarkgreen}{57.5}   \\
+%   $\quad$ +\SGRMShort-Gen. Principles  &  \color{mydarkgreen}{78.1}  &  \color{mydarkgreen}{58.3} \\ \midrule
+%   \textbf{\SGRM} &  78.3  &  59.8  \\
+%   $\quad$ +Filtered Principles  &  \color{red}{77.0}   &   \color{red}{58.5}   \\
+%   \bottomrule
+%   \end{tabular}
+%   }
+%   \caption{\centering Experiments of the transferability of principles generated by different models.}
+%   \label{tab:principle-transfer}
+%   \end{minipage}
+% \end{table}
+
+\noindent\textbf{Scaling Inference and Training Costs\ }
+We further investigate the inference-time and training-time scaling performance of \SGRM, by post-training with LLMs in different sizes. The models are tested on the Reward Bench, and the results are shown in Figure~\ref{fig:scaling}. 
+We find that direct voting with 32 samples of \SGRM could achieve comparable performance with the 671B MoE model, and the meta RM guided voting could achieve the best results with 8 samples, demonstrating the \textbf{effectiveness of inference-time scaling of \SGRM compared to scaling model sizes}. 
+Moreover, we test DeepSeek-R1 with a downsampled test set containing 300 samples, and find its performance even worse than the 236B MoE RFT model, indicating that expanding long chain-of-thoughts for reasoning tasks could not significantly improve the performance of generalist RM. 
+
+
+\begin{figure}[t]
+  \vspace{-0.5em}
+  \centering
+  \subfigure[Inference-time scaling results of \SGRMSmall and \SGRM ($k_{\mathrm{meta}} = \frac{1}{2} k$).]{
+      \includegraphics[width=0.365\textwidth]{figures/fig5-1-preprint.pdf}
+      \label{fig:inf-scale}
+  }\hspace{0.1\linewidth}
+  \subfigure[Training-time scaling results with different model sizes, using greedy decoding except DeepSeek-R1.]{
+      \includegraphics[width=0.35\textwidth]{figures/fig5-2-preprint.pdf}
+      \label{fig:train-scale}
+  }
+  \vspace{-1em}
+  \caption{Inference-time scaling performance v.s.~training-time scaling performance on the Reward Bench benchmark.}
+  \label{fig:scaling}
+  \vspace{-1em}
+\end{figure}
+
+\vspace{-0.5em}
+\section{Related Work}
+
+% Generative Reward Modeling is situated within the broader context of LLM-as-a-Judge Methods, LLM Alignment, and Inference-Time Refinement via Rewards. This body of work collectively emphasizes the importance of refined evaluative mechanisms and collaborative modeling strategies, underpinning our contributions.
+
+% \subsection{Reward Modeling for LLMs}
+
+\noindent\textbf{Gnerative Reward Models\ } 
+GRMs represent a paradigm shift from scalar RMs~\citep{instructgpt}, modeling reward as textual feedback or scores.~\citep{li2024generative, kim-etal-2024-prometheus, wang2024selftaughtevaluators,cao2024compassjudger1allinonejudgemodel, vu-etal-2024-foundational, alexandru2025atlaseleneminigeneral}, enabling richer reward representations and more flexible to judge single and multiple responses. Priorly, LLM-as-a-judge method~\citep{chatbot-arena} accommodates reference-based or reference-free pairwise judgement for evaluating LLMs. Recent studies use offline RL, e.g., DPO~\citep{rafailov2023direct}, to train GRMs~\citep{wu2024metarewardinglanguagemodelsselfimproving,mahan2024generativerewardmodels,yu2025improvellmasajudgeabilitygeneral,ye2025learning}, incorporate tools and external knowledge with GRMs~\citep{li2024toolaugmented,peng2025agenticrewardmodelingintegrating}, and even train GRMs as an interface to adjust rewards from environments~\citep{baker2025monitoring}. 
+Though these methods face challenges in efficiency, they demonstrate the potential in improving rewards at scale, towards a more generalist reward system. 
+
+\noindent\textbf{Inference-Time Scaling for LLMs\ }
+% LLM-as-a-Judge Methods: (reference-based evaluation/source-based evaluation)
+% 1. self generated reference; 2. evaluation guidlines; 3. principle-based evaluation
+% LLM Refinement via Rewards
+% 1. self-refine; 2. model collab
+% Alignment methods relied on reward modeling
+Inference-time scaling for LLMs has been a critical research direction parallel with scaling LLMs in training time. Studies focus on sampling and RM guided aggregation~\citep{lightman2024lets,brown2024largelanguagemonkeysscaling,snell2025scaling,wu2025inference}. Recently, long-horizon chain-of-thoughts~\citep{wei2022chain} incentivized from LLMs show promising results in improving the reasoning capabilities of the models~\citep{openai2024openaio1card,deepseekai2025deepseekr1incentivizingreasoningcapability,o3-system-card}, as another format of inference-time scaling. There are also researches using scalable rewards or verifiers to improve the performance of policy models, in domains of coding~\citep{chen2023codet}, reasoning~\citep{lifshitz2025multiagentverificationscalingtesttime}, etc. Thus, the development of inference-time scalable generalist RMs in this work might also contributes to the general performance of policy models by inference-time co-scaling. 
+
+
+\vspace{-0.5em}
+\section{Conclusion and Future Work}
+% as the source of knowledge for inference-time scaling on policy models (multi-sampling, RAG reranking, test-time training)
+
+We introduced Self-Principled Critique Tuning (SPCT), a method that enhances the scalability of inference time for generalist reward modeling. With rule-based online RL, SPCT enables adaptive generation of principles and critiques, significantly boosting reward quality and inference-time scalability for GRMs in diverse domains. Empirical results demonstrate that \SGRMAll surpass baseline methods and a few strong public RMs, and show notable improvement through inference-time scaling, particularly with the guidance of the meta RM. 
+Future directions could include integrating GRMs into online RL pipelines as versatile interfaces of reward systems, exploring inference-time co-scaling with policy models, or serving as robust offline evaluators for foundation models.
+
+
+% \section*{Author Contributions}
+% If you'd like to, you may include  a section for author contributions as is done
+% in many journals. This is optional and at the discretion of the authors.
+
+% \section*{Acknowledgments}
+% Use unnumbered first level headings for the acknowledgments. All
+% acknowledgments, including those to funding agencies, go at the end of the paper.
+
+\section*{Ethics Statement}
+% Authors can add an optional ethics statement to the paper. 
+% For papers that touch on ethical issues, this section will be evaluated as part of the review process. The ethics statement should come at the end of the paper. It does not count toward the page limit, but should not be more than 1 page. 
+
+Our proposed method, Self-Principled Critique Tuning (SPCT), aims to enhance inference-time scalability of generative reward models (GRMs) for general domains. While this advancement promotes accuracy and consistency in reward modeling, several ethical implications might warrant explicit consideration. 
+
+Firstly, even though through our empirical analysis that \SGRMAll shows less biases  on different domains, the automated generation of principles and critiques can inadvertently perpetuate or amplify biases when the training data is toxic. We argue that further investigation in the meta RM and other bias mitigation strategies should be prioritized to ensure equitable outcomes.
+Also, our approach does not aim to diminish human oversight. Instead, we advocate maintaining human-in-the-loop frameworks, and developing reliable proxy methods, like SPCT, to scale human oversight more efficiently and effectively. 
+
+Secondly, expanded applicability of the inference-time scalable GRMs across diverse domains might raise concerns regarding transparency, accountability, etc. We demonstrate model capabilities in Section~\ref{sec:main-results} and limitations in Appendix~\ref{app:limit}, and open-source the model under public supervision, which is essential for maintaining trust and ensuring responsible deployment of the artifact.
+
+Finally, robust validation and ongoing vigilance across varied RM benchmarks and practical scenarios remain crucial. Ethical use of \SGRMAll necessitates proactive management of risks and continuous evaluation against biases, requiring efforts in researches about RM evaluation.
+
+
+\bibliography{colm2025_conference}
+\bibliographystyle{colm2025_conference}
+
+\appendix
+
+\newpage
+
+\begin{spacing}{0.9}
+\tableofcontents
+\end{spacing}
+
+\newpage
+
+\section{Additional Related Work}
+
+\paragraph{Constitutional AI}
+
+Constitutional AI has emerged as a scalable alternative to traditional reinforcement learning from human feedback~\citep{instructgpt}, aiming to align language models with human values through a set of guiding principles or ``constitutions''~\citep{bai2022constitutionalaiharmlessnessai,sun2023principledriven}, replacing human critiques with AI-generated feedback~\citep{frnken2024selfsupervised} or classifiers~\citep{sharma2025constitutionalclassifiersdefendinguniversal} based on these handicraft principles. Similarly, rule-based approaches like Sparrow~\citep{glaese2022improvingalignmentdialogueagents} and Rule-Based Rewards (RBR)~\citep{mu2024rule} incorporate explicit natural language rules into the training loop for specific domains like safety. Although effective, these methods rely on static, manually written constitutions that are limited in scope, potentially biased, and inflexible. This has motivated interests in automating the generation or refinement of principles, which aligns with our target in this work. 
+
+\paragraph{Scalar Reward Models}
+Scalar reward modeling for LLMs are proposed the earliest to serve as a proxy model for human feedback~\citep{10.5555/3495724.3495977,pmlr-v202-gao23h}. Recent studies focus on Bradley-Terry modeling~\citep{0627eaad-0ecb-353b-9c3d-81e29de3658f} and other regression approaches for better expressiveness for scalar reward models~\citep{cai2024internlm2technicalreport,wang2024helpsteer,wang-etal-2024-interpretable,liu2024skyworkrewardbagtricksreward,wang2025helpsteerpreference} of general preference. In contrast to these outcome reward models, process reward models are proposed as step verifiers for reasoning problems, e.g., math, etc., with rich feedbacks~\citep{cobbe2021trainingverifierssolvemath, wang-etal-2024-math, zhang2025lessonsdevelopingprocessreward}, demonstrating the feasibility of scalar RMs in a formal domain with extensive reasoning and knowledge. Scalar RM excels in simplicity and is computationally efficient, but suffers from limited expressivity and struggles to generalize across diverse input types or refine reward signals at inference time.
+
+\paragraph{Semi-Scalar Reward Models}
+Semi-scalar reward models aim to enrich scalar reward signals through textual intermediate representations.~\citep{ye2024improvingrewardmodelssynthetic,ankner2024critiqueoutloudrewardmodels} 
+Consequently, works~\citep{{yu2025selfgeneratedcritiquesboostreward}} proposed to enhance the quality of generated critiques to eventually improve reward generation. Some studies use the token probability to substitute the scalar head for reward extraction~\citep{mahan2024generativerewardmodels,zhang2025generative}. These works show that semi-scalar RMs face challenges in inference-time scaling based on sampling and voting, resulting in limited performance improvement. The semi-scalar approach trades off between scalar RMs and GRMs in terms of both efficiency and effectiveness. 
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.7\textwidth]{figures/fig4-preprint.pdf}
+  \caption{Illustration of the derivation of \SGRMAll-RFT, \SGRMAll, and Meta RM in the SPCT pipeline.}
+  \label{fig:pipeline}
+  \vspace{-1em}
+\end{figure}
+
+\section{Limitations and Future Directions}\label{app:limit}
+
+\paragraph{Limitations}
+Though SPCT significantly leverages the performance and inference-time scalability of GRMs and surpasses (semi-)scalar RMs in general domains, it still faces a few limitations. 
+(1) The efficiency of the generative RMs is largely lagging behind the scalar RMs at the same scale by nature, which inhibits its large-scale usage in online RL pipelines. However, since we adopt parallel sampling for inference-time scaling, the latency of reward generation with a reasonable amount of, e.g., eight samplings will not increase significantly. Further research around the efficient generation of LLMs and innovations in RM applications could alleviate the problem. (2) 
+In specific domains such as verifiable tasks, \SGRMAll still lags behind scalar models. This could be because the scalar RMs capture hidden features of reasoning queries and responses, while GRMs need stronger reasoning capabilities to examine responses thoroughly. However, scalar RMs suffer severe biases and scalability issues. For GRMs, we found that both reference-based reward generation (Appendix~\ref{app:reference-rm} and long-horizon reasoning (Appendix~\ref{app:result-detail}) could mitigate this limitation. (3) Due to the universality of the pointwise GRM approach, \SGRMAll could potentially serve as a process RM in addition to the outcome RM. Though we have not explored much in this direction in the paper, the performance in the Reasoning subset of Reward Bench, which mainly comprises of MATH-prm data~\citep{lightman2024lets}, could partially support the potential of this application. 
+
+\paragraph{Future Directions}
+There are also several promising directions for future research based on SPCT or \SGRMAll models. 
+(1) Tool incorporation of RMs is studied by previous work~\citep{li2024toolaugmented}, and could also be used for \SGRMAll augmentation. \textbf{With tools such as code interpreters and search engine interfaces}, the generated critiques could be more accurate for tasks that requires strict procedures or extensive knowledge, and the cases in which GRMs fail to follow principles related to numeric calculations, pattern matching, etc. could be avoided. 
+(2) \textbf{The generation paradigm for principles and critiques could be decomposed} into separate stages, that is, the principles could be generated ahead of time for each query and the responses to be rated and stored, and then the critiques are generated with GRMs, rules, or other agentic approaches. The principle generation serves as an interface for the following critiques. This might improve the efficiency of current GRMs for the integration of RL pipelines. 
+(3) The \SGRMAll could be potentially \textbf{used in LLM offline evaluation}. Since each principle reflects a criteria, we can get criteria from all data points that a particular LLM is inferior than one another, as a interpretable protocol of the weaknesses of the particular LLM. 
+(4) The \SGRMAll might \textbf{be benefit from long-horizon reasoning}. However, this will further affect its efficiency. These directions should be studied in the future work. 
+
+\section{Implementation Details}
+
+\subsection{Comparisons of Different RM Approaches}\label{app:method-comp-detail}
+
+\paragraph{Reward Generation Paradigms}
+
+Classic RMs adopt the \textbf{(a) scalar} approach to generate rewards ($\mathcal{R}$), which assigns scalar values to the given query and responses. The scalar approach is further extended to the \textbf{(b) semi-scalar} approach, which generates texts besides the scalar value. And the \textbf{(c) generative} approach only generates textual rewards. 
+\begin{equation}
+  \mathcal{R} = \begin{cases}
+    \boldsymbol{S} & \text{(Scalar)} \\
+    \left(\boldsymbol{S}, \boldsymbol{C}\right) & \text{(Semi-Scalar)} \\
+    \boldsymbol{C} & \text{(Generative)}
+  \end{cases}
+  \sim r_{\theta}\left(x, \{y_i\}_{i=1}^n\right),
+\end{equation}
+where $x$ is the query, $y_i$ is the $i$-th response, $r_{\theta}$ is the reward function parameterized by $\theta$, $\boldsymbol{S} \in \mathbb{R}^m, m \leq n$ is the scalar reward, and $\boldsymbol{C}$ is the critique. 
+
+\paragraph{Scoring Patterns}
+
+We distinguish two main scoring approaches for rewards: pointwise and pairwise. The \textbf{(i) pointwise} approach assigns an individual score to each response:
+\begin{equation}
+  \left\{ S_i \right\}_{i=1}^n = f_{\mathrm{point}}\left(\mathcal{R}, \{y_i\}_{i=1}^n\right), \quad \mathcal{R} \sim r_{\theta}\left(x, \{y_i\}_{i=1}^n\right), S_i \in \mathbb{R},
+\end{equation}
+where $f_{\mathrm{point}}(\cdot, \cdot)$ is a splitting function. 
+In contrast, the \textbf{(ii) pairwise} approach can be viewed as a best-of-$n$ method, selecting a single best response from all candidates:
+\begin{equation}
+  \hat{y} = f_{\mathrm{pair}}(\mathcal{R}, \{y_i\}_{i=1}^n), \quad \mathcal{R} \sim r_{\theta}\left(x, \{y_i\}_{i=1}^n\right), \hat{y} \in \{y_i\}_{i=1}^n,
+\end{equation}
+where $f_{\mathrm{pair}}(\cdot, \cdot)$ is a selection function and $n=2$ in most cases. Though the pairwise approach could be extended to $n>2$, it could not be applied to single response scoring ($n=1$).
+
+\paragraph{Representative Methods} 
+
+Figure~\ref{fig:method-comp} illustrates how the three reward generation paradigms (scalar, semi-scalar, generative) can be combined with the two scoring patterns (pointwise, pairwise). Specifically, Bradley-Terry model~\citep{0627eaad-0ecb-353b-9c3d-81e29de3658f} (\emph{(a)+(i)}) is trained with pairwise preference data and outputs scalar rewards pointwisely 
+\begin{equation}\label{eq:inf-scalar-pointwise}
+\left\{ S_i \right\}_{i=1}^n = f_{\mathrm{point}}\left(\mathcal{R}, \{y_i\}_{i=1}^n\right) = \boldsymbol{S} \in \mathbb{R}^n. 
+\end{equation}
+PairRM~\citep{jiang-etal-2023-llm} (\emph{(a)+(ii)}) compares a pair of responses with the sign of the scalar reward 
+\begin{equation}
+\hat{y} = f_{\mathrm{pair}}\left(\mathcal{R}, \{y_i\}_{i=1}^n\right) = y_{\lfloor\frac{1}{2} (3-\mathrm{sgn}(\boldsymbol{S}))\rfloor}, \quad n=2, \mathcal{S} \in \mathbb{R}.
+\end{equation}
+The scalar methods above could barely perform inference-time scaling due to the lack of diversity in reward generation. 
+CLoud~\citep{ankner2024critiqueoutloudrewardmodels} (\emph{(b)+(i)}) generates scalar rewards for each response based on pre-generated critiques, similar to \Eqref{eq:inf-scalar-pointwise}. 
+LLM-as-a-Judge~\citep{chatbot-arena} (\emph{(c)+(ii)}) judges the preference order between paired responses textually, 
+\begin{equation}
+  \hat{y} = f_{\mathrm{pair}}\left(\mathcal{R}, \{y_i\}_{i=1}^n\right) = y_{f_{\mathrm{extract}}(\boldsymbol{C})}, \quad n=2, 
+\end{equation}
+where $f_{\mathrm{extract}}(\cdot)$ extracts the index of best response from language representations. However, this approach defaults to neglect ties of the paired responses. Following \citet{zhang2025generative}, the generation probability of the token that indicates the preference order could be used as the scalar reward (\emph{(b)+(ii)}): $\mathcal{S} = \mathrm{TokenProb}(\hat{C})=r_{\theta}(\hat{C} \vert x, \{y_i\}_{i=1}^n)$, where $\hat{C}$ is a pre-defined token related to the preference order.  
+However, without additional constraints, GRMs are able to generate pointwise rewards for multiple responses within pure language representation (\emph{(c)+(i)}):  
+\begin{equation}
+  \left\{ S_i \right\}_{i=1}^n = f_{\mathrm{point}}\left(\mathcal{R}, \{y_i\}_{i=1}^n\right) = f_{\mathrm{extract}}(\boldsymbol{C}), 
+\end{equation}
+where $f_{\mathrm{extract}}(\cdot)$ extracts the rewards assigned to each response from generation results. Usually, the rewards are discrete, and in this work we assign $S_i \in \mathbb{N}, 1 \leq S_i \leq 10$ by default. This approach promisingly allows both inference-time scalability and input flexibility.
+
+\paragraph{Voting with Generated Rewards}
+
+Voting is a widely adopted method for inference-time scaling in RM. Recalling the approaches in Section~\ref{sec:method-comp}, we demonstrate voting results of $k$ samples for semi-scalar and generative RMs. For semi-scalar RMs~\citep{ankner2024critiqueoutloudrewardmodels,zhang2025generative}, voting is performed as averaging:
+\begin{equation}~\label{eq:semi-scalar-voting}
+  \boldsymbol{S}^* = \frac{1}{k} \sum_{i=1}^k \boldsymbol{S}_i, \quad \{\mathcal{R} = (\boldsymbol{S}_i, \boldsymbol{C}_i)\}_{i=1}^k \sim r_{\theta}\left(x, \{y_i\}_{i=1}^n\right),
+\end{equation}
+where $\boldsymbol{S}^*$ is the final reward. In practice, the scalar value has limited variance which could hinder the scalability. 
+For pairwise GRMs~\citep{mahan2024generativerewardmodels,wang2024selftaughtevaluators}, voting is performed as selecting the response identified to be the best with the highest frequency, i.e.~majority:
+\begin{equation}
+  \hat{y}^* = \argmax_{y} \sum_{i=1}^k \mathbb{I}(y = \hat{y}_i), \quad \{\hat{y}_i = f_{\mathrm{pair}}(\boldsymbol{C}_i, \{y_i\}_{i=1}^n)\}_{i=1}^k \sim r_{\theta}\left(x, \{y_i\}_{i=1}^n\right),
+\end{equation}
+where $\hat{y}^*$ is the final predicted best response, $f_{\mathrm{pair}}(\cdot, \cdot)$ is a selection function, $\hat{y}_i$ is the individually selected best response of each sample, and $\mathbb{I}(\cdot)$ is the indicator function. Though the voting process is scalable, the majority voted result might be biased since ties is not allowed in each sample, and may not be able to tell apart subtle differences between responses due to the lack of quantitative scores. 
+
+\subsection{Model Training}~\label{app:train-detail}
+For the rule-based online RL, we use the standard GRPO setting~\citep{shao2024deepseekmathpushinglimitsmathematical}. 
+The overall objective is 
+\begin{equation}
+  \footnotesize
+  \begin{split}
+      & \mathcal{J}_{\mathrm{GRPO}}(\theta) = \mathbb{E}{[q \sim P(Q), \{o_i\}_{i=1}^G \sim \pi_{\theta_{old}}(O|q)]} \frac{1}{G}\sum_{i=1}^G\frac{1}{|o_i|} \sum_{t=1}^{|o_i|} \\
+      &  \left\{ \min \left[ \frac{\pi_\theta(o_{i,t} | q, o_{i,<t})}{\pi_{\theta_{old}}(o_{i,t} | q, o_{i,<t})} \hat{A}_{i,t}, \text{clip} \left( \frac{\pi_\theta(o_{i,t} | q, o_{i,<t})}{\pi_{\theta_{old}}(o_{i,t} | q, o_{i,<t})}, 1 - \epsilon, 1 + \epsilon \right)  \hat{A}_{i,t} \right] - \beta \mathbb{D}_{KL}\left[\pi_{\theta} || \pi_{ref}\right]\right\} ,
+  \end{split}
+  \label{eq:GRPO-obj}
+\end{equation}
+where $\hat{A}_{i, t} = \frac{\hat{r}_i- {\rm mean}(\hat{\mathbf{r}})}{{\rm std}(\hat{\mathbf{r}})}$, $G$ is the group size, $\beta$ is the coefficient of KL penalty, and $q = (x, \{y_i\}_{i=1}^n)$ with prompts. We performed grid search on hyper-parameter $\beta \in \{0.00, 0.01, 0.04, 0.08\}$ and found that $\beta = 0.08$ is the most stable configuration. And with too small KL coefficient, the GRM tends to collapse on a few subsets in benchmarks, e.g., Chat in the Reward Bench benchmark and Harmlessness in the RMB benchmark, and shows biases towards some other domains. We set $G=4$ for a better trade-off between efficiency and performance. 
+
+\begin{wraptable}{r}{0.3\textwidth}
+  \centering
+  \vspace{-1em}
+  \resizebox{\linewidth}{!}{
+  \begin{tabular}{lc}
+  \toprule
+  \textbf{Stage} & \textbf{Time} (h)  \\
+  \midrule\midrule
+    \textbf{RFT}   &  19.2   \\
+    \textbf{Rule-Based RL}    &    15.6   \\
+  \bottomrule
+  \end{tabular}
+  }
+  \caption{Training times of RFT and RL stages for \SGRM in hours.}
+  \label{tab:train-time}
+\end{wraptable}
+
+The training set comprises of 1250K RFT data, including 1070K general instruction data and 186K rejective sampled data, and 237K RL data. General instruction data is from in-house datasets. Rejective sampled data and RL data are from the same RM datasets, containing the preference for single, paired, and multiple responses, constructed from internal data and open-source datasets, including the training sets from MATH~\citep{hendrycks2021measuring}, UltraFeedback~\citep{pmlr-v235-cui24f}, OffsetBias~\citep{park-etal-2024-offsetbias}, 
+Skywork-Reward-Preference-80K-v0.2~\citep{liu2024skyworkrewardbagtricksreward}, and HelpSteer2-Preference~\citep{wang2025helpsteerpreference}. Specifically, we re-tagged the preference label of a part of UltraFeedback due to its quality issues; we sampled and filtered trajectories on MATH by rule-based ground truth matching, resulting in pairwise preference data; for rating single responses, we set the ground truth reward to 1 for correct responses and 0 for incorrect ones, only incorporating verifiable questions. 
+For rejective sampling, we use DeepSeek-v2.5-0906 to generate the trajectories with principles and critiques. The sampling time $N_{\mathrm{RFT}}$ is set to 3. During hinted sampling on HelpSteer2, we add the preference strengths labeled in the original dataset as the hint. We also remove the samples that are viewed too easy for DeepSeek-V2-Lite-Chat, i.e. all generated rewards are correct for three times according to \Eqref{eq:rft-correct}, from the RL data. 
+
+The derivation of \SGRMAll models and the meta RM is illustrated in Figure~\ref{fig:pipeline}. All \SGRMAll models are trained from the pretrained version of LLMs. For the training of the meta RM, we reuse the rejective sampled data from the RFT stage, and use \SGRM to perform rejective sampling with $N_{\mathrm{RFT}} = 3$, in order to avoid potential bias~\citep{chow2025inferenceaware} in the meta RM guided voting. The learning rate is $1\times10^{-5}$ and the batch size is $512$ for the meta RM training. 
+The training time of RFT and RL for \SGRM is depicted in Table~\ref{tab:train-time}, Gemma-2-27B based models are trained with 128 A100 GPUs on the Fire-Flyer platform~\citep{an2024fireflyeraihpccosteffectivesoftwarehardware}. The learning rate is $5\times10^{-6}$ for the RFT stage and $4\times10^{-7}$ for the RL stage, and the batch size is $1024$ for the RFT stage and $512$ for the RL stage. Both stages are trained for 900 steps. Due to resource constraints, \SGRMAll models larger than 27B does not undergo the rule-based RL and only trained with 50K rejective sampled data.  
+% Meta RM dataset
+
+\subsection{Baseline Implementation}
+
+For the baseline methods, we re-implement \textbf{LLM-as-a-Judge}~\citep{chatbot-arena}, \textbf{\BTRM-27B}~\citep{0627eaad-0ecb-353b-9c3d-81e29de3658f}, \textbf{CLoud-Gemma-2-27B}~\citep{ankner2024critiqueoutloudrewardmodels}, and \textbf{\PairRM-27B}~\citep{jiang-etal-2023-llm} based on Gemma-2-27B~\citep{gemmateam2024gemma2improvingopen} and with all compatible training data and settings as \SGRMAll.
+
+For \textbf{LLM-as-a-Judge}, we use exactly the same training configuration as \SGRM, including RFT with rejective sampled data from DeepSeek-V2.5-0906 and rule-based online RL. Due to its scoring pattern, only pairwise data could be used in the RL stage. For \textbf{CLoud-Gemma-2-27B}, we also generate pointwise critiques from DeepSeek-V2.5-0906 using the same prompt template. However, it is not feasible to perform rejective sampling, since no rewards could be extracted without a trained value head. We fine-tune Gemma-2-27B with the same general instruction data of \SGRM along with the sampled critique, resulting in a critique generation model. Specifically, we fine-tune another Gemma-2-27B model with a value head for reward generation, instead of training value heads post hoc on the critique model. The training of the value head of CLoud-Gemma-2-27B, \textbf{\BTRM-27B}, and \textbf{\PairRM-27B}~\citep{jiang-etal-2023-llm} uses the same dataset from the RL stage of \SGRM, except for single response rating data. 
+
+\section{Experiment Details}\label{app:exp-detail}
+
+\subsection{Hyper-Parameters}
+
+For inference-time scaling results of \SGRM, \SGRMSmall, LLM-as-a-Judge, and CLoud-Gemma-2-27B, the temperature is set to 0.5 for each model. And for other experiments, temperature is set to 0 for all models. Without specific description, $k_{\mathrm{meta}} = \frac{1}{2} k$ by default in the meta RM guided voting for \SGRM. 
+For inference on DeepSeek-R1, the temperature is set to 0.6. Please note that we let \SGRMAll to output rewards in the same range for rating single responses in the ReaLMistake benchmark as other benchmarks. 
+
+\begin{figure}[t]
+  % \vspace{-0.5em}
+  \centering
+  \subfigure[Results on the Reward Bench benchmark.]{
+      \includegraphics[width=0.48\textwidth]{figures/fig1-1-preprint.pdf}
+      \label{fig:perf-rb-overview}
+  }
+  \subfigure[Results on all tested reward modeling benchmarks.]{
+      \includegraphics[width=0.48\textwidth]{figures/fig1-2-preprint.pdf}
+      \label{fig:perf-all-overview}
+  }
+  % \vspace{-1em}
+  \caption{Inference-time scaling performance with different RMs on different reward modeling benchmarks. Non-italic font indicates models based on Gemma-2-27B.}
+  \label{fig:perf-overview-detail}
+\end{figure}
+
+\begin{table}[t]
+  \centering
+  \resizebox{\textwidth}{!}{
+  \begin{tabular}{lccccc}
+  \toprule
+  \textbf{Model} & \textbf{Reward Bench} & \textbf{PPE Preference} & \textbf{PPE Correctness} & \textbf{RMB} & \textbf{Overall} \\
+  \midrule\midrule
+  \multicolumn{6}{c}{\textit{Reported Results of Public Models}} \\
+  % \midrule
+  \textit{Nemotron-4-340B-Reward}  & \uline{\textit{92.0}} &  \textit{59.3} & \textit{60.8} & \textit{69.9} & \textit{70.5} \\
+  GPT-4o & 86.7 & 67.1 & 57.6 & \uline{73.8} & 71.3 \\
+  \midrule
+  \multicolumn{6}{c}{\textit{Results of Inference-Time Scaling (Voting@1)}} \\
+  % \midrule
+  \textbf{LLM-as-a-Judge} & 83.0 & 63.4 & 57.4 & 64.3 & 67.0 \\
+  \textit{\textbf{CLoud-Gemma-2-27B}} & \textit{82.0} & \textit{67.0} & \textit{62.0} & \textit{63.2} & \textit{68.5} \\
+  \textbf{\SGRMRFT (Ours)} & 84.0 & 62.2 & 59.4 & 65.8 & 67.8 \\
+  \textbf{\SGRM (Ours)} & 85.2 & 62.4 & 59.5 & 64.4 & 67.9 \\
+  \midrule
+  \multicolumn{6}{c}{\textit{Results of Inference-Time Scaling (Voting@8)}} \\
+  % \midrule
+  \textbf{LLM-as-a-Judge} & 83.4 & 63.8 & 58.2 & 65.2 & 67.6 ({\color{mydarkgreen}{+0.6}}) \\
+  \textbf{LLM-as-a-Judge} w/ \textbf{TokenProb} & 83.8 & 64.6 & 58.8 & 65.2 & 68.1 ({\color{mydarkgreen}{+1.1}}) \\
+  \textit{\textbf{CLoud-Gemma-2-27B}} & \textit{82.4} & \uline{\textbf{\textit{67.3}}} & \textit{62.4} & \textit{63.2} & \textit{68.8} ({\color{mydarkgreen}{+0.3}}) \\
+  \textbf{\SGRMRFT (Ours)} & 85.3 & 64.5 & 59.7 & 67.7 & 69.3 ({\color{mydarkgreen}{+1.5}}) \\
+  \textbf{\SGRM (Ours)} & 87.7 & 64.9 & 60.3 & 69.5 & 70.6 ({\color{mydarkgreen}{+2.7}}) \\
+  \textbf{\SGRM (MetaRM) (Ours)} & 89.8 & 66.4 & 63.0 & 68.8 & 72.0 ({\color{mydarkgreen}{+4.1}}) \\
+  \midrule
+  \multicolumn{6}{c}{\textit{Results of Further Inference-Time Scaling (Voting@32)}} \\
+  % \midrule
+  \textbf{\SGRM (Ours)} & 88.5 & 65.3 & 60.4 & 69.7 & 71.0 ({\color{mydarkgreen}{+3.1}}) \\
+  \textbf{\SGRM (MetaRM) (Ours)} & \textbf{90.4} & 67.2 & \textbf{63.2} & \textbf{70.3} & \uline{\textbf{72.8}} ({\color{mydarkgreen}{+4.9}}) \\
+  \bottomrule
+  \end{tabular}
+  }
+  \caption{Detailed results of inference-time scalability experiments (Table~\ref{tab:infscale-results}) of different methods and models on RM benchmarks. \uline{Underlined numbers} indicate the best performance, \textbf{bold numbers} indicate the best performance among baseline and our methods, and \textit{italicized font} denotes scalar or semi-scalar RMs. For meta RM guided voting (MetaRM), $k_{\mathrm{meta}} = \frac{1}{2}k$. Numbers in the parentheses is the performance change after inference-time scaling.}
+  \label{tab:infscale-results-detail}
+  \vspace{-1em}
+\end{table}
+
+
+\begin{table}[t]
+  \centering
+  \resizebox{\textwidth}{!}{
+  \begin{tabular}{lccccc}
+  \toprule
+  \textbf{Model} & \textbf{Reward Bench} & \textbf{PPE Preference} & \textbf{PPE Correctness} & \textbf{RMB} & \textbf{Overall} \\
+  \midrule\midrule
+  \multicolumn{6}{c}{\textit{Results of Greedy Decoding}} \\
+  % \midrule
+  \textbf{\SGRM} & \textbf{86.0} & \textbf{64.7} & \textbf{59.8} & \textbf{69.0} & \textbf{69.9} \\
+  $\quad$ w/o Principle Generation &  82.0  &  62.8  &  58.2  &  67.1 &  67.5 \\
+  $\quad$ w/o Rejective Sampling & 84.0  &  63.2  &  59.4  &  68.0 &  68.7 \\
+  \textbf{\SGRMRFT} & \textbf{84.5} & \textbf{64.1} & \textbf{59.6} & \textbf{67.0} & \textbf{68.8} \\
+  $\quad$ w/o Hinted Sampling (\ding{172}) &  83.0  &  63.8  &  58.2  &  65.8 &  68.0 \\
+  $\quad$ w/o Non-Hinted Sampling (\ding{173}) &  82.5  &  63.4  &  58.6  &  65.2 &  67.4 \\
+  $\quad$ w/o Rejective Sampling (\ding{172}\&\ding{173}) & 81.5  & 61.8 & 57.8 & 63.1 & 66.1 \\
+  $\quad$ w/o General Instruction Data & 79.1  & 59.2  & 51.5 & 63.2 & 63.3 \\
+  \midrule
+  \multicolumn{6}{c}{\textit{Results of Inference-Time Scaling (Voting@8)}} \\
+  \textbf{\SGRM} & \textbf{87.7} & \textbf{64.9} & \textbf{60.3} & \textbf{69.5} & \textbf{70.6} \\
+  $\quad$ w/o Principle Generation &  83.0  &  63.2  &  58.6  &  67.1 &   68.0 \\
+  \midrule
+  \multicolumn{6}{c}{\textit{Results of Inference-Time Scaling (Voting@32)}} \\
+  % \midrule
+  \textbf{\SGRM} & 88.5 & 65.3 & 60.4 & 69.7 & 71.0  \\
+  \textbf{\SGRM ($k_{\mathrm{meta}}=1$)} & 88.5 & 67.1 & \textbf{65.2} & 65.2 & 71.5 \\
+  \textbf{\SGRM ($k_{\mathrm{meta}}=8$)} &  89.7  &  \textbf{67.2} &  64.7  &  69.1 &  72.7 \\
+  \textbf{\SGRM ($k_{\mathrm{meta}}=16$)} & \textbf{90.4} & 67.2 & 63.2 & \textbf{70.3} & \textbf{72.8} \\
+  \bottomrule
+  \end{tabular}
+  }
+  \caption{Detailed results of ablation studies (Table~\ref{tab:ablation-results}) for different components of the proposed SPCT. \textbf{Bold numbers} indicate the best performance.}
+  \label{tab:ablation-results-detail}
+  \resizebox{\textwidth}{!}{
+  \begin{tabular}{lcccccc}
+  \toprule
+  \textbf{Method} & \textbf{Chat} & \textbf{Chat Hard} & \textbf{Safety}  &  \textbf{Reasoning} & \textbf{Prior Sets} & \textbf{Reward Bench} \\
+  \midrule\midrule
+  \multicolumn{7}{c}{\textit{Results of Other Models}} \\
+  DeepSeek-R1 & 97.1 & 73.7 &  73.3 &  95.6 &  -  & 84.9 \\
+   \SGRMSmall   & 90.8 & 74.3 & 84.7 &  81.8 &  62.5 &  82.9  \\
+   \SGRMAll-230B   & 96.5  &  72.5  &  87.8  &  84.3 & - & 85.3  \\
+   \SGRMAll-671B   &  95.8 &  82.9  &  88.3 &  86.6 & - &  88.4 \\
+  \midrule
+  \multicolumn{7}{c}{\textit{Results of Greedy Decoding}} \\
+  \textbf{LLM-as-a-Judge} & 96.7 & 69.3 & 83.5 & 84.3 &  - & 83.4 \\
+  \textit{\textbf{\BTRM-27B}} &  96.7  &  86.2 &  75.7   &  89.8   &   68.5   &  \textit{81.7} \\
+  \textit{\textbf{CLoud-Gemma-2-27B}} & \textit{96.7}  & \textit{69.3}  &   \textit{83.5}  &  \textit{84.3}  &  - & 
+ \textit{82.0} \\
+  \textit{\textbf{\PairRM-27B}} & \textit{95.5} & \textit{86.8} & \textit{52.3} & \textit{92.0} & \textit{67.6}   & \textit{87.1} \\
+  \textbf{\SGRMRFT (Ours)} & 94.7 & 77.2 & 87.0 & 79.2 & 65.9  &  84.5 \\
+  \textbf{\SGRM (Ours)} & 94.1 & 78.3 &  88.0 & 83.8 & 66.7  & 86.0  \\
+  \midrule
+  \multicolumn{7}{c}{\textit{Results of Inference-Time Scaling (Voting@8)}} \\
+  % \midrule
+  \textbf{LLM-as-a-Judge} & 95.0 & 70.0 & 83.5 & 85.0 & -  &  83.4 \\
+  \textbf{LLM-as-a-Judge} w/ \textbf{TokenProb} & 95.8 & 71.3 & 83.3 & 84.8 & -  &  83.8 \\
+  \textit{\textbf{CLoud-Gemma-2-27B}} & \textit{96.7} & \textit{85.8} & \textit{56.2} & \textit{91.0} &  - &   \textit{82.4} \\
+  \textbf{\SGRMRFT (Ours)} & 94.7 & 79.0 & 87.3 & 80.2 & - &  85.3  \\
+  \textbf{\SGRM (Ours)} & 95.3 & 80.9 & 89.3 & 85.4 & 66.8  &   87.7 \\
+  \textbf{\SGRM (MetaRM) (Ours)} & 95.5 & 85.7 & 88.5 & 89.5 & 69.4  & 89.8   \\
+  \midrule
+  \multicolumn{7}{c}{\textit{Results of Further Inference-Time Scaling (Voting@32)}} \\
+  % \midrule
+  \textbf{\SGRM (Ours)} & 95.5 & 81.8 & 90.0 & 86.9 & 68.1  & 88.5 \\
+  \textbf{\SGRM (MetaRM) (Ours)} &95.3   &  85.7   &  89.5   &  91.0 &  69.4  & \uline{\textbf{90.4}} \\
+  \bottomrule
+  \end{tabular}
+  }
+  \caption{Detailed results of different methods on the Reward Bench benchmark. \uline{Underlined numbers} indicate the best performance, \textbf{bold numbers} indicate the best performance among baseline and our methods, and \textit{italicized font} denotes scalar or semi-scalar RMs. For meta RM guided voting (MetaRM), $k_{\mathrm{meta}} = \frac{1}{2}k$.}
+  \label{tab:rb-results-detail}
+  \vspace{-1em}
+\end{table}
+
+
+\subsection{Benchmarks}
+
+We evaluate the performance of different methods on various RM benchmarks of different domains: (1) \textbf{Reward Bench}~\citep{lambert2024rewardbenchevaluatingrewardmodels}, a common benchmark for RM evaluation, with semi-automatically collected chat~\citep{alpaca_eval,chatbot-arena,zeng2024evaluating}, reasoning~\citep{lightman2024lets,muennighoff2024octopack}, and safety~\citep{rottger-etal-2024-xstest,wang-etal-2024-answer} preference data, where two responses require to be ranked for each query; (2) \textbf{PPE}~\citep{frick2025how}, a large-scale benchmark containing crowdsourced preference data and correctness data for varifiable tasks, and each query has two responses; (3) \textbf{RMB}~\citep{zhou2025rmb}, a more comprehensive benchmark with various types of preference data, focusing on helpfulness and harmlessness, and each query has two responses or more response in pairwise and best-of-N (BoN) subsets, respectively; (4) \textbf{ReaLMistake}~\citep{kamoi2024evaluating}, a benchmark for diagnosing the error within single responses. Specifically, we do not include the prior sets~\citep{bai2022traininghelpfulharmlessassistant,askell2021generallanguageassistantlaboratory,pmlr-v162-ethayarajh22a,10.5555/3495724.3495977} of the Reward Bench benchmark in overall score calculations. 
+
+We use the standard evaluation metrics for each benchmark: accuracy of picking the best response from a set of responses in Reward Bench, PPE, and RMB, and ROC-AUC for ReaLMistake. The BoN subsets of the RMB benchmark contains multiple responses for each query, and each data point is correct only when the best response is identified. The default setting to evaluate models on RMB BoN subsets is to pairwise evaluate $(n-1)$ pairs, where each pair includes the best response and another different response, if there is totally $n$ responses. For baseline methods, we adopt this approach for evaluation. And for our models (\SGRMAll), we directly input all responses to the model and identify the best response with $\argmax_{i} {S_i}_{i=1}^n$, where $S_i$ is the predicted reward for $i$-th response, which is a more direct but harder way, and barely affects the performance. Please refer to Appendix~\ref{app:many-response} for empirical analysis. 
+
+For DeepSeek-R1, due to the large costs and latency of inference, we evenly down-sampled 300 data points from the Reward Bench benchmark, and test DeepSeek-R1 on this subset. The result is illustrated in Figure~\ref{fig:train-scale}. 
+
+% To deal with ties of the predicted rewards for multiple responses, we shuffle the responses and determine the best response by $\argmax_{i} S_i$, where $S_i$ is the predicted reward for the $i$-th response after shuffling. 
+
+% \begin{table}[t]
+%   \resizebox{\textwidth}{!}{
+%   \begin{tabular}{lccccc}
+%   \toprule
+%   \textbf{Model} & \textbf{Reward Bench} & \textbf{PPE Preference} & \textbf{PPE Correctness} & \textbf{RMB} & \textbf{Overall} \\
+%   \midrule\midrule
+%   \multicolumn{6}{c}{\textit{Results of Greedy Decoding}} \\
+%   % \midrule
+%   \textbf{\SGRM} & \textbf{86.0} & \textbf{64.7} & \textbf{59.8} & \textbf{69.0} & \textbf{69.9} \\
+%   $\quad$ w/o Principle Generation &  82.0  &  62.8  &  58.2  &  67.1 &  67.5 \\
+%   $\quad$ w/o Rejective Sampling & 84.0  &  63.2  &  59.4  &  68.0 &  68.7 \\
+%   \textbf{\SGRMRFT} & \textbf{84.5} & \textbf{64.1} & \textbf{59.6} & \textbf{67.0} & \textbf{68.8} \\
+%   $\quad$ w/o Hinted Sampling (\ding{172}) &  83.0  &  63.8  &  58.2  &  65.8 &  68.0 \\
+%   $\quad$ w/o Non-Hinted Sampling (\ding{173}) &  82.5  &  63.4  &  58.6  &  65.2 &  67.4 \\
+%   $\quad$ w/o Rejective Sampling (\ding{172}\&\ding{173}) & 81.5  & 61.8 & 57.8 & 63.1 & 66.1 \\
+%   $\quad$ w/o General Instruction Data & 79.1  & 59.2  & 51.5 & 63.2 & 63.3 \\
+%   \midrule
+%   \multicolumn{6}{c}{\textit{Results of Inference-Time Scaling (Voting@8)}} \\
+%   \textbf{\SGRM} & \textbf{87.7} & \textbf{64.9} & \textbf{60.3} & \textbf{69.5} & \textbf{70.6} \\
+%   $\quad$ w/o Principle Generation &  83.0  &  63.2  &  58.6  &  67.1 &   68.0 \\
+%   \midrule
+%   \multicolumn{6}{c}{\textit{Results of Inference-Time Scaling (Voting@32)}} \\
+%   % \midrule
+%   \textbf{\SGRM} & 88.5 & 65.3 & 60.4 & 69.7 & 71.0  \\
+%   \textbf{\SGRM ($k_{\mathrm{meta}}=1$)} & 88.5 & 67.1 & \textbf{65.2} & 65.2 & 71.5 \\
+%   \textbf{\SGRM ($k_{\mathrm{meta}}=8$)} &  89.7  &  \textbf{67.2} &  64.7  &  69.1 &  72.7 \\
+%   \textbf{\SGRM ($k_{\mathrm{meta}}=16$)} & \textbf{90.4} & 67.2 & 63.2 & \textbf{70.3} & \textbf{72.8} \\
+%   \bottomrule
+%   \end{tabular}
+%   }
+%   \caption{Detailed results of ablation studies (Table~\ref{tab:ablation-results}) for different components of the proposed SPCT. \textbf{Bold numbers} indicate the best performance.}
+%   \label{tab:ablation-results-detail}
+% \end{table}
+
+\begin{table}[t]
+  \centering
+  \resizebox{\textwidth}{!}{
+  \begin{tabular}{lcccccc}
+  \toprule
+  \textbf{Method} & \textbf{MMLU-Pro} & \textbf{MATH} & \textbf{GPQA} & \textbf{MBPP-Plus}  &  \textbf{IFEval}  & \textbf{PPE Correctness} \\
+  \midrule\midrule
+  \multicolumn{7}{c}{\textit{Results of Greedy Decoding}} \\
+  \textbf{LLM-as-a-Judge} & 66.0 & 68.0 & 52.8 & 50.2 & 56.8  &  58.8 \\
+  \textit{\textbf{\BTRM-27B}} & \textit{68.8} & \textit{73.2} & \textit{56.8} & \textit{68.8} & \textit{66.0}  & \textbf{\textit{66.7}} \\
+  \textit{\textbf{CLoud-Gemma-2-27B}} & \textit{68.7} & \textit{68.8} & \textit{53.5} & \textit{59.0} & \textit{62.0} &   \textit{62.4} \\
+  \textit{\textbf{\PairRM-27B}} & \textit{68.3} & \textit{74.7} & \textit{55.0} & \textit{63.1} & \textit{62.9}  &   \textit{64.8}  \\
+  \textbf{\SGRMRFT (Ours)} & 64.8 & 68.7 & 55.5 & 49.0 & 60.2 & 59.6  \\
+  \textbf{\SGRM (Ours)} & 64.8 & 68.8 & 55.6  & 50.1 & 59.8  &  59.8 \\
+  $\quad$ w/ Reference  &  98.2  &  97.5  &   99.8   &  86.6  &  75.9  &   \uline{91.6}   \\
+  \midrule
+  \multicolumn{6}{c}{\textit{Results of Inference-Time Scaling (Voting@8)}} \\
+  % \midrule
+  \textbf{LLM-as-a-Judge} & 66.2 & 66.4 & 51.9 & 49.9 & 56.8  &  58.2 \\
+  \textbf{LLM-as-a-Judge} w/ \textbf{TokenProb} & 66.4 & 68.1 & 53.0 & 49.5 & 57.0 &  58.8  \\
+  \textit{\textbf{CLoud-Gemma-2-27B}} & \textit{68.7} & \textit{68.9} & \textit{53.5} & \textit{59.0} & \textit{62.0} &   \textit{62.4} \\
+  \textbf{\SGRMRFT (Ours)} & 64.8 & 68.7 & 55.5 & 49.5 & 60.2  &  59.7  \\
+  \textbf{\SGRM (Ours)} & 65.7  &  68.7  & 55.5   &  50.0  & 61.6  &  60.3  \\
+  \textbf{\SGRM (MetaRM) (Ours)} & 68.0  & 68.7  &  57.3  &  51.3   &  69.9  &  63.0  \\
+  \midrule
+  \multicolumn{6}{c}{\textit{Results of Further Inference-Time Scaling (Voting@32)}} \\
+  % \midrule
+  \textbf{\SGRM (Ours)} &  65.5  &  69.4  &   56.0   &  49.9  &  61.0   &  60.4 \\
+  \textbf{\SGRM (MetaRM) (Ours)} &  68.1  &  70.0  & 56.9  &  50.8  &   70.4   &  63.2  \\
+  \bottomrule
+  \end{tabular}
+  }
+  \caption{Detailed results of different methods on the PPE Correctness benchmark.}
+  \label{tab:ppe-c-results-detail}
+  \resizebox{\textwidth}{!}{
+  \begin{tabular}{lccccc}
+  \toprule
+  \textbf{Method}   & \textbf{Helpfulness BoN} & \textbf{Helpfulness Pairwise} & \textbf{Harmlessness BoN} & \textbf{Harmlessness Pairwise}  &  \textbf{RMB} \\
+  \midrule\midrule
+  \multicolumn{6}{c}{\textit{Results of Greedy Decoding}} \\
+  \textbf{LLM-as-a-Judge} & 55.8 & 78.5 & 50.8 & 73.9 & 64.8 \\
+  \textit{\textbf{\BTRM-27B}} & \textit{64.0} & \textit{83.0} & \textit{33.6} & \textit{51.0} & \textit{57.9}  \\
+  \textit{\textbf{CLoud-Gemma-2-27B}} & \textit{64.7} & \textit{81.1} & \textit{41.7} & \textit{66.1} & \textit{63.4} \\
+  \textit{\textbf{\PairRM-27B}} & \textit{59.9} & \textit{83.3} & \textit{34.1} & \textit{55.5} & \textit{58.2} \\
+  \textbf{\SGRMRFT (Ours)} & 58.4 & 79.3 & 54.2 &  76.0 &  67.0  \\
+  \textbf{\SGRM (Ours)} & 62.3 &  80.5 &  57.0 &  76.1  & 69.0 \\
+  \midrule
+  \multicolumn{6}{c}{\textit{Results of Inference-Time Scaling (Voting@8)}} \\
+  % \midrule
+  \textbf{LLM-as-a-Judge} & 56.0 & 78.5 & 52.5 & 73.8 & 65.2 \\
+  \textbf{LLM-as-a-Judge} w/ \textbf{TokenProb} & 56.0 & 78.5 &  52.5  &  73.8  &  65.2 \\
+  \textit{\textbf{CLoud-Gemma-2-27B}} & \textit{63.8} & \textit{82.1} & \textit{40.9} & \textit{66.1} & \textit{63.2} \\
+  \textbf{\SGRMRFT (Ours)} & 59.2 & 80.1&  54.8  & 76.5  &  67.7 \\
+  \textbf{\SGRM (Ours)} & 63.9 &  79.5  &  57.6   &  77.1 &  69.5  \\
+  \textbf{\SGRM (MetaRM) (Ours)} &  63.4  &   80.5  &  56.8   &  74.6  &  68.8   \\
+  \midrule
+  \multicolumn{6}{c}{\textit{Results of Further Inference-Time Scaling (Voting@32)}} \\
+  % \midrule
+  \textbf{\SGRM (Ours)} & 63.9  &  79.8  &   58.0  &   77.0  &   69.7\\
+  \textbf{\SGRM (MetaRM) (Ours)} &  64.2  &  81.6  &   58.0  &   77.4  &  70.3 \\
+  \bottomrule
+  \end{tabular}
+  }
+  \caption{Detailed results of different methods on the RMB benchmark. \uline{Underlined numbers} indicate the best performance, \textbf{bold numbers} indicate the best performance among baseline and our methods, and \textit{italicized font} denotes scalar or semi-scalar RMs. For meta RM guided voting (MetaRM), $k_{\mathrm{meta}} = \frac{1}{2}k$.}
+  \label{tab:rmb-results-detail}
+  \vspace{-1em}
+\end{table}
+
+
+\subsection{Detailed Results}\label{app:result-detail}
+
+We provide detailed results of Figure~\ref{fig:perf-overview} in Figure~\ref{fig:perf-overview-detail}, with performance of more public models for reference. 
+We provide detailed results of Table~\ref{tab:infscale-results} in Table~\ref{tab:infscale-results-detail}, and detailed results of Table~\ref{tab:ablation-results} in Table~\ref{tab:ablation-results-detail}, with scores on each RM benchmark. Furthermore, we list detailed results for all tested methods on each RM benchmarks, with the Reward Bench benchmark in Table~\ref{tab:rb-results-detail}, the PPE Correctness benchmark in Table~\ref{tab:ppe-c-results-detail}, and the RMB benchmark in Table~\ref{tab:rmb-results-detail}. We found that DeepSeek-R1 achieves the highest result in the Reasoning subset of the Reward Bench benchmark, indicating that long-horizon reasoning could boost GRMs in reasoning extensive scenarios. 
+
+
+% \begin{table}[t]
+%   \centering
+%   \resizebox{\textwidth}{!}{
+%   \begin{tabular}{lcccccc}
+%   \toprule
+%   \textbf{Method} & \textbf{MMLU-Pro} & \textbf{MATH} & \textbf{GPQA} & \textbf{MBPP-Plus}  &  \textbf{IFEval}  & \textbf{PPE Correctness} \\
+%   \midrule\midrule
+%   \multicolumn{7}{c}{\textit{Results of Greedy Decoding}} \\
+%   \textbf{LLM-as-a-Judge} & 83.4 & 64.2 & 58.8 & 64.8 & 67.8 \\
+%   \textit{\textbf{\BTRM-27B}} & \textit{81.7} & \uline{\textit{\textbf{68.3}}} & \uline{\textit{\textbf{66.7}}} & \textit{57.9} & \textit{68.6} \\
+%   \textit{\textbf{CLoud-Gemma-2-27B}} & \textit{82.0} & \textit{67.1} & \textit{62.4} & \textit{63.4} & \textit{68.7} \\
+%   \textit{\textbf{\PairRM-27B}} & \textit{87.1} & \textit{65.8} & \textit{64.8} & \textit{58.2} & \textit{69.0} \\
+%   \textbf{\SGRMRFT (Ours)} & 84.5 & 64.1 & 59.6 & 67.0 & 68.8 \\
+%   \textbf{\SGRM (Ours)} & 86.0 & 64.7 & 59.8 & 69.0 & 69.9 \\
+%   $\quad$ w/ Reference  &    &    &    &    &     &   91.6   \\
+%   \midrule
+%   \multicolumn{6}{c}{\textit{Results of Inference-Time Scaling (Voting@1)}} \\
+%   % \midrule
+%   \textbf{LLM-as-a-Judge} & 83.0 & 63.4 & 57.4 & 64.3 & 67.0 \\
+%   \textit{\textbf{CLoud-Gemma-2-27B}} & \textit{82.0} & \textit{67.0} & \textit{62.0} & \textit{63.2} & \textit{68.5} \\
+%   \textbf{\SGRMRFT (Ours)} & 84.0 & 62.2 & 59.4 & 65.8 & 67.8 \\
+%   \textbf{\SGRM (Ours)} & 85.2 & 62.4 & 59.5 & 64.4 & 67.9 \\
+%   \midrule
+%   \multicolumn{6}{c}{\textit{Results of Inference-Time Scaling (Voting@8)}} \\
+%   % \midrule
+%   \textbf{LLM-as-a-Judge} & 83.4 & 63.8 & 58.2 & 65.2 & 67.6 ({\color{mydarkgreen}{+0.6}}) \\
+%   \textbf{LLM-as-a-Judge} w/ \textbf{TokenProb} & 83.8 & 64.6 & 58.8 & 65.2 & 68.1 ({\color{mydarkgreen}{+1.1}}) \\
+%   \textit{\textbf{CLoud-Gemma-2-27B}} & \textit{82.4} & \uline{\textbf{\textit{67.3}}} & \textit{62.4} & \textit{63.2} & \textit{68.8} ({\color{mydarkgreen}{+0.3}}) \\
+%   \textbf{\SGRMRFT (Ours)} & 85.3 & 64.5 & 59.7 & 67.7 & 69.3 ({\color{mydarkgreen}{+1.5}}) \\
+%   \textbf{\SGRM (Ours)} & 87.7 & 64.9 & 60.3 & 69.5 & 70.6 ({\color{mydarkgreen}{+2.7}}) \\
+%   \textbf{\SGRM (MetaRM) (Ours)} & 89.8 & 66.4 & 63.0 & 68.8 & 72.0 ({\color{mydarkgreen}{+4.1}}) \\
+%   \midrule
+%   \multicolumn{6}{c}{\textit{Results of Further Inference-Time Scaling (Voting@32)}} \\
+%   % \midrule
+%   \textbf{\SGRM (Ours)} & 88.5 & 65.3 & 60.4 & 69.7 & 71.0 ({\color{mydarkgreen}{+3.1}}) \\
+%   \textbf{\SGRM (MetaRM) (Ours)} & \textbf{90.4} & 67.2 & \textbf{63.2} & \textbf{70.3} & \uline{\textbf{72.8}} ({\color{mydarkgreen}{+4.9}}) \\
+%   \bottomrule
+%   \end{tabular}
+%   }
+%   \caption{Detailed results of different methods on the PPE Correctness benchmark. \uline{Underlined numbers} indicate the best performance, \textbf{bold numbers} indicate the best performance among baseline and our methods, and \textit{italicized font} denotes scalar or semi-scalar RMs. For meta RM guided voting (MetaRM), $k_{\mathrm{meta}} = \frac{1}{2}k$. Numbers in the parentheses is the performance change after inference-time scaling.}
+%   \label{tab:ppe-c-results-detail}
+%   % \vspace{-1em}
+% \end{table}
+
+
+% \begin{table}[t]
+%   \centering
+%   \resizebox{\textwidth}{!}{
+%   \begin{tabular}{lccccc}
+%   \toprule
+%   \textbf{Method}   & \textbf{Helpfulness BoN} & \textbf{Helpfulness Pairwise} & \textbf{Harmlessness BoN} & \textbf{Harmlessness Pairwise}  &  \textbf{RMB} \\
+%   \midrule\midrule
+%   \multicolumn{6}{c}{\textit{Results of Greedy Decoding}} \\
+%   \textbf{LLM-as-a-Judge} & 55.8 & 78.5 & 50.8 & 73.9 & 64.8 \\
+%   \textit{\textbf{\BTRM-27B}} & \textit{64.0} & \textit{83.0} & \textit{33.6} & \textit{51.0} & \textit{57.9}  \\
+%   \textit{\textbf{CLoud-Gemma-2-27B}} & \textit{64.7} & \textit{81.1} & \textit{41.7} & \textit{66.1} & \textit{63.4} \\
+%   \textit{\textbf{\PairRM-27B}} & \textit{59.9} & \textit{83.3} & \textit{34.1} & \textit{55.5} & \textit{58.2} \\
+%   \textbf{\SGRMRFT (Ours)} & 58.4 & 79.3 & 54.2 &  76.0 &  67.0  \\
+%   \textbf{\SGRM (Ours)} & 62.3 &  80.5 &  57.0 &  76.1  & 69.0 \\
+%   \midrule
+%   \multicolumn{6}{c}{\textit{Results of Inference-Time Scaling (Voting@8)}} \\
+%   % \midrule
+%   \textbf{LLM-as-a-Judge} & 56.0 & 78.5 & 52.5 & 73.8 & 65.2 \\
+%   \textbf{LLM-as-a-Judge} w/ \textbf{TokenProb} & 56.0 & 78.5 &  52.5  &  73.8  &  65.2 \\
+%   \textit{\textbf{CLoud-Gemma-2-27B}} & \textit{63.8} & \textit{82.1} & \textit{40.9} & \textit{66.1} & \textit{63.2} \\
+%   \textbf{\SGRMRFT (Ours)} & 59.2 & 80.1&  54.8  & 76.5  &  67.7 \\
+%   \textbf{\SGRM (Ours)} & 63.9 &  79.5  &  57.6   &  77.1 &  69.5  \\
+%   \textbf{\SGRM (MetaRM) (Ours)} &  63.4  &   80.5  &  56.8   &  74.6  &  68.8   \\
+%   \midrule
+%   \multicolumn{6}{c}{\textit{Results of Further Inference-Time Scaling (Voting@32)}} \\
+%   % \midrule
+%   \textbf{\SGRM (Ours)} & 63.9  &  79.8  &   58.0  &   77.0  &   69.7\\
+%   \textbf{\SGRM (MetaRM) (Ours)} &  64.2  &  81.6  &   58.0  &   77.4  &  70.3 \\
+%   \bottomrule
+%   \end{tabular}
+%   }
+%   \caption{Detailed results of different methods on the RMB benchmark. \uline{Underlined numbers} indicate the best performance, \textbf{bold numbers} indicate the best performance among baseline and our methods, and \textit{italicized font} denotes scalar or semi-scalar RMs. For meta RM guided voting (MetaRM), $k_{\mathrm{meta}} = \frac{1}{2}k$.}
+%   \label{tab:rmb-results-detail}
+%   % \vspace{-1em}
+% \end{table}
+
+
+
+\section{Additional Experiments}\label{app:add-exp}
+
+\subsection{Input Flexibility of the Pointwise GRM Approach}
+
+
+In Section~\ref{sec:method-comp}, we demonstrate the input flexibility of the pointwise GRM approach theoretically. In this section, we provide empirical evidence on various input types to support it. 
+
+
+
+\subsubsection{Generating Rewards for Many Responses}\label{app:many-response}
+
+
+% \begin{wraptable}{r}{0.5\textwidth}
+%   \centering
+%   \vspace{-1em}
+%   \resizebox{\linewidth}{!}{
+%   \begin{tabular}{lcc}
+%   \toprule
+%   \textbf{Method} & \textbf{Helpfulness} & \textbf{Harmlessness} \\
+%   \midrule\midrule
+%   \textbf{\SGRM}   &    \\
+%   $\quad$ w/ Pair Input  &   62.1   &  57.5  \\
+%   $\quad$ w/ List Input  &   62.3  &  57.0    \\ 
+%   \midrule
+%   \multicolumn{1}{c}{$\boldsymbol{\vert} \boldsymbol{\Delta} \boldsymbol{\vert}$}  &   \phantom{0}0.2   &  \phantom{0}0.5    \\ 
+%   \bottomrule
+%   \end{tabular}
+%   }
+%   \caption{\centering Experimental results on the RMB BoN benchmarks. }
+%   \label{tab:many-responses}
+% \end{wraptable}
+
+In Table~\ref{tab:many-responses}, we show the experimental results of \SGRM on the BoN subsets of the RMB benchmark, where each query has multiple responses. 
+If there is at total $n, (n>2)$ responses for a query, 
+the pair input setting is to evaluate $(n-1)$ pairs comprise of the best response and the other responses, and only when the best response is correctly identified from all $(n-1)$ pairs, the data point is considered as correct. It is also the default setting for the original benchmark. 
+We compare the performance of \SGRM with pair input and list input, where the list input setting is to identify the best response with inputting all $n$ responses. 
+The result shows that \SGRM is barely affected by the input types, and the performance difference is less than 1\% on both helpfulness and harmlessness subsets. This indicates that \textbf{the pointwise GRM is flexible to input many responses, and the performance is not sensitive to the input types}.
+
+\begin{table}[t]
+  \begin{minipage}[t]{0.49\textwidth}
+  \vspace{0em}
+  \centering
+  \resizebox{\linewidth}{!}{
+  \begin{tabular}{lcc}
+  \toprule
+  \textbf{Method} & \textbf{Helpfulness} & \textbf{Harmlessness} \\
+  \midrule\midrule
+  \textbf{\SGRM}   &    \\
+  $\quad$ w/ Pair Input  &   62.1   &  57.5  \\
+  $\quad$ w/ List Input  &   62.3  &  57.0    \\ 
+  \midrule
+  \multicolumn{1}{c}{$\boldsymbol{\vert} \boldsymbol{\Delta} \boldsymbol{\vert}$}  &   \phantom{0}0.2   &  \phantom{0}0.5    \\ 
+  \bottomrule
+  \end{tabular}
+  }
+  \caption{Experiments of response input types on the RMB BoN benchmarks. }
+  \label{tab:many-responses}
+  % \vfill
+  \resizebox{0.85\linewidth}{!}{
+  \begin{tabular}{lcc}
+  \toprule
+  \textbf{Method} & \textbf{Overall} \\
+  \midrule\midrule
+  \textbf{\SGRM}   &  59.8   \\
+  $\quad$ w/ Voting@32  &    60.4   \\
+  $\qquad$ w/ Meta RM ($k_{\mathrm{meta}}=8$)  &   64.7    \\
+  $\quad$ w/ Reference  &    91.6   \\ 
+  \bottomrule
+  \end{tabular}
+  }
+  \caption{Experiments on reference-based RM on the PPE correctness benchmark.}
+  \label{tab:reference-based}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{0.5\textwidth}
+  \vspace{0em}
+  \resizebox{\linewidth}{!}{
+  \begin{tabular}{lc}
+  \toprule
+  \textbf{Model} & \textbf{Overall} \\
+  \midrule\midrule
+  DeepSeek-V2.5-0905  &  69.4 \\
+  GPT-4o-2024-08-06  &  74.3  \\
+  \midrule
+  DeepSeek-V2-Lite-Chat   &  61.9  \\
+  \textbf{\SGRMSmall (Ours)}  &  64.9  \\ 
+  \midrule
+  Gemma-2-27B-it   &  65.8  \\
+  \textbf{\textbf{\BTRM-27B}} &  69.3   \\
+  \textbf{\SGRM (Ours)}  &  72.2   \\
+  \textbf{\SGRM (Voting@8) (Ours)}  &   74.4  \\
+  \bottomrule
+  \end{tabular}
+  }
+  \caption{Experimental results (ROC-AUC (\%)) on the ReaLMistake benchmark.}
+  \label{tab:single-responses}
+  \end{minipage}
+\end{table}
+
+\subsubsection{Generating Rewards for Single Responses}
+
+% \begin{wraptable}{r}{0.45\textwidth}
+%   \centering
+%   \vspace{-1em}
+%   \resizebox{\linewidth}{!}{
+%   \begin{tabular}{lc}
+%   \toprule
+%   \textbf{Method} & \textbf{Overall} \\
+%   \midrule\midrule
+%   DeepSeek-V2.5-0905  &  69.4 \\
+%   GPT-4o-2024-08-06  &  74.3  \\
+%   \midrule
+%   DeepSeek-V2-Lite   &  61.9  \\
+%   \textbf{\SGRMSmall}  &  64.9  \\ 
+%   \midrule
+%   Gemma-2-27B-it   &  65.8  \\
+%   \textbf{\textbf{\BTRM-27B}} &  69.3   \\
+%   \textbf{\SGRM}  &  72.2   \\
+%   \textbf{\SGRM (Voting@8)}  &   74.4  \\
+%   \bottomrule
+%   \end{tabular}
+%   }
+%   \caption{\centering Experimental results (ROC-AUC (\%)) on the ReaLMistake benchmark.}
+%   \label{tab:single-responses}
+% \end{wraptable}
+
+In Table~\ref{tab:single-responses}, we show the experimental results of \SGRMAll in 16B and 27B on the ReaLMistake benchmark, where each query has only one response. We compare with public models, e.g., DeepSeek-V2.5-0905, GPT-4o-2024-08-06, DeepSeek-V2-Lite, and Gemma-2-27B-it, and \BTRM-27B. The result shows that \SGRMAll achieves the best performance among models with the same size, and comparable performance with the best public models with inference-time scaling. 
+This indicates that \textbf{the pointwise GRM could effectively rate single responses}. 
+
+\subsubsection{Generating Rewards with Reference}\label{app:reference-rm}
+
+% \begin{wraptable}{r}{0.5\textwidth}
+%   \centering
+%   \vspace{-1em}
+%   \begin{tabular}{lcc}
+%   \toprule
+%   \textbf{Method} & \textbf{Overall} \\
+%   \midrule\midrule
+%   \textbf{\SGRM}   &  59.8   \\
+%   $\quad$ w/ Voting@32  &    60.4   \\
+%   $\qquad$ w/ Meta RM ($k_{\mathrm{meta}}=8$)  &   64.7    \\
+%   $\quad$ w/ Reference  &    91.6   \\ 
+%   \bottomrule
+%   \end{tabular}
+%   \caption{\centering Experiments on reference-based reward modeling on the PPE correctness benchmark.}
+%   \label{tab:reference-based}
+% \end{wraptable}
+
+In Section~\ref{sec:main-results}, we show that scalar and semi-scalar RMs could have significant domain biases, and generally perform better on verifiable questions. To alleviate this issue, we test \SGRM to generate rewards for these tasks with reference, where the reference is the ground truth for each query. 
+The results are shown in Table~\ref{tab:reference-based}. We find that \SGRM could achieve a more than 90\% accuracy with reference provided. This indicates that \textbf{the pointwise GRM could effectively judge responses with reference, mitigating performance on verifiable tasks}. 
+
+
+% \begin{table}[t]
+%   % \begin{minipage}[t]{0.455\textwidth}
+%   % \vspace{0em}
+%   % \centering
+%   % \resizebox{\linewidth}{!}{
+%   % \begin{tabular}{lcc}
+%   % \toprule
+%   % \textbf{Method} & \textbf{Overall} \\
+%   % \midrule\midrule
+%   % \textbf{\SGRM}   &  59.8   \\
+%   % $\quad$ w/ Voting@32  &    60.4   \\
+%   % $\qquad$ w/ Meta RM ($k_{\mathrm{meta}}=8$)  &   64.7    \\
+%   % $\quad$ w/ Reference  &    91.6   \\ 
+%   % \bottomrule
+%   % \end{tabular}
+%   % }
+%   % \caption{Experiments on reference-based reward modeling on the PPE correctness benchmark.}
+%   % \label{tab:reference-based}
+%   % \end{minipage}
+%   % \hfill
+%   \begin{minipage}[t]{0.54\textwidth}
+%   \vspace{0em}
+%   \centering
+%   \resizebox{\linewidth}{!}{
+%   \begin{tabular}{lcc}
+%   \toprule
+%   \textbf{Method} & \textbf{Chat Hard} & \textbf{IFEval} \\
+%   \midrule\midrule
+%   \textbf{GPT-4o-2024-08-06}  &  76.1  & 56.0  \\
+%   $\quad$ +Self-Gen. Principles  &  \color{red}{75.9}   &   \color{red}{55.6}    \\
+%   $\quad$ +Filtered Principles  &   \color{mydarkgreen}{77.8}  &   \color{mydarkgreen}{57.5}   \\
+%   $\quad$ +\SGRMShort-Gen. Principles  &  \color{mydarkgreen}{78.1}  &  \color{mydarkgreen}{58.3} \\ \midrule
+%   \textbf{\SGRM} &  78.3  &  59.8  \\
+%   $\quad$ +Filtered Principles  &  \color{red}{77.0}   &   \color{red}{58.5}   \\
+%   \bottomrule
+%   \end{tabular}
+%   }
+%   \caption{Experiments of the transferability of principles generated by different models.}
+%   \label{tab:principle-transfer}
+%   \end{minipage}
+% \end{table}
+
+\subsection{Transferability of Generated Principles}
+
+\begin{wraptable}{r}{0.5\textwidth}
+  \centering
+  \vspace{-1em}
+  \resizebox{\linewidth}{!}{
+  \begin{tabular}{lcc}
+  \toprule
+  \textbf{Method} & \textbf{Chat Hard} & \textbf{IFEval} \\
+  \midrule\midrule
+  \textbf{GPT-4o-2024-08-06}  &  76.1  & 56.0  \\
+  $\quad$ +Self-Gen. Principles  &  \color{red}{75.9}   &   \color{red}{55.6}    \\
+  $\quad$ +Filtered Principles  &   \color{mydarkgreen}{77.8}  &   \color{mydarkgreen}{57.5}   \\
+  $\quad$ +\SGRMShort-Gen. Principles  &  \color{mydarkgreen}{78.1}  &  \color{mydarkgreen}{58.3} \\ \midrule
+  \textbf{\SGRM} &  78.3  &  59.8  \\
+  $\quad$ +Filtered Principles  &  \color{red}{77.0}   &   \color{red}{58.5}   \\
+  \bottomrule
+  \end{tabular}
+  }
+  \caption{Experiments of the transferability of principles generated by different models.}
+  \label{tab:principle-transfer}
+\end{wraptable}
+
+We extend the preliminary experiment in Section~\ref{sec:principle-understand} with \SGRM generated principles. We test GPT-4o-2024-08-06 and \SGRM with the filtered principles exactly the same as Table~\ref{tab:principle-influence}, and aforementioned \SGRM generated ones. 
+The results are shown in Table~\ref{tab:principle-transfer}. We find that the principles generated by \SGRM could be transferred to other models, and are even sightly better than manually filtered principles from GPT-4o. This indicates that \textbf{the principles generated by \SGRM are robust and transferable to other models}.
+
+\subsection{Generalization beyond Training Data}
+
+\begin{table}[ht]
+  \centering
+  \resizebox{0.85\linewidth}{!}{
+  \begin{tabular}{lccccc}
+  \toprule
+  \textbf{Model} & \textbf{Chat} & \textbf{Chat Hard} & \textbf{Safety}  & 
+ \textbf{Reasoning} &   \textbf{Reward Bench} \\
+  \midrule\midrule
+  \multicolumn{6}{c}{\textit{Results of Greedy Decoding}} \\
+  % \midrule
+  \textbf{\SGRM} & \textbf{94.1} & \textbf{78.3} &  \textbf{88.0} & \textbf{83.8}  & \textbf{86.0} \\
+  $\quad$ w/o MATH RM Data & 96.1 &  70.4 &  85.3   &   82.5   &  83.0  \\
+  \textbf{\SGRMSmall} &  \textbf{90.8} & \textbf{74.3} & \textbf{84.7} & \textbf{81.8}  & \textbf{82.9} \\
+  $\quad$ w/o MATH RM Data &  95.0  &  63.4  &   76.9   &   74.3     &  77.4  \\
+  \bottomrule
+  \end{tabular}
+  }
+  \caption{Results of training data generalization experiments on the Reward Bench benchmark. \textbf{Bold numbers} indicate the best performance.}
+  \label{tab:training-data}
+\end{table}
+
+We conduct ablation study on the generalization of training data for \SGRM. We remove the all data from MATH training set, and re-implement the training recipe. Results on the Reward Bench benchmark are shown in Table~\ref{tab:training-data}. We found that merely adding math related preference data could also boost generalist RM performance on various domains, especially on the Chat Hard subset. The result reveals that \SGRM could generalize to domains beyond the coverage of training data.
+
+\subsection{Response Length Analysis for Rule-Based RL}
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=0.75\textwidth]{figures/fig6-preprint.pdf}
+  \caption{The changes of response lengths (\#tokens) of \SGRM before and after rule-based online RL on the Reward Bench benchmark, compared with DeepSeek-R1.}
+  \label{fig:resp-length}
+\end{figure}
+
+We calculate the response lengths of \SGRM before and after rule-based online RL on each subset of the Reward Bench benchmark in Figure~\ref{fig:resp-length}. The token count of \SGRM is calculated based on the tokenizer of Gemma-2-27B, while the result of DeepSeek-R1 uses its corresponding tokenizer. We found that the response length for the Chat subset barely increases in RL, and the response length for the Safety subset even drops slightly. The largest increase of response lengths occurs in the Reasoning subset, where the performance of \SGRM also improves greatly compared to \SGRMRFT, according to Table~\ref{tab:rb-results-detail}. 
+This might indicate that \SGRM learns to adaptively use more inference compute on reasoning extensive tasks, and the compute could be saved for some other domains, such as safety, after the model learns to generate principles accurately. 
+However, DeepSeek-R1 uses way more tokens and achieves lower results, except for Reasoning, which shows that long-horizon reasoning also helps RM tasks regarding to extensive reasoning. 
+
+% \subsection{Inference-Time Scalability w.r.t.~Principle Diversity}
+
+\section{Qualitative Analysis}
+
+\subsection{Case Study}
+
+% validity of the generated principles and rewards (diverse & scalable)
+% shortcut of hint-based sampling
+% detailed principles
+% principles that unveil the model's incapabilities
+
+We provide a case study on \SGRM in Table~\ref{tab:cases-1}, \ref{tab:cases-2} and ~\ref{tab:cases-3}. The first case shows that \BTRM-27B as a scalar RM could be hacked or biased under specific circumstances, and \SGRM generates textual principles and critiques, showing better robustness. The second case shows the scalable behaviors of \SGRM, generating accurate rewards after voting on multiple samples. The according meta RM scores also show the effectiveness of the meta RM in guiding the voting process. The third case shows the potential failure of \SGRM which is caused by the inability of the model to accurately judge responses following some principles, e.g., assessing real-time data, and the weights of each principle might not be balanced. 
+
+\begin{center}
+\small
+\begin{longtable}{p{2.8cm}|p{10cm}}
+\toprule
+\endhead
+   \textbf{Query}   &    Please help me review for my behavioral neuroscience exam by giving me the core information that is essential to this course. Please give an expansive review and include explanations in analogy or metaphors    \\ \midrule
+   \textbf{Response 1}   &     Behavioral neuroscience, also known as biological psychology, explores the relationship between the brain and behavior. It examines how the nervous system influences cognitive processes, emotions, and motor functions. Here's a comprehensive review with analogies and metaphors:\verb|\n|\newline 1. **Neuroanatomy**: Imagine the brain as a complex city with different neighborhoods (lobes) and roads (neuronal pathways). The cerebral cortex is the outer layer, like the skin of the city, responsible for higher functions like thinking and perception. The cerebellum is like a choreographer, ensuring smooth and coordinated movements. The brainstem acts as the city's backbone, connecting the brain with the spinal cord, and controlling basic life functions.\newline 2. **Neurons**: These are the building blocks of the nervous system. Think of them as the city's messengers, transmitting information via electrical and chemical signals. The dendrites receive messages, the cell body processes them, and the axon sends the signal to other neurons at the synapse.\newline 3. **Synapses and neurotransmitters**: The synapse is like a tiny bridge between neurons. Neurotransmitters are the messengers that cross this bridge, transmitting signals from one neuron to another. Analogous to different languages, there are various neurotransmitters (e.g., dopamine, serotonin, glutamate) that influence distinct aspects of behavior and mood.\newline4. **Sensory Systems**: These are the city's surveillance cameras, detecting external stimuli. For example, the visual system (retina) captures light, and the auditory system (cochlea) picks up sound waves. These systems transmit information to the brain for processing.\newline 5. **Motor Systems**: The motor systems act like the city's transportation network, sending signals from the brain to muscles, enabling movement. The somatic motor system controls voluntary movements, while the autonomic nervous system is like an unseen hand managing involuntary functions like heart rate and digestion.\newline6. ** Plasticity**: Brain plasticity is like the city's ability to adapt and change over time. It refers to the brain's capacity to reorganize itself by forming new neural connections in response to experiences, learning, or injury.\newline 7. **Memory**: Memory can be thought of as a vast library where information is stored and retrieved. There are three main types: sensory memory (like a quick glance at a book), short-term memory (reading a paragraph), and long-term memory (remembering the entire book).\newline 8. **Learning**: Learning is the process of acquiring new knowledge, skills, or behaviors. It's like adding new books to the library or updating old information. There are different types, such as classical conditioning (learning through association, like Pavlov's dogs) and operant conditioning (learning through consequences, like reinforcements and punishments).\newline 9. **Emotions and Motivation**: Emotions are like the city's weather, influencing how we perceive and respond to events. Different brain regions, like the amygdala (the emotional storm center), contribute to emotional experiences. Motivation can be seen as the city's energy, driving us to act in pursuit of goals, with systems like the mesolimbic dopamine pathway playing a key role.\newline 10. **Hormones and the Endocrine System**: These are the city's internal postal service, sending chemical messages throughout the body. Hormones, like cortisol and oxytocin, can influence behavior and mood by interacting with the brain and nervous system.\verb|\n|\newline Understanding these core concepts will help you navigate the complex world of behavioral neuroscience and prepare for your exam. Remember that this field is constantly evolving, so stay curious and engaged with the latest research.   \\ \midrule
+   \textbf{Response 2}   &    Certainly! Behavioral neuroscience is a fascinating field that explores the intricate relationship between the brain and behavior. It's like unraveling the mysteries of a complex machine, where the brain is the central processing unit, and behavior is the output. Let's dive into the core concepts that form the foundation of this course.\verb|\n|\newline 1. Neuroanatomy: Understanding the Brain's Architecture\verb|\n|   The brain is a remarkable structure, and understanding its anatomy is crucial. Think of it as a vast city, with different regions serving as specialized districts. The cerebral cortex is the bustling metropolis, where higher cognitive functions like decision-making and problem-solving take place. The limbic system, on the other hand, is the emotional heart, regulating feelings and memories. And deep within, the brainstem acts as the city's control center, managing essential functions like breathing and heartbeat.\verb|\n|\newline 2. Neurophysiology: The Language of the Brain\verb|\n|   Just as a city communicates through intricate networks of roads and signals, the brain uses electrical and chemical signals to transmit information. Neurons, the brain's messengers, fire action potentials like lightning bolts, carrying vital information. Neurotransmitters, on the other hand, are the chemical couriers, facilitating communication between neurons at synapses, akin to the handoff of a letter from one postal worker to another.\verb|\n|\newline 3. Sensory and Motor Systems: The Brain's Gateways\verb|\n|   The brain is not an isolated entity; it constantly interacts with the external world. The sensory systems act as the brain's eyes, ears, and touch receptors, gathering information from the environment. Imagine them as surveillance cameras and sensors, feeding data into the brain's processing centers. Conversely, the motor systems are the brain's actuators, executing commands and translating neural signals into physical movements, like a robotic arm carrying out instructions.\verb|\n|\newline 4. Learning and Memory: The Brain's Database\verb|\n|   Just like a computer stores and retrieves data, the brain has its own mechanisms for learning and memory. Long-term potentiation (LTP) is like upgrading the bandwidth between neurons, strengthening connections and facilitating information storage. Consolidation is akin to backing up data, transferring memories from short-term to long-term storage. And retrieval is like accessing a file, recalling stored information when needed.\verb|\n|\newline 5. Motivation and Emotion: The Brain's Driving Forces\verb|\n|   Behavior is not just a product of cognitive processes; it's also influenced by motivation and emotion. The reward system, centered around structures like the nucleus accumbens, acts as the brain's carrot-and-stick, reinforcing desirable behaviors with pleasurable sensations. The amygdala, on the other hand, is the brain's security guard, processing emotional cues and triggering appropriate responses, like the fight-or-flight reflex.\verb|\n|\newline 6. Neuroplasticity: The Brain's Adaptability\verb|\n|   The brain is not a static entity; it's a dynamic and ever-changing landscape. Neuroplasticity is the brain's ability to reorganize and rewire itself in response to experience and environmental changes. It's like a city constantly undergoing renovations, adapting to new demands and challenges. This plasticity allows the brain to recover from injuries, acquire new skills, and adapt to changing circumstances.\verb|\n|\newline 7. Neurological Disorders: When the Brain Malfunctions\verb|\n|   Just as a city can experience breakdowns and malfunctions, the brain is susceptible to various disorders and dysfunctions. Neurodegenerative diseases like Alzheimer's and Parkinson's are akin to the gradual deterioration of a city's infrastructure, leading to cognitive and motor impairments. Psychiatric disorders, such as depression and anxiety, can be viewed as imbalances in the brain's chemical signaling system, disrupting emotional regulation and behavior.\verb|\n|\newline By understanding these core concepts and embracing the analogies and metaphors, you'll gain a deeper appreciation for the intricate workings of the brain and its profound influence on behavior. Remember, the brain is a complex and fascinating realm, and behavioral neuroscience is the key to unlocking its secrets.    \\ \midrule
+   \textbf{\BTRM-27B Result}   &   Response 1: {\color{red}{0.4665}}; Response 2: {\color{red}{0.3209}}.     \\ \midrule
+   \textbf{\SGRM\newline Result}   &     Specific Criteria: \newline 1. **Depth of Analogies and Metaphors** (Weight: 30\%): The extent to which the analogies and metaphors used are deep, creative, and effectively convey complex concepts.\newline 2. **Comprehensiveness of Core Information** (Weight: 30\%): The thoroughness with which the core information essential to behavioral neuroscience is covered.\newline 3. **Clarity and Organization** (Weight: 20\%): The clarity of explanations and the logical organization of the information.\newline 4. **Engagement and Appeal** (Weight: 20\%): The level of engagement and appeal the response has, making the information interesting and memorable.\newline\newline Analysis:\newline - **Response 1**: This response excels in comprehensiveness and clarity, covering all major aspects of behavioral neuroscience with detailed and well-organized explanations. The analogies and metaphors are well-crafted and effectively enhance understanding. However, some metaphors could be more creative to enhance engagement further.\newline - **Response 2**: This response is also comprehensive and clear, but it stands out more in the depth and creativity of its analogies and metaphors. The organization is logical, and the explanations are clear. The engagement level is high, making the information appealing and memorable.\newline\newline Scores: \verb|\|boxed\{8, 9\}   \\ \midrule
+   \textbf{Ground Truth}   &     \textit{Response 2 is better than Response 1.}     \\
+\bottomrule
+\caption{A case of \SGRM and \BTRM-27B, where \SGRM shows better robustness in distinguishing slight differences of responses.}\label{tab:cases-1}
+\end{longtable}
+\end{center}
+
+\begin{center}
+\small
+\begin{longtable}{p{2.5cm}|p{10cm}}
+\toprule
+\endhead
+   \textbf{Query}   &   Write a JavaScript function `const tri = (n)` to solve the following problem:\newline Everyone knows Fibonacci sequence, it was studied deeply by mathematicians in\newline the last couple centuries. However, what people don't know is Tribonacci sequence.\newline Tribonacci sequence is defined by the recurrence:\newline tri(1) = 3\newline tri(n) = 1 + n / 2, if n is even.\newline tri(n) =  tri(n - 1) + tri(n - 2) + tri(n + 1), if n is odd.\newline For example:\newline tri(2) = 1 + (2 / 2) = 2\newline tri(4) = 3\newline tri(3) = tri(2) + tri(1) + tri(4)\newline = 2 + 3 + 3 = 8\newline You are given a non-negative integer number n, you have to a return a list of the\newline first n + 1 numbers of the Tribonacci sequence.\newline Examples:\newline tri(3) = [1, 3, 2, 8]    \\ \midrule
+   \textbf{Response 1}   &     \verb|  |if (n == 0) \{ return [1] \}\newline\verb|  |if (n == 1) \{ return [1, 3] \}\newline\verb|  |let p = [1, 3]\newline\verb|  |for (let i = 2; i <= n; i++) \{\newline\verb|    |if (i \% 2 == 0) \{\newline\verb|      |p.push(1 + i / 2)\newline\verb|    |\}\newline\verb|    |else \{\newline\verb|      |p.push(p[i - 2] + p[i - 1] + 1 + i + (i + 1) / 2)\newline\verb|    |\}\newline\verb|  |\}\newline\verb|  |return p\newline\}     \\ \midrule
+   \textbf{Response 2}   &    \verb|  |if (n == 0) \{ return [1] \}\newline\verb|  |if (n == 1) \{ return [1, 3] \}\newline\verb|  |let p = [1, 3]\newline\verb|  |for (let i = 2; i <= n; i++) \{\newline\verb|    |if (i \% 2 == 0) \{\newline\verb|      |p.push(1 + i / 2)\newline\verb|    |\}\newline\verb|    |else \{\newline\verb|      |p.push(p[i - 2] + p[i - 1] + 1 + (i + 1) / 2)\newline\verb|    |\}\newline\verb|  |\}\newline\verb|  |return p\newline\}   \\ \midrule
+   \textbf{\SGRM Result 1}   &    \#\#\# Output\newline\newline**Specific Criteria:**\newline1. **Correctness of Sequence Calculation (Weight: 40\%)**: The response must correctly implement the Tribonacci sequence as defined, including handling both even and odd cases accurately.\newline2. **Initialization and Base Cases (Weight: 20\%)**: The response should correctly initialize the sequence and handle base cases (n = 0 and n = 1) appropriately.\newline3. **Loop and Conditional Logic (Weight: 20\%)**: The response should use appropriate loop and conditional logic to generate the sequence.\newline4. **Output Format (Weight: 20\%)**: The response should return the sequence in the correct format as specified.\newline\newline**Analysis:**\newline- **Response 1**:\newline  - **Correctness of Sequence Calculation**: The logic for even and odd cases is mostly correct, but there is a mistake in the calculation for odd numbers where it incorrectly adds `1 + i + (i + 1) / 2`.\newline  - **Initialization and Base Cases**: Correctly initializes and handles base cases.\newline  - **Loop and Conditional Logic**: Uses appropriate loop and conditional logic.\newline  - **Output Format**: Returns the sequence in the correct format.\newline\newline- **Response 2**:\newline  - **Correctness of Sequence Calculation**: Similar to Response 1, the logic for even and odd cases is mostly correct, but there is a mistake in the calculation for odd numbers where it incorrectly adds `1 + (i + 1) / 2`.\newline  - **Initialization and Base Cases**: Correctly initializes and handles base cases.\newline  - **Loop and Conditional Logic**: Uses appropriate loop and conditional logic.\newline  - **Output Format**: Returns the sequence in the correct format.\newline\newline**Scores:**\newline- **Response 1**:\newline  - Instruction Adherence: 8 (Partially Adhered)\verb|\n|  - Usefulness: 7 (Useful but Incomplete)\verb|\n|  - Level of Detail: 8 (Detailed but Slightly Lacking)\verb|\n|  - Relevance: 9 (Highly Relevant)\verb|\n|  - **Overall Score**: 8\verb|\n|\newline- **Response 2**:\newline  - Instruction Adherence: 8 (Partially Adhered)\verb|\n|  - Usefulness: 7 (Useful but Incomplete)\verb|\n|  - Level of Detail: 8 (Detailed but Slightly Lacking)\verb|\n|  - Relevance: 9 (Highly Relevant)\verb|\n|  - **Overall Score**: 8\newline\newline**Scores: \verb|\|boxed\{8, 8\}**    \\ \midrule
+   \textbf{Meta RM Score 1}   &   {\color{red}{-15.7781}}     \\ \midrule
+   \textbf{\SGRM Result 2}   &   \#\#\# Output\newline\newline Specific Criteria:  \newline1. **Correctness of Tribonacci Sequence Calculation** (Weight: 40\%): The response must correctly implement the Tribonacci sequence as defined in the problem.\newline2. **Code Structure and Readability** (Weight: 30\%): The code should be well-structured, readable, and follow best practices.\newline3. **Edge Case Handling** (Weight: 20\%): The response should correctly handle edge cases such as `n = 0` and `n = 1`.\newline4. **Efficiency** (Weight: 10\%): The code should efficiently compute the sequence without unnecessary computations.\newline\newline Analysis:  \newline- **Response 1**:  \newline  - **Correctness of Tribonacci Sequence Calculation**: The response correctly implements the Tribonacci sequence for both even and odd indices.\newline  - **Code Structure and Readability**: The code is structured well and is readable. It uses a loop to generate the sequence and correctly handles the conditions for even and odd indices.\newline  - **Edge Case Handling**: The response correctly handles the edge cases for `n = 0` and `n = 1`.\newline  - **Efficiency**: The code efficiently computes the sequence with a single loop.\newline\newline- **Response 2**:  \newline  - **Correctness of Tribonacci Sequence Calculation**: The response incorrectly computes the sequence for odd indices by adding an extra `1 + i + (i + 1) / 2`, which deviates from the defined Tribonacci sequence.\newline  - **Code Structure and Readability**: The code is structured similarly to Response 1 but includes an incorrect computation.\newline  - **Edge Case Handling**: The response correctly handles the edge cases for `n = 0` and `n = 1`.\newline  - **Efficiency**: The code is efficient but the incorrect computation affects its usefulness.\newline\newline Scores:  \newline\verb|\|boxed\{9, 5\}     \\ \midrule
+   \textbf{Meta RM Score 2}   &     {\color{mydarkgreen}{1.3126}}   \\ \midrule
+   \textbf{\SGRM Result 3}   &  \#\#\# Specific Criteria:\newline1. **Correctness of Tribonacci Sequence Calculation (Weight: 40\%)**:\newline   - The response must correctly implement the Tribonacci sequence as defined, including handling both even and odd cases accurately.\newline2. **Code Structure and Readability (Weight: 30\%)**:\newline   - The code should be well-structured, readable, and follow best practices in JavaScript.\newline3. **Edge Case Handling (Weight: 20\%)**:\newline   - The response should correctly handle edge cases such as `n = 0` and `n = 1`.\newline4. **Efficiency (Weight: 10\%)**:\newline   - The code should be efficient in terms of time and space complexity, avoiding unnecessary computations.\newline\newline\#\#\# Analysis:\newline- **Response 1**:\newline  - **Correctness of Tribonacci Sequence Calculation**: The response correctly implements the Tribonacci sequence for both even and odd cases. It accurately follows the given recurrence relations.\newline  - **Code Structure and Readability**: The code is structured well and is readable. It uses a loop to generate the sequence and handles the initial conditions correctly.\newline  - **Edge Case Handling**: The response correctly handles the edge cases `n = 0` and `n = 1`.\newline  - **Efficiency**: The code is efficient, with a time complexity of O(n) and space complexity of O(n).\newline\newline- **Response 2**:\newline  - **Correctness of Tribonacci Sequence Calculation**: The response has a logical error in the calculation for odd `n`. It incorrectly adds `1 + i + (i + 1) / 2` instead of `p[i - 2] + p[i - 1] + 1 + (i + 1) / 2`.\newline  - **Code Structure and Readability**: The code structure is similar to Response 1, but the logical error makes it less readable.\newline  - **Edge Case Handling**: The response correctly handles the edge cases `n = 0` and `n = 1`.\newline  - **Efficiency**: The code is efficient in terms of time and space complexity, but the logical error impacts its correctness.\newline\newline\#\#\# Scores:\newline- **Response 1**:\newline  - Instruction Adherence: 10\verb|\n|  - Usefulness: 10\verb|\n|  - Level of Detail: 9\verb|\n|  - Relevance: 10\verb|\n|  - **Overall Score**: 10\verb|\n|\newline- **Response 2**:\newline  - Instruction Adherence: 8\verb|\n|  - Usefulness: 6\verb|\n|  - Level of Detail: 8\verb|\n|  - Relevance: 8\verb|\n|  - **Overall Score**: 7\newline\newline\#\#\# Output:\newline\verb|\|boxed\{10, 7\}    \\ \midrule
+   \textbf{Meta RM Score 3}   &    {\color{mydarkgreen}{1.6739}}    \\ \midrule
+   \textbf{Voted Result}   &     Response 1: {\color{mydarkgreen}{20}}; Response 2: {\color{mydarkgreen}{27}}.     \\ \midrule
+   \textbf{Ground Truth}   &    \textit{Response 2 is better than Response 1.}      \\
+\bottomrule
+\caption{A case of \SGRM in the inference-time scaling setting. The input order of responses is reversed for \SGRM when generating result 2 and result 3.}\label{tab:cases-2}
+\end{longtable}
+\end{center}
+
+\begin{center}
+\small
+\begin{longtable}{p{2.5cm}|p{10cm}}
+\toprule
+\endhead
+   \textbf{Query}   &    User: Make a research and find the best coins opportunities and relatively obscure coins that have the potential for significant growth for a short-term \& mid-term from coingecko and it must be listed in centralized exchange. Remove all coins with price higher than 1\$. By implementing fundamental analysis to assessing the intrinsic value, news and crypto social sentiment and voulume of discussion analysis, On-Chain analysis, time series analysis and technical analysis, You will decide which cryptocurrencies is the best to invest. Then show me the best 5 coins that met the all of the conditions. Then show me the real time price of each coin. Then calculate the weekly support and resistance. Then show the best price to buy, for each coin. Then show me the target price. Then insert all of the above in a table and show it to me.\newline\newline
+Assistant: Based on the given criteria, here are the top 5 relatively obscure coins with potential for significant growth for short-term and mid-term investment. Please note that these recommendations should not be considered as financial advice, and are subject to change.\newline\newline| Coin | Real-time Price | Weekly Support | Weekly Resistance | Best Price to Buy | Target Price |\newline|------|-----------------|----------------|------------------|-------------------|--------------|\newline| XTZ (Tezos) | \$0.70 | \$0.65 | \$0.80 | \$0.68 | \$1.2 |\newline| REN (Ren) | \$0.40 | \$0.35 | \$0.48 | \$0.38 | \$0.72 |\newline| LRC (Loopring) | \$0.08 | \$0.07 | \$0.10 | \$0.075 | \$0.14 |\newline| OCEAN (Ocean Protocol) | \$0.32 | \$0.28 | \$0.38 | \$0.305 | \$0.52 |\newline| ZRX (0x) | \$0.96 | \$0.89 | \$1.10 | \$0.94 | \$1.5 |\newline\newline Please note that the real-time prices mentioned above will change according to the current market rate. It is vital to conduct your due diligence and re-evaluate the investments regularly. The target prices mentioned are speculative estimates based on assessed potential growth and technical analysis. Always exercise caution and consult a financial advisor before making any investment decisions.\newline\newline
+User: The real time prices aren't correct.     \\ \midrule
+   \textbf{Response 1}   &   I apologize for the misunderstanding, as I do not have real-time data access to provide current cryptocurrency prices or market conditions. However, I can guide you on how to find this information and analyze it.\verb|\n|\newline To identify potential investment opportunities in cryptocurrencies priced under \$1, you can follow these steps:\verb|\n|\newline 1. **Use CoinGecko or CoinMarketCap**: These platforms allow you to filter cryptocurrencies by price, market cap, and trading volume. You can set the price filter to under \$1.\verb|\n|\newline 2. **Fundamental Analysis**: Look for coins with strong fundamentals, such as:\verb|\n|   - Active development teams\verb|\n|   - Real-world use cases\verb|\n|   - Partnerships and collaborations\verb|\n|   - Community support and engagement\verb|\n|\newline 3. **News and Sentiment Analysis**: Use tools like Google Trends, Twitter, and Reddit to gauge the sentiment around specific coins. Positive news can drive short-term price increases.\verb|\n|\newline 4. **On-Chain Analysis**: Examine metrics like transaction volume, active addresses, and network growth to assess the health of the blockchain.\verb|\n|\newline 5. **Technical Analysis**: Use charting tools to identify support and resistance levels, trends, and potential entry and exit points.\verb|\n|\newline 6. **Volume of Discussion**: Monitor forums and social media platforms to see which coins are being discussed frequently, as this can indicate growing interest.\verb|\n|\newline Once you gather this information, you can create a table similar to the one I provided earlier, but with accurate real-time data.\verb|\n|\newline If you need help with specific analysis techniques or tools, feel free to ask!    \\ \midrule
+   \textbf{Response 2}   &    I apologize for any confusion in the real-time prices mentioned in the previous response. It is quite challenging to ensure real-time accuracy due to the rapidly changing nature of cryptocurrency prices. Here are the updated real-time prices at the time of this response.\verb|\n|\newline | Coin | Real-time Price |\newline|------|-----------------|\newline| XTZ (Tezos) | \$0.63 |\newline| REN (Ren) | \$0.36 |\newline| LRC (Loopring) | \$0.08 |\newline| OCEAN (Ocean Protocol) | \$0.29 |\newline| ZRX (0x) | \$0.93 |\verb|\n|\newline To obtain accurate real-time prices, I recommend using reliable cryptocurrency tracking websites such as CoinGecko, CoinMarketCap, or Binance. Please note that the table containing other information provided earlier stands, as it is not dependent on real-time prices.\verb|\n|\newline Keep in mind that investing in cryptocurrencies always carries risk, and it's essential to do your own research, consider your investment strategy, and exercise caution before making investment decisions. Always consult a financial advisor for professional guidance.    \\ \midrule
+   \textbf{\SGRM Result}   &   Specific Criteria: \newline - Real-time Price Accuracy (Weight: 30\%): The response must provide accurate real-time prices for the listed coins.\newline - Guidance on Analysis Techniques (Weight: 20\%): The response should offer clear guidance on how to conduct the required analyses.\newline - Table Update (Weight: 15\%): The response should update the table with the correct real-time prices.\newline - Risk Disclosure (Weight: 10\%): The response should include a clear disclaimer about the risks of investing in cryptocurrencies.\newline - Resource Recommendations (Weight: 10\%): The response should recommend reliable resources for obtaining real-time data.\newline - Clarity and Structure (Weight: 15\%): The response should be clear, well-structured, and easy to follow.\newline\newline Analysis:\newline - **Response 1**: This response acknowledges the lack of real-time data access and provides a comprehensive guide on how to find and analyze cryptocurrency data. It scores well on Guidance on Analysis Techniques and Clarity and Structure but lacks in Real-time Price Accuracy and Table Update. It includes a Risk Disclosure and Resource Recommendations.\newline - **Response 2**: This response attempts to provide updated real-time prices but lacks the comprehensive analysis techniques and detailed guidance offered in Response 1. It scores well on Real-time Price Accuracy and Table Update but poorly on Guidance on Analysis Techniques and Clarity and Structure. It includes a Risk Disclosure and Resource Recommendations.\newline\newline Scores: {\color{red}\verb|\|boxed\{7, 5\}}     \\ \midrule
+   \textbf{Ground Truth}   &     \textit{Response 2 is better than Response 1.}      \\
+\bottomrule
+\caption{A failure case of \SGRM due to the incapability of distinguish responses according to the principles, such as real-time accuracy examination.}\label{tab:cases-3}
+\end{longtable}
+\end{center}
+
+\subsection{Failure Mode Analysis}\label{app:failure}
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=0.63\textwidth]{figures/fig7.pdf}
+  \caption{The distributions of failure modes of \SGRM on different RM benchmarks. We manually examined and categorized the modes into four classes. ``Annotation Contradicting the Ground Truth'' represents the preference label provided in the benchmark is disagreed by the annotator.}
+  \label{fig:failure-mode}
+\end{figure}
+
+We randomly sampled 10 incorrect data points from test results of \SGRM on each benchmark and summarize the failure modes in Figure~\ref{fig:failure-mode}. 
+Analysis of the failure cases indicates that the challenge lies mainly in the incapability of the model to judge responses that are too complex or within specific domains, such as pattern matching, counting, etc., and the lack of expert knowledge,  resulting in incorrect critiques. Although the principles are correctly generated in most cases, the weights assigned by the model for each principle affect the generation of rewards and sometimes cause incorrect results. However, we also found that the ground truths of a few data points in the RM benchmarks are inconsistent with the preference of the human annotator, probably because of the bias from this small-scale human annotation study or potential mistakes in ground truth labeling.  
+
+\section{Prompt Templates}
+
+We demonstrate the prompt templates used for \SGRMAll, for \SGRMAll with a single response during training, for the meta-RM, and for LLM-as-a-Judge below. For prompt engineering, we design a few example principles for both in-context learning and basic critique guidance. We use a plainer template for the meta RM to ensure the query, responses, and the generated principles and critiques could fit in the context window. After assembling with the template of the meta RM, we further enclose the content with chat templates designed for DeepSeek-V3~\citep{deepseekai2024deepseekv3technicalreport} before input. 
+
+\begin{tcolorbox}[title={\SGRMAll (Default)}, colbacktitle=blue!50!white, coltitle=white, fonttitle=\bfseries, colback=blue!10!white, boxrule=0pt, breakable]
+\small
+You are a skilled little expert at scoring responses. You should evaluate given responses based on the given judging criteria.\verb|\n|
+Given the context of the conversation (the last round is the User's query) and multiple responses from the Assistant, you need to refer to the [General Evaluation Criteria] to score the responses. Based on the general evaluation criteria, state potential other specific criteria to the query, the weights of different criteria, and then provide an overall comprehensive score upon them.\verb|\n| Each score is an integer between 1 and 10, with a higher score indicating that the response meets the relevant criteria more closely. For example, a score of 1 means the response does not meet the criteria at all, a score of 6 means the response meets only some parts, and a score of 10 means the response perfectly meets the evaluation criteria.\verb|\n|
+Before scoring, please analyze step by step. Your scoring needs to be as strict as possible.\newline\newline
+\#\#\#\# Evaluation Criteria \#\#\#\#\newline
+1. Instruction Adherence:\verb|\n |- Fully Adhered (9-10 points): The response fully complies with all instructions and requirements of the question.\verb|\n |- Partially Adhered (6-8 points): The response meets most of the instructions but has some omissions or misunderstandings.\verb|\n |- Basically Adhered (3-5 points): The response meets some instructions, but the main requirements are not fulfilled.\verb|\n |- Not Adhered (1-2 points): The response does not meet any instructions.\verb|\n |Example: If the question requires three examples and the response provides only one, it falls under ``Partially Adhered.''\newline
+2. Usefulness:\verb|\n |- Highly Useful (9-10 points): The response provides comprehensive and accurate information, fully addressing the issue.\verb|\n |- Useful but Incomplete (6-8 points): The response provides some useful information, but lacks details or accuracy.\verb|\n |- Limited Usefulness (3-5 points): The response offers little useful information, with most content being irrelevant or incorrect.\verb|\n |- Useless or Incorrect (1-2 points): The response is completely irrelevant or incorrect.\verb|\n |Example: If there are factual errors in the response but the overall direction is correct, it falls under ``Useful but Incomplete.''\newline
+3. Level of Detail:\verb|\n |- Very Detailed (9-10 points): The response includes ample details covering all aspects of the issue.\verb|\n |- Detailed but Slightly Lacking (6-8 points): The response is fairly detailed but misses some important details.\verb|\n |- Basically Detailed (3-5 points): The response provides some details but is not thorough enough overall.\verb|\n |- Not Detailed (1-2 points): The response is very brief and lacks necessary details.\verb|\n |Example: If the response provides only a simple conclusion without an explanation, it falls under ``Not Detailed.''\newline
+4. Relevance:\verb|\n |- Highly Relevant (9-10 points): The response is highly relevant to the question, with information closely aligned with the topic.\verb|\n |- Generally Relevant (6-8 points): The response is generally relevant but includes some unnecessary information.\verb|\n |- Partially Relevant (3-5 points): The response has a lot of content that deviates from the topic.\verb|\n |- Not Relevant (1-2 points): The response is completely irrelevant.\verb|\n |Example: If the response strays from the topic but still provides some relevant information, it falls under ``Partially Relevant.''\newline
+\newline
+\#\#\#\# Conversation Context \#\#\#\#\verb|\n|\verb|{conversation context & query}|\verb|\n|\newline
+\#\#\#\# Responses to be Scored \#\#\#\#\newline
+\verb|[The Begin of Response i]\n{the i-th response}\n[The End of Response i]\n|
+\newline
+\#\#\#\# Output Format Requirements \#\#\#\#\newline
+\newline
+Output with three lines\newline
+Specific Criteria: <Other potential criteria specific to the query and the context, and the weights of each criteria>.\newline
+Analysis: <Compare different responses based on given Criteria>.\newline
+Scores: <the overall comprehensive score of all responses in order, separate by comma in the boxed, e.g., \verb|\|boxed\{x, x\} if there exists 2 responeses>. 
+\end{tcolorbox}
+
+\begin{tcolorbox}[title={\SGRMAll (Training on Rating Single Response)}, colbacktitle=blue!50!white, coltitle=white, fonttitle=\bfseries, colback=blue!10!white, boxrule=0pt, breakable]
+\small
+You are a skilled little expert at scoring responses. You should evaluate given responses based on the given judging criteria.\verb|\n|Given the context of the conversation (the last round is the User's query) and multiple responses from the Assistant, you need to refer to the [General Evaluation Criteria] to score the responses. Based on the general evaluation criteria, state potential other specific criteria to the query, the weights of different criteria, and then provide an overall comprehensive score upon them. The score is 0 or 1, with 1 indicating that the response is correct.\verb|\n|Before scoring, please analyze step by step. Your scoring needs to be as strict as possible.\newline\newline
+\#\#\#\# Evaluation Criteria \#\#\#\#\newline
+1. Instruction Adherence:\verb|\n |- Fully Adhered: The response fully complies with all instructions and requirements of the question.\verb|\n |- Partially Adhered: The response meets most of the instructions but has some omissions or misunderstandings.\verb|\n |- Basically Adhered: The response meets some instructions, but the main requirements are not fulfilled.\verb|\n |- Not Adhered: The response does not meet any instructions.\verb|\n |Example: If the question requires three examples and the response provides only one, it falls under ``Partially Adhered.''\newline2. Clarity:\verb|\n |- Very Clear: The response is fluent, well-structured, and logically clear.\verb|\n |- Clear but Minor Issues: The response is mostly clear but has some minor language or structural issues.\verb|\n |- Basically Clear: The response has noticeable language or logic issues but is still understandable.\verb|\n |- Not Clear: The response is disjointed, illogical, and hard to understand.\verb|\n |Example: If the response has complex sentence structures and lacks punctuation, it falls under ``Basically Clear'' or ``Not Clear.''\newline3. Accuracy:\verb|\n |- Completely Accurate: All information and data are completely accurate.\verb|\n |- Mostly Accurate: Most information is accurate, with minor errors.\verb|\n |- Some Errors: There are some noticeable errors affecting comprehension.\verb|\n |- Mostly Incorrect: There are numerous errors seriously affecting the credibility of the information.\verb|\n |Example: If a specific data point is incorrectly cited but doesn't affect the overall conclusion, it falls under ``Mostly Accurate.''\newline\newline
+\#\#\#\# Conversation Context \#\#\#\#\verb|\n|\verb|{conversation context & query}|\verb|\n|\newline
+\#\#\#\# Responses to be Scored \#\#\#\#\newline
+\verb|[The Begin of Response]\n{the response}\n[The End of Response]\n|
+\newline
+\#\#\#\# Output Format Requirements \#\#\#\#\newline\newline
+Output with three lines\newline
+Specific Criteria: <Other potential criteria specific to the query and the context, and the weights of each criteria>.\newline
+Analysis: <Compare different responses based on given Criteria>.\newline
+Scores: <the overall comprehensive score of the response, e.g., \verb|\|boxed\{x\}>. 
+\end{tcolorbox}
+
+\begin{tcolorbox}[title={Meta RM}, colbacktitle=blue!50!white, coltitle=white, fonttitle=\bfseries, colback=blue!10!white, boxrule=0pt, breakable]
+\small
+\textbf{Prompt:}\newline
+Please score the responses.
+\newline\newline
+\#\#\#\# Conversation Context \#\#\#\#\verb|\n|\verb|{conversation context & query}|\verb|\n|\newline
+\#\#\#\# Responses to be Scored \#\#\#\#\newline
+\verb|[The Begin of Response i]\n{the i-th response}\n[The End of Response i]\n|
+\tcblower
+\textbf{Response:}\newline
+\verb|{principle & critique}|
+\end{tcolorbox}
+
+% LLM-as-a-Judge
+\begin{tcolorbox}[title={LLM-as-a-Judge}, colbacktitle=blue!50!white, coltitle=white, fonttitle=\bfseries, colback=blue!10!white, boxrule=0pt, breakable]
+\small
+You are a skilled little expert at scoring responses. You should evaluate given responses based on the given judging criteria.\verb|\n|Given the context of the conversation (the last round is the User's query) and multiple responses from the Assistant, you need to refer to the [General Evaluation Criteria] to score the responses. Based on the general evaluation criteria, state potential other specific criteria to the query, the weights of different criteria, and then select the best response among all candidates.\verb|\n|Before judging, please analyze step by step. Your judgement needs to be as strict as possible.\newline\newline
+\#\#\#\# Evaluation Criteria \#\#\#\#\newline
+1. Instruction Adherence:\verb|\n |- Fully Adhered: The response fully complies with all instructions and requirements of the question.\verb|\n |- Partially Adhered: The response meets most of the instructions but has some omissions or misunderstandings.\verb|\n |- Basically Adhered: The response meets some instructions, but the main requirements are not fulfilled.\verb|\n |- Not Adhered: The response does not meet any instructions.\verb|\n |Example: If the question requires three examples and the response provides only one, it falls under ``Partially Adhered.''\newline
+2. Usefulness:\verb|\n |- Highly Useful: The response provides comprehensive and accurate information, fully addressing the issue.\verb|\n |- Useful but Incomplete: The response provides some useful information, but lacks details or accuracy.\verb|\n |- Limited Usefulness: The response offers little useful information, with most content being irrelevant or incorrect.\verb|\n |- Useless or Incorrect: The response is completely irrelevant or incorrect.\verb|\n |Example: If there are factual errors in the response but the overall direction is correct, it falls under ``Useful but Incomplete.''\newline
+3. Level of Detail:\verb|\n |- Very Detailed: The response includes ample details covering all aspects of the issue.\verb|\n |- Detailed but Slightly Lacking: The response is fairly detailed but misses some important details.\verb|\n |- Basically Detailed: The response provides some details but is not thorough enough overall.\verb|\n |- Not Detailed: The response is very brief and lacks necessary details.\verb|\n |Example: If the response provides only a simple conclusion without an explanation, it falls under ``Not Detailed.''\newline
+4. Relevance:\verb|\n |- Highly Relevant: The response is highly relevant to the question, with information closely aligned with the topic.\verb|\n |- Generally Relevant: The response is generally relevant but includes some unnecessary information.\verb|\n |- Partially Relevant: The response has a lot of content that deviates from the topic.\verb|\n |- Not Relevant: The response is completely irrelevant.\verb|\n |Example: If the response strays from the topic but still provides some relevant information, it falls under ``Partially Relevant.''\newline
+\newline
+\#\#\#\# Conversation Context \#\#\#\#\verb|\n|\verb|{conversation context & query}|\verb|\n|\newline
+\#\#\#\# Responses to be Scored \#\#\#\#\newline
+\verb|[The Begin of Response]\n{the response}\n[The End of Response]\n|
+\newline
+\#\#\#\# Output Format Requirements \#\#\#\#\newline\newline
+Output with three lines\newline
+Specific Criteria: <Other potential criteria specific to the query and the context, and the weights of each criteria>.\newline
+Analysis: <Compare different responses based on given Criteria>.\newline
+Scores: <the index of the best response based on the judgement, in the format of \verb|\|boxed\{x\}>. 
+\end{tcolorbox}
+
+
+\end{document}

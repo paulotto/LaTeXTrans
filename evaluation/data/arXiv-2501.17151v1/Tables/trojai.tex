@@ -1,0 +1,104 @@
+% \begin{table}[h]
+% \centering
+% \small  
+% \centering
+% \caption{Comparison of performance of TRODO and other methods on various rounds of TrojAI Dataset, reported in terms of AUROC (\%) and Accuracy(\%).}
+ 
+
+% \label{tab:advance_attack_ablation}
+% \renewcommand{\arraystretch}{1.5}\setlength{\tabcolsep}{15pt} \Large  
+ 
+%     \resizebox{0.6\linewidth}{!}{\begin{tabular}{N*{5}{C{2cm}}} 
+
+ 
+%     \specialrule{3pt}{\aboverulesep}{\belowrulesep}
+
+%     \multirow{1}{4em}{Method}  & \multicolumn{1}{c}{Round0} & \multicolumn{1}{c}{Round1} &  \multicolumn{1}{c}{Round2} & \multicolumn{1}{c}{Round3} & \multicolumn{1}{c}{Round4}\\
+    
+
+%      \specialrule{3pt}{\aboverulesep}{\belowrulesep}
+
+%      \multirow{1}{4em}{NC}  & 75.1 & 72.2 & - & - & -\\
+        
+%         \cmidrule(lr){1-6}
+
+%      \multirow{1}{4em}{DLTND}  & 85.0 & 84.3 & 58.2 & 65.7 & 66.1\\
+        
+%         \cmidrule(lr){1-6}
+        
+%      \multirow{1}{4em}{K-Arm} & 91.3 & 90.0 & 76.0 & 79.0 & 82.0\\
+     
+%       \cmidrule(lr){1-6}
+
+%      \multirow{1}{4em}{ABS} & 70.3 & 66.8 & 62.0 & 70.8 & 73.3\\
+     
+%       \cmidrule(lr){1-6}
+
+%      \multirow{1}{4em}{MM-BD}  & 68.8 & 73.2 & 55.8 & 52.6 & 50.1\\
+     
+%       \cmidrule(lr){1-6}
+
+%      \multirow{1}{4em}{TABOR}  & 82.8 & 80.3 & 56.2 & 60.8 & 58.3\\
+     
+%       \cmidrule(lr){1-6}
+
+%      \multirow{1}{4em}{UMD} & 80.4 & 79.2 & 75.2 & 61.3 & 56.9\\
+     
+%       \cmidrule(lr){1-6}
+
+%      \multirow{1}{4em}{TRODO} & 86.2 & 84.7 & 78.1 & 77.2 & 77.8\\
+     
+%      \specialrule{3pt}{\aboverulesep}{\belowrulesep}
+ 
+% \end{tabular}}
+% \end{table}
+
+
+\begin{table}[h]
+\centering
+\small
+\caption{Comparison of TRODO and other methods on all released rounds of TrojAI benchmark on image classification task. For each method, we reported scanning Accuracy and the average scanning time for the classifiers.}
+\label{tab:eval2}
+\renewcommand{\arraystretch}{1.5}
+\setlength{\tabcolsep}{10pt}
+\Large
+\resizebox{\textwidth}{!}{
+\begin{tabular}{c*{12}{c}}
+
+\specialrule{3pt}{\aboverulesep}{\belowrulesep}
+
+\multirow{2}{*}{Method} & \multicolumn{2}{c}{Round0} & \multicolumn{2}{c}{\textbf{Round1}} &  \multicolumn{2}{c}{\textbf{Round2}} & \multicolumn{2}{c}{\textbf{Round3}} & \multicolumn{2}{c}{\textbf{Round4}} &
+\multicolumn{2}{c}{\textbf{Round11}}\\
+\cmidrule(lr){2-3}
+\cmidrule(lr){4-5}
+\cmidrule(lr){6-7}
+\cmidrule(lr){8-9}
+\cmidrule(lr){10-11}
+\cmidrule(lr){12-13}
+& Accuracy & Time(s) & Accuracy & Time(s) & Accuracy & Time(s) & Accuracy & Time(s) & Accuracy & Time(s) & Accuracy & Time(s)\\
+
+\specialrule{3pt}{\aboverulesep}{\belowrulesep}
+
+NC  & 75.1 & 574.1 & 72.2 & 592.6 & - & > 23000 & - & > 23000 & - & > 20000 & N/A & N/A\\
+\cmidrule(lr){1-13}
+ABS & 70.3 & 481.9 & 66.8 & 492.5 & 62.0 & 1378.4 & 70.8 & 1271.4 & 76.3 & 443.2 & N/A & N/A\\
+\cmidrule(lr){1-13}
+PT-RED  & 85.0 & 941.6 & 84.3 & 962.7 & 58.2 & > 23000 & 65.7 & > 25000 & 66.1 & > 28000 & N/A & N/A\\
+\cmidrule(lr){1-13}
+TABOR  & 82.8 & 974.2 & 80.3 & 992.5 & 56.2 & > 29000 & 60.8 & > 27000 & 58.3 & > 32000 & N/A & N/A\\
+\cmidrule(lr){1-13}
+K-ARM & \textbf{91.3} & 262.1 & \textbf{90.0} & 283.7 & \underline{76.0} & 1742.8 & \textbf{79.0} & 1634.1 & \underline{82.0} & 1581.4 & N/A & N/A\\
+\cmidrule(lr){1-13}
+MM-BD  & 68.8 & \underline{226.4} & 73.2 & \underline{231.3}
+ & 55.8 & \underline{174.3} & 52.6 & \underline{182.6} & 54.1 & \underline{178.1} & \underline{51.3} & \underline{1214.2}\\
+\cmidrule(lr){1-13}
+UMD & 80.4 & > 34000 & 79.2 & > 34000 & 75.2 & > 18000 & 61.3 & > 19000 & 56.9 & > 90000 & N/A & N/A\\
+\cmidrule(lr){1-13}
+\textbf{TRODO} & \cellcolor{gray!15}\underline{86.2} & \cellcolor{gray!15}\textbf{152.4} & \cellcolor{gray!15}\underline{85.7} & \cellcolor{gray!15}\textbf{194.3} & \cellcolor{gray!15}\textbf{78.1} & \cellcolor{gray!15}\textbf{107.2} & \cellcolor{gray!15}\underline{77.2} & \cellcolor{gray!15}\textbf{122.4} & \cellcolor{gray!15}\textbf{82.8} & \cellcolor{gray!15}\textbf{117.8} & \cellcolor{gray!15}\textbf{61.3} & \cellcolor{gray!15}\textbf{984.3} \\
+
+\specialrule{3pt}{\aboverulesep}{\belowrulesep}
+
+\end{tabular}}
+\end{table}
+
+\vspace{-10pt}

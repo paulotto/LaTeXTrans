@@ -1,0 +1,238 @@
+@inproceedings{Vaswani+2017,
+ author = {Vaswani, Ashish and Shazeer, Noam and Parmar, Niki and Uszkoreit, Jakob and Jones, Llion and Gomez, Aidan N and Kaiser, \L ukasz and Polosukhin, Illia},
+ booktitle = {Advances in Neural Information Processing Systems},
+ pages = {},
+ publisher = {Curran Associates, Inc.},
+ title = {Attention is All you Need},
+ url = {https://proceedings.neurips.cc/paper_files/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Paper.pdf},
+ volume = {30},
+ year = {2017}
+}
+
+@inproceedings{liu-etal-2024-intactkv,
+    title = "{I}ntact{KV}: Improving Large Language Model Quantization by Keeping Pivot Tokens Intact",
+    author = "Liu, Ruikang  and
+      Bai, Haoli  and
+      Lin, Haokun  and
+      Li, Yuening  and
+      Gao, Han  and
+      Xu, Zhengzhuo  and
+      Hou, Lu  and
+      Yao, Jun  and
+      Yuan, Chun",
+    editor = "Ku, Lun-Wei  and
+      Martins, Andre  and
+      Srikumar, Vivek",
+    booktitle = "Findings of the Association for Computational Linguistics: ACL 2024",
+    month = aug,
+    year = "2024",
+    address = "Bangkok, Thailand",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2024.findings-acl.460/",
+    doi = "10.18653/v1/2024.findings-acl.460",
+    pages = "7716--7741",
+    abstract = "Large language models (LLMs) excel in natural language processing but demand intensive computation. To mitigate this, various quantization methods have been explored, yet they compromise LLM performance. This paper unveils a previously overlooked type of outliers in LLMs. Such outliers are found to allocate most of the attention scores on initial tokens of input, termed as pivot tokens, which are crucial to the performance of quantized LLMs. Given that, we propose IntactKV to generate the KV cache of pivot tokens losslessly from the full-precision model. The approach is simple and easy to combine with existing quantization solutions with no extra inference overhead. Besides, IntactKV can be calibrated as additional LLM parameters to boost the quantized LLMs further with minimal training costs. Mathematical analysis also proves that IntactKV effectively reduces the upper bound of quantization error. Empirical results show that IntactKV brings consistent improvement over various quantization methods across different LLMs and downstream tasks, leading to the new state-of-the-art for LLM quantization. The codes are available at https://github.com/ruikangliu/IntactKV."
+}
+
+@article{geshkovski2023mathematical,
+  title={A mathematical perspective on transformers},
+  author={Geshkovski, Borjan and Letrouit, Cyril and Polyanskiy, Yury and Rigollet, Philippe},
+  journal={arXiv preprint arXiv:2312.10794},
+  year={2023}
+}
+
+@inproceedings{
+ge2024model,
+title={Model Tells You What to Discard: Adaptive {KV} Cache Compression for {LLM}s},
+author={Suyu Ge and Yunan Zhang and Liyuan Liu and Minjia Zhang and Jiawei Han and Jianfeng Gao},
+booktitle={The Twelfth International Conference on Learning Representations},
+year={2024},
+url={https://openreview.net/forum?id=uNrFpDPMyo}
+}
+
+@article{skean2025layer,
+  title={Layer by Layer: Uncovering Hidden Representations in Language Models},
+  author={Skean, Oscar and Arefin, Md Rifat and Zhao, Dan and Patel, Niket and Naghiyev, Jalal and LeCun, Yann and Shwartz-Ziv, Ravid},
+  journal={arXiv preprint arXiv:2502.02013},
+  year={2025}
+}
+
+@article{yona2025interpreting,
+  title={Interpreting the Repeated Token Phenomenon in Large Language Models},
+  author={Yona, Itay and Shumailov, Ilia and Hayes, Jamie and Barbero, Federico and Gandelsman, Yossi},
+  journal={arXiv preprint arXiv:2503.08908},
+  year={2025}
+}
+
+@article{wu2024role,
+  title={On the Role of Attention Masks and LayerNorm in Transformers},
+  author={Wu, Xinyi and Ajorlou, Amir and Wang, Yifei and Jegelka, Stefanie and Jadbabaie, Ali},
+  journal={arXiv preprint arXiv:2405.18781},
+  year={2024}
+}
+
+@article{dubey2024llama,
+  title={The llama 3 herd of models},
+  author={Dubey, Abhimanyu and Jauhri, Abhinav and Pandey, Abhinav and Kadian, Abhishek and Al-Dahle, Ahmad and Letman, Aiesha and Mathur, Akhil and Schelten, Alan and Yang, Amy and Fan, Angela and others},
+  journal={arXiv preprint arXiv:2407.21783},
+  year={2024}
+}
+
+@article{team2024gemma,
+  title={Gemma: Open models based on gemini research and technology},
+  author={{Gemma Team} and Mesnard, Thomas and Hardin, Cassidy and Dadashi, Robert and Bhupatiraju, Surya and Pathak, Shreya and Sifre, Laurent and Rivi{\`e}re, Morgane and Kale, Mihir Sanjay and Love, Juliette and others},
+  journal={arXiv preprint arXiv:2403.08295},
+  year={2024}
+}
+
+@inproceedings{
+xiao2024efficient,
+title={Efficient Streaming Language Models with Attention Sinks},
+author={Guangxuan Xiao and Yuandong Tian and Beidi Chen and Song Han and Mike Lewis},
+booktitle={The Twelfth International Conference on Learning Representations},
+year={2024},
+url={https://openreview.net/forum?id=NG7sS51zVF}
+}
+
+@article{guo2024active,
+  title={Active-dormant attention heads: Mechanistically demystifying extreme-token phenomena in llms},
+  author={Guo, Tianyu and Pai, Druv and Bai, Yu and Jiao, Jiantao and Jordan, Michael I and Mei, Song},
+  journal={arXiv preprint arXiv:2410.13835},
+  year={2024}
+}
+
+@inproceedings{
+sun2024massive,
+title={Massive Activations in Large Language Models},
+author={Mingjie Sun and Xinlei Chen and J Zico Kolter and Zhuang Liu},
+booktitle={First Conference on Language Modeling},
+year={2024},
+url={https://openreview.net/forum?id=F7aAhfitX6}
+}
+
+@article{cancedda2024spectral,
+  title={Spectral filters, dark signals, and attention sinks},
+  author={Cancedda, Nicola},
+  journal={arXiv preprint arXiv:2402.09221},
+  year={2024}
+}
+
+@inproceedings{
+gu2025when,
+title={When Attention Sink Emerges in Language Models: An Empirical View},
+author={Xiangming Gu and Tianyu Pang and Chao Du and Qian Liu and Fengzhuo Zhang and Cunxiao Du and Ye Wang and Min Lin},
+booktitle={The Thirteenth International Conference on Learning Representations},
+year={2025},
+url={https://openreview.net/forum?id=78Nn4QJTEN}
+}
+
+@inproceedings{barbero2025round,
+title={Round and Round We Go! What makes Rotary Positional Encodings useful?},
+author={Federico Barbero and Alex Vitvitskyi and Christos Perivolaropoulos and Razvan Pascanu and Petar Veli{\v{c}}kovi{\'c}},
+booktitle={The Thirteenth International Conference on Learning Representations},
+year={2025},
+url={https://openreview.net/forum?id=GtvuNrk58a}
+}
+
+@inproceedings{dong2021attention,
+  title={Attention is not all you need: Pure attention loses rank doubly exponentially with depth},
+  author={Dong, Yihe and Cordonnier, Jean-Baptiste and Loukas, Andreas},
+  booktitle={International conference on machine learning},
+  pages={2793--2803},
+  year={2021},
+  organization={PMLR}
+}
+
+@article{di2022understanding,
+title={Understanding convolution on graphs via energies},
+author={Di Giovanni, Francesco and James Rowbottom and Benjamin Paul Chamberlain and Thomas Markovich and Michael M. Bronstein},
+journal={Transactions on Machine Learning Research},
+issn={2835-8856},
+year={2023},
+note={}
+}
+
+@article{keriven2022not,
+  title={Not too little, not too much: a theoretical analysis of graph (over) smoothing},
+  author={Keriven, Nicolas},
+  journal={Advances in Neural Information Processing Systems},
+  volume={35},
+  pages={2268--2281},
+  year={2022}
+}
+
+@article{velivckovic2024softmax,
+  title={softmax is not enough (for sharp out-of-distribution)},
+  author={Veli{\v{c}}kovi{\'c}, Petar and Perivolaropoulos, Christos and Barbero, Federico and Pascanu, Razvan},
+  journal={arXiv preprint arXiv:2410.01104},
+  year={2024}
+}
+
+@article{vitvitskyi2025makes,
+  title={What makes a good feedforward computational graph?},
+  author={Vitvitskyi, Alex and Ara{\'u}jo, Joao GM and Lackenby, Marc and Veli{\v{c}}kovi{\'c}, Petar},
+  journal={arXiv preprint arXiv:2502.06751},
+  year={2025}
+}
+
+@article{noci2022signal,
+  title={Signal propagation in transformers: Theoretical perspectives and the role of rank collapse},
+  author={Noci, Lorenzo and Anagnostidis, Sotiris and Biggio, Luca and Orvieto, Antonio and Singh, Sidak Pal and Lucchi, Aurelien},
+  journal={Advances in Neural Information Processing Systems},
+  volume={35},
+  pages={27198--27211},
+  year={2022}
+}
+
+@article{arroyo2025vanishing,
+  title={On Vanishing Gradients, Over-Smoothing, and Over-Squashing in GNNs: Bridging Recurrent and Graph Learning},
+  author={Arroyo, {\'A}lvaro and Gravina, Alessio and Gutteridge, Benjamin and Barbero, Federico and Gallicchio, Claudio and Dong, Xiaowen and Bronstein, Michael and Vandergheynst, Pierre},
+  journal={arXiv preprint arXiv:2502.10818},
+  year={2025}
+}
+
+@article{radford2018improving,
+  title={Improving language understanding by generative pre-training},
+  author={Radford, Alec and Narasimhan, Karthik and Salimans, Tim and Sutskever, Ilya and others},
+  year={2018},
+  publisher={San Francisco, CA, USA}
+}
+
+@article{barbero2024transformers,
+  title={Transformers need glasses! information over-squashing in language tasks},
+  author={Barbero, Federico and Banino, Andrea and Kapturowski, Steven and Kumaran, Dharshan and Madeira Ara{\'u}jo, Jo{\~a}o and Vitvitskyi, Oleksandr and Pascanu, Razvan and Veli{\v{c}}kovi{\'c}, Petar},
+  journal={Advances in Neural Information Processing Systems},
+  volume={37},
+  pages={98111--98142},
+  year={2024}
+}
+
+@article{naderi2024mind,
+  title={Mind the Gap: a Spectral Analysis of Rank Collapse and Signal Propagation in Transformers},
+  author={Naderi, Alireza and Saada, Thiziri Nait and Tanner, Jared},
+  journal={arXiv preprint arXiv:2410.07799},
+  year={2024}
+}
+
+@article{raposo2024mixture,
+  title={Mixture-of-depths: Dynamically allocating compute in transformer-based language models},
+  author={Raposo, David and Ritter, Sam and Richards, Blake and Lillicrap, Timothy and Humphreys, Peter Conway and Santoro, Adam},
+  journal={arXiv preprint arXiv:2404.02258},
+  year={2024}
+}
+
+@article{brown2020language,
+  title={Language models are few-shot learners},
+  author={Brown, Tom and Mann, Benjamin and Ryder, Nick and Subbiah, Melanie and Kaplan, Jared D and Dhariwal, Prafulla and Neelakantan, Arvind and Shyam, Pranav and Sastry, Girish and Askell, Amanda and others},
+  journal={Advances in neural information processing systems},
+  volume={33},
+  pages={1877--1901},
+  year={2020}
+}
+
+@article{zhao2024analysing,
+  title={Analysing the impact of sequence composition on language model pre-training},
+  author={Zhao, Yu and Qu, Yuanbin and Staniszewski, Konrad and Tworkowski, Szymon and Liu, Wei and Mi{\l}o{\'s}, Piotr and Wu, Yuxiang and Minervini, Pasquale},
+  journal={arXiv preprint arXiv:2402.13991},
+  year={2024}
+}

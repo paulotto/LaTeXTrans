@@ -1,0 +1,32 @@
+\begin{table}[t]
+    \centering
+    \caption{Main results of our evaluation. Problems are scored out of $7$ points, with the total score being at most $42$. Listed scores are averaged over all four runs. We measure cost in USD, and report the average score across all generations and graders for each problem.}
+    \vspace{-1mm}
+    \resizebox{\textwidth}{!}{
+        \begin{tabular}{
+            l
+            x{1}{1}
+            x{1}{1}
+            x{1}{1}
+            x{1}{1}
+            x{1}{1}
+            x{1}{1}
+            x{2}{1}
+            x{3}{2}
+        }
+            \toprule
+            \textbf{Model} & {\textbf{P1} (/7)} & {\textbf{P2} (/7)} & {\textbf{P3} (/7)} & {\textbf{P4} (/7)} & {\textbf{P5}  (/7)} & {\textbf{P6} (/7)} & {\textbf{Total} (/42)} & {\textbf{Cost}} \\
+            \midrule
+            \geminipro & 6.5 & 0.0 & 0.1 & 3.5 & 0.0 & 0.0 & 10.1 & {\phantom{dd}N/A} \\
+            \rone & 0.5 & 0.0 & 0.0 & 1.5 & 0.0 & 0.0 & 2.0 & 2.03 \\
+            \grok & 2.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 2.0 & {\phantom{dd}N/A} \\
+            \flthink & 1.5 & 0.0 & 0.0 & 0.0 & 0.2 & 0.0 & 1.8 & {\phantom{dd}N/A} \\
+            \claude & 0.5 & 0.5 & 0.0 & 0.0 & 0.0 & 0.6 & 1.5 & 9.03 \\
+            \qwq & 1.2 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 1.2 & 0.42 \\
+            \oone & 0.5 & 0.0 & 0.0 & 0.0 & 0.2 & 0.4 & 1.2 & 203.44 \\
+            \othree & 0.5 & 0.1 & 0.0 & 0.0 & 0.0 & 0.2 & 0.9 & 1.11 \\
+            \bottomrule
+        \end{tabular}
+    }
+    \label{tab:main_results}
+\end{table}

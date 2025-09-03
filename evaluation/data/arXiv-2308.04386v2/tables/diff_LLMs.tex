@@ -1,0 +1,15 @@
+\begin{tabular}{lrcccccc}
+\toprule[1.1pt]
+    \multirow{2}{*}{Method} & \multirow{2}{*}{\#Params} & \multicolumn{3}{c}{Coherence} & \multicolumn{3}{c}{Relevance} \\ \cmidrule(l){3-5} \cmidrule(l){6-8}
+    & &  Kend. & Spear.& Pear. &  Kend. & Spear.& Pear.  \\ \midrule
+    ChatGPT   & - &0.407 &0.474 &0.491 &0.378 &0.430 &0.457    \\ 
+    GPT-4     & - &0.443 &0.571 &0.602 &0.441 &0.563 &0.584 \\
+    LLaMA     & 8B   &0.362  &0.441   &0.457  & 0.334 & 0.403 & 0.426   \\
+    Qwen      & 14B  &0.413  &0.486   &0.514  & 0.372 & 0.416  & 0.455   \\ \hdashline
+    CSEM (w/ ChatGPT) &355M &0.386 &0.529 & 0.566 & 0.365 & 0.497& 0.531 \\
+    CSEM (w/ GPT-4)   &355M &\textbf{0.421} &\textbf{0.584} &\textbf{0.591} &\textbf{0.434} &\textbf{0.540} &\textbf{0.573}  \\
+    CSEM (w/ LLaMA)   &355M &0.375  &0.468   &0.489  & 0.353 & 0.462 & 0.483 \\
+    CSEM (w/ Qwen)    &355M &0.432  &0.490   &0.534  & 0.388 & 0.468  & 0.492 \\
+    \toprule[1.1pt]
+    \multicolumn{8}{l}{\parbox{10cm}{The specific versions of the LLMs we use are as follows: GPT-4 (gpt-4-0613), LLaMA (Llama-3.1-8B-Instruct), and Qwen (Qwen2.5-14B-Instruct).}}
+\end{tabular}

@@ -1,0 +1,26 @@
+\begin{tabular}{c|cccccccccc|cc}
+\hlineB{3}
+\multirow{2}{*}{Methods} & \multicolumn{2}{c}{BMC} & \multicolumn{2}{c}{I2CVB} & \multicolumn{2}{c}{UCL} & \multicolumn{2}{c}{BIDMC}  & \multicolumn{2}{c|}{HK} & \multicolumn{2}{c}{Avg.}   \\ \cline{2-13} 
+                         & \textit{DSC}      &  HD95    & \textit{DSC}      &  HD95& \textit{DSC}      &  HD95& \textit{DSC}     &  HD95  & \textit{DSC}      &  HD95  & \textit{DSC} $\uparrow$     &  HD95 $\downarrow$ \\ \hline \hline
+
+\textit{No Adapt} & 74.30\small{$\pm$5.31} & 16.08\small{$\pm$12.41} & 66.47\small{$\pm$13.50} & 37.16\small{$\pm$18.24} & 75.28\small{$\pm$6.20} & 16.77\small{$\pm$12.10} & 52.08\small{$\pm$7.71} & 50.09\small{$\pm$20.85} & 80.51\small{$\pm$9.35} & 8.79\small{$\pm$9.06} & 69.72\small{$\pm$8.29} & 25.77\small{$\pm$15.41}  \\  \hline
+
+TENT (ICLR'21)~\cite{wangtent} & 77.45\small{$\pm$3.79} & 12.09\small{$\pm$9.88} & 69.10\small{$\pm$10.47} & 30.78\small{$\pm$19.22} & 79.69\small{$\pm$4.81} & 14.71\small{$\pm$11.01} & 52.01\small{$\pm$6.80} & 42.63\small{$\pm$10.13} & 84.58\small{$\pm$2.73} & 4.07\small{$\pm$5.38} & 72.56\small{$\pm$4.26} & 20.85\small{$\pm$13.64} \\
+
+TASD (AAAI'22)~\cite{liu2022single} & 76.28\small{$\pm$2.35} & 15.11\small{$\pm$15.17} & 68.30\small{$\pm$7.88} & 31.43\small{$\pm$24.10} & 80.25\small{$\pm$3.54} & \textcolor{red}{10.59\small{$\pm$16.39}} & 56.08\small{$\pm$3.82} & 51.90\small{$\pm$24.82} & 81.09\small{$\pm$1.79} & 4.26\small{$\pm$4.16} & 72.40\small{$\pm$5.72} & 22.65\small{$\pm$17.53}  \\
+
+SAR (ICLR'23)~\cite{niu2023towards} & 77.24\small{$\pm$4.26} & 20.48\small{$\pm$10.12} & 68.99\small{$\pm$8.27} & 49.07\small{$\pm$15.66} & 79.27\small{$\pm$8.48} & 18.03\small{$\pm$5.89} & 50.81\small{$\pm$10.60} & 54.35\small{$\pm$19.31} & 85.40\small{$\pm$3.08} & 3.87\small{$\pm$3.55} & 72.34\small{$\pm$4.80} & 29.16\small{$\pm$16.28} \\
+
+DomainAdaptor (CVPR'23)~\cite{zhang2023domainadaptor} & 76.49\small{$\pm$2.59} & 19.27\small{$\pm$8.13} & 69.07\small{$\pm$9.14} & 32.57\small{$\pm$10.40} & 80.41\small{$\pm$5.08} & 16.24\small{$\pm$9.88} & 49.99\small{$\pm$14.28} & 48.40\small{$\pm$10.28} & 85.20\small{$\pm$1.90} & 3.25\small{$\pm$6.94} & 72.23\small{$\pm$6.82} & 23.94\small{$\pm$14.55} \\
+
+VPTTA (CVPR'24)~\cite{chen2024each}& 77.42\small{$\pm$4.38} & 12.93\small{$\pm$7.09} & 70.25\small{$\pm$5.18} & 30.01\small{$\pm$13.68} 
+ & 82.07\small{$\pm$6.27} & 13.28\small{$\pm$18.09} & 57.49\small{$\pm$8.46} & 40.11\small{$\pm$12.05} & 83.27\small{$\pm$2.96} & 3.40\small{$\pm$5.45} & 74.10\small{$\pm$4.79} & 19.94\small{$\pm$12.99}   \\
+
+PASS (TMI'24)~\cite{zhang2024pass} & \textcolor{red}{80.07\small{$\pm$7.14}} & 10.50\small{$\pm$9.57} &71.41\small{$\pm$6.28} & 28.26\small{$\pm$9.97} & 84.39\small{$\pm$8.81} & 10.68\small{$\pm$12.27} & 57.27\small{$\pm$11.48} & \textcolor{red}{36.94\small{$\pm$16.43}} & 84.88\small{$\pm$3.71} & 3.03\small{$\pm$5.05} & 75.60\small{$\pm$5.13} & 17.88\small{$\pm$12.14} \\ \hline
+
+Ours & 79.63\small{$\pm$4.71} & \textcolor{red}{9.99\small{$\pm$11.10}} & \textcolor{red}{74.09\small{$\pm$9.80}} & \textcolor{red}{25.70\small{$\pm$13.07}} & \textcolor{red}{86.30\small{$\pm$7.25}} & 11.08\small{$\pm$17.47} & \textcolor{red}{60.33\small{$\pm$13.59}} & 39.52\small{$\pm$14.20}  & \textcolor{red}{86.12\small{$\pm$2.08}} & \textcolor{red}{2.84\small{$\pm$8.08}} & \textcolor{red}{77.29\small{$\pm$3.98}} & \textcolor{red}{17.82\small{$\pm$11.06}}  \\
+
+
+
+\hlineB{3}
+\end{tabular}

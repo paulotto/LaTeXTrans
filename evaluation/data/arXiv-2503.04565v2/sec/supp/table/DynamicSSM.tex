@@ -1,0 +1,31 @@
+\begin{table}[t!]
+    \centering
+    \setlength{\tabcolsep}{8pt}     % 4pt
+    \resizebox{\columnwidth}{!}{%
+    \begin{tabular}{c|ccc|ccc}
+        % \toprule
+        \topline
+        \rowcolor{mygray}  Exp. & Dconv & SSM & Fusion & HOTA$\uparrow$ & IDF1$\uparrow$ & OSPA$\downarrow$  \\
+        % \midrule
+        \hline
+         	 	 
+        \ding{192} & - & - & - &  23.30 & 25.50 & 0.93   \\ 	 	
+        \ding{193} & - & \checkmark & \checkmark &  24.82 & 27.17 & \textbf{0.92}   \\ 	 	
+        \ding{194} & \checkmark & - & \checkmark & 24.81  & 26.98 &   \textbf{0.92} \\ 
+        \ding{195} & \checkmark & \checkmark & - & 24.72  & 26.66 &   \textbf{0.92} \\ 
+
+        % \midrule
+        \hline
+        \rowcolor{tabgray}\ding{195} & \checkmark & \checkmark  & \checkmark & \textbf{25.12} & \textbf{27.42} & 0.93   \\
+        % \bottomrule
+        \bottomline
+    \end{tabular}
+    }
+    %\vspace{-1mm}
+    \caption{Ablation of the DynamicSSM Block: Dconv represents deformable convolution (Equation~9 in the main text), SSM denotes the state-space model (Equation~10 in the main text), and Fusion refers to the integration of residual features (Equation~11 in the main text).
+    }
+    %\vspace{-3mm}
+    \label{tab:dssm}
+\end{table}
+
+

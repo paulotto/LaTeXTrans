@@ -1,0 +1,16 @@
+\begin{abstract}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}} 
+    \footnotetext[1]{Equal contribution.}
+\DefineFNsymbols*{1}{\Letter}
+\setfnsymbol{1}
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}} 
+    \footnotetext[1]{Corresponding authors: Peng Li (lipeng@air.tsinghua.edu.cn) and Yang Liu (liuyang2011@tsinghua.edu.cn).}
+\renewcommand{\thefootnote}{\arabic{footnote}}
+
+Recently, model merging methods have demonstrated powerful strengths in combining abilities on various tasks from multiple Large Language Models (LLMs). While previous model merging methods mainly focus on merging homogeneous models with identical architecture, they meet challenges when dealing with Multimodal Large Language Models (MLLMs) with inherent heterogeneous property, including differences in model architecture and the asymmetry in the parameter space. In this work, we propose \ours\footnote{AdaMMS represents \textbf{Ada}ptive \textbf{M}apping, \textbf{M}erging, and \textbf{S}earching.}, a novel model merging method tailored for heterogeneous MLLMs. Our method tackles the challenges in three steps: mapping, merging and searching. Specifically, we first design mapping function between models to apply model merging on MLLMs with different architecture. Then we apply linear interpolation on model weights to actively adapt the asymmetry in the heterogeneous MLLMs. Finally in the hyper-parameter searching step, we propose an unsupervised hyper-parameter selection method for model merging. As the first model merging method capable of merging heterogeneous MLLMs without labeled data, extensive experiments on various model combinations demonstrated that \ours outperforms previous model merging methods on various vision-language benchmarks.\footnote{Code at \url{https://github.com/THUNLP-MT/AdaMMS}.}
+% TODO: 再excited一点！ proving that xxx, 或者是具体的数值提升，实在不行讲conclusion里边的unlock那件事情
+
+% We hope this work unlocks the architectural constraints and alleviates the need for supervised requirements in model merging for MLLMs, facilitating the integration of diverse models into a cohesive system.
+
+\end{abstract}

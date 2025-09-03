@@ -1,0 +1,1450 @@
+\documentclass{article}
+
+
+% if you need to pass options to natbib, use, e.g.:
+%     \PassOptionsToPackage{numbers, compress}{natbib}
+% before loading neurips_2024
+
+\PassOptionsToPackage{numbers,sort&compress}{natbib}
+
+% ready for submission
+\usepackage[final]{Styles/neurips_2024}
+
+
+% to compile a preprint version, e.g., for submission to arXiv, add add the
+% [preprint] option:
+%     \usepackage[preprint]{neurips_2024}
+
+
+% to compile a camera-ready version, add the [final] option, e.g.:
+%     \usepackage[final]{neurips_2024}
+
+
+% to avoid loading the natbib package, add option nonatbib:
+%    \usepackage[nonatbib]{neurips_2024}
+
+
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+\usepackage{xcolor}         % colors
+
+\usepackage{xcolor}
+\usepackage{soul}
+\usepackage{bm}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{booktabs} 
+\usepackage{colortbl} 
+\usepackage{array} 
+\usepackage{multirow} 
+\usepackage{amssymb}
+\usepackage{hyperref}
+% \usepackage{stfloats}
+% \usepackage{dblfnote}
+% \DFNalwaysdouble
+\usepackage{tablefootnote}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subfigure}
+
+% \usepackage{graphicx}
+\usepackage{epstopdf}
+
+% \usepackage{algorithm}
+% \usepackage{algorithmic}
+% \usepackage{algorithm}
+% \usepackage{algpseudocode}
+
+\usepackage{algorithm}
+% \usepackage{algorithmic}
+\usepackage[noend]{algorithmic}
+\renewcommand{\algorithmiccomment}[1]{\hfill $\triangleright$ #1}
+
+\usepackage{makecell}
+\usepackage{array}
+\usepackage{wrapfig}
+\usepackage{enumitem}
+
+\usepackage{caption}
+
+\usepackage{amsmath}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+% \newtheorem{proof}{Proof}[section]
+\newtheorem{proof}{Proof}
+\newtheorem{proposition}{Proposition}
+
+\usepackage{hyperref} % 
+
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=red,
+    citecolor=green,
+    filecolor=magenta,
+    urlcolor=cyan
+}
+
+% \usepackage[numbers]{natbib}
+
+
+\bibliographystyle{unsrtnat}
+
+\title{AdvAD: Exploring Non-Parametric Diffusion for Imperceptible Adversarial Attacks}
+
+
+
+\author{
+  Jin Li$^{1}$, Ziqiang He$^{1}$, Anwei Luo$^{1}$, Jian-Fang Hu$^{1}$, Z. Jane Wang$^{2}$, Xiangui Kang$^{1}$\thanks{Corresponding author.} \\
+  $^{1}$Guangdong Key Lab of Information Security, \\
+  School of Computer Science and Engineering, Sun Yat-Sen University \\
+  $^{2}$Electrical and Computer Engineering Dept, University of British Columbia \\
+}
+
+
+\begin{document}
+
+\renewcommand{\arraystretch}{0.6}
+\setlength{\aboverulesep}{1.25pt} 
+\setlength{\belowrulesep}{1.25pt} 
+
+\maketitle
+
+
+\begin{abstract}
+Imperceptible adversarial attacks aim to fool DNNs by adding imperceptible perturbation to the input data. Previous methods typically improve the imperceptibility of attacks by integrating common attack paradigms with specifically designed perception-based losses or the capabilities of generative models. In this paper, we propose Adversarial Attacks in Diffusion (AdvAD), a novel modeling framework distinct from existing attack paradigms. AdvAD innovatively conceptualizes attacking as a non-parametric diffusion process by theoretically exploring basic modeling approach rather than using the denoising or generation abilities of regular diffusion models requiring neural networks. At each step, much subtler yet effective adversarial guidance is crafted using only the attacked model without any additional network, which gradually leads the end of diffusion process from the original image to a desired imperceptible adversarial example. Grounded in a solid theoretical foundation of the proposed non-parametric diffusion process, AdvAD achieves high attack efficacy and imperceptibility with intrinsically lower overall perturbation strength. Additionally, an enhanced version AdvAD-X is proposed to evaluate the extreme of our novel framework under an ideal scenario. Extensive experiments demonstrate the effectiveness of the proposed AdvAD and AdvAD-X. Compared with state-of-the-art imperceptible attacks, AdvAD achieves an average of 99.9$\%$ (+17.3$\%$) ASR with 1.34 (-0.97) $l_2$ distance, 49.74 (+4.76) PSNR and 0.9971 (+0.0043) SSIM against four prevalent DNNs with three different architectures on the ImageNet-compatible dataset. 
+Code is available at \url{https://github.com/XianguiKang/AdvAD}.
+
+\end{abstract}
+
+
+
+\section{Introduction}
+Deep Neural Networks (DNNs) are shown to be vulnerable to adversarial attacks \cite{42503,goodfellow2014explaining} (i.e., add maliciously crafted perturbations to the input data), posing serious security concerns to real-world applications \cite{yuan2019adversarial}.
+The research of adversarial attacks also plays an important role in proactively exposing potential threats, as well as promoting model robustness and corresponding defense methods \cite{naseer2020self, lee2023robust, singh2024revisiting, luo2023beyond, tramèr2018ensemble, salman2020adversarially, luo2021capsule, cohen2019certified}.
+Many attacks \cite{madry2018towards,dong2018boosting,zhang2022enhancing,wei2023enhancing} focus on maximizing the attack success rate and transferability under relatively lenient restrictions (i.e., $l_{\infty}$ or $l_{2}$ norm) of adversarial perturbation, but they could have poor stealthiness and imperceptibility since the crafted adversarial examples can be easily detected by the Human Visual System (HVS) \cite{sharif2018suitability}.
+Therefore, imperceptible adversarial attacks 
+\cite{carlini2017towards,luo2018towards,zhao2020towards,laidlaw2021perceptual,duan2021advdrop,chen2023imperceptible,jia2022exploring}, 
+aiming to maintain attacking efficacy while improving imperceptibility, have attracted considerable attention.  
+
+Current imperceptible adversarial attacks could be summarized into two categories: 1) {perturbation-based} attacks devised on perceptual characteristics, and 2) unrestricted attacks. 
+The first one is motivated by the fact that adding adversarial perturbations to different components of an image has varying perceptual quality levels to the HVS. By studying components such as image color \cite{zhao2020towards}, texture complexity \cite{duan2021advdrop}, frequency spectrum \cite{jia2022exploring, luo2022frequency}, etc., these methods design corresponding perceptual-based loss functions and incorporate them to the optimization process to craft adversarial examples where the adversarial perturbation is constrained and hidden within specific image regions.
+Instead of injecting noise-like adversarial perturbations, unrestricted attacks heavily but reasonably modify attributes of images like semantic content to perform attacks. Apart from early work that adopts GANs \cite{song2018constructing}, some recent methods combine the prevalent diffusion models \cite{ho2020denoising, song2020denoising, rombach2022high} into the adversarial optimization process in an image edition-like way of repeatedly adding noise and denoising to eliminate the noise pattern within the final adversarial examples \cite{chen2023advdiffuser, xue2023diffusion} or optimize the embedding of latent diffusion models \cite{chen2023diffusion, chen2024content}. However, due to the uncertainty of generative models and the unrestricted setting itself, some unrestricted adversarial examples inevitably exhibit obvious unnatural texture or semantic changes and lose the imperceptibility, especially for images with complex content. Although previous methods have equipped attacks with imperceptibility utilizing various designs mentioned above, it remains an essential challenge of achieving imperceptible adversarial attacks: \textit{How to attack with inherently {minimal perturbation strength} from a modeling perspective?}
+
+To address this fundamental challenge, we propose \textbf{Adversarial Attacks in Diffusion} (\textbf{AdvAD}), a brand new modeling framework distinct from common attack paradigms of gradient ascending \cite{goodfellow2014explaining} or optimization with adversarial losses \cite{carlini2017towards}. The proposed AdvAD explores a novel \textit{non-parametric} diffusion process for attacks, which fully inherits two key merits of diffusion models: \textbf{i)} the modeling philosophy of converting a difficult task into a series of simple sub-tasks, and \textbf{ii)} solid theoretical foundation. Specifically, AdvAD achieves high attack efficacy with intrinsically lower perturbation strength by innovatively modeling the attack process as a decomposed diffusion trajectory from an initialized noise to an adversarial example. At each step, a much subtler {(for imperceptibility)} yet more effective {(for attack performance) \textit{adversarial guidance}} is calculated and injected with two cooperating, theoretically grounded {non-parametric modules} called Attacked Model Guidance (AMG) and Pixel-level Constraint (PC), which gradually leads the end of this trajectory from the original image distribution to a desired adversarially conditioned distribution based on the theory of diffusion models (e.g., deterministic diffusion\cite{song2020denoising}, conditional sampling \cite{dhariwal2021diffusion, song2020score}, etc.).
+
+
+{Here, we would like to clarify that the proposed diffusion process for attacks is considered as non-parametric since it does not require additional networks as needed in regular diffusion models for noise estimation. AdvAD firstly initializes a fixed diffusion noise, which is then ingeniously manipulated at each step via the adversarial guidance crafted by the proposed AMG and PC modules using only the attacked model with theoretically derived equations. In this way, the proposed AdvAD is facilitated with the modeling approach of diffusion models rather than their denoising or generative capabilities, which avoids the negative impact like semantic content changes caused by the uncertainty of generative models and also promises relatively low computational complexity.}
+Based on AdvAD, we further propose an enhanced version \textbf{AdvAD-X} (`X' for `eXtreme') with two extra strategies to squeeze the extreme performance in an ideal scenario of the proposed new modeling framework with unique properties, which also possesses theoretical significance and provides new insights for revealing the robustness of DNNs. In summary, our main contributions are:
+
+\begin{itemize}[leftmargin=1.2em]
+\item Addressing the essential challenge of imperceptible adversarial attacks from a novel modeling perspective for the first time, we theoretically explore and derive the basic modeling of diffusion models to perform attacks with inherently lower perturbation strength through a {non-parametric} diffusion process that requires no additional networks.  
+\item We propose two attack versions, AdvAD and AdvAD-X. For the basic AdvAD, the AMG and PC modules cooperate to craft much subtler yet effective adversarial guidance which is progressively injected via initialized diffusion noise at each step, and AdvAD-X further reduces the perturbation strength to an extreme level in an ideal scenario with theoretical significance.
+\item Extensive experiments are conducted to evaluate the effectiveness of our methods in terms of attack success rate, imperceptibility, and robustness. Experimental results demonstrate the superiority of the novel modeling approach for imperceptible adversarial attacks. 
+\end{itemize}
+
+
+
+\section{Preliminaries}
+\label{sec:3.1}
+% We would like to begin with some preliminaries and notions, followed by an overview of our methods.
+\textbf{Adversarial Attacks.} Given an original image $\boldsymbol{x}_{ori}$ with ground-truth label $y_{gt}$ and a classifier $f(\cdot)$ satisfying $f(\boldsymbol{x}_{ori})=y_{gt}$, normal untargeted attacks aim to craft the adversarial example $\boldsymbol{x}_{adv}$ that misleads the classifier, formulated as:
+\begin{equation}\tag{1}
+% \setlength{\abovedisplayskip}{3pt}
+% \setlength{\belowdisplayskip}{3pt}
+f(\boldsymbol{x}_{adv}) \neq y_{gt}, \quad s.t. \|\boldsymbol{x}_{adv}-\boldsymbol{x}_{ori}\|_p \leq \zeta,
+\label{maineq:1}
+\end{equation}
+where $\|\cdot\|_p$ represents $l_p$-norm that is usually implemented with $l_\infty$-norm to limit the distance between $\boldsymbol{x}_{adv}$ and $\boldsymbol{x}_{ori}$ within an upper bound of budget $\zeta$. In this paper,
+we focus on the more general setting of untargeted attacks.
+More information on related works is provided in \textbf{Appendix}~\ref{app:A}.
+
+\textbf{Deterministic Diffusion Process.} In the deterministic situation of DDIM \cite{song2020denoising} with $\sigma_t=0$, for an image $\boldsymbol{x}_0$ and pre-defined diffusion coefficients $\alpha_{0:T}\in(0,1]^T$ for step $t\in [0:T]$, $\boldsymbol{x}_t$ in the \textit{Forward} process of adding noise to $\boldsymbol{x}_0$ is given by $\boldsymbol{x}_t = \sqrt{\alpha_t}\boldsymbol{x}_0 + \sqrt{1-\alpha_t}\boldsymbol{\epsilon}$, where $\boldsymbol{\epsilon} \sim \mathcal{N}(\boldsymbol{0}, \boldsymbol{\mathit{I}})$ represents Gaussian noise.
+For the \textit{Backward} denoising steps, unlike the DDPM \cite{ho2020denoising} based on Markov
+chains that each state directly depends on the previous one, DDIM employs a non-Markovian approach. In the backward process, each step first involves calculating a "prediction" of final step $\boldsymbol{x}_t^0$ from current $\boldsymbol{x}_t$, then adding noise to it again to obtain $\boldsymbol{x}_{t-1}$, expressed as:
+\begin{equation}\tag{2}
+    \boldsymbol{x}_{t-1} = \sqrt{\alpha_{t-1}}(\frac{\boldsymbol{x}_t-\sqrt{1-\alpha_t}\boldsymbol{\epsilon}_\theta(\boldsymbol{x}_t)}{\sqrt{\alpha_t}}) + \sqrt{1-\alpha_{t-1}}\boldsymbol{\epsilon}_\theta(\boldsymbol{x}_t),
+\label{maineq:2}
+\end{equation}
+where $\boldsymbol{\epsilon}_\theta(\boldsymbol{x}_t)$ is a estimated diffusion noise using a pretrained neural network $\theta$ for current step, and the term in the first parenthesis represents  the predicted $\boldsymbol{x}_t^0$, derived by a simple variation of Eq.~\eqref{maineq:2}. 
+
+
+\textbf{Conditional sampling.} Song et al. \cite{song2020score} propose the conditional sampling technique for the \textit{score-based} generative models with \textit{score function} $\nabla_{\boldsymbol{x}_t}\text{log}\,p(\boldsymbol{x}_t)$ \cite{song2019generative}, a kind of generative model has close relationship to diffusion models. 
+Without loss of generality, for a condition $y$ (e.g., class label, mask, etc.) and corresponding conditional distribution $p(\boldsymbol{x}|y)$, a score-based model can sample from $p(\boldsymbol{x}|y)$ by modifying the score function at each step of $t$ to $\nabla_{\boldsymbol{x}_t}\text{log}(p(\boldsymbol{x}_t)p(y|\boldsymbol{x}_t))$ if $p(y|\boldsymbol{x}_t)$ is known. Subsequently, with the connection between the score function and the noise $\boldsymbol{\epsilon}_t$ of diffusion models as $\nabla_{\boldsymbol{x}_t}\text{log}\,p(\boldsymbol{x}_t)=-{1}/{\sqrt{1-\alpha_t}}\boldsymbol{\epsilon}_t$ \cite{song2020score},
+this joint distribution could be expanded to the deterministic process of DDIM, achieved by updating the noise $\boldsymbol{\epsilon}_t$ to $\boldsymbol{\epsilon}_t'$ at each step as  \cite{dhariwal2021diffusion}:
+\begin{equation}\tag{3}
+% \setlength{\abovedisplayskip}{3pt}
+    \boldsymbol{\epsilon}_t' = \boldsymbol{\epsilon}_t - \sqrt{1-\alpha_t}\nabla_{\boldsymbol{x}_t}\text{log}\,p(y|\boldsymbol{x}_{t}).
+\label{maineq:3}
+\end{equation}
+
+
+
+
+
+\section{Proposed Adversarial Attacks in Diffusion}
+\subsection{Overview} 
+From a novel modeling perspective, we propose \textbf{Adversarial Attacks in Diffusion (AdvAD)} to attack with inherently smaller perturbation strength through a non-parametric diffusion process for the first time. As shown in Figure \ref{fig:1}, different from previous attack paradigms {that employ gradient ascending or optimization with varying kinds of adversarial losses,}  
+{AdvAD innovatively performs attack within a decomposed non-parametric diffusion trajectory starting from an initialized noise, in which very subtle yet effective adversarial guidance is crafted and injected to gradually push the end of this trajectory to a desired adversarially conditioned distribution from the original image.} 
+
+Intuitively, given the original image $\boldsymbol{x}_{ori}$ with an initialized Gaussian noise $\boldsymbol{\epsilon}_0 \sim \mathcal{N}(\boldsymbol{0}, \boldsymbol{\mathit{I}})$, a fixed diffusion trajectory from $\boldsymbol{\Bar{x}}_{T}$ to $\boldsymbol{\Bar{x}}_{0}$ ($\boldsymbol{\Bar{x}}_{0}=\boldsymbol{x}_{ori}$) can be easily obtained using DDIM \textit{Backward} for the deterministic diffusion process as:
+\begin{equation}\tag{4}
+% \setlength{\belowdisplayskip}{3pt}
+    \boldsymbol{\Bar{x}}_T = \sqrt{\alpha_T}\boldsymbol{x}_{ori} + \sqrt{1-\alpha_T}\boldsymbol{\epsilon}_0,
+\label{maineq:4}
+\end{equation}
+% and
+\begin{equation}\tag{5}
+% \setlength{\belowdisplayskip}{3pt}
+% \setlength{\abovedisplayskip}{3pt}
+    \boldsymbol{\Bar{x}}_{t-1} = \sqrt{\alpha_{t-1}}(\frac{\boldsymbol{\Bar{x}}_t-\sqrt{1-\alpha_t}\boldsymbol{\epsilon}_0}{\sqrt{\alpha_t}}) + \sqrt{1-\alpha_{t-1}}\boldsymbol{\epsilon}_0.
+\label{maineq:5}
+\end{equation}
+With this deterministic diffusion trajectory of the original image, performing adversarial attacks within it requires solving two main problems: \textbf{i)} directing the final result of this diffusion process to a desired adversarial example rather than the original image; \textbf{ii)} ensuring the modified trajectory (denoted as $\boldsymbol{\hat{x}}_t$, $\boldsymbol{\hat{\epsilon}}_t$ for step $t$) close to the original trajectory ($\boldsymbol{\bar{x}}_t$, $\boldsymbol{{\epsilon}}_0$ for step $t$) of the clean image to achieve the imperceptibility of attacks. To fulfill the dual purposes, we propose two theoretically grounded modules, called \textbf{Attacked Model Guidance (AMG)} and \textbf{Pixel-level Constraint (PC)} to work together. At each step, AMG utilizes only the attacked model $f(\cdot)$ to produce the adversarial guidance without requiring any additional networks, synergistically collaborated with PC to constrain and streamline the diffusion process injected with the guidances.
+
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.95\textwidth]{figures/fig1-new.pdf}
+\caption{
+Overview of the proposed Adversarial Attacks in Diffusion (AdvAD) that models the attack {as a non-parametric diffusing process}. 
+At each step, Attacked Model Guidance (AMG) module adopts the non-Markovian process for approximating $\boldsymbol{x}_{adv}$ using $\boldsymbol{\hat{x}}_{t}^0$ to craft adversarial guidance and injects it into the initialized diffusion noise, then Pixel-level Constraint (PC) module imposes restriction to produce the noise for the next step and serves to control the whole process precisely.
+}
+\label{fig:1}
+\vspace{-0.5cm}
+\end{figure*}
+
+
+\subsection{Attacked Model Guidance Module}
+\label{sec:3.2}
+
+
+By viewing the attack process as a distribution-to-distribution transformation through a non-parametric diffusion process, the proposed AMG module theoretically integrates the conditional sampling technique of diffusion models to craft the adversarial guidance only using the attacked model $f(\cdot)$. 
+For untargeted attacks, the ultimate goal is modifying $\boldsymbol{x}_{ori}$ with $f(\boldsymbol{x}_{ori}) = y_{gt}$ to $\boldsymbol{x}_{adv}$ so that $f(\boldsymbol{x}_{adv}) \neq y_{gt}$, 
+which can be regarded as directing the determined distribution $p(\boldsymbol{x}_{ori})$ of the original diffusion trajectory to an distribution of $\boldsymbol{x}_{adv}$ with the attacked model as $p(\boldsymbol{x}_{adv} | f(\boldsymbol{x}_{adv}) \neq y_{gt})$. {Thus, we regard $f(\boldsymbol{x}_{adv}) \neq y_{gt}$ as an adversarial condition, and employ the conditional sampling technique to the original trajectory by manipulating the diffusion noise to achieve this, expressed as:}   
+
+\begin{equation}\tag{6}
+\begin{aligned}
+    \boldsymbol{\hat{\epsilon}}_t' & = \boldsymbol{\epsilon}_0 - \sqrt{1-\alpha_t}\nabla_{\boldsymbol{\hat{x}}_t}\text{log}\,p(f(\boldsymbol{x}_{adv}) \neq y_{gt}|\boldsymbol{\hat{x}}_{t}) \\
+                                  & = \boldsymbol{{\epsilon}}_{0} - \sqrt{1-\alpha_t}\nabla_{\boldsymbol{\hat{x}}_t}\text{log}(1-p(f(\boldsymbol{x}_{adv})=y_{gt}|\boldsymbol{\hat{x}}_{t})).
+\end{aligned}
+\label{maineq:6}
+\end{equation}
+However, Eq.~\eqref{maineq:6} is unsolvable since $\boldsymbol{x}_{adv}$ is unknown during the diffusing process. To address this, inspired by the properties of deterministic non-Markovian DDIM that a final diffusion result is firstly predicted at each step, we calculate $\boldsymbol{\Hat{x}}_t^0$ via the {equation of DDIM non-Markovian process} with $\boldsymbol{\hat{\epsilon}}_{t+1}$ from the previous step, and use it to approximate $\boldsymbol{x}_{adv}$, expressed as:
+\begin{equation}\tag{7}
+    \boldsymbol{x}_{adv} \approx \boldsymbol{\Hat{x}}_t^0 = \frac{\boldsymbol{\Hat{x}}_t - \sqrt{1-\alpha_t}\;\boldsymbol{\hat{\epsilon}}_{t+1}}{\sqrt{\alpha_t}}.
+\label{maineq:7}
+\end{equation}
+The accurate error upper bound and convergence of this approximation are given in Proposition~\ref{mainprop2} in conjunction with the proposed PC module, and the validity of this approximation can also be explained intuitively from the premise of our method. That is, we have $\boldsymbol{\bar{x}}_t^0=\boldsymbol{x}_{ori}$ for all step $t$ in the original diffusion trajectory, and the modified trajectory should be very close to the original one, so that the relationship between $\boldsymbol{\Hat{x}}_t^0$ and $\boldsymbol{x}_{adv}$ should satisfy $\boldsymbol{\Hat{x}}_t^0 \approx \boldsymbol{x}_{adv}$. 
+
+
+With  Eq.~\eqref{maineq:7}, the term of $p(f(\boldsymbol{x}_{adv})=y_{gt}|\boldsymbol{\hat{x}}_{t})$ in Eq.~\eqref{maineq:6}  can be written as $p(f(\boldsymbol{\Hat{x}}_t^0)=y_{gt}|\boldsymbol{\hat{x}}_{t}) = p(f(\boldsymbol{\Hat{x}}_t^0)=y_{gt})$ since $\boldsymbol{\Hat{x}}_t^0$ is calculated from $\boldsymbol{\Hat{x}}_t$, which is exactly the output logits of $f(\boldsymbol{\Hat{x}}_t^0)$ with $Softmax(\cdot)$ function for the class $y_{gt}$. Denoting this term as the classification probability of the attacked model as $p_f(y_{gt}|\boldsymbol{\hat{x}}_t^0)$, we can obtain the solvable equation of AMG module that injects adversarial guidance to the initialized diffusion noise {using only $f(\cdot)$ without any additional network}:
+\begin{equation}\tag{8}
+    \boldsymbol{\hat{\epsilon}}'_t = \text{AMG}(\boldsymbol{\epsilon}_0, \boldsymbol{\Hat{x}}_{t}^{0}, f(\cdot), y_{gt}) =  \boldsymbol{\epsilon}_0 - \sqrt{1-\alpha_t}\nabla_{\boldsymbol{\Hat{x}}_t}\text{log}(1-p_f(y_{gt}|\boldsymbol{\Hat{x}}_{t}^{0})).
+\label{maineq:8}
+\end{equation}
+
+At this point, in addition to the benefits from modeling, this calculation process of AMG also plays a role in endowing AdvAD with imperceptibility. As the attack progresses, the probability $p_f$, the term of $\text{log}(1-p_f)$ as well as coefficient $\sqrt{1-\alpha_t}$ gradually approach 0, which means the strength of injected adversarial guidance gradually converge to 0 in AdvAD, while common classification losses (e.g, Cross-Entropy, Log Loss, etc.) used in other attack paradigms may increase on the contrary. Further analysis and experiments on this property are provided in Proposition~\ref{prop1} and Sec.~\ref{sec:4.5}.
+
+\begin{figure}[t]
+\centering
+\begin{minipage}{0.9\linewidth}
+\begin{algorithm}[H]
+% \begin{algorithm}[t]
+    \footnotesize
+    \caption{\textbf{AdvAD}}
+    \label{alg:algorithm}
+    \textbf{Input}: Attacked model $f(\cdot)$, image $\boldsymbol{x}_{ori}$ with label $y_{gt}$, budget $\xi$, step $T$;\\
+    \textbf{Output}: Adversarial example $\boldsymbol{x}_{adv}$
+    % \footnotesize
+    \begin{algorithmic}[1] %[1] enables line numbers
+        \STATE Initialize pre-defined diffusion coefficients $\alpha_{0:T}\in(0,1]^{T+1}$;
+        \STATE Initialize $\boldsymbol{\epsilon}_{0} \sim \mathcal{N}(\boldsymbol{0}, \boldsymbol{\mathit{I}})$; \COMMENT{Initialize and fix diffusion noise $\boldsymbol{\epsilon}_{0}$.}
+        \STATE Transform the range of $\boldsymbol{x}_{ori}$ to [-1, 1]; \COMMENT{Align with data range of diffusion process.}
+        \STATE Calculate $\boldsymbol{\Bar{x}}_{T}$ via Eq.~\eqref{maineq:4}; \COMMENT{Forward process of adding noise $\boldsymbol{\epsilon}_{0}$ to $\boldsymbol{x}_{ori}$.}
+        \STATE Set $\boldsymbol{\Hat{x}}_{T}:=\boldsymbol{\Bar{x}}_{T}$, $\boldsymbol{\Hat{\epsilon}}_{T+1}:=\boldsymbol{\epsilon}_{0}$; \COMMENT{Non-parametric diffusion process.}
+        \FOR{$t=T$ to $1$} 
+            \STATE Calculate $\boldsymbol{\Hat{x}}_{t}^{0}$ via Eq.~\eqref{maineq:7}; \COMMENT{Approximation of $\boldsymbol{\Hat{x}}_t^0 \approx \boldsymbol{x}_{adv}$.}
+            \STATE Transform the range of $\boldsymbol{\Hat{x}}_t^0$ to [0, 255]; \COMMENT{Align with data range of image.}
+                \STATE Calculate $\boldsymbol{\Hat{\epsilon}}_{t}'$ with AMG via Eq.~\eqref{maineq:8}; \COMMENT{Inject adversarial guidance.}
+                \STATE Calculate $\boldsymbol{\Hat{\epsilon}}_{t}$ with PC  via Eq.~\eqref{maineq:10}; \COMMENT{Constraint modified diffusion noise.}
+            \STATE Calculate $\boldsymbol{\Hat{x}}_{t-1}$ via Eq.~\eqref{maineq:11}; \COMMENT{One step backward from $t$ to $t-1$.\;}
+        \ENDFOR
+        \STATE Transform the range of $\boldsymbol{\Hat{x}}_{0}$ to [0, 255]; \COMMENT{Endpoint of the process.}
+        \STATE \textbf{return} $\boldsymbol{x}_{adv} = \text{int8}(\text{round}(\boldsymbol{\Hat{x}}_{0}))$; \COMMENT{Return actual 8-bit image $\boldsymbol{x}_{adv}$.}
+    \end{algorithmic}
+\label{alg:1}
+\end{algorithm}
+\end{minipage}
+\vspace{-0.4cm}
+\end{figure}
+
+\subsection{Pixel-level Constraint Module}
+\label{sec:3.3}
+
+Collaborating with AMG, the PC module is introduced to impose precise control and streamline the modified diffusion trajectory for attacks. 
+A straightforward choice is to design PC for $\boldsymbol{\Hat{x}}_t$ that constrains each $\boldsymbol{\Hat{x}}_t$ using $\boldsymbol{\Bar{x}}_t$, thus ensuring $\boldsymbol{\Hat{x}}_{t}^{0}$ close to $\boldsymbol{\Bar{x}}_{t}^{0}$ and the final $\boldsymbol{x}_{adv}$ close to $\boldsymbol{x}_{ori}$. However, such a "hard" constraint directly applied to $\boldsymbol{\Hat{x}}_t$ will impair the effectiveness of AMG and disrupt {coherence of the transforming trajectory.} Therefore, we formulate a more suitable PC for $\boldsymbol{\Hat{\epsilon}}_{t}$ as in {Theorem} \ref{thm1}.
+
+\begin{theorem}
+\label{mainthm1}
+    Given diffusion coefficients $\alpha_{T:0}\in(0,1]^T$, the $\boldsymbol{x}_{ori}$, $\boldsymbol{\Bar{x}}_{t}$, $\boldsymbol{\epsilon}_0$ from the original trajectory, $\boldsymbol{\Hat{x}}_{t}$, $\boldsymbol{\Hat{\epsilon}}_{t}$ from the modified trajectory, and a variable $\xi$, if $\boldsymbol{\Hat{\epsilon}}_{t}$ and $\boldsymbol{{\epsilon}}_{0}$ satisfies 
+    \begin{equation}\tag{9}
+        \|\boldsymbol{\Hat{\epsilon}}_{t} - \boldsymbol{\epsilon}_{0}\|_{\infty} \leq \frac{\sqrt{\alpha_T}}{\sqrt{1-\alpha_T}}\xi,
+    \label{maineq:9}
+    \end{equation}
+    for all $t\in[T:1]$, then it follows that 
+    % \begin{equation}\notag
+        $\|\boldsymbol{\Hat{x}}_{t} - \boldsymbol{\Bar{x}}_{t}\|_{\infty} \leq (\sqrt{\alpha_{t}} - \sqrt{1 - \alpha_{t}} \frac{\sqrt{\alpha_T}}{\sqrt{1-\alpha_T}})\xi, \ \|\boldsymbol{\Hat{x}}_{t}^{0} - \boldsymbol{x}_{ori}\|_{\infty}\leq\xi, \ \text{and}\ \|\boldsymbol{\Hat{x}}_{0} - \boldsymbol{x}_{ori}\|_{\infty}\leq\xi$
+    % \label{eq:13}
+    % \end{equation}
+    hold true.
+\end{theorem}
+
+According to {Theorem} \ref{mainthm1}, the PC for $\boldsymbol{\Hat{\epsilon}}_{t}$ is implemented as:
+\begin{equation}\tag{10}
+    \boldsymbol{\Hat{\epsilon}}_{t} = \text{PC}(\boldsymbol{\Hat{\epsilon}}'_{t}) = \mathcal{P}_{l_{\infty}({\boldsymbol{\epsilon}_{0}},{\frac{\sqrt{\alpha_T}}{\sqrt{1-\alpha_T}}\xi})}(\boldsymbol{\Hat{\epsilon}}'_{t}).
+\label{maineq:10}
+\end{equation}
+where $\mathcal{P}_{l_{\infty}({\boldsymbol{\epsilon}},{\xi})}(\cdot)$ is a projection operation that constrains the output $\boldsymbol{\Hat{\epsilon}}'_{t}$ of AMG$(\cdot)$ to $\boldsymbol{\Hat{\epsilon}}_{t}$ based on a $l_{\infty}$-norm ball of $\boldsymbol{{\epsilon}}_{0}$ to satisfy Eq.~\eqref{maineq:9}. 
+After PC, the diffusion noise $\boldsymbol{\Hat{\epsilon}}_{t}$ for next step is obtained, and the $\boldsymbol{\Hat{x}}_{t-1}$ can be calculated using the deterministic DDIM \textit{backward} equation as:
+\begin{equation}\tag{11}
+    \boldsymbol{\Hat{x}}_{t-1} = \sqrt{\alpha_{t-1}}(\frac{\boldsymbol{\Hat{x}}_t-\sqrt{1-\alpha_t}\boldsymbol{\Hat{\epsilon}}_t}{\sqrt{\alpha_t}}) + \sqrt{1-\alpha_{t-1}}\boldsymbol{\Hat{\epsilon}}_t.
+\label{maineq:11}
+\end{equation} 
+The elaborate PC for $\boldsymbol{\Hat{\epsilon}}_{t}$ directly cooperates with AMG to constrain the diffusion noise, which streamlines the whole diffusion process and can serve to simultaneously control the terms of $\boldsymbol{\Hat{x}}_{t}$, $\boldsymbol{\Hat{x}}_{t}^{0}$, and $\boldsymbol{\Hat{x}}_{0}$, satisfying the premise that two trajectories are close and ensuring the effectiveness of AdvAD. The complete pseudo code of AdvAD is provided in Algorithm~\ref{alg:1}.
+
+
+Subsquently, based on Theorem~\ref{mainthm1}, we further give two propositions about AdvAD as:
+\begin{proposition}
+\label{mainprop1}
+Under the conditions of Theorem 1, by denoting constrained $\boldsymbol{\hat{\epsilon}}_t = \boldsymbol{\epsilon}_0 - \boldsymbol{\delta}_t$, we have
+    \begin{equation}\tag{12}
+    \boldsymbol{x}_{adv}=\boldsymbol{x}_{ori}+\sum_{t=1}^{T}\lambda_{t}\boldsymbol{\delta}_t,
+    \label{maineq:12}
+    \end{equation}
+    where $\lambda_{t} = \frac{\sqrt{1-\alpha_t}}{\sqrt{\alpha_t}} - \frac{\sqrt{1-{\alpha_{t-1}}}}{\sqrt{\alpha_{t-1}}}$, and $\|\boldsymbol{\delta}_t\|_{\infty} \leq \frac{\sqrt{\alpha_T}}{\sqrt{1-\alpha_T}}\xi$.
+\end{proposition}
+\begin{proposition}
+\label{mainprop2}
+Under the conditions of Theorem 1, the upper bound on the error of the approximation in Eq.~\eqref{maineq:7} can be expressed as
+    \begin{equation}\tag{13}
+        \left\|\boldsymbol{x}_{adv} - \boldsymbol{\hat{x}}_{t}^{0}\right\|_\infty \leq \;2 \cdot \frac{\sqrt{1 - \alpha_t}}{\sqrt{\alpha_t}}\frac{\sqrt{\alpha_T}}{\sqrt{1 - \alpha_T}}\xi.
+    \label{maineq:13}
+    \end{equation}
+\end{proposition}
+Proposition~\ref{mainprop1} explicitly states the much subtler and decreasing strength of the adversarial guidance injected at each step of AdvAD's non-parametric diffusion process, and also allows for a quantitative analysis (as in Sec. 5.5). 
+Proposition~\ref{mainprop2} indicates the validity and convergence of the approximation of $\boldsymbol{x}_{adv} \approx \boldsymbol{\Hat{x}}_t^0$ in AMG (Eq.~\eqref{maineq:7}). It is evident that as $t$ goes from $T$ to $1$, $\alpha_t$ increases from $0$ to $1$, the upper bound on the approximation error rapidly converge from $2\xi$ to $0$. 
+The detailed derivations of the mentioned PC for $\boldsymbol{\Hat{x}}_t$, proofs of  Theorem~\ref{mainthm1} and Proposition~\ref{mainprop1}, \ref{mainprop2} are provided in \textbf{Appendix}~\ref{app:B}.
+
+
+
+\subsection{AdvAD to AdvAD-X: Extreme Version}
+\label{sec:3.4}
+
+Building upon AdvAD, we further propose a scheme called AdvAD-X (`X' for `eXtreme') with two extra strategies called Dynamic Guidance Injection (DGI) and CAM Assistance (CA), aiming to squeeze the extreme performance of our novel modeling framework in an ideal scenario that is usually overlooked but has theoretical significance. 
+% The specific algorithm procedure of AdvAD and AdvAD-X are provided in Appendix C.
+\paragraph{DGI and CA Strageties.} As aforementioned, the attack capability of AdvAD comes from the very subtle yet effective adversarial guidance crafted by AMG and PC, and the intensity of guidance will decrease to 0 as the process progresses. Thus, the DGI is naturally emerged as a dynamic skipping stragety to skip the unnecessary calculation and injection of adversarial guidance, especially for those steps in the later process. With DGI, AdvAD-X dynamically avoids the execution of AMG and PC and adopts original $\boldsymbol{\epsilon}_0$ as the diffusion noise for the steps where the $\boldsymbol{\Hat{x}}_{t}^{0} \approx \boldsymbol{x}_{adv}$ is already able to mislead the attacked model, reducing the accumulated guidance strength as well as the computational complexity. On the other hand, inspired by the Class Activation Mapping (CAM) \cite{zhou2016learning} identifies critical regions of an image about a decision made of a classifier, our CA strategy calculates a mask (if available) $\boldsymbol{m}$ ranging from $0$ to $1$ of $\boldsymbol{x}_{ori}$ with $f(\cdot)$ and $y_{gt}$ using GradCAM \cite{selvaraju2017grad} to further suppress the strength of adversarial guidance within the non-critical image regions in those steps that are not skipped. The equation of AMG with CA strategy can be modified as:
+\begin{equation}\tag{14}
+    \boldsymbol{\hat{\epsilon}}'_t = \boldsymbol{\epsilon}_0 - \boldsymbol{m} \cdot \sqrt{1-\alpha_t}\nabla_{\boldsymbol{\Hat{x}}_t}\text{log}(1-p_f(y_{gt}|\boldsymbol{\Hat{x}}_{t}^{0})).
+\label{maineq:14}
+\end{equation}
+\paragraph{Ideal Scenario.} Equipped with DGI, AdvAD-X omits a large number of adversarial guidance that is injected by default in AdvAD, while the absolute strength of guidance in each of the remaining steps are also suppressed by CA, successfully reducing the final adversarial perturbation to an extreme level. This extreme case leads to a problem that in the default setting of attacking with 8-Bit RGB images, the adversarial perturbation of pixels where the intensity is less than $0.5$ will be erased due to the quantization. However, in practice, the input of DNNs is normalized as floating-point data type to avoid gradient problems during training \cite{krizhevsky2012imagenet, ioffe2015batch}, and white-box attack allows access to the entire of DNNs. Therefore, for AdvAD-X, we specifically consider an ideal scenario that directly input the raw final adversarial example in floating-point data to DNNs without quantization to evaluate the extreme performance of AdvAD-X. The pseudo code of AdvAD-X is provided in \textbf{Appendix}~\ref{app:Algo}.
+
+
+
+
+
+\section{Experiments}
+\setcounter{footnote}{0}
+\subsection{Experimental Setup}
+\textbf{Dataset.} In line with prior studies \cite{zhao2020towards,yuan2022natural,wei2023enhancing,chen2024content}, our experiments are conducted on the ImageNet-compatible Dataset \footnote{\scriptsize\url{https://github.com/cleverhans-lab/cleverhans/tree/master/cleverhans_v3.1.0/examples/nips17_adversarial_competition/dataset}},
+containing 1,000 images of ImageNet \cite{russakovsky2015imagenet} classes with size of $299\times299$, and the images are resized to standard input size of $224\times224$ in all experiments. 
+\textbf{Models.} We select
+the widely used CNNs of ResNet-50 \cite{he2016deep} and enhanced ConvNeXt-Base \cite{liu2022convnet}, Swin Transformer-Base \cite{liu2021swin} with Transformer \cite{vaswani2017attention} architecture, and VisionMamba-Small \cite{zhu2024vision} with the recently emerged advanced Mamba \cite{gu2023mamba} architecture. 
+\textbf{Attacks.} We choose classic PGD \cite{madry2018towards} and seven attacks that claim having imperceptibility as comparison methods, including normal imperceptible attacks of AdvDrop \cite{duan2021advdrop}, PerC-AL \cite{zhao2020towards}, SSAH \cite{luo2022frequency}, and unrestricted attacks of NCF \cite{yuan2022natural}, ACA \cite{chen2024content},  DiffAttack \cite{chen2023diffusion}, Diff-PGD \cite{xue2023diffusion}, and the generative capability of diffusion models are utilized the last three attacks.  For our proposed AdvAD and AdvAD-X, we set $\xi=8/255$ and $T=1000$ for all experiments unless specifically mentioned. All the other comparison methods are evaluated using their official open-source code with the default hyper-parameters.
+The results of AdvAD-X are obtained in the ideal scenario with float-pointing raw data as described in Sec.~\ref{sec:3.4}.
+\textbf{Evaluation Metrics.} Attack success rate (ASR) is used to evaluate the attack efficacy, and seven metrics are adopted to comprehensively assess the imperceptibility, including $l_2$ and $l_\infty$ distances for absolute perturbation strength; Peak Signal-to-Noise Ratio (PSNR), Structure Similarity (SSIM) \cite{wang2004image}, and three network-based metrics, i.e., Learned Perceptual Image Patch Similarity (LPIPS) \cite{zhang2018unreasonable}, Fréchet Inception Distance (FID) \cite{heusel2017gans}, and a non-reference metric MUSIQ \cite{ke2021musiq} for image quality. 
+
+
+
+% \definecolor{Gray}{gray}{0.89} % 定义灰色
+\begin{table*}[t]
+    \caption{Results of untargeted white-box attack success rate (ASR) and other evaluation metrics for imperceptibility when employing different attacks and attacked models. The reported running times are obtained using a RTX 3090 GPU on a same machine. \textcolor{blue}{$\boldsymbol{\dag}$} and \textcolor{blue}{blue} mean the results of AdvAD-X are obtained with floating-point data type in the ideal scenario as described in Sec 3.4.}
+    \label{tab:tab01}
+    \centering
+    {
+    \setlength{\tabcolsep}{3.8pt}
+    \scriptsize\begin{tabular}{clccccccccc}
+        \toprule
+        \makecell{Model} & Attack Method    & Time (s) $\downarrow$  & ASR ($\%$) $\uparrow$ & $l_\infty$ $\downarrow$   & $l_2$ $\downarrow$     & \;PSNR $\uparrow$  & \;SSIM $\uparrow$   & \;FID $\downarrow$   & \;LPIPS $\downarrow$  & \;MUSIQ $\uparrow$   \\
+        \midrule
+        \multirow{10}{*}{\makecell{ResNet-50 \\\cite{he2016deep}}}  
+                                    & PGD \cite{madry2018towards}           & 25        & 98.6      & \underline{0.031}     & 8.17      & 33.53     & 0.8830    & 35.25     & 0.0517    & 52.24 \\
+                                    & NCF \cite{yuan2022natural}           & 2739      & 89.9      & 0.783     & 75.16     & 14.79     & 0.6374    & 58.99     & 0.3052    & 49.12 \\
+                                    & ACA \cite{chen2024content}           & 82239     & 89.8      & 0.839     & 52.42     & 18.00     & 0.5659    & 69.57     & 0.3381    & 55.47 \\
+                                    & DiffAttack \cite{chen2023diffusion}    & 34954     & 96.6      & 0.743     & 30.51     & 22.63     & 0.6750    & 55.29     & 0.1130    & 55.67 \\
+                                    & DiffPGD \cite{xue2023diffusion}       & 6057      & 92.1      & 0.246     & 11.43     & 30.95     & 0.8902    & 22.18     & 0.0315    & 55.05 \\
+                                    & AdvDrop \cite{duan2021advdrop}       & 193       & 96.8      & 0.062     & 3.17      & 41.91     & 0.9872    & 5.57      & 0.0061    & 54.96 \\
+                                    & PerC-AL \cite{zhao2020towards}       & 4085      & \underline{98.8}      & 0.131     & \underline{2.05}      & \underline{46.35}     & 0.9894    & 8.62      & 0.0029    & \underline{55.84} \\
+                                    & SSAH \cite{luo2022frequency}          & 428       & \textbf{99.7}      & 0.033     & 2.65      & 43.73     & \underline{0.9911}    & \underline{4.48}      & \underline{0.0021}    & 55.49 \\
+        \cmidrule(lr){2-11}
+                                    & AdvAD (ours)        & 2201      & \textbf{99.7}      & \textbf{0.010}     & \textbf{1.06}      & \textbf{51.84}     & \textbf{0.9980}    & \textbf{2.42}      & \textbf{0.0005}    & \textbf{56.35} \\
+                                    & $\text{AdvAD-X}^{\textcolor{blue}{\boldsymbol{\dag}}} \text{(ours)}$ & 806     & \textcolor{blue}{\textbf{100.0}}     & \textcolor{blue}{\textbf{0.002}}     & \textcolor{blue}{\textbf{0.34}}      & \textcolor{blue}{\textbf{63.62}}     & \textcolor{blue}{\textbf{0.9997}}    & \textcolor{blue}{\textbf{0.23}}      & \textcolor{blue}{\textbf{0.0001}}    & \textcolor{blue}{\textbf{56.59}} \\
+
+        \midrule
+        \multirow{10}{*}{\makecell{\\ConvNeXt \\-Base \cite{liu2022convnet}}} 
+                                    & PGD \cite{madry2018towards}           & 127       & \underline{99.9}      & 0.031     & 7.98      & 33.74     & 0.8845    & 32.03     & 0.0386    & 51.85 \\
+                                    & NCF \cite{yuan2022natural}           & 5222      & 59.4      & 0.750     & 72.89     & 15.10     & 0.6616    & 50.52     & 0.2846    & 49.70 \\
+                                    & ACA \cite{chen2024content}           & 83149     & 82.2      & 0.835     & 52.16     & 18.05     & 0.5676    & 68.45     & 0.3421    & 55.11 \\
+                                    & DiffAttack \cite{chen2023diffusion}    & 35417     & 97.8      & 0.754     & 31.70     & 22.28     & 0.6610    & 72.22     & 0.1277    & 54.80 \\
+                                    & DiffPGD \cite{xue2023diffusion}       & 6325      & 76.9      & 0.245     & 11.45     & 30.94     & 0.8908    & 21.05     & 0.0306    & 54.75 \\
+                                    & AdvDrop \cite{duan2021advdrop}       & 838       & 96.9      & 0.057     & 3.26      & 41.69     & 0.9864    & 6.42      & 0.0055    & 54.80 \\
+                                    & PerC-AL \cite{zhao2020towards}       & 18271     & \textcolor{red}{10.3}       & -         & -        & -          & -         & -         & -         & - \\
+                                    & SSAH \cite{luo2022frequency}          & 3423      & 84.6      & \underline{0.026}     & \underline{2.24}      & \underline{45.19}     & \underline{0.9928}    & \textbf{3.04}      & \underline{0.0011}    & \underline{55.78} \\
+        \cmidrule(lr){2-11}
+                                    & AdvAD (ours)        & 15240     & \textbf{100.0}     & \textbf{0.016}     & \textbf{1.49}      & \textbf{48.61}     & \textbf{0.9964}    & \underline{5.07}      & \textbf{0.0009}    & \textbf{55.97} \\
+                                    & $\text{AdvAD-X}^{\textcolor{blue}{\boldsymbol{\dag}}} \text{(ours)}$ & 5245    & \textcolor{blue}{\textbf{99.8}}      & \textcolor{blue}{\textbf{0.004}}     & \textcolor{blue}{\textbf{0.64}}      & \textcolor{blue}{\textbf{58.01}}     & \textcolor{blue}{\textbf{0.9993}}    & \textcolor{blue}{\textbf{0.62}}      & \textcolor{blue}{\textbf{0.0001}}    & \textcolor{blue}{\textbf{56.43}} \\
+
+        \midrule
+        \multirow{10}{*}{\makecell{\\Swin Trans.\\-Base \cite{liu2021swin}}} 
+                                    & PGD \cite{madry2018towards}           & 93        & \underline{98.5}      & \underline{0.031}     & 7.85      & 33.88     & 0.8861    & 21.34     & 0.0378    & 51.91 \\
+                                    & NCF \cite{yuan2022natural}           & 4690      & 63.7      & 0.733     & 69.92     & 15.48     & 0.6822    & 47.17     & 0.2709    & 49.77 \\
+                                    & ACA \cite{chen2024content}           & 83706     & 79.6      & 0.831     & 50.70     & 18.31     & 0.5757    & 64.83     & 0.3341    & 55.65 \\
+                                    & DiffAttack \cite{chen2023diffusion}    & 36736     & 89.7      & 0.741     & 30.45     & 22.67     & 0.6727    & 53.32     & 0.1143    & \underline{55.72} \\
+                                    & DiffPGD \cite{xue2023diffusion}       & 6499      & 69.1      & 0.244     & 11.26     & 31.10     & 0.8945    & 16.19     & 0.0276    & 55.25 \\
+                                    & AdvDrop \cite{duan2021advdrop}       & 673       & 97.2      & 0.063     & 3.37      & 41.43     & 0.9853    & 5.22      & 0.0065    & 54.73 \\
+                                    & PerC-AL \cite{zhao2020towards}       & 15258     & 95.6      & 0.144     & \underline{2.15}      & \underline{45.93}     & 0.9882    & 3.53      & 0.0015    & 55.66 \\
+                                    & SSAH \cite{luo2022frequency}          & 1737      & 96.3      & 0.035     & 2.41      & 44.60     & \underline{0.9927}    & \underline{2.57}      & \underline{0.0010}    & 55.53 \\
+        \cmidrule(lr){2-11}
+                                    & AdvAD (ours)        & 9729      & \textbf{100.0}     & \textbf{0.013}     & \textbf{1.19}      & \textbf{50.57}     & \textbf{0.9978}    & \textbf{1.70}      & \textbf{0.0004}    & \textbf{56.17} \\
+                                    & $\text{AdvAD-X}^{\textcolor{blue}{\boldsymbol{\dag}}} \text{(ours)}$ & 5243    & \textcolor{blue}{\textbf{99.7}}      & \textcolor{blue}{\textbf{0.005}}     & \textcolor{blue}{\textbf{0.52}}      & \textcolor{blue}{\textbf{60.29}}     & \textcolor{blue}{\textbf{0.9995}}    & \textcolor{blue}{\textbf{0.25}}      & \textcolor{blue}{\textbf{0.0001}}    & \textcolor{blue}{\textbf{56.47}} \\
+
+        \midrule
+        \multirow{10}{*}{\makecell{\\VisionMamba \\-Small \cite{zhu2024vision}}} 
+                                    & PGD \cite{madry2018towards}           & 63        & {95.7}      & {0.031}     & 7.99      & 33.73     & 0.8884    & 26.09     & 0.0503    & 52.37 \\
+                                    & NCF \cite{yuan2022natural}           & 3919      & 71.7       & 0.738         & 68.71     & 15.68     & 0.6876   & 46.07   & 0.2629   & 50.05   \\
+                                    & ACA \cite{chen2024content}           & 96851      & 84.2      & 0.831         & 50.88     & 18.28     & 0.5753   & 65.77   & 0.3329   & 55.28   \\
+                                    & DiffAttack \cite{chen2023diffusion}    & 43043     & 90.9      & 0.749     & 30.94     & 22.52     & 0.6693    & 52.16     & 0.1179    & 55.66 \\
+                                    & DiffPGD \cite{xue2023diffusion}       & 7638      & 83.4      & 0.248     & 11.75     & 30.68     & 0.8845    & 21.02     & 0.0378    & 54.19 \\
+                                    & AdvDrop \cite{duan2021advdrop}       & 1311       & \underline{97.0}      & 0.076     & 4.42      & 39.30     & 0.9761    & 8.02      & 0.0086    & 54.34 \\
+                                    & PerC-AL \cite{zhao2020towards}       & 10400      & \textcolor{red}{6.5}  & -         & -        & -          & -         & -         & -         & - \\
+                                    & SSAH \cite{luo2022frequency}          & 1204      & 49.8      & \underline{0.028}     & \underline{1.95}      & \underline{46.41}     & \underline{0.9946}    & \textbf{2.08}      & \underline{0.0018}    & \underline{55.96} \\
+        \cmidrule(lr){2-11}
+                                    & AdvAD (ours)        & 6154      & \textbf{99.7}     & \textbf{0.016}     & \textbf{1.62}      & \textbf{47.94}     & \textbf{0.9960}    & \underline{3.67}      & \textbf{0.0017}    & \textbf{56.17} \\
+                                    & $\text{AdvAD-X}^{\textcolor{blue}{\boldsymbol{\dag}}} \text{(ours)}$ & 4021    & \textcolor{blue}{\textbf{99.4}}      & \textcolor{blue}{\textbf{0.005}}     & \textcolor{blue}{\textbf{0.69}}      & \textcolor{blue}{\textbf{58.90}}     & \textcolor{blue}{\textbf{0.9989}}    & \textcolor{blue}{\textbf{0.51}}      & \textcolor{blue}{\textbf{0.0004}}    & \textcolor{blue}{\textbf{56.50}} \\
+        \bottomrule
+    \end{tabular}}
+    %\vspace{-1.5em}
+    \vspace{-0.4cm}
+\end{table*}
+
+
+
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.9\columnwidth]{figures/main_vis.pdf}
+\caption{Visualizations of adversarial examples and corresponding perturbations crafted by nine imperceptible attacks.
+Perturbations are amplified as marked in top-right for the convenience of observation. Please zoom in to observe the details of the images with original resolution of $224\times224$.}
+\label{fig:2}
+\vspace{-0.2599cm}
+% \vspace{-1.5em}
+\end{figure}
+
+
+
+
+
+
+\subsection{Comparison with State-of-the-art Methods}
+\paragraph{White-Box Attacks.} 
+Table~\ref{tab:tab01} reports the untargeted attack performance and imperceptibility of ten methods against four attacked models. It is evident that the proposed AdvAD with novel modeling framework consistently demonstrates superior performance in terms of both ASR and imperceptibility. For the normal imperceptible adversarial attacks, the absolute adversarial perturbation strength of AdvAD in $l_\infty$ and $l_2$ distance are only {0.014} and {1.34} in average, which is about half of the state-of-the-art restricted imperceptible attack SSAH, and AdvAD maintains almost {99.9\%} ASR, supporting our key idea that it inherently reduces the strength of perturbation required for attacks from a modeling perspective. When attacking more advanced models from ResNet to VisionMamba, AdvAD always demonstrates the best ASR and imperceptibility, yet other methods tend to have some performance degradation (e.g., PerC-AL and SSAH for ConvNeXt and VisionMamba). For unrestricted attacks, it is expected for them to perform poorly in the quantitative metrics, but if the results are poor for all image quality metrics, it usually indicates that the images are damaged. Meanwhile, since the optimizer may not find the global optimal solution, the optimization-based methods tent to show sub-optimal ASR.
+For AdvAD-X, surprisingly, the perturbation strength is reduced to an extremely low level with still high attack efficacy in the ideal scenario with floating-point raw data.
+
+
+
+\paragraph{Visualization.}
+The visualizations of adversarial examples againt ResNet-50 in Figure~\ref{fig:2} clearly show the characteristics of different imperceptible attacks against ResNet-50. For the first image with a relatively simple and clear object, the unrestricted attacks of NCF, DiffAttack and ACA perform attacks by modifying the semantics fairly, while 
+DiffPGD uses denoising to avoid significant semantic modifications, but often has lower ASR as in Table~\ref{tab:tab01}.
+However, for the image with complex content, the unrestricted attacks result in obvious unnatural color, texture, artifacts and semantic changes. For the normal attacks with perceptual-based restrictions, by amplifying the noises, it can be seen that AdvDrop has a obvious gridding effect due to the blocking operation in DCT operation, and the perturbation strength in PerC-AL and SSAH is also related to the edge or texture components of the image. In contrast, our AdvAD continuously maintains uniform and lower  perturbation which is very difficult to be seen even in the adversarial examples with $\times5$ noise. For AdvAD-X, the perturbations are very slight modifications to the decimal places of the floating-point  raw data for each pixel, thus it is still difficult to be seen even after $\times100$ magnification. More quantitative comparisons and visualizations are provided in \textbf{Appendix}~\ref{app:C1}, \ref{app:C2}.
+
+
+
+
+
+
+\begin{table*}[t]
+    \caption{Results of ASR against defenses for robustness evaluation, including three post-processing purification methods and four adversarial training white-box robust models.  }
+    \label{tab:tab2}
+    \centering
+    {
+    \setlength{\tabcolsep}{4pt}
+    \scriptsize\begin{tabular}{lccccccccccc}
+        \toprule
+        \multirow{4}{*}{\makecell{Attack Method}} & \multicolumn{4}{c}{Post Purifications (Normal Res-50)} & & \multicolumn{5}{c}{Attack Adversarial Training Model} & \multirow{4}{*}{\makecell{All Avg.}} \\
+        \cmidrule{2-5} \cmidrule{7-11}
+        & \makecell{NRP \\ \cite{naseer2020self}} & \makecell{\quad DS \quad \\ \quad  \cite{salman2020denoised} \quad} & \makecell{Diffusion\\ \cite{lee2023robust}}  & \makecell{Avg.}  & & \makecell{Inc-V3 \\ \cite{tramèr2018ensemble}}  & \makecell{Res-50\\ \cite{salman2020adversarially}} & \makecell{Swin-B\\ \cite{liu2023comprehensive}} & \makecell{ConvNeXt-B\\ \cite{liu2023comprehensive}}  & \makecell{Avg.} & \\
+        \midrule
+        AdvDrop \cite{duan2021advdrop}                     & \underline{50.2}              & \quad \textbf{30.1}\quad      & \textbf{37.1}  & \textbf{39.1}  &  & 93.7      & 72.4      & \underline{31.2}      & 37.3    & 58.7    & \underline{50.3} \\
+        PerC-AL \cite{zhao2020towards}                     & 30.3              & \quad28.8\quad      & 25.4  & 28.2   &  & \textbf{99.9}     & 46.1      & {8.2}       & {7.0}    & 40.3     & 35.1 \\
+        SSAH \cite{luo2022frequency}                        & 25.6              & \quad28.0\quad      & 11.0  & 21.5   &    & 91.2       & \textbf{84.6}      & 16.8      & \underline{47.4 }   & \underline{60.0}    & 43.5 \\
+        
+        % \cmidrule{1-9}
+        \midrule
+        
+        AdvAD (ours)                & \textbf{51.5}     & \quad\underline{29.5}\quad      & \underline{31.2}  & \underline{37.4}   &    & \underline{98.9}      & \underline{79.3}      & \textbf{60.2}      & \textbf{62.7}    & \textbf{75.3}    & \textbf{59.0} \\
+        $\text{AdvAD-X}^{\textcolor{blue}{\boldsymbol{\dag}}} \text{(ours)}$              & \textcolor{blue}{13.4}   & \quad\textcolor{blue}{27.6}\quad      & \textcolor{blue}{10.2}  & 17.1   &    & \textcolor{blue}{57.2}       & \textcolor{blue}{45.2}      & \textcolor{blue}{18.0}      & \textcolor{blue}{16.2}   & 34.2   & \textcolor{blue}{26.8} \\
+        \bottomrule
+    \end{tabular}}
+    %\vspace{-1.5em}
+    % \vspace{-0.2cm}
+    \vspace{-0.5cm}
+\end{table*}
+
+
+\begin{figure}[t]
+    \centering
+    \begin{minipage}[t]{0.45\textwidth}
+        \includegraphics[width=0.95\textwidth]{figures/Rplot10.pdf}
+        \caption{Rubostness on JPEG compression and Bit-depth reduction with different factors.}
+        \label{fig:3}
+    \vspace{-0.2599cm}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.5\textwidth}
+    \vspace{-3cm}
+    \centering
+    \captionsetup{type=table}
+    \caption{Results of imperceptible attacks against random smoothing defense.  Adversarial examples are crafted using only the base model, and then 100 rounds of random smoothing are applied to obtain the final ASR. $\sigma$ is the variance of smoothing noise.}
+    \setlength{\tabcolsep}{3pt}
+    \label{tab:tab21}
+    \scriptsize
+    \begin{tabular}{lcccccccc}
+    \toprule
+                    &   \multicolumn{2}{c}{$\sigma=0.25$} & &  \multicolumn{2}{c}{$\sigma=0.50$} & &  \multicolumn{2}{c}{$\sigma=1.00$}        \\
+    % \midrule
+    \cmidrule{2-3} \cmidrule{5-6} \cmidrule{8-9}
+                    & ASR$\uparrow$ & $l_2$$\downarrow$ & & ASR$\uparrow$ & $l_2$$\downarrow$ & & ASR$\uparrow$ & $l_2$$\downarrow$  \\
+    \midrule
+        clean       &   17.3    &   -   & &   30.3    &   -   & &   46.8    &   -  \\
+        AdvDrop     &   25.2    &   5.97   & &   33.5    &   6.21   & &   48.7    &   5.61  \\
+        SSAH        &   21.8    &   13.84   & &   32.4    &   14.82   & &   46.9    &   13.68  \\
+        AdvAD (ours)&   \textbf{28.2}    &   \textbf{2.41}   & &   \textbf{36.8}    &   \textbf{2.51}   & &   \textbf{50.4}    &   \textbf{2.08}  \\
+    \bottomrule
+    \end{tabular}
+    \label{tab:my_label}
+    % \end{table}
+    \end{minipage}
+    \vspace{-0.2599cm}
+\end{figure}
+    
+
+
+
+
+
+
+\subsection{Robustness}
+
+
+The robustness of attacks is also evaluated against defense methods, including purification methods of NRP \cite{naseer2020self}, DS \cite{salman2020denoised}, diffusion-based purification \cite{lee2023robust} and adversarial training robust models of Inc-V3 \cite{tramèr2018ensemble}, Res-50 \cite{salman2020adversarially}, Swin-B \cite{liu2023comprehensive}, ConvNeXt-B \cite{liu2023comprehensive}. Two classic image transformation defenses of JPEG compression \cite{das2018shield}, Bit-depth reduction \cite{guo2018countering}, and another type of defense, random smoothing \cite{cohen2019certified}, are also included. Considering the robustness and transferability of attacks are comparable only under close perturbation budget, the unrestricted attacks are not included in this and the next section.
+
+
+
+As shown in Table~\ref{tab:tab2}, the proposed AdvAD demonstrates the best robustness in overall average
+compared with other imperceptible attacks of AdvDrop, PerC-AL and SSAH. Specifically, when attacking robust models, AdvAD achieved an much higher average ASR of 75.3$\%$. For post-processing purifications aim at eliminating adversarial perturbations, despite the inherently lower perturbation strength, AdvAD still maintains the best or second-best ASR against different purifications, which is comparable to AdvDrop with much higher perturbation strength. Similarly, for the results of classic image transformation defenses in Figure~\ref{fig:3}, AdvAD also exhibits advantages in most of the factors.
+In addition, since random smoothing is not a truly end-to-end method but a method that uses the base model to make multiple predictions on noise-augmented images, we adpot a semi-white-box setup to fully test the attack performance as described in the caption. Table~\ref{tab:tab21} shows the experimental results, and the PerC-AL is not included because it fails to attack in this setting. It can be seen that for all $\sigma$, our AdvAD continuously achieves the best ASR with smaller perturbation strength.
+
+\begin{wrapfigure}{r}{0.4\textwidth}  % 'r' 表示右侧，0.5\textwidth 表示宽度
+% \begin{figure}[t]
+\vspace{-0.5cm}
+\setlength{\abovecaptionskip}{0.15cm}
+\centering
+\includegraphics[width=0.4\textwidth]{figures/re_new_fig_v.pdf}
+\caption{More results of (a) effect of step $T$ on AdvAD and (b) transferability-imperceptibility relationship of attacks.}
+\label{fig:4}
+\vspace{-1cm}
+% \end{figure}
+\end{wrapfigure}
+
+
+We suppose the robustness of AdvAD mainly benefits from two aspects. Firstly, AdvAD performs attacks during a unique non-parametric diffusion process with adversarial guidance, which may be easier to break through existing adversarial training models using common attack paradigms. On the other hand, the inherently lower perturbation crafted by AdvAD is spread across the images more uniformly rather than gathering in some areas as can be seen in the visualization, making it more difficult to be eliminated. For AdvAD-X, it is anticipated to exhibit weak robustness since the extremely low perturbation in the ideal scenario is easy to defense.
+
+
+\begin{table}[t]
+    \caption{Transferability and effect of $T$ of the proposed AdvAD. $*$ means white-box ASR. }
+    \label{tab:tab3}
+    \centering
+    {
+    \setlength{\tabcolsep}{5.3pt}
+    \scriptsize\begin{tabular}{clccccccccc}
+        \toprule
+        \makecell{Model}    & Attack Method     & Res-50    & Mob-V2    & Inc-V3    & VGG-19    & $l_2$ $\downarrow$    & \;PSNR $\uparrow$     & \;SSIM $\uparrow$     & \;FID $\downarrow$    & \;LPIPS $\downarrow$    \\
+        \midrule
+        \multirow{7}{*}{\makecell{Res-50 \\ \cite{he2016deep}}}      & SSAH \cite{luo2022frequency}              & $\text{\textbf{99.7}}^*$      & 15.5      & 20.4      & 12.7      & 2.65      & 43.73     & 0.9911    & 4.48      & 0.0021 \\
+                                                & AdvAD ($T$=1000)    & $\text{\textbf{99.7}}^*$      & \textbf{18.3}      & \textbf{22.6}      & \textbf{15.1}      & \textbf{1.06}      & \textbf{51.84}     & \textbf{0.9980}    & \textbf{2.42}      & \textbf{0.0005} \\
+        \cmidrule(lr){2-11}
+                                                & AdvDrop \cite{duan2021advdrop}           & $\text{96.8}^*$      & 17.3      & 23.1      & 15.8      & 3.17      & 41.91     & 0.9872    & \textbf{5.57}      & 0.0061 \\
+                                                & PerC-AL \cite{zhao2020towards}           & $\text{98.8}^*$      & 22.4      & 23.8      & 17.4      & 2.05      & \textbf{46.35}     & 0.9894    & 8.62      & 0.0029 \\
+                                                & AdvAD ($T$=100)     & $\text{\textbf{100.0}}^*$     & \textbf{23.5}      & \textbf{24.9}      & \textbf{19.9}      & \textbf{1.97}      & 46.04     & \textbf{0.9912}    & 7.15      & \textbf{0.0026} \\
+        \cmidrule(lr){2-11}                                        
+                                                & PGD \cite{madry2018towards}               & $\text{98.6}^*$      & 41.4      & 36.7      & 36.0      & 8.17      & 33.53     & 0.8830    & 35.25     & \textbf{0.0517} \\
+                                                & AdvAD ($T$=10)      & $\text{\textbf{100.0}}^*$     & \textbf{44.3}      & \textbf{37.6}      & \textbf{42.9}      & \textbf{7.21}      & \textbf{34.63}     & \textbf{0.9015}    & \textbf{30.84}     & 0.0547 \\
+        \midrule
+        \multirow{7}{*}{\makecell{Mob-V2 \\ \cite{sandler2018mobilenetv2}}}      & SSAH \cite{luo2022frequency}              & 7.7       & $\text{97.8}^*$      & 19.8      & 11.6      & 2.18      & 45.24     & 0.9930    & 2.95      & 0.0016 \\
+                                                & AdvAD ($T$=1000)    & \textbf{9.7}       & $\text{\textbf{99.7}}^*$      & \textbf{21.3}      & \textbf{14.8}      & \textbf{0.94}      & \textbf{53.08}     & \textbf{0.9982}    & \textbf{1.46}      & \textbf{0.0004} \\
+        \cmidrule(lr){2-11}
+                                                & AdvDrop \cite{duan2021advdrop}           & 9.7       & $\text{97.7}^*$      & 22.7      & 15.0      & 3.16      & 41.94     & 0.9873    & 4.88      & 0.0064 \\
+                                                & PerC-AL \cite{zhao2020towards}           & \textbf{12.7}      & $\text{99.8}^*$      & 23.3      & 17.8      & 2.16      & 45.67     & 0.9879    & 8.77      & 0.0032 \\
+                                                & AdvAD ($T$=100)     & 12.2      & $\text{\textbf{100.0}}^*$    & \textbf{23.4}      & \textbf{17.9}      & \textbf{1.83}      & \textbf{46.68}     & \textbf{0.9919}    & \textbf{4.73}      & \textbf{0.0020} \\
+        \cmidrule(lr){2-11}                                        
+                                                & PGD \cite{madry2018towards}               & 29.9      & $\text{99.9}^*$      & \textbf{35.3}      & 37.9      & 8.29      & 33.41     & 0.8803    & 34.57     & 0.0500 \\
+                                                & AdvAD ($T$=10)      & \textbf{30.6}     & $\text{\textbf{100.0}}^*$      & \textbf{35.3}      & \textbf{38.5}      & \textbf{7.23}      & \textbf{34.60}     & \textbf{0.9006}    & \textbf{27.25}     & \textbf{0.0480} \\
+        \bottomrule
+    \end{tabular}}
+    \vspace{-0.5cm}
+\end{table}
+
+
+\subsection{Transferability and Effect of Step $T$ on AdvAD}
+Table~\ref{tab:tab3} reports the ASRs of black-box attacks and the corresponding results of imperceptibility. We also test AdvAD with different step of $T$ for comprehensive evaluation. Consistent with the diffusion models, a larger $T$ denotes a finer decomposition granularity of the entire process, corresponding to the strength of adversarial guidance at each step. Thus, AdvAD with a larger $T$ exhibits better imperceptibility, while a smaller $T$ implies stronger black-box transferability. Notbly, though there is a clear negative correlation between imperceptibility and transferability, our AdvAD exceeds all comparison attacks in both of transferability and imperceptibility at different comparable levels, demonstrating the effectiveness of the proposed novel modeling framework. 
+
+To further elaborate the relationship between transferability and imperceptibility of AdvAD, as well as the optimal trade-off in practice, we plot two line graphs in Figure~\ref{fig:4} under more values of $T$. As shown in Figure~\ref{fig:4} (a), as the value of $T$ on the horizontal axis changes, the relationship between imperceptibility and transferability shows a clear proportional trend as mentioned above, consistent across different surrogate models. For the optimal trade-off, we consider that the intersection point of the two curves represents a balance between imperceptibility and transferability. Accordingly, for the ResNet-50 and MobileNetV2 models, the optimal values of $T$ are 50 and 25, respectively. Moreover, Figure~\ref{fig:4} (b) illustrates more direct curves of this relationship and the positions of other comparison methods within it. Note that, all the other comparison methods are located to the lower left of the curve of AdvAD. This indicates that our method consistently achieves the best results in both transferability and imperceptibility compared with other state-of-the-art restricted imperceptible attacks, demonstrating the effectiveness of our AdvAD as a new attack framework with flexibility through the proposed non-parametric diffusion process.
+
+
+
+\begin{figure}[t]
+    \centering
+    \begin{minipage}[t]{0.45\textwidth}
+        \setlength{\abovecaptionskip}{0cm}
+        \centering
+        \includegraphics[width=0.95\textwidth]{figures/Rplot15.pdf}
+        \caption{Values of $\lambda_t$ (left) and $\|\boldsymbol{\delta}_t\|_\infty$ (right) of Eq.~\eqref{maineq:12} throughout the diffusion process.}
+        \label{fig:5}
+        \vspace{-0.2599cm}
+    \end{minipage}%
+    \hfill
+    \begin{minipage}[t]{0.5\textwidth}
+        \vspace{-2.5cm}
+        \centering
+        \captionsetup{type=table}
+        \caption{Results of AdvAD and AdvAD-X with smaller $\xi$ against Res-50. Step $T$ is fixed as $1000$.}
+        \label{tab:tab4}
+        \setlength{\tabcolsep}{2.5pt}
+        \scriptsize\begin{tabular}{clccccc}
+            \toprule
+            $\xi$      & Attack     & ASR$\uparrow$       & $l_2$$\downarrow$    & PSNR$\uparrow$    & SSIM$\uparrow$     & FID$\downarrow$  \\
+            \midrule
+            \multirow{3}{*}{4/255\;}      
+                                        & AdvAD            & {98.6}      & {0.93}      & {53.27}     & {0.9986}        & {1.78}    \\
+                                        & $\text{AdvAD-X}^{\textcolor{blue}{\boldsymbol{\dag}}}$        & \textcolor{blue}{100.0}     & \textcolor{blue}{0.29}      & \textcolor{blue}{65.07}     & \textcolor{blue}{0.9998}        & \textcolor{blue}{0.18}     \\
+            \midrule
+            \multirow{3}{*}{2/255\;}      
+                                        & AdvAD            & {96.1}      & {0.82}      & {54.85}     & {0.9989}        & {1.33}    \\
+                                        & $\text{AdvAD-X}^{\textcolor{blue}{\boldsymbol{\dag}}}$        & \textcolor{blue}{99.4}      & \textcolor{blue}{0.27}      & \textcolor{blue}{65.95}     & \textcolor{blue}{0.9998}        & \textcolor{blue}{0.15}    \\
+            \midrule
+            \multirow{3}{*}{1/255\;}      
+                                        & AdvAD            & {87.4}      & {0.66}      & {57.87}     & {0.9993}        & {0.77}    \\
+                                        & $\text{AdvAD-X}^{\textcolor{blue}{\boldsymbol{\dag}}}$        & \textcolor{blue}{94.8}      & \textcolor{blue}{0.26}      & \textcolor{blue}{66.42}     & \textcolor{blue}{0.9998}        & \textcolor{blue}{0.14}    \\
+            \bottomrule
+        \end{tabular}
+        \vspace{-0.2599cm}
+    \end{minipage}
+    \vspace{-0.2599cm}
+\end{figure}
+
+
+
+
+
+\subsection{Analysis}
+\label{sec:4.5}
+
+
+\textbf{Eq.~\eqref{maineq:12} in Practice.} With the derived analytical formulation of Proposition~\ref{mainprop1}, in Figure~\ref{fig:5}, we illustrate the actual values of $\lambda_t$ and $\|\boldsymbol{\delta}_t\|_\infty$ of Eq.~\eqref{maineq:12} using 100 randomly selected images. While Proposition~\ref{mainprop1} indicates that the upper bound of $\|\boldsymbol{\delta}_t\|_\infty$ is invariant with respect to step $t$, the actual strength of the adversarial guidance produced by AMG rapidly decreases as the process progresses, which validates the unique property given at the end of Sec. 3.2. With the similarly decreasing $\lambda_{t}$, the whole term of $\lambda_{t}\|\boldsymbol{\delta}_t\|_\infty$ representing $l_\infty$ distance of the guidance at step $t$ also decreases from about 0.0008 to 0, supporting that the proposed modeling framework performs imperceptible attacks with inherently small perturbation strength. \textbf{Performance with Smaller $\xi$.}  The results of AdvAD and AdvAD-X with smaller $\xi$ for PC module are shown in Table~\ref{tab:tab4}. As $\xi$ decreases from $8$ to $2$, the imperceptibility is naturally improved because of the upper bound of perturbation becomes lower, yet the ASR of 94.8\% only drops slightly. When $\xi=1/255$, AdvAD still holds 87.4\% ASR with 57.87 PSNR and 0.9993 SSIM, which means a large number of examples still can fool the DNN with a maximum of $\pm1$ modification for each pixel, demonstrating the effectiveness of the adversarial guidance injected in the proposed diffusion process for attacks. Moreover, we provide the ablation study of AdvAD-X and additional discussions in \textbf{Appendix}~\ref{app:C3}, \ref{app:C4}.
+
+
+\section{Conclusion and Outlook}
+In this paper, we propose a novel, fundamental modeling framework distinct from existing paradigms to tackle the challenge of imperceptible attacks. By exploring and deriving basic theory of diffusion models, the proposed AdvAD performs attacks through a non-parametric diffusion process with adversarial guidance, achieving inherently lower overall perturbation strength with high attack efficacy from a modeling perspective. Besides, the proposed AdvAD-X evaluates the extreme of this novel modeling framework and further reduces the perturbation strength to an extremely low level in an ideal scenario. Extensive experimental results support the effectiveness and progressiveness of the proposed methods. 
+% future work
+Beyond imperceptibility, AdvAD holds the potential to become a general and extensible attack paradigm thanks to the solid theoretical foundation and the innovative, controllable diffusion-based process for attacks. 
+In addition, we also hope the new observation that AdvAD-X can successfully attack with extremely small perturbation using floating-point raw data can bring inspiration for revealing the robustness and interpretability (e.g., decision boundaries) of DNNs.
+
+\begin{ack}
+This work was supported by NSFC (Grant No. 62072484), Natural Science Foundation of Guangdong Province (Grant No. 2514050000889) and Guangdong Key Laboratory of Information Security (No. 2023B1212060026).
+\end{ack}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \newpage
+\small
+\bibliography{references}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\newpage
+
+\normalsize
+\appendix
+
+\renewcommand{\arraystretch}{0.6}
+\setlength{\aboverulesep}{1.25pt} 
+\setlength{\belowrulesep}{1.25pt} 
+
+% \renewcommand{\thetheorem}{\thesection.\arabic{thetheorem}}
+% \renewcommand{\thelemma}{\thesection.\arabic{thelemma}}
+% \renewcommand{\theproposition}{\thesection.\arabic{theproposition}}
+
+\setcounter{theorem}{0} 
+\setcounter{lemma}{0}   
+\setcounter{proposition}{0}
+
+ 
+
+
+\tableofcontents
+
+\newpage
+
+% The appendix is organized as follows. More inrelated work
+
+\section{Related Work} \label{app:A}
+
+ Beginning with the attack paradigm of Fast Gradient Sign Method (FGSM) \cite{goodfellow2014explaining}, 
+there are numerous great works focusing on the imperceptibility of adversarial attacks have been proposed \cite{carlini2017towards,luo2018towards,zhao2020towards,laidlaw2021perceptual,duan2021advdrop,chen2023imperceptible,jia2022exploring}.   
+In contrast to another line of attacks aimed at improving the attack success rate and the transferability for black-box models with a more lenient limitation of perturbation strength \cite{dong2018boosting,zhang2022enhancing,wei2023enhancing}, imperceptible adversarial attacks are dedicate to accomplish attacks using as minimal perturbation as possible while deceiving human perception. 
+Among them, PerC-AL \cite{zhao2020towards} improves the imperceptibility by alternating between the classification loss and perceptual color difference when updating perturbations.
+AdvDrop \cite{duan2021advdrop} uses Discrete Cosine Transform (DCT) to discard details in images that are imperceptible for humans. SSAH \cite{luo2022frequency} limits perturbation to high-frequency components using Discrete Wavelet Transform (DWT) to make it undetectable. Similarly, AdvINN \cite{chen2023imperceptible} also utilizes the DWT and exploits invertible neural networks to specially perform targeted attacks. In addition, with an unrestriced setting \cite{song2018constructing}, some recent works have incorporated the capabilities of generative models (e.g., diffusion models \cite{ho2020denoising}) into common attack frameworks to make adversarial examples more natural and enhance the imperceptibility. DiffAttack \cite{chen2023diffusion} and ACA \cite{chen2024content} combine the optimization of adversarial losses with the Stable Diffusion \cite{rombach2022high} to generate unrestricted adversarial examples, while Diff-PGD \cite{xue2023diffusion} and AdvDiffuser \cite{chen2023advdiffuser} incorporate the classic PGD method \cite{madry2018towards} into the diffusion steps to make the adversarial examples undergo denoising processing. 
+
+Compared to these traditional restricted imperceptible attacks or the recent unrestricted imperceptible attacks (e.g., diffusion-based), the proposed AdvAD is a completely novel approach distinct from existing attack paradigms. It is the first pilot framework which innovatively conceptualizes attacking as a non-parametric diffusion process by theoretically exploring fundamental modeling approach of diffusion models rather than using their denoising or generative abilities, achieving high attack efficacy and imperceptibility with intrinsically lower perturbation strength. Following the setting of restricted attack, the modeling of AdvAD is theoretically derived from conditional sampling of diffusion models, supporting its attack performance and imperceptibility, and does not require any loss functions, optimizers, or additional neural networks.
+
+
+\section{Derivations and Proofs} \label{app:B}
+\label{sec:1}
+In this section, we first introduce the specific straightforward Pixel-level Constraint (PC) for $\boldsymbol{\Hat{x}}_t$ that is simply mentioned at the beginning of Section 3.3 of the main text as an intuitive preliminary, then we provide the detailed proofs of Theorem 1 and Proposition 1, 2 given in the PC for $\boldsymbol{\Hat{\epsilon}}_t$.
+
+\subsection{Straightforward PC for $\boldsymbol{\Hat{x}}_t$} \label{app:B1}
+For each known $\boldsymbol{\Bar{x}_{t}}$ in the fixed diffusion trajectory of the original image $\boldsymbol{{x}}_{ori}$, and modified $\boldsymbol{\Hat{x}}_{t}$ in the attacking trajectory with the proposed Attacked Model Guidance (AMG) leading to the adversarial example $\boldsymbol{{x}}_{adv}$, the objective of PC is to control and constrain these two trajectories to be close, ensuring the final $\boldsymbol{\Hat{x}}_{0}$ (i.e., $\boldsymbol{{x}}_{adv}$) close to $\boldsymbol{\Bar{x}}_{0}$ (i.e., $\boldsymbol{{x}}_{ori}$). It is obvious that a straightforward way to achieve the goal by directly constrain every $\boldsymbol{\Hat{x}}_{t}$ using $\boldsymbol{\Bar{x}}_{t}$. Thus, in PC for $\boldsymbol{\Hat{x}}_{t}$,
+we can utilize the restriction of adversarial examples and the relationship between $\boldsymbol{{x}}_{adv}$, $\boldsymbol{\Hat{x}}_{t}^{0}$ and $\boldsymbol{\Hat{x}}_{t}$ to derive the constraint for $\boldsymbol{\Hat{x}}_{t}$. Given the budget $\xi$, the desired restriction of adversarial examples is
+\begin{equation}\tag{15}
+\left\|\boldsymbol{x}_{adv}-\boldsymbol{x}_{ori}\right\|_\infty \leq \xi.
+\label{apdx_eq:1}
+\end{equation}
+Next, since the $\boldsymbol{\Hat{\epsilon}}_{t}$ is unconstrained in the case of PC for $\boldsymbol{\Hat{x}}_{t}$, we adopt the initialized $\boldsymbol{{\epsilon}}_{0}$ to calculate  $\boldsymbol{\Hat{x}}_{t}^{0}$ approximating $\boldsymbol{x}_{adv}$ as:
+\begin{equation}\tag{16}
+\boldsymbol{x}_{adv} \approx \boldsymbol{\Hat{x}}_t^0(\boldsymbol{\epsilon}_{0}) = \frac{\boldsymbol{\Hat{x}}_t - \sqrt{1-\alpha_t}\boldsymbol{\epsilon}_0}{\sqrt{\alpha_t}}.
+\label{apdx_eq:2}
+\end{equation}
+where $\alpha_0=1$, and $\alpha_{1:T}\in(0,1]^T$ is a pre-defined decreasing scalar sequence. And the $\boldsymbol{\Bar{x}}_t$ of the original trajectory is calculated as:
+\begin{equation}\tag{17}
+\boldsymbol{\Bar{x}}_t = \sqrt{\alpha_t}\boldsymbol{x}_{ori} + \sqrt{1-\alpha_t}\boldsymbol{\epsilon}_0
+\label{apdx_eq:3}
+\end{equation}
+By substituting Eq.~\eqref{apdx_eq:2} and Eq.~\eqref{apdx_eq:3} into Eq.~\eqref{apdx_eq:1}, the constraint for $\boldsymbol{\Hat{x}}_t$ can be easily derived, denoted as:
+\begin{equation}\tag{18}
+\begin{split}
+& \left\|\frac{\boldsymbol{\Hat{x}}_t - \sqrt{1-\alpha_t}\boldsymbol{\epsilon}_0}{\sqrt{\alpha_t}} - \frac{\boldsymbol{\Bar{x}}_t - \sqrt{1-\alpha_t}\boldsymbol{\epsilon}_0}{\sqrt{\alpha_t}}\right\|_\infty \leq \xi \\
+\xLeftrightarrow{} &  \left\|\frac{\boldsymbol{\Hat{x}}_t}{\sqrt{\alpha_t}} - \frac{\boldsymbol{\Bar{x}}_t}{\sqrt{\alpha_t}}\right\|_\infty \leq \xi \\
+\xLeftrightarrow{} & \left\|{\boldsymbol{\Hat{x}}_t} - {\boldsymbol{\Bar{x}}_t}\right\|_\infty \leq \sqrt{\alpha_t}\,\xi
+\end{split}
+\label{apdx_eq:4}
+\end{equation}
+In this way, the PC for $\boldsymbol{\Hat{x}}_t$ can be implemented  at the start of each step to achieve the basic restrictions by employing a projection operation to $\boldsymbol{\Hat{x}}_t$ according to Eq.~\eqref{apdx_eq:4}. However, this direct modification of $\boldsymbol{\Hat{x}}_t$ at each step obviously disrupts the entire diffusion trajectory from noise to our desired adversarial distribution, and can not achieve the final imperceptibility. Additionally, it is observed that the estimation of $\boldsymbol{\Hat{x}}_t^0$ in each step employs a fixed $\boldsymbol{\epsilon}_0$, impairing the adversarial guidance crafted by AMG.
+\subsection{Proof of Theorem 1}  \label{app:B2}
+Therefore, we carefully analysis the important noise term in our diffusion-based modeling approach for adversarial attacks, and present Theorem 1 to support our PC for $\boldsymbol{\Hat{\epsilon}}_t$ as described in the main text. The proof of Theorem 1 is provided as follow.
+
+\begin{theorem}
+\label{thm1}
+    Given diffusion coefficients $\alpha_{T:0}\in(0,1]^T$, the $\boldsymbol{x}_{ori}$, $\boldsymbol{\Bar{x}}_{t}$, $\boldsymbol{\epsilon}_0$ from the original trajectory, $\boldsymbol{\Hat{x}}_{t}$, $\boldsymbol{\Hat{\epsilon}}_{t}$ from the modified trajectory, and a variable $\xi$, if $\boldsymbol{\Hat{\epsilon}}_{t}$ and $\boldsymbol{{\epsilon}}_{0}$ satisfies 
+    \begin{equation}\tag{19}
+        \|\boldsymbol{\Hat{\epsilon}}_{t} - \boldsymbol{\epsilon}_{0}\|_{\infty} \leq \frac{\sqrt{\alpha_T}}{\sqrt{1-\alpha_T}}\xi,
+    \label{apdx_eq:5}
+    \end{equation}
+    for all $t\in[T:1]$, then it follows that 
+    % \begin{equation}\notag
+        $\|\boldsymbol{\Hat{x}}_{t} - \boldsymbol{\Bar{x}}_{t}\|_{\infty} \leq (\sqrt{\alpha_{t}} - \sqrt{1 - \alpha_{t}} \frac{\sqrt{\alpha_T}}{\sqrt{1-\alpha_T}})\xi, \ \|\boldsymbol{\Hat{x}}_{t}^{0} - \boldsymbol{x}_{ori}\|_{\infty}\leq\xi, \ \text{and}\ \|\boldsymbol{\Hat{x}}_{0} - \boldsymbol{x}_{ori}\|_{\infty}\leq\xi$
+    % \label{eq:13}
+    % \end{equation}
+    hold true.
+\end{theorem}
+
+\begin{proof}
+We prove Theorem 1 using mathematical induction. 
+\paragraph{Initial case.} For trajectories of the adversarial example $\boldsymbol{x}_{adv}$ and original image $\boldsymbol{x}_{ori}$ that start from $\boldsymbol{\Hat{\epsilon}}_{T+1} = \boldsymbol{\epsilon}_0$, $\boldsymbol{\Hat{x}}_T = \boldsymbol{\Bar{x}}_T$ and $\boldsymbol{\Hat{x}}_T^0 = \boldsymbol{\Bar{x}}_T^0$, we can unfold the formula for computing the $\boldsymbol{\Hat{x}}_{T-1}^0$ with the updated $\boldsymbol{\Hat{\epsilon}}_{T}$ as: 
+\begin{alignat}{3}
+&\boldsymbol{\Hat{x}}_{T-1}^{0} && = \; && \frac{\boldsymbol{\Hat{x}}_{T-1}}{\sqrt{\alpha_{T-1}}} - \frac{\sqrt{1-\alpha_{T-1}}}{\sqrt{\alpha_{T-1}}}\boldsymbol{\Hat{\epsilon}}_{T} \notag \\
+& && = \; && \frac{\sqrt{\alpha_{T-1}}\left(\frac{\boldsymbol{\Hat{x}}_T-\sqrt{1-\alpha_T}\boldsymbol{\Hat{\epsilon}}_T}{\sqrt{\alpha_T}}\right) + \sqrt{1-\alpha_{T-1}}\boldsymbol{\Hat{\epsilon}}_T}{\sqrt{\alpha_{T-1}}} \notag  - \frac{\sqrt{1-\alpha_{T-1}}}{\sqrt{\alpha_{T-1}}}\boldsymbol{\Hat{\epsilon}}_{T} \notag \\
+& && = \; && \frac{\boldsymbol{\Hat{x}}_T-\sqrt{1-\alpha_T}\boldsymbol{\Hat{\epsilon}}_T}{\sqrt{\alpha_T}}. \tag{20} \label{apdx_eq:6}
+\end{alignat}
+For $\boldsymbol{\Bar{x}}_{T-1}^0$ from the fixed trajectory where $\boldsymbol{\Bar{x}}_{t}^0$ always equals to $\boldsymbol{x}_{ori}$, we have:
+\begin{equation}\tag{21}
+\boldsymbol{\Bar{x}}_{T-1}^{0} = \frac{\boldsymbol{\Bar{x}}_T-\sqrt{1-\alpha_T}\boldsymbol{{\epsilon}}_0}{\sqrt{\alpha_T}} = \boldsymbol{x}_{ori}
+\label{apdx_eq:7}
+\end{equation}
+With  $\boldsymbol{\Hat{x}}_T = \boldsymbol{\Bar{x}}_T$, Eq.~\eqref{apdx_eq:6}, Eq.~\eqref{apdx_eq:7}, and the relationship of $\left\|\boldsymbol{\Hat{\epsilon}}_{T} - \boldsymbol{\epsilon}_0\right\|_\infty \leq \frac{\sqrt{\alpha_{T}}}{\sqrt{1-\alpha_{T}}} \, \xi$, we have:
+\begin{alignat}{3}
+&  && \left\|\boldsymbol{\Hat{\epsilon}}_{T} - \boldsymbol{\epsilon}_0\right\|_\infty \leq \frac{\sqrt{\alpha_{T}}}{\sqrt{1-\alpha_{T}}} \, \xi & \notag \\
+& \xLeftrightarrow{} && \left\|\frac{\sqrt{1-\alpha_{T}}\boldsymbol{\Hat{\epsilon}}_{T}}{\sqrt{\alpha_{T}}} - \frac{\sqrt{1-\alpha_{T}}\boldsymbol{\epsilon}_0}{\sqrt{\alpha_{T}}}\right\|_\infty \leq \xi & \notag \\
+& \xLeftrightarrow{} &&\left\|\frac{\boldsymbol{\Hat{x}}_{T} - \sqrt{1-\alpha_{T}}\boldsymbol{\Hat{\epsilon}}_{T}}{\sqrt{\alpha_{T}}} - \frac{\boldsymbol{\Bar{x}}_{T} - \sqrt{1-\alpha_{T}}\boldsymbol{\epsilon}_0}{\sqrt{\alpha_{T}}}\right\|_\infty \leq \xi & \notag  \\ 
+& \xLeftrightarrow{} && \left\|\boldsymbol{\Hat{x}}_{T-1}^{0} -  \boldsymbol{\Bar{x}}_{T-1}^{0}\right\|_\infty \leq \xi & \tag{22} \label{apdx_eq:8}
+\end{alignat}
+Meanwhile, for the relationship between $\boldsymbol{\Hat{x}}_{T-1}$ and $\boldsymbol{\Bar{x}}_{T-1}$ at the initial step, we have:
+\begin{alignat}{2}
+\left\|\boldsymbol{\Hat{x}}_{T-1} - \boldsymbol{\Bar{x}}_{T-1}\right\|_\infty \notag 
+&= \; && \left\|\sqrt{\alpha_{T-1}}\left(\frac{\boldsymbol{\Hat{x}}_T-\sqrt{1-\alpha_T}\boldsymbol{\Hat{\epsilon}}_T}{\sqrt{\alpha_T}}\right) + \sqrt{1-\alpha_{T-1}}\boldsymbol{\Hat{\epsilon}}_T \right. \notag \\
+& && \left. - \sqrt{\alpha_{T-1}}\left(\frac{\boldsymbol{\Bar{x}}_T-\sqrt{1-\alpha_T}\boldsymbol{{\epsilon}}_0}{\sqrt{\alpha_T}}\right) - \sqrt{1-\alpha_{T-1}}\boldsymbol{{\epsilon}}_0 \right\|_\infty \notag \\
+&= \; && \left\| \left(\sqrt{1-\alpha_{T-1}} - \frac{\sqrt{\alpha_{T-1}}\sqrt{1-\alpha_T}}{\sqrt{\alpha_T}}\right) \left(\boldsymbol{\Hat{\epsilon}}_T - \boldsymbol{{\epsilon}}_0\right) \right\|_\infty \notag \\
+&= \; && {\left|\sqrt{1-\alpha_{T-1}} - \frac{\sqrt{\alpha_{T-1}}\sqrt{1-\alpha_T}}{\sqrt{\alpha_T}}\right|}\,\left\|\boldsymbol{\Hat{\epsilon}}_T - \boldsymbol{{\epsilon}}_0\right\|_\infty \tag{23} \label{apdx_eq:9}  \\
+&= \; && {\left(\frac{\sqrt{\alpha_{T-1}}\sqrt{1-\alpha_T}}{\sqrt{\alpha_T}} - \sqrt{1-\alpha_{T-1}}\right)} \,\left\|\boldsymbol{\Hat{\epsilon}}_T - \boldsymbol{{\epsilon}}_0\right\|_\infty \tag{24} \label{apdx_eq:10} \\
+&\leq \; && \left(\sqrt{\alpha_{T-1}} - \sqrt{1-\alpha_{T-1}}\frac{\sqrt{\alpha_{T}}}{\sqrt{1-\alpha_{T}}}\right)\xi, \tag{25} \label{apdx_eq:11}
+\end{alignat}
+where the transition from Eq.~\eqref{apdx_eq:9} to Eq.~\eqref{apdx_eq:10} is obtained with the real constant value of $\alpha_t$. At this point, it can be seen that Theorem 1 holds in the initial case.
+
+\paragraph{Inductive step.} Assuming the theorem holds for some arbitrary step $k$, where $T \geq k > 1$, we have:
+\begin{equation}\tag{26}
+\|\boldsymbol{\Hat{\epsilon}}_{k+1} - \boldsymbol{\epsilon}_{0}\|_{\infty} \leq \frac{\sqrt{\alpha_T}}{\sqrt{1-\alpha_T}}\xi,
+\label{apdx_eq:12}
+\end{equation}
+\begin{equation}\tag{27}
+\|\boldsymbol{\Hat{x}}_{k}^{0} - \boldsymbol{x}_{ori}\|_{\infty} = \|\boldsymbol{\Hat{x}}_{k}^{0} - \boldsymbol{\Bar{x}}_{k}^{0}\|_{\infty} \leq\xi,
+\label{apdx_eq:13}
+\end{equation}
+and
+\begin{equation}\tag{28}
+\|\boldsymbol{\Hat{x}}_{k} - \boldsymbol{\Bar{x}}_{k}\|_{\infty} \leq (\sqrt{\alpha_{k}} - \sqrt{1 - \alpha_{k}} \frac{\sqrt{\alpha_T}}{\sqrt{1-\alpha_T}})\xi.
+\label{apdx_eq:14}
+\end{equation}
+Based on the inductive hypothesis, we next show the validity of the theorem at step $k-1$. Similar to Eq.\eqref{apdx_eq:6}, we unfold the calculation of $\boldsymbol{\Hat{x}}_{k-1}^{0}$ with $\boldsymbol{\Hat{x}}_{k}$ and $\boldsymbol{\Hat{\epsilon}}_{k}$ as:
+\begin{alignat}{3}
+& \boldsymbol{\Hat{x}}_{k-1}^{0} &&= \; && \frac{\boldsymbol{\Hat{x}}_{k-1}}{\sqrt{\alpha_{k-1}}} - \frac{\sqrt{1-\alpha_{k-1}}}{\sqrt{\alpha_{k-1}}}\boldsymbol{\Hat{\epsilon}}_{k} \notag \\
+& &&= \; && \frac{\sqrt{\alpha_{k-1}}\left(\frac{\boldsymbol{\Hat{x}}_{k}-\sqrt{1-\alpha_{k}}\boldsymbol{\Hat{\epsilon}}_{k}}{\sqrt{\alpha_{k}}}\right) + \sqrt{1-\alpha_{k-1}}\boldsymbol{\Hat{\epsilon}}_{k}}{\sqrt{\alpha_{k-1}}} \notag  - \frac{\sqrt{1-\alpha_{k-1}}}{\sqrt{\alpha_{k-1}}}\boldsymbol{\Hat{\epsilon}}_{k} \notag \\
+& &&= \; && \frac{\boldsymbol{\Hat{x}}_{k}-\sqrt{1-\alpha_{k}}\boldsymbol{\Hat{\epsilon}}_{k}}{\sqrt{\alpha_{k}}} \tag{29} \label{apdx_eq:15}.
+\end{alignat}
+And the $\boldsymbol{\Bar{x}}_{k-1}^0$ can be denoted as:
+\begin{equation}\tag{30}
+\boldsymbol{\Bar{x}}_{k-1}^{0} = \frac{\boldsymbol{\Bar{x}}_k-\sqrt{1-\alpha_k}\boldsymbol{{\epsilon}}_0}{\sqrt{\alpha_k}} = \boldsymbol{x}_{ori}
+\label{apdx_eq:16}
+\end{equation}
+Consequently, by substituting Eq.~\eqref{apdx_eq:15} and Eq.~\eqref{apdx_eq:16} into $\left\|\boldsymbol{\Hat{x}}_{k-1}^{0} -  \boldsymbol{\Bar{x}}_{k-1}^{0}\right\|_\infty$, we have:
+\begin{alignat}{2}
+\left\|\boldsymbol{\Hat{x}}_{k-1}^{0} -  \boldsymbol{\Bar{x}}_{k-1}^{0}\right\|_\infty  \notag &  = && \left\|\frac{\boldsymbol{\Hat{x}}_{k} - \sqrt{1-\alpha_{k}}\boldsymbol{\Hat{\epsilon}}_{k}}{\sqrt{\alpha_{k}}} - \frac{\boldsymbol{\Bar{x}}_{k} - \sqrt{1-\alpha_{k}}\boldsymbol{\epsilon}_0}{\sqrt{\alpha_{k}}}\right\|_\infty \notag  \\
+&= \;  && \left\| \frac{1}{\sqrt{\alpha_{k}}} \left(\boldsymbol{\Hat{x}}_{k} - \boldsymbol{\Bar{x}}_{k}\right) + \frac{\sqrt{1-\alpha_{k}}}{\sqrt{\alpha_{k}}} \left(\boldsymbol{{\epsilon}}_{0} - \boldsymbol{\Hat{\epsilon}}_{k}\right) \right\|_\infty \tag{31} \label{apdx_eq:17} \\ 
+&\leq \;  && \frac{1}{\sqrt{\alpha_{k}}} \left \| \boldsymbol{\Hat{x}}_{k} - \boldsymbol{\Bar{x}}_{k} \right\|_\infty \notag  + \frac{\sqrt{1-\alpha_{k}}}{\sqrt{\alpha_{k}}} \left\| \boldsymbol{\Hat{\epsilon}}_{k} - \boldsymbol{{\epsilon}}_{0} \right\|_\infty \tag{32} \label{apdx_eq:18} \\
+&\leq \;  && \left(1 - \frac{\sqrt{1-\alpha_{k}}}{\sqrt{\alpha_{k}}}\frac{\sqrt{\alpha_{T}}}{\sqrt{1-\alpha_{T}}}\right)\xi \notag  + \frac{\sqrt{1-\alpha_{k}}}{\sqrt{\alpha_{k}}} \left\| \boldsymbol{\Hat{\epsilon}}_{k} - \boldsymbol{{\epsilon}}_{0} \right\|_\infty, \tag{33} \label{apdx_eq:19}
+\end{alignat}
+where Eq.~\eqref{apdx_eq:17} to Eq.~\eqref{apdx_eq:18} utilizes the triangle inequality property of $l_p$-norm, and Eq.~\eqref{apdx_eq:19} is obtained with Eq.~\eqref{apdx_eq:14}. Then, given the imposed condition of Eq.~\eqref{apdx_eq:5}, we can get:
+\begin{alignat}{2}
+& && \left\| \boldsymbol{\Hat{\epsilon}}_{k} - \boldsymbol{{\epsilon}}_{0} \right\|_\infty \leq \frac{\sqrt{\alpha_{T}}}{\sqrt{1-\alpha_{T}}} \, \xi \notag \\
+&\xLeftrightarrow{} && \left(1 - \frac{\sqrt{1-\alpha_{k}}}{\sqrt{\alpha_{k}}}\frac{\sqrt{\alpha_{T}}}{\sqrt{1-\alpha_{T}}}\right)\xi \notag  + \frac{\sqrt{1-\alpha_{k}}}{\sqrt{\alpha_{k}}} \left\| \boldsymbol{\Hat{\epsilon}}_{k} - \boldsymbol{{\epsilon}}_{0} \right\|_\infty \leq \;  \xi \notag \\
+&\xLeftrightarrow{} && \left\|\boldsymbol{\Hat{x}}_{k-1}^{0} -  \boldsymbol{\Bar{x}}_{k-1}^{0}\right\|_\infty \leq \xi \notag \\
+&\xLeftrightarrow{} && \left\|\boldsymbol{\Hat{x}}_{k-1}^{0} -  \boldsymbol{{x}}_{ori}\right\|_\infty \leq \xi \notag, \tag{34} \label{apdx_eq:20}
+\end{alignat}
+And the relationship between $\boldsymbol{\Hat{x}}_{k-1}$ and $\boldsymbol{\Bar{x}}_{k-1}$ at step $k-1$ can be expressed as:
+\begin{alignat}{2}
+& \; && \left\|\boldsymbol{\Hat{x}}_{k-1} - \boldsymbol{\Bar{x}}_{k-1}\right\|_\infty \notag \\ & = \; && {\left\|\sqrt{\alpha_{k-1}}\left(\frac{\boldsymbol{\Hat{x}}_{k}-\sqrt{1-\alpha_{k}}\boldsymbol{\Hat{\epsilon}}_{k}}{\sqrt{\alpha_{k}}}\right)  + \sqrt{1-\alpha_{k-1}}\boldsymbol{\Hat{\epsilon}}_{k} \right.}  \notag \\ & \; &&  \quad \quad \quad \quad  \quad \quad \quad  \quad \quad \quad  \quad \quad \quad  \quad{\left. - \sqrt{\alpha_{k-1}}\left(\frac{\boldsymbol{\Bar{x}}_{k}-\sqrt{1-\alpha_{k}}\boldsymbol{{\epsilon}}_{0}}{\sqrt{\alpha_{k}}}\right) - \sqrt{1-\alpha_{k-1}}\boldsymbol{{\epsilon}}_0  \right\|_\infty} \notag \\
+& = \; &&\left\| \frac{\sqrt{\alpha_{k-1}}}{\sqrt{\alpha_{k}}} \left( \boldsymbol{\Hat{x}}_{k} - \boldsymbol{\Bar{x}}_{k} \right) \right. \notag  + {\left. \left(\sqrt{1-\alpha_{k-1}} - \frac{\sqrt{\alpha_{k-1}}\sqrt{1-\alpha_{k}}}{\sqrt{\alpha_{k}}}\right) \left(\boldsymbol{\Hat{\epsilon}}_{k} - \boldsymbol{{\epsilon}}_0\right) \right\|_\infty} \tag{35} \label{apdx_eq:21} \\
+& \leq \; && \frac{\sqrt{\alpha_{k-1}}}{\sqrt{\alpha_{k}}} \left\| \boldsymbol{\Hat{x}}_{k} - \boldsymbol{\Bar{x}}_{k} \right\|_\infty \notag  + {\left|\sqrt{1-\alpha_{k-1}} - \frac{\sqrt{\alpha_{k-1}}\sqrt{1-\alpha_{k}}}{\sqrt{\alpha_{k}}}\right| \left\| \boldsymbol{\Hat{\epsilon}}_{k} - \boldsymbol{{\epsilon}}_0 \right\|_\infty} \tag{36} \label{apdx_eq:22} \\
+& \leq \; && \frac{\sqrt{\alpha_{k-1}}}{\sqrt{\alpha_{k}}} \left(\sqrt{\alpha_{k}} - \sqrt{1-\alpha_{k}}\frac{\sqrt{\alpha_{T}}}{\sqrt{1-\alpha_{T}}}\right)\xi \notag  +  {\left(\frac{\sqrt{\alpha_{k-1}}\sqrt{1-\alpha_{k}}}{\sqrt{\alpha_{k}}} - \sqrt{1-\alpha_{k-1}}\right)\frac{\sqrt{\alpha_{T}}}{\sqrt{1-\alpha_{T}}} \, \xi } \tag{37} \label{apdx_eq:23} \\
+& = \; && \left(\sqrt{\alpha_{k-1}} - \sqrt{1-\alpha_{k-1}}\frac{\sqrt{\alpha_{T}}}{\sqrt{1-\alpha_{T}}} \right) \xi \tag{38} \label{apdx_eq:24}
+\end{alignat}
+where the triangle inequality property is utilized again to obtain Eq.~\eqref{apdx_eq:22} from Eq.~\eqref{apdx_eq:21}, then Eq.~\eqref{apdx_eq:14} and Eq.~\eqref{apdx_eq:20} is substituted to obtain Eq.~\eqref{apdx_eq:23}. Obviously, for the case of step $k-1$, it is also consistent with the theorem.
+
+\paragraph{Conclusion.} Therefore, by extending the truth of the theorem from arbitrary step $k$ to $k-1$, and given its established validity at the initial case, the principle of mathematical induction allows us to conclude that $\|\boldsymbol{\Hat{x}}_{t} - \boldsymbol{\Bar{x}}_{t}\|_{\infty} \leq (\sqrt{\alpha_{t}} - \sqrt{1 - \alpha_{t}} \frac{\sqrt{\alpha_T}}{\sqrt{1-\alpha_T}})\xi, \ \|\boldsymbol{\Hat{x}}_{t}^{0} - \boldsymbol{x}_{ori}\|_{\infty}\leq\xi$ hold true for every step $t\in[1:T]$. For $t=0$ and $\alpha_0=1$, we have $\boldsymbol{\Hat{x}}_{0}^{0} = \boldsymbol{\Hat{x}}_{0}$ and $\boldsymbol{\Bar{x}}_{0} = \boldsymbol{{x}}_{ori}$, thus it is obvious that $\|\boldsymbol{\Hat{x}}_{0} - \boldsymbol{x}_{ori}\|_{\infty}\leq\xi$. This concludes the proof of the whole Theorem 1.
+\end{proof}
+
+
+\subsection{Proof of Proposition 1}  \label{app:B3}
+Next, we prove Proposition 1 about $\lambda_t$ and $\boldsymbol{\delta}_t$ by expanding and rearranging the recursive formulas in our diffusion process for attacks.
+
+\setcounter{proposition}{0}
+\begin{proposition}
+\label{prop1}
+Under the conditions of Theorem 1, by denoting constrained $\boldsymbol{\hat{\epsilon}}_t = \boldsymbol{\epsilon}_0 - \boldsymbol{\delta}_t$, we have
+    \begin{equation}\tag{39}
+    \boldsymbol{x}_{adv}=\boldsymbol{x}_{ori}+\sum_{t=1}^{T}\lambda_{t}\boldsymbol{\delta}_t,
+    \label{apdx_eq:25}
+    \end{equation}
+    where $\lambda_{t} = \frac{\sqrt{1-\alpha_t}}{\sqrt{\alpha_t}} - \frac{\sqrt{1-{\alpha_{t-1}}}}{\sqrt{\alpha_{t-1}}}$, and $\|\boldsymbol{\delta}_t\|_{\infty} \leq \frac{\sqrt{\alpha_T}}{\sqrt{1-\alpha_T}}\xi$.
+\end{proposition}
+\begin{proof}
+ With Eq.~\eqref{apdx_eq:5} in Theorem 1, by denoting $\boldsymbol{\hat{\epsilon}}_t = \boldsymbol{\epsilon}_0 - \boldsymbol{\delta}_t$, we have: $\|\boldsymbol{\delta}_t\|_{\infty} = \|\boldsymbol{\Hat{\epsilon}}_{t} - \boldsymbol{\epsilon}_{0}\|_{\infty} \leq \frac{\sqrt{\alpha_T}}{\sqrt{1-\alpha_T}}\xi$, and the $\boldsymbol{\Hat{x}}_{T-1}$ in the initial step can be written as:
+\begin{alignat}{2}
+\boldsymbol{\Hat{x}}_{T-1} \notag & = \; && \frac{\sqrt{\alpha_{T-1}}}{\sqrt{\alpha_{T}}} \boldsymbol{\Hat{x}}_{T}\notag  - {\left(\frac{\sqrt{\alpha_{T-1}}\sqrt{1-\alpha_{T}}}{\sqrt{\alpha_{T}}} - \sqrt{1-\alpha_{T-1}}\right) \left( \boldsymbol{\Hat{\epsilon}}_T \right)} \notag \\
+& = \; && \frac{\sqrt{\alpha_{T-1}}}{\sqrt{\alpha_{T}}} \boldsymbol{\Hat{x}}_{T} \notag  - {\sqrt{\alpha_{T-1}} \left(\frac{\sqrt{1-\alpha_{T}}}{\sqrt{\alpha_{T}}} - \frac{\sqrt{1-\alpha_{T-1}}}{\sqrt{\alpha_{T-1}}}\right) \left( \boldsymbol{\epsilon}_0 - \boldsymbol{\delta}_T \right)} \tag{40} \label{apdx_eq:26}
+\end{alignat}
+Applying the recursion formula twice, we have:
+\begin{alignat}{2}
+\boldsymbol{\Hat{x}}_{T-2} \notag  & = \; && \frac{\sqrt{\alpha_{T-2}}}{\sqrt{\alpha_{T-1}}} \left(\frac{\sqrt{\alpha_{T-1}}}{\sqrt{\alpha_{T}}} \boldsymbol{\Hat{x}}_{T} \right. \notag - {\left. \left(\frac{\sqrt{\alpha_{T-1}}\sqrt{1-\alpha_{T}}}{\sqrt{\alpha_{T}}} - \sqrt{1-\alpha_{T-1}}\right) \left( \boldsymbol{\Hat{\epsilon}}_T \right)\right)} \notag \\
+& && \quad \quad \quad \quad \quad \quad  \quad \quad- {\left(\frac{\sqrt{\alpha_{T-2}}\sqrt{1-\alpha_{T-1}}}{\sqrt{\alpha_{T-1}}} - \sqrt{1-\alpha_{T-2}}\right) \left( \boldsymbol{\Hat{\epsilon}}_{T-1} \right)} \notag \\ \notag \\
+& = \; &&\frac{\sqrt{\alpha_{T-2}}}{\sqrt{\alpha_{T}}} \boldsymbol{\Hat{x}}_{T} \notag  - { \sqrt{\alpha_{T-2}} \left(\frac{\sqrt{1-\alpha_{T}}}{\sqrt{\alpha_{T}}} - \frac{\sqrt{1-\alpha_{T-1}}}{\sqrt{\alpha_{T-1}}}\right) \left( \boldsymbol{\epsilon}_0 - \boldsymbol{\delta}_T \right)} \notag \\
+& && \quad \quad \quad \quad - { \sqrt{\alpha_{T-2}} \left(\frac{\sqrt{1-\alpha_{T-1}}}{\sqrt{\alpha_{T-1}}} - \frac{\sqrt{1-\alpha_{T-2}}}{\sqrt{\alpha_{T-2}}}\right) \left( \boldsymbol{\epsilon}_0 - \boldsymbol{\delta}_{T-1} \right)} \tag{41} \label{apdx_eq:27}
+\end{alignat}
+
+
+
+Similarly, for $\boldsymbol{\Hat{x}}_{T-3}$, we have:
+\begin{alignat}{2}
+\boldsymbol{\Hat{x}}_{T-3}  \notag &  = \; && \frac{\sqrt{\alpha_{T-3}}}{\sqrt{\alpha_{T-2}}} \left( \frac{\sqrt{\alpha_{T-2}}}{\sqrt{\alpha_{T-1}}} \left(\frac{\sqrt{\alpha_{T-1}}}{\sqrt{\alpha_{T}}} \boldsymbol{\Hat{x}}_{T} \right. \right. \notag  -  {\left. \left(\frac{\sqrt{\alpha_{T-1}}\sqrt{1-\alpha_{T}}}{\sqrt{\alpha_{T}}} - \sqrt{1-\alpha_{T-1}}\right) \left( \boldsymbol{\Hat{\epsilon}}_T \right)\right)} \notag  \\
+& && \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad  - {\left. \left(\frac{\sqrt{\alpha_{T-2}}\sqrt{1-\alpha_{T-1}}}{\sqrt{\alpha_{T-1}}} - \sqrt{1-\alpha_{T-2}}\right) \left( \boldsymbol{\Hat{\epsilon}}_{T-1} \right) \right)} \notag  \\ & && \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad - {\left(\frac{\sqrt{\alpha_{T-3}}\sqrt{1-\alpha_{T-2}}}{\sqrt{\alpha_{T-2}}} - \sqrt{1-\alpha_{T-3}}\right) \left( \boldsymbol{\Hat{\epsilon}}_{T-2} \right)} \notag  \\ \notag \\
+& = \; && \frac{\sqrt{\alpha_{T-3}}}{\sqrt{\alpha_{T}}} \boldsymbol{\Hat{x}}_{T}   - {\sqrt{\alpha_{T-3}} \left(\frac{\sqrt{1-\alpha_{T}}}{\sqrt{\alpha_{T}}} - \frac{\sqrt{1-\alpha_{T-1}}}{\sqrt{\alpha_{T-1}}} \right) \left( \boldsymbol{\epsilon}_0 - \boldsymbol{\delta}_T \right)} \notag  \\
+& && \quad \quad \quad \quad - {\sqrt{\alpha_{T-3}} \left(\frac{\sqrt{1-\alpha_{T-1}}}{\sqrt{\alpha_{T-1}}} - \frac{\sqrt{1-\alpha_{T-2}}}{\sqrt{\alpha_{T-2}}}\right) \left( \boldsymbol{\epsilon}_0 - \boldsymbol{\delta}_{T-1} \right) } \notag  \\
+& && \quad \quad \quad \quad - {\sqrt{\alpha_{T-3}} \left(\frac{\sqrt{1-\alpha_{T-2}}}{\sqrt{\alpha_{T-2}}} - \frac{\sqrt{1-\alpha_{T-3}}}{\sqrt{\alpha_{T-3}}}\right) \left( \boldsymbol{\epsilon}_0 - \boldsymbol{\delta}_{T-2} \right)}  \tag{42} \label{apdx_eq:28}
+\end{alignat}
+It is obvious that the coefficients of each term exhibit a clear regular pattern related to the step $t$. Following this pattern, we can accordingly get the expression of $\boldsymbol{\Hat{x}}_{t}$ as:
+\begin{alignat}{3}
+% & && \boldsymbol{\Hat{x}}_{0} \\
+&\boldsymbol{\Hat{x}}_{t} &&= \; && \frac{\sqrt{\alpha_{t}}}{\sqrt{\alpha_{T}}} \boldsymbol{\Hat{x}}_{T} \notag - {\sqrt{\alpha_{t}} \left(\frac{\sqrt{1-\alpha_{T}}}{\sqrt{\alpha_{T}}} - \frac{\sqrt{1-\alpha_{T-1}}}{\sqrt{\alpha_{T-1}}} \right) \left( \boldsymbol{\epsilon}_0 - \boldsymbol{\delta}_T \right)} \notag \\
+& && && - {\sqrt{\alpha_{t}} \left(\frac{\sqrt{1-\alpha_{T-1}}}{\sqrt{\alpha_{T-1}}} - \frac{\sqrt{1-\alpha_{T-2}}}{\sqrt{\alpha_{T-2}}}\right) \left( \boldsymbol{\epsilon}_0 - \boldsymbol{\delta}_{T-1} \right) } \notag \\
+& && && \vdots \notag \\
+& && && - {\sqrt{\alpha_{t}} \left(\frac{\sqrt{1-\alpha_{t+2}}}{\sqrt{\alpha_{t+2}}} - \frac{\sqrt{1-\alpha_{t+1}}}{\sqrt{\alpha_{t+1}}}\right) \left( \boldsymbol{\epsilon}_0 - \boldsymbol{\delta}_{t+2} \right) } \notag \\
+& && && -{\sqrt{\alpha_{t}} \left(\frac{\sqrt{1-\alpha_{t+1}}}{\sqrt{\alpha_{t+1}}} - \frac{\sqrt{1-\alpha_{t}}}{\sqrt{\alpha_{t}}}\right) \left( \boldsymbol{\epsilon}_0 - \boldsymbol{\delta}_{t+1} \right)} \tag{43} \label{apdx_eq:29}
+\end{alignat}
+And the final $\boldsymbol{\Hat{x}}_{0}$ can be expressed as: 
+\begin{alignat}{3}
+% & && \boldsymbol{\Hat{x}}_{0} \\
+&\boldsymbol{\Hat{x}}_{0} &&= \; && \frac{\sqrt{\alpha_{0}}}{\sqrt{\alpha_{T}}} \boldsymbol{\Hat{x}}_{T} \notag - {\sqrt{\alpha_{0}} \left(\frac{\sqrt{1-\alpha_{T}}}{\sqrt{\alpha_{T}}} - \frac{\sqrt{1-\alpha_{T-1}}}{\sqrt{\alpha_{T-1}}} \right) \left( \boldsymbol{\epsilon}_0 - \boldsymbol{\delta}_T \right)} \notag \\
+& && && - {\sqrt{\alpha_{0}} \left(\frac{\sqrt{1-\alpha_{T-1}}}{\sqrt{\alpha_{T-1}}} - \frac{\sqrt{1-\alpha_{T-2}}}{\sqrt{\alpha_{T-2}}}\right) \left( \boldsymbol{\epsilon}_0 - \boldsymbol{\delta}_{T-1} \right) } \notag \\
+& && && \vdots \notag \\
+& && && - {\sqrt{\alpha_{0}} \left(\frac{\sqrt{1-\alpha_{2}}}{\sqrt{\alpha_{2}}} - \frac{\sqrt{1-\alpha_{1}}}{\sqrt{\alpha_{1}}}\right) \left( \boldsymbol{\epsilon}_0 - \boldsymbol{\delta}_{2} \right) } \notag \\
+& && && -{\sqrt{\alpha_{0}} \left(\frac{\sqrt{1-\alpha_{1}}}{\sqrt{\alpha_{1}}} - \frac{\sqrt{1-\alpha_{0}}}{\sqrt{\alpha_{0}}}\right) \left( \boldsymbol{\epsilon}_0 - \boldsymbol{\delta}_{1} \right)} \tag{44} \label{apdx_eq:30}
+\end{alignat}
+Note that in $\alpha_0=1$ Eq.~\eqref{apdx_eq:30}, and the coefficients of $\boldsymbol{\epsilon}_0$ can be mostly eliminated. Thus, by defining $\lambda_t$ as:
+\begin{equation}\tag{45}
+    \lambda_{t} = \frac{\sqrt{1-\alpha_{t}}}{\sqrt{\alpha_{t}}} - \frac{\sqrt{1-{\alpha_{t-1}}}}{\sqrt{\alpha_{t-1}}},
+\label{apdx_eq:31}
+\end{equation}
+we can rearrange Eq.~\eqref{apdx_eq:30} into:
+\begin{alignat}{3} \notag
+&\boldsymbol{\Hat{x}}_{0}\; & = \; & \frac{\boldsymbol{\Hat{x}}_{T} - \sqrt{1-\alpha_{T}} \boldsymbol{\epsilon}_0}{\sqrt{\alpha_{T}}} + \sum_{t=1}^{T}\lambda_{t}\boldsymbol{\delta}_t \\
+& & = \; & \frac{\boldsymbol{\bar{x}}_{T} - \sqrt{1-\alpha_{T}} \boldsymbol{\epsilon}_0}{\sqrt{\alpha_{T}}} + \sum_{t=1}^{T}\lambda_{t}\boldsymbol{\delta}_t  \notag \\
+& & = \; & \boldsymbol{{x}}_{ori} + \sum_{t=1}^{T}\lambda_{t}\boldsymbol{\delta}_t  \tag{46}
+\label{apdx_eq:32}
+\end{alignat}
+where $\boldsymbol{\Hat{x}}_{0}$ is the final output of the diffusing process and $\boldsymbol{{x}}_{adv} = \boldsymbol{\Hat{x}}_{0}$. This concludes the proof of Proposition 1.
+\end{proof}
+
+\subsection{Proof of Proposition 2}  \label{app:B4}
+Finally, we prove Proposition 2 about the validity and convergence of the approximation $\boldsymbol{x}_{adv} \approx \boldsymbol{\Hat{x}}_t^0$.
+\begin{proposition}
+\label{prop2}
+Under the conditions of Theorem 1 and Proposition 1, the upper bound on the error of the approximation in Eq.~\eqref{apdx_eq:8} can be expressed as
+    \begin{equation}\tag{47}
+        \left\|\boldsymbol{x}_{adv} - \boldsymbol{\hat{x}}_{t}^{0}\right\|_\infty \leq \;2 \cdot \frac{\sqrt{1 - \alpha_t}}{\sqrt{\alpha_t}} \cdot \frac{\sqrt{\alpha_T}}{\sqrt{1 - \alpha_T}}.
+    \label{apdx_eq:33}
+    \end{equation}
+\end{proposition}
+
+\begin{proof}
+With Eq.~\eqref{apdx_eq:29} and the definitions of Proposition 1, $\boldsymbol{\hat{x}}_{t}$ and $\boldsymbol{\hat{x}}_{t}^0$ can be written as:
+\begin{equation}
+    \tag{48}
+    \label{apdx_eq:34}
+    \boldsymbol{\hat{x}}_{t} = \frac{\sqrt{\alpha_t}}{\sqrt{\alpha_T}}\boldsymbol{\hat{x}}_{T} - \sqrt{\alpha_t}\sum_{k=t+1}^{T}\lambda_k\left(\boldsymbol{\epsilon}_0 - \boldsymbol{\delta}_k\right),
+\end{equation}
+and 
+\begin{equation}
+    \tag{49}
+    \label{apdx_eq:35}
+    \boldsymbol{\hat{x}}_{t}^0 = \frac{\boldsymbol{\hat{x}}_t-\sqrt{1-\alpha_t}\boldsymbol{\hat{\epsilon}}_{t+1}}{\sqrt{\alpha_t}} =
+    \frac{1}{\sqrt{\alpha_T}}\boldsymbol{\hat{x}}_{T} - \sum_{k=t+1}^{T}\lambda_k\left(\boldsymbol{\epsilon}_0 - \boldsymbol{\delta}_k\right) - \frac{\sqrt{1-\alpha_t}}{\sqrt{\alpha_t}}\left( \boldsymbol{\epsilon}_0 - \boldsymbol{\delta}_{t+1} \right).
+\end{equation}
+For $\boldsymbol{{x}}_{adv}$, we have:
+\begin{equation}
+    \tag{50}
+    \label{apdx_eq:36}
+    \boldsymbol{{x}}_{adv} = \boldsymbol{\hat{x}}_{0} = \frac{\boldsymbol{\Hat{x}}_{T} - \sqrt{1-\alpha_{T}} \boldsymbol{\epsilon}_0}{\sqrt{\alpha_{T}}} + \sum_{t=1}^{T}\lambda_{t}\boldsymbol{\delta}_t
+\end{equation}
+With Eq.~\eqref{apdx_eq:35} and Eq.~\eqref{apdx_eq:36}, we can obtain:
+\begin{equation}
+    \tag{51}
+    \label{apdx_eq:37}
+    \boldsymbol{{x}}_{adv} - \boldsymbol{\hat{x}}_{t}^0 = \sum_{k=1}^{t}\lambda_{k}\boldsymbol{\delta}_k - \frac{\sqrt{1-\alpha_t}}{\sqrt{\alpha_t}}\boldsymbol{\delta}_{t+1}
+\end{equation}
+Thus, we have:
+\begin{alignat}{2}
+\left\|\boldsymbol{{x}}_{adv} - \boldsymbol{\hat{x}}_{t}^0\right\|_\infty \notag 
+&= \; && \left\|\sum_{k=1}^{t}\lambda_{k}\boldsymbol{\delta}_k - \frac{\sqrt{1-\alpha_t}}{\sqrt{\alpha_t}}\boldsymbol{\delta}_{t+1} \right\|_\infty \notag \\
+&\leq \; && \left\|\sum_{k=1}^{t}\lambda_{k}\boldsymbol{\delta}_k\right\|_\infty + \left\|\frac{\sqrt{1-\alpha_t}}{\sqrt{\alpha_t}}\boldsymbol{\delta}_{t+1} \right\|_\infty \notag \\
+&= \; && \sum_{k=1}^{t}\lambda_{k}\left\|\boldsymbol{\delta}_k\right\|_\infty + \frac{\sqrt{1-\alpha_t}}{\sqrt{\alpha_t}}\left\|\boldsymbol{\delta}_{t+1} \right\|_\infty \notag \\
+&\leq \; && \sum_{k=1}^{t}\left(\lambda_{k}\cdot\frac{\sqrt{\alpha_T}}{\sqrt{1 - \alpha_T}}\xi\right) + \frac{\sqrt{1-\alpha_t}}{\sqrt{\alpha_t}}\frac{\sqrt{\alpha_T}}{\sqrt{1 - \alpha_T}}\xi \notag \\
+&= \; && \left(\sum_{k=1}^{t}\lambda_{k}\right)\cdot\frac{\sqrt{\alpha_T}}{\sqrt{1 - \alpha_T}}\xi + \frac{\sqrt{1-\alpha_t}}{\sqrt{\alpha_t}}\frac{\sqrt{\alpha_T}}{\sqrt{1 - \alpha_T}}\xi \notag \\
+&= \; && \left(\frac{\sqrt{1-\alpha_t}}{\sqrt{\alpha_t}} - \frac{\sqrt{1-\alpha_0}}{\sqrt{\alpha_0}}\right)\cdot\frac{\sqrt{\alpha_T}}{\sqrt{1 - \alpha_T}}\xi + \frac{\sqrt{1-\alpha_t}}{\sqrt{\alpha_t}}\frac{\sqrt{\alpha_T}}{\sqrt{1 - \alpha_T}}\xi \notag \\
+&= \; && 2\cdot\frac{\sqrt{1-\alpha_t}}{\sqrt{\alpha_t}}\frac{\sqrt{\alpha_T}}{\sqrt{1 - \alpha_T}}\xi \tag{52} \label{apdx_eq:38}
+\end{alignat}
+This concludes the proof of Proposition 2.
+\end{proof}
+
+
+\section{Algorithm of AdvAD-X} \label{app:Algo}
+\begin{figure}[h]
+\centering
+\vspace{-0.5cm}
+\begin{minipage}{0.9\linewidth}
+\begin{algorithm}[H]
+% \begin{algorithm}[t]
+    \footnotesize
+    \caption{\textbf{AdvAD-X}}
+    \label{alg:algorithm}
+    \textbf{Input}: Attacked model $f(\cdot)$, image $\boldsymbol{x}_{ori}$ with label $y_{gt}$, budget $\xi$, step $T$;\\
+    \textbf{Output}: Adversarial example $\boldsymbol{x}_{adv}$
+    % \footnotesize
+    \begin{algorithmic}[1] %[1] enables line numbers
+        \STATE Initialize pre-defined diffusion coefficients $\alpha_{0:T}\in(0,1]^{T+1}$;
+        \STATE Initialize $\boldsymbol{\epsilon}_{0} \sim \mathcal{N}(\boldsymbol{0}, \boldsymbol{\mathit{I}})$; \COMMENT{Initialize and fix diffusion noise $\boldsymbol{\epsilon}_{0}$.}
+        \STATE Transform the range of $\boldsymbol{x}_{ori}$ to [-1, 1]; \COMMENT{Align with data range of diffusion process.}
+        \STATE Calculate $\boldsymbol{\Bar{x}}_{T}$ via Eq.~\eqref{maineq:4}; \COMMENT{Forward process of adding noise $\boldsymbol{\epsilon}_{0}$ to $\boldsymbol{x}_{ori}$.}
+        \STATE Set $\boldsymbol{\Hat{x}}_{T}:=\boldsymbol{\Bar{x}}_{T}$, $\boldsymbol{\Hat{\epsilon}}_{T+1}:=\boldsymbol{\epsilon}_{0}$; \COMMENT{Non-parametric diffusion process.}
+        \STATE Calculate mask $\boldsymbol{m}$ of $\boldsymbol{x}_{ori}$ using GradCAM; \COMMENT{Mask $\boldsymbol{m}$ for the CA strategy.}
+        \FOR{$t=T$ to $1$} 
+            \STATE Calculate $\boldsymbol{\Hat{x}}_{t}^{0}$ via Eq.~\eqref{maineq:7}; \COMMENT{Approximation of $\boldsymbol{\Hat{x}}_t^0 \approx \boldsymbol{x}_{adv}$.}
+            \STATE Transform the range of $\boldsymbol{\Hat{x}}_t^0$ to [0, 255]; \COMMENT{Align with data range of image.}
+            \STATE \textit{// DGI strategy for performing AMG and PC dynamically.}
+            \IF {$f(\boldsymbol{\Hat{x}}_{t}^{0}) == y_{gt}$}
+                \STATE Calculate $\boldsymbol{\Hat{\epsilon}}_{t}'$ using  $\boldsymbol{m}$ with AMG via Eq.~\eqref{maineq:14}; \COMMENT{AMG module and CA strategy.}
+                \STATE Calculate $\boldsymbol{\Hat{\epsilon}}_{t}$ with PC  via Eq.~\eqref{maineq:10}; \COMMENT{Same PC module as AdvAD. \,}
+            \ELSE
+                \STATE Set $\boldsymbol{\Hat{\epsilon}}_{t}=\boldsymbol{\epsilon}_{0}$; \COMMENT{Skip the operations of current step.}
+            \ENDIF
+            % \ENDIF
+            \STATE Calculate $\boldsymbol{\Hat{x}}_{t-1}$ via Eq.~\eqref{maineq:11}; \COMMENT{One step backward from $t$ to $t-1$.\;}
+        \ENDFOR
+        \STATE Transform the range of $\boldsymbol{\Hat{x}}_{0}$ to [0, 255]; \COMMENT{Endpoint of the process.}
+        \STATE \textcolor{blue}{\textbf{return} $\boldsymbol{x}_{adv} = \boldsymbol{\Hat{x}}_{0}$;} \COMMENT{\textcolor{blue}{Directly return $\boldsymbol{x}_{adv}$ in raw floating-point data for the ideal scenario.}}
+    \end{algorithmic}
+\label{alg:2}
+\end{algorithm}
+\end{minipage}
+\end{figure}
+
+% \newpage
+\section{Additional Experiments}  \label{app:C}
+\subsection{Additional Quantitative Comparisons} \label{app:C1}
+Table~\ref{supp_table} reports the untargeted attack performance and imperceptibility of ten methods on Vgg-19, MobileNet-V2, and WideResNet-50 models. The results indicate that the proposed AdvAD and AdvAD-X, leveraging a novel modeling framework, consistently achieve superior performance. These findings further underscore the effectiveness of the proposed approach.
+\begin{table*}[!h]
+    \caption{Additional results of untargeted white-box attack success rate (ASR) and other evaluation metrics for imperceptibility when employing different attacks and attacked models. The reported running times are obtained using a RTX 3090 GPU on a same machine. \textcolor{blue}{$\boldsymbol{\dag}$} and \textcolor{blue}{blue} mean the results of AdvAD-X are obtained with floating-point data type in the ideal scenario as described in Sec 3.4.}
+    \label{tab:tab1}
+    \centering
+    {
+    \setlength{\tabcolsep}{3.2pt}
+       \renewcommand{\arraystretch}{1.25}
+    \scriptsize
+    \renewcommand{\arraystretch}{0.7}
+    \begin{tabular}{cp{2.2cm}ccccccccc}
+       % \renewcommand{\arraystretch}{1.5}
+        \toprule
+        \makecell{Model} & Attack Method    & Time (s) $\downarrow$  & ASR ($\%$) $\uparrow$ & $l_\infty$ $\downarrow$   & $l_2$ $\downarrow$     & \;PSNR $\uparrow$  & \;SSIM $\uparrow$   & \;FID $\downarrow$   & \;LPIPS $\downarrow$  & \;MUSIQ $\uparrow$   \\
+        \midrule
+        \multirow{10}{*}{Vgg-19}  
+                                    & PGD           & 47     & \textbf{100.0}     & {0.031}     & 8.47      & 33.23     & 0.8771   & {43.15}   & {0.0508}   & 53.51 \\
+                                    & NCF           & 3288  & 92.8      & 0.794     & 75.21     & 14.77     & 0.6391   & 57.45   & 0.3077   & 49.27 \\
+                                    & ACA     & 83123  & 93.4      & 0.832     & 51.22     & 18.22     & 0.5767   & 66.78   & 0.3277   & 55.61 \\
+                                    & DiffAttack    & 34163  & 97.0      & 0.769     & 31.92     & 22.23     & 0.6632   & 59.08   & 0.1235   & \textbf{57.22} \\
+                                    & DiffPGD & 5770   & 93.9      & 0.246     & 11.46     & 30.93     & {0.8888}   & 20.72   & {0.0317}   & 55.23 \\
+                                    & AdvDrop       & 268    & 97.5      & {0.062}     & {3.23}      & 41.79     & 0.9867   & 5.90    & 0.0061   & 54.93 \\
+                                    & PerC-AL       & 8671   & \textbf{100.0}     & 0.142     & \underline{2.12}      & \underline{45.92}     & 0.9885   & 10.78   & 0.0028   & 55.91 \\
+                                    & SSAH  & 948    & 85.5      & \underline{0.027}     & 2.35      & 44.62     & \underline{0.9920}   & \underline{4.25}    & \underline{0.0017}   & 55.45 \\
+                                     \cmidrule(lr){2-11}
+                                    & AdvAD (ours)       & {4370}   & \underline{99.5}      & \textbf{0.009}     & \textbf{1.05}      & \textbf{52.13}     & \textbf{0.9979}   & \textbf{2.62}    & \textbf{0.0005}   & \underline{56.31} \\
+                                    & $\text{AdvAD-X}^{\textcolor{blue}{\boldsymbol{\dag}}} \text{(ours)}$ & {1967}  & \textcolor{blue}{\textbf{99.9}}      & \textcolor{blue}{\textbf{0.001}}     & \textcolor{blue}{\textbf{0.32}}      & \textcolor{blue}{\textbf{64.76}}     & \textcolor{blue}{\textbf{0.9997}}   & \textcolor{blue}{\textbf{0.27}}    & \textcolor{blue}{\textbf{0.0001}}   & \textcolor{blue}{\textbf{56.56}} \\
+        \bottomrule
+             \multirow{10}{*}{MobileNet-V2}  
+                                    & PGD           & {10}     & \textbf{99.9}     & {0.031}     & 8.29      & 33.41     & 0.8803   & 34.57   & 0.0500   & {52.00} \\
+                                    & NCF           & 2503  & 92.5     & 0.784     & 76.02     & 14.69     & 0.6373   & 56.23   & 0.3090   & 49.37 \\
+                                    & ACA     & 83118  & 92.8     & 0.835     & 50.70     & 18.30     & 0.5786   & 64.90   & 0.3254   & \underline{56.17} \\
+                                    & DiffAttack    & 34723  & {98.2}     & 0.739     & 30.51     & 22.61     & 0.6733   & 55.77   & 0.1143   & 56.01 \\
+                                    & DiffPGD & 5941   & 92.6     & {0.246}     & 11.43     & 30.95     & {0.8887}   & {19.22}   & {0.0309}   & 54.87 \\
+                                    & AdvDrop       & 116    & 97.7     & {0.063}     & {3.16}      & {41.94}     & 0.9873   & {4.88}    & 0.0064   & 54.91 \\
+                                    & PerC-AL       & 3187   & 99.8     & 0.118     & \underline{2.16}      & \underline{45.67}     & 0.9879   & 8.77    & 0.0032   & 55.59 \\
+                                    & SSAH  & 265    & 97.8     & \underline{0.026}     & 2.18      & 45.24     & \underline{0.9930}   & \underline{2.94}    & \underline{0.0016}   & 55.78 \\
+                                     \cmidrule(lr){2-11}
+                                    & AdvAD (ours)       & {992}    & \underline{99.6}     & \textbf{0.008}     & \textbf{0.94}      & \textbf{53.07}     & \textbf{0.9982}   & \textbf{1.46}    & \textbf{0.0004}   & \textbf{56.37} \\
+                                    & $\text{AdvAD-X}^{\textcolor{blue}{\boldsymbol{\dag}}} \text{(ours)}$ & {388}  & \textcolor{blue}{\textbf{100.0}}   & \textcolor{blue}{\textbf{0.001}}   & \textcolor{blue}{\textbf{0.24}}    & \textcolor{blue}{\textbf{66.8}}    & \textcolor{blue}{\textbf{0.9998}}   & \textcolor{blue}{\textbf{0.11}}    & \textcolor{blue}{\textbf{0.0001}}   & \textcolor{blue}{\textbf{56.59}} \\
+        \bottomrule
+           \multirow{10}{*}{WideResNet-50}  
+                                    & PGD           & 42     & {96.0}     & {0.031}     & {8.2}       & 33.5      & 0.8830   & 35.594    & 0.0521   & 52.43 \\
+                                    & NCF           & 2971  & 89.7     & 0.777     & 74.05     & 14.98     & 0.6473   & 56.01   & 0.2965   & 49.45 \\
+                                    & ACA     & 84163  & 88.0     & 0.838     & 53.17     & 17.89     & 0.5619   & 68.27   & 0.3442   & 55.47 \\
+                                    & DiffAttack    & 34072  & 95.1     & 0.747     & 30.61     & 22.60     & 0.6737   & 54.71   & 0.1137   & 55.68 \\
+                                    & DiffPGD & 5965   & 91.4     & {0.245}     & {11.44}     & 30.95     & 0.8905   & 21.24   & {0.0317}   & 55.16 \\
+                                    & AdvDrop       & 353    & {96.5}     & 0.062     & 3.28      & {41.64}     & {0.9863}   & {6.21}    & {0.0060}   & 54.917 \\
+                                    & PerC-AL       & 6655   & \underline{97.8}     & {0.133}     & \underline{1.91}      & \underline{46.80}     & {0.9906}   & 9.28    & {0.0025}   & \underline{56.07} \\
+                                    & SSAH  & 738   & 95.7     & \underline{0.028}     & 2.21      & 45.21     & \underline{0.9933}   & \underline{3.95}    & \underline{0.0015}   & 55.88 \\
+                                    \cmidrule(lr){2-11}
+                                    & AdvAD (ours)       & 3845   & \textbf{99.9}     & \textbf{0.010}     & \textbf{1.10}      & \textbf{51.54}     & \textbf{0.9979}   & \textbf{2.84}    & \textbf{0.0006}   & \textbf{56.33} \\
+                                    & $\text{AdvAD-X}^{\textcolor{blue}{\boldsymbol{\dag}}} \text{(ours)}$ & 1477  & \textcolor{blue}{\textbf{100.0}}   & \textcolor{blue}{\textbf{0.002}}   & \textcolor{blue}{\textbf{0.38}}    & \textcolor{blue}{\textbf{62.54}}    & \textcolor{blue}{\textbf{0.9996}}   & \textcolor{blue}{\textbf{0.33}}    & \textcolor{blue}{\textbf{0.0001}}   & \textcolor{blue}{\textbf{56.58}} \\
+        \bottomrule
+    \end{tabular}}
+    \label{supp_table}
+    %\vspace{-1.5em}
+    % \vspace{-0.25cm}
+    % \vspace{+1.5cm}
+\end{table*}
+
+
+\subsection{Additional Visualizations} \label{app:C2}
+More visualizations of adversarial examples and perturbations under the attacked model of ResNet-50 are displayed in Figure \ref{fig:supp}. The visualizations provide a clear insight into how different methods accomplish imperceptible attacks. Our AdvAD and AdvAD-X methods execute imperceptible attacks with lower overall intensity of perturbations. Notably, for images with salient objects (e.g., the bridge in the second examples), the perturbation intensity of AdvAD also naturally increases in the object regions during the gradient-based adversarial guidance calculation, while AdvAD-X, equipped with the dynamic strategy, still shows uniform and lower overall perturbation intensity.
+
+
+\begin{figure*}[htbp]
+\centering
+\begin{subfigure}
+    \centering
+    \includegraphics[width=1\textwidth]{figures/app_vis_new_1.pdf}
+    \label{fig:subfig1}
+    \vspace{-0.5cm}
+\end{subfigure}
+\begin{subfigure}
+    \centering
+    \includegraphics[width=1\textwidth]{figures/app_vis_new_2.pdf}
+    \label{fig:subfig2}
+    \vspace{-0.5cm}
+\end{subfigure}
+\begin{subfigure}
+    \centering
+    \includegraphics[width=1\textwidth]{figures/app_vis_new_3.pdf}
+    \label{fig:subfig3}
+    \vspace{-0.5cm}
+\end{subfigure}
+\begin{subfigure}
+    \centering
+    \includegraphics[width=1\textwidth]{figures/app_vis_new_4.pdf}
+    \label{fig:subfig4}
+    \vspace{-0.5cm}
+\end{subfigure}
+\begin{subfigure}
+    \centering
+    \includegraphics[width=1\textwidth]{figures/app_vis_new_5.pdf}
+    \label{fig:subfig5}
+    \vspace{-0.5cm}
+\end{subfigure}
+\begin{subfigure}
+    \centering
+    \includegraphics[width=1\textwidth]{figures/app_vis_new_6.pdf}
+    \label{fig:subfig6}
+    \vspace{-0.5cm}
+\end{subfigure}
+\caption{Additional imperceptible adversarial examples and corresponding perturbations generated by various methods.Perturbations are amplified and shown for the convenience of observation. Please zoom in to observe the details of the images.}
+\label{fig:supp}
+\end{figure*}
+
+% \newpage
+
+
+\subsection{Ablation Study of AdvAD-X}  \label{app:C3}
+
+From AdvAD to AdvAD-X, Table~\ref{tab:tab6} shows the effect of the two strategies of CA and DGI. It can be observed that adding CA in each step of AdvAD slightly improves impercepbility while maintaining the attack success rate of 100\%. However, the DGI strategy significantly reduces the iterations of performing AMG and PC from 1000 to 3.97, which indicates that our framework theoretically only requires very little injected  adversarial guidance to successfully perform attacks, proving the performance of our modeling method as well as the effectiveness of the adversarial guidance. In AdvAD-X, which finally uses both CA and DGI, the guidance strength in each step is further suppressed, resulting in a slight increase in the total number of iterations required adaptively, but the final perturbation strength continues to decrease to a more extreme level.
+
+
+% \begin{wrapfigure}{r}{0.5\textwidth}  % 'r' 表示右侧，0.5\textwidth 表示宽度
+\begin{table}[h]
+    \caption{Ablation study of the proposed CAM Assistance (CA) and Dynamic Gradient Injection (DGI) strategies in AdvAD-X. As marked with \textcolor{blue}{$\boldsymbol{\dag}$}, all the results in this experiment are obtained with attacking normal ResNet-50 using the floating-point raw data to align with the setting of AdvAD-X. The term of Iter. indicates the number of iterations that the AMG and PC are performed.}
+    \vspace{0.2cm}
+    \label{tab:tab6}
+    \renewcommand{\arraystretch}{0.7}
+    \centering
+    {
+    \setlength{\tabcolsep}{5pt}
+    \scriptsize
+    \begin{tabular}{lccccccc}
+        \toprule
+        Attack   & Iter.    & ASR$\uparrow$   & $l_2$$\downarrow$     & PSNR$\uparrow$      & SSIM$\uparrow$      & FID$\downarrow$            \\
+        \midrule
+        $\text{AdvAD}^{\textcolor{blue}{\boldsymbol{\dag}}}$     & 1000      & \textbf{100.0}     & 0.97      & 52.60     & 0.9984    & 2.3894           \\
+        $\text{AdvAD+CA}^{\textcolor{blue}{\boldsymbol{\dag}}}$  & 1000      & \textbf{100.0}     & 0.89      & 53.27     & 0.9987    & 2.2033          \\
+        $\text{AdvAD+DGI}^{\textcolor{blue}{\boldsymbol{\dag}}}$ & \textbf{3.97}      & \textbf{100.0}     & \textbf{0.34}      & 63.60     & \textbf{0.9997}    & 0.2317         \\
+        $\text{AdvAD-X}^{\textcolor{blue}{\boldsymbol{\dag}}}$   & 4.05      & \textbf{100.0}     & \textbf{0.34}      & \textbf{63.62}     & \textbf{0.9997}    & \textbf{0.2301}         \\
+        \bottomrule
+    \end{tabular}}
+    % \vspace{-0.3cm}
+\end{table}
+% \end{wrapfigure}
+
+
+\subsection{Additional Discussions}  \label{app:C4}
+
+\textbf{Discussion on Proposition 1.} In the previous sections, we obtained Proposition 1 through extensive derivations, which reformulates the AdvAD attack process using $\lambda_t$ and $\boldsymbol{\delta}_t$. While this formulation does not represent the actual attack procedure, it enables post-analysis after the completion of attacks. In Proposition 1, although the upper bound of $\boldsymbol{\delta}_t$ is theoretically independent of the step $t$, both $\boldsymbol{\delta}_t$ and the coefficient $\lambda_t$ gradually decrease with $t$ in quantitative results of Figure~\ref{fig:5} due to the unique properties of AdvAD. Thus, it emerges a hypothesis that whether modifying the coefficient of gradient term of traditional attacks like PGD to decay incrementally could also achieve the imperceptibility. To isolate the impact of this hypothesis, we conduct experiments with a modified version of PGD with step size decay as:
+\begin{equation}
+    \tag{53}
+    \label{apdx_eq:39}
+    \boldsymbol{x}_{t-1} = \Pi_\xi\{\boldsymbol{x}_{t} + \lambda_t \cdot \eta \cdot \text{sign}(\nabla_{\boldsymbol{x}_t}\mathcal L_\text{CE}(f(\boldsymbol{x}_t), y_{gt}))\},
+\end{equation}
+where $\lambda_t$ is the same coefficient as in Eq.~\eqref{apdx_eq:25} of Proposition 1 for alignment, and $\eta$ is a fixed small factor for the initial step size.  We have searched a lot of values of $\eta$ to determine the optimal range, and the results of attacking three models with different architectures under three typical values of $\eta$ are presented in Table~\ref{tab:tab8}.
+
+\begin{table*}[h]
+ \caption{\footnotesize Results of PGD + step size decay strategy and the proposed AdvAD.}
+ \label{tab:tab8}
+ \renewcommand{\arraystretch}{0.7}
+ \setlength{\tabcolsep}{4pt}
+ \centering{
+ \scriptsize
+\begin{tabular}{clccccccc}
+    \toprule 
+    \makecell{Model}    & Attack Method & Param. & Time & ASR & $l_{\infty}$ &  $l_2$ & PSNR $\uparrow$  & SSIM $\uparrow$  \\
+    \midrule
+    \multirow{5}{*}{ResNet-50} 
+    & PGD + Step size decay in Eq.~\eqref{apdx_eq:39}, $\eta$ = 5e-5 & \multirow{5}{*}{\makecell{$T$=1000, \\$\xi$=8/255}} & 2272 & \textbf{99.9} & 0.016 & 1.80 & 46.75 & 0.9947 \\
+    & PGD + Step size decay in Eq.~\eqref{apdx_eq:39}, $\eta$ = 3e-5 & & 2228 & 99.0 & \textbf{0.008} & \underline{1.17} & \underline{50.41} & \underline{0.9974} \\
+    & PGD + Step size decay in Eq.~\eqref{apdx_eq:39}, $\eta$ = 1e-5 & & 2306 & \textcolor{red}{7.1} & - & - & - & - \\
+    \cmidrule(lr){2-2} 
+    & AdvAD (ours) & & 2201 & \underline{99.7} & \underline{0.010} & \textbf{1.06} & \textbf{51.84} & \textbf{0.998} \\
+    \midrule
+    \multirow{5}{*}{Swin-Base} 
+    & PGD + Step size decay in Eq.~\eqref{apdx_eq:39}, $\eta$ = 5e-5 & \multirow{5}{*}{\makecell{$T$=1000, \\$\xi$=8/255}}  & 8725 & \underline{98.0} & \underline{0.008} & 1.28 & 49.88 & 0.9975 \\
+    & PGD + Step size decay in Eq.~\eqref{apdx_eq:39}, $\eta$ = 3e-5 & & 8728 & \textcolor{orange}{89.1} & \textbf{0.004} & \textbf{0.94} & \textbf{52.47} & \textbf{0.9985} \\
+    & PGD + Step size decay in Eq.~\eqref{apdx_eq:39}, $\eta$ = 1e-5 & & 8715 & \textcolor{red}{3.9 } & - & - & - & - \\
+     \cmidrule(lr){2-2} 
+    & AdvAD (ours) & & 9729 & \textbf{100} & 0.013 & \underline{1.19} & \underline{50.57} & \underline{0.9978}  \\
+    \midrule
+    \multirow{5}{*}{VisionMamba-Small}
+    & PGD + Step size decay in Eq.~\eqref{apdx_eq:39}, $\eta$ = 5e-5 & \multirow{5}{*}{\makecell{$T$=1000, \\$\xi$=8/255}} & 6350 & \underline{89.2} & \underline{0.008} & 1.63 & 47.76 & 0.9959 \\
+    & PGD + Step size decay in Eq.~\eqref{apdx_eq:39}, $\eta$ = 3e-5 & & 6393 & \textcolor{orange}{78.3} & \textbf{0.004} & \textbf{1.10} & \textbf{51.05} & \textbf{0.9979} \\
+    & PGD + Step size decay in Eq.~\eqref{apdx_eq:39}, $\eta$ = 1e-5 & & 6348 & \textcolor{red}{2.5} & - & - & - & - \\
+     \cmidrule(lr){2-2} 
+    & AdvAD (ours) & & 6154 & \textbf{99.7} & 0.016 & \underline{1.62} & \underline{47.94} & \underline{0.9960} \\
+ \bottomrule
+    \end{tabular}}
+    % \vspace{-0.5cm}
+\end{table*}
+
+It can be observed that for PGD with this strategy, the ASR is clearly proportional to $\eta$, the imperceptibility is inversely proportional to $\eta$. However, regardless of how $\eta$ is adjusted, this strategy can not simultaneously match AdvAD in both ASR and imperceptibility. Firstly, for $\eta$ = 5e-5, when attacking VisionMamba, ASR of this strategy is 10.5$\%$ lower than AdvAD with close PSNR, and the strategy has a 0.2$\%$ higher ASR but a 5.09 dB lower PSNR for ResNet50. For $\eta$ = 3e-5, the ASR against VisionMamba and Swin further degrade, being 10.9$\%$ and 21.4$\%$ lower than AdvAD, respectively. Finally, for $\eta$ = 1e-5, the modified PGD with step size decay fails to attack all the models. Nevertheless, although this step size decay strategy performs worse than our AdvAD, it indeed enhances the imperceptibility of attacks compared to the original PGD in some cases, which further validates our motivation and modeling approach. This is because, while this strategy follows a completely different technical route than AdvAD, it similarly uses subtler perturbations to progressively push adversarial examples closer to the model's decision boundary. To this end, we leave further research on the potential of this strategy to future work.
+
+
+\textbf{Limitation.} As the primary focus of AdvAD is the imperceptibility, although it achieves better transferability at lower perturbation strength compared with other restricted imperceptible attacks, its transferability is inevitably weaker than other black-box attack methods that operate in larger perturbation spaces and are specifically designed for transferability (like the unrestricted ones). However, the proposed AdvAD is essentially a general attack paradigm with a novel modeling approach and a solid theoretical foundation. By relaxing the constraint of perturbation strength and incorporating enhanced designs for the transferability into the proposed framework of non-parametric diffusion process, AdvAD also has significant potential to be modified into a specific black-box attack, and we also leave this aspect for future research.
+
+\newpage
+\section*{NeurIPS Paper Checklist}
+
+
+\begin{enumerate}
+
+\item {\bf Claims}
+    \item[] Question: Do the main claims made in the abstract and introduction accurately reflect the paper's contributions and scope?
+    \item[] Answer: \answerYes{} % Replace by \answerYes{}, \answerNo{}, or \answerNA{}.
+    \item[] Justification: We present the motivation, innovation, overview of methods, experimental performance and the main contributions of our paper in the abstract and introduction. These claims are further explained and verified in Sec. 3 and Sec. 4, and detailed proofs are given in Appendix.
+    \item[] Guidelines:
+    \begin{itemize}
+        \item The answer NA means that the abstract and introduction do not include the claims made in the paper.
+        \item The abstract and/or introduction should clearly state the claims made, including the contributions made in the paper and important assumptions and limitations. A No or NA answer to this question will not be perceived well by the reviewers. 
+        \item The claims made should match theoretical and experimental results, and reflect how much the results can be expected to generalize to other settings. 
+        \item It is fine to include aspirational goals as motivation as long as it is clear that these goals are not attained by the paper. 
+    \end{itemize}
+
+\item {\bf Limitations}
+    \item[] Question: Does the paper discuss the limitations of the work performed by the authors?
+    \item[] Answer: \answerYes{} % Replace by \answerYes{}, \answerNo{}, or \answerNA{}.
+    \item[] Justification: For the proposed AdvAD that mainly focuses on the imperceptibility, we point that there is a trade-off between the imperceptibility and transferability for the restricted attacks. The relevant discussions and experimental results are given in Sec. 3.4, Sec. 4.3, and Appendix D.4. Additionally, for the proposed AdvAD-X, although it shows amazing performance under an ideal scenario using raw floating-point data for attacking and brings theoretical value, the very small floating-point perturbations will be easily erased by the quantization process when the image is actually stored.
+    \item[] Guidelines:
+    \begin{itemize}
+        \item The answer NA means that the paper has no limitation while the answer No means that the paper has limitations, but those are not discussed in the paper. 
+        \item The authors are encouraged to create a separate "Limitations" section in their paper.
+        \item The paper should point out any strong assumptions and how robust the results are to violations of these assumptions (e.g., independence assumptions, noiseless settings, model well-specification, asymptotic approximations only holding locally). The authors should reflect on how these assumptions might be violated in practice and what the implications would be.
+        \item The authors should reflect on the scope of the claims made, e.g., if the approach was only tested on a few datasets or with a few runs. In general, empirical results often depend on implicit assumptions, which should be articulated.
+        \item The authors should reflect on the factors that influence the performance of the approach. For example, a facial recognition algorithm may perform poorly when image resolution is low or images are taken in low lighting. Or a speech-to-text system might not be used reliably to provide closed captions for online lectures because it fails to handle technical jargon.
+        \item The authors should discuss the computational efficiency of the proposed algorithms and how they scale with dataset size.
+        \item If applicable, the authors should discuss possible limitations of their approach to address problems of privacy and fairness.
+        \item While the authors might fear that complete honesty about limitations might be used by reviewers as grounds for rejection, a worse outcome might be that reviewers discover limitations that aren't acknowledged in the paper. The authors should use their best judgment and recognize that individual actions in favor of transparency play an important role in developing norms that preserve the integrity of the community. Reviewers will be specifically instructed to not penalize honesty concerning limitations.
+    \end{itemize}
+
+\item {\bf Theory Assumptions and Proofs}
+    \item[] Question: For each theoretical result, does the paper provide the full set of assumptions and a complete (and correct) proof?
+    \item[] Answer: \answerYes{} % Replace by \answerYes{}, \answerNo{}, or \answerNA{}.
+    \item[] Justification: The proposed attack method is built on a solid theoretical foundation, which is derived from the derivation of the diffusion models. The specific methods and theoretical properties are introduced in detail in Sec. 3, and the detailed proofs of the proposed theorem and two propositions are given in Appendix.
+    \item[] Guidelines:
+    \begin{itemize}
+        \item The answer NA means that the paper does not include theoretical results. 
+        \item All the theorems, formulas, and proofs in the paper should be numbered and cross-referenced.
+        \item All assumptions should be clearly stated or referenced in the statement of any theorems.
+        \item The proofs can either appear in the main paper or the supplemental material, but if they appear in the supplemental material, the authors are encouraged to provide a short proof sketch to provide intuition. 
+        \item Inversely, any informal proof provided in the core of the paper should be complemented by formal proofs provided in appendix or supplemental material.
+        \item Theorems and Lemmas that the proof relies upon should be properly referenced. 
+    \end{itemize}
+
+    \item {\bf Experimental Result Reproducibility}
+    \item[] Question: Does the paper fully disclose all the information needed to reproduce the main experimental results of the paper to the extent that it affects the main claims and/or conclusions of the paper (regardless of whether the code and data are provided or not)?
+    \item[] Answer: \answerYes{} % Replace by \answerYes{}, \answerNo{}, or \answerNA{}.
+    \item[] Justification: We present all the formulas, calculation processes, algorithms, and hyperparameters of the proposed methods in detail. And we have tested that by fixing the random seed, our method can produce consistent results with the same input on our machine, providing good reproducibility.
+    \item[] Guidelines:
+    \begin{itemize}
+        \item The answer NA means that the paper does not include experiments.
+        \item If the paper includes experiments, a No answer to this question will not be perceived well by the reviewers: Making the paper reproducible is important, regardless of whether the code and data are provided or not.
+        \item If the contribution is a dataset and/or model, the authors should describe the steps taken to make their results reproducible or verifiable. 
+        \item Depending on the contribution, reproducibility can be accomplished in various ways. For example, if the contribution is a novel architecture, describing the architecture fully might suffice, or if the contribution is a specific model and empirical evaluation, it may be necessary to either make it possible for others to replicate the model with the same dataset, or provide access to the model. In general. releasing code and data is often one good way to accomplish this, but reproducibility can also be provided via detailed instructions for how to replicate the results, access to a hosted model (e.g., in the case of a large language model), releasing of a model checkpoint, or other means that are appropriate to the research performed.
+        \item While NeurIPS does not require releasing code, the conference does require all submissions to provide some reasonable avenue for reproducibility, which may depend on the nature of the contribution. For example
+        \begin{enumerate}
+            \item If the contribution is primarily a new algorithm, the paper should make it clear how to reproduce that algorithm.
+            \item If the contribution is primarily a new model architecture, the paper should describe the architecture clearly and fully.
+            \item If the contribution is a new model (e.g., a large language model), then there should either be a way to access this model for reproducing the results or a way to reproduce the model (e.g., with an open-source dataset or instructions for how to construct the dataset).
+            \item We recognize that reproducibility may be tricky in some cases, in which case authors are welcome to describe the particular way they provide for reproducibility. In the case of closed-source models, it may be that access to the model is limited in some way (e.g., to registered users), but it should be possible for other researchers to have some path to reproducing or verifying the results.
+        \end{enumerate}
+    \end{itemize}
+
+
+\item {\bf Open access to data and code}
+    \item[] Question: Does the paper provide open access to the data and code, with sufficient instructions to faithfully reproduce the main experimental results, as described in supplemental material?
+    \item[] Answer: \answerYes{} % Replace by \answerYes{}, \answerNo{}, or \answerNA{}.
+    \item[] Justification: We open-source the code on GitHub and give the Python environment requirements, dataset preparation, running commands, etc. Following our instructions, the experimental results given in the paper can be easily reproduced. 
+    \item[] Guidelines:
+    \begin{itemize}
+        \item The answer NA means that paper does not include experiments requiring code.
+        \item Please see the NeurIPS code and data submission guidelines (\url{https://nips.cc/public/guides/CodeSubmissionPolicy}) for more details.
+        \item While we encourage the release of code and data, we understand that this might not be possible, so “No” is an acceptable answer. Papers cannot be rejected simply for not including code, unless this is central to the contribution (e.g., for a new open-source benchmark).
+        \item The instructions should contain the exact command and environment needed to run to reproduce the results. See the NeurIPS code and data submission guidelines (\url{https://nips.cc/public/guides/CodeSubmissionPolicy}) for more details.
+        \item The authors should provide instructions on data access and preparation, including how to access the raw data, preprocessed data, intermediate data, and generated data, etc.
+        \item The authors should provide scripts to reproduce all experimental results for the new proposed method and baselines. If only a subset of experiments are reproducible, they should state which ones are omitted from the script and why.
+        \item At submission time, to preserve anonymity, the authors should release anonymized versions (if applicable).
+        \item Providing as much information as possible in supplemental material (appended to the paper) is recommended, but including URLs to data and code is permitted.
+    \end{itemize}
+
+
+\item {\bf Experimental Setting/Details}
+    \item[] Question: Does the paper specify all the training and test details (e.g., data splits, hyperparameters, how they were chosen, type of optimizer, etc.) necessary to understand the results?
+    \item[] Answer: \answerYes{} % Replace by \answerYes{}, \answerNo{}, or \answerNA{}.
+    \item[] Justification: One of the main contributions of our paper is to propose a novel adversarial attack modeling framework based on a non-parametric diffusion process. Benefiting from the proposed modeling approach, our attack method only needs two simple hyperparameters to accurately control the entire attack process, without the need for complex training or optimization processes in other paradigms.
+    \item[] Guidelines:
+    \begin{itemize}
+        \item The answer NA means that the paper does not include experiments.
+        \item The experimental setting should be presented in the core of the paper to a level of detail that is necessary to appreciate the results and make sense of them.
+        \item The full details can be provided either with the code, in appendix, or as supplemental material.
+    \end{itemize}
+
+\item {\bf Experiment Statistical Significance}
+    \item[] Question: Does the paper report error bars suitably and correctly defined or other appropriate information about the statistical significance of the experiments?
+    \item[] Answer: \answerNo{} % Replace by \answerYes{}, \answerNo{}, or \answerNA{}.
+    \item[] Justification: Only Figure 5 reports a actual statistic numerical curve of a theoretical upper bound in the actual execution process, which is calculated from actual data using a confidence level of 0.85 and shows the confidence interval. In other experiments, due to limited computing resources, the error bar under multiple runs is not included. However, as mentioned above, the methods proposed in this paper can obtain consistent results in multiple runs by fixing the random seed.
+    \item[] Guidelines:
+    \begin{itemize}
+        \item The answer NA means that the paper does not include experiments.
+        \item The authors should answer "Yes" if the results are accompanied by error bars, confidence intervals, or statistical significance tests, at least for the experiments that support the main claims of the paper.
+        \item The factors of variability that the error bars are capturing should be clearly stated (for example, train/test split, initialization, random drawing of some parameter, or overall run with given experimental conditions).
+        \item The method for calculating the error bars should be explained (closed form formula, call to a library function, bootstrap, etc.)
+        \item The assumptions made should be given (e.g., Normally distributed errors).
+        \item It should be clear whether the error bar is the standard deviation or the standard error of the mean.
+        \item It is OK to report 1-sigma error bars, but one should state it. The authors should preferably report a 2-sigma error bar than state that they have a 96\% CI, if the hypothesis of Normality of errors is not verified.
+        \item For asymmetric distributions, the authors should be careful not to show in tables or figures symmetric error bars that would yield results that are out of range (e.g. negative error rates).
+        \item If error bars are reported in tables or plots, The authors should explain in the text how they were calculated and reference the corresponding figures or tables in the text.
+    \end{itemize}
+
+\item {\bf Experiments Compute Resources}
+    \item[] Question: For each experiment, does the paper provide sufficient information on the computer resources (type of compute workers, memory, time of execution) needed to reproduce the experiments?
+    \item[] Answer: \answerYes{} % Replace by \answerYes{}, \answerNo{}, or \answerNA{}.
+    \item[] Justification: We have indicated that all the experiments are conducted on a single NVIDIA RTX 3090 GPU, and the running time required for all methods to attack different models are included in Table 1, Table 5, and Table 8 to compare the computational complexity while providing a reference.
+    \item[] Guidelines:
+    \begin{itemize}
+        \item The answer NA means that the paper does not include experiments.
+        \item The paper should indicate the type of compute workers CPU or GPU, internal cluster, or cloud provider, including relevant memory and storage.
+        \item The paper should provide the amount of compute required for each of the individual experimental runs as well as estimate the total compute. 
+        \item The paper should disclose whether the full research project required more compute than the experiments reported in the paper (e.g., preliminary or failed experiments that didn't make it into the paper). 
+    \end{itemize}
+    
+\item {\bf Code Of Ethics}
+    \item[] Question: Does the research conducted in the paper conform, in every respect, with the NeurIPS Code of Ethics \url{https://neurips.cc/public/EthicsGuidelines}?
+    \item[] Answer: \answerYes{} % Replace by \answerYes{}, \answerNo{}, or \answerNA{}.
+    \item[] Justification: We ensure that the research conducted in the paper complies with the NeurIPS Code of Ethics in all respects.
+    \item[] Guidelines: 
+    \begin{itemize}
+        \item The answer NA means that the authors have not reviewed the NeurIPS Code of Ethics.
+        \item If the authors answer No, they should explain the special circumstances that require a deviation from the Code of Ethics.
+        \item The authors should make sure to preserve anonymity (e.g., if there is a special consideration due to laws or regulations in their jurisdiction).
+    \end{itemize}
+
+
+\item {\bf Broader Impacts}
+    \item[] Question: Does the paper discuss both potential positive societal impacts and negative societal impacts of the work performed?
+    \item[] Answer: \answerYes{} % Replace by \answerYes{}, \answerNo{}, or \answerNA{}.
+    \item[] Justification: As a research on adversarial attacks of deep neural networks, the significance lies in revealing possible attack algorithms and the vulnerabilities of the models in advance, in order to help promote corresponding defense methods or the model robustness, and improve the safety of deep neural networks in real-world applications.
+    \item[] Guidelines:
+    \begin{itemize}
+        \item The answer NA means that there is no societal impact of the work performed.
+        \item If the authors answer NA or No, they should explain why their work has no societal impact or why the paper does not address societal impact.
+        \item Examples of negative societal impacts include potential malicious or unintended uses (e.g., disinformation, generating fake profiles, surveillance), fairness considerations (e.g., deployment of technologies that could make decisions that unfairly impact specific groups), privacy considerations, and security considerations.
+        \item The conference expects that many papers will be foundational research and not tied to particular applications, let alone deployments. However, if there is a direct path to any negative applications, the authors should point it out. For example, it is legitimate to point out that an improvement in the quality of generative models could be used to generate deepfakes for disinformation. On the other hand, it is not needed to point out that a generic algorithm for optimizing neural networks could enable people to train models that generate Deepfakes faster.
+        \item The authors should consider possible harms that could arise when the technology is being used as intended and functioning correctly, harms that could arise when the technology is being used as intended but gives incorrect results, and harms following from (intentional or unintentional) misuse of the technology.
+        \item If there are negative societal impacts, the authors could also discuss possible mitigation strategies (e.g., gated release of models, providing defenses in addition to attacks, mechanisms for monitoring misuse, mechanisms to monitor how a system learns from feedback over time, improving the efficiency and accessibility of ML).
+    \end{itemize}
+    
+\item {\bf Safeguards}
+    \item[] Question: Does the paper describe safeguards that have been put in place for responsible release of data or models that have a high risk for misuse (e.g., pretrained language models, image generators, or scraped datasets)?
+    \item[] Answer: \answerNA{} % Replace by \answerYes{}, \answerNo{}, or \answerNA{}.
+    \item[] Justification: The paper poses no such risks.
+    \item[] Guidelines:
+    \begin{itemize}
+        \item The answer NA means that the paper poses no such risks.
+        \item Released models that have a high risk for misuse or dual-use should be released with necessary safeguards to allow for controlled use of the model, for example by requiring that users adhere to usage guidelines or restrictions to access the model or implementing safety filters. 
+        \item Datasets that have been scraped from the Internet could pose safety risks. The authors should describe how they avoided releasing unsafe images.
+        \item We recognize that providing effective safeguards is challenging, and many papers do not require this, but we encourage authors to take this into account and make a best faith effort.
+    \end{itemize}
+
+\item {\bf Licenses for existing assets}
+    \item[] Question: Are the creators or original owners of assets (e.g., code, data, models), used in the paper, properly credited and are the license and terms of use explicitly mentioned and properly respected?
+    \item[] Answer: \answerYes{} % Replace by \answerYes{}, \answerNo{}, or \answerNA{}.
+    \item[] Justification: The dataset we used is under the MIT License, and it has been properly cited in the paper with its URL.
+    \item[] Guidelines:
+    \begin{itemize}
+        \item The answer NA means that the paper does not use existing assets.
+        \item The authors should cite the original paper that produced the code package or dataset.
+        \item The authors should state which version of the asset is used and, if possible, include a URL.
+        \item The name of the license (e.g., CC-BY 4.0) should be included for each asset.
+        \item For scraped data from a particular source (e.g., website), the copyright and terms of service of that source should be provided.
+        \item If assets are released, the license, copyright information, and terms of use in the package should be provided. For popular datasets, \url{paperswithcode.com/datasets} has curated licenses for some datasets. Their licensing guide can help determine the license of a dataset.
+        \item For existing datasets that are re-packaged, both the original license and the license of the derived asset (if it has changed) should be provided.
+        \item If this information is not available online, the authors are encouraged to reach out to the asset's creators.
+    \end{itemize}
+
+\item {\bf New Assets}
+    \item[] Question: Are new assets introduced in the paper well documented and is the documentation provided alongside the assets?
+    \item[] Answer: \answerNA{} % Replace by \answerYes{}, \answerNo{}, or \answerNA{}.
+    \item[] Justification: The paper does not release new assets.
+    \item[] Guidelines:
+    \begin{itemize}
+        \item The answer NA means that the paper does not release new assets.
+        \item Researchers should communicate the details of the dataset/code/model as part of their submissions via structured templates. This includes details about training, license, limitations, etc. 
+        \item The paper should discuss whether and how consent was obtained from people whose asset is used.
+        \item At submission time, remember to anonymize your assets (if applicable). You can either create an anonymized URL or include an anonymized zip file.
+    \end{itemize}
+
+\item {\bf Crowdsourcing and Research with Human Subjects}
+    \item[] Question: For crowdsourcing experiments and research with human subjects, does the paper include the full text of instructions given to participants and screenshots, if applicable, as well as details about compensation (if any)? 
+    \item[] Answer: \answerNA{} % Replace by \answerYes{}, \answerNo{}, or \answerNA{}.
+    \item[] Justification: The paper does not involve crowdsourcing nor research with human subjects.
+    \item[] Guidelines:
+    \begin{itemize}
+        \item The answer NA means that the paper does not involve crowdsourcing nor research with human subjects.
+        \item Including this information in the supplemental material is fine, but if the main contribution of the paper involves human subjects, then as much detail as possible should be included in the main paper. 
+        \item According to the NeurIPS Code of Ethics, workers involved in data collection, curation, or other labor should be paid at least the minimum wage in the country of the data collector. 
+    \end{itemize}
+
+\item {\bf Institutional Review Board (IRB) Approvals or Equivalent for Research with Human Subjects}
+    \item[] Question: Does the paper describe potential risks incurred by study participants, whether such risks were disclosed to the subjects, and whether Institutional Review Board (IRB) approvals (or an equivalent approval/review based on the requirements of your country or institution) were obtained?
+    \item[] Answer: \answerNA{} % Replace by \answerYes{}, \answerNo{}, or \answerNA{}.
+    \item[] Justification: The paper does not involve crowdsourcing nor research with human subjects.
+    \item[] Guidelines:
+    \begin{itemize}
+        \item The answer NA means that the paper does not involve crowdsourcing nor research with human subjects.
+        \item Depending on the country in which research is conducted, IRB approval (or equivalent) may be required for any human subjects research. If you obtained IRB approval, you should clearly state this in the paper. 
+        \item We recognize that the procedures for this may vary significantly between institutions and locations, and we expect authors to adhere to the NeurIPS Code of Ethics and the guidelines for their institution. 
+        \item For initial submissions, do not include any information that would break anonymity (if applicable), such as the institution conducting the review.
+    \end{itemize}
+
+\end{enumerate}
+
+
+
+
+
+
+
+
+\end{document}

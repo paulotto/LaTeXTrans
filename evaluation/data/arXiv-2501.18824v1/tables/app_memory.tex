@@ -1,0 +1,19 @@
+\begin{table*}[t]
+    \centering
+    \small
+    \caption{Distribution of the allocated memory for the first batch iteration. \checkmark indicates that a portion of the memory is allocated for this specific contribution. The absence of \checkmark indicates that no memory is allocated for this contribution at this step of the training loop.}
+    \label{tab:first-batch}
+
+	\setlength{\tabcolsep}{1pt}    
+    \begin{tabularx}{0.75\textwidth}{lYYYY}
+    \toprule
+     & Model parameters & Intermediate activations & Parameter's Gradients & Optimizer Momentums\\
+    \midrule
+    \texttt{model.to(device)} & \checkmark & & &  \\
+    \texttt{model.forward()} & \checkmark & \checkmark & &  \\
+    \texttt{model.backward()} & \checkmark & \checkmark & \checkmark &  \\
+    \texttt{optimizer.step()} & \checkmark & & \checkmark & \checkmark \\
+    \texttt{optimizer.zero\_grad()} & \checkmark & & & \checkmark \\
+    \bottomrule
+    \end{tabularx}
+\end{table*}

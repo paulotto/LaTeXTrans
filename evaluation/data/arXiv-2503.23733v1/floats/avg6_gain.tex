@@ -1,0 +1,21 @@
+\begin{table*}[!ht]
+    \centering
+       \resizebox{\textwidth}{!}{%
+    
+    \begin{tabular}{lrrrrrrrrrr}
+    \toprule
+        Model & $\mathrm{MMMU_{val}}$ &  $\mathrm{MME_{sum}}$ &  $\mathrm{SeedBench_{all}}$ & $\mathrm{OCRBench}$  &  $\mathrm{TextVQA_{val}}$  & $\mathrm{OKVQA}$ & $\mathrm{GQA}$  &  $\mathrm{VizWiz_{val}}$ & $\mathrm{SUM}$ & $\mathrm{Top2}$ \\ 
+        \midrule     
+       
+         Task Arithmetic & \underline{13.21} & \textbf{21.53} & \textbf{14.54} & -1.80 & -3.74 & \textbf{13.88} & \underline{-2.95} & \underline{-7.29} & \underline{47.45} & 7 \\ 
+        Ties-Merging & -3.32 & -24.94 & -27.34 & 1.20 & -31.59 & -23.23 & -29.70 & -29.20 & -168.05 & 0 \\ 
+        DARE-Linear & 8.15 & -2.35 & 10.58 & -12.3 & -19.23 & 5.41 & -12.76 & -21.09 & -43.53 & 0 \\ 
+        DARE-Ties & -14.83 & -60.56 & -6.96 & -47.50 & -47.12 & -31.08 & -26.32 & -32.45 & -266.76 & 0 \\ 
+        MetaGPT & 1.44 & -2.93 & -4.02 & \textbf{15.30} & \underline{0.37} & -6.75 & -23.69 & -16.73 & -36.94 & 2 \\ 
+        AdaMMS & \textbf{17.68} & \underline{17.48} & \underline{12.02} & \underline{13.60} & \textbf{18.43} & \underline{13.40} & \textbf{1.40} & \textbf{-2.14} &\textbf{ 91.92} & 9 \\  \bottomrule
+
+    \end{tabular}
+    }
+    \caption{Results of the performance gain sum among six model pairs reported in our paper, as described in Appendix~\ref{appendix:additional}. The performance gain for each task is computed as the difference between the performance of our method (or baselines) and the average performance of the two original models, with positive values indicating an improvement.}
+     \label{tab:avg6}
+\end{table*}

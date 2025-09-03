@@ -1,0 +1,445 @@
+\begin{thebibliography}{87}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Aharon et~al.(2022)Aharon, Orfaig, and Bobrovsky]{aharon2022bot}
+Nir Aharon, Roy Orfaig, and Ben-Zion Bobrovsky.
+\newblock {BoT-SORT:} {Robust} associations multi-pedestrian tracking.
+\newblock \emph{arXiv preprint arXiv:2206.14651}, 2022.
+
+\bibitem[Ai and Wang(2024)]{ai2024elite360d}
+Hao Ai and Lin Wang.
+\newblock {Elite360D:} {Towards} efficient 360 depth estimation via semantic-and distance-aware bi-projection fusion.
+\newblock In \emph{CVPR}, 2024.
+
+\bibitem[Ai et~al.(2025)Ai, Cao, and Wang]{ai2022deep}
+Hao Ai, Zidong Cao, and Lin Wang.
+\newblock A survey of representation learning, optimization strategies, and applications for omnidirectional vision.
+\newblock \emph{International Journal of Computer Vision}, 2025.
+
+\bibitem[Bai et~al.(2024)Bai, Qin, Lai, Guo, and Guo]{bai2024glpanodepth}
+Jiayang Bai, Haoyu Qin, Shuichang Lai, Jie Guo, and Yanwen Guo.
+\newblock {GLPanoDepth:} {Global-to-local} panoramic depth estimation.
+\newblock \emph{IEEE Transactions on Image Processing}, 2024.
+
+\bibitem[Behley et~al.(2019)Behley, Garbade, Milioto, Quenzel, Behnke, Stachniss, and Gall]{semantickitti}
+Jens Behley, Martin Garbade, Andres Milioto, Jan Quenzel, Sven Behnke, Cyrill Stachniss, and J{\"{u}}rgen Gall.
+\newblock {SemanticKITTI:} {A} dataset for semantic scene understanding of {LiDAR} sequences.
+\newblock In \emph{ICCV}, 2019.
+
+\bibitem[Bernardin and Stiefelhagen(2008)]{bernardin2008evaluating}
+Keni Bernardin and Rainer Stiefelhagen.
+\newblock Evaluating multiple object tracking performance: {The CLEAR MOT} metrics.
+\newblock \emph{EURASIP Journal on Image and Video Processing}, 2008.
+
+\bibitem[Bewley et~al.(2016)Bewley, Ge, Ott, Ramos, and Upcroft]{bewley2016simple}
+Alex Bewley, Zongyuan Ge, Lionel Ott, Fabio Ramos, and Ben Upcroft.
+\newblock Simple online and realtime tracking.
+\newblock In \emph{ICIP}, 2016.
+
+\bibitem[Caesar et~al.(2020)Caesar, Bankiti, Lang, Vora, Liong, Xu, Krishnan, Pan, Baldan, and Beijbom]{caesar2020nuscenes}
+Holger Caesar, Varun Bankiti, Alex~H. Lang, Sourabh Vora, Venice~Erin Liong, Qiang Xu, Anush Krishnan, Yu Pan, Giancarlo Baldan, and Oscar Beijbom.
+\newblock {nuScenes:} {A} multimodal dataset for autonomous driving.
+\newblock In \emph{CVPR}, 2020.
+
+\bibitem[Cao et~al.(2023)Cao, Pang, Weng, Khirodkar, and Kitani]{cao2023observation}
+Jinkun Cao, Jiangmiao Pang, Xinshuo Weng, Rawal Khirodkar, and Kris Kitani.
+\newblock Observation-centric {SORT}: {Rethinking} {SORT} for robust multi-object tracking.
+\newblock In \emph{CVPR}, 2023.
+
+\bibitem[Cao et~al.(2024)Cao, Zhang, Shi, Peng, Zhang, Zhang, Stiefelhagen, and Yang]{cao2024occlusion}
+Yihong Cao, Jiaming Zhang, Hao Shi, Kunyu Peng, Yuhongxuan Zhang, Hui Zhang, Rainer Stiefelhagen, and Kailun Yang.
+\newblock Occlusion-aware seamless segmentation.
+\newblock In \emph{ECCV}, 2024.
+
+\bibitem[Carion et~al.(2020)Carion, Massa, Synnaeve, Usunier, Kirillov, and Zagoruyko]{carion2020end}
+Nicolas Carion, Francisco Massa, Gabriel Synnaeve, Nicolas Usunier, Alexander Kirillov, and Sergey Zagoruyko.
+\newblock End-to-end object detection with transformers.
+\newblock In \emph{ECCV}, 2020.
+
+\bibitem[Chang et~al.(2023)Chang, Zhang, and Xiong]{chang2023depth_neural}
+Wenjie Chang, Yueyi Zhang, and Zhiwei Xiong.
+\newblock Depth estimation from indoor panoramas with neural scene representation.
+\newblock In \emph{CVPR}, 2023.
+
+\bibitem[Chen et~al.(2024{\natexlab{a}})Chen, Hou, Qu, Testini, Hong, and Jiao]{chen2024360+}
+Hao Chen, Yuqi Hou, Chenyuan Qu, Irene Testini, Xiaohan Hong, and Jianbo Jiao.
+\newblock {360+x:} {A} panoptic multi-modal scene understanding dataset.
+\newblock In \emph{CVPR}, 2024{\natexlab{a}}.
+
+\bibitem[Chen et~al.(2024{\natexlab{b}})Chen, Yu, Li, and Tao]{Chen_2024_CVPR}
+Sijia Chen, En Yu, Jinyang Li, and Wenbing Tao.
+\newblock Delving into the trajectory long-tail distribution for muti-object tracking.
+\newblock In \emph{CVPR}, 2024{\natexlab{b}}.
+
+\bibitem[Cui et~al.(2023)Cui, Zeng, Zhao, Yang, Wu, and Wang]{cui2023sportsmot}
+Yutao Cui, Chenkai Zeng, Xiaoyu Zhao, Yichun Yang, Gangshan Wu, and Limin Wang.
+\newblock {SportsMOT:} {A} large multi-object tracking dataset in multiple sports scenes.
+\newblock In \emph{ICCV}, 2023.
+
+\bibitem[CVAT.ai(2024)]{cvat}
+CVAT.ai.
+\newblock Computer vision annotation tool {(CVAT)}.
+\newblock \url{https://github.com/cvat-ai/cvat}, 2024.
+\newblock Accessed: 2024-11-10.
+
+\bibitem[Dao and Gu(2024)]{mamba2}
+Tri Dao and Albert Gu.
+\newblock Transformers are {SSM}s: {Generalized} models and efficient algorithms through structured state space duality.
+\newblock In \emph{ICML}, 2024.
+
+\bibitem[Dendorfer et~al.(2020)Dendorfer, Rezatofighi, Milan, Shi, Cremers, Reid, Roth, Schindler, and Leal{-}Taix{\'{e}}]{dendorfer2020mot20}
+Patrick Dendorfer, Hamid Rezatofighi, Anton Milan, Javen Shi, Daniel Cremers, Ian~D. Reid, Stefan Roth, Konrad Schindler, and Laura Leal{-}Taix{\'{e}}.
+\newblock {MOT20:} {A} benchmark for multi object tracking in crowded scenes.
+\newblock \emph{arXiv preprint arXiv:2003.09003}, 2020.
+
+\bibitem[Ding et~al.(2024)Ding, Schneider, Cordts, and Gall]{ding2024adatrack}
+Shuxiao Ding, Lukas Schneider, Marius Cordts, and Juergen Gall.
+\newblock {ADA-Track:} {End-to-end} multi-camera {3D} multi-object tracking with alternating detection and association.
+\newblock In \emph{CVPR}, 2024.
+
+\bibitem[Dong et~al.(2024)Dong, Fang, Bo, Dong, and Tan]{dong2024panocontext}
+Yuan Dong, Chuan Fang, Liefeng Bo, Zilong Dong, and Ping Tan.
+\newblock {PanoContext-Former:} {Panoramic} total scene understanding with a transformer.
+\newblock In \emph{CVPR}, 2024.
+
+\bibitem[Du et~al.(2023)Du, Zhao, Song, Zhao, Su, Gong, and Meng]{du2023strongsort}
+Yunhao Du, Zhicheng Zhao, Yang Song, Yanyun Zhao, Fei Su, Tao Gong, and Hongying Meng.
+\newblock {StrongSORT:} {Make DeepSORT} great again.
+\newblock \emph{IEEE Transactions on Multimedia}, 2023.
+
+\bibitem[Du et~al.(2024)Du, Lei, Zhao, and Su]{Du_2024_CVPR}
+Yunhao Du, Cheng Lei, Zhicheng Zhao, and Fei Su.
+\newblock {iKUN:} {Speak} to trackers without retraining.
+\newblock In \emph{CVPR}, 2024.
+
+\bibitem[Ehsanpour et~al.(2022)Ehsanpour, Saleh, Savarese, Reid, and Rezatofighi]{ehsanpour2022jrdb_act}
+Mahsa Ehsanpour, Fatemeh~Sadat Saleh, Silvio Savarese, Ian~D. Reid, and Hamid Rezatofighi.
+\newblock {JRDB-Act:} {A} large-scale dataset for spatio-temporal action, social group and activity detection.
+\newblock In \emph{CVPR}, 2022.
+
+\bibitem[Fan et~al.(2024)Fan, Wen, Li, Peng, and Ma]{fan2024learned}
+Kanglong Fan, Wen Wen, Mu Li, Yifan Peng, and Kede Ma.
+\newblock Learned scanpaths aid blind panoramic video quality assessment.
+\newblock In \emph{CVPR}, 2024.
+
+\bibitem[Gao and Wang(2023)]{MeMOTR}
+Ruopeng Gao and Limin Wang.
+\newblock {MeMOTR}: {Long-term} memory-augmented transformer for multi-object tracking.
+\newblock In \emph{ICCV}, 2023.
+
+\bibitem[Gao et~al.(2022)Gao, Yang, Shi, Wang, and Bai]{gao2022review}
+Shaohua Gao, Kailun Yang, Hao Shi, Kaiwei Wang, and Jian Bai.
+\newblock Review on panoramic imaging and its applications in scene understanding.
+\newblock \emph{IEEE Transactions on Instrumentation and Measurement}, 2022.
+
+\bibitem[Ge et~al.(2021)Ge, Liu, Wang, Li, and Sun]{yolox2021}
+Zheng Ge, Songtao Liu, Feng Wang, Zeming Li, and Jian Sun.
+\newblock {YOLOX:} {Exceeding} {YOLO} series in 2021.
+\newblock \emph{arXiv preprint arXiv:2107.08430}, 2021.
+
+\bibitem[Geiger et~al.(2013)Geiger, Lenz, Stiller, and Urtasun]{geiger2013vision}
+Andreas Geiger, Philip Lenz, Christoph Stiller, and Raquel Urtasun.
+\newblock Vision meets robotics: {The} {KITTI} dataset.
+\newblock \emph{The International Journal of Robotics Research}, 2013.
+
+\bibitem[Han et~al.(2022)Han, Yan, Li, Wang, Feng, and Wang]{han2022panoramic_activity}
+Ruize Han, Haomin Yan, Jiacheng Li, Songmiao Wang, Wei Feng, and Song Wang.
+\newblock Panoramic human activity recognition.
+\newblock In \emph{ECCV}, 2022.
+
+\bibitem[He et~al.(2016)He, Zhang, Ren, and Sun]{He_2016_CVPR}
+Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun.
+\newblock Deep residual learning for image recognition.
+\newblock In \emph{CVPR}, 2016.
+
+\bibitem[He et~al.(2020)He, Liao, Liu, Liu, Cheng, and Mei]{he2020fastreid}
+Lingxiao He, Xingyu Liao, Wu Liu, Xinchen Liu, Peng Cheng, and Tao Mei.
+\newblock {FastReID:} {A} pytorch toolbox for general instance re-identification.
+\newblock \emph{arXiv preprint arXiv:2006.02631}, 2020.
+
+\bibitem[Huang et~al.(2024{\natexlab{a}})Huang, Han, He, Zheng, and Wei]{huang2024deconfusetrack}
+Cheng Huang, Shoudong Han, Mengyu He, Wenbo Zheng, and Yuhao Wei.
+\newblock {DeconfuseTrack:} {Dealing} with confusion for multi-object tracking.
+\newblock In \emph{CVPR}, 2024{\natexlab{a}}.
+
+\bibitem[Huang et~al.(2023)Huang, Xu, Chen, and Yeung]{huang2023360vot}
+Huajian Huang, Yinzhe Xu, Yingshu Chen, and Sai-Kit Yeung.
+\newblock {360VOT:} {A} new benchmark dataset for omnidirectional visual object tracking.
+\newblock In \emph{ICCV}, 2023.
+
+\bibitem[Huang et~al.(2024{\natexlab{b}})Huang, Liu, Zhu, Cheng, Braud, and Yeung]{huang2024360loc}
+Huajian Huang, Changkun Liu, Yipeng Zhu, Hui Cheng, Tristan Braud, and Sai-Kit Yeung.
+\newblock {360Loc:} {A} dataset and benchmark for omnidirectional visual localization with cross-device queries.
+\newblock In \emph{CVPR}, 2024{\natexlab{b}}.
+
+\bibitem[Jaus et~al.(2021)Jaus, Yang, and Stiefelhagen]{jaus2021panoramic_panoptic}
+Alexander Jaus, Kailun Yang, and Rainer Stiefelhagen.
+\newblock Panoramic panoptic segmentation: Towards complete surrounding understanding via unsupervised contrastive learning.
+\newblock In \emph{IV}, 2021.
+
+\bibitem[Jaus et~al.(2023)Jaus, Yang, and Stiefelhagen]{jaus2023panoramic_insights}
+Alexander Jaus, Kailun Yang, and Rainer Stiefelhagen.
+\newblock Panoramic panoptic segmentation: Insights into surrounding parsing for mobile agents via unsupervised contrastive learning.
+\newblock \emph{IEEE Transactions on Intelligent Transportation Systems}, 2023.
+
+\bibitem[Jiang et~al.(2021{\natexlab{a}})Jiang, Sheng, Zhu, Dong, and Huang]{jiang2021unifuse}
+Hualie Jiang, Zhe Sheng, Siyu Zhu, Zilong Dong, and Rui Huang.
+\newblock {UniFuse:} {Unidirectional} fusion for 360{\textdegree} panorama depth estimation.
+\newblock \emph{IEEE Robotics and Automation Letters}, 2021{\natexlab{a}}.
+
+\bibitem[Jiang et~al.(2021{\natexlab{b}})Jiang, Sogabe, Shimasaki, Hu, Senoo, and Ishii]{jiang2021500}
+Mingjun Jiang, Ryo Sogabe, Kohei Shimasaki, Shaopeng Hu, Taku Senoo, and Idaku Ishii.
+\newblock {500-Fps} omnidirectional visual tracking using three-axis active vision system.
+\newblock \emph{IEEE Transactions on Instrumentation and Measurement}, 2021{\natexlab{b}}.
+
+\bibitem[Jiang et~al.(2022)Jiang, Shi, Sun, Gao, Yang, and Wang]{jiang2022annular}
+Qi Jiang, Hao Shi, Lei Sun, Shaohua Gao, Kailun Yang, and Kaiwei Wang.
+\newblock Annular computational imaging: Capture clear panoramic images through simple lens.
+\newblock \emph{IEEE Transactions on Computational Imaging}, 2022.
+
+\bibitem[Jiang et~al.(2024)Jiang, Gao, Gao, Yang, Yi, Shi, Sun, and Wang]{jiang2024minimalist}
+Qi Jiang, Shaohua Gao, Yao Gao, Kailun Yang, Zhonghua Yi, Hao Shi, Lei Sun, and Kaiwei Wang.
+\newblock Minimalist and high-quality panoramic imaging with {PSF-aware} transformers.
+\newblock \emph{IEEE Transactions on Image Processing}, 2024.
+
+\bibitem[Kim et~al.(2024)Kim, Jeong, and Kim]{kim2024fully}
+Junho Kim, Jiwon Jeong, and Young~Min Kim.
+\newblock Fully geometric panoramic localization.
+\newblock In \emph{CVPR}, 2024.
+
+\bibitem[Kingma and Ba(2015)]{kingma2014adam}
+Diederik~P. Kingma and Jimmy Ba.
+\newblock Adam: A method for stochastic optimization.
+\newblock In \emph{ICLR}, 2015.
+
+\bibitem[Kuhn(1955)]{kuhn1955hungarian}
+Harold~W. Kuhn.
+\newblock The hungarian method for the assignment problem.
+\newblock \emph{Naval Research Logistics Quarterly}, 1955.
+
+\bibitem[Li and Bansal(2023)]{li2023panogen}
+Jialu Li and Mohit Bansal.
+\newblock {PanoGen:} {Text-conditioned} panoramic environment generation for vision-and-language navigation.
+\newblock In \emph{NeurIPS}, 2023.
+
+\bibitem[Li et~al.(2023{\natexlab{a}})Li, Fischer, Ke, Ding, Danelljan, and Yu]{li2023ovtrack}
+Siyuan Li, Tobias Fischer, Lei Ke, Henghui Ding, Martin Danelljan, and Fisher Yu.
+\newblock {OVTrack:} {Open-vocabulary} multiple object tracking.
+\newblock In \emph{CVPR}, 2023{\natexlab{a}}.
+
+\bibitem[Li et~al.(2022)Li, Barnes, Huang, and Zhang]{li2022deep}
+Yiheng Li, Connelly Barnes, Kun Huang, and Fang-Lue Zhang.
+\newblock Deep 360{\textdegree} optical flow estimation based on multi-projection fusion.
+\newblock In \emph{ECCV}, 2022.
+
+\bibitem[Li et~al.(2023{\natexlab{b}})Li, Yu, Philion, Anandkumar, Fidler, Jia, and Alvarez]{li2023end}
+Yanwei Li, Zhiding Yu, Jonah Philion, Anima Anandkumar, Sanja Fidler, Jiaya Jia, and Jose Alvarez.
+\newblock End-to-end {3D} tracking with decoupled queries.
+\newblock In \emph{ICCV}, 2023{\natexlab{b}}.
+
+\bibitem[Ling et~al.(2023)Ling, Xing, Zhou, Cao, and Zhou]{ling2023panoswin}
+Zhixin Ling, Zhen Xing, Xiangdong Zhou, Manliang Cao, and Guichun Zhou.
+\newblock {PanoSwin:} {a} pano-style swin transformer for panorama understanding.
+\newblock In \emph{CVPR}, 2023.
+
+\bibitem[Luiten et~al.(2021)Luiten, Osep, Dendorfer, Torr, Geiger, Leal{-}Taix{\'{e}}, and Leibe]{luiten2021hota}
+Jonathon Luiten, Aljosa Osep, Patrick Dendorfer, Philip H.~S. Torr, Andreas Geiger, Laura Leal{-}Taix{\'{e}}, and Bastian Leibe.
+\newblock {HOTA:} {A} higher order metric for evaluating multi-object tracking.
+\newblock \emph{International Journal of Computer Vision}, 2021.
+
+\bibitem[Lv et~al.(2024)Lv, Huang, Zhang, Lin, Han, and Zeng]{lv2024diffmot}
+Weiyi Lv, Yuhang Huang, Ning Zhang, Ruei-Sung Lin, Mei Han, and Dan Zeng.
+\newblock {DiffMOT:} {A} real-time diffusion-based multiple object tracker with non-linear prediction.
+\newblock In \emph{CVPR}, 2024.
+
+\bibitem[Mart{\'{\i}}n{-}Mart{\'{\i}}n et~al.(2023)Mart{\'{\i}}n{-}Mart{\'{\i}}n, Patel, Rezatofighi, Shenoi, Gwak, Frankel, Sadeghian, and Savarese]{martin2021jrdb}
+Roberto Mart{\'{\i}}n{-}Mart{\'{\i}}n, Mihir Patel, Hamid Rezatofighi, Abhijeet Shenoi, JunYoung Gwak, Eric Frankel, Amir Sadeghian, and Silvio Savarese.
+\newblock {JRDB:} {A} dataset and benchmark of egocentric robot visual perception of humans in built environments.
+\newblock \emph{IEEE Transactions on Pattern Analysis and Machine Intelligence}, 2023.
+
+\bibitem[Mei et~al.(2022)Mei, Zhu, Yan, Yan, Qiao, Chen, and Kretzschmar]{waymo}
+Jieru Mei, Alex~Zihao Zhu, Xinchen Yan, Hang Yan, Siyuan Qiao, Liang-Chieh Chen, and Henrik Kretzschmar.
+\newblock Waymo open dataset: Panoramic video panoptic segmentation.
+\newblock In \emph{ECCV}, 2022.
+
+\bibitem[Meinhardt et~al.(2022)Meinhardt, Kirillov, Leal-Taixe, and Feichtenhofer]{meinhardt2021trackformer}
+Tim Meinhardt, Alexander Kirillov, Laura Leal-Taixe, and Christoph Feichtenhofer.
+\newblock {TrackFormer:} {Multi-object} tracking with transformers.
+\newblock In \emph{CVPR}, 2022.
+
+\bibitem[Miao et~al.(2022)Miao, Wang, Wu, Li, Zhang, Wei, and Yang]{vipseg}
+Jiaxu Miao, Xiaohan Wang, Yu Wu, Wei Li, Xu Zhang, Yunchao Wei, and Yi Yang.
+\newblock Large-scale video panoptic segmentation in the wild: A benchmark.
+\newblock In \emph{CVPR}, 2022.
+
+\bibitem[Milan et~al.(2016)Milan, Leal{-}Taix{\'{e}}, Reid, Roth, and Schindler]{milan2016mot16}
+Anton Milan, Laura Leal{-}Taix{\'{e}}, Ian~D. Reid, Stefan Roth, and Konrad Schindler.
+\newblock {MOT16:} {A} benchmark for multi-object tracking.
+\newblock \emph{arXiv preprint arXiv:1603.00831}, 2016.
+
+\bibitem[Park et~al.(2024)Park, Kim, Park, and Sim]{park2024fully}
+Jonghyuk Park, Hyeona Kim, Eunpil Park, and Jae-Young Sim.
+\newblock Fully-automatic reflection removal for 360-degree images.
+\newblock In \emph{WACV}, 2024.
+
+\bibitem[Qin et~al.(2023)Qin, Zhou, Wang, Duan, Hua, and Tang]{qin2023motiontrack}
+Zheng Qin, Sanping Zhou, Le Wang, Jinghai Duan, Gang Hua, and Wei Tang.
+\newblock {MotionTrack:} {Learning} robust short-term and long-term motions for multi-object tracking.
+\newblock In \emph{CVPR}, 2023.
+
+\bibitem[Qin et~al.(2024)Qin, Wang, Zhou, Fu, Hua, and Tang]{qin2024towards}
+Zheng Qin, Le Wang, Sanping Zhou, Panpan Fu, Gang Hua, and Wei Tang.
+\newblock Towards generalizable multi-object tracking.
+\newblock In \emph{CVPR}, 2024.
+
+\bibitem[Redmon et~al.(2016)Redmon, Divvala, Girshick, and Farhadi]{redmon2016you}
+Joseph Redmon, Santosh~Kumar Divvala, Ross~B. Girshick, and Ali Farhadi.
+\newblock You only look once: Unified, real-time object detection.
+\newblock In \emph{CVPR}, 2016.
+
+\bibitem[Ristani et~al.(2016)Ristani, Solera, Zou, Cucchiara, and Tomasi]{ristani2016performance}
+Ergys Ristani, Francesco Solera, Roger Zou, Rita Cucchiara, and Carlo Tomasi.
+\newblock Performance measures and a data set for multi-target, multi-camera tracking.
+\newblock In \emph{ECCVW}, 2016.
+
+\bibitem[Shen et~al.(2022)Shen, Lin, Liao, Nie, Zheng, and Zhao]{shen2022panoformer}
+Zhijie Shen, Chunyu Lin, Kang Liao, Lang Nie, Zishuo Zheng, and Yao Zhao.
+\newblock {PanoFormer:} {Panorama} transformer for indoor 360{\textdegree} depth estimation.
+\newblock In \emph{ECCV}, 2022.
+
+\bibitem[Shen et~al.(2023)Shen, Zheng, Lin, Nie, Liao, Zheng, and Zhao]{shen2023disentangling}
+Zhijie Shen, Zishuo Zheng, Chunyu Lin, Lang Nie, Kang Liao, Shuai Zheng, and Yao Zhao.
+\newblock Disentangling orthogonal planes for indoor panoramic room layout estimation with cross-scale distortion awareness.
+\newblock In \emph{CVPR}, 2023.
+
+\bibitem[Shi et~al.(2023)Shi, Zhou, Yang, Yin, Wang, Ye, Yin, Meng, Li, and Wang]{shi2023panoflow}
+Hao Shi, Yifan Zhou, Kailun Yang, Xiaoting Yin, Ze Wang, Yaozu Ye, Zhe Yin, Shi Meng, Peng Li, and Kaiwei Wang.
+\newblock {PanoFlow:} {Learning} 360{\textdegree} optical flow for surrounding temporal understanding.
+\newblock \emph{IEEE Transactions on Intelligent Transportation Systems}, 2023.
+
+\bibitem[Sun et~al.(2022)Sun, Cao, Jiang, Yuan, Bai, Kitani, and Luo]{peize2021dance}
+Peize Sun, Jinkun Cao, Yi Jiang, Zehuan Yuan, Song Bai, Kris Kitani, and Ping Luo.
+\newblock {DanceTrack:} {Multi-object} tracking in uniform appearance and diverse motion.
+\newblock In \emph{CVPR}, 2022.
+
+\bibitem[Teng et~al.(2024)Teng, Zhang, Yang, Peng, Shi, Rei{\ss}, Cao, and Stiefelhagen]{teng2024360bev}
+Zhifeng Teng, Jiaming Zhang, Kailun Yang, Kunyu Peng, Hao Shi, Simon Rei{\ss}, Ke Cao, and Rainer Stiefelhagen.
+\newblock {360BEV:} {Panoramic} semantic mapping for indoor bird's-eye view.
+\newblock In \emph{WACV}, 2024.
+
+\bibitem[Ultralytics(2024)]{yolo11}
+Ultralytics.
+\newblock {YOLO} vision.
+\newblock \url{https://github.com/ultralytics/ultralytics}, 2024.
+\newblock Accessed: 2024-11-10.
+
+\bibitem[van Dijk et~al.(2024)van Dijk, Wagter, and de~Croon]{van2024visual}
+Tom van Dijk, Christophe~De Wagter, and Guido C. H.~E. de Croon.
+\newblock Visual route following for tiny autonomous robots.
+\newblock \emph{Science Robotics}, 2024.
+
+\bibitem[Wang et~al.(2023)Wang, Yeh, Tsai, Chiu, and Sun]{wang2022bifuse++}
+Fu-En Wang, Yu-Hsuan Yeh, Yi-Hsuan Tsai, Wei-Chen Chiu, and Min Sun.
+\newblock {BiFuse++:} {Self-supervised} and efficient bi-projection fusion for 360{\textdegree} depth estimation.
+\newblock \emph{IEEE Transactions on Pattern Analysis and Machine Intelligence}, 2023.
+
+\bibitem[Wang et~al.(2024)Wang, Li, Mou, Cheng, and Zhang]{wang2024360dvd}
+Qian Wang, Weiqi Li, Chong Mou, Xinhua Cheng, and Jian Zhang.
+\newblock {360DVD:} {Controllable} panorama video generation with 360-degree video diffusion model.
+\newblock In \emph{CVPR}, 2024.
+
+\bibitem[Wen et~al.(2024)Wen, Zhao, Liu, Jia, Wang, Luo, Zhang, Wang, Sun, and Zhang]{Wen_2024_CVPR}
+Yuqing Wen, Yucheng Zhao, Yingfei Liu, Fan Jia, Yanhui Wang, Chong Luo, Chi Zhang, Tiancai Wang, Xiaoyan Sun, and Xiangyu Zhang.
+\newblock Panacea: Panoramic and controllable video generation for autonomous driving.
+\newblock In \emph{CVPR}, 2024.
+
+\bibitem[Wojke et~al.(2017)Wojke, Bewley, and Paulus]{wojke2017simple}
+Nicolai Wojke, Alex Bewley, and Dietrich Paulus.
+\newblock Simple online and realtime tracking with a deep association metric.
+\newblock In \emph{ICIP}, 2017.
+
+\bibitem[Wu et~al.(2024)Wu, Zhao, Liu, Chai, Huang, and Ai]{wu2024effect}
+Zhendong Wu, Lintao Zhao, Guocui Liu, Jingchun Chai, Jierui Huang, and Xiaoqun Ai.
+\newblock The effect of {AR-HUD} takeover assistance types on driver situation awareness in highly automated driving: A 360-degree panorama experiment.
+\newblock \emph{International Journal of Human-Computer Interaction}, 2024.
+
+\bibitem[Xu et~al.(2024)Xu, Huang, Chen, and Yeung]{xu2024360vots}
+Yinzhe Xu, Huajian Huang, Yingshu Chen, and Sai-Kit Yeung.
+\newblock {360VOTS:} {Visual} object tracking and segmentation in omnidirectional videos.
+\newblock \emph{arXiv preprint arXiv:2404.13953}, 2024.
+
+\bibitem[Yan et~al.(2024)Yan, Xu, Zhang, Hong, Chen, Zhang, and Zhang]{yan2023panovos}
+Shilin Yan, Xiaohao Xu, Renrui Zhang, Lingyi Hong, Wenchao Chen, Wenqiang Zhang, and Wei Zhang.
+\newblock {PanoVOS:} {Bridging} non-panoramic and panoramic views with transformer for video segmentation.
+\newblock In \emph{ECCV}, 2024.
+
+\bibitem[Yang et~al.(2024)Yang, Han, Yan, Zhang, Qi, Lu, and Wang]{yang2024hybrid}
+Mingzhan Yang, Guangxin Han, Bin Yan, Wenhua Zhang, Jinqing Qi, Huchuan Lu, and Dong Wang.
+\newblock {Hybrid-SORT:} {Weak} cues matter for online multi-object tracking.
+\newblock In \emph{AAAI}, 2024.
+
+\bibitem[Yi et~al.(2024)Yi, Luo, Luo, Huang, Wu, Hu, and Hao]{yi2024ucmc}
+Kefu Yi, Kai Luo, Xiaolei Luo, Jiangui Huang, Hao Wu, Rongdong Hu, and Wei Hao.
+\newblock {UCMCTrack:} {Multi-object} tracking with uniform camera motion compensation.
+\newblock \emph{AAAI}, 2024.
+
+\bibitem[Yu et~al.(2020)Yu, Chen, Wang, Xian, Chen, Liu, Madhavan, and Darrell]{bdd100k}
+Fisher Yu, Haofeng Chen, Xin Wang, Wenqi Xian, Yingying Chen, Fangchen Liu, Vashisht Madhavan, and Trevor Darrell.
+\newblock {BDD100K:} {A} diverse driving dataset for heterogeneous multitask learning.
+\newblock In \emph{CVPR}, 2020.
+
+\bibitem[Yu et~al.(2023)Yu, He, Jian, Feng, and Liu]{yu2023panelnet}
+Haozheng Yu, Lu He, Bing Jian, Weiwei Feng, and Shan Liu.
+\newblock {PanelNet:} {Understanding} 360 indoor environment via panel representation.
+\newblock In \emph{CVPR}, 2023.
+
+\bibitem[Zeng et~al.(2022)Zeng, Dong, Zhang, Wang, Zhang, and Wei]{zeng2022motr}
+Fangao Zeng, Bin Dong, Yuang Zhang, Tiancai Wang, Xiangyu Zhang, and Yichen Wei.
+\newblock {MOTR:} {End-to-end} multiple-object tracking with transformer.
+\newblock In \emph{ECCV}, 2022.
+
+\bibitem[Zhang et~al.(2024)Zhang, Yang, Shi, Rei{\ss}, Peng, Ma, Fu, Torr, Wang, and Stiefelhagen]{zhang2024behind}
+Jiaming Zhang, Kailun Yang, Hao Shi, Simon Rei{\ss}, Kunyu Peng, Chaoxiang Ma, Haodong Fu, Philip H.~S. Torr, Kaiwei Wang, and Rainer Stiefelhagen.
+\newblock Behind every domain there is a shift: Adapting distortion-aware vision transformers for panoramic semantic segmentation.
+\newblock \emph{IEEE Transactions on Pattern Analysis and Machine Intelligence}, 2024.
+
+\bibitem[Zhang et~al.(2022)Zhang, Sun, Jiang, Yu, Weng, Yuan, Luo, Liu, and Wang]{zhang2022bytetrack}
+Yifu Zhang, Peize Sun, Yi Jiang, Dongdong Yu, Fucheng Weng, Zehuan Yuan, Ping Luo, Wenyu Liu, and Xinggang Wang.
+\newblock {ByteTrack:} {Multi-object} tracking by associating every detection box.
+\newblock In \emph{ECCV}, 2022.
+
+\bibitem[Zhang et~al.(2023)Zhang, Wang, and Zhang]{zhang2023motrv2}
+Yuang Zhang, Tiancai Wang, and Xiangyu Zhang.
+\newblock {MOTRv2:} {Bootstrapping} end-to-end multi-object tracking by pretrained object detectors.
+\newblock In \emph{CVPR}, 2023.
+
+\bibitem[Zheng et~al.(2024{\natexlab{a}})Zheng, Lin, Zuo, Fu, and Pan]{nettrack2024cvpr}
+Guangze Zheng, Shijie Lin, Haobo Zuo, Changhong Fu, and Jia Pan.
+\newblock {NetTrack:} {Tracking} dynamic objects with a net.
+\newblock In \emph{CVPR}, 2024{\natexlab{a}}.
+
+\bibitem[Zheng et~al.(2024{\natexlab{b}})Zheng, Zhou, Vasilakos, and Wang]{zheng2024360sfuda++}
+Xu Zheng, Pengyuan Zhou, Athanasios~V. Vasilakos, and Lin Wang.
+\newblock {360SFUDA++:} {Towards} source-free {UDA} for panoramic segmentation by learning reliable category prototypes.
+\newblock \emph{IEEE Transactions on Pattern Analysis and Machine Intelligence}, 2024{\natexlab{b}}.
+
+\bibitem[Zheng et~al.(2024{\natexlab{c}})Zheng, Zhou, Vasilakos, and Wang]{zheng2024semantics}
+Xu Zheng, Pengyuan Zhou, Athanasios~V. Vasilakos, and Lin Wang.
+\newblock Semantics distortion and style matter: Towards source-free {UDA} for panoramic segmentation.
+\newblock In \emph{CVPR}, 2024{\natexlab{c}}.
+
+\bibitem[Zhou et~al.(2024)Zhou, Fan, Xu, Chang, Chari, Bharadwaj, You, Wang, and Kadambi]{zhou2025dreamscene360}
+Shijie Zhou, Zhiwen Fan, Dejia Xu, Haoran Chang, Pradyumna Chari, Tejas Bharadwaj, Suya You, Zhangyang Wang, and Achuta Kadambi.
+\newblock {DreamScene360:} {Unconstrained} text-to-{3D} scene generation with panoramic gaussian splatting.
+\newblock In \emph{ECCV}, 2024.
+
+\bibitem[Zhu et~al.(2021)Zhu, Su, Lu, Li, Wang, and Dai]{zhu2020deformable}
+Xizhou Zhu, Weijie Su, Lewei Lu, Bin Li, Xiaogang Wang, and Jifeng Dai.
+\newblock Deformable {DETR}: {Deformable} transformers for end-to-end object detection.
+\newblock In \emph{ICLR}, 2021.
+
+\end{thebibliography}

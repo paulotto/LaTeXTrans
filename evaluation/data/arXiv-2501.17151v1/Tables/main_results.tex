@@ -1,0 +1,101 @@
+\begin{table}[h]
+\centering
+\small % Adjust font size
+\centering
+\caption{Scanning performance of TRODO compared with other methods, in terms of Accuracy on standard trained evaluation sets (ACC \%) and adversarially trained ones (ACC* \%). The best results are emphasized in \textbf{bold} format respectively in each column.}
+\label{table:main}
+% Performance evaluation of our model against various advanced adversarial attacks, measured by ACC (\%), with $\epsilon=\frac{4}{255}$ for low-resolution images and $\epsilon=\frac{2}{255}$ for high-resolution images, Measured by ACC (\%). The best results are emphasized in bold format respectively in each row. The table cells denote results in the "PGD/\graytext{Clean}" format.
+
+\renewcommand{\arraystretch}{1}\setlength{\tabcolsep}{1pt} \Large % Adjust row height
+% \resizebox{0.6\linewidth}{!}{\begin{tabular}{lcccccc}
+    \resizebox{1\linewidth}{!}{\begin{tabular}{cc*{12}{C{2cm}}} 
+
+    % \noalign{\smallskip}\hline\noalign{\smallskip}
+     \specialrule{3pt}{\aboverulesep}{\belowrulesep}
+
+    \multirow{2}{*}{\shortstack{Label \\ Mapping}} & \multirow{2}{*}{Method} & \multicolumn{2}{c}{\textbf{MNIST}} & \multicolumn{2}{c}{\textbf{CIFAR10}} &  \multicolumn{2}{c}{\textbf{GTSRB}} & \multicolumn{2}{c}{\textbf{CIFAR100}} & \multicolumn{2}{c}{\textbf{PubFig}} & \multicolumn{2}{c}{\textbf{Avg.}} \\
+    
+     \cmidrule(lr){3-4}   \cmidrule(lr){5-6} \cmidrule{7-8} \cmidrule(lr){9-10} \cmidrule(lr){11-12} \cmidrule(lr){13-14}
+     
+    
+   &  & ACC & ACC* & ACC & ACC* & ACC & ACC*  & ACC & ACC* & ACC & ACC* & \textbf{ACC} & \textbf{ACC*}\\   
+
+     \specialrule{3pt}{\aboverulesep}{\belowrulesep}
+
+     \multirow{10}{*}[-0.7cm]{\centering \rotatebox[origin=c]{90}{ \textbf{All-to-One} }} & NC & 54.3 & 49.8 & 53.2 & 48.4 & 62.8 & 56.3 & 52.1 & 42.1 & 52.5 & 40.2 & 55.0 & 49.4\\
+             \cmidrule(lr){2-14}
+
+     & ABS & 67.5 & 69.0 & 64.1 & 65.6 & 71.2 & 65.5 & 56.4 & 54.2 & 56.3 & 58.3 & 63.1 & 62.5\\
+        \cmidrule(lr){2-14}
+
+    &PT-RED & 51.0 & 48.8 & 50.4 & 46.1 & 58.4 & 57.5 & 50.9 & 45.3 & 49.1 & 47.9 & 52.0 & 49.1\\
+             \cmidrule(lr){2-14}
+
+     & TABOR & 60.5 & 45.0 & 56.3 & 44.7 & 69.0 & 53.8 & 56.7 & 45.5 & 58.6 & 44.2 & 60.2 & 46.6\\
+        \cmidrule(lr){2-14}
+
+    &K-ARM & 68.4 & 55.1 & 66.7 & 54.8 & 70.1 & 62.8 & 59.8 & 50.9 & 60.2 & 47.6 & 65.0 & 54.2\\
+         \cmidrule(lr){2-14}
+
+    &MNTD & 57.4 & 51.3 & 56.9 & 52.3 & 65.2 & 55.9 & 54.4 & 48.8 & 56.7 & 50.0 & 58.1 & 54.7\\
+         \cmidrule(lr){2-14}
+
+    &FreeEagle & 80.2 & 72.9 & 82.0 & 73.2 & 81.0 & 82.3 & 73.2 & 66.9 & 65.0 & 66.0 & 76.3 & 72.3\\
+         \cmidrule(lr){2-14}
+         
+     & MM-BD & 85.2 & 65.4 & 77.3 & 57.8 & 79.6 & 65.2 & \textbf{88.5} & 74.0 & 65.7 & 48.3 & 79.3 & 62.1\\
+        \cmidrule(lr){2-14}
+
+     & UMD & 81.1 & 61.2 & 77.5 & 54.7 & 81.4 & 68.2 & 69.0 & 56.3 & 67.9 & 49.7 & 75.4 & 58.0\\
+        \cmidrule(lr){2-14}
+    & \textbf{TRODO-Zero} & \cellcolor{gray!15}80.9 & \cellcolor{gray!15}79.3 & \cellcolor{gray!15}82.7 & \cellcolor{gray!15}78.5 & \cellcolor{gray!15}84.8 & \cellcolor{gray!15}83.3 & \cellcolor{gray!15}75.5 & \cellcolor{gray!15}73.7 & \cellcolor{gray!15}73.2 & \cellcolor{gray!15}70.6 & \cellcolor{gray!15}79.4 & \cellcolor{gray!15}77.0\\
+          
+\noalign{\smallskip}
+    \cdashline{2-14}
+\noalign{\smallskip}
+     & \textbf{TRODO} & \cellcolor{gray!15}\textbf{91.2} & \cellcolor{gray!15}\textbf{89.6} & \cellcolor{gray!15}\textbf{91.0} & \cellcolor{gray!15}\textbf{88.4} & \cellcolor{gray!15}\textbf{96.6} & \cellcolor{gray!15}\textbf{93.2} & \cellcolor{gray!15}{86.7} & \cellcolor{gray!15}\textbf{82.5} & \cellcolor{gray!15}\textbf{88.1} & \cellcolor{gray!15}\textbf{83.0} & 
+     \cellcolor{gray!15}\textbf{90.7} & \cellcolor{gray!15}\textbf{87.3}\\
+     
+     \specialrule{3pt}{\aboverulesep}{\belowrulesep}
+
+
+
+
+     \multirow{10}{*}[-0.7cm]{\centering \rotatebox[origin=c]{90}{ \textbf{All-to-All} }} & NC & 26.7 & 21.6 & 24.9 & 19.6 & 31.6 & 23.2 & 15.4 & 11.8 & 16.8 & 12.3 & 23.1 & 17.7\\
+             \cmidrule(lr){2-14}
+
+     & ABS & 32.5 & 34.1 & 30.7 & 28.8 & 23.6 & 20.5 & 34.3 & 34.8 & 31.0 & 28.2 & 30.4 & 29.3\\
+        \cmidrule(lr){2-14}
+
+    &PT-RED & 41.0 & 33.5 & 39.6 & 33.1 & 45.4 & 43.9 & 20.3 & 15.2 & 12.6 & 9.8 & 31.8 & 27.1\\
+             \cmidrule(lr){2-14}
+
+     & TABOR & 51.7 & 39.7 & 50.2 & 37.8 & 48.3 & 39.5 & 39.4 & 30.2 & 38.6 & 30.8 & 45.6 & 35.6\\
+        \cmidrule(lr){2-14}
+
+    &K-ARM & 56.8 & 49.7 & 54.6 & 47.6 & 57.5 & 48.9 & 51.3 & 45.0 & 50.6 & 47.3 & 54.2 & 47.7\\
+         \cmidrule(lr){2-14}
+
+    &MNTD & 27.2 & 25.2 & 23.0 & 18.6 & 16.9 & 12.8 & 29.8 & 31.0 & 22.3 & 17.9 & 23.8 & 21.1\\
+         \cmidrule(lr){2-14}
+     &FreeEagle & 79.8 & 75.2 & 54.9 & 50.2 & 55.2 & 52.9 & 56.5 & 52.7 & 48.0 & 46.1 & 58.9 & 55.4\\
+             \cmidrule(lr){2-14}
+         
+         
+     & MM-BD & 54.3 & 40.4 & 49.4 & 35.1 & 57.9 & 44.0 & 40.7 & 32.3 & 41.2 & 34.1 & 48.7 & 37.2\\
+        \cmidrule(lr){2-14}
+
+     & UMD & 82.5 & 61.9 & 74.6 & 60.1 & 84.2 & 64.5 & 70.6 & 49.9 & 68.7 & 52.3 & 76.1 & 57.7\\
+        \cmidrule(lr){2-14}
+    & \textbf{TRODO-Zero} & \cellcolor{gray!15}82.1 & \cellcolor{gray!15}80.8 & \cellcolor{gray!15}80.4 & \cellcolor{gray!15}77.3 & \cellcolor{gray!15}83.8 & \cellcolor{gray!15}88.6 & \cellcolor{gray!15}74.8 & \cellcolor{gray!15}72.3 & \cellcolor{gray!15}75.0 & \cellcolor{gray!15}75.4 & \cellcolor{gray!15}79.2 & \cellcolor{gray!15}78.8\\
+    
+\noalign{\smallskip}
+    \cdashline{2-14}
+\noalign{\smallskip}
+    
+     & \textbf{TRODO} & \cellcolor{gray!15}\textbf{90.0} & \cellcolor{gray!15}\textbf{87.4} & \cellcolor{gray!15}\textbf{89.3} & \cellcolor{gray!15}\textbf{87.5} & \cellcolor{gray!15}\textbf{92.6} & \cellcolor{gray!15}\textbf{89.1} & \cellcolor{gray!15}\textbf{82.4} & \cellcolor{gray!15}\textbf{85.0} & \cellcolor{gray!15}\textbf{83.2} & \cellcolor{gray!15}\textbf{80.9} & \cellcolor{gray!15}\textbf{87.5} & \cellcolor{gray!15}\textbf{86.1}\\
+
+     \specialrule{3pt}{\aboverulesep}{\belowrulesep}
+    % \noalign{\smallskip}\hline\noalign{\smallskip}
+\end{tabular}}
+\end{table}

@@ -1,0 +1,105 @@
+
+
+
+\usepackage{listings}
+
+\usepackage{textcomp}
+
+\usepackage{xcolor}
+
+
+
+
+
+\usepackage[scaled=0.8]{beramono}
+
+
+
+
+\definecolor{ckeyword}{HTML}{7F0055}
+\definecolor{ccomment}{HTML}{3F7F5F}
+\definecolor{cstring}{HTML}{2A0099}
+
+
+\lstdefinestyle{numbers}{
+	numbers=left,
+	framexleftmargin=20pt,
+	numberstyle=\tiny,
+	firstnumber=auto,
+	numbersep=1em,
+	xleftmargin=2em
+}
+
+\lstdefinestyle{layout}{
+	frame=none,
+	captionpos=b,
+}
+
+\lstdefinestyle{comment-style}{
+	morecomment=[l]//,
+	morecomment=[s]{/*}{*/},
+	commentstyle={\color{ccomment}\itshape},
+}
+
+\lstdefinestyle{string-style}{
+	morestring=[b]",%
+	morestring=[b]',%
+	stringstyle={\color{cstring}},
+	showstringspaces=false,%
+}
+
+\lstdefinestyle{keyword-style}{
+	keywordstyle={\ttfamily\bfseries},
+	morekeywords={
+		function,
+		constructor,
+		int,
+		bool,
+		return,
+		returns,
+		uint
+	},
+	morekeywords = [2]{},
+	keywordstyle = [2]{\text},
+	sensitive=true,
+}
+
+\lstdefinestyle{input-encoding}{
+	inputencoding=utf8,
+	extendedchars=true,
+	literate=
+	{ℝ}{$\reals$}1%
+	{→}{$\rightarrow$}1%
+	{α}{$\alpha$}1%
+	{β}{$\beta$}1%
+	{λ}{$\lambda$}1%
+	{θ}{$\theta$}1%
+	{ϕ}{$\phi$}1%
+}
+
+\lstdefinestyle{escaping}{
+	moredelim={**[is][\color{blue}]{\%}{\%}},
+	escapechar=|,
+	mathescape=true
+}
+
+\lstdefinestyle{default-style}{
+	basicstyle=\fontencoding{T1}\ttfamily\footnotesize,
+	style=numbers,
+	style=layout,
+	style=comment-style,
+	style=string-style,
+	style=keyword-style,
+	style=input-encoding,
+	style=escaping,
+	tabsize=2,
+	upquote=true
+}
+
+
+\lstdefinelanguage{BASIC}{
+	language=C++,
+	style=default-style
+}[keywords,comments,strings]%
+
+\lstset{language=BASIC}

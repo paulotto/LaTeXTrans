@@ -1,0 +1,23 @@
+\section{Limitations}
+\label{sec:limitations}
+
+The most significant limitation of \model{} lies in its reliance on additional pre-training data to compensate for the absence of an external vision model, because the LLM has to learn visual feature extraction from scratch.
+While we hypothesize that scaling \model{} could surpass encoder-based MLLMs by avoiding information loss in the pre-trained ViT (as theorized in \cite{eve, cambrian1}), we currently lack the empirical evidence to confirm this advantage. Limited training data and computational resources have prevented us from observing a clear performance crossover point. We leave this promising hypothesis for future exploration.
+
+A second limitation is \model{}'s lack of vision token compression. Unlike conventional encoder-based MLLMs that reduce tokens in the connector, we intentionally preserve the original LLaVA-1.5 configurations for fair comparison. This defect could be mitigated in practice through larger patch sizes \cite{eve, evev2, monointernvl} or token pruning/merging techniques. Finally, although \model{} underperformed on world knowledge tasks, this reflects data limitations rather than architectural constraints, and could be resolved through data engineering.
+
+\section{Conclusion and Future Directions}
+\label{sec:conclusion}
+
+\model{} establishes a new paradigm for converting LLMs into MLLMs through three components: (1) vision as LoRA, (2) Block-wise distillation, and (3) bi-directional attention masks for vision. 
+By integrating vision capabilities directly into the LLM via mergeable LoRA layers for visual encoding, \model{} eliminates the need for a separate vision model. This unified approach reduces memory overhead, lowers computational costs, and leverages the LLM’s inherent flexibility in context length to process native-resolution images with minimal adaptation. This design bypasses the problems brought by using ViT as an external vision model while still decoupling the vision and language parameters to ensure stable training.
+
+The architecture of \model{} is inherently extensible beyond vision-language tasks. By replacing the vision expert model with pre-trained modality-specific experts (e.g., for audio, point clouds, or biomedical signals) and applying new LoRA layers, one can create efficient audio-language, 3D-language, or omni-modal variants without increasing computational costs. 
+We envision \model{} as a step toward more unified multimodal intelligence, where a single architecture seamlessly processes diverse modalities and relevant tasks while maintaining inference efficiency.
+
+% Also, we can even enable an LLM toconduct 
+% This adaptability suggests a broader principle: modality-specific experts can be distilled into LLMs via localized parameter-efficient tuning, avoiding the need for monolithic multimodal architectures.
+
+% From a high-level, \model{} paves a new way that 
+
+% Looking forward, \model{}'s component-driven approach charts a path toward unified multimodal systems. While current implementations focus on vision-language integration, the methodology inherently supports cross-modal transfer - a single LLM backbone could theoretically host multiple modality experts through distinct LoRA modules. Future work should explore dynamic expert routing and cross-modal attention mechanisms while maintaining our emphasis on low computational cost. Such developments could ultimately reconcile the long-standing gap between specialized encoders and general-purpose decoders, though challenges remain in balancing scalability with task-specific performance.

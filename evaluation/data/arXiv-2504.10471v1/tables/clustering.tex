@@ -1,0 +1,57 @@
+% \begin{table*}[!htp]\centering
+\begin{table*}\centering
+% \scriptsize
+\centering
+\resizebox{\linewidth}{!}{
+\begin{tabular}{lccccccc}\toprule
+\textbf{model name} &\textbf{CIFAR10} &\textbf{CIFAR100} &\textbf{ImageNet10} &\textbf{ImageNetDog15} &\textbf{TinyImageNet} &\textbf{Avg.} \\\midrule
+EVA02-CLIP-bigE-14-plus &98.65 &89.51 &99.09 &91.08 &83.57 &92.38 \\
+EVA02-CLIP-bigE-14 &90.30 &89.03 &94.32 &89.85 &83.58 &89.42 \\
+EVA02-CLIP-L-14 &97.83 &86.14 &94.37 &83.57 &79.44 &88.27 \\
+laion/CLIP-ViT-L-14-DataComp.XL-s13B-b90K &93.65 &84.26 &93.39 &82.60 &78.28 &86.44 \\
+laion/CLIP-ViT-bigG-14-laion2B-39B-b160k &87.66 &79.97 &98.75 &86.09 &75.49 &85.59 \\
+laion/CLIP-ViT-H-14-laion2B-s32B-b79K &88.10 &78.69 &93.93 &85.93 &72.67 &83.86 \\
+nomic-ai/nomic-embed-vision-v1.5 &87.39 &81.16 &95.80 &81.19 &72.65 &83.64 \\
+laion/CLIP-ViT-L-14-laion2B-s32B-b82K &93.62 &77.43 &93.74 &81.09 &71.62 &83.50 \\
+facebook/dinov2-large &79.90 &79.93 &92.23 &86.20 &77.22 &83.10 \\
+facebook/dinov2-base &82.62 &77.20 &93.93 &85.67 &74.31 &82.74 \\
+laion/CLIP-ViT-g-14-laion2B-s34B-b88K &87.63 &78.13 &94.38 &81.46 &72.10 &82.74 \\
+EVA02-CLIP-B-16 &89.23 &83.51 &89.22 &74.82 &75.96 &82.55 \\
+voyage-multimodal-3 &86.22 &75.15 &97.58 &83.82 &69.29 &82.41 \\
+google/siglip-large-patch16-256 &83.61 &76.23 &97.87 &86.40 &66.52 &82.13 \\
+google/siglip-so400m-patch14-384 &83.79 &76.67 &98.19 &83.57 &68.31 &82.11 \\
+laion/CLIP-ViT-B-16-DataComp.XL-s13B-b90K &89.93 &78.21 &93.42 &74.98 &72.13 &81.73 \\
+facebook/dinov2-giant &76.84 &75.77 &91.84 &92.63 &70.13 &81.44 \\
+facebook/dinov2-small &79.25 &72.62 &91.23 &87.27 &70.65 &80.20 \\
+google/siglip-large-patch16-384 &81.61 &74.43 &93.28 &84.17 &66.21 &79.94 \\
+laion/CLIP-ViT-B-32-laion2B-s34B-b79K &83.76 &70.92 &95.22 &76.31 &63.76 &77.99 \\
+Salesforce/blip-itm-large-coco &84.95 &72.62 &98.29 &67.56 &64.24 &77.53 \\
+laion/CLIP-ViT-B-32-DataComp.XL-s13B-b90K &79.81 &74.85 &91.54 &73.68 &66.98 &77.37 \\
+Salesforce/blip-itm-large-flickr &87.94 &70.67 &94.34 &68.36 &60.86 &76.43 \\
+openai/clip-vit-large-patch14 &80.87 &64.54 &94.00 &72.83 &69.82 &76.41 \\
+google/siglip-base-patch16-384 &71.62 &67.78 &97.63 &86.16 &58.15 &76.27 \\
+BAAI/bge-visualized-base &82.16 &77.80 &98.33 &49.37 &73.28 &76.19 \\
+google/siglip-base-patch16-256 &76.82 &67.58 &92.57 &80.47 &58.73 &75.24 \\
+google/siglip-base-patch16-512 &73.95 &66.56 &93.32 &79.61 &59.82 &74.65 \\
+google/siglip-base-patch16-256-multilingual &75.94 &67.89 &92.63 &80.44 &55.88 &74.56 \\
+google/siglip-base-patch16-224 &76.11 &67.01 &92.61 &78.18 &58.58 &74.50 \\
+blip2-pretrain &96.67 &81.46 &97.77 &20.27 &73.86 &74.01 \\
+nyu-visionx/moco-v3-vit-b &74.69 &63.99 &90.30 &80.77 &59.53 &73.86 \\
+Salesforce/blip-image-captioning-large &77.64 &68.45 &93.27 &67.38 &61.74 &73.70 \\
+BAAI/bge-visualized-m3 &81.41 &73.89 &97.74 &43.07 &71.72 &73.57 \\
+TIGER-Lab/VLM2Vec-LoRA &72.89 &60.56 &97.03 &71.48 &61.22 &72.64 \\
+nyu-visionx/moco-v3-vit-l &71.65 &60.60 &86.41 &80.70 &59.14 &71.70 \\
+TIGER-Lab/VLM2Vec-Full &69.43 &60.72 &92.64 &69.29 &61.51 &70.72 \\
+Salesforce/blip-itm-base-coco &70.83 &60.44 &93.19 &70.31 &58.19 &70.59 \\
+royokong/e5-v &82.58 &70.43 &93.85 &36.73 &66.64 &70.05 \\
+jinaai/jina-clip-v1 &74.12 &64.84 &96.69 &52.66 &61.47 &69.95 \\
+openai/clip-vit-base-patch16 &69.25 &59.35 &92.58 &63.25 &62.90 &69.47 \\
+openai/clip-vit-base-patch32 &73.85 &58.07 &93.14 &54.12 &60.34 &67.90 \\
+blip2-finetune-coco &90.37 &75.81 &93.12 &8.97 &70.92 &67.84 \\
+Salesforce/blip-itm-base-flickr &63.94 &58.89 &92.46 &66.00 &55.07 &67.27 \\
+Salesforce/blip-image-captioning-base &64.18 &53.81 &90.94 &58.78 &47.76 &63.09 \\
+kakaobrain/align-base &54.13 &50.68 &84.21 &58.88 &50.03 &59.59 \\
+\bottomrule
+\end{tabular}}
+\caption{\textbf{Clustering Results.}}\label{tab: clustering results}
+\end{table*}

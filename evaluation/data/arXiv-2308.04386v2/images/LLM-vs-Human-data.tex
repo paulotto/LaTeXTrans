@@ -1,0 +1,106 @@
+
+\centering
+\begin{tabular}{@{}c@{\hspace{-3.1cm}}c@{}}
+\centering
+\begin{tikzpicture}[scale=0.24]
+\matrix (m) [
+        fill=white,
+        draw=black,
+        at={(3.8, 13)},
+        anchor=north west,
+        cells={anchor=west},
+        scale=0.8,
+        inner sep=1.4pt]
+        {
+            &[0em] \LegendImage{color=mygreen,mark size=1.5pt} &  \LegendEntry{\scriptsize BLEURT$^\sharp$}; \
+            &[0em] \LegendImage{color=myred,mark size=1.5pt} &  \LegendEntry{\scriptsize COMET$^\sharp$};&[1em] \
+            &[0em] \LegendImage{color=myblue,mark=diamond*,mark size=1.5pt} &  \LegendEntry{\scriptsize CSEM}; &[1em]\\
+        };	
+\begin{axis}[
+        ymajorgrids,xmajorgrids,
+        grid style=dashed,
+        width=0.9\textwidth,
+        height=.65\textwidth,
+        symbolic x coords={1K, 3K, 5K, 7K, 10K},
+        xtick=data,
+        x tick label style={scale=2.4},
+        y tick label style={scale=2.4,
+                            /pgf/number format/fixed,
+                            /pgf/number format/fixed zerofill,
+                            /pgf/number format/precision=2},
+        ymin=0.23, ymax=0.37,
+        ytick={0.24,0.26,...,0.36},
+        xlabel={Size of LLM-labeled Data},
+        ylabel={Kend.},
+        ylabel style={yshift=3.5em, scale=2.5},
+        xlabel style={yshift=-1em, scale=2.5},]
+        \addplot [mygreen, mark size = 6, line width=1.5pt] coordinates { 
+        (1K, 0.287)
+        (3K, 0.287)
+        (5K, 0.287)
+        (7K, 0.287)
+        (10K, 0.287)};
+
+        \addplot [myred, mark size = 6, line width=1.5pt] coordinates { 
+        (1K, 0.312)
+        (3K, 0.312)
+        (5K, 0.312)
+        (7K, 0.312)
+        (10K, 0.312)};
+
+        \addplot [myblue, mark=diamond*, mark size = 6, line width=1.5pt] coordinates { 
+        (1K, 0.261)
+        (3K, 0.295)
+        (5K, 0.331)
+        (7K, 0.342)
+        (10K, 0.350)};
+\end{axis}
+% \node [xshift=5em, yshift=-4ex] {\footnotesize (a) Machine Translation};
+\end{tikzpicture}
+&
+% summarization
+\centering
+\begin{tikzpicture}[scale=0.24]
+    \begin{axis}[
+            ymajorgrids,xmajorgrids,
+            grid style=dashed,
+            width=0.9\textwidth,
+            height=.65\textwidth,
+            symbolic x coords={1K, 3K, 5K, 7K, 10K},
+            xtick=data,
+            x tick label style={scale=2.4},
+            y tick label style={scale=2.4,
+                                /pgf/number format/fixed,
+                                /pgf/number format/fixed zerofill,
+                                /pgf/number format/precision=2},
+            ymin=0.35, ymax=0.49,
+            ytick={0.36,0.38,...,0.48},
+            xlabel={Size of LLM-labeled Data},
+            ylabel={Spear.},
+            ylabel style={yshift=3.5em, scale=2.5},
+            xlabel style={yshift=-1em, scale=2.5},]
+        \addplot [mygreen, mark size = 6, line width=1.5pt] coordinates { 
+        (1K, 0.388)
+        (3K, 0.388)
+        (5K, 0.388)
+        (7K, 0.388)
+        (10K, 0.388)};
+        
+        \addplot [myred, mark size = 6, line width=1.5pt] coordinates { 
+        (1K, 0.423)
+        (3K, 0.423)
+        (5K, 0.423)
+        (7K, 0.423)
+        (10K, 0.423)};
+
+        \addplot [myblue, mark=diamond*, mark size = 6, line width=1.5pt] coordinates { 
+        (1K, 0.376)
+        (3K, 0.414)
+        (5K, 0.457)
+        (7K, 0.468)
+        (10K, 0.475)};
+
+    \end{axis}
+    % \node [xshift=5em, yshift=-4ex] {\footnotesize (b) Text Style Transfer};
+\end{tikzpicture}
+\end{tabular}

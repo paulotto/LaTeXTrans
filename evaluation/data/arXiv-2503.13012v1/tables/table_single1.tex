@@ -1,0 +1,27 @@
+\begin{tabular}{c|cccccccccccc|c}
+\hlineB{3}
+\multirow{2}{*}{Methods}      & A $\rightarrow$ B & A $\rightarrow$ C & A $\rightarrow$ D & B $\rightarrow$ A & B $\rightarrow$ C & B $\rightarrow$ D & C $\rightarrow$ A & C $\rightarrow$ B & C $\rightarrow$ D & D $\rightarrow$ A & D $\rightarrow$ B & D $\rightarrow$ C & Avg. \\ \cline{2-14} 
+& \multicolumn{13}{c}{\textbf{Dice Score Metric $\uparrow$ (DSC, mean$\pm$std )}} \\ \hline \hline
+\textit{No Adapt} (U-Net~\cite{ronneberger2015u})  & 76.49\small{$\pm$1.48} & 67.70\small{$\pm$3.27} &  70.94\small{$\pm$7.56} & 76.21\small{$\pm$2.90} & 62.80\small{$\pm$8.03} & 70.03\small{$\pm$4.53} & 72.87\small{$\pm$3.62} & 69.13\small{$\pm$5.15} & 70.44\small{$\pm$3.27} & 79.78\small{$\pm$1.08} & 72.47\small{$\pm$2.80} & 74.91\small{$\pm$3.18} & 71.98  \\ \hline
+TENT (ICLR'21)~\cite{wangtent} & 68.13\small{$\pm$0.18} & 65.99\small{$\pm$0.11} & 66.11\small{$\pm$0.14} & 77.56\small{$\pm$0.21}  & 59.87\small{$\pm$0.20} & 68.89\small{$\pm$0.14} & 73.21\small{$\pm$0.10} & 65.04\small{$\pm$0.09} & 72.35\small{$\pm$0.22} & 77.88\small{$\pm$0.14} &  70.01\small{$\pm$0.11} &  73.60\small{$\pm$0.20}  &69.89    \\
+TASD (AAAI'22)~\cite{liu2022single} & 73.02\small{$\pm$2.24} & 79.67\small{$\pm$6.37} & 78.23\small{$\pm$4.44} & 66.82\small{$\pm$9.17} & 72.09\small{$\pm$4.40} & 77.95\small{$\pm$1.69} & 74.20\small{$\pm$3.30} & 69.74\small{$\pm$7.27} & 76.13\small{$\pm$2.82} & 83.77\small{$\pm$0.51} & 76.09\small{$\pm$3.26} & 80.10\small{$\pm$1.47} & 75.65\\
+% CoTTA (CVPR'22)~\cite{wang2022continual}       \\
+
+DLTTA (TMI'22)~\cite{yang2022dltta} & 72.23\small{$\pm$0.04} & 70.78\small{$\pm$0.06} & 74.56\small{$\pm$0.04} & 64.87\small{$\pm$0.01} & 60.05\small{$\pm$0.09} & 78.47\small{$\pm$0.03} & 71.22\small{$\pm$0.03} & 65.78\small{$\pm$0.10} & 71.00\small{$\pm$0.13} & 79.89\small{$\pm$0.08} & 79.10\small{$\pm$0.10} & 74.52\small{$\pm$0.01} & 71.87 \\
+
+SAR (ICLR'23)~\cite{niu2023towards} & 70.34\small{$\pm$0.13} & 77.90\small{$\pm$0.20} & 77.71\small{$\pm$0.09} & 68.19\small{$\pm$0.12} & 66.56\small{$\pm$0.08} & 73.92\small{$\pm$0.13} & 76.12\small{$\pm$0.11} & 71.29\small{$\pm$0.19} & 75.08\small{$\pm$0.08} & 82.07\small{$\pm$0.04} & 80.44\small{$\pm$0.21} & 83.10\small{$\pm$0.15} & 75.22 \\
+
+DomainAdaptor (CVPR'23)~\cite{zhang2023domainadaptor} & 78.39\small{$\pm$0.61} & 77.09\small{$\pm$0.35} & 79.45\small{$\pm$0.21} & 74.98\small{$\pm$0.70} & 70.07\small{$\pm$0.66} & 80.21\small{$\pm$0.46} & 76.02\small{$\pm$0.33} & 73.40\small{$\pm$0.50} & \textcolor{red}{81.33\small{$\pm$0.54}} & 86.10\small{$\pm$0.43} & 80.56\small{$\pm$0.62} & 77.86\small{$\pm$0.21} & 77.96 \\
+
+DeY-Net (WACV'24)~\cite{wen2024denoising} & 74.45\small{$\pm$1.31} & 76.07\small{$\pm$2.52} & 80.11\small{$\pm$0.72} & 70.90\small{$\pm$1.10} & 69.23\small{$\pm$2.18} & 76.31\small{$\pm$1.32} & 78.33\small{$\pm$4.43} & 74.60\small{$\pm$1.66} &73.52\small{$\pm$2.25} & 80.70\small{$\pm$0.27} & 78.23\small{$\pm$1.17} & 81.48\small{$\pm$0.93} & 76.16 \\
+
+VPTTA (CVPR'24)~\cite{chen2024each}       &78.18\small{$\pm$0.01}  &  75.14\small{$\pm$0.03}  &  82.73\small{$\pm$0.02}  & 73.65\small{$\pm$0.06} &   64.78\small{$\pm$0.01}     &    82.86\small{$\pm$0.03}    &  77.90\small{$\pm$0.01}      &   70.64\small{$\pm$0.05}     &   77.22\small{$\pm$0.10}     &   87.19\small{$\pm$0.03}     &    \textcolor{red}{84.97\small{$\pm$0.08}}    &   82.12\small{$\pm$0.02}     &  78.12  \\ 
+
+NC-TTT (CVPR'24)~\cite{osowiechi2024nc} & 79.21\small{$\pm$0.24} & 81.76\small{$\pm$0.57} & \textcolor{red}{83.22\small{$\pm$0.69}} & 77.35\small{$\pm$0.33} & 79.40\small{$\pm$0.67} & 80.94\small{$\pm$0.54} & \textcolor{red}{80.17\small{$\pm$0.70}} & 72.36\small{$\pm$0.62} & 78.55\small{$\pm$0.43} & 84.09\small{$\pm$0.38} & 82.38\small{$\pm$0.51} & 79.77\small{$\pm$0.74} & 79.93 \\
+
+% MedBN (CVPR'24)~\cite{park2024medbn} \\
+
+\hline
+
+Ours  & \textcolor{red}{80.47\small{$\pm$0.28}} &    \textcolor{red}{83.93\small{$\pm$0.19}} & 83.18\small{$\pm$0.33} & \textcolor{red}{78.33\small{$\pm$0.26}}  &  \textcolor{red}{81.25\small{$\pm$0.23}}  & \textcolor{red}{83.58\small{$\pm$0.34}}  &  78.86\small{$\pm$0.26} &    \textcolor{red}{76.49\small{$\pm$0.21}} &    80.20\small{$\pm$0.24}    &    \textcolor{red}{89.17\small{$\pm$0.22}}    &    81.68\small{$\pm$0.22}    &   \textcolor{red}{83.86\small{$\pm$0.28}}     &  \textcolor{red}{81.75}    \\ \hlineB{3}
+\end{tabular}

@@ -1,0 +1,106 @@
+% CVPR 2025 Paper Template; see https://github.com/cvpr-org/author-kit
+
+\documentclass[10pt,twocolumn,letterpaper]{article}
+% \usepackage[accsupp]{axessibility}
+%%%%%%%%% PAPER TYPE  - PLEASE UPDATE FOR FINAL VERSION
+\usepackage{cvpr}              % To produce the CAMERA-READY version
+% \usepackage[review]{cvpr}      % To produce the REVIEW version
+% \usepackage[pagenumbers]{cvpr} % To force page numbers, e.g. for an arXiv version
+
+% Import additional packages in the preamble file, before hyperref
+\input{preamble}
+
+% It is strongly recommended to use hyperref, especially for the review version.
+% hyperref with option pagebackref eases the reviewers' job.
+% Please disable hyperref *only* if you encounter grave issues, 
+% e.g. with the file validation for the camera-ready version.
+%
+% If you comment hyperref and then uncomment it, you should delete *.aux before re-running LaTeX.
+% (Or just hit 'q' on the first LaTeX run, let it finish, and you should be clear).
+\definecolor{cvprblue}{rgb}{0.21,0.49,0.74}
+\usepackage[pagebackref,breaklinks,colorlinks,allcolors=cvprblue]{hyperref}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{multirow}
+\usepackage{pifont}
+% \usepackage[table,xcdraw]{xcolor}
+\usepackage{colortbl}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+%%%%%%%%% PAPER ID  - PLEASE UPDATE
+\def\paperID{9941} % *** Enter the Paper ID here
+\def\confName{CVPR}
+\def\confYear{2025}
+\hypersetup{
+    colorlinks=true, 
+    urlcolor=magenta,   
+}
+%%%%%%%%% TITLE - PLEASE UPDATE
+\title{From Poses to Identity: Training-Free Person Re-Identification \\ via Feature Centralization}
+
+%%%%%%%%% AUTHORS - PLEASE UPDATE
+% \author{First Author\\
+% Institution1\\
+% Institution1 address\\
+% {\tt\small firstauthor@i1.org}
+\author{
+Chao Yuan$^{1,*}$, Guiwei Zhang$^{1,*}$, Changxiao Ma$^{1}$, Tianyi Zhang$^{2}$, Guanglin Niu$^{2,\dagger}$ \\
+\textsuperscript{1} School of Computer Science and Engineering, Beihang University \quad \\
+\textsuperscript{2} School of Artificial Intelligence, Beihang University  \\
+{\tt\small yuanc3666@gmail.com}, {\tt\small \{zhangguiwei,cxma124,zy2442222,beihangngl\}@buaa.edu.cn} \\
+}
+
+% For a paper whose authors are all at the same institution,
+% omit the following lines up until the closing ``}''.
+% Additional authors and addresses can be added with ``\and'',
+% just like the second author.
+% To save space, use either the email address or home page, not both
+% \and
+% Second Author\\
+% Institution2\\
+% First line of institution2 address\\
+% {\tt\small secondauthor@i2.org}
+
+
+\begin{document}
+
+\twocolumn[{%
+\renewcommand\twocolumn[1][]{#1}%
+\maketitle
+\begin{center}
+    \centering
+    \includegraphics[width=0.8\textwidth]{figs/pdf/visualization.pdf} 
+    \captionof{figure}{Visualization of our Identity-Guided Pedestrian Generation model with 8 representative poses on three datasets.}
+\end{center}%
+}]
+\renewcommand{\thefootnote}{}
+\footnotetext{$\dagger$ Corresponding author. * Equal contribution.}
+\footnotetext{Codes: \textit{\url{https://github.com/yuanc3/Pose2ID}}}
+% \maketitle
+
+
+\input{sec/0_abstract}    
+\input{sec/1_intro}
+\input{sec/2_relatedworks}
+\input{sec/3_methods}
+\input{sec/4_experiments}
+\input{sec/5_conclusion}
+
+% \section*{Acknowledgments}
+% This work was supported by the National Natural Science Foundation of China (No. 62376016).
+% \input{sec/X_suppl_arxiv}
+{
+    \small
+    \bibliographystyle{ieeenat_fullname}
+    \bibliography{main}
+}
+
+% WARNING: do not forget to delete the supplementary pages from your submission 
+% \setcounter{section}{0}
+\input{sec/X_suppl_arxiv}
+
+\end{document}
+% \section*{Acknowledgments}
+% This work was supported by the National Natural Science Foundation of China (No. 62376016).

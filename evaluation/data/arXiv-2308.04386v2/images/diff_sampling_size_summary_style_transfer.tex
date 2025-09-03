@@ -1,0 +1,106 @@
+
+\centering
+\begin{tabular}{@{}c@{\hspace{-3.1cm}}c@{}}
+\centering
+\begin{tikzpicture}[scale=0.24]
+\matrix (m) [
+        fill=white,
+        draw=black,
+        at={(3.8, 13)},
+        anchor=north west,
+        cells={anchor=west},
+        scale=0.8,
+        inner sep=1.8pt]
+        {
+            &[1.0em] \LegendImage{color=mygreen,mark=triangle*,mark size=1.5pt} &  \LegendEntry{\scriptsize Kend.}; \
+            &[1em] \LegendImage{color=myred,mark=pentagon*,mark size=1.5pt} &  \LegendEntry{\scriptsize Spear.};&[1em] \
+            &[1em] \LegendImage{color=myblue,mark=diamond*,mark size=1.5pt} &  \LegendEntry{\scriptsize Pear.}; &[1em]\\
+        };	
+\begin{axis}[
+        ymajorgrids,xmajorgrids,
+        grid style=dashed,
+        width=0.9\textwidth,
+        height=.65\textwidth,
+        symbolic x coords={5K, 10K, 15K, 20K, 25K},
+        xtick=data,
+        x tick label style={scale=2.4},
+        y tick label style={scale=2.4,
+                            /pgf/number format/fixed,
+                            /pgf/number format/fixed zerofill,
+                            /pgf/number format/precision=2},
+        ymin=0.45, ymax=0.75,
+        ytick={0.45,0.50,...,0.75},
+        xlabel={Sample Size},
+        ylabel={Correlation Score},
+        ylabel style={yshift=3.5em, scale=2.5},
+        xlabel style={yshift=-1em, scale=2.5},]
+    \addplot [mygreen, mark=triangle*, mark size = 6, line width=1.5pt] coordinates { 
+    (5K, 0.498)
+    (10K, 0.530)
+    (15K, 0.544)
+    (20K, 0.549)
+    (25K, 0.546)};
+
+    \addplot [myred, mark=pentagon*, mark size = 6, line width=1.5pt] coordinates { 
+    (5K, 0.628)
+    (10K, 0.661)
+    (15K, 0.676)
+    (20K, 0.680)
+    (25K, 0.677)};
+
+    \addplot [myblue, mark=diamond*, mark size = 6, line width=1.5pt] coordinates { 
+    (5K, 0.691)
+    (10K, 0.704)
+    (15K, 0.718)
+    (20K, 0.724)
+    (25K, 0.723)};
+\end{axis}
+\node [xshift=5em, yshift=-4ex] {\footnotesize (a) Machine Translation};
+\end{tikzpicture}
+&
+% summarization
+\centering
+\begin{tikzpicture}[scale=0.24]
+    \begin{axis}[
+            ymajorgrids,xmajorgrids,
+            grid style=dashed,
+            width=0.9\textwidth,
+            height=.65\textwidth,
+            symbolic x coords={5K, 10K, 15K, 20K, 25K},
+            xtick=data,
+            x tick label style={scale=2.4},
+            y tick label style={scale=2.4,
+                                /pgf/number format/fixed,
+                                /pgf/number format/fixed zerofill,
+                                /pgf/number format/precision=2},
+            ymin=0.45, ymax=0.65,
+            ytick={0.45,0.50,...,0.65},
+            xlabel={Sample Size},
+            ylabel={Correlation Score},
+            ylabel style={yshift=3.5em, scale=2.5},
+            xlabel style={yshift=-1em, scale=2.5},]
+        \addplot [mygreen, mark=triangle*, mark size = 6, line width=1.5pt] coordinates { 
+        (5K, 0.486)
+        (10K, 0.491)
+        (15K, 0.503)
+        (20K, 0.511)
+        (25K, 0.517)};
+
+        \addplot [myred, mark=pentagon*, mark size = 6, line width=1.5pt] coordinates { 
+        (5K, 0.590)
+        (10K, 0.598)
+        (15K, 0.609)
+        (20K, 0.624)
+        (25K, 0.628)};
+
+        \addplot [myblue, mark=diamond*, mark size = 6, line width=1.5pt] coordinates { 
+        (5K, 0.605)
+        (10K, 0.609)
+        (15K, 0.623)
+        (20K, 0.630)
+        (25K, 0.637)};
+
+    \end{axis}
+    \node [xshift=5em, yshift=-4ex] {\footnotesize (b) Text Style Transfer};
+\end{tikzpicture}
+\end{tabular}

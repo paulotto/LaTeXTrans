@@ -1,0 +1,394 @@
+\begin{thebibliography}{60}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Bai et~al.(2023)Bai, Bai, Yang, Wang, Tan, Wang, Lin, Zhou, and
+  Zhou]{bai2023qwen}
+Jinze Bai, Shuai Bai, Shusheng Yang, Shijie Wang, Sinan Tan, Peng Wang, Junyang
+  Lin, Chang Zhou, and Jingren Zhou.
+\newblock Qwen-vl: A versatile vision-language model for understanding,
+  localization, text reading, and beyond.
+\newblock \emph{arXiv preprint arXiv:2308.12966}, 1\penalty0 (2):\penalty0 3,
+  2023.
+
+\bibitem[Baldrati et~al.(2023)Baldrati, Agnolucci, Bertini, and
+  Del~Bimbo]{baldrati2023zero}
+Alberto Baldrati, Lorenzo Agnolucci, Marco Bertini, and Alberto Del~Bimbo.
+\newblock Zero-shot composed image retrieval with textual inversion.
+\newblock In \emph{ICCV}, pages 15338--15347, 2023.
+
+\bibitem[Chen et~al.(2023)Chen, Ye, and Jiang]{chen2023towards}
+Cuiqun Chen, Mang Ye, and Ding Jiang.
+\newblock Towards modality-agnostic person re-identification with descriptive
+  query.
+\newblock In \emph{CVPR}, pages 15128--15137, 2023.
+
+\bibitem[Crawford et~al.(2023)Crawford, Yin, McDermott, and
+  Cummings]{crawford2023unicat}
+Jennifer Crawford, Haoli Yin, Luke McDermott, and Daniel Cummings.
+\newblock Unicat: Crafting a stronger fusion baseline for multimodal
+  re-identification.
+\newblock \emph{arXiv preprint arXiv:2310.18812}, 2023.
+
+\bibitem[Diao et~al.(2024)Diao, Cui, Li, Wang, Lu, and Wang]{diao2024unveiling}
+Haiwen Diao, Yufeng Cui, Xiaotong Li, Yueze Wang, Huchuan Lu, and Xinlong Wang.
+\newblock Unveiling encoder-free vision-language models.
+\newblock \emph{arXiv preprint arXiv:2406.11832}, 2024.
+
+\bibitem[Ding et~al.(2021)Ding, Ding, Shao, and Tao]{ding2021semantically}
+Zefeng Ding, Changxing Ding, Zhiyin Shao, and Dacheng Tao.
+\newblock Semantically self-aligned network for text-to-image part-aware person
+  re-identification.
+\newblock \emph{arXiv preprint arXiv:2107.12666}, 2021.
+
+\bibitem[Dosovitskiy et~al.(2020)Dosovitskiy, Beyer, Kolesnikov, Weissenborn,
+  Zhai, Unterthiner, Dehghani, Minderer, Heigold, Gelly,
+  et~al.]{dosovitskiy2020image}
+Alexey Dosovitskiy, Lucas Beyer, Alexander Kolesnikov, Dirk Weissenborn,
+  Xiaohua Zhai, Thomas Unterthiner, Mostafa Dehghani, Matthias Minderer, Georg
+  Heigold, Sylvain Gelly, et~al.
+\newblock An image is worth 16x16 words: Transformers for image recognition at
+  scale.
+\newblock \emph{arXiv preprint arXiv:2010.11929}, 2020.
+
+\bibitem[Gong et~al.(2021)Gong, Huang, and Chen]{gong2021eliminate}
+Yunpeng Gong, Liqing Huang, and Lifei Chen.
+\newblock Eliminate deviation with deviation for data augmentation and a
+  general multi-modal data learning method.
+\newblock \emph{arXiv preprint arXiv:2101.08533}, 2021.
+
+\bibitem[Gong et~al.(2024)Gong, Zhong, Qu, Luo, Ji, and Jiang]{gong2024cross}
+Yunpeng Gong, Zhun Zhong, Yansong Qu, Zhiming Luo, Rongrong Ji, and Min Jiang.
+\newblock Cross-modality perturbation synergy attack for person
+  re-identification.
+\newblock In \emph{NeurIPS}, 2024.
+
+\bibitem[Guo et~al.(2022)Guo, Zhang, Liu, and Wang]{guo2022generative}
+Jinbo Guo, Xiaojing Zhang, Zhengyi Liu, and Yuan Wang.
+\newblock Generative and attentive fusion for multi-spectral vehicle
+  re-identification.
+\newblock In \emph{ICSP}, pages 1565--1572, 2022.
+
+\bibitem[Han et~al.(2024)Han, He, Liu, Liu, Zhang, and Xiang]{han2024clip}
+Qianru Han, Xinwei He, Zhi Liu, Sannyuya Liu, Ying Zhang, and Jinhai Xiang.
+\newblock Clip-scgi: Synthesized caption-guided inversion for person
+  re-identification.
+\newblock \emph{arXiv preprint arXiv:2410.09382}, 2024.
+
+\bibitem[He et~al.(2023)He, Lu, Wang, and Hu]{he2023graph}
+Qiaolin He, Zefeng Lu, Zihan Wang, and Haifeng Hu.
+\newblock Graph-based progressive fusion network for multi-modality vehicle
+  re-identification.
+\newblock \emph{TITS}, pages 1--17, 2023.
+
+\bibitem[He et~al.(2021)He, Luo, Wang, Wang, Li, and Jiang]{he2021transreid}
+Shuting He, Hao Luo, Pichao Wang, Fan Wang, Hao Li, and Wei Jiang.
+\newblock Transreid: Transformer-based object re-identification.
+\newblock In \emph{ICCV}, pages 15013--15022, 2021.
+
+\bibitem[He et~al.(2024)He, Deng, Tang, Chen, Xie, Wang, Bai, Zhu, Zhao,
+  Ouyang, et~al.]{he2024instruct}
+Weizhen He, Yiheng Deng, Shixiang Tang, Qihao Chen, Qingsong Xie, Yizhou Wang,
+  Lei Bai, Feng Zhu, Rui Zhao, Wanli Ouyang, et~al.
+\newblock Instruct-reid: A multi-purpose person re-identification task with
+  instructions.
+\newblock In \emph{CVPR}, pages 17521--17531, 2024.
+
+\bibitem[Hendrycks and Gimpel(2016)]{hendrycks2016gaussian}
+Dan Hendrycks and Kevin Gimpel.
+\newblock Gaussian error linear units (gelus).
+\newblock \emph{arXiv preprint arXiv:1606.08415}, 2016.
+
+\bibitem[Hermans et~al.(2017)Hermans, Beyer, and Leibe]{hermans2017defense}
+Alexander Hermans, Lucas Beyer, and Bastian Leibe.
+\newblock In defense of the triplet loss for person re-identification.
+\newblock \emph{arXiv preprint arXiv:1703.07737}, 2017.
+
+\bibitem[Jiang and Ye(2023)]{jiang2023cross}
+Ding Jiang and Mang Ye.
+\newblock Cross-modal implicit relation reasoning and aligning for
+  text-to-image person retrieval.
+\newblock In \emph{CVPR}, pages 2787--2797, 2023.
+
+\bibitem[Li et~al.(2020)Li, Li, Zhu, Zheng, and Luo]{li2020multi}
+Hongchao Li, Chenglong Li, Xianpeng Zhu, Aihua Zheng, and Bin Luo.
+\newblock Multi-spectral vehicle re-identification: A challenge.
+\newblock In \emph{AAAI}, pages 11345--11353, 2020.
+
+\bibitem[Li et~al.(2024)Li, Ye, Zhang, and Du]{li2024all}
+He Li, Mang Ye, Ming Zhang, and Bo Du.
+\newblock All in one framework for multimodal re-identification in the wild.
+\newblock In \emph{CVPR}, pages 17459--17469, 2024.
+
+\bibitem[Li et~al.(2017)Li, Xiao, Li, Zhou, Yue, and Wang]{li2017person}
+Shuang Li, Tong Xiao, Hongsheng Li, Bolei Zhou, Dayu Yue, and Xiaogang Wang.
+\newblock Person search with natural language description.
+\newblock In \emph{CVPR}, pages 1970--1979, 2017.
+
+\bibitem[Li et~al.(2023{\natexlab{a}})Li, Sun, and Li]{li2023clipreid}
+Siyuan Li, Li Sun, and Qingli Li.
+\newblock Clip-reid: exploiting vision-language model for image
+  re-identification without concrete text labels.
+\newblock In \emph{AAAI}, pages 1405--1413, 2023{\natexlab{a}}.
+
+\bibitem[Li et~al.(2023{\natexlab{b}})Li, Liu, Yang, Wang, Liao,
+  et~al.]{li2023clip}
+Yaowei Li, Zimo Liu, Wenming Yang, Yaowei Wang, Qingmin Liao, et~al.
+\newblock Clip-based synergistic knowledge transfer for text-based person
+  retrieval.
+\newblock \emph{arXiv preprint arXiv:2309.09496}, 2023{\natexlab{b}}.
+
+\bibitem[Liu et~al.(2021)Liu, Zhang, Yu, Lu, and Yang]{liu2021watching}
+Xuehu Liu, Pingping Zhang, Chenyang Yu, Huchuan Lu, and Xiaoyun Yang.
+\newblock Watching you: Global-guided reciprocal learning for video-based
+  person re-identification.
+\newblock In \emph{CVPR}, pages 13334--13343, 2021.
+
+\bibitem[Liu et~al.(2023)Liu, Yu, Zhang, and Lu]{liu2023deeply}
+Xuehu Liu, Chenyang Yu, Pingping Zhang, and Huchuan Lu.
+\newblock Deeply coupled convolution--transformer with spatial--temporal
+  complementary learning for video-based person re-identification.
+\newblock \emph{TNNLS}, 2023.
+
+\bibitem[Liu et~al.(2024)Liu, Zhang, Yu, Qian, Yang, and Lu]{liu2024video}
+Xuehu Liu, Pingping Zhang, Chenyang Yu, Xuesheng Qian, Xiaoyun Yang, and
+  Huchuan Lu.
+\newblock A video is worth three views: Trigeminal transformers for video-based
+  person re-identification.
+\newblock \emph{TITS}, 2024.
+
+\bibitem[Lu et~al.(2023)Lu, Zou, and Zhang]{lu2023learning}
+Hu Lu, Xuezhang Zou, and Pingping Zhang.
+\newblock Learning progressive modality-shared transformers for effective
+  visible-infrared person re-identification.
+\newblock In \emph{AAAI}, pages 1835--1843, 2023.
+
+\bibitem[Niu et~al.(2025)Niu, Yu, Zhao, Fu, Yi, Lu, Li, Qian, and
+  Xue]{niu2025chatreid}
+Ke Niu, Haiyang Yu, Mengyang Zhao, Teng Fu, Siyang Yi, Wei Lu, Bin Li, Xuelin
+  Qian, and Xiangyang Xue.
+\newblock Chatreid: Open-ended interactive person retrieval via hierarchical
+  progressive tuning for vision language models.
+\newblock \emph{arXiv preprint arXiv:2502.19958}, 2025.
+
+\bibitem[Pan et~al.(2023)Pan, Huang, Liang, Hong, and
+  Zhu]{pan2023progressively}
+Wenjie Pan, Linhan Huang, Jianbao Liang, Lan Hong, and Jianqing Zhu.
+\newblock Progressively hybrid transformer for multi-modal vehicle
+  re-identification.
+\newblock \emph{Sensors}, 23\penalty0 (9):\penalty0 4206, 2023.
+
+\bibitem[Radford et~al.(2021)Radford, Kim, Hallacy, Ramesh, Goh, Agarwal,
+  Sastry, Askell, Mishkin, Clark, et~al.]{radford2021learning}
+Alec Radford, Jong~Wook Kim, Chris Hallacy, Aditya Ramesh, Gabriel Goh,
+  Sandhini Agarwal, Girish Sastry, Amanda Askell, Pamela Mishkin, Jack Clark,
+  et~al.
+\newblock Learning transferable visual models from natural language
+  supervision.
+\newblock In \emph{ICML}, pages 8748--8763. PMLR, 2021.
+
+\bibitem[Shi et~al.(2024)Shi, Yin, Zhang, Xie, Qu, et~al.]{shi2024learning}
+Jiangming Shi, Xiangbo Yin, Yachao Zhang, Yuan Xie, Yanyun Qu, et~al.
+\newblock Learning commonality, divergence and variety for unsupervised
+  visible-infrared person re-identification.
+\newblock \emph{NeurIPS}, 37:\penalty0 99715--99734, 2024.
+
+\bibitem[Szegedy et~al.(2016)Szegedy, Vanhoucke, Ioffe, Shlens, and
+  Wojna]{szegedy2016rethinking}
+Christian Szegedy, Vincent Vanhoucke, Sergey Ioffe, Jon Shlens, and Zbigniew
+  Wojna.
+\newblock Rethinking the inception architecture for computer vision.
+\newblock In \emph{CVPR}, pages 2818--2826, 2016.
+
+\bibitem[Tan et~al.(2024)Tan, Ding, Jiang, Wang, Zhan, and
+  Tao]{tan2024harnessing}
+Wentan Tan, Changxing Ding, Jiayu Jiang, Fei Wang, Yibing Zhan, and Dapeng Tao.
+\newblock Harnessing the power of mllms for transferable text-to-image person
+  reid.
+\newblock In \emph{CVPR}, pages 17127--17137, 2024.
+
+\bibitem[Van~der Maaten and Hinton(2008)]{van2008visualizing}
+Laurens Van~der Maaten and Geoffrey Hinton.
+\newblock Visualizing data using t-sne.
+\newblock \emph{JMLR}, 9\penalty0 (11), 2008.
+
+\bibitem[Wang et~al.(2024{\natexlab{a}})Wang, Li, and Xue]{wang2024large}
+Qizao Wang, Bin Li, and Xiangyang Xue.
+\newblock When large vision-language models meet person re-identification.
+\newblock \emph{arXiv preprint arXiv:2411.18111}, 2024{\natexlab{a}}.
+
+\bibitem[Wang et~al.(2021)Wang, Zhang, Gao, Geng, Lu, and
+  Wang]{wang2021pyramid}
+Yingquan Wang, Pingping Zhang, Shang Gao, Xia Geng, Hu Lu, and Dong Wang.
+\newblock Pyramid spatial-temporal aggregation for video-based person
+  re-identification.
+\newblock In \emph{ICCV}, pages 12026--12035, 2021.
+
+\bibitem[Wang et~al.(2024{\natexlab{b}})Wang, Liu, Yan, Liu, Zheng, Zhang, and
+  Lu]{wang2024mambapro}
+Yuhao Wang, Xuehu Liu, Tianyu Yan, Yang Liu, Aihua Zheng, Pingping Zhang, and
+  Huchuan Lu.
+\newblock Mambapro: Multi-modal object re-identification with mamba aggregation
+  and synergistic prompt.
+\newblock \emph{arXiv preprint arXiv:2412.10707}, 2024{\natexlab{b}}.
+
+\bibitem[Wang et~al.(2024{\natexlab{c}})Wang, Liu, Zhang, Lu, Tu, and
+  Lu]{wang2024top}
+Yuhao Wang, Xuehu Liu, Pingping Zhang, Hu Lu, Zhengzheng Tu, and Huchuan Lu.
+\newblock Top-reid: Multi-spectral object re-identification with token
+  permutation.
+\newblock In \emph{AAAI}, pages 5758--5766, 2024{\natexlab{c}}.
+
+\bibitem[Wang et~al.(2024{\natexlab{d}})Wang, Liu, Zheng, and
+  Zhang]{wang2024decoupled}
+Yuhao Wang, Yang Liu, Aihua Zheng, and Pingping Zhang.
+\newblock Decoupled feature-based mixture of experts for multi-modal object
+  re-identification.
+\newblock \emph{arXiv preprint arXiv:2412.10650}, 2024{\natexlab{d}}.
+
+\bibitem[Wang et~al.(2024{\natexlab{e}})Wang, Zhang, Wang, and
+  Lu]{wang2024other}
+Yingquan Wang, Pingping Zhang, Dong Wang, and Huchuan Lu.
+\newblock Other tokens matter: Exploring global and local features of vision
+  transformers for object re-identification.
+\newblock \emph{CVIU}, 244:\penalty0 104030, 2024{\natexlab{e}}.
+
+\bibitem[Wang et~al.(2025)Wang, Zhang, Liu, Tu, and Lu]{wang2025unity}
+Yuhao Wang, Pingping Zhang, Xuehu Liu, Zhengzheng Tu, and Huchuan Lu.
+\newblock Unity is strength: Unifying convolutional and transformeral features
+  for better person re-identification.
+\newblock \emph{TITS}, 2025.
+
+\bibitem[Wang et~al.(2022)Wang, Li, Zheng, He, and Tang]{wang2022interact}
+Zi Wang, Chenglong Li, Aihua Zheng, Ran He, and Jin Tang.
+\newblock Interact, embed, and enlarge: Boosting modality-specific
+  representations for multi-modal person re-identification.
+\newblock In \emph{AAAI}, pages 2633--2641, 2022.
+
+\bibitem[Wang et~al.(2024{\natexlab{f}})Wang, Huang, Zheng, and
+  He]{wang2024heterogeneous}
+Zi Wang, Huaibo Huang, Aihua Zheng, and Ran He.
+\newblock Heterogeneous test-time training for multi-modal person
+  re-identification.
+\newblock In \emph{AAAI}, pages 5850--5858, 2024{\natexlab{f}}.
+
+\bibitem[Wu et~al.(2025)Wu, Liu, Chen, Gan, Tan, Wan, and Wang]{wu2025lrmm}
+Di Wu, Zhihui Liu, Zihan Chen, Shenglong Gan, Kaiwen Tan, Qin Wan, and Yaonan
+  Wang.
+\newblock Lrmm: Low rank multi-scale multi-modal fusion for person
+  re-identification based on rgb-ni-ti.
+\newblock \emph{ESWA}, 263:\penalty0 125716, 2025.
+
+\bibitem[Xia et~al.(2022)Xia, Pan, Song, Li, and Huang]{xia2022vision}
+Zhuofan Xia, Xuran Pan, Shiji Song, Li~Erran Li, and Gao Huang.
+\newblock Vision transformer with deformable attention.
+\newblock In \emph{CVPR}, pages 4794--4803, 2022.
+
+\bibitem[Yang et~al.(2024)Yang, Chen, and Ye]{yang2024shallow}
+Bin Yang, Jun Chen, and Mang Ye.
+\newblock Shallow-deep collaborative learning for unsupervised visible-infrared
+  person re-identification.
+\newblock In \emph{CVPR}, pages 16870--16879, 2024.
+
+\bibitem[Yin et~al.(2023)Yin, Li, Schiller, McDermott, and
+  Cummings]{yin2023graft}
+Haoli Yin, Jiayao Li, Eva Schiller, Luke McDermott, and Daniel Cummings.
+\newblock Graft: Gradual fusion transformer for multimodal re-identification.
+\newblock \emph{arXiv preprint arXiv:2310.16856}, 2023.
+
+\bibitem[Yu et~al.(2024{\natexlab{a}})Yu, Liu, Wang, Zhang, and Lu]{yu2024tf}
+Chenyang Yu, Xuehu Liu, Yingquan Wang, Pingping Zhang, and Huchuan Lu.
+\newblock Tf-clip: Learning text-free clip for video-based person
+  re-identification.
+\newblock In \emph{AAAI}, pages 6764--6772, 2024{\natexlab{a}}.
+
+\bibitem[Yu et~al.(2024{\natexlab{b}})Yu, Xiong, Zhang, Diao, Zhuge, Hong,
+  Wang, Lu, He, and Chen]{yu2024llms}
+Jiazuo Yu, Haomiao Xiong, Lu Zhang, Haiwen Diao, Yunzhi Zhuge, Lanqing Hong,
+  Dong Wang, Huchuan Lu, You He, and Long Chen.
+\newblock Llms can evolve continually on modality for x-modal reasoning.
+\newblock \emph{arXiv preprint arXiv:2410.20178}, 2024{\natexlab{b}}.
+
+\bibitem[Yu et~al.(2024{\natexlab{c}})Yu, Zhuge, Zhang, Hu, Wang, Lu, and
+  He]{yu2024boosting}
+Jiazuo Yu, Yunzhi Zhuge, Lu Zhang, Ping Hu, Dong Wang, Huchuan Lu, and You He.
+\newblock Boosting continual learning of vision-language models via
+  mixture-of-experts adapters.
+\newblock In \emph{CVPR}, pages 23219--23230, 2024{\natexlab{c}}.
+
+\bibitem[Yu et~al.(2024{\natexlab{d}})Yu, Huang, Hou, Pei, Yan, Liu, and
+  Sun]{yu2024representation}
+Zhi Yu, Zhiyong Huang, Mingyang Hou, Jiaming Pei, Yan Yan, Yushi Liu, and
+  Daming Sun.
+\newblock Representation selective coupling via token sparsification for
+  multi-spectral object re-identification.
+\newblock \emph{TCSVT}, 2024{\natexlab{d}}.
+
+\bibitem[Yu et~al.(2025)Yu, Huang, Hou, Yan, and Liu]{yu2025wtsf}
+Zhi Yu, Zhiyong Huang, Mingyang Hou, Yan Yan, and Yushi Liu.
+\newblock Wtsf-reid: Depth-driven window-oriented token selection and fusion
+  for multi-modality vehicle re-identification with knowledge consistency
+  constraint.
+\newblock \emph{ESWA}, page 126921, 2025.
+
+\bibitem[Zhai et~al.(2022)Zhai, Zeng, Cao, and Lu]{zhai2022trireid}
+Yajing Zhai, Yawen Zeng, Da Cao, and Shaofei Lu.
+\newblock Trireid: Towards multi-modal person re-identification via descriptive
+  fusion model.
+\newblock In \emph{ICMR}, pages 63--71, 2022.
+
+\bibitem[Zhang et~al.(2021)Zhang, Zhang, Qi, and Lu]{zhang2021hat}
+Guowen Zhang, Pingping Zhang, Jinqing Qi, and Huchuan Lu.
+\newblock Hat: Hierarchical aggregation transformers for person
+  re-identification.
+\newblock In \emph{ACM MM}, pages 516--525, 2021.
+
+\bibitem[Zhang et~al.(2024{\natexlab{a}})Zhang, Wang, Liu, Tu, and
+  Lu]{zhang2024magic}
+Pingping Zhang, Yuhao Wang, Yang Liu, Zhengzheng Tu, and Huchuan Lu.
+\newblock Magic tokens: Select diverse tokens for multi-modal object
+  re-identification.
+\newblock In \emph{CVPR}, pages 17117--17126, 2024{\natexlab{a}}.
+
+\bibitem[Zhang et~al.(2024{\natexlab{b}})Zhang, Wei, Han, Fu, Peng, Deng, Hu,
+  Xu, Wen, Hu, et~al.]{zhang2024multimodal}
+Qingyang Zhang, Yake Wei, Zongbo Han, Huazhu Fu, Xi Peng, Cheng Deng, Qinghua
+  Hu, Cai Xu, Jie Wen, Di Hu, et~al.
+\newblock Multimodal fusion on low-quality data: A comprehensive survey.
+\newblock \emph{arXiv preprint arXiv:2404.18947}, 2024{\natexlab{b}}.
+
+\bibitem[Zheng et~al.(2021)Zheng, Wang, Chen, Li, and Tang]{zheng2021robust}
+Aihua Zheng, Zi Wang, Zihan Chen, Chenglong Li, and Jin Tang.
+\newblock Robust multi-modality person re-identification.
+\newblock In \emph{AAAI}, pages 3529--3537, 2021.
+
+\bibitem[Zheng et~al.(2023{\natexlab{a}})Zheng, He, Wang, Li, and
+  Tang]{zheng2023dynamic}
+Aihua Zheng, Ziling He, Zi Wang, Chenglong Li, and Jin Tang.
+\newblock Dynamic enhancement network for partial multi-modality person
+  re-identification.
+\newblock \emph{arXiv preprint arXiv:2305.15762}, 2023{\natexlab{a}}.
+
+\bibitem[Zheng et~al.(2023{\natexlab{b}})Zheng, Zhu, Ma, Li, Tang, and
+  Ma]{zheng2023cross}
+Aihua Zheng, Xianpeng Zhu, Zhiqi Ma, Chenglong Li, Jin Tang, and Jixin Ma.
+\newblock Cross-directional consistency network with adaptive layer
+  normalization for multi-spectral vehicle re-identification and a high-quality
+  benchmark.
+\newblock \emph{Information Fusion}, 100:\penalty0 101901, 2023{\natexlab{b}}.
+
+\bibitem[Zheng et~al.(2025)Zheng, Ma, Sun, Wang, Li, and Tang]{zheng2025flare}
+Aihua Zheng, Zhiqi Ma, Yongqi Sun, Zi Wang, Chenglong Li, and Jin Tang.
+\newblock Flare-aware cross-modal enhancement network for multi-spectral
+  vehicle re-identification.
+\newblock \emph{Information Fusion}, 116:\penalty0 102800, 2025.
+
+\bibitem[Zhong et~al.(2020)Zhong, Zheng, Kang, Li, and Yang]{zhong2020random}
+Zhun Zhong, Liang Zheng, Guoliang Kang, Shaozi Li, and Yi Yang.
+\newblock Random erasing data augmentation.
+\newblock In \emph{AAAI}, pages 13001--13008, 2020.
+
+\end{thebibliography}

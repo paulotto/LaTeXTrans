@@ -1,0 +1,64 @@
+\section{Reproduction of state-of-the-art Methods.}
+Due to the absence of existing performance records for SOTA methods on the JRDB and QuadTrack datasets, all comparative experiments in this paper were independently reproduced. In the reproduction process, we prioritized using the official source code, provided it was executable. The parameter selection was based on the recommendations in the original papers, aiming to achieve optimal performance on both the JRDB and QuadTrack datasets.
+
+\subsection{Methods for the E2E Paradigm.}
+
+\noindent\textbf{TrackFormer.}
+To reproduce the TrackFormer method~\cite{meinhardt2021trackformer}, we utilized the official source code (\href{https://github.com/timmeinhardt/trackformer}{link}) and applied it to both JRDB~\cite{martin2021jrdb} and QuadTrack datasets.
+Our implementation uses COCO pre-trained weights from Deformable DETR~\cite{zhu2020deformable}, incorporating iterative bounding box refinement to enhance tracking accuracy. The model is trained on a single GPU with a batch size of $2$. 
+To adapt the model for JRDB~\cite{martin2021jrdb} and QuadTrack datasets, we reformat the data to align with the MOT20 format~\cite{dendorfer2020mot20}, which is a widely used format in multi-object tracking challenges. 
+Training is conducted for $30$ epochs, with an initial learning rate of \( 2 {\times} 10^{-4} \). The learning rate is decayed by a factor of $10$ every $10$ epochs, as per the official guidelines.
+All other parameters remain unchanged, using the default values.
+
+\noindent\textbf{MOTR.} 
+In reproducing the MOTR method~\cite{zeng2022motr}, we encountered challenges when training with the weights originally used in the TrackFormer method~\cite{meinhardt2021trackformer}. 
+As a result, we opted to train the model on the JRDB dataset~\cite{martin2021jrdb} using pre-trained weights from the MOT17 dataset~\cite{milan2016mot16}, which is specifically designed for multi-object tracking tasks.
+The model is fine-tuned on a single GPU with a batch size of $1$. 
+To adapt the model to the JRDB dataset~\cite{martin2021jrdb}, we modified the data format to match the DanceTrack format~\cite{peize2021dance}. This format adaptation ensures compatibility with the input requirements of the MOTR framework~\cite{zeng2022motr}. The model is trained for $25$ epochs to ensure model convergence, with an initial learning rate of \( 2 {\times} 10^{-4} \). 
+Based on the official source code (\href{https://github.com/megvii-research/MOTR}{link}) and our experience, the learning rate is reduced by a factor of $10$ every $5$ epochs.
+All other parameters were retained at their default values, as per the official guidelines.
+
+\noindent\textbf{MOTRv2.} 
+The pre-trained weights are identical to those used in TrackFormer~\cite{meinhardt2021trackformer}. 
+The model is trained on a single GPU with a batch size of $1$.
+To adapt the model for JRDB~\cite{martin2021jrdb} and QuadTrack datasets, we convert the data to the DanceTrack format~\cite{peize2021dance}. 
+Since MOTRv2~\cite{zhang2023motrv2} is highly dependent on detection results, we use ground truth detections for the training set to ensure optimal tracking performance. 
+For the test set, to maintain fairness, we generate detection results using our own detector.
+The training procedure spans $15$ epochs for JRDB~\cite{martin2021jrdb} and $25$ epochs for QuadTrack, after which the model ceases to converge. The initial learning rate is set to \( 2 {\times} 10^{-4} \) with a decay factor of $10$ every $5$ epochs, in alignment with the settings used in MOTR~\cite{zeng2022motr}.
+All other parameters were retained at their default values, as specified in the official source code (\href{https://github.com/megvii-research/MOTRv2}{link}). 
+
+\subsection{Methods for the TDB Paradigm.}
+
+\noindent\textbf{HybridSORT.} 
+In reproducing the HybridSORT method~\cite{yang2024hybrid} on both JRDB~\cite{martin2021jrdb} and QuadTrack datasets, we utilized the official source code (\href{https://github.com/ymzis69/HybridSORT}{link}). HybridSORT offers two variants: an appearance-based version and an appearance-free version. 
+For all experiments presented in this paper, the appearance-free version of HybridSORT was employed. For parameter selection, consistent values were applied across both JRDB~\cite{martin2021jrdb} and QuadTrack datasets: \texttt{track\_thresh} was set to $0.6$ and \texttt{iou\_thresh} was set to $0.15$, in alignment with the settings used in the DanceTrack dataset~\cite{peize2021dance}. 
+All other parameters were kept at their default values, as specified in the official implementation.
+
+%\vspace{1ex}
+\noindent\textbf{SORT.} As a pioneering approach in the TBD paradigm, the SORT method~\cite{bewley2016simple} has multiple implementation versions. However, due to the age of the original source code, it has been deprecated. In this paper, we chose to reproduce the SORT method based on the HybridSORT~\cite{yang2024hybrid} source code \href{https://github.com/ymzis69/HybridSORT}{(link)}. 
+For both JRDB~\cite{martin2021jrdb} and QuadTrack datasets, we set \texttt{track\_thresh} to $0.6$ and \texttt{iou\_thresh} to $0.3$, in alignment with the settings used for the SORT method on the DanceTrack dataset~\cite{peize2021dance}. 
+All other parameters were retained at their default values, as per the official guidelines.
+
+%\vspace{1ex}
+\noindent\textbf{DeepSORT.} In the comparative experiments of this paper, we encountered compatibility issues with the DeepSORT~\cite{wojke2017simple} source code repository, which was not compatible with Torch models, complicating the reproduction process. 
+As a result, we chose to reproduce the DeepSORT algorithm using the code from HybridSORT~\cite{yang2024hybrid}. It is important to note that DeepSORT is an appearance-based tracking method, which, in theory, requires the separate training of the appearance module for both JRDB~\cite{martin2021jrdb} and QuadTrack datasets. 
+However, due to the lack of explicit guidance on training the appearance weights, we used the pre-trained appearance weights provided in the source code, specifically the \texttt{googlenet\_part8\_all\_xavier\_ckpt\_56.h5} checkpoint. 
+All other parameters were retained at their default values and were not modified.
+
+%\vspace{1ex}
+\noindent\textbf{ByteTrack \& OC-SORT.} 
+In reproducing ByteTrack~\cite{zhang2022bytetrack} and OC-SORT~\cite{cao2023observation}, we chose to use their official source code to ensure consistency and accuracy. All parameter settings were directly taken from the official demo configurations, which were specifically designed to optimize performance. These settings were applied uniformly across both JRDB and QuadTrack datasets to maintain a fair comparison. This approach allows for a reliable evaluation of the performance of both tracking algorithms on our datasets while adhering to the original implementation guidelines.
+
+%\vspace{1ex}
+\noindent\textbf{BoT-SORT.} 
+BoT-SORT~\cite{aharon2022bot} is a tracker in the TBD paradigm that integrates multiple techniques, including the use of appearance features. 
+For both JRDB~\cite{martin2021jrdb} and QuadTrack datasets, we trained the appearance feature model using Fast-ReID~\cite{he2020fastreid}. 
+All other parameters were retained as specified in the original BoT-SORT source code (\href{https://github.com/NirAharon/BoT-SORT}{link}), ensuring consistency with the default configuration. 
+
+% \noindent\textbf{.} 
+
+\subsection{YOLO11 Detection}
+In the TBD paradigm of tracking, the performance heavily depends on the detector's results. 
+We selected the best detector in the YOLO series~\cite{redmon2016you}, YOLO11~\cite{yolo11}, as the baseline for comparison. 
+To enhance the perception capability, we selected the YOLO11 series model with the largest number of parameters, the YOLO11-X~\cite{yolo11}, for training.
+The training configuration consisted of $100$ epochs, an image size of $960$, and a batch size of $8$, with all other settings maintained at their default values. Upon completion of the training, the model weights from the best-performing checkpoint, \texttt{best.pt}, were used to infer the images in the test set. Detection results with confidence scores greater than the threshold $0.1$ were retained and subsequently provided as input to the tracker in the TBD paradigm.

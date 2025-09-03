@@ -1,0 +1,225 @@
+\begin{thebibliography}{44}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Achiam et~al.(2023)Achiam, Adler, Agarwal, Ahmad, Akkaya, Aleman, Almeida, Altenschmidt, Altman, Anadkat, et~al.]{gpt4}
+Josh Achiam, Steven Adler, Sandhini Agarwal, Lama Ahmad, Ilge Akkaya, Florencia~Leoni Aleman, Diogo Almeida, Janko Altenschmidt, Sam Altman, Shyamal Anadkat, et~al.
+\newblock Gpt-4 technical report.
+\newblock \emph{arXiv preprint arXiv:2303.08774}, 2023.
+
+\bibitem[Ahn et~al.(2022{\natexlab{a}})Ahn, Brohan, et~al.]{saycan}
+Michael Ahn, Brohan, et~al.
+\newblock Do as i can, not as i say: Grounding language in robotic affordances.
+\newblock \emph{arXiv preprint arXiv:2204.01691}, 2022{\natexlab{a}}.
+
+\bibitem[Ahn et~al.(2022{\natexlab{b}})Ahn, Brohan, Brown, Chebotar, Cortes, David, Finn, Fu, Gopalakrishnan, Hausman, et~al.]{plan2}
+Michael Ahn, Anthony Brohan, Noah Brown, Yevgen Chebotar, Omar Cortes, Byron David, Chelsea Finn, Chuyuan Fu, Keerthana Gopalakrishnan, Karol Hausman, et~al.
+\newblock Do as i can, not as i say: Grounding language in robotic affordances.
+\newblock \emph{arXiv preprint arXiv:2204.01691}, 2022{\natexlab{b}}.
+
+\bibitem[Cai et~al.(2024)Cai, Ponomarenko, Yuan, Li, Yang, Dong, and Zhao]{spatialbot}
+Wenxiao Cai, Yaroslav Ponomarenko, Jianhao Yuan, Xiaoqi Li, Wankou Yang, Hao Dong, and Bo Zhao.
+\newblock Spatialbot: Precise spatial understanding with vision language models.
+\newblock \emph{arXiv preprint arXiv:2406.13642}, 2024.
+
+\bibitem[Chen et~al.(2024{\natexlab{a}})Chen, Xu, Kirmani, Ichter, Sadigh, Guibas, and Xia]{spatialvlm}
+Boyuan Chen, Zhuo Xu, Sean Kirmani, Brain Ichter, Dorsa Sadigh, Leonidas Guibas, and Fei Xia.
+\newblock Spatialvlm: Endowing vision-language models with spatial reasoning capabilities.
+\newblock In \emph{Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition}, pages 14455--14465, 2024{\natexlab{a}}.
+
+\bibitem[Chen et~al.(2024{\natexlab{b}})Chen, Wu, Wang, Su, Chen, Xing, Zhong, Zhang, Zhu, Lu, et~al.]{internvl}
+Zhe Chen, Jiannan Wu, Wenhai Wang, Weijie Su, Guo Chen, Sen Xing, Muyan Zhong, Qinglong Zhang, Xizhou Zhu, Lewei Lu, et~al.
+\newblock Internvl: Scaling up vision foundation models and aligning for generic visual-linguistic tasks.
+\newblock In \emph{Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition}, pages 24185--24198, 2024{\natexlab{b}}.
+
+\bibitem[Chowdhery et~al.(2023)Chowdhery, Narang, et~al.]{palm}
+Aakanksha Chowdhery, Narang, et~al.
+\newblock Palm: Scaling language modeling with pathways.
+\newblock \emph{Journal of Machine Learning Research}, 24\penalty0 (240):\penalty0 1--113, 2023.
+
+\bibitem[Dai et~al.(2017)Dai, Chang, Savva, Halber, Funkhouser, and Nie{\ss}ner]{scannet}
+Angela Dai, Angel~X Chang, Manolis Savva, Maciej Halber, Thomas Funkhouser, and Matthias Nie{\ss}ner.
+\newblock Scannet: Richly-annotated 3d reconstructions of indoor scenes.
+\newblock In \emph{Proceedings of the IEEE conference on computer vision and pattern recognition}, pages 5828--5839, 2017.
+
+\bibitem[Dosovitskiy(2020)]{vit}
+Alexey Dosovitskiy.
+\newblock An image is worth 16x16 words: Transformers for image recognition at scale.
+\newblock \emph{arXiv preprint arXiv:2010.11929}, 2020.
+
+\bibitem[Driess et~al.(2023)Driess, Xia, Sajjadi, Lynch, Chowdhery, Ichter, Wahid, Tompson, Vuong, Yu, et~al.]{palme}
+Danny Driess, Fei Xia, Mehdi~SM Sajjadi, Corey Lynch, Aakanksha Chowdhery, Brian Ichter, Ayzaan Wahid, Jonathan Tompson, Quan Vuong, Tianhe Yu, et~al.
+\newblock Palm-e: An embodied multimodal language model.
+\newblock \emph{arXiv preprint arXiv:2303.03378}, 2023.
+
+\bibitem[Ehsani et~al.(2024)Ehsani, Gupta, Hendrix, Salvador, Weihs, Zeng, Singh, Kim, Han, Herrasti, et~al.]{elmm3}
+Kiana Ehsani, Tanmay Gupta, Rose Hendrix, Jordi Salvador, Luca Weihs, Kuo-Hao Zeng, Kunal~Pratap Singh, Yejin Kim, Winson Han, Alvaro Herrasti, et~al.
+\newblock Spoc: Imitating shortest paths in simulation enables effective navigation and manipulation in the real world.
+\newblock In \emph{Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition}, pages 16238--16250, 2024.
+
+\bibitem[Gao et~al.(2022)Gao, Yuan, Shu, Lu, and Zhu]{ws2}
+Xiaofeng Gao, Luyao Yuan, Tianmin Shu, Hongjing Lu, and Song-Chun Zhu.
+\newblock Show me what you can do: Capability calibration on reachable workspace for human-robot collaboration.
+\newblock \emph{IEEE Robotics and Automation Letters}, 7\penalty0 (2):\penalty0 2644--2651, 2022.
+
+\bibitem[Hong et~al.(2024)Hong, Zheng, Chen, Wang, Li, and Gan]{eqa2}
+Yining Hong, Zishuo Zheng, Peihao Chen, Yian Wang, Junyan Li, and Chuang Gan.
+\newblock Multiply: A multisensory object-centric embodied large language model in 3d world.
+\newblock In \emph{Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition}, pages 26406--26416, 2024.
+
+\bibitem[Huang et~al.(2023)Huang, Wang, Zhang, Li, Wu, and Fei-Fei]{voxposer}
+Wenlong Huang, Chen Wang, Ruohan Zhang, Yunzhu Li, Jiajun Wu, and Li Fei-Fei.
+\newblock Voxposer: Composable 3d value maps for robotic manipulation with language models.
+\newblock \emph{arXiv preprint arXiv:2307.05973}, 2023.
+
+\bibitem[Huang et~al.(2024)Huang, Wang, Li, Zhang, and Fei-Fei]{rekep}
+Wenlong Huang, Chen Wang, Yunzhu Li, Ruohan Zhang, and Li Fei-Fei.
+\newblock Rekep: Spatio-temporal reasoning of relational keypoint constraints for robotic manipulation.
+\newblock \emph{arXiv preprint arXiv:2409.01652}, 2024.
+
+\bibitem[Jamone et~al.(2014)Jamone, Brandao, Natale, Hashimoto, Sandini, and Takanishi]{whole_body_reach}
+Lorenzo Jamone, Martim Brandao, Lorenzo Natale, Kenji Hashimoto, Giulio Sandini, and Atsuo Takanishi.
+\newblock Autonomous online generation of a motor representation of the workspace for intelligent whole-body reaching.
+\newblock \emph{Robotics and Autonomous Systems}, 62\penalty0 (4):\penalty0 556--567, 2014.
+
+\bibitem[Lai et~al.(2024)Lai, Tian, Chen, Li, Yuan, Liu, and Jia]{lisa}
+Xin Lai, Zhuotao Tian, Yukang Chen, Yanwei Li, Yuhui Yuan, Shu Liu, and Jiaya Jia.
+\newblock Lisa: Reasoning segmentation via large language model.
+\newblock In \emph{Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition}, pages 9579--9589, 2024.
+
+\bibitem[Lei et~al.(2024)Lei, Wang, Zhou, Li, and Li]{elmm2}
+Xiaohan Lei, Min Wang, Wengang Zhou, Li Li, and Houqiang Li.
+\newblock Instance-aware exploration-verification-exploitation for instance imagegoal navigation.
+\newblock In \emph{Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition}, pages 16329--16339, 2024.
+
+\bibitem[Li et~al.(2024)Li, Zhang, Zhang, Zhang, Li, Li, Ma, and Li]{llavanext}
+Feng Li, Renrui Zhang, Hao Zhang, Yuanhan Zhang, Bo Li, Wei Li, Zejun Ma, and Chunyuan Li.
+\newblock Llava-next-interleave: Tackling multi-image, video, and 3d in large multimodal models.
+\newblock \emph{arXiv preprint arXiv:2407.07895}, 2024.
+
+\bibitem[Liang et~al.(2023)Liang, Huang, Xia, Xu, Hausman, Ichter, Florence, and Zeng]{cap}
+Jacky Liang, Wenlong Huang, Fei Xia, Peng Xu, Karol Hausman, Brian Ichter, Pete Florence, and Andy Zeng.
+\newblock Code as policies: Language model programs for embodied control.
+\newblock In \emph{2023 IEEE International Conference on Robotics and Automation (ICRA)}, pages 9493--9500. IEEE, 2023.
+
+\bibitem[Liu et~al.(2024{\natexlab{a}})Liu, Li, Wu, and Lee]{llava}
+Haotian Liu, Chunyuan Li, Qingyang Wu, and Yong~Jae Lee.
+\newblock Visual instruction tuning.
+\newblock \emph{Advances in neural information processing systems}, 36, 2024{\natexlab{a}}.
+
+\bibitem[Liu et~al.(2024{\natexlab{b}})Liu, Liu, Wang, Lee, Zhou, An, Yang, Zhang, Guo, and Zhang]{robomamba}
+Jiaming Liu, Mengzhen Liu, Zhenyu Wang, Lily Lee, Kaichen Zhou, Pengju An, Senqiao Yang, Renrui Zhang, Yandong Guo, and Shanghang Zhang.
+\newblock Robomamba: Multimodal state space model for efficient robot reasoning and manipulation.
+\newblock \emph{arXiv preprint arXiv:2406.04339}, 2024{\natexlab{b}}.
+
+\bibitem[Liu et~al.(2023)Liu, Zeng, Ren, Li, Zhang, Yang, Jiang, Li, Yang, Su, et~al.]{groundingdino}
+Shilong Liu, Zhaoyang Zeng, Tianhe Ren, Feng Li, Hao Zhang, Jie Yang, Qing Jiang, Chunyuan Li, Jianwei Yang, Hang Su, et~al.
+\newblock Grounding dino: Marrying dino with grounded pre-training for open-set object detection.
+\newblock \emph{arXiv preprint arXiv:2303.05499}, 2023.
+
+\bibitem[Liu et~al.(2025)Liu, Duan, Zhang, Li, Zhang, Zhao, Yuan, Wang, He, Liu, et~al.]{mmbench}
+Yuan Liu, Haodong Duan, Yuanhan Zhang, Bo Li, Songyang Zhang, Wangbo Zhao, Yike Yuan, Jiaqi Wang, Conghui He, Ziwei Liu, et~al.
+\newblock Mmbench: Is your multi-modal model an all-around player?
+\newblock In \emph{European Conference on Computer Vision}, pages 216--233. Springer, 2025.
+
+\bibitem[Majumdar et~al.(2024)Majumdar, Ajay, et~al.]{openeqa}
+Arjun Majumdar, Ajay, et~al.
+\newblock Openeqa: Embodied question answering in the era of foundation models.
+\newblock In \emph{Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition}, pages 16488--16498, 2024.
+
+\bibitem[Minderer et~al.(2022)Minderer, Gritsenko, Stone, et~al.]{owlvit}
+Matthias Minderer, Alexey Gritsenko, Austin Stone, et~al.
+\newblock Simple open-vocabulary object detection with vision transformers, 2022.
+
+\bibitem[O’Neill et~al.(2024)O’Neill, Rehman, et~al.]{openx}
+Abby O’Neill, Rehman, et~al.
+\newblock Open x-embodiment: Robotic learning datasets and rt-x models: Open x-embodiment collaboration 0.
+\newblock In \emph{2024 IEEE International Conference on Robotics and Automation (ICRA)}, pages 6892--6903. IEEE, 2024.
+
+\bibitem[Radford et~al.(2021)Radford, Kim, et~al.]{claude3}
+Alec Radford, Kim, et~al.
+\newblock Learning transferable visual models from natural language supervision.
+\newblock In \emph{International conference on machine learning}, pages 8748--8763. PMLR, 2021.
+
+\bibitem[Sermanet et~al.(2024)Sermanet, Ding, et~al.]{robovqa}
+Pierre Sermanet, Ding, et~al.
+\newblock Robovqa: Multimodal long-horizon reasoning for robotics.
+\newblock In \emph{2024 IEEE International Conference on Robotics and Automation (ICRA)}, pages 645--652. IEEE, 2024.
+
+\bibitem[Shridhar et~al.(2020)Shridhar, Thomason, Gordon, Bisk, Han, Mottaghi, Zettlemoyer, and Fox]{plan3}
+Mohit Shridhar, Jesse Thomason, Daniel Gordon, Yonatan Bisk, Winson Han, Roozbeh Mottaghi, Luke Zettlemoyer, and Dieter Fox.
+\newblock Alfred: A benchmark for interpreting grounded instructions for everyday tasks.
+\newblock In \emph{Proceedings of the IEEE/CVF conference on computer vision and pattern recognition}, pages 10740--10749, 2020.
+
+\bibitem[Song and Lau(2022)]{ws1}
+Chen Song and Darwin Lau.
+\newblock Workspace-based model predictive control for cable-driven robots.
+\newblock \emph{IEEE Transactions on Robotics}, 38\penalty0 (4):\penalty0 2577--2596, 2022.
+
+\bibitem[Sutanto et~al.(2020)Sutanto, Wang, Lin, Mukadam, Sukhatme, Rai, and Meier]{physical2}
+Giovanni Sutanto, Austin Wang, Yixin Lin, Mustafa Mukadam, Gaurav Sukhatme, Akshara Rai, and Franziska Meier.
+\newblock Encoding physical constraints in differentiable newton-euler algorithm.
+\newblock In \emph{Proceedings of the 2nd Conference on Learning for Dynamics and Control}, pages 804--813. PMLR, 2020.
+
+\bibitem[Team(2024)]{qwen2.5}
+Qwen Team.
+\newblock qwen2.5, 2024.
+
+\bibitem[Thomas et~al.(1988)Thomas, Rothstein, Rosenberg, and Surdin-Kerjan]{sam2}
+Dominique Thomas, Rodney Rothstein, Nathan Rosenberg, and Yolande Surdin-Kerjan.
+\newblock Sam2 encodes the second methionine s-adenosyl transferase in saccharomyces cerevisiae: physiology and regulation of both enzymes.
+\newblock \emph{Molecular and Cellular Biology}, 8\penalty0 (12):\penalty0 5132--5139, 1988.
+
+\bibitem[Tian et~al.(2024)Tian, Willis, Al~Omari, Luo, Ma, Li, Javid, Gu, Jacob, Sueda, et~al.]{physical1}
+Yunsheng Tian, Karl~DD Willis, Bassel Al~Omari, Jieliang Luo, Pingchuan Ma, Yichen Li, Farhad Javid, Edward Gu, Joshua Jacob, Shinjiro Sueda, et~al.
+\newblock Asap: Automated sequence planning for complex robotic assembly with physical feasibility.
+\newblock In \emph{2024 IEEE International Conference on Robotics and Automation (ICRA)}, pages 4380--4386. IEEE, 2024.
+
+\bibitem[Vuong et~al.(2024)Vuong, Vu, Huang, Nguyen, Le, Vo, and Nguyen]{elmm4}
+An~Dinh Vuong, Minh~Nhat Vu, Baoru Huang, Nghia Nguyen, Hieu Le, Thieu Vo, and Anh Nguyen.
+\newblock Language-driven grasp detection.
+\newblock In \emph{Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition}, pages 17902--17912, 2024.
+
+\bibitem[Wang et~al.(2024)Wang, Bai, Tan, Wang, Fan, Bai, Chen, Liu, Wang, Ge, et~al.]{qwen2vl}
+Peng Wang, Shuai Bai, Sinan Tan, Shijie Wang, Zhihao Fan, Jinze Bai, Keqin Chen, Xuejing Liu, Jialin Wang, Wenbin Ge, et~al.
+\newblock Qwen2-vl: Enhancing vision-language model's perception of the world at any resolution.
+\newblock \emph{arXiv preprint arXiv:2409.12191}, 2024.
+
+\bibitem[Wu et~al.(2020)Wu, Jiang, and Yang]{eqa1}
+Yu Wu, Lu Jiang, and Yi Yang.
+\newblock Revisiting embodiedqa: A simple baseline and beyond.
+\newblock \emph{IEEE Transactions on Image Processing}, 29:\penalty0 3984--3992, 2020.
+
+\bibitem[Yang et~al.(2024{\natexlab{a}})Yang, Yang, Hui, et~al.]{qwen2}
+An Yang, Baosong Yang, Binyuan Hui, et~al.
+\newblock Qwen2 technical report.
+\newblock \emph{arXiv preprint arXiv:2407.10671}, 2024{\natexlab{a}}.
+
+\bibitem[Yang et~al.(2024{\natexlab{b}})Yang, Zhou, Li, Tao, Li, Shen, He, Jiang, and Shi]{plan1}
+Yijun Yang, Tianyi Zhou, Kanxue Li, Dapeng Tao, Lusong Li, Li Shen, Xiaodong He, Jing Jiang, and Yuhui Shi.
+\newblock Embodied multi-modal agent trained by an llm from a parallel textworld.
+\newblock In \emph{Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition}, pages 26275--26285, 2024{\natexlab{b}}.
+
+\bibitem[Zacharias et~al.(2007)Zacharias, Borst, and Hirzinger]{workspace_structure}
+Franziska Zacharias, Christoph Borst, and Gerd Hirzinger.
+\newblock Capturing robot workspace structure: representing robot capabilities.
+\newblock In \emph{2007 IEEE/RSJ International Conference on Intelligent Robots and Systems}, pages 3229--3236. Ieee, 2007.
+
+\bibitem[Zhai et~al.(2023)Zhai, Mustafa, Kolesnikov, and Beyer]{siglip}
+Xiaohua Zhai, Basil Mustafa, Alexander Kolesnikov, and Lucas Beyer.
+\newblock Sigmoid loss for language image pre-training, 2023.
+
+\bibitem[Zhao et~al.(2024)Zhao, Li, Chen, and Yu]{elmm1}
+Ganlong Zhao, Guanbin Li, Weikai Chen, and Yizhou Yu.
+\newblock Over-nav: Elevating iterative vision-and-language navigation with open-vocabulary detection and structured representation.
+\newblock In \emph{Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition}, pages 16296--16306, 2024.
+
+\bibitem[Zhen et~al.(2024)Zhen, Qiu, Chen, Yang, Yan, Du, Hong, and Gan]{3dvla}
+Haoyu Zhen, Xiaowen Qiu, Peihao Chen, Jincheng Yang, Xin Yan, Yilun Du, Yining Hong, and Chuang Gan.
+\newblock 3d-vla: A 3d vision-language-action generative world model.
+\newblock \emph{arXiv preprint arXiv:2403.09631}, 2024.
+
+\end{thebibliography}

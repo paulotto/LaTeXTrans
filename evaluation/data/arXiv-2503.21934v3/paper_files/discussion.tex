@@ -1,0 +1,19 @@
+\vspace{-1mm}
+\section{Qualitative Discussion}\label{sec:discussion}
+\vspace{-1mm}
+
+During the evaluation, judges also documented common issues and noteworthy behaviors exhibited by the models. In this section, we discuss some of the most prominent issues that we observed.
+
+\vspace{-1mm}
+\paragraph{Answer Boxing}
+Current reinforcement learning optimization techniques rely on extracting rewards from a clearly identifiable final answer. To facilitate accurate reward extraction, models are typically instructed to enclose their final answers within a \texttt{\textbackslash boxed\{\}} environment. However, this requirement often produces unintended artifacts in the solutions for the USAMO problems. Specifically, even though most of the evaluated problems do not require a final boxed answer, many models consistently provided answers within a boxed environment. In a particularly notable instance from problem 5, \qwq{} confused itself by dismissing the possibility of a non-integer solution, despite no such restriction existing in the problem statement. Consequently, it incorrectly insisted that the final answer was $2$, even though it had otherwise correctly deduced that all even numbers satisfy the given conditions (see \cref{app:qwq_boxing}). This behavior illustrates how alignment techniques like GRPO \citep{grpo} inadvertently encourage models to treat every mathematical problem as requiring an explicitly boxed final answer, negatively affecting their overall reasoning.
+
+\vspace{-1mm}
+\paragraph{Generalizing Patterns}
+Models frequently exhibited a tendency to overgeneralize patterns observed in smaller numerical cases to larger, untested cases. While this heuristic approach might be effective for problems that only require a numerical answer, it is fundamentally flawed for problems that demand rigorous proof. Models often incorrectly asserted that these patterns observed for small cases would hold generally, without providing a formal proof for such a claim (see \cref{app:pattern}).
+
+\paragraph{Non-Existent Citations} One of the most frequent and concerning mistakes made by \geminipro{} is the generation of citations to sources that do not exist. This issue is especially prevalent in problems where the model struggles significantly and fails to produce a correct solution. In such cases, it often fabricates references to theorems or lemmas that appear plausible but, to the best of our knowledge, are not real. For example, in P6, all four generations include citations to works that we were unable to verify or locate. We suspect this behavior stems from the model's training with internet access: when it is unable to use internet in thought process, it appears to generate a convincing-sounding citation instead. An illustration of this phenomenon is provided in \cref{app:hallucinations}. This tendency is particularly troubling, as it can result in the spread of misinformation which seem to use credible academic sources.
+
+\vspace{-1mm}
+\paragraph{Solution Structure and Clarity}
+There was significant variation in the clarity and structural coherence of the solutions provided by different models. Models such as \othree{} and \oone{} generally presented their solutions clearly, logically, and in an easily interpretable manner. Conversely, models like \flthink{} and \qwq{} frequently produced chaotic and barely interpretable responses, sometimes confusing multiple unrelated ideas within a single solution. Further, \geminipro{} also had signicant issues with the clear presentation of results, sometimes boxing entire proofs are letting its thought process slip through in its final answer (\cref{app:boxing_solutions}). The noticeable clarity in models trained by OpenAI suggests that additional training focused on solution coherence substantially improved their readability, an aspect evidently less emphasized in other models.

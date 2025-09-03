@@ -1,0 +1,50 @@
+% \begin{tabular}{c|cccccccccccccccccccc|c}
+% \hlineB{3}
+% \multirow{2}{*}{Methods}  
+% & A $\rightarrow$ B & A $\rightarrow$ C & A $\rightarrow$ D & A $\rightarrow$ E & B $\rightarrow$ A & B $\rightarrow$ C & B $\rightarrow$ D & B $\rightarrow$ E & C $\rightarrow$ A & C $\rightarrow$ B & C $\rightarrow$ D & C $\rightarrow$ E & D $\rightarrow$ A & D $\rightarrow$ B & D $\rightarrow$ C & D $\rightarrow$ E & E $\rightarrow$ A & E $\rightarrow$ B & E $\rightarrow$ C & E $\rightarrow$ D & Avg. \\  \cline{2-22}
+
+% & \multicolumn{21}{c}{\textbf{Dice Score Metric $\uparrow$ }} \\ \hline \hline
+
+% \textit{No Adapt} (U-Net~\cite{ronneberger2015u}) & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - \\ \hline
+% TENT (ICLR'21)~\cite{wangtent} & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - \\
+% TASD (AAAI'22)~\cite{liu2022single} & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - \\
+% DLTTA (TMI'22)~\cite{yang2022dltta} & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - \\
+% SAR (ICLR'23)~\cite{niu2023towards} & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - \\
+% DomainAdaptor (CVPR'23)~\cite{zhang2023domainadaptor} & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - \\
+% DeY-Net (WACV'24)~\cite{wen2024denoising} & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - \\
+% VPTTA (CVPR'24)~\cite{chen2024each} & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - \\ 
+% NC-TTT (CVPR'24)~\cite{osowiechi2024nc} & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - \\ \hline
+% Ours & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - \\ \hlineB{3}
+% \end{tabular}
+
+
+\begin{tabular}{c|ccccccccccccccc|ccc}
+\hlineB{3}
+\multirow{2}{*}{Methods} & \multicolumn{3}{c}{A $\rightarrow \{B,C,D,E\}$} & \multicolumn{3}{c}{B $\rightarrow  \{A,C,D,E\}$} & \multicolumn{3}{c}{C $\rightarrow  \{A,B,D,E\}$} & \multicolumn{3}{c}{D $\rightarrow  \{A,B,C,E\}$} & \multicolumn{3}{c|}{E $\rightarrow  \{A,B,C,D\}$} & \multicolumn{3}{c}{Average} \\ \cline{2-19} 
+                         & \textit{DSC}       & $E_\phi^{max}$       & $S_{\alpha}$      & \textit{DSC}       & $E_\phi^{max}$       & $S_{\alpha}$     & \textit{DSC}       & $E_\phi^{max}$       & $S_{\alpha}$    & \textit{DSC}       & $E_\phi^{max}$       & $S_{\alpha}$  & \textit{DSC}       & $E_\phi^{max}$       & $S_{\alpha}$      & \textit{DSC} $\uparrow$      & $E_\phi^{max}$ $\uparrow$       & $S_{\alpha}$ $\uparrow$    \\ \hline \hline
+\textit{No Adapt} (U-Net~\cite{ronneberger2015u}) &70.60\small{$\pm$10.01} & 86.92\small{$\pm$1.17} & 80.36\small{$\pm$0.88} & 77.08\small{$\pm$6.90} & 91.58\small{$\pm$0.84} & 85.44\small{$\pm$0.99} & 66.24\small{$\pm$8.45} & 86.49\small{$\pm$0.77} & 80.01\small{$\pm$0.91} & 71.21\small{$\pm$9.47} & 82.90\small{$\pm$1.48} & 80.11\small{$\pm$0.88} & 72.26\small{$\pm$7.60} & 86.51\small{$\pm$1.02} & 86.05\small{$\pm$0.68} & 71.47 & 86.88 & 82.39\\ \hline
+% TENT (ICLR'21)~\cite{wangtent}   \\
+TASD (AAAI'22)~\cite{liu2022single} & 79.89\small{$\pm$5.91} & 93.26\small{$\pm$0.21} & 87.12\small{$\pm$0.13} & 82.63\small{$\pm$3.24} & 93.20\small{$\pm$0.25} & 86.00\small{$\pm$0.10} & 78.03\small{$\pm$4.29} & 92.47\small{$\pm$0.14} & 86.71\small{$\pm$0.09} & 76.30\small{$\pm$7.81} & 86.09\small{$\pm$0.15} & 80.94\small{$\pm$0.11} & 79.99\small{$\pm$1.29} & 93.24\small{$\pm$0.10} & 87.08\small{$\pm$0.08} & 79.36 & 91.65 & 85.57  \\
+% CoTTA (CVPR'22)~\cite{wang2022continual}       \\
+
+DLTTA (TMI'22)~\cite{yang2022dltta} & 74.96\small{$\pm$7.20} & 89.24\small{$\pm$0.25} & 84.02\small{$\pm$0.11} & 78.27\small{$\pm$5.66} & 92.40\small{$\pm$0.40} & 85.36\small{$\pm$0.11} & 75.84\small{$\pm$5.14} & 90.96\small{$\pm$0.20} & 84.11\small{$\pm$0.10} & 65.55\small{$\pm$9.35} & 84.80\small{$\pm$0.18} & 78.33\small{$\pm$0.08} & 71.68\small{$\pm$4.99} & 87.79\small{$\pm$0.17} & 85.13\small{$\pm$0.09} & 73.26 & 89.03 & 83.39\\
+
+SAR (ICLR'23)~\cite{niu2023towards} & 74.20\small{$\pm$6.09} & 89.07\small{$\pm$0.33} & 83.64\small{$\pm$0.10} & 80.34\small{$\pm$2.86} & 92.70\small{$\pm$0.41} & 85.95\small{$\pm$0.12} & 72.58\small{$\pm$4.46} & 91.20\small{$\pm$0.20} & 83.47\small{$\pm$0.09} & 70.30\small{$\pm$8.98} & 85.10\small{$\pm$1.09} & 79.42\small{$\pm$0.72} & 70.31\small{$\pm$5.77} & 88.56\small{$\pm$0.81} & 86.79\small{$\pm$0.30} & 73.54 & 89.32 & 83.85\\
+
+DomainAdaptor (CVPR'23)~\cite{zhang2023domainadaptor} & 77.23\small{$\pm$3.97} & 90.22\small{$\pm$0.40} & 84.20\small{$\pm$0.11} & 76.41\small{$\pm$4.28} & 91.80\small{$\pm$0.31} & 85.73\small{$\pm$0.12} & 70.17\small{$\pm$8.01} & 91.32\small{$\pm$0.24} & 83.50\small{$\pm$0.09} & 67.39\small{$\pm$9.82} & 84.16\small{$\pm$0.21} & 78.02\small{$\pm$0.08} & 76.97\small{$\pm$4.59} & 89.30\small{$\pm$0.13} & 85.46\small{$\pm$0.08} & 73.63 & 89.36 & 83.38 \\
+
+DeY-Net (WACV'24)~\cite{wen2024denoising} 
+ & 80.03\small{$\pm$8.31} &94.42\small{$\pm$0.20} & 86.35\small{$\pm$0.84} & {84.30\small{$\pm$7.09}} & \textcolor{red}{94.25\small{$\pm$0.23}} & \textcolor{red}{87.16\small{$\pm$0.47}} & 80.32\small{$\pm$7.85} & 93.40\small{$\pm$0.32} & 88.41\small{$\pm$0.33} & 78.67\small{$\pm$5.31} & 86.12\small{$\pm$0.78} & 80.45\small{$\pm$0.30} & 76.81\small{$\pm$3.79} &90.09\small{$\pm$0.55} & 86.30\small{$\pm$0.25} & 80.02 & 91.65&85.73\\
+
+VPTTA (CVPR'24)~\cite{chen2024each} &73.57\small{$\pm$6.60} & 92.68\small{$\pm$0.03} & 84.14\small{$\pm$0.01} & 78.21\small{$\pm$2.40} & 94.07\small{$\pm$0.09} & 86.16\small{$\pm$0.01} & 69.26\small{$\pm$4.29} & 92.78\small{$\pm$0.08} & 82.66\small{$\pm$0.02} & 60.11\small{$\pm$8.05} & 85.18\small{$\pm$0.10} & 76.24\small{$\pm$0.03} & 72.58\small{$\pm$5.21} & 91.16\small{$\pm$0.13} & 84.74\small{$\pm$0.04} & 70.74 & 91.17 & 82.78\\ 
+
+NC-TTT (CVPR'24)~\cite{osowiechi2024nc} & 78.21\small{$\pm$2.74} & 93.87\small{$\pm$0.25} & 85.49\small{$\pm$0.11} & 82.13\small{$\pm$3.30} & 93.19\small{$\pm$0.29} & 86.78\small{$\pm$0.08} & 77.50\small{$\pm$5.29} & 91.99\small{$\pm$0.14} & 84.08\small{$\pm$0.03} & 74.14\small{$\pm$3.50} & 87.53\small{$\pm$0.25} & 80.56\small{$\pm$0.11} & 80.53\small{$\pm$1.08} & 92.73\small{$\pm$0.10} & 85.81\small{$\pm$0.07} & 78.50 & 91.86 & 84.54
+  \\  
+
+% MedBN (CVPR'24)~\cite{park2024medbn} \\
+\hline
+
+Ours & \textcolor{red}{85.25\small{$\pm$2.33}} &  \textcolor{red}{94.68\small{$\pm$0.09}} & \textcolor{red}{88.52\small{$\pm$0.13}} & \textcolor{red}{85.34\small{$\pm$3.08}} & 93.18\small{$\pm$0.20} & 86.83\small{$\pm$0.11} & \textcolor{red}{86.19\small{$\pm$1.99}} & \textcolor{red}{94.57\small{$\pm$0.20}} & \textcolor{red}{89.24\small{$\pm$0.13}} & \textcolor{red}{81.52\small{$\pm$4.25}} & \textcolor{red}{91.20\small{$\pm$0.30}} & \textcolor{red}{84.53\small{$\pm$0.28}} & \textcolor{red}{86.08\small{$\pm$3.08}} & \textcolor{red}{94.60\small{$\pm$0.23}} & \textcolor{red}{88.58\small{$\pm$0.11}} & \textcolor{red}{84.87} & \textcolor{red}{93.64} & \textcolor{red}{87.54} \\ 
+
+\hlineB{3}
+\end{tabular}

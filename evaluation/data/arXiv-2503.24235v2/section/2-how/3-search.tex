@@ -1,0 +1,25 @@
+
+\subsubsection{Search}
+\label{subsec:search}
+
+Search is also a frequently used component during the test-time scaling. LLMs pre-trained on vast amounts of online data, can be viewed as a compression of real-world knowledge. However, standard inference tends to underutilize their capacity. Search, being a classic yet working technique in retrieving relevant information from vast databases, can be utilized to fully exploit the capability of LLMs by exploring their potential options in a structured manner. Existing test-time scaling approaches based on search techniques demonstrate significant performance increases over complex tasks, such as complex mathematics, etc.
+
+\citet{yao2023tree} explores the potential of search by decomposing the output samples into multiple thoughts and organizing them in a tree structure. Based on only Naive tree search algorithms, such as depth-first search and breath-first search, it demonstrates superior performance on reasoning tasks. 
+Monte-Carlo Tree Search~\citep{coulom2006efficient}, being a classical and powerful search algorithm, also shines its light on better exploiting the hidden knowledge of LLMs.
+\citet{chaffin2022ppl} adopts MCTS during the decoding stage guided by discriminators for constrained textual generation.
+\citet{zhang2023planning} further extends the MCTS to enhance the planning ability in code generation via looking ahead.
+\citet{tian2024toward} incorporates the MCTS as a critical component in the self-improving framework for LLM.
+\citet{wan2024alphazero} tailors the search algorithm to tackle problems requiring long-horizon planning and deep tree structure for searching.
+\citet{chen2024tree} further identifies that discriminators are the key bottleneck in search-enhanced planning.
+\citet{gandhi2024streams} systematizes the search process in a unified language and proposes to train an LLM with data and feedback from the search process.
+\citet{wu2024scaling} empirically analyzes various search algorithms and designs a reward-balanced search algorithm toward Pareto-optimal test-time scaling.
+\citet{beenching2024scaling} further extends the beam search by incorporating diversity consideration.
+
+Apart from searching within the tree structure, \citet{Besta2024graph} models the output as a graph search problem.
+\citet{xie2023selfevaluation} proposes a stochastic beam search solution based on self-evaluation for reasoning tasks.
+\citet{pan2025coatchainofassociatedthoughtsframeworkenhancing} enhances MCTS with proposed associative memory to dynamically update its knowledge base.
+\citet{li2025reasoningaslogicunitsscalingtesttimereasoning} proposes to solve the reasoning process as constructing a control flow graph with each node indicating a logic unit.
+
+% To enhance the efficiency and accuracy of test-time scaling, search techniques guide the model toward optimal solutions by systematically exploring the sample space. This includes two key approaches:
+% \paragraph{Trajectory Strategy} Instead of generating a single reasoning path, the model actively explores multiple trajectories, adjusting its steps dynamically based on intermediate signals. This approach includes methods like beam search and Monte Carlo Tree Search (MCTS), allowing the model to prioritize promising reasoning paths while pruning less relevant ones. By adaptively allocating computational resources to high-value trajectories, this strategy enhances both depth and efficiency in problem-solving.
+% \paragraph{Verifying Strategy} Rather than relying solely on the model’s initial output, this approach incorporates an external verification process to assess and refine responses. This may involve a reward model, consistency checks, or execution-based validation, ensuring that only reliable and logically sound answers are retained. By integrating feedback loops and validation mechanisms, the verifying strategy reduces hallucinations and increases confidence in the final output.

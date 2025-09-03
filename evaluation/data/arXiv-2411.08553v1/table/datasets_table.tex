@@ -1,0 +1,50 @@
+ % Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+\begin{table}
+\small
+\centering
+\begin{tabular}{@{}lccc@{}}
+\toprule
+\textbf{Dataset} & \textbf{Type} & \textbf{Class} & \textbf{Train, Test} \\ 
+\midrule
+\AGNews   & Topic            & $4$              & $115\text{K}, 7.6\text{K}$           \\
+\ToIHeadlines   & Topic            & $10$             & $52\text{K}, 10\text{K}$             \\
+\Humor   & Sentiment      & $2$     & $15\text{K}, 3\text{K}$   \\
+\IMDb   & Sentiment      & $2$     & $20\text{K}, 25\text{K}$   \\ 
+\bottomrule
+\end{tabular}
+\caption{Dataset statistics.}
+\vspace{-1em}
+\label{tab:tasks}
+\end{table}
+
+
+% \begin{table}
+% \small
+% \centering
+% \setlength{\tabcolsep}{3pt}
+% \begin{tabular}{
+% l
+% c
+% c
+% c
+% h
+% }
+% \toprule
+% \textbf{Corpus} & \textbf{Domain} & \textbf{Docs} & \textbf{Item} & \textbf{Tokens} \\ \midrule
+
+% \RealNewsDom    & US/EU News    & $30.1\text{M}$   & News article     & $27.1\text{B}$ \\
+% % \RealNewsReg    & Regional News     & $2.7\text{M}$    & Article     & $2.1\text{B}$ \\
+% \textsc{\RealNewsInd}  & Indian News     & $0.9\text{M}$    & News article     & $0.6\text{B}$ \\
+% \Products   & E-commerce        & $15.0\text{M}$   & Product   & $2.3\text{B}$ \\
+% \YelpCorpus   & Commerce        & $150\text{K}$   & Business  & $2.3\text{B}$ \\
+% \CMUMoviesCorpusShort   & Movies        & $42\text{K}$   & Movie plot   & $2.3\text{B}$ \\
+
+% \bottomrule
+% \end{tabular}
+% \caption{
+% Corpus statistics. 
+% % \vm{Need to add train test sizes for yelp and imdb in the table}
+% }
+% \label{tab:corpus}
+% \end{table}

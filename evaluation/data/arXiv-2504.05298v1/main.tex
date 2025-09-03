@@ -1,0 +1,86 @@
+% CVPR 2025 Paper Template; see https://github.com/cvpr-org/author-kit
+
+\documentclass[10pt,twocolumn,letterpaper]{article}
+
+%%%%%%%%% PAPER TYPE  - PLEASE UPDATE FOR FINAL VERSION
+% \usepackage{cvpr}              % To produce the CAMERA-READY version
+% \usepackage[review]{cvpr}      % To produce the REVIEW version
+\usepackage[pagenumbers]{cvpr} % To force page numbers, e.g. for an arXiv version
+
+% Import additional packages in the preamble file, before hyperref
+\input{preamble}
+
+% It is strongly recommended to use hyperref, especially for the review version.
+% hyperref with option pagebackref eases the reviewers' job.
+% Please disable hyperref *only* if you encounter grave issues, 
+% e.g. with the file validation for the camera-ready version.
+%
+% If you comment hyperref and then uncomment it, you should delete *.aux before re-running LaTeX.
+% (Or just hit 'q' on the first LaTeX run, let it finish, and you should be clear).
+\definecolor{cvprblue}{rgb}{0.21,0.49,0.74}
+\usepackage[pagebackref,breaklinks,colorlinks,allcolors=cvprblue]{hyperref}
+
+%%%%%%%%% PAPER ID  - PLEASE UPDATE
+\def\paperID{83} % *** Enter the Paper ID here
+\def\confName{CVPR}
+\def\confYear{2025}
+
+%%%%%%%%% TITLE
+\title{One-Minute Video Generation with Test-Time Training}
+
+%%%%%%%%% AUTHORS
+\author{
+\fontsize{10}{12}\selectfont
+        Karan Dalal\thanks{Joint first authors}$^{*4} $
+        \hspace{.1em} Daniel Koceja$^{*2}$\hspace{0.1em} Gashon Hussein$^{*2}$ \hspace{0.1em} Jiarui Xu$^{*1,3}$ 
+        \hspace{0.1em} Yue Zhao\thanks{Joint second authors}$^{\dagger 5}$ \hspace{0.1em} Youjin Song$^{\dagger 2}$ \\[0.4em]
+\fontsize{10}{12}\selectfont
+        Shihao Han$^{1}$ \hspace{0.1em} Ka Chun Cheung$^{1}$ \hspace{0.1em} Jan Kautz$^{1}$ \hspace{0.1em} Carlos Guestrin$^{2}$ 
+        \hspace{0.1em} Tatsunori Hashimoto$^{2}$ \hspace{0.1cm} Sanmi Koyejo$^{2}$ \\[0.4em]
+\fontsize{10}{12}\selectfont
+        Yejin Choi$^{1}$ \hspace{.1em} Yu Sun$^{1,2}$ \hspace{.1em} Xiaolong Wang$^{1,3}$ 
+        \\[0.4em]
+\fontsize{10}{12}\selectfont
+        $^1$NVIDIA \quad
+        $^2$Stanford University \quad
+        $^3$UCSD \quad
+        $^4$UC Berkeley \quad
+        $^5$UT Austin
+}
+
+\begin{document}
+
+\twocolumn[{
+    \maketitle
+    \centering
+    \includegraphics[width=\textwidth]{figs/video.pdf}
+    \captionof{figure}{TTT layers enable a pre-trained Diffusion Transformer to generate one-minute videos from text storyboards. 
+    We use \textit{Tom and Jerry} cartoons as a proof of concept.
+    The videos tell complex stories with coherent scenes composed of dynamic motion.
+    Every video is produced directly by the model in a single shot, without editing, stitching, or post-processing. 
+    Every story is newly created.
+    }
+    \label{fig:videos}
+    \vspace{4ex}
+}]
+
+\footnotetext[1]{Joint first authors.~~$^\dagger$ Joint second authors.}
+\footnotetext[0]{Accepted to The IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) 2025}
+
+
+\input{sec/0_abstract}
+\input{sec/1_intro}
+\input{sec/2_prelim}
+\input{sec/3_method}
+\input{sec/4_experiment}
+\input{sec/5_related}
+\input{sec/6_conclusion}
+
+{
+    \small
+    \bibliographystyle{ieeenat_fullname}
+    \bibliography{main}
+}
+
+\input{sec/appendix}
+\end{document}

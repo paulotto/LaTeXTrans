@@ -1,0 +1,93 @@
+%
+
+\PassOptionsToPackage{table,xcdraw}{xcolor}
+
+\documentclass[10pt,twocolumn,letterpaper]{article}
+
+%%%%%%%%% PAPER TYPE  - PLEASE UPDATE FOR FINAL VERSION
+\usepackage{cvpr}              % To produce the CAMERA-READY version
+%
+
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{makecell}
+%\usepackage[table,xcdraw]{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage[linesnumbered,ruled,vlined]{algorithm2e}
+\usepackage{pifont}
+
+\usepackage{listings}
+
+\lstset{
+    backgroundcolor=\color{codebackgroundcolor},%代码块背景色为浅灰色\color{customcolor}
+    rulesepcolor= \color{gray}, %代码块边框颜色
+    breaklines=true,  %代码过长则换行
+    numbers=left, %行号在左侧显示
+    numberstyle= \small,%行号字体
+    %keywordstyle= \color{blue},%关键字颜色
+    commentstyle=\color{gray}, %注释颜色
+    frame=shadowbox%用方框框住代码块
+}
+
+
+% Import additional packages in the preamble file, before hyperref
+\input{preamble}
+
+%
+\definecolor{cvprblue}{rgb}{0.21,0.49,0.74}
+\usepackage[pagebackref,breaklinks,colorlinks,allcolors=cvprblue]{hyperref}
+
+%%%%%%%%% PAPER ID  - PLEASE UPDATE
+\def\paperID{1770} % *** Enter the Paper ID here
+\def\confName{CVPR}
+\def\confYear{2025}
+
+%%%%%%%%% TITLE - PLEASE UPDATE
+\title{Omnidirectional Multi-Object Tracking}
+
+%%%%%%%%% AUTHORS - PLEASE UPDATE
+\author{
+Kai Luo$^{1,}$\thanks{Equal contribution} \quad Hao Shi$^{2,*}$ \quad Sheng Wu$^{1}$ \quad Fei Teng$^{1}$ \quad Mengfei Duan$^{1}$ \quad Chang Huang$^{1}$\\Yuhang Wang$^{1}$ \quad Kaiwei Wang$^{2}$ \quad Kailun Yang$^{1,}$\thanks{Correspondence: kailun.yang@hnu.edu.cn}\\
+$^{1}$Hunan University \quad $^{2}$Zhejiang University\\
+}
+
+% teaser
+\let\oldtwocolumn\twocolumn
+\renewcommand\twocolumn[1][]{%
+    \oldtwocolumn[{#1}{
+    \begin{center}
+    \vskip-6ex
+        \centering
+        \includegraphics[width=1.0\textwidth]{imgs/fig_1v10.pdf}
+        \vskip-2ex
+        \captionof{figure} {{Comparison of OmniTrack's overall structure and performance. (a) shows the input panoramic image. (b) illustrates the proposed OmniTrack method. (c) presents a performance comparison with other multi-object tracking algorithms. (d) visualizes tracking results. 
+        }}
+        \label{fig:1}
+    \end{center}
+    }]
+}
+
+\begin{document}
+\maketitle
+
+\input{sec/0_abstract}    
+\input{sec/1_intro}
+\input{sec/2_related_works}
+\input{sec/3_OmniTrack}
+\input{sec/4_QuadTrack}
+\input{sec/5_experiments}
+\input{sec/6_Conclusion}
+\input{sec/Ack}
+
+% \clearpage
+{
+    \small
+    \bibliographystyle{ieeenat_fullname}
+    \bibliography{main}
+}
+
+\input{sec/X_suppl}
+
+\end{document}

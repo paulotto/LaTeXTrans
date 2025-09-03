@@ -1,0 +1,272 @@
+\label{taxonomy}
+% Node styles (Longer Leaf Nodes)
+
+\tikzset{
+    my node/.style={ % Intermediate nodes
+        draw=black,
+        fill=blue!1, % Light blue fill
+        thick,
+        rounded corners=5pt,
+        text width=3.0cm, % Compact width for intermediate nodes
+        align=left, % Align text to left
+        font=\bfseries\large, % Small bold font
+        drop shadow,
+        inner sep=5pt, % Reduce padding
+        minimum height=0.8cm, % Compact node height
+    },
+    ERT node/.style={ % Intermediate nodes
+        draw=black,
+        fill=yellow!5, % Light blue fill
+        thick,
+        rounded corners=5pt,
+        text width=3.0cm, % Compact width for intermediate nodes
+        align=left, % Align text to left
+        font=\bfseries\large, % Small bold font
+        drop shadow,
+        inner sep=5pt, % Reduce padding
+        minimum height=0.8cm, % Compact node height
+    },
+    ERI node/.style={ % Intermediate nodes
+        draw=black,
+        fill=blue!3, % Light blue fill
+        thick,
+        rounded corners=5pt,
+        text width=3.0cm, % Compact width for intermediate nodes
+        align=left, % Align text to left
+        font=\bfseries\large, % Small bold font
+        drop shadow,
+        inner sep=5pt, % Reduce padding
+        minimum height=0.8cm, % Compact node height
+    },
+    OER node/.style={ % Intermediate nodes
+        draw=black,
+        fill=teal!10, % Light blue fill
+        thick,
+        rounded corners=5pt,
+        text width=3.0cm, % Compact width for intermediate nodes
+        align=left, % Align text to left
+        font=\bfseries\large, % Small bold font
+        drop shadow,
+        inner sep=5pt, % Reduce padding
+        minimum height=0.8cm, % Compact node height
+    },
+    CP node/.style={ % Intermediate nodes
+        draw=black,
+        fill=red!7, 
+        thick,
+        rounded corners=5pt,
+        text width=3.0cm, % Compact width for intermediate nodes
+        align=left, % Align text to left
+        font=\bfseries\large, % Small bold font
+        drop shadow,
+        inner sep=5pt, % Reduce padding
+        minimum height=0.8cm, % Compact node height
+    },
+    BI node/.style={ % Intermediate nodes
+        draw=black,
+        fill=green!5, % Light blue fill
+        thick,
+        rounded corners=5pt,
+        text width=3.0cm, % Compact width for intermediate nodes
+        align=left, % Align text to left
+        font=\bfseries\large, % Small bold font
+        drop shadow,
+        inner sep=5pt, % Reduce padding
+        minimum height=0.8cm, % Compact node height
+    },
+    leaf node/.style={ % Leaf nodes (Longer)
+        draw=black,
+        fill=gray!5, % Light gray fill for differentiation
+        thick,
+        rounded corners=5pt,
+        text width=15cm, % Longer width for leaf nodes
+        align=left, % Align text to left
+        font=\bfseries\large, % Small bold font
+        drop shadow,
+        inner sep=5pt,
+        minimum height=1.6cm, % Same height as intermediate nodes
+    },
+    ERTleaf node/.style={ % Leaf nodes (Longer)
+        draw=black,
+        fill=yellow!5, % Light blue fill
+        thick,
+        rounded corners=10pt,
+        text width=15cm, % Longer width for leaf nodes
+        align=left, % Align text to left
+        font=\bfseries\large, % Small bold font
+        drop shadow,
+        inner sep=5pt,
+        minimum height=1.6cm, % Same height as intermediate nodes
+    },
+    ERIleaf node/.style={ % Leaf nodes (Longer)
+        draw=black,
+        fill=blue!3, % Light gray fill for differentiation
+        thick,
+        rounded corners=10pt,
+        text width=15cm, % Longer width for leaf nodes
+        align=left, % Align text to left
+        font=\bfseries\large, % Small bold font
+        drop shadow,
+        inner sep=5pt,
+        minimum height=1.6cm, % Same height as intermediate nodes
+    },
+    CPleaf node/.style={ % Leaf nodes (Longer)
+        draw=black,
+        fill=red!7, % Light gray fill for differentiation
+        thick,
+        rounded corners=10pt,
+        text width=15cm, % Longer width for leaf nodes
+        align=left, % Align text to left
+        font=\bfseries\large, % Small bold font
+        drop shadow,
+        inner sep=5pt,
+        minimum height=1.6cm, % Same height as intermediate nodes
+    },
+    BIleaf node/.style={ % Leaf nodes (Longer)
+        draw=black,
+        fill=green!5, % Light gray fill for differentiation
+        thick,
+        rounded corners=10pt,
+        text width=15cm, % Longer width for leaf nodes
+        align=left, % Align text to left
+        font=\bfseries\large, % Small bold font
+        drop shadow,
+        inner sep=5pt,
+        minimum height=1.6cm, % Same height as intermediate nodes
+    },
+    OERleaf node/.style={ % Leaf nodes (Longer)
+        draw=black,
+        fill=teal!10, % Light gray fill for differentiation
+        thick,
+        rounded corners=10pt,
+        text width=15cm, % Longer width for leaf nodes
+        align=left, % Align text to left
+        font=\bfseries\large, % Small bold font
+        drop shadow,
+        inner sep=5pt,
+        minimum height=1.6cm, % Same height as intermediate nodes
+    },
+    taxonomy node/.style={ % Style for the rotated "Taxonomy" node
+        draw=black,
+        fill=gray!3, % Light gray background
+        thick,
+        font=\bfseries\large, % Small bold font
+        text width=0.8cm, % Narrow width for vertical text
+        align=center, % Center text
+        rotate=0, % Rotate text vertically
+        inner sep=4pt,
+        minimum height=2.0cm,
+    },
+    subtaxonomy node/.style={ % Style for the rotated "sub tax" node
+        draw=black,
+        fill=white!20, % Light gray background
+        thick,
+        font=\bfseries\large, % Small bold font
+        text width=0.8cm, % Narrow width for vertical text
+        align=center, % Center text
+        rotate=0, % Rotate text vertically
+        inner sep=4pt,
+        minimum height=2.0cm,
+    },
+    level 1/.style={edge={thick, black}},
+    level 2/.style={edge={thick, black!70}},
+    level 3/.style={edge={thick, black!50}},
+}
+
+
+\begin{figure}[t]
+    \centering
+    \resizebox{\textwidth}{!}{ % Scale entire graph to fit page width
+        \begin{forest}
+            for tree={%
+                grow'=east,
+                edge={thick},
+                parent anchor=east,
+                child anchor=west,
+                l sep+=15pt, % Adjust spacing between levels
+                s sep+=25pt, % Reduce spacing between sibling nodes
+                if n children=0{leaf node}{my node}, % Apply different styles
+                edge path={
+                    \noexpand\path [draw, \forestoption{edge}] (!u.parent anchor) -- +(12pt,0) -| (.child anchor)\forestoption{edge label};
+                },
+                if={isodd(n_children())}{
+                    for children={
+                        if={equal(n,(n_children("!u")+1)/2)}{calign with current}{}
+                    }
+                }{}
+            }
+            [\rotatebox{90}{Taxonomy}, taxonomy node % Rotated "Taxonomy" node
+                [\parbox{3cm}{\centering Model-based \\ Efficient Reasoning}, ERT node
+                    [\parbox{3cm}{\centering RL Optimization via Length Reward}, ERT node
+                        [\parbox{15cm}{\raggedright
+                        e.g. Kimi k1.5~\cite{team2025kimi}; O1-Pruner~\cite{luo2025o1}; L1~\cite{aggarwal2025l1}; Training~\cite{arora2025training}; Demystifying~\cite{yeo2025demystifying}; DAST~\cite{shen2025dast}; MRT~\cite{qu2025optimizing}; Self-adaptive~\cite{yang2025thinkneedselfadaptivechainofthought}; HAWKEYE~\cite{she2025hawkeyeefficientreasoningmodelcollaboration}; ThinkPrune~\cite{hou2025thinkprune}; 
+                        \\
+                        },  
+                        ERTleaf node]
+                    ]
+                    [\parbox{3cm}{\centering SFT with Variable-Length CoT}, ERT node
+                        [\parbox{15cm}{\raggedright
+                        e.g. Distilling 2-1~\cite{yu2024distilling}; C3oT~\cite{kang2024c3ot}; TokenSkip~\cite{xia2025tokenskip}; CoT-Valve~\cite{ma2025cot}; Self-Training~\cite{munkhbat2025self}; Learn to Skip~\cite{liu2024can}; Token-Budget~\cite{han2024token}; Stepwise~\cite{cui2025stepwise}; Z1~\cite{yu2025z1efficienttesttimescaling}; 
+                        \\
+                        },
+                        ERTleaf node]
+                    ]
+                ]
+                [\rotatebox{0}{\parbox{3cm}{\centering Reasoning Output-based \\ Efficient Reasoning}}, OER node
+                    [\parbox{3cm}{\centering Latent Representation Compression}, OER node
+                        [\parbox{15cm}{\raggedright
+                        e.g. Coconut~\cite{hao2024training}; CODI~\cite{shen2025codi}; CCoT~\cite{cheng2024compressed}; Heima~\cite{shen2025efficient}; Token Assorted~\cite{su2025token}; Loop~\cite{saunshi2025reasoning}; SoftCoT~\cite{xu2025softcot}; \\
+                        },
+                        OERleaf node]
+                    ]
+                    [\parbox{3cm}{\centering Dynamic Reasoning Paradigm}, OER node
+                        [\parbox{15cm}{\raggedright
+                        e.g. Speculative Rejection~\cite{sun2024fast}; Sampling-Efficient TTS~\cite{wang2025sampling}; DPTS~\cite{ding2025dynamic}; Certaindex~\cite{fu2024efficiently}; Dynasor-CoT~\cite{fu2025reasoning}; Fast MCTS~\cite{li2025fastmcts}; ST-BoN~\cite{wang2025sampling}; More is Less~\cite{wu2025more}; RSD \cite{liao2025reward}; Speculative Thinking~\cite{yang2025speculative}; LightThinker \cite{zhang2025lightthinker}; INFTYTHINK \cite{yan2025inftythink}; SCoT~\cite{xiang2025can}; RASC~\cite{wan2024reasoning}; Adaptive Reasoning~\cite{yu2025think}; AdaptiveStep~\cite{liu2025adaptivestep}; Self-Calib~\cite{huang2025efficient}; CISC~\cite{taubenfeld2025confidence}; ESC~\cite{li2024escape};
+                        DSC~\cite{wang2024make}; PathC~\cite{zhu2024path}; RPC~\cite{zhou2025bridging}; Sleep-time Compute~\cite{lin2025sleep}; SpecReason~\cite{pan2025specreason}; TOPS~\cite{yang2025thinkingoptimalscalingtesttimecompute}; Retro-Search~\cite{lu2025retrosearchexploringuntakenpaths}; ThinkDeepFast~\cite{wang2025thinkdeepthinkfast}; 
+                        },
+                        OERleaf node]
+                    ]
+                ]
+                [\rotatebox{0}{\parbox{3cm}{\centering Input Prompts-based \\ Efficient Reasoning}}, ERI node
+                    [\parbox{3cm}{\centering Prompt-Guided Efficient Reasoning}, ERI node
+                        [\parbox{15cm}{\raggedright
+                        e.g. 
+                        Token-Budget~\cite{han2024token}; Chain of Draft~\cite{xu2025chain}; Token Complexity~\cite{lee2025well}; Concise Chain-of-Thought (CCoT)~\cite{renze2024benefits}; MARP~\cite{chen2024unlocking}; ThoughtMani~\cite{liu2025thoughtmanipulationexternalthought}; NoThinking~\cite{ma2025reasoning}; 
+                        },
+                        ERIleaf node]
+                    ]
+                    [\parbox{3cm}{\centering Routing by Question Attributes}, ERI node
+                        [\parbox{15cm}{\raggedright
+                        e.g.
+                        Claude 3.7 Sonnet~\cite{anthropic_claude_sonnet}; SoT~\cite{aytes2025sketch}; Self-REF~\cite{chuang2025learningroutellmsconfidence}; Confident~\cite{chuang2025confidentseekstrongerexploring}; RouteLLM~\cite{ong2025routellmlearningroutellms}; THOUGHTTERMINATOR~\cite{pu2025thoughtterminatorbenchmarkingcalibratingmitigating};
+                        },
+                        ERIleaf node]
+                    ]
+                ]
+                [\rotatebox{0}{\parbox{3cm}{\centering Efficient Data and Models}}, CP node
+                    [\parbox{3cm}{\centering Less Training Data}, CP node
+                        [\parbox{15cm}{\raggedright
+                        e.g. LIMO~\cite{ye2025limoreasoning}; s1~\cite{muennighoff2025s1simpletesttimescaling}; S$^2$R~\cite{ma2025s2rteachingllmsselfverify}; Light-R1~\cite{wen2025light}; 
+                        },
+                        CPleaf node]
+                    ]
+                    [\parbox{3cm}{\centering Pruning \& Quantization \& Distillation}, CP node
+                        [\parbox{15cm}{\raggedright
+                        e.g. Struggle\cite{li2025small}; Strong Verifiers~\cite{srivastava2025towards}; TinyR1-32B-Preview~\cite{sun2025tinyr1}; Mixed Distillation~\cite{chenglin2024mixed}; Counterfactual Distillation~\cite{feng2024teaching}; Feedback-Driven Distillation~\cite{zhu2024improving}; SKIntern~\cite{liao2025skintern}; Adaptive Thinking~\cite{chen2024distilling}; PRR~\cite{zhao2024probe}; CompressionReasoning~\cite{zhang2025reasoning}; TwT~\cite{xu2025twtthinkingtokenshabitual}; 
+                        },
+                        CPleaf node]
+                    ]
+                ]
+                [\rotatebox{0}{\parbox{3cm}{\centering Benchmark \& Insights}}, BI node
+                    [\parbox{3cm}{\centering Evaluation \& Benchmarks}, BI node
+                        [\parbox{15cm}{\raggedright
+                        e.g. 1B vs. 405B~\cite{liu20251bllmsurpass405b}; Sys2Bench~\cite{parashar2025inferencetimecomputationsllmreasoning}; Danger~\cite{cuadron2025dangeroverthinkingexaminingreasoningaction}; Inference-time Computation~\cite{liu2025bag}; Impact~\cite{jin2024impact}; Bag of Tricks~\cite{liu2025bagoftrick}; S1-Bench~\cite{zhang2025s1}; CompressionReasoning~\cite{zhang2025reasoning}; QuantRM~\cite{liu2025quantizationhurtsreasoningempirical}; 
+                        }, 
+                        BIleaf node]
+                    ]
+                ]
+            ]
+        \end{forest}
+    } % End resizebox
+    \caption{\label{fig:Taxonomy} Taxonomy of existing literature on efficient reasoning for LLMs.}
+\end{figure}

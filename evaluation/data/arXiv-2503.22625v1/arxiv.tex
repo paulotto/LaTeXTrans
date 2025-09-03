@@ -1,0 +1,265 @@
+\documentclass{article}
+
+\usepackage{ssArxiv}
+
+\usepackage[utf8]{inputenc}
+
+\usepackage[title]{appendix}
+
+\usepackage{makecell}
+\usepackage{amsmath,amsbsy,amsgen,amscd,amssymb,amsthm,amsfonts}
+\usepackage{mathtools}
+\usepackage{booktabs}
+\usepackage{bm}
+\usepackage{enumitem}
+\usepackage{subcaption, geometry, graphicx, lipsum}
+\usepackage{microtype}
+\usepackage{multirow}
+\usepackage[
+  pagebackref=true,
+  colorlinks=true,
+  citecolor=MidnightBlue,
+  linkcolor=Fuchsia,
+]{hyperref}
+\usepackage{pifont}
+\usepackage[nameinlink]{cleveref}
+\usepackage{url} 
+\usepackage{graphicx}
+\usepackage{algorithm,algorithmic}
+\usepackage[round]{natbib}
+\usepackage{xspace}
+\usepackage{caption}
+\captionsetup[table]{skip=5pt}
+\usepackage{listings, listings-rust}
+\lstset{
+  basicstyle=\ttfamily\footnotesize,
+  columns=fullflexible,
+  frame=single,
+  breaklines=true,
+  postbreak=\mbox{$\hookrightarrow$\space},
+  rulecolor=\color{black},
+  moredelim=[is][\color{red}]{!*}{*!},
+}
+\lstset{moredelim=[is][\color{red}]{!*}{*!}} 
+\def\lstlanguagefiles{lstlean.tex}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{keywordcolor}{rgb}{0.7, 0.1, 0.1}   % red
+\definecolor{tacticcolor}{rgb}{0.0, 0.1, 0.6}    % blue
+\definecolor{commentcolor}{rgb}{0.4, 0.4, 0.4}   % grey
+\definecolor{symbolcolor}{rgb}{0.0, 0.1, 0.6}    % blue
+\definecolor{sortcolor}{rgb}{0.1, 0.5, 0.1}      % green
+\definecolor{attributecolor}{rgb}{0.7, 0.1, 0.1} % red
+
+\lstdefinestyle{mystyle}{  
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{blue},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+    moredelim=[is][\color{red}]{!*}{*!},
+}
+
+\lstdefinestyle{boxed}{  
+    frame=single,
+    breaklines=true,
+    postbreak=\mbox{$\hookrightarrow$\space},
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{blue},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=t,                    
+    keepspaces=true,                 
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstdefinestyle{reasoning}{  
+    breaklines=false,
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{blue},
+    breakautoindent=0pt,
+    breakindent=0pt,
+    basicstyle=\itshape\footnotesize,
+    breaklines=true,
+    breakatwhitespace=true,         
+    captionpos=t,                    
+    keepspaces=true,                 
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,
+}
+
+\lstdefinelanguage{triton}{
+  morekeywords={
+    tl, triton, jit, program_id, load, store, arange, zeros, where,
+    constexpr, block_ptr, dtype
+  },
+  sensitive=true,
+  commentstyle=\color{green!50!black},
+  keywordstyle=\color{blue},
+  stringstyle=\color{red},
+  breaklines=true,
+  showstringspaces=false,
+  moredelim=[is][\color{red}]{!*}{*!},
+}
+
+\lstdefinelanguage{CUDA}{%
+  morekeywords={__global__, __device__, __shared__, __constant__, __host__, __syncthreads, threadIdx, blockIdx, blockDim, gridDim},%
+  sensitive=true,%
+  morecomment=[l]{//},%
+  morecomment=[s]{/*}{*/},%
+  morestring=[b]",%
+  morestring=[b]',%
+}
+
+\lstdefinelanguage{Python}{
+  % List of keywords
+  morekeywords={
+    and, as, assert, break, class, continue, def, del, elif, else,
+    except, False, finally, for, from, global, if, import, in, is,
+    lambda, None, nonlocal, not, or, pass, raise, return, True,
+    try, while, with, yield
+  },
+  sensitive=true,
+  morecomment=[l]{\#},
+  morecomment=[s]{\"\"\"}{\"\"\"},
+  morecomment=[s]{\'\'\'}{\'\'\'},
+  morestring=[b]'',
+  morestring=[b]"
+}
+
+
+\lstset{style=mystyle}
+
+\usepackage[dvipsnames]{xcolor}
+\usepackage[most]{tcolorbox}
+
+% Define the color
+% \definecolor{lightgreen}{HTML}{C4FFCF}
+% \definecolor{lightblue}{HTML}{D9FEFD}
+% \definecolor{lightorange}{HTML}{F9EAC8}
+
+\definecolor{lightgreen}{HTML}{C8E6C9}
+\definecolor{lightblue}{HTML}{E3F2FD}
+\definecolor{lightorange}{HTML}{FFF3E0}
+
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{remark}{Remark}
+\newtheorem{theorem}{Theorem}
+\newtheorem{assumption}{Assumption}
+\crefname{assumption}{assumption}{assumptions}
+\newtheorem{definition}{Definition}
+
+\newcommand{\red}[1]{\textbf{\textcolor{red}{#1}}}
+\newcommand{\green}[1]{\textbf{\textcolor{ForestGreen}{#1}}}
+
+\newcommand{\cmark}{\green{\ding{51}}}
+\newcommand{\xmark}{\red{\ding{55}}}
+\newcommand{\benchmark}{\textsc{CRUXEval}\xspace}
+\newcommand{\benchmarki}{\textsc{CRUXEval-I}\xspace}
+\newcommand{\benchmarko}{\textsc{CRUXEval-O}\xspace}
+
+\newcommand{\codellamamed}{\textsc{Code Llama 13B}\xspace}
+\newcommand{\codellamalarge}{\textsc{Code Llama 34B}\xspace}
+
+\makeatletter
+\newcommand\nnfootnote[1]{%
+  \begin{NoHyper}
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \end{NoHyper}
+}
+
+\makeatother
+  
+\setlength{\parindent}{0em}
+\setlength{\parskip}{0.75em}
+
+
+\renewcommand*\backref[1]{\ifx#1\relax \else (Cited on pg. #1) \fi}
+\title{Challenges and Paths Towards \\ AI for Software Engineering
+}
+
+\author{\name Alex Gu
+\email{gua@mit.edu} \\
+\addr{MIT CSAIL} \\[0.07in]
+\name Naman Jain$^{\star}$
+\email{naman\_jain@berkeley.edu} \\
+\addr{University of California, Berkeley} \\[0.07in]
+\name Wen-Ding Li$^{\star}$
+\email{wl678@cornell.edu} \\
+\addr{Cornell University} \\[0.07in]
+\name Manish Shetty$^{\star}$
+\email{manishs@berkeley.edu} \\
+\addr{University of California, Berkeley} \\[0.07in]
+\name Yijia Shao
+\email{shaoyj@cs.stanford.edu} \\
+\addr{Stanford University} \\[0.07in]
+\name Ziyang Li
+\email{liby99@seas.upenn.edu} \\
+\addr{University of Pennsylvania} \\[0.07in]
+\name Diyi Yang
+\email{diyiy@cs.stanford.edu} \\
+\addr{Stanford University} \\[0.07in]
+\name Kevin Ellis
+\email{kellis@cornell.edu} \\
+\addr{Cornell University} \\[0.07in]
+\name Koushik Sen
+\email{ksen@berkeley.edu} \\
+\addr{University of California, Berkeley} \\[0.07in]
+\name Armando Solar-Lezama
+\email{asolar@csail.mit.edu} \\
+\addr{MIT CSAIL} \\
+}
+
+\input{macros}
+
+\begin{document}
+
+\maketitle
+\raggedbottom
+
+\nnfootnote{$^{\star}$ Equal contribution, ordered alphabetically by last name}
+
+
+\begin{abstract}
+\input{sec0-abstract}
+\end{abstract}
+
+\clearpage
+
+\tableofcontents
+
+\clearpage
+
+\input{sec1-intro}
+\input{sec2-tasks-milestones}
+% \input{sec3-sota}
+\input{sec4-challenges}
+% \input{sec4.5-grand-challenges}
+\input{sec5-directions}
+% \input{sec6-related-work}
+% \input{sec6-alternative-views}
+\input{sec8-limitations}
+\input{sec7-conclusion}
+\input{sec9-acknowledgements}
+\newpage
+\bibliography{custom}
+\bibliographystyle{plainnat}
+
+\appendix
+\newpage
+\input{appendix-survey}
+% \input{appendix-example}
+\end{document}
+

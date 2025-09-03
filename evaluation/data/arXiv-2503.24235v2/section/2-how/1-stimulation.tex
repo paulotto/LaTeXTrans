@@ -1,0 +1,75 @@
+
+\subsubsection{Stimulation}
+\label{subsec:stimulation}
+
+Stimulation techniques are the first step in encouraging the model to allocate more computation to thinking. It basically stimulates the LLM to generate (i) longer samplers and (ii) more samples instead of generating single and short samples via naive prompting. This includes several key approaches:
+
+
+\paragraph{Prompt Strategy.} Instead of allowing the model to generate an answer directly, one way to stimulate the scaling of LLM during test time is through the prompt. This behavior requires the backbone LLM's ability to follow instructions. For instance, prompts can guide the model toward step-by-step reasoning. Simple modifications such as adding explicit instructions (\eg, ``Please think step by step.'') can improve the model’s ability to break down complex problems into intermediate steps~\citep{lightman2023let}. This strategy ensures more deliberate and structured thought generation by shaping the reasoning process at the input level. Other techniques such as ~\cite{wei2022chain, ranaldi2025improvingchainofthoughtreasoningquasisymbolic} also rely on explicitly stating the requirements in the prompt to stimulate samples during the \TTS.
+
+\paragraph{Decode Strategy} Rather than passively accepting the model’s default output behavior, this approach modifies the decoding process to encourage LLM to generate longer, more detailed samples adaptively. Techniques such as 
+% length penalties, token constraints, or iterative response expansion 
+injecting filler token~\citep{pfau2024lets}, adaptively injecting predefined injection phrase~\citep{jin2020diseasedoespatienthave}, forcing scaling budget~\citep{muennighoff2025s1}, enforcing intermediate generation~\citep{li2025draftsanswersunlockingllm}, or predictive decoding~\citep{ma2025nonmyopic} allow the model to modify its distribution progressively. Enforcing extended reasoning at the output level enables the model to think longer and generate more comprehensive solutions without requiring additional external guidance.
+
+\paragraph{Latent Strategy}  Unlike strategies that rely on token-level instructions or output expansion, latent strategies encourage deeper or recurrent thinking within the hidden representations themselves, effectively scaling up test-time computation through continuous internal states. For example, \citet{hao2024training} propose a paradigm where the model completes reasoning steps entirely in hidden space before producing the final answer; \citet{kong2025scalablelanguagemodelsposterior} introduce a latent-thought framework that conditions text generation on an inferred latent variable to guide more thorough or expansive reasoning, while \citet{shen2025codicompressingchainofthoughtcontinuous} show that compressing CoT into continuous embeddings can preserve intermediate reasoning fidelity without lengthy textual traces. Other approaches~\citep{saunshi2025reasoninglatentthoughtspower} harness \emph{looped} or \emph{recurrent} inference to repeatedly refine hidden states, effectively unfolding multiple ``thinking iterations'' in a single forward pass. 
+
+
+\paragraph{Self-Repetition Strategy} Apart from generating longer samples, another way to stimulate the LLM is to generate multiple samples instead of individual ones. One commonly adopted strategy is to prompt the LLM repeatedly during the decoding stage, commonly known as self-repetition~\citep{wang2023selfconsistency}. Another strategy is to prompt the LLM sequentially, in order to mimic refinement process~\citep{madaan2023selfrefine} or correlation under constraint~\citep{ferraz2024llmselfcorrectiondecrimdecompose}. 
+
+\paragraph{Mixture-of-Model Strategy} Gathering the ``wisdom of the crowd'' can move beyond repeated sampling from a single model to coordinated sampling across multiple models. These LLMs can play either homogeneous roles~\citep{wang2025mixtureofagents} or heterogeneous roles~\citep{chen2024braininspiredtwostageapproachenhancing,he2025enhancingllmreasoningmultipath} during the process. By harnessing diverse perspectives, such multi-model strategy not only increases the coverage of possible solutions but also improves the system’s overall robustness. 
+
+\begin{table*}[!htbp]
+    \centering
+    \resizebox{0.98\textwidth}{!}{
+    \begin{tabular}{lll}
+    \toprule
+        \rowcolor{gray!10}
+        \textbf{Category} & \textbf{Approach} & \textbf{Approach Description} \\
+    \midrule
+        & CoT~\citep{wei2022chain} & Contains a series of intermediate reasoning steps in prompts \\
+        & Step-by-step~\citep{lightman2023let} & Stimulate step-by-step thinking via prompt \\
+        & QuaSAR~\citep{ranaldi2025improvingchainofthoughtreasoningquasisymbolic} & Decompose CoT into Quasi-Symbolic Language \\
+        & CoD~\citep{xu2025chaindraftthinkingfaster} & Generate concrete representations and distill into concise equation \\
+        & Hint-infer~\citep{li2025startselftaughtreasonertools} & Inserting artificially designed hints in the prompt \\
+        & Think~\citep{li2025startselftaughtreasonertools} & Prompt LLM with ``Think before response`` \\
+        \multirow{-6}{*}{\textbf{Prompt}}
+        & Think About World~\citep{jin2024impact} & Prompt LLM with ``Think About the World`` to enforce larger inference \\
+        % & Coconut~\citep{hao2024training} & CoT without explicit decoding into tokens during the process \\
+    \midrule
+        \rowcolor{gray!10}
+        & Filler-token~\citep{pfau2024lets} & uses arbitrary, irrelevant filler tokens before answering \\
+        \rowcolor{gray!10}
+        & Budget-forcing~\citep{muennighoff2025s1} & suppress the generation of the end-of-thinking token \\
+        \rowcolor{gray!10}
+        %& LTV~\citep{kong2025scalablelanguagemodelsposterior} & decode according to latent thought following prior model \\
+        %\rowcolor{gray!10}
+        & AFT~\citep{li2025draftsanswersunlockingllm} & iteratively aggregating proposals and aggregate for future proposals \\
+        \rowcolor{gray!10}
+        & Predictive-Decoding~\citep{ma2025nonmyopic} & re-weight decoding distribution given evaluation of foresight\\
+        \rowcolor{gray!10}\multirow{-6}{*}{\textbf{Decode}} 
+        & Adaptive Injection~\citep{jin2025wellthinkingenhancingllm} & Injecting a predefined injection phrase under certain condition \\
+    \midrule
+        & Coconut~\citep{hao2024training} & Perform chain-of-thought in hidden space without explicit token generation \\
+        & CoDI~\citep{shen2025codicompressingchainofthoughtcontinuous} & Compress chain-of-thought into continuous vectors via self-distillation \\
+        & Looped (Recurrent) Transformers~\citep{saunshi2025reasoninglatentthoughtspower} & Unroll model depth at inference by repeatedly refining hidden states \\
+        & Heima~\citep{shen2025efficientreasoninghiddenthinking} & Encode each reasoning step into a single latent token to reduce output length \\
+        \multirow{-5}{*}{\textbf{Latent}}
+        & LTV~\citep{kong2025scalablelanguagemodelsposterior} & Introduce a latent thought variable to guide text generation \\
+    \midrule
+        \rowcolor{gray!10}
+        & Self-Repetition~\citep{wang2023selfconsistency} & prompt LM in parallel \\
+        \rowcolor{gray!10}
+        & Self-Refine~\citep{madaan2023selfrefine} & Naively prompt LM to iteratively refine answer \\
+        \rowcolor{gray!10}\multirow{-3}{*}{\textbf{Self-Repetition}}
+        & DeCRIM~\citep{ferraz2024llmselfcorrectiondecrimdecompose} & Self-correlation for multi-constrained instruction following \\
+    \midrule
+        & MoA~\citep{wang2025mixtureofagents} & Prompt different models in parallel and iteratively improve \\
+        & RR-MP~\citep{he2025enhancingllmreasoningmultipath} & Propose Reactive and Reflection agents to collaborate \\
+        & BRAIN~\citep{chen2024braininspiredtwostageapproachenhancing} & Propose frontal \& parietal lobe model to inspire brain \\
+        \multirow{-4}{*}{\textbf{Mixture-of-Model}}
+        & Collab~\citep{chakraborty2025collab} & Propose decoding strategies to leverage multiple off-the-shelf aligned LLM policies \\
+    \bottomrule
+    \end{tabular}}
+    \caption{Summary of Certain Stimulation Techniques.}
+    \label{tab:stimulation}
+\end{table*}

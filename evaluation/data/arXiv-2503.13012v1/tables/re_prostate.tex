@@ -1,0 +1,19 @@
+\begin{tabular}{c|cccccc|cc|ccc|c}
+\hlineB{3}
+\multirow{2}{*}{Methods} & \multicolumn{2}{c}{BMC} & \multicolumn{2}{c}{I2CVB} & \multicolumn{2}{c|}{HK} & \multicolumn{2}{c|}{Avg.} & \multicolumn{3}{c|}{Source Model Training} & \multicolumn{1}{c}{Inference}  \\ \cline{2-13} 
+                         & \textit{DSC}      &  HD95    & \textit{DSC}      &  HD95& \textit{DSC}      &  HD95& \textit{DSC} $\uparrow$     &  HD95 $\downarrow$ &Params (M) $\downarrow$  &GFLops $\downarrow$ & Times$\downarrow$ (s) & Times$\downarrow$ (s/img) \\ \hline \hline
+
+\textit{No Adapt} & 74.30 & 16.08 & 66.47 & 37.16 & 80.51 & 8.79 & 73.76 & 20.67 & \textbf{22.55} & \textbf{12.72} & 1.13 & \textbf{0.22} \\  \hline
+
+TASD [8]& 76.28 & 15.11 & 68.30 & 31.43 & 81.09 & 4.26 & 75.22 & 16.93 & 40.88 & 20.35 & 1.63 & 0.37\\
+
+VPTTA [3]& 77.42 & 12.93 & 70.25 & 30.01 & 83.27 & 3.40 & 76.98 & 15.45 &23.10 & 13.89 & \textbf{1.12} & 0.23 \\
+
+PASS [79] & \textbf{80.07} & 10.50 &71.41 & 28.26 & 84.88 & 3.03 & 78.79 & 13.93 & 24.52 & 15.23 & 1.20 & 0.29 \\
+
+Ours & 79.63 & \textbf{9.99} & \textbf{74.09} & \textbf{25.70} & \textbf{86.12} & \textbf{2.84} & \textbf{79.95} & \textbf{12.84} & 28.41 & 25.76 & 2.08 & 0.39 \\
+
+
+
+\hlineB{3}
+\end{tabular}

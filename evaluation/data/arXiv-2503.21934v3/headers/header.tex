@@ -1,0 +1,296 @@
+
+
+\usepackage{booktabs}       %
+\usepackage{nicefrac}       %
+\usepackage[flushleft]{threeparttable}
+
+
+
+\usepackage{url}
+\usepackage{xcolor}
+\usepackage{xspace}
+\usepackage{etoolbox}
+\usepackage{fontawesome}
+\usepackage{enumitem}
+\usepackage{amsmath,amssymb}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{adjustbox,booktabs}
+\usepackage{siunitx}
+\usepackage{caption}
+\usepackage{fontawesome}
+\usepackage{stackengine}
+\usepackage{svg}
+\usepackage{mathtools}
+\usepackage{xspace}
+\usepackage{wrapfig}
+\usepackage{makecell}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{hyperref}
+\usepackage[labelformat=simple]{subcaption}
+\usepackage[most]{tcolorbox}
+
+\usepackage{colortbl}
+
+\input{headers/lqa/tikz}
+
+\usepackage{amsthm}
+\usepackage{stmaryrd}
+
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+
+\DeclarePairedDelimiter{\iverson}{\llbracket}{\rrbracket}
+
+\newcolumntype{x}[2]{S[table-format=#1.#2,table-auto-round]}
+\newcolumntype{M}{>{$}l<{$}}
+
+\NewDocumentCommand{\phimodel}{O{}}{%
+\textsc{Phi}\ifstrempty{#1}{}{-{#1}}\xspace
+}
+
+\renewcommand{\th}{\textsuperscript{th}\xspace}
+\newcommand{\st}{\textsuperscript{st}\xspace}
+\newcommand{\nd}{\textsuperscript{nd}\xspace}
+
+\newcommand{\bc}[1]{\mathcal{#1}}
+\newcommand{\bs}[1]{\boldsymbol{#1}}
+\newcommand{\bb}[1]{\mathds{#1}}
+\newcommand{\mbf}[1]{\mathbf{#1}}
+
+\newcommand{\rac}{\textsc{RAC}\xspace}
+\newcommand{\tool}{\textsc{Polyrating}\xspace}
+
+\newcommand{\meantest}{\textsc{Mean-Test}\xspace}
+\newcommand{\normtest}{\textsc{Normalized-Test}\xspace}
+
+
+\newcommand{\jasper}[1]{\textcolor{blue}{\textbf{Jasper:} #1}\xspace}
+\newcommand{\mm}[1]{\textcolor{red}{\textbf{Mark:} #1}\xspace}
+
+\newcommand{\othree}{\textsc{o3-mini}}
+\newcommand{\oone}{\textsc{o1-pro}}
+\newcommand{\rone}{\textsc{R1}}
+\newcommand{\qwq}{\textsc{QwQ}}
+\newcommand{\grok}{\textsc{Grok 3}}
+\newcommand{\flthink}{\textsc{Flash-Thinking}}
+\newcommand{\claude}{\textsc{Claude 3.7}}
+\newcommand{\geminipro}{\textsc{Gemini-2.5-Pro}}
+
+
+
+
+
+
+\captionsetup[subfigure]{labelformat=simple, labelsep=space}
+\renewcommand\thesubfigure{(\alph{subfigure})}
+
+\captionsetup[subtable]{labelformat=simple, labelsep=space}
+\renewcommand\thesubtable{(\alph{subtable})}
+
+
+\definecolor{acceptblue}{HTML}{6494EA}
+\hypersetup{citecolor=acceptblue}
+
+\definecolor{lightred}{HTML}{ffcbc7}
+\definecolor{gemini}{HTML}{4285F4}
+\definecolor{claude}{HTML}{f3e9d7}
+\definecolor{deepseek}{HTML}{FADA4B}
+\definecolor{qwen}{HTML}{FA574B}
+\definecolor{oai}{HTML}{10a37f}
+
+
+\lstdefinestyle{mystyle}{
+    breaklines=true,
+    basicstyle=\scriptsize\ttfamily,
+    numbers=none,
+    language={},
+    framextopmargin=0pt,
+    framexbottommargin=0pt,
+    breakindent=0pt,
+    showspaces = false,
+    keywordstyle=\bfseries,
+    showstringspaces=false,
+    columns=fullflexible,
+    morekeywords={Answer}
+    moredelim=[**][\bfseries]{!!}
+}
+
+\newtcblisting{prompt}[2][]{
+    arc=3pt, outer arc=3pt,
+    width=\linewidth,
+    left=1mm,
+    top=0mm,
+    bottom=0mm,
+    title=#2, 
+    colback=lightred!5!white,
+    colframe=black,
+    fonttitle=\bfseries,
+    listing only, 
+    listing options={style=mystyle},
+    breakable,
+    #1
+}
+
+\newtcblisting{problem}[2][]{
+    arc=3pt, outer arc=3pt,
+    width=\linewidth,
+    left=1mm,
+    top=0mm,
+    bottom=0mm,
+    title=#2, 
+    colback=acceptblue!5!white,
+    colframe=acceptblue!50!black,
+    fonttitle=\bfseries,
+    listing only, 
+    listing options={style=mystyle},
+    breakable,
+    #1
+}
+
+
+\newtcblisting{gpt}[2][]{
+    arc=3pt, outer arc=3pt,
+    width=\linewidth,
+    left=1mm,
+    top=0mm,
+    bottom=0mm,
+    title=#2, 
+    colback=oai!5!white,
+    colframe=oai!50!black,
+    fonttitle=\bfseries,
+    listing only, 
+    listing options={style=mystyle},
+    breakable,
+    #1
+}
+
+\newtcblisting{claudels}[2][]{
+    arc=3pt, outer arc=3pt,
+    width=\linewidth,
+    left=1mm,
+    top=0mm,
+    bottom=0mm,
+    title=#2, 
+    colback=claude!5!white,
+    colframe=claude!85!black,
+    fonttitle=\bfseries,
+    listing only, 
+    listing options={style=mystyle},
+    breakable,
+    #1
+}
+
+\newtcblisting{deepseekls}[2][]{
+    arc=3pt, outer arc=3pt,
+    width=\linewidth,
+    left=1mm,
+    top=0mm,
+    bottom=0mm,
+    title=#2, 
+    colback=deepseek!5!white,
+    colframe=deepseek!85!black,
+    fonttitle=\bfseries,
+    listing only, 
+    listing options={style=mystyle},
+    breakable,
+    #1
+}
+
+
+\newtcblisting{geminils}[2][]{
+    arc=3pt, outer arc=3pt,
+    width=\linewidth,
+    left=1mm,
+    top=0mm,
+    bottom=0mm,
+    title=#2, 
+    colback=gemini!5!white,
+    colframe=gemini!50!black,
+    fonttitle=\bfseries,
+    listing only, 
+    listing options={style=mystyle},
+    breakable,
+    #1
+}
+
+\newtcblisting{geminilsescaped}[2][]{
+    arc=3pt, outer arc=3pt,
+    width=\linewidth,
+    left=1mm,
+    top=0mm,
+    bottom=0mm,
+    title=#2, 
+    colback=gemini!5!white,
+    colframe=gemini!50!black,
+    fonttitle=\bfseries,
+    listing only, 
+    listing options={style=mystyle, escapeinside=||},
+    breakable,
+    #1
+}
+
+
+\newtcblisting{qwenls}[2][]{
+    arc=3pt, outer arc=3pt,
+    width=\linewidth,
+    left=1mm,
+    top=0mm,
+    bottom=0mm,
+    title=#2, 
+    colback=qwen!5!white,
+    colframe=qwen!50!black,
+    fonttitle=\bfseries,
+    listing only, 
+    listing options={style=mystyle},
+    breakable,
+    #1
+}
+
+
+\newcommand{\othreeheader}{
+    \begin{tikzpicture}
+      \node[anchor=north] {\pgftext{\includegraphics[width=0.34cm]{figures/assets/chatgpt}}};
+    \end{tikzpicture}
+    ~\othree{}
+}
+
+\newcommand{\geminiheader}{
+    \begin{tikzpicture}
+      \node[anchor=north] {\pgftext{\includegraphics[width=0.34cm]{figures/assets/Gemini_2024_icon.png}}};
+    \end{tikzpicture}
+    ~\flthink{}
+}
+
+\newcommand{\geminiproheader}{
+    \begin{tikzpicture}
+      \node[anchor=north] {\pgftext{\includegraphics[width=0.34cm]{figures/assets/Gemini_2024_icon.png}}};
+    \end{tikzpicture}
+    ~\geminipro{}
+}
+
+\newcommand{\claudeheader}{
+    \begin{tikzpicture}
+      \node[anchor=north] {\pgftext{\includegraphics[width=0.34cm]{figures/assets/claude.png}}};
+    \end{tikzpicture}
+    ~\claude{} 
+}
+
+\newcommand{\qwenheader}{
+    \begin{tikzpicture}
+      \node[anchor=north] {\pgftext{\includegraphics[width=0.34cm]{figures/assets/qwen.png}}};
+    \end{tikzpicture}
+    ~\qwq{} 
+}
+
+\newcommand{\deepseekheader}{
+    \begin{tikzpicture}
+      \node[anchor=north] {\pgftext{\includegraphics[width=0.34cm]{figures/assets/deepseek.png}}};
+    \end{tikzpicture}
+    ~\rone{} 
+}
+

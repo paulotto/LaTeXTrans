@@ -1,0 +1,112 @@
+\section{Experimental Results}
+\label{sec: results}
+
+\autoref{tab: overall results top 20.} presents the overall results for the top 20 models on MIEB (130 tasks) and MIEB-lite (51 tasks). We find that there is no universal embedding model with the best performance on all task categories.
+
+MLLM-based models lead in overall performance on MIEB and MIEB-lite, most notably excelling in visual text understanding and multilingual tasks. However, they perform worse than CLIP-style models in linear probing and zero-shot classification, indicating a loss of precision in image representations. MLLM-based models struggle particularly with fine-grained classification tasks, such as bird species identification (see \autoref{sec: task tpye results}, Tables~\ref{tab: linear probe: coarse},~\ref{tab: linear probe fine}).
+
+Conversely, CLIP-style models are strong in traditional tasks like linear probing, zero-shot classification, and retrieval. Scaling model size, batch size, and dataset quality improves performance in clustering, classification, and retrieval, but not universally. These models struggle on interleaved retrieval, visual text representations, and multilingual tasks unless specifically optimized (e.g., the multilingual variant of SigLIP).
+
+The strong performance of MLLM-based embedding models and insights from their training recipes highlight a potential pathway for future universal embedding models. E5-V~\citep{jiang2024e5}, a LLaVA-based model~\citep{liu2023visual}, achieves state-of-the-art open-source performance on document understanding, visual STS, multilingual retrieval, and compositionality, despite using a small batch size of 768 for text-only lightweight contrastive finetuning. This suggests its generative pretraining already leads to strong multimodal representations. However, it performs poorly on linear probing and zero-shot classification. Focusing on such tasks in a larger scale finetuning stage may lead to good universal performance.
+
+We analyze each category in the following sections and refer to the Appendix for full results.
+
+\subsection{Retrieval}
+
+\autoref{tab: retrieval} contains the full retrieval results. The best overall performance is achieved by \textit{CLIP-ViT-bigG-laion2B-39B-b160k}~\citep{cherti2023reproducible} and \textit{siglip-so400m-patch14-384}~\citep{zhai2023sigmoid}. We find that MLLM-based models with their natural interleaved encoding abilities excel on sub-categories like VQA retrieval (retrieving correct answers given questions and images). For some tasks vision-only models can achieve the best performance, e.g., Dino-v2~\citep{oquab2024dinov2} on CUB200.
+
+\subsection{Clustering}
+
+\autoref{tab: clustering results} contains the full clustering results. Similar to findings for Retrieval, MLLM-based models fall short on tasks with fine-grained categories (e.g., dog breeds in ImageNet-Dog15~\citep{deng2009imagenet}), indicating their limitations in encoding nuanced image features. \autoref{fig: clustering} is a UMAP visualization on ImageNet Dog15, where E5-V underperforms CLIP-style models, showing less separation between fine-grained labels. EVA-CLIP \cite{sun2023eva}, DataComp-CLIP~\citep{gadre2024datacomp}, and OpenCLIP checkpoints~\citep{cherti2023reproducible} dominate in most clustering tasks. Similar to patterns in classification shown in the next section, state-of-the-art MLLM-based models have poor performance distinguishing fine-grained classes.
+
+\begin{figure}
+\centering
+\includegraphics[width=1\linewidth]{figures/clustering_plot.pdf}
+\caption{\textbf{UMAP Visualization of ImageNet Dog15.} Each class corresponds to one dog breed. CLIP clusters are more distinct.}
+\label{fig: clustering}
+\end{figure}
+
+\subsection{Zero-shot Classification} 
+\label{subsec: classification}
+
+Similar to Retrieval and Clustering, Zero-shot Classification (Tables~\ref{tab: ZeroShot coarse},~\ref{tab: zeroshot fine}) requires coherent image and text embedding subspaces, thus CLIP-style models still dominate. MLLM-based models like E5-V, Voyage, and VLM2Vec largely underperform in zero-shot classification tasks, most notably ones with fine-grained labels. While decoder-based generative models show inherent generalizability in embedding tasks~\citep{wang2022language,jiang2024e5,enevoldsen2024scandinavian,muennighoff2024generative,xiao2024rar,su2024bright}, it is likely still necessary to learn robust fine-grained nuances through contrasting multimodality finetuning paired with validated training recipes like large batch sizes and diverse datasets~\citep{radford2021learning,gadre2024datacomp,cherti2023reproducible,sun2023eva}.
+
+\subsection{Linear Probing}
+
+Average performance on linear probing is generally the highest among all our task categories, signaling that it is closer to saturation. However, with relatively low overall average scores on MIEB, there is still significant room to improve on the benchmark. In \autoref{subsec: k-shot}, we investigate label granularity and ablate the number of shots in linear probing, validating the robustness of our design choice of 16-shot for few-shot linear probing (\autoref{sec:mieb}).
+
+\subsection{Multilingual Retrieval}
+\label{subsec: multilingual retrieval}
+
+Our multilingual retrieval tasks span 38 languages with 55 subtasks~\citep{thapliyal2022crossmodal,pmlr-v162-bugliarello22a}. We present the full results in \autoref{tab: multilingual retrieval full} and summarize the key findings here in \autoref{tab: multilingual retrieval}. 
+
+E5-V~\citep{jiang2024e5} achieves state-of-the-art performance on multilingual retrieval, highlighting the inherent strong multilingual abilities of LLaVA-Next~\citep{liu2023improvedllava}, which E5-V initializes from. E5-V was fine-tuned contrastively using LoRA~\citep{hu2022lora}, which only lightly modifies the underlying models, thus leaving most knowledge (such as about different languages) intact. The multilingual version of SigLIP~\citep{zhai2023sigmoid}, \textit{siglip-base-patch16-256-multilingual}, attains the second best performance. VISTA~\citep{zhou2024vista} models also perform strongly despite their relatively small sizes, showing notable consistency across languages. This cross-lingual robustness likely stems from its frozen backbone text model BGE-M3, which was trained to produce high-quality multilingual textual embeddings~\citep{xiao2023c,chen2024bge}.
+
+Overall, these findings highlight that a strong text encoder trained across various languages is critical to good multilingual performance.
+
+\begin{table}
+\centering
+\resizebox{\linewidth}{!}{
+\begin{tabular}{lcc|cc|cc|cc}
+\toprule
+\multirow{2}{*}{Model Name} & \multicolumn{2}{c}{\textbf{xFlickr\&CO}} & \multicolumn{2}{c}{\textbf{XM3600}} & \multicolumn{2}{c}{\textbf{WIT}} & \multicolumn{2}{c}{\textbf{avg.}} \\
+& avg. & var. & avg. & var. & avg. & var. & avg. & var. \\
+\midrule
+E5-V & \textbf{90.8} & \textbf{0.1} & \textbf{74.8} & 3.5 & \textbf{57.3} & 0.6 & \textbf{74.3} & 1.4 \\
+SigLIP & 80.4 & 1.2 & 65.6  & 5.3 & 54.4 & 1.3 &  66.8 & 2.6 \\
+VISTA (m3) & 65.3 & 0.2 & 48.5 & \textbf{2.0} & 49.3 & \textbf{0.4} & 54.4 & \textbf{0.9} \\
+VLM2Vec & 63.8 & 3.8 & 27.0 & 4.7 & 31.7 & 2.5 & 40.8 & 3.6 \\
+Open-CLIP & 35.9 & 9.3 & 20.5 & 6.0 & 37.8 & 6.5 & 31.4 & 7.3 \\
+EVA02-CLIP & 35.6 & 9.4 & 20.1 & 6.0 & 37.4 & 6.4 & 31.0 & 7.2 \\
+\bottomrule
+\end{tabular}}
+\caption{\textbf{Performance of models on multilingual retrieval tasks across 38 languages.} We compute the average performance across languages (avg) and the respective variance (var). We take the best variant from each top-6 model family.}
+\label{tab: multilingual retrieval}
+\end{table}
+
+\subsection{Visual STS}
+\label{subsec: visual STS}
+
+\begin{table}
+\centering
+\resizebox{\linewidth}{!}{
+\begin{tabular}{ccccccccc}
+\toprule
+&\textbf{12}&\textbf{13}&\textbf{14}&\textbf{15}&\textbf{16}&\textbf{17}&\textbf{b} &\textbf{avg.}\\
+\midrule
+STS* &  80.0 &89.9 &85.7& 89.1& 85.9& 87.9 &83.5 & 86.0\\
+v-STS (ours) & 73.2 &	78.2 & 74.9 &	84.2 &	79.5 & 85.8 &	79.4 & 79.3\\
+\bottomrule
+\end{tabular}}
+\caption{\textbf{E5-V performance on regular STS and our Visual STS.} *: numbers from \citet{jiang2024e5}. Columns are STS12-17 and STS-b.}
+\label{tab:E5-V STS analysis}
+\end{table}
+
+For Visual STS (Tables~\ref{tab: sts eng},~\ref{tab: sts cross},~\ref{tab: sts multi}), E5-V \cite{jiang2024e5} achieves the best performance. This is likely because it was trained on the allNLI collection (SNLI~\citep{bowman-etal-2015-large} + MNLI~\citep{williams-etal-2018-broad}), which is commonly used to train text representation models for STS tasks~\citep{reimers2019sentence}. As our Visual STS simply renders existing STS tasks as images (\autoref{sec:mieb}), if a model is perfect in optical character recognition (OCR), its Visual STS performance would match its STS performance. \autoref{tab:E5-V STS analysis} shows that this is almost the case, with some room left for improving the text recognition capabilities of E5-V.
+
+\citet{tong2024cambrian} show that textually-supervised models like CLIP are inherently good visual text readers, while purely visually-supervised models are not. Our results support this finding: EVA-CLIP, DataComp-CLIP (OpenCLIP variants trained on DataComp~\citep{gadre2024datacomp}), SigLIP, and CLIP achieve strong performance with EVA-CLIP-bigE-14-plus achieving an average English performance of 71.99 in \autoref{tab: sts eng}, whereas Dino-v2 and Moco-v3 perform near random (Spearman correlation of 12.98 and 14.31).
+
+\subsection{Document Understanding}
+\label{subsec: doc understanding}
+
+As shown in \autoref{subsec: visual STS}, E5-V has strong OCR performance. This translates to strong performance on our Document Understanding tasks (\autoref{tab: doc understanding}), where it is the best open-source model (avg. nDCG@5 of 62.69 on 10 Vidore tasks). Voyage-multimodal-3 has better performance but is closed-source.
+
+OpenCLIP~\citep{cherti2023reproducible} and DataComp-CLIP~\citep{gadre2024datacomp} variants provide insights into the positive impact of scaling model sizes and datasets to document understanding capabilities. The performance of OpenCLIP scales from 36.26 for its 430M parameter model (Vit-L) to 40.41 for its 990M parameter model (ViT-H); both having seen the same number of training examples. Data quality also matters with DataComp-CLIP achieving 38.64 with a ViT-L trained on only 13B seen examples, while the above OpenCLIP models use 32B examples.
+
+
+\begin{figure*}[h]
+\centering
+\includegraphics[width=1\linewidth]{figures/k-shot.pdf}
+\caption{\textbf{Linear probing performance across different shots k.} We select representative models from our vision-only and CLIP categories (\autoref{sec:models}). See \autoref{subsec: k-shot} for details on fine-grained and coarse-grained tasks.}
+\label{fig: k-shot linear probe}
+\end{figure*}
+
+\subsection{Compositionality Evaluation}
+\label{subsec: compositionality}
+
+Together with Retrieval, Compositionality Evaluation is where models have the lowest scores. Especially, WinoGround~\citep{Thrush_2022_CVPR} is extremely challenging (\autoref{tab: compositionality}) due to its image and textual confounders. We hypothesize that future models that better incorporate reasoning capabilities and test-time scaling techniques~\citep{jaech2024openai,guo2025deepseek,xu2024llava,lu2025retro,muennighoff2025s1} may achieve better results on compositionality tasks.
+
+\subsection{Vision-centric QA}
+\label{subsec: cv-centric tasks}
+
+BLIP models~\citep{li2022blip,li2023blip2} surprisingly contribute to two of the top 5 models in vision-centric QA (Table~\ref{tab: cv bench}) despite their absence for other task categories. This highlights that including images in the contrastive finetuning stage can be beneficial, opposite to their exclusion in \citet{jiang2024e5}.

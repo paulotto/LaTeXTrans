@@ -1,0 +1,126 @@
+\section{Geometric mean interpretation and $K$-class \corrsyn{}}
+\label{sec:geometric}
+To gain intuition on \corrsyn{}, we present an interpretation of it using geometric mean. We continue to use the notation from \ref{sec:M-corrsyn}. First we present the uniform contrastive guidance described briefly in the main paper.
+
+\subsection{Uniform contrastive guidance}
+
+\label{sec:app_unif_guidance}
+We set a parameter $\delta$ that controls the total amount of contrast guidance: for each $m$, $\sum_n \gamma_{m,n}=\gamma-\delta$. 
+At step $i$, let the active set $\cS_{i}=\{m\in[M]:x_{m,i-1}\neq \eos\}\}$ which captures the sequences which have not yet hit the EOS token. Let $M_{i,active}=|\cS_{i}|$ denote the number of such sequences. Then in uniform contrastive guidance we set 
+$$\gamma_{m,n}=\begin{cases} \frac{\gamma-\delta}{M_{i,active}-1}&,\, m,n\in\cS_i\\
+ 0&,\, \mathrm{otherwise}\end{cases}$$
+at stage/token $i$ (dependence of $\gamma_{m,n}$ on $i$ is suppressed). 
+Thus equation \eqref{eq:M-Corr-1} becomes
+\begin{align}
+    x_{m,i}&\distas{} \tilde \mP_{m,i}(\cdot)\nonumber\\
+    &\propto \frac{\mP(\cdot| \Prompt_m,\mbf{x}_{m,<i})^{\gamma}}{\prod_{\substack{n\in \cS_i \\n\neq  m}}\mP(\cdot| \Prompt_n,\mbf{x}_{n,<i})^{\frac{\gamma-\delta}{M_{i,active}-1}}}\label{eq:M-Corr-2}
+\end{align}
+
+\subsection{Geometric mean}
+Let us assume that $S_i=[M]$ and hence $M_{i,active}=M$. Further let $\delta=0$. Recall that the geometric mean of $n$ non-negative reals $\{\alpha_1,\cdots,\alpha_n\}$ is given by
+\begin{equation}
+    GM(\{\alpha_i:i\in [n]\})=\left(\prod_{i=1}^n\alpha_i\right)^{\frac{1}{n}}
+\end{equation}
+Analogously we can define the geometric mean of $M$ probability distributions in a point-wise manner. Thus we can write \eqref{eq:M-Corr-2} as
+\begin{align}
+     &x_{m,i}\distas{}\tilde \mP_{m,i}(\cdot)\nonumber\\
+    &\propto \frac{\mP(\cdot| \Prompt_m,\mbf{x}_{m,<i})^{\gamma}}{GM\left(\{\mP(\cdot| \Prompt_n,\mbf{x}_{n,<i}):n\in \cS_i, n\neq m\}\right)^{\gamma}}\label{eq:M-Corr-3}
+\end{align}
+ Thus, in \corrsyn, the contrasting guidance signal is provided by a \textit{geometric ensemble} of token distributions obtained from contrasting prompts as well as corresponding contrasting sequences. We expect that this geometric ensemble contrast, when $M\gg 2$, to average out the signal from the contrast and mitigate the issue of non alignment of words or entities between sequences. 
+
+ \subsection{\corrsyn{} for $K$-class data generation}
+ \label{sec:K-corrsyn}
+ In this section we describe how \corrsyn{} is applied to generate data for $K$-class text classification problem. Recall that in $K$-class classification problem over $\cX\times\cY$ we have classes $[K]$ with label verbalizations $\{\mbf{y}_1,\cdots,\mbf{y}_K\}$. To generates instances for each class, we create prompts as follows. Let $R\in\mathbb{N}$ be the repeat factor. For each class $\mbf{y}$ consider the, possibly empty, ICL examples sets $\cI_{\mbf{y},r}\subset \cX\times\cY$ for $r\in [R]$ which contain positive examples for $\mbf{y}$. We construct a set of $K\cdot R$ prompts $\{\Prompt_{k,r}:k\in[K],r\in[R]\}$ where $\Prompt_{k,r}=\Prompt(\mbf{y}_k,\cI_{\mbf{y}_k,r})$ is a prompt that asks the LLM to generate instances for the class ${\mbf{y_k}}$ and includes ICL examples in $\cI_{\mbf{y}_k,r}$. For brevity, we assume that no sequence hits $\eos$ until some pre-set max number of tokens has been reached. There are a couple of ways in which \corrsyn{} can be used. Here we describe just one of the ways.%We describe two ways in which \corrsyn{} can be used.
+
+ \subsubsection{Cross-label \corrsyn{}}
+Here we contrast the instance for a label $\mbf{y_k}$ with instances of all the other labels $\mbf{y}_{k'}$ where $k'\neq k$. Thus, assuming uniform contrastive guidance~\ref{sec:unif_guidance}, we generate instances $\{\mbf{x}_{k,r}:k\in[K], r\in[R]\}$ together in \textit{lockstep} as follows. At stage/token $i$ we have for every $k\in[k]$ and $r\in [R]$
+ % \begin{align}
+ % \begin{aligned}
+ %      & x_{k,r,i}\distas{} \tilde \mP_{k,r,i}(\cdot) \\
+ %      &\propto \frac{\mP(\cdot| \Prompt_{k,r},\mbf{x}_{k,r,<i})^{\gamma}}{GM\left(\left\{\mP(\cdot| \Prompt_{k',r'},\mbf{x}_{k',r',<i})\right\}_{\substack {k'\neq k\\ r'\in[R]}}\right)^{\gamma-\delta}}\\
+ %     &= \frac{\mP(\cdot| \Prompt(\mbf{y}_k,\cI_{\mbf{y}_k,r}),\mbf{x}_{k,r,<i})^{\gamma}}{GM\left(\left\{\mP(\cdot| \Prompt(\mbf{y}_{k'},\cI_{\mbf{y}_{k'},r'}),\mbf{x}_{k',r',<i})\right\}_{\substack {k'\neq k\\ r'\in[R]}}\right)^{\gamma-\delta}}\label{eq:K-Corr-cross-1}
+ % \end{aligned}
+ % \end{align}
+ \begin{align}
+ \begin{aligned}
+      & x_{k,r,i}\distas{} \tilde \mP_{k,r,i}(\cdot) \\
+      &\propto \frac{\mP(\cdot| \Prompt_{k,r},\mbf{x}_{k,r,<i})^{\gamma}}{GM\left(\left\{\mP(\cdot| \Prompt_{k',r'},\mbf{x}_{k',r',<i})\right\}_{\substack {k'\neq k\\ r'\in[R]}}\right)^{\gamma-\delta}}\label{eq:K-Corr-cross-1}
+ \end{aligned}
+ \end{align}
+ \paragraph{Effect of repeat factor:} We include repeat factor because it will increase the number of contrast terms for taking the geometric mean. We expect that this would provide improved averaging and reduces the noise due to potential misalignment.% \sk{What do experiments show?}
+
+
+ \subsubsection{Hybrid \corrsyn{}}
+%  That is, we fix two targets $\gamma_{intra}$ and $\gamma_{cross}$, and for any $k$, $r$, letting $m=(k-1)R+r$, we choose $\gamma_{m,n}$ such that
+% \begin{align}
+%     \gamma_{intra}&=\sum_{\substack{n\in\{(k-1)R+r':\\r'\neq r\}}}\gamma_{m,n},\,\forall k,r\\
+%     \gamma_{cross}&=\sum_{\substack{n\in\{(k'-1)R+r':\\ r'\in[R],k'\neq k\}}}\gamma_{m,n},\,\forall k,r
+% \end{align}
+% Then we uniformly split the target guidances $\gamma_{intra}$ and $\gamma_{cross}$ in respective groups. More details of $K$-class \corrsyn{} is given in appendix~\ref{sec:K-corrsyn}
+
+ In the hybrid approach, we contrast the instance $\mbf{x}_{k,r}$ for a label $\mbf{y}_k$ with instances $\mbf{x}_{k,r'}$ of the same label (but with different repeat $r'\neq r$), as well as instances $\mbf{x}_{k',r'}$ for all the other labels (where $k'\neq k$, and $r'\in [R]$). We separately set the target guidance for each of the cross and intra label terms. That is, we fix two targets $\gamma_{intra}$ and $\gamma_{cross}$. Within each group we use uniform contrastive guidance from \ref{sec:unif_guidance}. The instances are generated as follows. At stage/token $i$ we have for every $k\in[k]$ and $r\in [R]$
+ 
+ \begin{align}
+ \begin{aligned}
+      x_{k,r,i}&\distas{}\tilde \mP_{k,r,i}(\cdot) \\
+      &\propto \frac{\mP(\cdot| \Prompt_{k,r},\mbf{x}_{k,r,<i})^{\gamma}}{GM_{intra}^{\gamma_{intra}}\cdot GM_{cross}^{\gamma_{cross}}}\label{eq:K-Corr-hybrid-1}
+ \end{aligned}
+ \end{align}
+
+ where 
+ \begin{align}
+ \begin{aligned}
+     &GM_{intra}=\\
+     &GM\left(\left\{\mP(\cdot| \Prompt_{k,r'},\mbf{x}_{k,r',<i})\right\}_{\substack {r'\neq r}}\right)\\
+     &GM_{cross}=\\
+     &GM\left(\left\{\mP(\cdot| \Prompt_{k',r'},\mbf{x}_{k',r',<i})\right\}_{\substack {k'\neq k\\ r'\in[R]}}\right)
+\end{aligned}
+ \end{align}
+ 
+As seen from the above display, the first term in the denominator gives contrast signal from generations with the class, in order to get good intra-label diversity. While the second term gives contrast signal from other classes and hence serves to increase class separation. 
+
+\subsection{\corrsyn{} in logits space}
+\label{sec:logit_corrsyn}
+ Although the \corrsyn{} method described using LLM token probability distribution, it is implemented in the space of model outputs, i.e., logits. That is, the next-token distribution is obtained by first computing the next-token logits using logits-space \corrsyn{} as described below. It is equivalent\footnote{This is not fully equivalent to probability space version since taking logarithm gives us log-probabilities which are normalized version of logits. Experimentally we have not found significant impact of this normalization.} to taking logarithm of the \corrsyn{} equations, for e.g., \eqref{eq:K-Corr-cross-1} and \eqref{eq:K-Corr-hybrid-1}. For instance, in the cross-label version, the next token logits $\tilde \lg_{k,r,i}(\cdot)$ is given by
+  \begin{align}
+ \begin{aligned}
+      \widetilde \lg_{k,r,i}(\cdot) =&\gamma\lg(\cdot| \Prompt_{k,r},\mbf{x}_{k,r,<i}) -\\
+      &\frac{\gamma-\delta}{M-1}\sum_{\substack {k'\neq k\\ r'\in[R]}}\lg(\cdot| \Prompt_{k',r'},\mbf{x}_{k',r',<i}) \label{eq:K-Corr-cross-logit-1}
+ \end{aligned}
+ \end{align}
+Similarly, we can derive the logit version for the hybrid \corrsyn{}
+
+\subsection{\corrsyn{} with Plausibility constraint}
+\label{sec:plaus}
+The contrast terms in \corrsyn{} could sometimes up weigh some irrelevant tokens that are not plausible at all for the prompt/label under consideration. We borrow the idea of plausibility constraint from \cite{li2023contrastive, o2023contrastive} to limit the space of tokens that can up weighted by contrast terms. For the generation $\mbf{x}_{k,r}$ we consider the plausible set $\cT_{k,r,i}(\alpha)$, as a function of the plausibility constraint $\alpha\in [0,1]$, defined as 
+\begin{align}
+    \cT_{k,r,i}(\alpha)=&\left\{w\in\cV: P(w|\Prompt_{k,r},\mbf{x}_{k,r,<i})\geq \right.\nonumber\\
+    &\left.\alpha \max_u P(u|\Prompt_{k,r},\mbf{x}_{k,r,<i})\right\}\label{eq:plaus_set}
+\end{align}
+i.e., at stage/token $i$, it is all those plausible tokens which have a token probability of at least $\alpha$ times the maximum token probability. So incorporating the plausibility constraint into  \corrsyn{} would result in the following logit function for $\mbf{x}_{k,r}$ in cross-label version
+\begin{align}
+ &\widetilde \lg^{\alpha}_{k,r,i}(w) = \begin{cases}
+    \widetilde\lg_{k,r,i}(w), & w\in \cT_{k,r,i}(\alpha)\\
+    -\infty, & \mathrm{otherwise}
+\end{cases} \label{eq:K-Corr-cross-logit-plaus-1}
+\end{align}
+
+% \begin{align}
+%  &\widetilde \lg_{k,r,i}(w) =\nonumber\\
+%  &\begin{cases}
+%     \begin{split}&\gamma\lg(w| \Prompt_{k,r},\mbf{x}_{k,r,<i}) \\
+%   &-\frac{\gamma-\delta}{M-1}\sum_{\substack {k'\neq k\\ r'\in[R]}}\lg(w| \Prompt_{k',r'},\mbf{x}_{k'r',<i})\end{split},\,& w\in \cT_{k,r,i}(\alpha)\\
+%     -\infty ,\,&\mathrm{otherwise}
+% \end{cases} \label{eq:K-Corr-cross-logit-plaus-1}
+% \end{align}
+
+% \begin{align}
+%  &\widetilde \lg_{k,r,i}(w) =\nonumber\\
+%  &\begin{cases}
+%     \begin{aligned}
+%     &\gamma\lg(w| \Prompt_{k,r},\mbf{x}_{k,r,<i}) \\
+%     &-\frac{\gamma-\delta}{M-1}\sum_{\substack{k'\neq k\\ r'\in[R]}}\lg(w| \Prompt_{k',r'},\mbf{x}_{k'r',<i})
+%     \end{aligned}, & w\in \cT_{k,r,i}(\alpha)\\
+%     -\infty, & \mathrm{otherwise}
+% \end{cases} \label{eq:K-Corr-cross-logit-plaus-1}
+% \end{align}

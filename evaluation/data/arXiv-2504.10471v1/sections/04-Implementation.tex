@@ -1,0 +1,4 @@
+\section{Implementation Details}
+\label{sec:imp}
+
+For interleaved inputs in retrieval and other task categories, we follow the original implementation of each model if it is capable of taking in mixed-modality inputs~\citep{zhou2024vista}, e.g., MLLM-based embedding models~\citep{jiang2024e5,jiang2024vlm2vec}. Else, we by default apply a simple sum operation on text and image embeddings~\citep{wei2023uniir} to attain interleaved embeddings, e.g., for CLIP-style models~\citep{radford2021learning,zhai2023sigmoid,gadre2024datacomp,sun2023eva}.

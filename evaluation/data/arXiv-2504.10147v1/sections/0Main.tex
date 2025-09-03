@@ -1,0 +1,141 @@
+\documentclass[sigconf]{acmart} % , review
+
+%% Import Packages
+%\usepackage{times} % 会使得标题的字体改变
+\usepackage{soul}
+%\usepackage{url}
+%\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{overpic}
+\usepackage{float}  %设置图片浮动位置的宏包
+\usepackage{subfloat}
+\usepackage{stfloats} % for pic
+% \usepackage{subfigure}  %插入多图时用子图显示的宏包
+\usepackage[skip=0.5\baselineskip]{caption}
+\usepackage{bm}
+\usepackage{amsmath}
+%\usepackage{amsthm}
+\usepackage{booktabs}
+%\usepackage[switch]{lineno}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{enumitem}
+\usepackage{subcaption}
+\usepackage{threeparttable}
+\usepackage{xspace}
+%\usepackage{amssymb}
+\usepackage{color}
+\usepackage[normalem]{ulem}
+%\usepackage{algorithm}
+%\usepackage{algorithmicx}
+\usepackage{algorithmicx,algorithm}
+\usepackage{algpseudocode}
+\usepackage{algorithm,algpseudocode}
+\usepackage{color, xspace}
+\newcommand{\eg}[0]{\emph{e.g.,}\xspace}
+\newcommand{\zxy}[1]{{\color{blue} [#1 – Xy]}}
+\newcommand{\zc}[0]{{\color{blue} [cite]}\xspace}
+\newcommand{\yc}[1]{{\color{purple}[yc: #1]}}
+\newcommand{\xp}[1]{{\color{blue}[xp: #1]}}
+\newcommand{\py}[1]{{\color{red}[py: #1]}}
+\newcommand{\xdr}[1]{{\color{green}[xdr: #1]}}
+\newcommand{\wl}[1]{{\color{orange}[wl: #1]}}
+\newcommand{\edi}[1]{{\color{blue}{#1}}}
+% for taxonomy figure drawing
+\usepackage{color}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage{xspace}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{makecell}
+\usepackage[edges]{forest}
+
+\AtBeginDocument{%
+  \providecommand\BibTeX{{%
+    \normalfont B\kern-0.5em{\scshape i\kern-0.25em b}\kern-0.8em\TeX}}}
+
+\setcopyright{acmlicensed}
+\copyrightyear{2023}
+\acmYear{2023}
+\acmDOI{XXXXXXX.XXXXXXX}
+
+% \acmConference[KDD '25]{Proceedings of the 31th ACM SIGKDD Conference on Knowledge Discovery and Data Mining}{August 3--7, 2025}{Toronto, Canada}
+
+% \acmISBN{978-1-4503-XXXX-X/18/06}
+
+\begin{document}
+
+\title{A Survey of Personalization: From RAG to Agent}
+\author{Xiaopeng Li$^{1*}$, Pengyue Jia$^{1*}$, Derong Xu$^{1,3}$, Yi Wen$^1$, Yingyi Zhang$^{1,4}$, }
+\author{Wenlin Zhang$^1$, Wanyu Wang$^1$, Yichao Wang$^{2}$, Xiangyang Li$^{2}$, Zhaocheng Du$^{2}$,}
+\author{Yong Liu$^2$, Huifeng Guo$^2$, Ruiming Tang$^2$, Xiangyu Zhao$^1$}
+\affiliation{
+	\institution{$^1$City University of Hong Kong, $^2$Huawei Noah’s Ark Lab, \\ $^3$University of Science and Technology of China, $^4$Dalian University of Technology}
+	\country{}
+}
+\email{{xiaopli2-c,jia.pengyue}@my.cityu.edu.hk, xianzhao@cityu.edu.hk}
+\email{{wangyichao5, tangruiming}@huawei.com}
+\thanks{* Equal contribution.}
+% \email{xianzhao@cityu.edu.hk, {jt.g,yhwang25-c,xiaopli2-c,}@my.cityu.edu.hk}
+% \email{liuqidong@stu.xjtu.edu.cn, {wangyichao5,chenbo116,huifeng.guo,tangruiming}@huawei.com}
+
+
+
+\renewcommand{\shortauthors}{Xiaopeng Li and Pengyue Jia, et al.}
+
+\begin{abstract}
+
+Personalization has become an essential capability in modern AI systems, enabling customized interactions that align with individual user preferences, contexts, and goals. Recent research has increasingly concentrated on Retrieval-Augmented Generation (RAG) frameworks and their evolution into more advanced agent-based architectures within personalized settings to enhance user satisfaction. Building on this foundation, this survey systematically examines personalization across the three core stages of RAG: pre-retrieval, retrieval, and generation. Beyond RAG, we further extend its capabilities into the realm of Personalized LLM-based Agents, which enhance traditional RAG systems with agentic functionalities, including user understanding, personalized planning and execution, and dynamic generation. 
+For both personalization in RAG and agent-based personalization, we provide formal definitions, conduct a comprehensive review of recent literature, and summarize key datasets and evaluation metrics. Additionally, we discuss fundamental challenges, limitations, and promising research directions in this evolving field. Relevant papers and resources are continuously updated at the Github Repo\footnote{\url{https://github.com/Applied-Machine-Learning-Lab/Awesome-Personalized-RAG-Agent}}.
+
+\end{abstract}
+
+% \begin{CCSXML}
+% <ccs2012>
+%    <concept>
+%        <concept_id>10002951.10003317.10003338</concept_id>
+%        <concept_desc>Information systems~Retrieval models and ranking</concept_desc>
+%        <concept_significance>500</concept_significance>
+%        </concept>
+%    <concept>
+%        <concept_id>10002951.10003227.10003351</concept_id>
+%        <concept_desc>Information systems~Data mining</concept_desc>
+%        <concept_significance>500</concept_significance>
+%        </concept>
+%  </ccs2012>
+% \end{CCSXML}
+
+% \ccsdesc[500]{Information systems~Retrieval models and ranking}
+% \ccsdesc[500]{Information systems~Data mining}
+
+\keywords{Large Language Model
+(LLM), Retrieval-Augmented Generation (RAG), Agent, Personalization}
+\vspace{-0.15in}
+
+\settopmatter{printfolios=true}
+
+\settopmatter{printacmref=false}
+\renewcommand\footnotetextcopyrightpermission[1]{}
+
+\maketitle
+
+\input{1Introduction}
+\input{2What}
+\input{3How}
+\input{4.1Where pre-retrieval}
+\input{4.2Where retrieval}
+\input{4.3Where generation}
+\input{4.4Where agent}
+\input{5Evaluation and Dataset}
+\input{6Future Direction}
+\input{7Conclusion}
+
+
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{newbibfile}
+
+
+\end{document}

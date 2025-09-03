@@ -1,0 +1,39 @@
+
+\subsection{Neural Implicit Representations}
+
+Early researches focus on capturing dense views to reconstruct scenes, while neural implicit representations have significantly advanced neural processing for 3D data and multi-view images, leading to high reconstruction and rendering quality~\cite{OccNet2019CVPR, DeepSDF2019CVPR, DGA2020NIPS, SRN2019NIPS}. 
+In particular, Neural Radiance Fields (NeRF)~\cite{NeRF2021ACM} has garnered considerable attention with a fully connected neural network to represent complex 3D scenes. 
+Subsequently, following works have emerged to address NeRF's limitations and enhance its performance. 
+Some studies aim to solve the long-standing problem of novel view synthesis by improving the speed and efficiency of training and inference~\cite{EfficientNeRF2022CVPR, FastNeRF2021ICCV,InstantNGP2022TOG, KiloNeRF2021ICCV, NSVF2020NIPS,PlenOctree2021CVPR, Plenoxels2022CVPR}. 
+Other research focuses on modeling complex geometry and view-dependent effects to reconstruct dynamic scenes~\cite{du2021neural,li2021neural,pumarola2021d,tretschk2021non,xian2021space,ENeRF2022SIGGRAPH,Fourierplenoctree2022CVPR,tian2023mononerf,li2023dynibar,SUDS2023CVPR}. 
+Additionally, some studies~\cite{MegaNeRF2022CVPR, BlockNeRF2022CVPR, GridNeRF2023CVPR, BungeeNeRF2022ECCV} have worked on reconstructing large urban scenes to avoid blurred renderings without fine details, which is a challenge for NeRF-based methods due to their limited model capacity. 
+Furthermore, other works~\cite{niemeyer2022regnerf,truong2023sparf,wynn2023diffusionerf,xu2023murf} apply NeRF to novel view synthesis with sparse input views by incorporating additional training regularizations, such as depth, correspondence, and diffusion models.
+    
+\subsection{3D Gaussian Splatting}
+
+More recently, 3D Gaussian Splatting (3DGS)~\cite{3DGS2023ToG} has drawn significant attention in the field of computer graphics, especially in the realm of novel view synthesis. Different from the expensive volume sampling strategy in NeRF, 3DGS utilizes a much more efficient rasterization-based splatting approach to render novel views from a set of 3D Gaussian primitives. 
+However, 3DGS may suffer from artifacts, which occur during the splatting process. Thus, several works~\cite{yan2023multi, gao2023relightable, jiang2023gaussianshader, liang2023gs} have been proposed to enhance the quality and realness of rendered novel views.
+Since 3DGS requires millions of parameters to represent a single scene, resulting in significant storage demands, some researches~\cite{lu2023scaffold, navaneet2023compact3d, girish2023eagles, fan2023lightgaussian, katsumata2023efficient} focus on reducing the memory usage to ensure real-time rendering while maintaining the rendering quality. Other works~\cite{zhu2023fsgs, xiong2023sparsegs} are proposed to reduce the amount of required images to reconstruct scene.
+Besides, to extend the capability of 3D Gaussians from representing static scenes to 4D scenarios, several works~\cite{wu20234d,duisterhof2023md,yang2023real,xie2023physgaussian} have been proposed to incorporate faithful dynamics which are aligned with real-world physics.
+
+
+% 3D Gaussian Splatting (3D-GS) has emerged as a prominent technique in the field of computer graphics, particularly in the context of 3D rendering [Kerbl et al., 2023, Lu et al., 2023, Yu et al., 2023a]. 3D-GS offers a versatile and powerful approach for efficiently rendering complex scenes with high levels of detail [Wu et al., 2023a, Cotton and Peyton, 2024]. By representing objects and surfaces as a collection of Gaussians, Gaussian splatting allows for the efficient and accurate representation of geometry and appearance properties [Guédon and Lepetit, 2023, Yu et al., 2023a]. 3D-GS overcomes the limitations of volume rendering methods by providing a more flexible and adaptive representation of 3D objects [Kerbl et al., 2023]. Additionally, Gaussian splatting enables realistic rendering of various visual effects such as depth-of-field and soft shadows, making it a valuable tool in computer graphics research and applications [Chung et al., 2023a].
+
+% 3D Gaussian Splatting avoids NeRF’s expensive volume sampling via a rasterization-based splatting approach, where novel views can be rendered very efficiently from a set of 3D Gaussian primitives. Very recently, a few feed-forward 3DGS models have been proposed to solve the sparse view to 3D task. Splatter Image [27] proposes to regress pixel-aligned Gaussian parameters from a single view with a U-Net. However, it mainly focuses on single object reconstruction, while we target a more general setting and larger scenes. pixelSplat [1] proposes to regress Gaussian parameters from two input views, where the epipolar geometry is leveraged to learn cross-view aware features.
+
+
+\subsection{Generalizable Novel View Synthesis}
+Optimization-based methods train a separate model for each individual scene and require dozens of images to synthesis high-quality novel views. In contrast, feed-forward
+models learn powerful priors from large-scale datasets, so that
+3D reconstruction and view synthesis can be achieved via a single feed-forward inference. A pioneering work, pixelNeRF~\cite{pixelNeRF2021CVPR}, proposes a feature-based method to employ the encoded features to render novel views. MVSNeRF~\cite{chen2021mvsnerf} combines plane-swept cost volumes which is widely used in multi-view stereo with physically based volume rendering to further improve the quality of neural radiance field reconstruction. Subsequently, many researches~\cite{cai2022pix2nerf, chan2021pi, gu2021stylenerf, jang2021codenerf, niemeyer2021giraffe, schwarz2020graf, liu2023semantic} have developed novel view synthesis methods with generalization and decomposition abilities.
+Several generalizable 3D Gaussian Splatting methods have also been proposed to leverage sparse view images to reconstruct novel scenes.  
+While Splatter Image~\cite{SplatterImage2023arXiv} and GPS-Gaussian~\cite{GPSGaussian2023arXiv} regress pixel-aligned Gaussian parameters to reconstruct single objects or humans instead of complex scenes,
+pixelSplat~\cite{pixelSplat2023arXiv} takes sparse views as input to predict Gaussian parameters by leveraging epipolar geometry and depth estimation. 
+MVSplat~\cite{MVSplat2024arXiv} constructs a cost volume structure to directly predict depth from cross-view features, further improving the geometric quality.
+
+However, these methods follow the paradigm of regressing pixel-aligned Gaussians and combine Gaussians from different views directly, resulting in an excessive number of Gaussians when the model processes multi-view inputs. 
+% This limitation leads to a bottleneck in generalizable 3D scene reconstruction using Gaussian representations. 
+In comparison, we construct Gaussian Graphs to model the relations of Gaussian groups. Furthermore, we introduce Gaussian Graph Network with specifically designed graph operations to ensure the interaction and aggregation across Gaussian groups. In this manner, we can obtain efficient and generalizable Gaussian representations from multi-view images.
+ % design an effective pooling layer in our Gaussian Graph model, which could substantially reduce the number of Gaussians when handling multi-view inputs. 
+% Meanwhile, we adopt fusion layers in Gaussian Graph to ensure feature interaction between different views. This approach not only mitigates the bottleneck issue but also achieves superior reconstruction performance compared to PixelSplat~\cite{pixelSplat2023arXiv} and MVSplat~\cite{MVSplat2024arXiv}. 
+
