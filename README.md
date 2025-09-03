@@ -5,8 +5,8 @@ English | [中文](README_ZH.md)
 
 <img src="./logo.png" width="1000px"></img>
 
-#  Turn arXiv Papers into Multilingual Masterpieces
-
+  **Turn arXiv Papers into Multilingual Masterpieces**
+#
 <p align="center">
   <a href="https://arxiv.org/abs/2503.06594" alt="paper"><img src="https://img.shields.io/badge/Paper-LaTeXTrans-blue?logo=arxiv&logoColor=white"/></a>
 </p>
