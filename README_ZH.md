@@ -4,7 +4,9 @@
 
 
 
-#  LaTeXTrans：Structured LaTeX Translation with Multi-Agent Coordination
+<img src="./logo.png" width="1000px"></img>
+
+#  Turn arXiv Papers into Multilingual Masterpieces
 
 <p align="center">
   <a href="https://arxiv.org/abs/2503.06594" alt="paper"><img src="https://img.shields.io/badge/Paper-LaTeXTrans-blue?logo=arxiv&logoColor=white"/></a>
@@ -15,26 +17,30 @@
 <div align="center">
 <p dir="auto">
 
+• 📖 [介绍](#-介绍) 
 • 🛠️ [安装指南](#️-安装指南) 
 • ⚙️ [配置说明](#️-配置说明)
 • 📚 [使用方式](#-使用方式)
 • 🖼️ [翻译案例](#️-翻译案例) 
+
 </p>
 </div>
 
- LaTeXTrans 是一个基于多智能体协作的结构化 LaTeX 文档翻译系统, 该系统能够直接翻译 LaTeX 代码，并生成与原文排版高度一致的译文 PDF。**LaTeXTrans 的主要应用场景为 arXiv 论文翻译**，不同于传统文档翻译方法（例如 PDF 翻译）容易破坏公式和格式，该系统使用大模型直接翻译预处理过的论文 LaTeX 源码，并通过由 Parser, Translator, Validator, Summarizer, Terminology Extractor, Generator 这六个智能体组成的工作流实现了以下特点：
+ 从 arXiv 论文 ID 到译文 PDF 的端到端翻译。LaTeXTrans 有如下的特点和优势 :
+ - **🌟 通过 arXiv 论文 id 便可一行命令执行翻译**
+ - **🌟 保持公式、排版和交叉引用的完整性**
+ - **🌟 保证术语翻译的一致性**
+ - **🌟 支持从原文 LaTeX 源码到译文 PDF 的端到端翻译**
 
- - **保持公式、排版和交叉引用的完整性**
- - **保证术语翻译的一致性**
- - **支持从原文 LaTeX 源码到译文 PDF 的端到端转换**
+借助 LaTeXTrans，研究人员和学生可以得到更高质量的论文翻译而无需担心格式混乱或内容缺失，从而更高效地阅读和理解 arXiv 论文。
 
-**借助 LaTeXTrans，研究人员和学生可以得到更高质量的论文翻译而无需担心格式混乱或内容缺失，从而更高效地阅读和理解 arXiv 论文。**
+# 📖 介绍
 
-下图展示了 LaTeXTrans 的系统架构，请阅读我们已经发布的论文 [LaTeXTrans: Structured LaTeX Translation with Multi-Agent Coordination](https://arxiv.org/abs/2508.18791) 以获得更详细的系统介绍。
+LaTeXTrans 是一个基于多智能体协作的结构化 LaTeX 文档翻译系统. 该系统能够直接翻译 LaTeX 代码，并生成与原文排版高度一致的译文 PDF。 不同于传统文档翻译方法（例如 PDF 翻译）容易破坏公式和格式，该系统使用大模型直接翻译预处理过的论文 LaTeX 源码，并通过由 Parser, Translator, Validator, Summarizer, Terminology Extractor, Generator 这六个智能体组成的工作流实现了排版一致和格式保持. 下图展示了 LaTeXTrans 的系统架构，请阅读我们已经发布的论文 🔗 [LaTeXTrans: Structured LaTeX Translation with Multi-Agent Coordination](https://arxiv.org/abs/2508.18791) 以获得更详细的系统介绍。
 
+ 
 
 <img src="./main-figure.jpg" width="1000px"></img>
-
 
 # 🛠️ 安装指南
 
@@ -50,6 +56,7 @@ pip install -r requirements.txt
 
 如需编译LaTeX文件（例如生成PDF输出），需要安装 [MikTex](https://miktex.org/download) 或 [TeXLive](https://www.tug.org/texlive/) !
 
+ > [!IMPORTANT]
 *对于 MikTex，安装时请务必选择 “install on the fly”，此外，您需要额外安装 [Strawberry Perl](http://strawberryperl.com/) 支持编译。
 
 
@@ -70,12 +77,9 @@ api_key = " " # your_api_key_here
 base_url = " " # base url of the API
 ```
 
-
-
 # 📚 使用方式
 
-### 🔹 通过 ArXiv ID 翻译（推荐）
-
+### 通过 ArXiv ID 翻译
 只需提供 arXiv 论文 ID 即可完成翻译：
 
 ```bash

@@ -2,7 +2,10 @@
 
 English | [中文](README_ZH.md)
 
-#  LaTeXTrans：Structured LaTeX Translation with Multi-Agent Coordination
+
+<img src="./logo.png" width="1000px"></img>
+
+#  Turn arXiv Papers into Multilingual Masterpieces
 
 <p align="center">
   <a href="https://arxiv.org/abs/2503.06594" alt="paper"><img src="https://img.shields.io/badge/Paper-LaTeXTrans-blue?logo=arxiv&logoColor=white"/></a>
@@ -13,6 +16,7 @@ English | [中文](README_ZH.md)
 <div align="center">
 <p dir="auto">
 
+• 📖 [Introduction](#-introduction) 
 • 🛠️ [Installation Guide](#️-installation-guide) 
 • ⚙️ [Configuration Guide](#️-configuration-guide)
 • 📚 [Usage](#-Usage)
@@ -21,17 +25,20 @@ English | [中文](README_ZH.md)
 </p>
 </div>
 
-LaTeXTrans is a structured LaTeX document translation system based on multi-agent collaboration. It directly translates LaTeX code and generates translated PDFs with high fidelity to the original layout. **The primary application of LaTeXTrans is arXiv paper translation**. Unlike traditional document translation methods (e.g., PDF translation), which often break formulas and formatting, LaTeXTrans leverages LLM to translate preprocessed LaTeX sources and employs a workflow composed of six agents—Parser, Translator, Validator, Summarizer, Terminology Extractor, and Generator—to achieve the following features:
+ End-to-end translation from arXiv paper ID to translated PDF. LaTeXTrans have the following **Features** :
+ - **🌟 Translation simply by using the arXiv paper id**
+ - **🌟 Preserve the integrity of formulas, layout, and cross-references**
+ - **🌟 Ensure consistency in terminology translation**
+ - **🌟 Support end-to-end conversion from original LaTeX source to translated PDF**
 
- - **Preserve the integrity of formulas, layout, and cross-references**
- - **Ensure consistency in terminology translation**
- - **Support end-to-end conversion from original LaTeX source to translated PDF**
+With LaTeXTrans, researchers and students can obtain higher-quality arXiv paper translations without worrying about formatting confusion or missing content, thus reading and understanding arXiv papers more efficiently.
 
-**With LaTeXTrans, researchers and students can obtain higher-quality paper translations without worrying about formatting confusion or missing content, thus reading and understanding arXiv papers more efficiently.**
+# 📖 Introduction
 
-The figure below illustrates the system architecture of LaTeXTrans. For a more detailed introduction, please refer to our published paper [LaTeXTrans: Structured LaTeX Translation with Multi-Agent Coordination](https://arxiv.org/abs/2508.18791).
+LaTeXTrans is a structured LaTeX document translation system based on multi-agent collaboration. It directly translates LaTeX code and generates translated PDFs with high fidelity to the original layout. Unlike traditional document translation methods (e.g., PDF translation), which often break formulas and formatting, LaTeXTrans leverages LLM to translate preprocessed LaTeX sources and employs a workflow composed of six agents—Parser, Translator, Validator, Summarizer, Terminology Extractor, and Generator to achieve the features. The figure below illustrates the system architecture of LaTeXTrans. For a more detailed introduction, please refer to our published paper 🔗 [LaTeXTrans: Structured LaTeX Translation with Multi-Agent Coordination](https://arxiv.org/abs/2508.18791).
 
 <img src="./main-figure.jpg" width="1000px"></img>
+
 
 # 🛠️ Installation Guide
 
@@ -47,7 +54,8 @@ pip install -r requirements.txt
 
 If you need to compile LaTeX files (e.g., generate PDF output), install [MikTex](https://miktex.org/download) or [TeXLive](https://www.tug.org/texlive/) !
 
-*For MikTex, installation please be sure to select "install on the fly", in addition, you need to install additional [Strawberry Perl](http://strawberryperl.com/) support compilation.
+ > [!IMPORTANT]
+For MikTex, installation please be sure to select "install on the fly", in addition, you need to install additional [Strawberry Perl](http://strawberryperl.com/) support compilation.
 
 # ⚙️ Configuration Guide
 
@@ -70,7 +78,7 @@ base_url = " " # base url of the API
 
 # 📚 Usage
 
-### 🔹 Translation via ArXiv ID (Recommended)
+###  Translation via ArXiv ID 
 
 Simply provide an arXiv paper ID to complete translation:
 
