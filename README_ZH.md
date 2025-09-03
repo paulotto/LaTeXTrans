@@ -21,16 +21,15 @@
 • 🛠️ [安装指南](#️-安装指南) 
 • ⚙️ [配置说明](#️-配置说明)
 • 📚 [使用方式](#-使用方式)
-• 🖼️ [翻译案例](#️-翻译案例) 
+• 🖼️ [翻译样例](#️-翻译样例) 
 
 </p>
 </div>
 
  从 arXiv 论文 ID 到译文 PDF 的端到端翻译。LaTeXTrans 有如下的特点和优势 :
- - **🌟 通过 arXiv 论文 id 便可一行命令执行翻译**
  - **🌟 保持公式、排版和交叉引用的完整性**
  - **🌟 保证术语翻译的一致性**
- - **🌟 支持从原文 LaTeX 源码到译文 PDF 的端到端翻译**
+ - **🌟 支持从原文 LaTeX 源码（通过提供的 arXiv 论文 id 自动下载）到译文 PDF 的端到端翻译**
 
 借助 LaTeXTrans，研究人员和学生可以得到更高质量的论文翻译而无需担心格式混乱或内容缺失，从而更高效地阅读和理解 arXiv 论文。
 
@@ -72,7 +71,7 @@ config/default.toml
 设置语言模型的API密钥和基础URL：
 
 ```toml
-model = "deepseek-v3" # 模型名称（可选）
+model = " " # 模型名称（例如：deepseek-v3）
 api_key = " " # your_api_key_here
 base_url = " " # base url of the API
 ```
@@ -90,19 +89,18 @@ python main.py --arxiv ${xxxx}
 
 该命令将：
 
-1. 从 arXiv 下载 LaTeX 源码
-2. 解压到 tex 源文件目录
-3. 运行多智能体翻译流程
-4. 在 outputs 文件夹保存翻译后的论文 LaTeX 项目文件和编译生成的译文PDF
+1. 从 arXiv 下载 LaTeX 源码并解压
+2. 执行由解析、翻译、重构和编译组成的工作流
+3. 在 outputs 文件夹保存翻译后的论文 LaTeX 项目文件和编译生成的译文PDF
 
-*此版本暂时只支持英文到中文的翻译
+ > [!NOTE]
+尽管 LaTeXTrans 支持任意语言到任意语言的翻译，但是目前版本仅对英文到中文的翻译做了相对完善的编译适配。翻译到其他语言时，最终输出的 pdf 可能会有错误，欢迎提出 issue 来描述您遇到的问题，我们会逐个解决。
 
+# 🖼️ 翻译样例
 
-# 🖼️ 翻译案例
+以下是 **LaTeXTrans** 生成的三个真实翻译样例，左侧为原文，右侧为译文。
 
-以下是 **LaTeXTrans** 生成的三个真实翻译案例，左侧为原文，右侧为翻译结果。
-
-### 📄 案例 1 ( 英文->中文 ) :
+### 📄 样例 1 ( 英文->中文 ) :
 
 <table>
   <tr>
@@ -115,7 +113,7 @@ python main.py --arxiv ${xxxx}
   </tr>
 </table>
 
-### 📄 案例 2 ( 英文->中文 ):
+### 📄 样例 2 ( 英文->中文 ):
 
 <table>
   <tr>
@@ -128,7 +126,7 @@ python main.py --arxiv ${xxxx}
   </tr>
 </table>
 
-### 📄 案例 3 ( 英文->日文 ):
+### 📄 样例 3 ( 英文->日文 ):
 
 <table>
   <tr>
@@ -141,7 +139,7 @@ python main.py --arxiv ${xxxx}
   </tr>
 </table>
 
-### 📄 案例 4 ( 英文->日文 ):
+### 📄 样例 4 ( 英文->日文 ):
 
 <table>
   <tr>
@@ -154,7 +152,7 @@ python main.py --arxiv ${xxxx}
   </tr>
 </table>
 
-📂 **更多案例请查看[`examples/`](examples/) 文件夹**, 包含每个案例的完整翻译 PDF。
+📂 **更多样例请查看[`examples/`](examples/) 文件夹**, 包含每个样例的完整翻译 PDF。
 
 ---
 

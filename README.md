@@ -26,10 +26,9 @@ English | [中文](README_ZH.md)
 </div>
 
  End-to-end translation from arXiv paper ID to translated PDF. LaTeXTrans have the following **Features** :
- - **🌟 Translation simply by using the arXiv paper id**
  - **🌟 Preserve the integrity of formulas, layout, and cross-references**
  - **🌟 Ensure consistency in terminology translation**
- - **🌟 Support end-to-end conversion from original LaTeX source to translated PDF**
+ - **🌟 Support end-to-end conversion from original TeX source (automatically downloaded based on the arXiv paper id provided) to translated PDF**
 
 With LaTeXTrans, researchers and students can obtain higher-quality arXiv paper translations without worrying about formatting confusion or missing content, thus reading and understanding arXiv papers more efficiently.
 
@@ -70,7 +69,7 @@ config/default.toml
 Set the language model's API key and base URL in default.toml :
 
 ```toml
-model = "deepseek-v3" # model name (optional)
+model = " " # model name (For example, deepseek-v3)
 api_key = " " # your_api_key_here
 base_url = " " # base url of the API
 ```
@@ -90,12 +89,12 @@ python main.py --arxiv ${xxxx}
 
 This command will:
 
-1. Download LaTeX source code from arXiv
-2. Extract to tex source file directory
-3. Run multi-agent translation workflow
-4. Save the translated LaTeX project file of the paper and the PDF of the compiled translation in the outputs folder
+1. Download the LaTeX source code from arXiv and extract it
+2. Execute a workflow consisting of parsing, translation, refactoring and compilation
+3. Save the translated LaTeX project file of the paper and the PDF of the compiled translation in the outputs folder
 
-*This version currently only supports translation from English to Chinese
+ > [!NOTE]
+Although LaTeXTrans supports translation from any language to any language, the current version has only made relatively complete compilation adaptations for translation from English to Chinese. When translating to other languages, the final output pdf may contain errors. We welcome you to raise an issue to describe the problem you have encountered, and we will solve it case by case.
 
 # 🧰 Experimental Results
 
