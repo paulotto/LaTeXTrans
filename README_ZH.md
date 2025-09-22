@@ -26,6 +26,9 @@
 </p>
 </div>
 
+ > [!NOTE]
+Moved to a new repository under the organization: https://github.com/NiuTrans/LaTeXTrans
+
  从 arXiv 论文 ID 到译文 PDF 的端到端翻译。LaTeXTrans 有如下的特点和优势 :
  - **🌟 保持公式、排版和交叉引用的完整性**
  - **🌟 保证术语翻译的一致性**
@@ -35,12 +38,8 @@
 
 # 📖 介绍
 
-LaTeXTrans 是一个基于多智能体协作的结构化 LaTeX 文档翻译系统. 该系统能够直接翻译 LaTeX 代码，并生成与原文排版高度一致的译文 PDF。 不同于传统文档翻译方法（例如 PDF 翻译）容易破坏公式和格式，该系统使用大模型直接翻译预处理过的论文 LaTeX 源码，并通过由 Parser, Translator, Validator, Summarizer, Terminology Extractor, Generator 这六个智能体组成的工作流实现了排版一致和格式保持. 下图展示了 LaTeXTrans 的系统架构，请阅读我们已经发布的论文 🔗 [LaTeXTrans: Structured LaTeX Translation with Multi-Agent Coordination](https://arxiv.org/abs/2508.18791) 以获得更详细的系统介绍。
-
+LaTeXTrans 是一个基于多智能体协作的结构化 LaTeX 文档翻译系统. 该系统能够直接翻译 LaTeX 代码，并生成与原文排版高度一致的译文 PDF。 不同于传统文档翻译方法（例如 PDF 翻译）容易破坏公式和格式，该系统使用大模型直接翻译预处理过的论文 LaTeX 源码，并通过由 Parser, Translator, Validator, Summarizer, Terminology Extractor, Generator 这六个智能体组成的工作流实现了排版一致和格式保持. 
  
-
-<img src="./main-figure.jpg" width="1000px"></img>
-
 # 🛠️ 安装指南
 
 #### 1. 克隆仓库
@@ -158,13 +157,9 @@ python main.py --arxiv ${xxxx}
 
 ## Citation
 ```bash
-@misc{zhu2025latextransstructuredlatextranslation,
-      title={LaTeXTrans: Structured LaTeX Translation with Multi-Agent Coordination}, 
-      author={Ziming Zhu and Chenglong Wang and Shunjie Xing and Yifu Huo and Fengning Tian and Quan Du and Di Yang and Chunliang Zhang and Tong Xiao and Jingbo Zhu},
-      year={2025},
-      eprint={2508.18791},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL},
-      url={https://arxiv.org/abs/2508.18791}, 
+@article{zhu2025latextrans,
+  title={LaTeXTrans: Structured LaTeX Translation with Multi-Agent Coordination},
+  author={Zhu, Ziming and Wang, Chenglong and Xing, Shunjie and Huo, Yifu and Tian, Fengning and Du, Quan and Yang, Di and Zhang, Chunliang and Xiao, Tong and Zhu, Jingbo},
+  journal={arXiv preprint arXiv:2508.18791},
+  year={2025}
 }
-```
