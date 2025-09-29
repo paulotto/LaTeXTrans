@@ -14,11 +14,7 @@ class BaseToolAgent(ABC):
     such as parsing, translating, refining, or validating documents.
     """
 
-    def __init__(
-        self,
-        agent_name: str,
-        config: Optional[Dict[str, Any]] = None
-    ):
+    def __init__(self, agent_name: str, config: Optional[Dict[str, Any]] = None):
         """
         Initializes the BaseToolAgent.
 
@@ -29,7 +25,7 @@ class BaseToolAgent(ABC):
         """
         self.agent_name = agent_name
         self.config = config if config is not None else {}
-        
+
     def log(self, message: str, level: str = "info"):
         """
         Logs messages at different levels (info, debug, warning, error).
@@ -59,7 +55,9 @@ class BaseToolAgent(ABC):
         specific agent's role in the workflow (e.g., file path, text string,
         parsed document object, translation result).
         """
-        raise NotImplementedError(f"{self.__class__.__name__}.execute() must be implemented.")
+        raise NotImplementedError(
+            f"{self.__class__.__name__}.execute() must be implemented."
+        )
 
     def get_config(self, key: str, default: Any = None) -> Any:
         """
@@ -67,35 +65,33 @@ class BaseToolAgent(ABC):
         If the key does not exist, returns the provided default value.
         """
         return self.config.get(key, default)
-    
-    def read_file(self, file_path: str, file_format: str) -> str:
+
+    def read_file(self, file_path: Path | str, file_format: str) -> Any:
         """
         Reads a file and returns its content.
         """
         if file_format == "json":
-            with open(file_path, "r", encoding='utf-8') as f:
+            with open(file_path, "r", encoding="utf-8") as f:
                 return json.load(f)
         elif file_format == "yaml":
-            with open(file_path, "r", encoding='utf-8') as f:
-                return yaml.load(f)
+            with open(file_path, "r", encoding="utf-8") as f:
+                return yaml.safe_load(f)
         elif file_format == "toml":
-            with open(file_path, "r", encoding='utf-8') as f:
+            with open(file_path, "r", encoding="utf-8") as f:
                 return toml.load(f)
         else:
             raise ValueError(f"Unsupported file format: {file_format}")
-        
-    def save_file(self, file_path: str, file_format: str, data: Any):
+
+    def save_file(self, file_path: Path | str, file_format: str, data: Any):
         """
         Saves data to a file.
         """
         if file_format == "json":
-            with open(file_path, 'w', encoding='utf-8') as f:
-                json.dump(data, f, indent=4, ensure_ascii=False)   
+            with open(file_path, "w", encoding="utf-8") as f:
+                json.dump(data, f, indent=4, ensure_ascii=False)
         elif file_format == "yaml":
-            with open(file_path, 'w', encoding='utf-8') as f:
+            with open(file_path, "w", encoding="utf-8") as f:
                 yaml.dump(data, f)
         elif file_format == "toml":
-            with open(file_path, 'w', encoding='utf-8') as f:
+            with open(file_path, "w", encoding="utf-8") as f:
                 toml.dump(data, f)
-
-
