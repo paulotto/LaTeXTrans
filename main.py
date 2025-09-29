@@ -3,7 +3,13 @@ import argparse
 import os
 import sys
 from src.agents.coordinator_agent import CoordinatorAgent
-from src.formats.latex.utils import get_profect_dirs, batch_download_arxiv_tex, extract_compressed_files, get_arxiv_category, extract_arxiv_ids
+from src.formats.latex.utils import (
+    get_profect_dirs,
+    batch_download_arxiv_tex,
+    extract_compressed_files,
+    get_arxiv_category,
+    extract_arxiv_ids,
+)
 from src.formats.latex.prompts import *
 import subprocess
 import streamlit
@@ -13,14 +19,20 @@ from pathlib import Path
 base_dir = os.getcwd()
 sys.path.append(base_dir)
 
+
 def main():
     """
     Main function to run the LaTeXTrans application.
     Allows overriding paper_list from command-line arguments.
     """
     parser = argparse.ArgumentParser()
-    parser.add_argument("--config", type=str, default="config/default.toml", help="Path to the config TOML file.")
-    #parser.add_argument("paper_ids", nargs="*", help="Optional list of arXiv paper IDs to override config.")
+    parser.add_argument(
+        "--config",
+        type=str,
+        default="config/default.toml",
+        help="Path to the config TOML file.",
+    )
+    # parser.add_argument("paper_ids", nargs="*", help="Optional list of arXiv paper IDs to override config.")
     parser.add_argument("--model", type=str, default="", help="Model for translating.")
     parser.add_argument("--url", type=str, default="", help="Model url.")
     parser.add_argument("--key", type=str, default="", help="Model key.")
@@ -71,7 +83,7 @@ def main():
     # if args.ut:
     #     config["user_term"] = args.ut
 
-    #init_prompts(config["source_language"], config["target_language"])
+    # init_prompts(config["source_language"], config["target_language"])
 
     # override paper_list if user passed in IDs via CLI
     # if args.paper_ids:
@@ -92,20 +104,20 @@ def main():
             # print(config["category"])
         extract_compressed_files(projects_dir)
     else:
-        print("⚠️ No paper list provided. Using existing projects in the specified directory.")
+        print(
+            "⚠️ No paper list provided. Using existing projects in the specified directory."
+        )
         extract_compressed_files(projects_dir)
         projects = get_profect_dirs(projects_dir)
         if not projects:
-            raise ValueError("❌ No projects found. Check 'tex_sources_dir' and 'paper_list' in config.")
+            raise ValueError(
+                "❌ No projects found. Check 'tex_sources_dir' and 'paper_list' in config."
+            )
 
     for project_dir in tqdm(projects, desc="Processing projects", unit="project"):
-
         try:
-
             LaTexTrans = CoordinatorAgent(
-                config=config,
-                project_dir=project_dir,
-                output_dir=output_dir
+                config=config, project_dir=project_dir, output_dir=output_dir
             )
             LaTexTrans.workflow_latextrans()
         except Exception as e:
@@ -125,6 +137,6 @@ def main():
     #         f.write(toml_str)
     #     print(f"save config to {config_path}!")
 
+
 if __name__ == "__main__":
     main()
-

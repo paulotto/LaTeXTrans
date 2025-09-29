@@ -1,6 +1,6 @@
 sys_name = "LaTeXTrans"
 version = "0.1.0"
-target_language = "ch"
+target_language = "de"
 source_language = "en"
 paper_list = []
 tex_sources_dir = "tex source"
@@ -11,6 +11,6 @@ mode = 0
 user_term = ""
 
 [llm_config]
-model = ""
-api_key = ""
-base_url = ""
+model = "qwen3:1.7b"
+api_key = "ollama"
+base_url = "http://localhost:11434"
