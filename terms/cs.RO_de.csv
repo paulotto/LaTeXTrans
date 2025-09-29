@@ -1,0 +1,355 @@
+Robotics,Robotik
+Autonomous Systems,Autonome Systeme
+Automation,Automatisierung
+Mechatronics,Mechatronik
+Actuator,Aktuator
+Sensor,Sensor
+End-effector,Endeffektor
+Degrees of Freedom,Freiheitsgrade
+DoF,DoF
+Kinematics,Kinematik
+Dynamics,Dynamik
+Control Theory,Regelungstechnik
+Feedback Control,Feedback-Regelung
+Real-time System,Echtzeitsystem
+Industrial Robot,Industrieroboter
+Service Robot,Serviceroboter
+Mobile Robot,Mobiler Roboter
+Humanoid Robot,Humanoider Roboter
+Collaborative Robot,Kollaborativer Roboter
+Cobot,Cobot
+Autonomous Underwater Vehicle,Autonomes Unterwasserfahrzeug
+AUV,AUV
+Unmanned Aerial Vehicle,Unbemanntes Luftfahrzeug
+UAV,UAV
+Automated Guided Vehicle,Fahrerloses Transportsystem
+AGV,AGV
+Soft Robot,Weichroboter
+Swarm Robot,Schwarmroboter
+Path Planning,Pfadplanung
+Trajectory Tracking,Trajektorienverfolgung
+PID,PID
+Proportional-Integral-Derivative Control,PID-Regelung
+Inverse Kinematics,Inverse Kinematik
+Forward Kinematics,Vorwärtskinematik
+Motion Control,Bewegungsregelung
+Force Control,Kraftregelung
+Impedance Control,Impedanzregelung
+Simultaneous Localization and Mapping,Simultane Lokalisierung und Kartierung
+SLAM,SLAM
+Odometry,Odometrie
+Dead Reckoning,Koppelnavigation
+Computer Vision,Computer Vision
+Light Detection and Ranging,Lichtdetektion und Entfernungsbestimmung
+LiDAR,LiDAR
+RGB-D Camera,RGB-D-Kamera
+Stereo Vision,Stereovision
+Object Detection,Objekterkennung
+Semantic Segmentation,Semantische Segmentierung
+Point Cloud,Punktwolke
+Feature Extraction,Merkmalsextraktion
+Iterative Closest Point,Iterative Closest Point
+ICP,ICP
+Neural Network,Neuronales Netz
+Deep Reinforcement Learning,Deep Reinforcement Learning
+DRL,DRL
+Convolutional Neural Network,Konvolutionales neuronales Netzwerk
+CNN,CNN
+Recurrent Neural Network,Rekurrentes neuronales Netzwerk
+RNN,RNN
+Genetic Algorithm,Genetischer Algorithmus
+Particle Swarm Optimization,Partikelschwarmoptimierung
+PSO,PSO
+Kalman Filter,Kalman-Filter
+Extended Kalman Filter,Erweiterter Kalman-Filter
+EKF,EKF
+Bayesian Network,Bayessches Netzwerk
+Industrial Automation,Industrielle Automatisierung
+Precision Agriculture,Präzisionslandwirtschaft
+Surgical Robot,Chirurgieroboter
+Warehouse Automation,Lagerautomatisierung
+Smart Manufacturing,Intelligente Fertigung
+Autonomous Driving,Autonomes Fahren
+Human-Robot Interaction,Mensch-Roboter-Interaktion
+HRI,HRI
+Teleoperation,Teleoperation
+Servo Motor,Servomotor
+Stepper Motor,Schrittmotor
+Encoder,Encoder
+Inertial Measurement Unit,Inertiale Messeinheit
+IMU,IMU
+Gripper,Greifer
+Manipulator,Manipulator
+Robot Operating System,Robot Operating System
+ROS,ROS
+Field-Programmable Gate Array,Feldprogrammierbares Gatterarray
+FPGA,FPGA
+Accuracy,Genauigkeit
+Repeatability,Wiederholgenauigkeit
+Robustness,Robustheit
+Latency,Latenz
+Throughput,Durchsatz
+Benchmarking,Benchmarking
+DOF,DOF
+Finite State Machine,Zustandsautomat
+FSM,FSM
+HRI,HRI
+Programmable Logic Controller,Speicherprogrammierbare Steuerung
+PLC,PLC
+Internet of Things,Internet der Dinge
+IoT,IoT
+Haptic Feedback,Haptisches Feedback
+Exoskeleton,Exoskelett
+Underactuated System,Unteraktuiertes System
+Redundant Manipulator,Redundanter Manipulator
+Motion Primitive,Bewegungsprimitive
+Behavioral Cloning,Verhaltensklonen
+Optical Flow,Optischer Fluss
+Time-of-Flight Camera,Time-of-Flight-Kamera
+ToF,ToF
+Structured Light,Strukturiertes Licht
+Visual Odometry,Visuelle Odometrie
+Grasping Planning,Greifplanung
+Compliant Control,Nachgiebige Regelung
+Admittance Control,Admittanzregelung
+Jacobian Matrix,Jacobi-Matrix
+Denavit-Hartenberg Parameters,Denavit-Hartenberg-Parameter
+Parallel Robot,Parallelroboter
+Delta Robot,Delta-Roboter
+SCARA Robot,SCARA-Roboter
+Hexapod Robot,Hexapod-Roboter
+Quadruped Robot,Vierbeinroboter
+Wheeled Mobile Robot,Radmobiler Roboter
+Legged Locomotion,Laufbewegung
+Terrain Adaptation,Terrainanpassung
+Obstacle Avoidance,Hindernisvermeidung
+Multi-robot Coordination,Multi-Roboter-Koordination
+Task Allocation,Aufgabenverteilung
+Formation Control,Formationsregelung
+Consensus Algorithm,Konsensus-Algorithmus
+Distributed Control,Verteilte Regelung
+Edge Computing,Edge Computing
+Fog Computing,Fog Computing
+Digital Twin,Digitaler Zwilling
+Cyber-Physical System,Cyber-physisches System
+CPS,CPS
+Industrial IoT,Industrielles IoT
+IIoT,IIoT
+Predictive Maintenance,Prädiktive Instandhaltung
+Anomaly Detection,Anomalieerkennung
+Reinforcement Learning,Reinforcement Learning
+RL,RL
+Imitation Learning,Imitationslernen
+Transfer Learning,Transferlernen
+Meta-learning,Meta-Learning
+Self-supervised Learning,Selbstüberwachtes Lernen
+Graph Neural Network,Graph-Neuronales Netzwerk
+GNN,GNN
+Transformer,Transformer
+Attention Mechanism,Aufmerksamkeitsmechanismus
+You Only Look Once,You Only Look Once
+YOLO,YOLO
+ResNet,ResNet
+Generative Adversarial Network,Generatives adversariales Netzwerk
+GAN,GAN
+Autoencoder,Autoencoder
+PointNet,PointNet
+3D Convolution,3D-Faltung
+Sparse Coding,Spärliches Kodieren
+Active Learning,Aktives Lernen
+Federated Learning,Föderiertes Lernen
+Explainable AI,Erklärbare KI
+XAI,XAI
+Ethical AI,Ethische KI
+Robot Ethics,Roboterethik
+Safety Critical System,Sicherheitskritisches System
+Functional Safety,Funktionale Sicherheit
+Risk Assessment,Risikoanalyse
+Fail-safe Mechanism,Fail-Safe-Mechanismus
+Human-in-the-loop,Mensch-im-Regelkreis
+Cognitive Robotics,Kognitive Robotik
+Affective Computing,Affektives Computing
+Intent Recognition,Intent-Erkennung
+Gesture Recognition,Gestenerkennung
+Voice Command,Sprachbefehl
+Natural Language Understanding,Natürliches Sprachverständnis
+NLU,NLU
+Dialogue System,Dialogsystem
+Knowledge Graph,Wissensgraph
+Ontology,Ontologie
+Semantic Web,Semantisches Web
+Blockchain for Robotics,Blockchain für Robotik
+Smart Contract,Smart Contract
+Edge AI,Edge AI
+TinyML,TinyML
+Neuromorphic Computing,Neuromorphes Rechnen
+Quantum Computing,Quantencomputing
+Bio-inspired Robotics,Bionische Robotik
+Swarm Intelligence,Schwarmintelligenz
+Ant Colony Optimization,Ameisenkolonie-Optimierung
+ACO,ACO
+Artificial Potential Field,Künstliches Potentialfeld
+Rapidly-exploring Random Tree,Rapidly-exploring Random Tree
+RRT,RRT
+Probabilistic Roadmap,Probabilistische Roadmap
+PRM,PRM
+A* Algorithm,A*-Algorithmus
+Dijkstra's Algorithm,Dijkstra-Algorithmus
+Motion Capture,Motion Capture
+Inertial Navigation,Inertialnavigation
+Global Positioning System,Global Positioning System
+GPS,GPS
+Beacon-based Localization,Beacon-basierte Lokalisierung
+Ultra-wideband,Ultra-Wideband
+UWB,UWB
+RFID,RFID
+Bluetooth Low Energy,Bluetooth Low Energy
+BLE,BLE
+Zigbee,Zigbee
+LoRa,LoRa
+5G for Robotics,5G für Robotik
+Cloud Robotics,Cloud-Robotik
+Fog Robotics,Fog-Robotik
+Multi-agent System,Multi-Agenten-System
+Game Theory,Spieltheorie
+Auction-based Allocation,Auktionsbasierte Allokation
+Market-based Mechanism,Marktbasiertes Verfahren
+Robot Learning,Roboterlernen
+Curriculum Learning,Curriculum Learning
+Sim-to-Real Transfer,Sim-to-Real-Transfer
+Domain Randomization,Domänenrandomisierung
+Gazebo,Gazebo
+Unity for Robotics,Unity für Robotik
+ROS 2,ROS 2
+Middleware,Middleware
+Data Distribution Service,Data Distribution Service
+DDS,DDS
+Opc UA,OPC UA
+Modular Robot,Modularer Roboter
+Self-reconfigurable Robot,Selbst rekonfigurierender Roboter
+Soft Gripper,Weichgreifer
+Electroadhesion,Elektroadhäsion
+Gecko-inspired Adhesion,Gecko-inspirierte Adhäsion
+Magnetic Levitation,Magnetische Levitation
+Pneumatic Actuator,Pneumatischer Aktuator
+Hydraulic Actuator,Hydraulischer Aktuator
+Shape Memory Alloy,Formgedächtnislegierung
+Dielectric Elastomer,Dielektrischer Elastomer
+Artificial Muscle,Künstlicher Muskel
+Tendon-driven Mechanism,Seilzugmechanismus
+Underwater Manipulator,Unterwasser-Manipulator
+Space Robotics,Weltraumrobotik
+Planetary Rover,Planetarer Rover
+Microgravity Experiment,Mikrogravitations-Experiment
+Hazardous Environment,Gefährliche Umgebung
+Disaster Response,Katastrophenhilfe
+Search and Rescue,Suche und Rettung
+SAR,SAR
+Medical Robotics,Medizinrobotik
+Rehabilitation Robot,Rehabilitationsroboter
+Prosthetic Limb,Prothese
+Surgical Navigation,Chirurgische Navigation
+Minimally Invasive Surgery,Minimalinvasive Chirurgie
+Telesurgery,Telesurgery
+Robot-assisted Therapy,Robotergestützte Therapie
+Elderly Care Robot,Pflegeassistenzroboter
+Social Robot,Sozialer Roboter
+Educational Robot,Bildungsroboter
+Entertainment Robot,Unterhaltungsroboter
+Agricultural Robot,Agrarroboter
+Precision Farming,Präzisionslandwirtschaft
+Autonomous Harvesting,Autonome Ernte
+Weed Detection,Unkrauterkennung
+Livestock Monitoring,Viehüberwachung
+Construction Robot,Bauroboter
+3D Printing in Construction,3D-Druck im Bauwesen
+Bricklaying Robot,Mauerroboter
+Demolition Robot,Abrissroboter
+Inspection Robot,Inspektionsroboter
+Pipeline Inspection,Pipeline-Inspektion
+Wind Turbine Inspection,Windturbinen-Inspektion
+Power Line Inspection,Stromleitungsinspektion
+Underwater Inspection,Unterwasserinspektion
+Cleaning Robot,Reinigungsroboter
+Window Cleaning Robot,Fensterreinigungsroboter
+Floor Cleaning Robot,Bodenreinigungsroboter
+Lawn Mowing Robot,Rasenmäherroboter
+Pool Cleaning Robot,Poolreinigungsroboter
+Logistics Robot,Logistikroboter
+Order Picking Robot,Kommissionierroboter
+Palletizing Robot,Palettierroboter
+Sorting Robot,Sortierroboter
+Last-mile Delivery,Letzte-Meile-Zustellung
+Autonomous Forklift,Autonomer Gabelstapler
+Warehouse Drone,Lagerdrohne
+Inventory Management,Bestandsmanagement
+Supply Chain Automation,Automatisierung der Lieferkette
+Retail Robot,Einzelhandelsroboter
+Customer Service Robot,Kundenservice-Roboter
+Guiding Robot,Führungsroboter
+Security Robot,Sicherheitsroboter
+Patrol Robot,Patrouillenroboter
+Surveillance Robot,Überwachungsroboter
+Fire-fighting Robot,Feuerlöschroboter
+Explosive Ordnance Disposal Robot,Kampfmittelbeseitigungsroboter
+EOD,EOD
+Military Robot,Militärroboter
+Unmanned Ground Vehicle,Unbemanntes Bodenfahrzeug
+UGV,UGV
+Autonomous Tank,Autonomer Panzer
+Combat Robot,Kampfroboter
+Reconnaissance Robot,Aufklärungsroboter
+Border Patrol Robot,Grenzpatrouillenroboter
+Underwater Mine Detection,Unterwasserminen-Erkennung
+Autonomous Sentry Gun,Autonomes Geschütz
+Quaternion,Quaternion
+Euler Angle,Euler-Winkel
+Homogeneous Transformation,Homogene Transformation
+Rotation Matrix,Rotationsmatrix
+Pose Estimation,Posenschätzung
+Rigid Body Transformation,Starrkörpertransformation
+Lyapunov Stability,Lyapunov-Stabilität
+Sliding Mode Control,Sliding-Mode-Regelung
+Adaptive Control,Adaptive Regelung
+Robust Control,Robuste Regelung
+Model Predictive Control,Modellprädiktive Regelung
+Fuzzy Logic Control,Fuzzy-Logik-Regelung
+Ultrasonic Sensor,Ultraschallsensor
+Proximity Sensor,Näherungssensor
+Force/Torque Sensor,Kraft-/Drehmomentsensor
+Tactile Sensor,Tastsensor
+Photoelectric Sensor,Photoelektrischer Sensor
+Magnetic Encoder,Magnetischer Encoder
+Optical Encoder,Optischer Encoder
+Linkage,Gestänge
+Joint,Gelenk
+Prismatic Joint,Prismatisches Gelenk
+Revolute Joint,Drehgelenk
+Spherical Joint,Kugelgelenk
+Universal Joint,Kreuzgelenk
+Gear Ratio,Übersetzungsverhältnis
+Backlash,Spiel
+Compliance,Nachgiebigkeit
+Configuration Space,Konfigurationsraum
+Workspace,Arbeitsraum
+Reachable Workspace,Erreichbarer Arbeitsraum
+Dexterous Workspace,Geschicklicher Arbeitsraum
+Singularity,Singularität
+Collision Detection,Kollisionsdetektion
+Free Space,Freiraum
+Voronoi Diagram,Voronoi-Diagramm
+Pick and Place,Pick-and-Place
+Bin Picking,Bin Picking
+Assembly Line,Montageband
+Conveyor Belt,Förderband
+Fixture,Vorrichtung
+Jig,Lehre
+Quality Control,Qualitätskontrolle
+Cycle Time,Taktzeit
+Safety Zone,Sicherheitszone
+Emergency Stop,Not-Aus
+Light Curtain,Lichtschranke
+Safety Interlock,Sicherheitsverriegelung
+ISO 10218,ISO 10218
+CE Marking,CE-Kennzeichnung
+Risk Analysis,Risikoanalyse

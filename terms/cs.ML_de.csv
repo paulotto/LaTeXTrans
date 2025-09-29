@@ -1,0 +1,305 @@
+Supervised Learning,Überwachtes Lernen
+Unsupervised Learning,Unüberwachtes Lernen
+Semi-supervised Learning,Semi-überwachtes Lernen
+Reinforcement Learning,Reinforcement Learning
+Active Learning,Aktives Lernen
+Online Learning,Online-Lernen
+Transfer Learning,Transferlernen
+Automated Machine Learning (AutoML),Automatisiertes Machine Learning (AutoML)
+Representation Learning,Repräsentationslernen
+Minkowski distance,Minkowski-Distanz
+Gradient Descent,Gradientenabstieg
+Stochastic Gradient Descent,Stochastischer Gradientenabstieg
+Over-fitting,Überanpassung
+Regularization,Regularisierung
+Cross Validation,Kreuzvalidierung
+Perceptron,Perzeptron
+Logistic Regression,Logistische Regression
+Maximum Likelihood Estimation,Maximum-Likelihood-Schätzung
+Newton's method,Newton-Verfahren
+K-Nearest Neighbor,k-Nächste-Nachbarn-Verfahren
+Mahalanobis Distance,Mahalanobis-Distanz
+Decision Tree,Entscheidungsbaum
+Naive Bayes Classifier,Naive-Bayes-Klassifikator
+Generalization Error,Generalisierungsfehler
+PAC Learning,PAC-Lernen
+Empirical Risk Minimization,Empirische Risikominimierung
+Growth Function,Wachstumsfunktion
+VC-dimension,VC-Dimension
+Structural Risk Minimization,Strukturelle Risikominimierung
+Eigendecomposition,Eigenwertzerlegung
+Singular Value Decomposition,Singulärwertzerlegung
+Moore-Penrose Pseudoinverse,Moore-Penrose-Pseudoinverse
+Marginal Probability,Marginalwahrscheinlichkeit
+Conditional Probability,Bedingte Wahrscheinlichkeit
+Expectation,Erwartungswert
+Variance,Varianz
+Covariance,Kovarianz
+Critical points,Kritische Punkte
+Support Vector Machine,Support-Vektor-Maschine
+Decision Boundary,Entscheidungsgrenze
+Convex Set,Konvexe Menge
+Lagrange Duality,Lagrange-Dualität
+KKT Conditions,KKT-Bedingungen
+Coordinate ascent,Koordinatenaufstieg
+Sequential Minimal Optimization (SMO),Sequenzielle minimale Optimierung (SMO)
+Node Embedding,Knoten-Einbettung
+Graph Neural Network,Graph-Neuronales Netzwerk
+Node Classification,Knotenklassifikation
+Link Prediction,Link-Vorhersage
+Community Detection,Community-Erkennung
+Isomorphism,Isomorphie
+Random Walk,Random Walk
+Spectral Clustering,Spektrale Clusterbildung
+Asynchronous Stochastic Gradient Algorithm,Asynchroner stochastischer Gradientenalgorithmus
+Negative Sampling,Negatives Sampling
+Network Embedding,Netzwerk-Einbettung
+Graph Theory,Graphentheorie
+multiset,Multimenge
+Perron-Frobenius Theorem,Perron-Frobenius-Theorem
+Stationary Distribution,Stationäre Verteilung
+Matrix Factorization,Matrixfaktorisierung
+Sparsification,Sparsifikation
+Frobenius Norm,Frobenius-Norm
+Heterogeneous Network,Heterogenes Netzwerk
+Graph Convolutional Network (GCN),Graphkonvolutionales Netzwerk (GCN)
+CNN,CNN
+Semi-Supervised Classification,Semi-überwachte Klassifikation
+Chebyshev polynomial,Tschebyschow-Polynom
+Gradient Exploding,Gradientenexplosion
+Gradient Vanishing,Gradientenverschwinden
+Batch Normalization,Batchnormalisierung
+Neighborhood Aggregation,Nachbarschaftsaggregation
+LSTM,LSTM
+Graph Attention Network,Graph-Attention-Netzwerk
+Self-attention,Selbstaufmerksamkeit
+Rescaling,Reskalierung
+Attention Mechanism,Aufmerksamkeitsmechanismus
+Jensen-Shannon Divergence,Jensen-Shannon-Divergenz
+Cognitive Graph,Kognitiver Graph
+Generative Adversarial Network(GAN),Generatives adversariales Netzwerk (GAN)
+Generative Model,Generatives Modell
+Discriminative Model,Diskriminatives Modell
+Gaussian Mixture Model,Gaußsches Mischungsmodell
+Variational Auto Encoder (VAE),Variationaler Autoencoder (VAE)
+Markov Chain,Markow-Kette
+Boltzmann Machine,Boltzmann-Maschine
+Kullback-Leibler divergence,Kullback-Leibler-Divergenz
+Surrogate Loss,Surrogatverlust
+Mode Collapse,Modus-Kollaps
+Earth-Mover/Wasserstein-1 Distance,Earth-Mover-/Wasserstein-1-Distanz
+Lipschitz Continuity,Lipschitz-Stetigkeit
+Feedforward Network,Feedforward-Netzwerk
+Minimax Game,Minimax-Spiel
+Adversarial Learning,Adversariales Lernen
+Outlier,Ausreißer
+Rectified Linear Unit,Rectified Linear Unit
+Softmax Regression,Softmax-Regression
+Viterbi algorithm,Viterbi-Algorithmus
+Gibbs distribution,Gibbs-Verteilung
+Maximum Entropy Markov Model,Maximum-Entropy-Markov-Modell
+Information Extraction,Informationsextraktion
+clique,Clique
+conditional random field,Conditional Random Field
+triad,Triade
+Naive Bayes,Naive Bayes
+social network,Soziales Netzwerk
+Bayesian network,Bayessches Netzwerk
+Joint probability distribution,Gemeinsame Wahrscheinlichkeitsverteilung
+Conditional independence,Bedingte Unabhängigkeit
+sequence analysis,Sequenzanalyse
+Markov Blanket,Markow-Decke
+Hidden Markov Model,Hidden-Markov-Modell
+finite-state,Endlicher Automat
+Shallow parsing,Shallow Parsing
+Speech recognition,Spracherkennung
+convex,Konvex
+transition matrix,Übergangsmatrix
+factor graph,Faktorgraf
+forward-backward algorithm,Forward-Backward-Algorithmus
+parsing,Parsing
+structural holes,Strukturelle Löcher
+graphical model,Grafisches Modell
+Markov Random Field,Markow-Zufallsfeld
+Social balance theory,Theorie des sozialen Gleichgewichts
+probalistic topic model,Probabilistisches Themenmodell
+TFIDF,TF-IDF
+LSI,LSI
+restricted boltzmann machine,Restricted Boltzmann Machine
+LDA,LDA
+PLSI,PLSI
+EM algorithm,EM-Algorithmus
+Gibbs sampling,Gibbs-Sampling
+MAP (Maximum A Posteriori),MAP (Maximum a posteriori)
+Markov Chain Monte Carlo,Markov-Chain-Monte-Carlo
+Monte Carlo Sampling,Monte-Carlo-Sampling
+Univariate,Univariat
+Hoeffding Bound,Hoeffding-Schranke
+Chernoff Bound,Chernoff-Schranke
+Importance Sampling,Importance Sampling
+invariant distribution,Invariante Verteilung
+Metropolis-Hastings algorithm,Metropolis-Hastings-Algorithmus
+Probabilistic Inference,Probabilistische Inferenz
+Variational Inference,Variationsinferenz
+HMM,HMM
+mean field,Mean Field
+mixture model,Mischungsmodell
+Ensemble Learning (Bagging),Ensemble Learning (Bagging)
+Bootstrap Aggregating (Bagging),Bootstrap Aggregating (Bagging)
+Random Forests,Random Forests
+Boosting,Boosting
+Stacking,Stacking
+Classification Tree,Klassifikationsbaum
+Adaptive Boosting (AdaBoost),Adaptive Boosting (AdaBoost)
+Decision Stump,Entscheidungsstumpf
+Meta Learning,Meta-Learning
+Deep Feedforward Network (DPN),Tiefes Feedforward-Netzwerk (DPN)
+Backpropagation,Rückpropagation
+Activation Function,Aktivierungsfunktion
+Multi-layer Perceptron (MLP),Mehrschichtiges Perzeptron (MLP)
+Mean-Squared Error (MSE),Mittlere quadratische Abweichung (MSE)
+Chain Rule,Kettenregel
+Logistic Function,Logistische Funktion
+Hyperbolic Tangent,Hyperbolischer Tangens
+Rectified Linear Units (ReLu),Rectified Linear Units (ReLU)
+Residual Neural Networks (ResNet),Residuale neuronale Netze (ResNet)
+Overfitting,Überanpassung
+Data(set) Augmentation,Datenaugmentierung
+Parameter Sharing,Parameterteilung
+Dropout,Dropout
+L2 Regularization,L2-Regularisierung
+Taylor Series Approximation,Taylor-Reihen-Approximation
+Taylor Expansion,Taylor-Entwicklung
+Bayesian Prior,Bayesscher Prior
+Bayesian Inference,Bayessche Inferenz
+Gaussian Prior,Gaußscher Prior
+Maximum-a-Posterior (MAP),Maximum a posteriori (MAP)
+Linear Regression,Lineare Regression
+L1 Regularization,L1-Regularisierung
+Constrained Optimization,Optimierung unter Nebenbedingungen
+Lagrange Function,Lagrange-Funktion
+Denoising Autoencoder,Denoising-Autoencoder
+Label Smoothing,Label Smoothing
+Eigen Decomposition,Eigenwertzerlegung
+Convolutional Neural Networks (CNNs),Konvolutionale neuronale Netze (CNNs)
+Multi-Task Learning,Multi-Task-Lernen
+Multivariate Normal Distribution,Multivariate Normalverteilung
+Sparse Parametization,Spärliche Parametrisierung
+Sparse Representation,Spärliche Darstellung
+Orthogonal Matching Pursuit (OMP),Orthogonales Matching Pursuit (OMP)
+Root-Mean-Square Error (RMSE),Wurzel des mittleren quadratischen Fehlers (RMSE)
+Collaborative Filtering (CF),Collaborative Filtering (CF)
+Nonnegative Matrix Factorization (NMF),Nichtnegative Matrixfaktorisierung (NMF)
+Latent Sematic Analysis (LSA),Latente semantische Analyse (LSA)
+Bayesian Probabilistic Matrix Factorization (BPMF),Bayessche probabilistische Matrixfaktorisierung (BPMF)
+Wishart Prior,Wishart-Prior
+Sparse Coding,Spärliches Kodieren
+Factorization Machines (FM),Factorization Machines (FM)
+second-order method,Verfahren zweiter Ordnung
+cost function,Kostenfunktion
+training set,Trainingssatz
+objective function,Zielfunktion
+data generating distribution,Datengenerierende Verteilung
+empirical risk,Empirisches Risiko
+feasible,Zulässig
+loss function,Verlustfunktion
+derivative,Ableitung
+surrogate loss function,Surrogatverlustfunktion
+early stopping,Early Stopping
+Hessian matrix,Hesse-Matrix
+second derivative,Zweite Ableitung
+Taylor series,Taylor-Reihe
+Ill-conditioning,Schlecht konditioniert
+critical point,Kritischer Punkt
+local minimum,Lokales Minimum
+local maximum,Lokales Maximum
+saddle point,Sattelpunkt
+global minimum,Globales Minimum
+convex function,Konvexe Funktion
+weight space symmetry,Gewichtsraumsymmetrie
+fully-connected networks,Vollständig verbundene Netzwerke
+gradient clipping,Gradienten-Clipping
+recurrent neural network,Rekurrentes neuronales Netzwerk
+long-term dependency,Langfristige Abhängigkeit
+eigen-decomposition,Eigenwertzerlegung
+vanishing and exploding gradient problem,Problem des verschwindenden und explodierenden Gradienten
+contrastive divergence,Kontrastive Divergenz
+validation set,Validierungsmenge
+learning rate,Lernrate
+momentum,Momentum
+poor conditioning,Schlechtkonditionierung
+nesterov momentum,Nesterov-Momentum
+partial derivative,Partielle Ableitung
+moving average,Gleitender Mittelwert
+quadratic function,Quadratische Funktion
+positive definite,Positiv definit
+quasi-newton method,Quasi-Newton-Verfahren
+conjugate gradient,Konjugierter Gradient
+steepest descent,Steilster Abstieg
+reparametization,Reparametrisierung
+standard deviation,Standardabweichung
+coordinate descent,Koordinatenabstieg
+skip connection,Skip-Connection
+pooling,Pooling
+hyperparameter,Hyperparameter
+sparse connectivity,Spärliche Konnektivität
+receptive field,Rezeptives Feld
+sliced convolution,Geslicte Faltung
+Object Detection,Objekterkennung
+error rate,Fehlerquote
+autoencoder,Autoencoder
+pretraining,Vortraining
+dimensionality reduction,Dimensionsreduktion
+feedforward neural network,Feedforward-Neuronales Netzwerk
+encoder,Encoder
+decoder,Decoder
+cross-entropy,Kreuzentropie
+sliced weights,Geslicte Gewichte
+PCA,PCA
+principal component analysis,Hauptkomponentenanalyse
+singular value,Singulärwert
+reconstruction error,Rekonstruktionsfehler
+covariance matrix,Kovarianzmatrix
+denoising autoencoder,Denoising-Autoencoder
+sparse autoencoder,Spärlicher Autoencoder
+contraction autoencoder,Kontraktionsautoencoder
+fine-tune,Fine-Tuning
+local optima,Lokale Optima
+posterior distribution,Posteriorverteilung
+gaussian distribution,Gauß-Verteilung
+artificial neural network,Künstliches neuronales Netzwerk
+sentiment analysis,Sentimentanalyse
+machine translation,Maschinelle Übersetzung
+pos tagging,POS-Tagging
+teacher forcing,Teacher Forcing
+back-propagation through time,Backpropagation Through Time
+directed graphical model,Gerichtetes grafisches Modell
+question answering,Fragebeantwortung
+jacobi matrix,Jacobi-Matrix
+clip gradient,Gradienten-Clipping
+long short-term memory,Long Short-Term Memory
+gated recurrent unit,Gated Recurrent Unit
+hadamard product,Hadamard-Produkt
+named entity recognition,Named-Entity-Recognition
+Distributed Representation,Verteilte Repräsentation
+Multi-Modal Learning,Multimodales Lernen
+NLP,NLP
+Neural Language Model,Neuronales Sprachmodell
+Neural Probabilistic Language Model,Neuronales probabilistisches Sprachmodell
+RNN,RNN
+Neural Tensor Network,Neuronales Tensor-Netzwerk
+Feature Learning,Merkmalslernen
+Feature Engineering,Merkmalsengineering
+One-hot Representation,One-Hot-Repräsentation
+DBM,DBM
+Zero-shot Learning,Zero-Shot Learning
+Approximate Inference,Approximative Inferenz
+Bag-of-Words Model,Bag-of-Words-Modell
+Forward Propagation,Vorwärtsausbreitung
+Huffman Binary Tree,Huffman-Binärbaum
+NNLM,NNLM
+N-gram,N-Gramm
+Skip-gram Model,Skip-Gram-Modell
+CBOW,CBOW
+Knowledge Graph,Wissensgraph
+Relation Extraction,Relationsextraktion

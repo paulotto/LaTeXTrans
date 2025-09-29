@@ -1,0 +1,406 @@
+Acknowledgment,Danksagung
+Artificial General Intelligence,Allgemeine Künstliche Intelligenz
+AGI,AGI
+Artificial Intelligence,Künstliche Intelligenz
+AI,KI
+Association analysis,Assoziationsanalyse
+Attention mechanism,Aufmerksamkeitsmechanismus
+Attribute conditional independence assumption,Attribut-bedingte Unabhängigkeitsannahme
+Attribute space,Attributraum
+Attribute value,Attributwert
+Autoencoder,Autoencoder
+Automatic speech recognition,Automatische Spracherkennung
+Automatic summarization,Automatische Zusammenfassung
+Average gradient,Durchschnittsgradient
+Average-Pooling,Average-Pooling
+Accumulated error backpropagation,Akkumulierte Fehler-Rückpropagation
+Activation Function,Aktivierungsfunktion
+Adaptive Resonance Theory,Adaptive Resonanztheorie
+ART,ART
+Addictive model,Additives Modell
+Adversarial Networks,Adversarielle Netzwerke
+Affine Layer,Affine Schicht
+Affinity matrix,Affinitätsmatrix
+Agent,Agent
+Algorithm,Algorithmus
+Alpha-beta pruning,Alpha-Beta-Beschneidung
+Anomaly detection,Anomalieerkennung
+Approximation,Approximation
+Area Under ROC Curve,Fläche unter ROC-Kurve
+AUC,AUC
+Backpropagation,Rückpropagation
+BP,BP
+Base learner,Basislerner
+Base learning algorithm,Basislernalgorithmus
+Batch Normalization,Batch-Normalisierung
+BN,BN
+Bayes decision rule,Bayes-Entscheidungsregel
+Bayes Model Averaging,Bayes-Modell-Mittelung
+BMA,BMA
+Bayes classifier,Bayes-Klassifikator
+Bayes optimal classifier,Bayes-optimaler Klassifikator
+Bayesian decision theory,Bayessche Entscheidungstheorie
+Bayesian network,Bayes-Netzwerk
+Bert,BERT
+Between-class scatter matrix,Zwischenklassen-Streumatrix
+Bias,Bias
+Bias-variance decomposition,Bias-Varianz-Zerlegung
+Bias-Variance Dilemma,Bias-Varianz-Dilemma
+Bi-directional Long-Short Term Memory,Bidirektionales Long-Short Term Memory
+Bi-LSTM,Bi-LSTM
+Binary classification,Binäre Klassifikation
+Binomial test,Binomialtest
+Bi-partition,Bipartitionierung
+Boltzmann machine,Boltzmann-Maschine
+Bootstrap sampling,Bootstrap-Sampling
+Bootstrapping,Bootstrapping
+Break-Event Point,Break-Even-Point
+BEP,BEP
+Calibration,Kalibrierung
+Cascade-Correlation,Kaskaden-Korrelation
+Categorical attribute,Kategorisches Attribut
+Class-conditional probability,Klassenbedingte Wahrscheinlichkeit
+Classification and regression tree,Klassifikations- und Regressionsbaum
+CART,CART
+Classifier,Klassifikator
+Class-imbalance,Klassenungleichgewicht
+Closed-form,Geschlossene Form
+Cluster,Cluster
+Clustering,Clustering
+Clustering ensemble,Clustering-Ensemble
+Co-adapting,Ko-Adaptation
+Coding matrix,Kodierungsmatrix
+COLT,COLT
+Competitive learning,Kompetitives Lernen
+Component learner,Komponenten-Lerner
+Comprehensibility,Verständlichkeit
+Computation Cost,Berechnungskosten
+Computational Linguistics,Computerlinguistik
+Computer vision,Computer Vision
+Conditional entropy,Bedingte Entropie
+Conditional mutual information,Bedingte Wechselinformation
+Conditional Probability Table,Bedingte Wahrscheinlichkeitstabelle
+CPT,CPT
+Conditional random field/CRF,Conditional Random Field
+Conditional risk,Bedingtes Risiko
+Confidence,Konfidenz
+Confusion matrix,Konfusionsmatrix
+Connection weight,Verbindungsgewicht
+Connectionism,Konnektionismus
+Consistency,Konsistenz
+Contingency table,Kontingenztabelle
+Continuous attribute,Kontinuierliches Attribut
+Convergence,Konvergenz
+Conversational agent,Gesprächsagent
+Convexity,Konvexität
+Convolutional neural network,Convolutional Neural Network
+CNN,CNN
+Co-occurrence,Co-Occurrence
+Correlation coefficient,Korrelationskoeffizient
+Cosine similarity,Kosinus-Ähnlichkeit
+Cost curve,Kostenkurve
+Cost Function,Kostenfunktion
+Cost matrix,Kostenmatrix
+Cost-sensitive,Kostensensitiv
+Cross entropy,Kreuzentropie
+Cross validation,Kreuzvalidierung
+Crowdsourcing,Crowdsourcing
+Curse of dimensionality,Fluch der Dimensionalität
+Cut point,Schnittpunkt
+Cutting plane algorithm,Schnittebenen-Algorithmus
+Decoder,Decoder
+Decision Boundary,Entscheidungsgrenze
+Decision stump,Entscheidungsstumpf
+Decision tree,Entscheidungsbaum
+Deep Belief Network,Deep Belief Network
+Deep Convolutional Generative Adversarial Network,Deep Convolutional Generative Adversarial Network
+DCGAN,DCGAN
+Deep learning,Deep Learning
+Deep neural network,Deep Neural Network
+DNN,DNN
+Q-Learning,Deep Q-Learning
+Deep Q-Network,Deep Q-Network
+Density estimation,Dichteschätzung
+Density-based clustering,Dichtebasiertes Clustering
+Differentiable neural computer,Differenzierbarer neuronaler Computer
+Discriminator,Diskriminator
+Distribution,Verteilung
+Divergence,Divergenz
+Diversity measure,Diversitätsmaß
+Domain adaption,Domain-Adaptation
+Downsampling,Downsampling
+Dynamic programming,Dynamische Programmierung
+Eigenvalue decomposition,Eigenwertzerlegung
+Embedding,Embedding
+Empirical conditional entropy,Empirische bedingte Entropie
+Empirical entropy,Empirische Entropie
+Empirical error,Empirischer Fehler
+Encoder,Encoder
+End-to-End,End-to-End
+Euclidean distance,Euklidische Distanz
+Expectation-Maximization,Expectation-Maximization
+Expected loss,Erwarteter Verlust
+Exploding Gradient Problem,Exploding Gradient Problem
+Exponential loss function,Exponentielle Verlustfunktion
+Extreme Learning Machine,Extreme Learning Machine
+ELM,ELM
+Factorization,Faktorisierung
+False negative,Falsch negativ
+False positive,Falsch positiv
+Feature engineering,Feature Engineering
+Feature selection,Merkmalsselektion
+Feature vector,Merkmalsvektor
+Featured Learning,Feature Learning
+Feedforward Neural Networks,Feedforward Neural Networks
+FNN,FNN
+Fine-tuning,Fine-Tuning
+Full-rank matrix,Vollrang-Matrix
+Functional neuron,Funktionelles Neuron
+Gain ratio,Gewinnverhältnis
+Game theory,Spieltheorie
+Gaussian,Gaußsch
+Gaussian kernel function,Gaußsche Kernfunktion
+Gaussian Mixture Model,Gaußsches Mischmodell
+Generalization,Generalisierung
+Generalization error,Generalisierungsfehler
+Generalization error bound,Generalisierungsfehler-Schranke
+Generalized Lagrange function,Verallgemeinerte Lagrange-Funktion
+Generalized linear model,Verallgemeinertes lineares Modell
+Generative Adversarial Networks,Generative Adversarial Networks
+GAN,GAN
+Generative Model,Generatives Modell
+Generator,Generator
+Genetic Algorithm,Genetischer Algorithmus
+GA,GA
+Gibbs sampling,Gibbs-Sampling
+Gini index,Gini-Index
+Global minimum,Globales Minimum
+Global Optimization,Globale Optimierung
+Gradient boosting,Gradient Boosting
+Gradient Descent,Gradientenabstieg
+Harmonic mean,Harmonisches Mittel
+Hesse matrix,Hesse-Matrix
+Hidden dynamic model,Verborgenes dynamisches Modell
+Hidden layer,Verborgene Schicht
+Hidden Markov Model,Hidden Markov Model
+HMM,HMM
+Hierarchical clustering,Hierarchisches Clustering
+Hilbert space,Hilbert-Raum
+Homogeneous,Homogen
+Hyperparameter,Hyperparameter
+Hypothesis,Hypothese
+Hypothesis test,Hypothesentest
+ICML,ICML
+Indicator function,Indikatorfunktion
+Individual learner,Individueller Lerner
+Induction,Induktion
+Inductive bias,Induktiver Bias
+Inductive learning,Induktives Lernen
+Information entropy,Informationsentropie
+Information gain,Informationsgewinn
+Input layer,Eingabeschicht
+Insensitive loss,Unempfindlicher Verlust
+Inter-cluster similarity,Zwischencluster-Ähnlichkeit
+Intrinsic value,Intrinsischer Wert
+Isometric Mapping,Isometrische Abbildung
+Isomap,Isomap
+Isotonic regression,Isotone Regression
+Iterative Dichotomiser,Iterativer Dichotomisierer
+Kernel method,Kernel-Methode
+Kernel trick,Kernel-Trick
+K-fold cross validation,K-fache Kreuzvalidierung
+K-Means Clustering,K-Means-Clustering
+K-Nearest Neighbours Algorithm,K-Nächste-Nachbarn-Algorithmus
+KNN,KNN
+Knowledge base,Wissensbasis
+Knowledge Representation,Wissensrepräsentation
+Label space,Label-Raum
+Lagrange duality,Lagrange-Dualität
+Lagrange multiplier,Lagrange-Multiplikator
+Laplace smoothing,Laplace-Glättung
+Laplacian correction,Laplace-Korrektur
+Latent Dirichlet Allocation,Latent Dirichlet Allocation
+Latent semantic analysis,Latente semantische Analyse
+Latent variable,Latente Variable
+Learner,Lerner
+Learning by analogy,Lernen durch Analogie
+Learning rate,Lernrate
+Least squares regression tree,Kleinste-Quadrate-Regressionsbaum
+Leave-One-Out,Leave-One-Out
+LOO,LOO
+linear chain conditional random field,Lineare Kette Conditional Random Field
+Linear Discriminant Analysis,Lineare Diskriminanzanalyse
+LDA,LDA
+Linear model,Lineares Modell
+Linear Regression,Lineare Regression
+Link function,Verknüpfungsfunktion
+Local Markov property,Lokale Markov-Eigenschaft
+Local minimum,Lokales Minimum
+Log likelihood,Log-Likelihood
+Logistic Regression,Logistische Regression
+Log-likelihood,Log-Likelihood
+Log-linear regression,Log-lineare Regression
+Long-Short Term Memory,Long-Short Term Memory
+LSTM,LSTM
+Loss function,Verlustfunktion
+Machine translation,Maschinelle Übersetzung
+MT,MÜ
+Marginal distribution,Randverteilung
+Marginal independence,Marginale Unabhängigkeit
+Marginalization,Marginalisierung
+Markov Chain Monte Carlo,Markov Chain Monte Carlo
+MCMC,MCMC
+Markov Random Field,Markov Random Field
+Maximal clique,Maximale Clique
+Maximum Likelihood Estimation,Maximum-Likelihood-Schätzung
+MLE,MLE
+Maximum margin,Maximaler Rand
+Max-Pooling,Max-Pooling
+Mean squared error,Mittlerer quadratischer Fehler
+Meta-learner,Meta-Lerner
+Metric learning,Metrisches Lernen
+Micro-P,Micro-Precision
+Micro-R,Micro-Recall
+Minimax game,Minimax-Spiel
+Misclassification cost,Fehlklassifikationskosten
+Mixture of experts,Mixture of Experts
+Momentum,Momentum
+Moral graph,Moralgraph
+Multi-class classification,Mehrklassen-Klassifikation
+Multi-document summarization,Mehrdokument-Zusammenfassung
+Multi-layer feedforward neural networks,Mehrschichtige Feedforward-Netzwerke
+Multilayer Perceptron,Multilayer Perceptron
+MLP,MLP
+Multimodal learning,Multimodales Lernen
+Multiple Dimensional Scaling,Mehrdimensionale Skalierung
+Multiple linear regression,Multiple lineare Regression
+Naive bayes,Naive Bayes
+Naive Bayes Classifier,Naive-Bayes-Klassifikator
+Nash equilibrium,Nash-Gleichgewicht
+Natural language generation,Natürliche Sprachgenerierung
+NLG,NLG
+Natural language processing,Natürliche Sprachverarbeitung
+NLP,NLP
+Negative class,Negative Klasse
+Negative correlation,Negative Korrelation
+Negative Log Likelihood,Negative Log-Likelihood
+Neighbourhood Component Analysis,Neighbourhood Component Analysis
+NCA,NCA
+Neural Machine Translation,Neuronale maschinelle Übersetzung
+Neural Turing Machine,Neuronale Turing-Maschine
+Newton method,Newton-Verfahren
+NIPS,NIPS
+No Free Lunch Theorem,No Free Lunch Theorem
+NFL,NFL
+Noise-contrastive estimation,Rauschkontrast-Schätzung
+Nominal attribute,Nominales Attribut
+Non-convex optimization,Nicht-konvexe Optimierung
+Nonlinear model,Nichtlineares Modell
+Non-metric distance,Nicht-metrische Distanz
+Norm,Norm
+Normalization,Normalisierung
+Nuclear norm,Nuklearnorm
+Numerical attribute,Numerisches Attribut
+Objective function,Zielfunktion
+Oblique decision tree,Schiefer Entscheidungsbaum
+Occam's razor,Occams Rasiermesser
+Odds,Chancenverhältnis
+Off-Policy,Off-Policy
+One shot learning,One-Shot-Learning
+One-Dependent Estimator,Einabhängiger Schätzer
+ODE,ODE
+Output layer,Ausgabeschicht
+Overfitting,Overfitting
+Oversampling,Oversampling
+Parameter,Parameter
+Parameter estimation,Parameterschätzung
+Parameter tuning,Parameter-Tuning
+Parse tree,Syntaxbaum
+Particle Swarm Optimization,Particle Swarm Optimization
+PSO,PSO
+Part-of-speech tagging,Part-of-Speech-Tagging
+Perceptron,Perceptron
+Pooling,Pooling
+Positive class,Positive Klasse
+Positive definite matrix,Positiv definite Matrix
+Post-hoc test,Post-hoc-Test
+Post-pruning,Post-Pruning
+Potential function,Potentialfunktion
+Precision,Precision
+Principal component analysis,Hauptkomponentenanalyse
+PCA,PCA
+Prior,Prior
+Pruning,Pruning
+Recall,Recall
+Rectified Linear Unit,Rectified Linear Unit
+ReLU,ReLU
+Recurrent Neural Network,Recurrent Neural Network
+RNN,RNN
+Reference model,Referenzmodell
+Regression,Regression
+Regularization,Regularisierung
+Reinforcement learning,Bestärkendes Lernen
+RL,RL
+Representation learning,Representation Learning
+Re-sampling,Re-Sampling
+Residual Mapping,Residual Mapping
+Residual Network,Residual Network
+Restricted Boltzmann Machine,Restricted Boltzmann Machine
+RBM,RBM
+Re-weighting,Re-Weighting
+Robustness,Robustheit
+Root node,Wurzelknoten
+Rule Engine,Regel-Engine
+Sample space,Stichprobenraum
+Sampling,Sampling
+Score function,Score-Funktion
+Self-Organizing Map,Self-Organizing Map
+Sobel,Sobel
+SOM,SOM
+Semi-naive Bayes classifiers,Semi-naive Bayes-Klassifikatoren
+Semi-Supervised Learning,Semi-supervised Learning
+semi-Supervised Support Vector Machine,Semi-supervised Support Vector Machine
+Sentiment analysis,Sentiment-Analyse
+Separating hyperplane,Trennende Hyperebene
+Sigmoid function,Sigmoid-Funktion
+Similarity measure,Ähnlichkeitsmaß
+Simulated annealing,Simulated Annealing
+Singular Value Decomposition,Singulärwertzerlegung
+Smoothing,Glättung
+Sparsity,Spärlichkeit
+Specialization,Spezialisierung
+Statistical learning,Statistisches Lernen
+Status feature function,Status-Merkmalsfunktion
+Stochastic gradient descent,Stochastic Gradient Descent
+Stratified sampling,Geschichtete Stichprobenziehung
+Structural risk,Strukturelles Risiko
+Supervised learning,Überwachtes Lernen
+Support Vector Machine,Support Vector Machine
+SVM,SVM
+Surrogat loss,Surrogat-Verlust
+Tensor,Tensor
+The least square method,Methode der kleinsten Quadrate
+Threshold,Schwellenwert
+Threshold logic unit,Schwellenwert-Logikeinheit
+Tokenization,Tokenisierung
+Training error,Trainingsfehler
+Transfer learning,Transfer Learning
+Transformer,Transformer
+Turing Machine,Turing-Maschine
+Twice-learning,Zweifach-Lernen
+Underfitting,Underfitting
+Undersampling,Undersampling
+Understandability,Verständlichkeit
+Unequal cost,Ungleiche Kosten
+Unsupervised learning,Unüberwachtes Lernen
+Upsampling,Upsampling
+Vanishing Gradient Problem,Vanishing Gradient Problem
+Von Neumann architecture,Von-Neumann-Architektur
+Weak learner,Schwacher Lerner
+Weight,Gewicht
+Weight sharing,Weight Sharing
+Weighted voting,Gewichtete Abstimmung
+Within-class scatter matrix,Innerklassen-Streumatrix
+Word embedding,Word Embedding
+Zero-data learning,Zero-Data-Learning
+Zero-shot learning,Zero-Shot-Learning

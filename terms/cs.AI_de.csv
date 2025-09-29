@@ -1,0 +1,200 @@
+Knowledge Representation,Wissensrepräsentation
+Ontology,Ontologie
+Semantic Network,Semantisches Netz
+Frame,Frame
+Description Logic,Beschreibungslogik
+Conceptual Graph,Konzeptgraph
+Taxonomy,Taxonomie
+Terminology,Terminologie
+Meta-Knowledge,Metawissen
+Knowledge Base,Wissensbasis
+Inference Engine,Inferenzmaschine
+Rule-Based System,Regelbasiertes System
+Production Rule,Produktionsregel
+Fact,Fakt
+Rule,Regel
+Logic Programming,Logikprogrammierung
+Propositional Logic,Aussagenlogik
+First-Order Logic,Prädikatenlogik erster Stufe
+Predicate Logic,Prädikatenlogik
+Resolution,Resolution
+Unification,Unifikation
+Satisfiability,Erfüllbarkeit
+Constraint Satisfaction Problem,Constraint-Satisfaction-Problem
+CSP,CSP
+SAT Solver,SAT-Solver
+Inference,Inferenz
+Forward Chaining,Vorwärtsverkettung
+Backward Chaining,Rückwärtsverkettung
+Logic Inference,Logische Inferenz
+Truth Maintenance System,Truth-Maintenance-System
+Belief Revision,Überzeugungsrevision
+Frame Semantics,Frame-Semantik
+Semantic Web,Semantisches Web
+RDF,RDF
+OWL,OWL
+Case Grammar,Kasusgrammatik
+Conceptual Dependency,Konzeptuelle Abhängigkeit
+Default Reasoning,Default-Schlussfolgern
+Nonmonotonic Reasoning,Nichtmonotones Schließen
+Abductive Reasoning,Abduktives Schließen
+Dempster-Shafer Theory,Dempster-Shafer-Theorie
+Bayesian Network,Bayessches Netzwerk
+Probabilistic Graphical Model,Probabilistisches grafisches Modell
+Markov Random Field,Markowsches Zufallsfeld
+Fuzzy Logic,Fuzzy-Logik
+Belief Propagation,Belief Propagation
+Bayesian Inference,Bayessche Inferenz
+Uncertainty Reasoning,Schließen unter Unsicherheit
+Automated Planning,Automatisierte Planung
+State Space,Zustandsraum
+State Space Planning,Zustandsraumplanung
+STRIPS,STRIPS
+PDDL,PDDL
+Planning Graph,Planungsgraph
+Partial-Order Planning,Partiell geordnete Planung
+Hierarchical Task Network,Hierarchisches Aufgaben-Netzwerk
+HTN,HTN
+Heuristic Search,Heuristische Suche
+A* Search,A*-Suche
+Depth-First Search,Tiefensuche
+Breadth-First Search,Breitensuche
+Means-Ends Analysis,Mittel-Ziel-Analyse
+Goal Regression,Zielregression
+Plan Recognition,Planerkennung
+Replanning,Neuplanung
+Temporal Planning,Temporale Planung
+Resource Allocation Planning,Ressourcenzuteilungsplanung
+Search Algorithm,Suchalgorithmus
+Expert System,Expertensystem
+Shell,Shell
+Knowledge Acquisition,Wissensakquisition
+Explanation Facility,Erklärungskomponente
+Conflict Resolution,Konfliktlösung
+MYCIN,MYCIN
+DENDRAL,DENDRAL
+CLIPS,CLIPS
+Natural Language Understanding,Maschinelles Sprachverstehen
+Syntactic Parsing,Syntaktisches Parsen
+Parse Tree,Parsebaum
+Constituency Parsing,Konstituentenparsing
+Dependency Parsing,Dependenzparsing
+Semantic Parsing,Semantisches Parsen
+Semantic Role Labeling,Semantische Rollenannotierung
+Thematic Role,Thematische Rolle
+Lexical Semantics,Lexikalische Semantik
+Pragmatics,Pragmatik
+Discourse Analysis,Diskursanalyse
+Context-Free Grammar,Kontextfreie Grammatik
+Unification Grammar,Unifikationsgrammatik
+Feature Structure,Merkmalstruktur
+Multi-Agent System,Multiagentensystem
+Agent,Agent
+Autonomous Agent,Autonomer Agent
+BDI Architecture,BDI-Architektur
+Belief-Desire-Intention,Belief-Desire-Intention
+Coordination,Koordination
+Cooperation,Kooperation
+Negotiation,Verhandlung
+Agent Communication Language,Agentenkommunikationssprache
+FIPA-ACL,FIPA-ACL
+Distributed Planning,Verteilte Planung
+Distributed Constraint Satisfaction,Verteilte Constraint-Satisfaction
+Game Theory,Spieltheorie
+Mechanism Design,Mechanismusdesign
+Turing Test,Turing-Test
+Knowledge Graph,Wissensgraph
+Modal Logic,Modallogik
+Default Logic,Default-Logik
+Circumscription,Zirkumskription
+Situation Calculus,Situationskalkül
+Event Calculus,Ereigniskalkül
+Temporal Logic,Temporallogik
+Description Logic ALC,Beschreibungslogik ALC
+Description Logic SHOIN,Beschreibungslogik SHOIN
+Tableau Method,Tableau-Verfahren
+Theorem Proving,Automatischer Theorembeweis
+Resolution Refutation,Resolutionswiderlegung
+Model Checking,Modellprüfung
+Knowledge Compilation,Wissenskompilierung
+Blackboard Architecture,Blackboard-Architektur
+SOAR,SOAR
+ACT-R,ACT-R
+Frame Problem,Frame-Problem
+Closed World Assumption,Closed-World-Annahme
+Open World Assumption,Open-World-Annahme
+Ontology Alignment,Ontologieabgleich
+Ontology Mapping,Ontologieabbildung
+Semantic Interoperability,Semantische Interoperabilität
+Semantic Heterogeneity,Semantische Heterogenität
+Conceptual Blending,Konzeptuelle Integration
+Knowledge Fusion,Wissensfusion
+Rule Induction,Regelinduktion
+Meta-Interpretation,Metainterpretation
+Meta-Reasoning,Metaschlussfolgern
+Knowledge Revision,Wissensrevision
+Belief Merging,Überzeugungsfusion
+Truth Maintenance Network,Truth-Maintenance-Netzwerk
+Justification-Based TMS,Begründungsbasiertes TMS
+Assumption-Based Truth Maintenance System,Annahmenbasiertes Truth-Maintenance-System
+Abductive Logic Programming,Abduktive Logikprogrammierung
+Inductive Logic Programming,Induktive Logikprogrammierung
+Semantic Entailment,Semantische Folgerung
+Logical Entailment,Logische Folgerung
+Knowledge-Based System,Wissensbasiertes System
+Expert System Shell,Expertensystem-Shell
+Inference Control,Inferenzsteuerung
+Backward Reasoning,Rückwärts-Schlussfolgern
+Forward Reasoning,Vorwärts-Schlussfolgern
+Heuristic Function,Heuristische Funktion
+Admissible Heuristic,Zulässige Heuristik
+Consistent Heuristic,Konsistente Heuristik
+Recursive Best-First Search,Rekursiv beste-erste Suche
+IDA*,IDA*
+Bidirectional Search,Bidirektionale Suche
+Graphplan,Graphplan
+Nonlinear Planning,Nichtlineare Planung
+Constraint-Based Planning,Constraint-basierte Planung
+Plan Execution Monitoring,Planüberwachung
+Execution Failure Recovery,Wiederherstellung nach Ausführungsfehlern
+Plan Repair,Planreparatur
+Knowledge-Level Plan,Plan auf Wissensebene
+Plan Library,Planbibliothek
+Reactive Planning,Reaktive Planung
+Belief-Desire-Intention Agent,Belief-Desire-Intention-Agent
+Agent Architecture,Agentenarchitektur
+Agent Deliberation Cycle,Agenten-Deliberationszyklus
+Coordination Protocol,Koordinationsprotokoll
+Contract Net Protocol,Contract-Net-Protokoll
+Distributed Problem Solving,Verteilte Problemlösung
+Multi-Agent Coordination,Multiagentenkoordination
+Multi-Agent Negotiation,Multiagentenverhandlung
+Social Choice Theory,Theorie der Sozialen Wahl
+Coalition Formation,Koalitionsbildung
+Normative System,Normatives System
+Commitment Protocol,Commitment-Protokoll
+Argumentation Framework,Argumentationsrahmen
+Dung’s Framework,Dung-Argumentationsrahmen
+Argumentation Semantics,Argumentationssemantik
+Dialectical Reasoning,Dialektisches Schließen
+Consensus Reaching,Konsenserreichung
+Plan Recognition Grammar,Planerkennungsgrammatik
+Semantic Drift,Semantische Drift
+Truth Discovery,Wahrheitsfindung
+Knowledge Distillation,Wissensdestillation
+Contextual Reasoning,Kontextuelles Schließen
+Local Closed-World Assumption,Lokale Closed-World-Annahme
+Metaheuristic Search,Metaheuristische Suche
+Knowledge-Driven Architectures,Wissensgetriebene Architekturen
+Symbolic Regression,Symbolische Regression
+Logical Abduction,Logische Abduktion
+Cognitive Map,Kognitive Karte
+Semantic Memory,Semantisches Gedächtnis
+Working Memory,Arbeitsgedächtnis
+Knowledge-Level Modeling,Wissensebenenmodellierung
+Scenario-Based Reasoning,Szenariobasiertes Schließen
+Goal-Oriented Behavior,Zielorientiertes Verhalten
+Plan Recognition Algorithm,Planerkennungsalgorithmus
+TMS Justification,TMS-Begründung
+Frame-Based Representation,Frame-basierte Repräsentation
+Script Theory,Skripttheorie

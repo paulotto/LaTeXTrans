@@ -1,0 +1,357 @@
+Abstractive Summarization,Abstraktive Zusammenfassung
+Accuracy,Genauigkeit
+Activation Function,Aktivierungsfunktion
+Active Learning,Aktives Lernen
+Adversarial Attack,Adversarialer Angriff
+Adversarial Training,Adversarielles Training
+ALBERT,ALBERT
+Alignment,Ausrichtung
+Annotation,Annotation
+Answer Span,Antwortspanne
+Argument Mining,Argument Mining
+Arity,Stelligkeit
+Aspect-Based Sentiment Analysis,Aspektbasierte Sentimentanalyse
+Attention Mechanism,Aufmerksamkeitsmechanismus
+Autocorrection,Autokorrektur
+Autoregressive Model,Autoregressives Modell
+Average Precision,Durchschnittliche Präzision
+Backpropagation,Rückpropagation
+Backpropagation Through Time,Rückpropagation durch die Zeit
+Bag-of-Words,Bag-of-Words
+BART,BART
+Beam Search,Beam Search
+Bi-directional Encoder Representations from Transformers,BERT
+Bidirectional LSTM,Bidirektionales LSTM
+Bilingual Evaluation Understudy,BLEU
+Byte Pair Encoding,Byte-Paar-Kodierung
+Candidate Generation,Kandidatenerzeugung
+Canonicalization,Kanonisierung
+Case Folding,Kleinschreibung
+Categorical Variable,Kategoriale Variable
+Causality,Kausalität
+Causal Language Modeling,Kausales Sprachmodellieren
+Character,Zeichen
+Character Embedding,Zeichen-Einbettung
+Chatbot,Chatbot
+Chunking,Chunking
+Classification,Klassifikation
+Classifier,Klassifikator
+Cloze Test,Lückentexttest
+Clustering,Clustering
+Co-occurrence,Kookkurrenz
+Code Switching,Code-Switching
+Coherence,Kohärenz
+Collection,Sammlung
+Commonsense Reasoning,Commonsense-Schlussfolgern
+Compiler,Compiler
+Compositionality,Kompositionalität
+Compound,Kompositum
+Computational Linguistics,Computerlinguistik
+Computational Phenotyping,Computerbasierte Phänotypisierung
+Concept,Konzept
+Conditional Random Field,Conditional Random Field
+Confidence Score,Konfidenzwert
+Constituency Parsing,Konstituentenparsing
+Content Word,Inhaltswort
+Context,Kontext
+Contextual Embedding,Kontextuelle Einbettung
+Contextualized Word Embedding,Kontextualisierte Wort-Einbettung
+Continuous Bag-of-Words,Continuous Bag-of-Words
+Conversational AI,Konversationelle KI
+Coreference Resolution,Koreferenzauflösung
+Corpus,Korpus
+Cosine Similarity,Kosinus-Ähnlichkeit
+Cost Function,Kostenfunktion
+Cross-Entropy,Kreuzentropie
+Cross-lingual,Sprachübergreifend
+Cross-Validation,Kreuzvalidierung
+Curriculum Learning,Curriculum Learning
+Data Augmentation,Datenaugmentierung
+Data Curation,Datenkuratierung
+Data Mining,Data Mining
+De-identification,De-Identifizierung
+Decoder,Dekoder
+Deep Learning,Deep Learning
+Dependency Parsing,Dependenzparsing
+Determinant,Determinante
+Dictionary,Wörterbuch
+Distant Supervision,Distant Supervision
+DistilBERT,DistilBERT
+Distributional Hypothesis,Distributionelle Hypothese
+Distributional Semantics,Distributionelle Semantik
+Document,Dokument
+Document Classification,Dokumentklassifikation
+Document Retrieval,Dokumentretrieval
+Document-Term Matrix,Dokument-Term-Matrix
+Domain Adaptation,Domänenanpassung
+Down-sampling,Downsampling
+Downstream Task,Downstream-Aufgabe
+Dynamic Programming,Dynamische Programmierung
+ELECTRA,ELECTRA
+ELMo,ELMo
+Embed from Language Models,Einbettungen aus Sprachmodellen
+Embedding,Einbettung
+Embedding Layer,Einbettungsschicht
+Encoder,Encoder
+Encoder-Decoder Architecture,Encoder-Decoder-Architektur
+End-to-End,Ende-zu-Ende
+Entity,Entität
+Entity Linking,Entitätsverknüpfung
+Entity Recognition,Entitätserkennung
+ERNIE,ERNIE
+Evaluation Metric,Evaluationsmetrik
+Extractive Summarization,Extraktive Zusammenfassung
+F1-Score,F1-Score
+Fact Checking,Faktenprüfung
+False Negative,Falsches Negativ
+False Positive,Falsches Positiv
+FastText,FastText
+Feature,Merkmal
+Feature Engineering,Merkmalsengineering
+Feedforward Neural Network,Feedforward-Neuronales Netzwerk
+Few-Shot Learning,Few-Shot Learning
+Filler Word,Füllwort
+Fine-tuning,Feinabstimmung
+Finite-State Machine,Endlicher Automat
+Finite-State Transducer,Endlicher Transduktor
+FLAIR,FLAIR
+FlauBERT,FlauBERT
+Function Word,Funktionswort
+Gated Recurrent Unit,Gated Recurrent Unit
+Gazetteer,Gazetteer
+General Language Understanding Evaluation,General Language Understanding Evaluation
+Generative Adversarial Network,Generatives adversariales Netzwerk
+Generative Pre-trained Transformer,Generativer vortrainierter Transformer
+GloVe,GloVe
+Gradient,Gradient
+Gradient Clipping,Gradienten-Clipping
+Gradient Descent,Gradientenabstieg
+Graph Neural Network,Graph-Neuronales Netzwerk
+Hallucination,Halluzination
+Hand-labeling,Manuelle Labelung
+Hard Attention,Harte Aufmerksamkeit
+Hate Speech Detection,Hate-Speech-Erkennung
+Hidden Layer,Verborgene Schicht
+Hidden Markov Model,Hidden-Markov-Modell
+Hierarchical Attention,Hierarchische Aufmerksamkeit
+Hierarchical Softmax,Hierarchisches Softmax
+Hypernym,Hyperonym
+Hyperparameter,Hyperparameter
+Hyponym,Hyponym
+Image Captioning,Bildbeschreibung
+Implicit,Implizit
+In-Context Learning,In-Context-Learning
+In-domain,In-Domain
+Inductive Bias,Induktive Voreinstellung
+Inference,Inferenz
+Information Extraction,Informationsextraktion
+Information Retrieval,Information Retrieval
+Intent,Intent
+Intent Classification,Intent-Klassifikation
+Intent Recognition,Intent-Erkennung
+Inter-Annotator Agreement,Inter-Annotator-Agreement
+Inverse Document Frequency,Inverse Dokumenthäufigkeit
+Knowledge Base,Wissensbasis
+Knowledge Distillation,Wissensdestillation
+Knowledge Graph,Wissensgraph
+Language Bias,Sprachlicher Bias
+Language Generation,Sprachgenerierung
+Language Model,Sprachmodell
+Learning Rate,Lernrate
+Lemmatization,Lemmatisierung
+Lexical,Lexikalisch
+Lexical Semantics,Lexikalische Semantik
+Lexicon,Lexikon
+Linear Regression,Lineare Regression
+Linguistic,Linguistisch
+Logistic Regression,Logistische Regression
+Long Short-Term Memory,Long Short-Term Memory
+Loss Function,Verlustfunktion
+Machine Comprehension,Maschinenverständnis
+Machine Learning,Machine Learning
+Machine Translation,Maschinelle Übersetzung
+MarianMT,MarianMT
+Masked Language Model,Maskiertes Sprachmodell
+Matrix,Matrix
+Matrix Factorization,Matrixfaktorisierung
+Maximum Likelihood Estimation,Maximum-Likelihood-Schätzung
+Mean Average Precision,Mittlere durchschnittliche Präzision
+Mean Reciprocal Rank,Mittlerer reziproker Rang
+Memorization,Memorierung
+Memory Network,Memory-Netzwerk
+Meta-learning,Meta-Learning
+Metric,Metrik
+Mixture of Experts,Mixture of Experts
+MobileBERT,MobileBERT
+Modality,Modalität
+Model,Modell
+Morpheme,Morphem
+Morphology,Morphologie
+Multi-head Attention,Multi-Head-Attention
+Multi-label Classification,Multi-Label-Klassifikation
+Multi-task Learning,Multi-Task-Lernen
+Multilingual,Mehrsprachig
+Multimodal,Multimodal
+N-gram,N-Gramm
+Naive Bayes,Naive Bayes
+Named Entity,Benannte Entität
+Named Entity Recognition,Benannte-Entitäten-Erkennung
+Natural Language Generation,Natürliche Sprachgenerierung
+Natural Language Inference,Natürliche Sprachinferenz
+Natural Language Processing,Verarbeitung natürlicher Sprache
+Natural Language Toolkit,Natural Language Toolkit
+Natural Language Understanding,Natürliches Sprachverständnis
+Negation,Negation
+Negative Sampling,Negatives Sampling
+Neural Machine Translation,Neuronale maschinelle Übersetzung
+Neural Network,Neuronales Netz
+Neural Turing Machine,Neuronale Turing-Maschine
+Neuron,Neuron
+Next Sentence Prediction,Vorhersage des nächsten Satzes
+Normalization,Normalisierung
+Objective Function,Zielfunktion
+Offensive Language Detection,Erkennung offensiver Sprache
+One-hot Encoding,One-Hot-Encoding
+Ontology,Ontologie
+Open-Domain,Offene Domäne
+Operator,Operator
+Optical Character Recognition,Optische Zeichenerkennung
+Out-of-vocabulary,Außerhalb des Vokabulars
+Over-sampling,Oversampling
+Overfitting,Überanpassung
+PaLM,PaLM
+Parser,Parser
+Parsing,Parsing
+Part-of-Speech Tagging,Part-of-Speech-Tagging
+Perplexity,Perplexität
+Phoneme,Phonem
+Pipeline,Pipeline
+Polysemy,Polysemie
+Positional Encoding,Positionskodierung
+Pragmatics,Pragmatik
+Precision,Präzision
+Pre-training,Vortraining
+Preprocessing,Vorverarbeitung
+Principal Component Analysis,Hauptkomponentenanalyse
+Prompt,Prompt
+Prompt Engineering,Prompt Engineering
+Pruning,Pruning
+PyTorch,PyTorch
+Random Forest,Random Forest
+Recall,Recall
+Recurrent Neural Network,Rekurrentes neuronales Netzwerk
+RNN,RNN
+Recursion,Rekursion
+Regular Expression,Regulärer Ausdruck
+Regularization,Regularisierung
+Reinforcement Learning,Reinforcement Learning
+Relation Extraction,Relationsextraktion
+Relevance,Relevanz
+Residual Connection,Residualverbindung
+Retrieval-Augmented Generation,Retrieval-Augmented Generation
+RoBERTa,RoBERTa
+Robustness,Robustheit
+Root Mean Square Error,Wurzel des mittleren quadratischen Fehlers
+ROUGE,ROUGE
+Rule-based,Regelbasiert
+Sarcasm Detection,Sarkasmuserkennung
+Scalar,Skalar
+Scaling Law,Skalierungsgesetz
+Self-Attention,Selbstaufmerksamkeit
+Self-Supervised Learning,Selbstüberwachtes Lernen
+Semantic,Semantisch
+Semantic Analysis,Semantische Analyse
+Semantic Role Labeling,Semantische Rollenannotierung
+Semantic Search,Semantische Suche
+Semantics,Semantik
+Semi-supervised Learning,Semi-überwachtes Lernen
+Sense,Bedeutung
+Sense Disambiguation,Bedeutungsdisambiguierung
+Sentence Boundary Detection,Satzgrenzenerkennung
+Sentence Embedding,Satz-Einbettung
+Sentence Segmentation,Satzsegmentierung
+Sentiment Analysis,Sentimentanalyse
+Sequence,Sequenz
+Sequence-to-Sequence,Sequence-to-Sequence
+Shallow Parsing,Shallow Parsing
+Siamese Network,Siamesisches Netzwerk
+Singular Value Decomposition,Singulärwertzerlegung
+Skip-gram,Skip-Gram
+Slot,Slot
+Slot Filling,Slot-Füllung
+Soft Attention,Weiche Aufmerksamkeit
+Softmax,Softmax
+Spacy,spaCy
+Spam Detection,Spam-Erkennung
+Sparse,Spärlich
+Speech Recognition,Spracherkennung
+Speech Synthesis,Sprachsynthese
+Speech-to-Text,Sprache-zu-Text
+Stemming,Stemming
+Stop Word,Stoppwort
+String,String
+Structural,Strukturell
+Style Transfer,Stiltransfer
+Subword,Subwort
+Summarization,Zusammenfassung
+Supervised Learning,Überwachtes Lernen
+Support Vector Machine,Support Vector Machine
+Syllable,Silbe
+Synonym,Synonym
+Syntactic,Syntaktisch
+Syntax,Syntax
+Syntax Tree,Syntaxbaum
+T5,T5
+Template,Vorlage
+Tensor,Tensor
+TensorFlow,TensorFlow
+Term Frequency,Termfrequenz
+Term Frequency-Inverse Document Frequency,Termfrequenz-Inverse-Dokumentfrequenz
+Test Set,Testmenge
+Text Classification,Textklassifikation
+Text Generation,Textgenerierung
+Text Mining,Text Mining
+Text Normalization,Textnormalisierung
+Text-to-Speech,Text-zu-Sprache
+Token,Token
+Tokenization,Tokenisierung
+Topic Modeling,Themenmodellierung
+Training,Training
+Training Data,Trainingsdaten
+Training Set,Trainingssatz
+Transcribe,Transkribieren
+Transducer,Transducer
+Transfer Learning,Transferlernen
+Transformer,Transformer
+Transliteration,Transliteration
+Treebank,Treebank
+Trigger Word,Triggerwort
+Trigram,Trigramm
+True Negative,Wahres Negativ
+True Positive,Wahres Positiv
+Truncation,Trunkierung
+Tuning,Tuning
+Turn,Gesprächsrunde
+ULMFiT,ULMFiT
+Underfitting,Unteranpassung
+Unigram,Unigramm
+Unsupervised Learning,Unüberwachtes Lernen
+Up-sampling,Upsampling
+Validation Set,Validierungsmenge
+Vanishing Gradient Problem,Problem des verschwindenden Gradienten
+Variational Autoencoder,Variationaler Autoencoder
+Vector,Vektor
+Vector Space Model,Vektorraum-Modell
+Vocabulary,Vokabular
+Weight,Gewicht
+Word,Wort
+Word Alignment,Wortausrichtung
+Word Count,Wortanzahl
+Word Embedding,Wort-Einbettung
+Word Sense Disambiguation,Wortbedeutungsdisambiguierung
+Word2Vec,Word2Vec
+WordNet,WordNet
+XLNet,XLNet
+XLM,XLM
+XLM-RoBERTa,XLM-RoBERTa
+Zero-Shot Learning,Zero-Shot Learning

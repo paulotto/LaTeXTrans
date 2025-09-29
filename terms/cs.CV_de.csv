@@ -1,0 +1,159 @@
+Edge Detection,Kantendetektion
+Canny,Canny
+Sobel,Sobel
+Prewitt,Prewitt
+Laplacian,Laplace-Operator
+Gaussian filter,Gauß-Filter
+Median filter,Medianfilter
+Mean filter,Mittelwertfilter
+Bilateral filter,Bilateralfilter
+Gaussian Blur,Gaußsche Unschärfe
+Bilateral Blur,Bilaterale Unschärfe
+Sharpening,Schärfung
+Unsharp Masking,Unscharfmaskierung
+Image Smoothing,Bildglättung
+Image Enhancement,Bildverbesserung
+Image Restoration,Bildrestauration
+Image Segmentation,Bildsegmentierung
+Image Morphology,Bildmorphologie
+Image Thresholding,Bildschwellwertbildung
+Hough Transform,Hough-Transformation
+affine Transformations,Affine Transformationen
+affine warp,Affine Verzerrung
+GAN,GAN
+Generative Adversarial Network,Generatives adversariales Netzwerk
+CNN,CNN
+Convolutional Neural Network,Konvolutionales neuronales Netzwerk
+boundary matching,Randabgleich
+feature extraction,Merkmalsextraktion
+interpretation tree search,Interpretationsbaum-Suche
+image classification,Bildklassifikation
+RAG,RAG
+region adjacency graph,Regionen-Adjazenzgraph
+angular fielf of view,Winkel-Sichtfeld
+AR,AR
+augmented reality,Erweiterte Realität
+VR,VR
+virtual reality,Virtuelle Realität
+ANNs,ANNs
+Artificial Neural Networks,Künstliche neuronale Netze
+backtracking,Backtracking
+Bayesian networks,Bayessche Netzwerke
+decision trees,Entscheidungsbäume
+binary decision trees,Binäre Entscheidungsbäume
+binary image,Binärbild
+dilation,Dilatation
+erosion,Erosion
+Difussion,Diffusion
+Forward Diffusion,Vorwärtsdiffusion
+Reverse Diffusion,Rückwärtsdiffusion
+box filter,Box-Filter
+calibration,Kalibrierung
+Canny edge detection,Canny-Kantendetektion
+Cauchy-Schwarts inequality,Cauchy-Schwarz-Ungleichung
+convolution,Faltung
+chain code,Kettenkodierung
+iterative,Iterativ
+JPEG,JPEG
+K-means,K-Means
+similarity measures,Ähnlichkeitsmaße
+confussion matrix,Konfusionsmatrix
+VISPROG,VISPROG
+ViT,ViT
+vision transformer,Vision Transformer
+inductive bias,Induktive Voreinstellung
+translation equivariance,Translationsequivarianz
+CV,CV
+computer vision,Computer Vision
+MCL,MCL
+Multiview Contrastive Learning,Mehransicht-kontrastives Lernen
+GNNs,GNNs
+Graph Neural Networks,Graph-Neuronale Netze
+VLMs,VLMs
+Vision Language Models,Vision-Language-Modelle
+DFT,DFT
+discrete Fourier Transform,Diskrete Fourier-Transformation
+dynamic Thresholding,Dynamische Schwellwertbildung
+LOG filter,LoG-Filter
+8-neighbors,8-Nachbarschaft
+4-neighbors,4-Nachbarschaft
+EPS,EPS
+FFT,FFT
+fast Fourier Transform,Schnelle Fourier-Transformation
+FOV,FOv
+Field of View,Sichtfeld
+Fourier,Fourier
+hamming distance,Hamming-Distanz
+hash function,Hash-Funktion
+hash table,Hashtabelle
+HSI,HSI
+hue-saturation-intensity,Farbton-Sättigung-Helligkeit
+RGB,RGB
+nearest-neighbors,Nächste Nachbarn
+neighborshoods,Nachbarschaften
+non-accidental alignment,Nichtzufällige Ausrichtung
+nonlinear,Nichtlinear
+IoU,IoU
+intersection over union,Intersection over Union
+Autoencoders,Autoencoder
+Image Classification,Bildklassifikation
+Instance Segmentation,Instanzsegmentierung
+Pose Estimation,Posenabschätzung
+Action Recognition,Aktivitätserkennung
+Visual Tracking,Visuelles Tracking
+Image Captioning,Bildbeschreibungsgenerierung
+Medical Image Analysis,Medizinische Bildanalyse
+Autonomous Driving,Autonomes Fahren
+Robotic Vision,Robotersehen
+pixel,Pixel
+primitives,Primitiven
+SD,SD
+Stable Diffusion,Stable Diffusion
+LCM,LCM
+latent consistency model,Latentes Konsistenzmodell
+DPO,DPO
+direct preference optimization,Direkte Präferenzoptimierung
+SSD,SSD
+single-shot detector,Single-Shot-Detektor
+NMS,NMS
+Non-Maximum Suppression,Nicht-Maximum-Unterdrückung
+Anchor Boxes,Ankerboxen
+YOLO,YOLO
+Semantic Segmentation,Semantische Segmentierung
+Instance Segmentation,Instanzsegmentierung
+Object Detection,Objekterkennung
+FCN,FCN
+Fully Convolutional Network,Vollständig konvolutionales Netzwerk
+CRF,CRF
+conditional Random Field,Conditional Random Field
+Dice Coefficient,Dice-Koeffizient
+point cloud,Punktwolke
+volumetric rendering,Volumetrisches Rendering
+MVS,MVS
+Multi-view Stereo,Multi-View-Stereo
+Zero-shot Learning,Zero-Shot Learning
+VAE,VAE
+Variational Autoencoder,Variationaler Autoencoder
+Style transfer,Stiltransfer
+CT,CT
+MRI,MRT
+Few-shot Learning,Few-Shot Learning
+Self-supervised Learning,Selbstüberwachtes Lernen
+ctrl-adapter,Ctrl-Adapter
+CLIP,CLIP
+contrastive Language-Image Pretraining,Kontrastives Sprach-Bild-Vortraining
+SLIP,SLIP
+Self-supervision meets Language-Image Pre-training,Self-supervision meets Language-Image Pre-training
+HQ-Edit,HQ-Edit
+3DGS,3DGS
+3D Gaussian Splatting,3D-Gaußsches Splatting
+Receptive Field,Rezeptives Feld
+FFTG,FFTG
+face forgery text generator,Gesichtsfälschungs-Textgenerator
+mAP,mAP
+mean average precision,Mittlere durchschnittliche Präzision
+superpixels,Superpixel
+AGI,AGI
+Artificial General Intelligence,Allgemeine Künstliche Intelligenz
+SKNet,SKNet
+selective Kernel Networks,Selektive Kernel-Netzwerke
